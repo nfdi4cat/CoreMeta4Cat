@@ -26,8 +26,8 @@ version: 1.0.0
 
 prefixes:
   catcore: https://w3id.org/nfdi4cat/catcore/
-  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
+  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
@@ -199,7 +199,7 @@ classes:
 
       The specific preparation method type should additionally be expressed
       via rdf_type on the Synthesis activity using a voc4cat term
-      (e.g. voc4cat:0007016 for preparation method).
+      (e.g. VOC4CAT:0007016 for preparation method).
 
   # ---- Concrete preparation method subclasses ----
 
@@ -341,7 +341,7 @@ classes:
 
   FlameSprayPyrolysis:
     is_a: PreparationMethod
-    class_uri: voc4cat:0007031
+    class_uri: VOC4CAT:0007031
     description: |-
       Catalyst preparation by flame spray pyrolysis (FSP): a liquid precursor
       solution is atomised and combusted in a flame to produce nanoparticles.
@@ -506,7 +506,7 @@ slots:
   synthesis_ph:
     description: pH value maintained or targeted during synthesis.
     range: float
-    slot_uri: voc4cat:0000052
+    slot_uri: VOC4CAT:0000052
     multivalued: true
 
   mixing_rate:
@@ -590,7 +590,7 @@ slots:
   synthesis_temperature:
     description: Temperature applied during the synthesis step.
     range: float
-    slot_uri: voc4cat:0000051
+    slot_uri: VOC4CAT:0000051
     multivalued: true
     unit:
       ucum_code: Cel
@@ -598,7 +598,7 @@ slots:
   synthesis_duration:
     description: Total duration of the synthesis step.
     range: float
-    slot_uri: voc4cat:0000050
+    slot_uri: VOC4CAT:0000050
     multivalued: true
     unit:
       ucum_code: h
@@ -606,7 +606,7 @@ slots:
   synthesis_pressure:
     description: Pressure applied during synthesis (e.g. in autoclave or plasma reactor).
     range: float
-    slot_uri: voc4cat:0000053
+    slot_uri: VOC4CAT:0000053
     multivalued: true
     unit:
       ucum_code: bar
@@ -718,7 +718,7 @@ slots:
   substrate:
     description: Substrate material on which the ALD film is deposited.
     range: string
-    slot_uri: voc4cat:0000024
+    slot_uri: VOC4CAT:0000024
     multivalued: true
 
   pulse_time:
@@ -732,7 +732,7 @@ slots:
   purging_duration:
     description: Duration of the purge step between ALD pulses.
     range: float
-    slot_uri: voc4cat:0000112
+    slot_uri: VOC4CAT:0000112
     multivalued: true
     unit:
       ucum_code: s

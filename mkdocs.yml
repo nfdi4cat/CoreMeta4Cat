@@ -1,5 +1,5 @@
 ---
-site_name: "CatCore"
+site_name: "CoreMeta4Cat"
 theme:
   name: material
   # palette:
@@ -12,6 +12,7 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
+logo: /CoreMeta4Cat/images/CoreMeta4Cat_Picture.png
 
 # for adding extra css/js see https://www.mkdocs.org/user-guide/customizing-your-theme/
 
@@ -31,11 +32,16 @@ watch:
 
 nav:
   - Home: index.md
-  - A Hero's Journey:
-    - Introduction: a_heros_journey/a_heros_journey.md
-    - Infrastructure: a_heros_journey/infrastructure.md
-    - Workflow: a_heros_journey/workflow.md
-    - Collaborations and Future Work: a_heros_journey/collaboration_and_future.md
+  - Getting started: getting-started.md
+  - Overview: overview.md
+  - Design Patterns: design-patterns.md
+  - How to extend: how-to-extend.md
+  - Intended Users: coremeta4cat-users.md  
+  # - A Hero's Journey:
+    # - Introduction: a_heros_journey/a_heros_journey.md
+    # - Infrastructure: a_heros_journey/infrastructure.md
+    # - Workflow: a_heros_journey/workflow.md
+    # - Collaborations and Future Work: a_heros_journey/collaboration_and_future.md
   - Documentation:
     - Reaction: reaction.md
     - Characterization: characterization.md
@@ -50,8 +56,8 @@ exclude_docs: |
 extra_css:
   - stylesheets/no-details-box.css
 
-site_url: https://HendrikBorgelt.github.io/CatCore
-repo_url: https://github.com/HendrikBorgelt/CatCore
+site_url: https://HendrikBorgelt.github.io/CoreMeta4Cat
+repo_url: https://github.com/HendrikBorgelt/CoreMeta4Cat
 
 # Uncomment this block to enable use of Google Analytics.
 # Replace the property value with your own ID.
@@ -63,3 +69,4 @@ repo_url: https://github.com/HendrikBorgelt/CatCore
 markdown_extensions:
   - md_in_html
   - admonition
+  - attr_list

@@ -7,7 +7,7 @@ The class follows a hierarchical structure in which selection of a characterizat
 **CURIE:** [`OBI:0000070`](OBI:0000070)
 
 <iframe
-    src="/CatCore/assets/metadata_characterization_hierarchy.html"
+    src="/CoreMeta4Cat/assets/metadata_characterization_hierarchy.html"
     width="100%"
     height= "470vh"
     style="border: 2px solid #5C88DA; background-color: #F0F8FF;

@@ -7,7 +7,7 @@ As bepicted below, CatCore is devided into four major branches, Reaction, Synthe
 
 <div style="text-align: center;">
     <a>
-    <img src="images/CatCore.png" alt="CatCore logo" style="width: 70%;">
+    <img src="images/CoreMeta4Cat_Picture.png" alt="CatCore logo" style="width: 50%;">
     </a>
 </div>
 

@@ -50,8 +50,7 @@ description: |-
     modelled as Plan (from dcat_ap_plus), the protocol realized by the Activity.
 
   This file is the top-level aggregator. It imports catcore_common (shared
-  slots and enums) and will import the four subprofile modules once created.
-  Subprofile imports are listed but commented out until each module is ready.
+  slots and enums) and the four subprofile modules.
 
   Full import hierarchy:
     catcore.yaml  (this file — aggregator + CatalysisDataset entry point)
@@ -71,9 +70,9 @@ version: 1.0.0
 
 prefixes:
   catcore: https://w3id.org/nfdi4cat/catcore/
-  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
-  chemdcatap: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
+  chemdcatap: https://nfdi-de.github.io/chem-dcat-ap/
+  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   dcat: http://www.w3.org/ns/dcat#
   dcterms: http://purl.org/dc/terms/
@@ -90,7 +89,6 @@ default_range: string
 imports:
   - linkml:types
   - catcore_common
-  # Uncomment as each subprofile module is completed:
   - catcore_synthesis_ap
   - catcore_characterization_ap
   - catcore_reaction_ap
@@ -110,7 +108,7 @@ classes:
       term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).
       For example, a dataset from heterogeneous catalysis research would carry:
         rdf_type:
-          id: voc4cat:0007001
+          id: VOC4CAT:0007001
           title: "heterogeneous catalysis"
 
       The four CatCore minimum information pillars are linked via the slots
@@ -151,147 +149,3 @@ classes:
         recommended: true
         multivalued: true
         inlined_as_list: true
-
-  # ==================== FOUR CATCORE PILLARS ====================
-  # These are placeholder stubs. Full slot definitions and subclasses will be
-  # provided in the corresponding catcore_*_ap.yaml subprofile modules.
-  # They are included here so that the CatalysisDataset slot ranges can
-  # reference concrete classes once the subprofiles are imported.
-
-  Synthesis:
-    is_a: DataGeneratingActivity
-    class_uri: OBI:0000070   # planned process
-    description: |-
-      A DataGeneratingActivity in which a catalyst is prepared.
-
-      Synthesis produces a catalyst (a MaterialSample or ChemicalSubstance) as
-      its output, linked via had_output_entity. The preparation method (protocol)
-      is linked via realized_plan using a PreparationMethod instance.
-
-      Full slot definitions (preparation method, precursors, solvent, support,
-      calcination parameters, etc.) are provided in catcore_synthesis_ap.yaml.
-    todos:
-      - "Full class definition (PreparationMethod, Precursor, CatalystSample, mixins) is in catcore_synthesis_ap.yaml"
-    slot_usage:
-      rdf_type:
-        description: |-
-          The type of synthesis, provided as an ontology term (e.g. from voc4cat
-          or a synthesis methods ontology). Used to distinguish between, e.g.
-          impregnation, co-precipitation, atomic layer deposition, etc.
-        recommended: true
-      realized_plan:
-        description: |-
-          The PreparationMethod (protocol) realized in this Synthesis.
-        range: Plan
-        recommended: true
-      had_output_entity:
-        description: |-
-          The catalyst or material produced by this Synthesis.
-        range: EvaluatedEntity
-        recommended: true
-        multivalued: true
-        inlined_as_list: true
-
-  Characterization:
-    is_a: DataGeneratingActivity
-    class_uri: OBI:0000070   # planned process; specific technique via rdf_type
-    description: |-
-      A DataGeneratingActivity in which a catalyst sample or catalytic reaction
-      is characterized using an analytical technique.
-
-      The catalyst sample being characterized is linked via evaluated_entity.
-      The characterization technique (protocol) is linked via realized_plan
-      using a CharacterizationTechnique instance.
-
-      Full slot definitions (technique, instrument, sample state, detector, etc.)
-      are provided in catcore_characterization_ap.yaml.
-    todos:
-      - "Full class definition lives in catcore_characterization_ap.yaml (Step 4)"
-    slot_usage:
-      rdf_type:
-        description: |-
-          The type of characterization technique, provided as an ontology term
-          (e.g. CHMO:0000158 for powder XRD, CHMO:0000404 for XPS).
-          This is the primary machine-actionable classification of the technique.
-        recommended: true
-      evaluated_entity:
-        description: |-
-          The catalyst sample or material being characterized.
-        range: EvaluatedEntity
-        recommended: true
-        multivalued: true
-        inlined_as_list: true
-      realized_plan:
-        description: |-
-          The CharacterizationTechnique (protocol) realized in this Characterization.
-        range: Plan
-        recommended: true
-
-  Reaction:
-    is_a: EvaluatedActivity
-    class_uri: SIO:010345   # chemical reaction (more specific than prov:Activity)
-    description: |-
-      An EvaluatedActivity representing the catalytic reaction being studied.
-
-      Reaction is NOT a DataGeneratingActivity — it is the process *being observed*,
-      not the process generating the dataset. It is linked to a CatalysisDataset
-      via is_about_activity. A Characterization dataset may be generated while
-      monitoring a Reaction (e.g. operando XRD), in which case both
-      was_generated_by: Characterization and is_about_activity: Reaction apply.
-
-      The reactor used is linked via carried_out_by as a Device (ReactorDesignType).
-      Reactants and products are linked via had_input_entity and had_output_entity.
-
-      Full slot definitions (catalyst quantity, reactor design, operation parameters,
-      reactants, product identification method, etc.) are provided in
-      catcore_reaction_ap.yaml.
-    todos:
-      - "Full class definition lives in catcore_reaction_ap.yaml (Step 5)"
-    slot_usage:
-      rdf_type:
-        description: |-
-          The type of catalytic reaction, provided as a voc4cat or other ontology
-          term (e.g. voc4cat:0007010 for reaction type).
-        recommended: true
-      carried_out_by:
-        description: |-
-          The reactor (a ReactorDesignType instance, which is_a Device) in which
-          the Reaction takes place.
-        range: AgenticEntity
-        recommended: true
-
-  Simulation:
-    is_a: DataGeneratingActivity
-    class_uri: NCIT:C48936   # computer simulation
-    description: |-
-      A DataGeneratingActivity in which a catalyst or catalytic reaction is
-      modelled computationally.
-
-      The simulation software is linked via carried_out_by as a Software agent.
-      The simulation method (protocol) is linked via realized_plan using a
-      SimulationMethod instance. The catalyst model or reaction being simulated
-      is linked via evaluated_entity or evaluated_activity.
-
-      Full slot definitions (software package, simulation method, calculated
-      property, DFT settings, MD parameters, etc.) are provided in
-      catcore_simulation_ap.yaml.
-    todos:
-      - "Full class definition lives in catcore_simulation_ap.yaml (Step 6)"
-    slot_usage:
-      rdf_type:
-        description: |-
-          The type of simulation method, provided as an ontology term
-          (e.g. catcore:DFT, NCIT:C18097 for molecular dynamics).
-        recommended: true
-      carried_out_by:
-        description: |-
-          The simulation software used, provided as a Software agent instance.
-        range: AgenticEntity
-        recommended: true
-        multivalued: true
-        inlined_as_list: true
-      realized_plan:
-        description: |-
-          The SimulationMethod (protocol) realized in this Simulation.
-        range: Plan
-        recommended: true

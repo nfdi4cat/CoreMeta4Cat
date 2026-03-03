@@ -41,8 +41,8 @@ version: 1.0.0
 
 prefixes:
   catcore: https://w3id.org/nfdi4cat/catcore/
-  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
+  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
@@ -1034,7 +1034,7 @@ slots:
       Reference to the material or MaterialSample being characterised by this
       calculated band gap.
     range: string
-    slot_uri: voc4cat:0005056
+    slot_uri: VOC4CAT:0005056
     multivalued: true
 
   structure_model:

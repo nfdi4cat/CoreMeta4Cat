@@ -30,8 +30,8 @@ version: 1.0.0
 
 prefixes:
   catcore: https://w3id.org/nfdi4cat/catcore/
-  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
+  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
@@ -187,7 +187,7 @@ classes:
       rdf_type:
         description: |-
           The type of characterization technique as an ontology term, e.g.
-          CHMO:0000158 (powder XRD), CHMO:0000404 (XPS), voc4cat:0000075 (SEM).
+          CHMO:0000158 (powder XRD), CHMO:0000404 (XPS), VOC4CAT:0000075 (SEM).
         recommended: true
 
   # ==================== CHARACTERIZATION TECHNIQUE (Plan) ====================
@@ -232,7 +232,7 @@ classes:
 
   XRayAbsorptionSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: voc4cat:0000286
+    class_uri: VOC4CAT:0000286
     mixins:
       - XRaySourceMixin
       - EnergyRangeMixin
@@ -310,7 +310,7 @@ classes:
 
   RamanSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: voc4cat:0000069
+    class_uri: VOC4CAT:0000069
     description: Raman spectroscopy for vibrational and structural characterization.
     slots:
       - excitation_laser_wavelength
@@ -326,7 +326,7 @@ classes:
 
   NMRSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: voc4cat:0000073
+    class_uri: VOC4CAT:0000073
     description: |-
       Nuclear magnetic resonance spectroscopy for structure elucidation.
       Note: for detailed liquid-state NMR minimum information, the dedicated
@@ -346,7 +346,7 @@ classes:
 
   TransmissionElectronMicroscopy:
     is_a: CharacterizationTechnique
-    class_uri: voc4cat:0000078
+    class_uri: VOC4CAT:0000078
     mixins:
       - ElectronMicroscopyMixin
     description: TEM for atomic-resolution imaging and diffraction of catalyst particles.
@@ -355,7 +355,7 @@ classes:
 
   ScanningElectronMicroscopy:
     is_a: CharacterizationTechnique
-    class_uri: voc4cat:0000075
+    class_uri: VOC4CAT:0000075
     mixins:
       - ElectronMicroscopyMixin
     description: SEM for surface morphology and particle size/shape imaging.
@@ -434,7 +434,7 @@ classes:
 
   UVVisSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: voc4cat:0000079
+    class_uri: VOC4CAT:0000079
     description: UV-Vis spectroscopy for electronic transitions, band gap, and concentration determination.
     slots:
       - minimum_wavelength
@@ -488,7 +488,7 @@ classes:
     description: Electrical conductivity measurement for ionic and electronic transport characterization.
     slots:
       - electrode_configuration
-      - frequency
+      - ac_frequency
       - ac_dc_mode
       - sample_geometry
 
@@ -736,19 +736,19 @@ slots:
   reference_electrode:
     description: Reference electrode used in electrochemical cell (e.g. Ag/AgCl, RHE).
     range: string
-    slot_uri: voc4cat:0007204
+    slot_uri: VOC4CAT:0007204
     multivalued: true
 
   working_electrode:
     description: Working electrode used in electrochemical cell.
     range: string
-    slot_uri: voc4cat:0007202
+    slot_uri: VOC4CAT:0007202
     multivalued: true
 
   counter_electrode:
     description: Counter electrode used in electrochemical cell.
     range: string
-    slot_uri: voc4cat:0007203
+    slot_uri: VOC4CAT:0007203
     multivalued: true
 
   electrolyte_composition:
@@ -854,7 +854,7 @@ slots:
   lense_mode:
     description: Electron lens mode setting in XPS analyser.
     range: string
-    slot_uri: voc4cat:0000108
+    slot_uri: VOC4CAT:0000108
     multivalued: true
 
   charge_compensation:
@@ -1130,7 +1130,7 @@ slots:
   scan_rate:
     description: Potential scan rate in cyclic voltammetry.
     range: float
-    slot_uri: voc4cat:0007213
+    slot_uri: VOC4CAT:0007213
     multivalued: true
     unit:
       ucum_code: mV/s
@@ -1154,7 +1154,7 @@ slots:
   step_size_potential:
     description: Potential step size in cyclic voltammetry.
     range: float
-    slot_uri: voc4cat:0007218
+    slot_uri: VOC4CAT:0007218
     multivalued: true
     unit:
       ucum_code: mV
@@ -1167,10 +1167,10 @@ slots:
     slot_uri: catcore:electrode_configuration
     multivalued: true
 
-  frequency:
+  ac_frequency:
     description: Frequency of AC signal applied in impedance or conductivity measurement.
     range: float
-    slot_uri: voc4cat:0007239
+    slot_uri: VOC4CAT:0007239
     multivalued: true
     unit:
       ucum_code: Hz
@@ -1192,7 +1192,7 @@ slots:
   light_wavelength:
     description: Wavelength of the laser used in DLS measurement.
     range: float
-    slot_uri: voc4cat:0000176
+    slot_uri: VOC4CAT:0000176
     multivalued: true
     unit:
       ucum_code: nm
@@ -1240,7 +1240,7 @@ slots:
   solvent_composition:
     description: Solvent composition used for ESI spray solution.
     range: string
-    slot_uri: voc4cat:0007246
+    slot_uri: VOC4CAT:0007246
     multivalued: true
 
   # ---- GC-MS-specific ----

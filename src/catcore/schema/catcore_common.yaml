@@ -30,9 +30,9 @@ version: 1.0.0
 
 prefixes:
   catcore: https://w3id.org/nfdi4cat/catcore/
-  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
-  chemdcatap: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
+  chemdcatap: https://nfdi-de.github.io/chem-dcat-ap/
+  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   dcterms: http://purl.org/dc/terms/
   prov: http://www.w3.org/ns/prov#
@@ -49,7 +49,7 @@ default_range: string
 
 imports:
   - linkml:types
-  - chem_dcat_ap
+  - dcat_4c_ap
 
 # ==================== SHARED SLOTS ====================
 #
@@ -78,7 +78,7 @@ slots:
   equipment:
     description: Equipment or instrument used in a process.
     range: string
-    slot_uri: voc4cat:0000187
+    slot_uri: VOC4CAT:0000187
     multivalued: true
 
   flow_rate:
@@ -120,7 +120,7 @@ slots:
   sample_pretreatment:
     description: Pre-treatment applied to the sample before a process or measurement.
     range: string
-    slot_uri: voc4cat:0000122
+    slot_uri: VOC4CAT:0000122
     multivalued: true
 
   stirring_speed:
@@ -191,7 +191,7 @@ slots:
   calcination_initial_temperature:
     description: Initial temperature for calcination.
     range: float
-    slot_uri: voc4cat:0000057
+    slot_uri: VOC4CAT:0000057
     multivalued: true
     unit:
       ucum_code: Cel
@@ -199,7 +199,7 @@ slots:
   calcination_final_temperature:
     description: Final (target) temperature for calcination.
     range: float
-    slot_uri: voc4cat:0000058
+    slot_uri: VOC4CAT:0000058
     multivalued: true
     unit:
       ucum_code: Cel
@@ -207,7 +207,7 @@ slots:
   calcination_dwelling_time:
     description: Time held at the final calcination temperature.
     range: float
-    slot_uri: voc4cat:0000060
+    slot_uri: VOC4CAT:0000060
     multivalued: true
     unit:
       ucum_code: h
@@ -215,13 +215,13 @@ slots:
   calcination_gaseous_environment:
     description: Gaseous environment maintained during calcination (e.g. air, H2/N2).
     range: string
-    slot_uri: voc4cat:0000055
+    slot_uri: VOC4CAT:0000055
     multivalued: true
 
   calcination_heating_rate:
     description: Heating rate during calcination.
     range: float
-    slot_uri: voc4cat:0000059
+    slot_uri: VOC4CAT:0000059
     multivalued: true
     unit:
       ucum_code: Cel/min
@@ -229,7 +229,7 @@ slots:
   calcination_gas_flow_rate:
     description: Gas flow rate maintained during calcination.
     range: float
-    slot_uri: voc4cat:0000056
+    slot_uri: VOC4CAT:0000056
     multivalued: true
     unit:
       ucum_code: mL/min
@@ -266,7 +266,7 @@ slots:
   operation_mode:
     description: Operation mode of an instrument (e.g. transmission, reflection, AC, DC).
     range: string
-    slot_uri: voc4cat:0000108
+    slot_uri: VOC4CAT:0000108
     multivalued: true
 
   concentration:
@@ -280,7 +280,7 @@ slots:
   solvent:
     description: Solvent used in a process or sample preparation.
     range: string
-    slot_uri: voc4cat:0007246
+    slot_uri: VOC4CAT:0007246
     multivalued: true
 
   injection_volume:
@@ -348,16 +348,16 @@ enums:
     permissible_values:
       heterogeneous_catalysis:
         description: Heterogeneous catalysis — catalyst and reactants are in different phases.
-        meaning: voc4cat:0007001
+        meaning: VOC4CAT:0007001
       homogeneous_catalysis:
         description: Homogeneous catalysis — catalyst and reactants are in the same phase.
-        meaning: voc4cat:0000294
+        meaning: VOC4CAT:0000294
       biocatalysis:
         description: Biocatalysis — use of enzymes or whole cells as catalysts.
-        meaning: voc4cat:0000204
+        meaning: VOC4CAT:0000204
       electrocatalysis:
         description: Electrocatalysis — catalysis of electrochemical reactions.
-        meaning: voc4cat:0000216
+        meaning: VOC4CAT:0000216
       hybrid_catalysis:
         description: Hybrid catalysis — combination of two or more catalytic approaches.
       other:

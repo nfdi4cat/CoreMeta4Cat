@@ -7,7 +7,7 @@ Core fields include reactor design type, operational parameters, and product ide
 **CURIE:** [`SIO:010345`](SIO:010345)
 
 <iframe
-    src="/CatCore/assets/metadata_reaction_hierarchy.html"
+    src="/CoreMeta4Cat/assets/metadata_reaction_hierarchy.html"
     width="100%"
     height= "470vh"
     style="border: 2px solid #5C88DA; background-color: #F0F8FF;
