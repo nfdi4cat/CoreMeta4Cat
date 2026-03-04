@@ -764,8 +764,33 @@ Alias: has_quantitative_attribute</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../AnalysisSourceData/">AnalysisSourceData</a></td>
-<td>Information that was evaluated within a DataAnalysis</td>
+<td><a href="../MaterialEntity/">MaterialEntity</a></td>
+<td>A material is an Entity that has some portion of matter as proper part</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Characterization/">Characterization</a></td>
+<td>A DataGeneratingActivity in which a catalyst sample or catalytic material</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SubstanceSample/">SubstanceSample</a></td>
+<td>A MaterialSample derived from a ChemicalSubstance that is of interest in an a...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DataGeneratingActivity/">DataGeneratingActivity</a></td>
+<td>An Activity (process) that has the objective to produce information (in form ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../EvaluatedActivity/">EvaluatedActivity</a></td>
+<td>An activity or process that is being evaluated in a DataGeneratingActivity</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ChemicalProduct/">ChemicalProduct</a></td>
+<td>A chemical substance that is produced by a ChemicalReaction</td>
 <td>no</td>
 </tr>
 <tr>
@@ -774,28 +799,13 @@ Alias: has_quantitative_attribute</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ChemicalSubstance/">ChemicalSubstance</a></td>
-<td>A MaterialEntity of constant composition, composed of chemical entities of th...</td>
+<td><a href="../Reagent/">Reagent</a></td>
+<td>A ChemicalSubstance that is consumed or transformed in a ChemicalReaction</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../StartingMaterial/">StartingMaterial</a></td>
-<td>A ChemicalSubstance with that has a starting material role in a synthesis</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ReactorDesignType/">ReactorDesignType</a></td>
-<td>Abstract Device representing the type of reactor used in a catalytic experime...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Polymer/">Polymer</a></td>
-<td>A ChemicalSubstance that is composed of macromolecules of different kinds and...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SlurryReactor/">SlurryReactor</a></td>
-<td>Slurry reactor — a three-phase reactor in which catalyst particles are</td>
+<td><a href="../AnalysisSourceData/">AnalysisSourceData</a></td>
+<td>Information that was evaluated within a DataAnalysis</td>
 <td>no</td>
 </tr>
 <tr>
@@ -804,18 +814,53 @@ Alias: has_quantitative_attribute</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Atom/">Atom</a></td>
-<td>A MaterialEntity constituting the smallest component of an element having the...</td>
+<td><a href="../MaterialSample/">MaterialSample</a></td>
+<td>A Sample that was derived from a previous MaterialSample or some other kind o...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../DataAnalysis/">DataAnalysis</a></td>
-<td>An Activity that evaluates the data produced by another Activity</td>
+<td><a href="../ReactorDesignType/">ReactorDesignType</a></td>
+<td>Abstract Device representing the type of reactor used in a catalytic experime...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../DataGeneratingActivity/">DataGeneratingActivity</a></td>
-<td>An Activity (process) that has the objective to produce information (in form ...</td>
+<td><a href="../ChemicalEntity/">ChemicalEntity</a></td>
+<td>Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Catalyst/">Catalyst</a></td>
+<td>A ChemicalSubstance or MaterialEntity that initiates or accelerates a Chemica...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Synthesis/">Synthesis</a></td>
+<td>A DataGeneratingActivity in which a catalyst is prepared</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SlurryReactor/">SlurryReactor</a></td>
+<td>Slurry reactor — a three-phase reactor in which catalyst particles are</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Simulation/">Simulation</a></td>
+<td>A DataGeneratingActivity in which a catalyst, catalytic material, or</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ElectrochemicalReactor/">ElectrochemicalReactor</a></td>
+<td>Electrochemical reactor used in electrocatalytic experiments, including</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Software/">Software</a></td>
+<td>An instrument composed of a series of instructions that can be interpreted by...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../FluidizedBedReactor/">FluidizedBedReactor</a></td>
+<td>Fluidized bed reactor — a reactor in which the catalyst particles are</td>
 <td>no</td>
 </tr>
 <tr>
@@ -829,8 +874,8 @@ Alias: has_quantitative_attribute</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Software/">Software</a></td>
-<td>An instrument composed of a series of instructions that can be interpreted by...</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+<td>A process that leads to the transformation of one set of chemical substances ...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -839,108 +884,13 @@ Alias: has_quantitative_attribute</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../FluidizedBedReactor/">FluidizedBedReactor</a></td>
-<td>Fluidized bed reactor — a reactor in which the catalyst particles are</td>
+<td><a href="../Atom/">Atom</a></td>
+<td>A MaterialEntity constituting the smallest component of an element having the...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Reagent/">Reagent</a></td>
-<td>A ChemicalSubstance that is consumed or transformed in a ChemicalReaction</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Catalyst/">Catalyst</a></td>
-<td>A ChemicalSubstance or MaterialEntity that initiates or accelerates a Chemica...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SubstanceSample/">SubstanceSample</a></td>
-<td>A MaterialSample derived from a ChemicalSubstance that is of interest in an a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
-<td>A process that leads to the transformation of one set of chemical substances ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Precursor/">Precursor</a></td>
-<td>A MaterialSample that serves as input material in a catalyst Synthesis</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Synthesis/">Synthesis</a></td>
-<td>A DataGeneratingActivity in which a catalyst is prepared</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ElectrochemicalReactor/">ElectrochemicalReactor</a></td>
-<td>Electrochemical reactor used in electrocatalytic experiments, including</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MaterialSample/">MaterialSample</a></td>
-<td>A Sample that was derived from a previous MaterialSample or some other kind o...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Autoclave/">Autoclave</a></td>
-<td>Autoclave reactor — a sealed pressure vessel for batch reactions at</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ChemicalEntity/">ChemicalEntity</a></td>
-<td>Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Device/">Device</a></td>
-<td>A material instrument that is designed to perform a function primarily by mea...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Activity/">Activity</a></td>
-<td>See [DCAT-AP specs:Activity](https://semiceu</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../PolymerSample/">PolymerSample</a></td>
-<td>A SubstanceSample derived from a Polymer</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../AgenticEntity/">AgenticEntity</a></td>
-<td>An entity that is somehow responsible for an Activity to take place</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MaterialEntity/">MaterialEntity</a></td>
-<td>A material is an Entity that has some portion of matter as proper part</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DissolvingSubstance/">DissolvingSubstance</a></td>
-<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ChemicalProduct/">ChemicalProduct</a></td>
-<td>A chemical substance that is produced by a ChemicalReaction</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Simulation/">Simulation</a></td>
-<td>A DataGeneratingActivity in which a catalyst, catalytic material, or</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Reaction/">Reaction</a></td>
-<td>An EvaluatedActivity representing the catalytic reaction being studied</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../EvaluatedActivity/">EvaluatedActivity</a></td>
-<td>An activity or process that is being evaluated in a DataGeneratingActivity</td>
+<td><a href="../StartingMaterial/">StartingMaterial</a></td>
+<td>A ChemicalSubstance with that has a starting material role in a synthesis</td>
 <td>no</td>
 </tr>
 <tr>
@@ -949,8 +899,28 @@ Alias: has_quantitative_attribute</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Microreactor/">Microreactor</a></td>
-<td>Microreactor — a miniaturised flow reactor with characteristic dimensions</td>
+<td><a href="../Autoclave/">Autoclave</a></td>
+<td>Autoclave reactor — a sealed pressure vessel for batch reactions at</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DissolvingSubstance/">DissolvingSubstance</a></td>
+<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Reaction/">Reaction</a></td>
+<td>An EvaluatedActivity representing the catalytic reaction being studied</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Device/">Device</a></td>
+<td>A material instrument that is designed to perform a function primarily by mea...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Polymer/">Polymer</a></td>
+<td>A ChemicalSubstance that is composed of macromolecules of different kinds and...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -959,8 +929,38 @@ Alias: has_quantitative_attribute</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Characterization/">Characterization</a></td>
-<td>A DataGeneratingActivity in which a catalyst sample or catalytic material</td>
+<td><a href="../Microreactor/">Microreactor</a></td>
+<td>Microreactor — a miniaturised flow reactor with characteristic dimensions</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DataAnalysis/">DataAnalysis</a></td>
+<td>An Activity that evaluates the data produced by another Activity</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../AgenticEntity/">AgenticEntity</a></td>
+<td>An entity that is somehow responsible for an Activity to take place</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Activity/">Activity</a></td>
+<td>See [DCAT-AP specs:Activity](https://semiceu</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../Precursor/">Precursor</a></td>
+<td>A MaterialSample that serves as input material in a catalyst Synthesis</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../PolymerSample/">PolymerSample</a></td>
+<td>A SubstanceSample derived from a Polymer</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ChemicalSubstance/">ChemicalSubstance</a></td>
+<td>A MaterialEntity of constant composition, composed of chemical entities of th...</td>
 <td>no</td>
 </tr>
 </tbody>
