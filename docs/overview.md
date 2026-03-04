@@ -19,7 +19,7 @@ description: Comprehensive Metadata Guidelines for Catalysis Research Data
 
     Eight reactor design types, flattened operation parameter slots, and product identification links.
 
--   :material-cpu-64-bit: **Simulation**
+-   :octicons-cpu-16: **Simulation**
 
     Four computational methods (DFT, MD, Microkinetics, Monte Carlo) with 12 calculated property classes.
 
