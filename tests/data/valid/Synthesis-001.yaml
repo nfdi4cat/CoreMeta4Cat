@@ -1,20 +1,30 @@
 ---
-# Complete Synthesis Instance
-# This represents a Synthesis object as defined in the schema
+# Synthesis-001 -- Incipient wetness impregnation of 5 wt% Pt/Al2O3
+# Target class: Synthesis
+#
+# NOTE: realized_plan range is PreparationMethod (abstract, no domain slots).
+# Domain synthesis parameters that live on catcore_common ARE accepted on Synthesis directly.
+# realized_plan: title/description only — the loader cannot dispatch to Impregnation subclass.
 
+id: "catcore:SYNTH_001_Pt_Al2O3"
+nominal_composition:
+  - "5 wt% Pt/Al2O3"
+catalyst_measured_properties:
+  - "BET surface area: 185 m2/g, Pt particle size: 2.3 nm (TEM), Pt loading: 4.8 wt% (ICP-AES)"
+storage_conditions:
+  - "stored in desiccator under argon atmosphere at room temperature"
+support:
+  - "gamma-Al2O3, Sasol Puralox, 200 m2/g"
+solvent:
+  - "deionized water"
+sample_pretreatment:
+  - "reduction in H2 at 400 deg C for 2 hours prior to catalytic testing"
+had_input_entity:
+  - id: "catcore:PREC_001_H2PtCl6"
+    title: "chloroplatinic acid hexahydrate"
+    precursor_quantity:
+      - 0.0485
 
-
-identifier: "SYNTH_001_Pt_Al2O3"
-nominal_composition: "5 wt% Pt/Al2O3"
-catalyst_measured_properties: "BET surface area: 185 m²/g, Pt particle size: 2.3 nm (TEM), Pt loading: 4.8 wt% (ICP-AES)"
-storage_conditions: ["stored in desiccator under argon atmosphere at room temperature"]
-support: ["γ-Al2O3, Sasol Puralox, 200 m²/g"]
-solvent: ["deionized water", "ethanol"]
-sample_pretreatment: ["reduction in H2 at 400°C for 2 hours prior to catalytic testing"]
-
-precursor:
-  - identifier: "PREC_001"
-    precursor_quantity: [0.0485]
-
-preparation_method:
-  - identifier: "PREP_001"
+realized_plan:
+  title: "incipient wetness impregnation"
+  description: "incipient_wetness, 25 deg C, 12 h"
