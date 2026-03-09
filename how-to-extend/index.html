@@ -94,8 +94,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="CoreMeta4Cat" class="md-header__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -204,8 +203,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="CoreMeta4Cat" class="md-nav__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
 
     </a>
     CoreMeta4Cat
@@ -831,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elements/" class="md-nav__link">
+      <a href="../elements/overview/" class="md-nav__link">
         
   
   
@@ -1225,86 +1223,86 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <h3 id="step-by-step">Step-by-step</h3>
 <p><strong>1. Identify which mixins apply.</strong></p>
 <p>Before declaring any slots, check whether the method includes a drying step, calcination step, precipitation step, or generic thermal process. Apply all relevant mixins:</p>
-<pre><code class="language-yaml">MyNewMethod:
-  is_a: PreparationMethod
-  class_uri: voc4cat:XXXXXXX   # register a real term, or use catcore: prefix temporarily
-  mixins:
-    - DryingMixin              # if the method has a drying step
-    - CalcinationMixin         # if the method has a calcination step
-  description: |-
-    Brief description of the preparation route.
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">MyNewMethod</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PreparationMethod</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:XXXXXXX</span><span class="w">   </span><span class="c1"># register a real term, or use catcore: prefix temporarily</span>
+<span class="w">  </span><span class="nt">mixins</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DryingMixin</span><span class="w">              </span><span class="c1"># if the method has a drying step</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalcinationMixin</span><span class="w">         </span><span class="c1"># if the method has a calcination step</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">Brief description of the preparation route.</span>
+</code></pre></div>
 <p><strong>2. Add only method-specific slots.</strong></p>
 <p>Slots already provided by mixins must not be redeclared. Only list slots that are unique to this method:</p>
-<pre><code class="language-yaml">  slots:
-    - my_specific_parameter_a
-    - my_specific_parameter_b
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_specific_parameter_a</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_specific_parameter_b</span>
+</code></pre></div>
 <p><strong>3. Declare the new slots in the slots section.</strong></p>
 <p>Add the slot definitions below the class definitions in the same file. Include <code>slot_uri</code>, <code>range</code>, <code>unit</code> (where applicable), and <code>multivalued: true</code>:</p>
-<pre><code class="language-yaml">slots:
+<div class="highlight"><pre><span></span><code><span class="nt">slots</span><span class="p">:</span>
 
-  my_specific_parameter_a:
-    description: What this parameter means and its typical range.
-    range: float
-    slot_uri: catcore:my_specific_parameter_a   # or a Voc4Cat / ontology URI
-    multivalued: true
-    unit:
-      ucum_code: Cel   # use UCUM codes — e.g. Cel, h, mL/min, bar, g
+<span class="w">  </span><span class="nt">my_specific_parameter_a</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">What this parameter means and its typical range.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:my_specific_parameter_a</span><span class="w">   </span><span class="c1"># or a Voc4Cat / ontology URI</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cel</span><span class="w">   </span><span class="c1"># use UCUM codes — e.g. Cel, h, mL/min, bar, g</span>
 
-  my_specific_parameter_b:
-    description: What this parameter means.
-    range: string
-    slot_uri: catcore:my_specific_parameter_b
-    multivalued: true
-</code></pre>
+<span class="w">  </span><span class="nt">my_specific_parameter_b</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">What this parameter means.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:my_specific_parameter_b</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
 <h3 id="minimal-complete-example-photochemicalsynthesis">Minimal complete example — PhotochemicalSynthesis</h3>
-<pre><code class="language-yaml">PhotochemicalSynthesis:
-  is_a: PreparationMethod
-  class_uri: catcore:PhotochemicalSynthesis   # replace with Voc4Cat term when available
-  mixins:
-    - DryingMixin
-  description: |-
-    Catalyst preparation using light irradiation to drive photochemical
-    reduction or deposition of an active phase onto a support.
-  slots:
-    - light_source
-    - irradiation_wavelength
-    - irradiation_duration
-    - light_intensity
+<div class="highlight"><pre><span></span><code><span class="nt">PhotochemicalSynthesis</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PreparationMethod</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:PhotochemicalSynthesis</span><span class="w">   </span><span class="c1"># replace with Voc4Cat term when available</span>
+<span class="w">  </span><span class="nt">mixins</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DryingMixin</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">Catalyst preparation using light irradiation to drive photochemical</span>
+<span class="w">    </span><span class="no">reduction or deposition of an active phase onto a support.</span>
+<span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">light_source</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">irradiation_wavelength</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">irradiation_duration</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">light_intensity</span>
 
-slots:
+<span class="nt">slots</span><span class="p">:</span>
 
-  light_source:
-    description: Type of light source used (e.g. Xe lamp, UV-LED, solar simulator).
-    range: string
-    slot_uri: catcore:light_source
-    multivalued: true
+<span class="w">  </span><span class="nt">light_source</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of light source used (e.g. Xe lamp, UV-LED, solar simulator).</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:light_source</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
-  irradiation_wavelength:
-    description: Dominant wavelength of the irradiation source.
-    range: float
-    slot_uri: catcore:irradiation_wavelength
-    multivalued: true
-    unit:
-      ucum_code: nm
+<span class="w">  </span><span class="nt">irradiation_wavelength</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dominant wavelength of the irradiation source.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:irradiation_wavelength</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nm</span>
 
-  irradiation_duration:
-    description: Total duration of light irradiation.
-    range: float
-    slot_uri: catcore:irradiation_duration
-    multivalued: true
-    unit:
-      ucum_code: h
+<span class="w">  </span><span class="nt">irradiation_duration</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Total duration of light irradiation.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:irradiation_duration</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">h</span>
 
-  light_intensity:
-    description: Irradiance at the sample surface.
-    range: float
-    slot_uri: catcore:light_intensity
-    multivalued: true
-    unit:
-      ucum_code: mW/cm2
-</code></pre>
+<span class="w">  </span><span class="nt">light_intensity</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Irradiance at the sample surface.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:light_intensity</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mW/cm2</span>
+</code></pre></div>
 <hr />
 <h2 id="adding-a-characterisation-technique">Adding a characterisation technique</h2>
 <p>New analytical techniques are added to <code>catcore_characterization_ap.yaml</code> as <code>CharacterizationTechnique</code> subclasses.</p>
@@ -1350,104 +1348,104 @@ slots:
 </tbody>
 </table>
 <p><strong>2. Declare the new class.</strong></p>
-<pre><code class="language-yaml">MyNewTechnique:
-  is_a: CharacterizationTechnique
-  class_uri: CHMO:XXXXXXX   # use a CHMO term where one exists
-  mixins:
-    - RelevantMixin
-  description: |-
-    What the technique measures and what information it provides about the catalyst.
-  slots:
-    - technique_specific_slot_a
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">MyNewTechnique</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CharacterizationTechnique</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:XXXXXXX</span><span class="w">   </span><span class="c1"># use a CHMO term where one exists</span>
+<span class="w">  </span><span class="nt">mixins</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RelevantMixin</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">What the technique measures and what information it provides about the catalyst.</span>
+<span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">technique_specific_slot_a</span>
+</code></pre></div>
 <p><strong>3. Declare technique-specific slots.</strong></p>
 <p>Use the same pattern as for preparation method slots (see above). Place them in the <code>slots:</code> section of <code>catcore_characterization_ap.yaml</code>.</p>
 <h3 id="minimal-complete-example-neutrondiffraction">Minimal complete example — NeutronDiffraction</h3>
-<pre><code class="language-yaml">NeutronDiffraction:
-  is_a: CharacterizationTechnique
-  class_uri: CHMO:0000957
-  description: |-
-    Neutron powder diffraction for structure determination, particularly
-    sensitive to light elements and magnetic ordering.
-  slots:
-    - neutron_wavelength
-    - moderator_type
-    - detector_coverage
+<div class="highlight"><pre><span></span><code><span class="nt">NeutronDiffraction</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CharacterizationTechnique</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0000957</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">Neutron powder diffraction for structure determination, particularly</span>
+<span class="w">    </span><span class="no">sensitive to light elements and magnetic ordering.</span>
+<span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">neutron_wavelength</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">moderator_type</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detector_coverage</span>
 
-slots:
+<span class="nt">slots</span><span class="p">:</span>
 
-  neutron_wavelength:
-    description: Wavelength of the neutron beam.
-    range: float
-    slot_uri: catcore:neutron_wavelength
-    multivalued: true
-    unit:
-      ucum_code: Ao   # Angstrom
+<span class="w">  </span><span class="nt">neutron_wavelength</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Wavelength of the neutron beam.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:neutron_wavelength</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ao</span><span class="w">   </span><span class="c1"># Angstrom</span>
 
-  moderator_type:
-    description: Type of neutron moderator (e.g. cold, thermal, hot source).
-    range: string
-    slot_uri: catcore:moderator_type
-    multivalued: true
+<span class="w">  </span><span class="nt">moderator_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of neutron moderator (e.g. cold, thermal, hot source).</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:moderator_type</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
-  detector_coverage:
-    description: Angular range covered by the detector bank.
-    range: float
-    slot_uri: catcore:detector_coverage
-    multivalued: true
-    unit:
-      ucum_code: deg
-</code></pre>
+<span class="w">  </span><span class="nt">detector_coverage</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Angular range covered by the detector bank.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:detector_coverage</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deg</span>
+</code></pre></div>
 <hr />
 <h2 id="adding-a-reactor-type">Adding a reactor type</h2>
 <p>New reactor geometries or operating modes are added to <code>catcore_reaction_ap.yaml</code> as <code>ReactorDesignType</code> subclasses.</p>
 <h3 id="step-by-step_2">Step-by-step</h3>
 <p>New reactor types are simpler than new preparation methods — there are currently no reactor-specific mixins, so you just add the class and any reactor-specific slots directly:</p>
-<pre><code class="language-yaml">MyNewReactor:
-  is_a: ReactorDesignType
-  class_uri: voc4cat:XXXXXXX
-  description: |-
-    Brief description of the reactor geometry and typical operating conditions.
-  slots:
-    - reactor_specific_slot_a
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">MyNewReactor</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReactorDesignType</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:XXXXXXX</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">Brief description of the reactor geometry and typical operating conditions.</span>
+<span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactor_specific_slot_a</span>
+</code></pre></div>
 <p>If the reactor shares parameters with an existing type (e.g. both are tubular flow reactors), consider whether a shared mixin should be introduced rather than duplicating slots.</p>
 <h3 id="minimal-complete-example-monolithreactor">Minimal complete example — MonolithReactor</h3>
-<pre><code class="language-yaml">MonolithReactor:
-  is_a: ReactorDesignType
-  class_uri: catcore:MonolithReactor   # replace with Voc4Cat term when available
-  description: |-
-    Monolith reactor — a reactor containing a structured monolithic substrate
-    (ceramic or metallic) with parallel channels coated with catalyst.
-  slots:
-    - channel_density
-    - washcoat_loading
-    - monolith_material
+<div class="highlight"><pre><span></span><code><span class="nt">MonolithReactor</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReactorDesignType</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:MonolithReactor</span><span class="w">   </span><span class="c1"># replace with Voc4Cat term when available</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">Monolith reactor — a reactor containing a structured monolithic substrate</span>
+<span class="w">    </span><span class="no">(ceramic or metallic) with parallel channels coated with catalyst.</span>
+<span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">channel_density</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">washcoat_loading</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">monolith_material</span>
 
-slots:
+<span class="nt">slots</span><span class="p">:</span>
 
-  channel_density:
-    description: Number of channels per unit cross-sectional area of the monolith.
-    range: float
-    slot_uri: catcore:channel_density
-    multivalued: true
-    unit:
-      ucum_code: 1/cm2
+<span class="w">  </span><span class="nt">channel_density</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of channels per unit cross-sectional area of the monolith.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:channel_density</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1/cm2</span>
 
-  washcoat_loading:
-    description: Mass of washcoat (catalyst layer) per unit volume of monolith.
-    range: float
-    slot_uri: catcore:washcoat_loading
-    multivalued: true
-    unit:
-      ucum_code: g/L
+<span class="w">  </span><span class="nt">washcoat_loading</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mass of washcoat (catalyst layer) per unit volume of monolith.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:washcoat_loading</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">g/L</span>
 
-  monolith_material:
-    description: Material of the monolith substrate (e.g. cordierite, FeCrAlloy).
-    range: string
-    slot_uri: catcore:monolith_material
-    multivalued: true
-</code></pre>
+<span class="w">  </span><span class="nt">monolith_material</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Material of the monolith substrate (e.g. cordierite, FeCrAlloy).</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:monolith_material</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
 <hr />
 <h2 id="adding-a-simulation-method">Adding a simulation method</h2>
 <p>New computational approaches are added to <code>catcore_simulation_ap.yaml</code> as <code>SimulationMethod</code> subclasses.</p>
@@ -1455,61 +1453,61 @@ slots:
 <p><strong>1. Check the <code>DFTSettingsMixin</code> if the method uses a plane-wave basis.</strong></p>
 <p>The simulation subprofile provides <code>DFTSettingsMixin</code> (exchange-correlation functional, k-point mesh, energy cutoff, pseudopotential type) for DFT-based methods. If your new method is DFT-derived (e.g. DFT+U, hybrid-DFT, GW), apply this mixin.</p>
 <p><strong>2. Declare the class and its specific slots.</strong></p>
-<pre><code class="language-yaml">MyNewSimulationMethod:
-  is_a: SimulationMethod
-  class_uri: NCIT:XXXXXXX   # or catcore: prefix temporarily
-  mixins:
-    - DFTSettingsMixin      # if DFT-based
-  description: |-
-    Description of the theoretical approach and its typical use cases in catalysis.
-  slots:
-    - method_specific_slot
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">MyNewSimulationMethod</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SimulationMethod</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NCIT:XXXXXXX</span><span class="w">   </span><span class="c1"># or catcore: prefix temporarily</span>
+<span class="w">  </span><span class="nt">mixins</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DFTSettingsMixin</span><span class="w">      </span><span class="c1"># if DFT-based</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">Description of the theoretical approach and its typical use cases in catalysis.</span>
+<span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">method_specific_slot</span>
+</code></pre></div>
 <h3 id="minimal-complete-example-kineticmontecarlo">Minimal complete example — KineticMonteCarlo</h3>
-<pre><code class="language-yaml">KineticMonteCarlo:
-  is_a: SimulationMethod
-  class_uri: catcore:KineticMonteCarlo
-  description: |-
-    Kinetic Monte Carlo simulation of surface reaction kinetics, using
-    a reaction network of elementary steps with rate constants.
-  slots:
-    - reaction_network_size
-    - simulation_time_kmc
-    - surface_coverage_tracking
+<div class="highlight"><pre><span></span><code><span class="nt">KineticMonteCarlo</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SimulationMethod</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:KineticMonteCarlo</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">Kinetic Monte Carlo simulation of surface reaction kinetics, using</span>
+<span class="w">    </span><span class="no">a reaction network of elementary steps with rate constants.</span>
+<span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reaction_network_size</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simulation_time_kmc</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">surface_coverage_tracking</span>
 
-slots:
+<span class="nt">slots</span><span class="p">:</span>
 
-  reaction_network_size:
-    description: Number of elementary reaction steps in the KMC reaction network.
-    range: integer
-    slot_uri: catcore:reaction_network_size
-    multivalued: true
+<span class="w">  </span><span class="nt">reaction_network_size</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of elementary reaction steps in the KMC reaction network.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:reaction_network_size</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
-  simulation_time_kmc:
-    description: Total simulated physical time of the KMC trajectory.
-    range: float
-    slot_uri: catcore:simulation_time_kmc
-    multivalued: true
-    unit:
-      ucum_code: s
+<span class="w">  </span><span class="nt">simulation_time_kmc</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Total simulated physical time of the KMC trajectory.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:simulation_time_kmc</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s</span>
 
-  surface_coverage_tracking:
-    description: Species for which surface coverage is tracked as a function of time.
-    range: string
-    slot_uri: catcore:surface_coverage_tracking
-    multivalued: true
-</code></pre>
+<span class="w">  </span><span class="nt">surface_coverage_tracking</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Species for which surface coverage is tracked as a function of time.</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:surface_coverage_tracking</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
 <hr />
 <h2 id="adding-a-calculated-property">Adding a calculated property</h2>
 <p>New computed outputs are added to <code>catcore_simulation_ap.yaml</code> as <code>CalculatedProperty</code> subclasses.</p>
-<pre><code class="language-yaml">MyNewProperty:
-  is_a: CalculatedProperty
-  class_uri: catcore:MyNewProperty
-  description: |-
-    What physical or chemical quantity is computed and what it tells us about the catalyst.
-  slots:
-    - property_specific_slot
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">MyNewProperty</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalculatedProperty</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:MyNewProperty</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">What physical or chemical quantity is computed and what it tells us about the catalyst.</span>
+<span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">property_specific_slot</span>
+</code></pre></div>
 <hr />
 <h2 id="adding-a-shared-slot">Adding a shared slot</h2>
 <p>If a slot is needed by <strong>two or more subprofiles</strong>, declare it in <code>catcore_common.yaml</code> rather than in any individual subprofile. This keeps the schema DRY and avoids slot name collisions.</p>
@@ -1520,35 +1518,35 @@ slots:
 <li>[ ] The slot has a <code>slot_uri</code> pointing to an established ontology term (or a provisional catcore URI)</li>
 <li>[ ] A UCUM unit code is provided for all numeric slots</li>
 </ul>
-<pre><code class="language-yaml"># In catcore_common.yaml, under the slots: section:
+<div class="highlight"><pre><span></span><code><span class="c1"># In catcore_common.yaml, under the slots: section:</span>
 
-my_shared_slot:
-  description: What this parameter means, with any relevant units or value constraints.
-  range: float
-  slot_uri: catcore:my_shared_slot   # replace with ontology URI if available
-  multivalued: true
-  unit:
-    ucum_code: mL/min
-</code></pre>
+<span class="nt">my_shared_slot</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">What this parameter means, with any relevant units or value constraints.</span>
+<span class="w">  </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">  </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:my_shared_slot</span><span class="w">   </span><span class="c1"># replace with ontology URI if available</span>
+<span class="w">  </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">unit</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mL/min</span>
+</code></pre></div>
 <hr />
 <h2 id="adding-a-mixin-class">Adding a mixin class</h2>
 <p>If a set of slots is shared across three or more classes in the same subprofile, consider factoring them into a new mixin. Mixins shared across two subprofiles should go in <code>catcore_common.yaml</code>.</p>
-<pre><code class="language-yaml">MyNewMixin:
-  mixin: true
-  description: |-
-    Brief description of what process step or parameter group this mixin covers,
-    and which classes are expected to use it.
-  slots:
-    - slot_a
-    - slot_b
-    - slot_c
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">MyNewMixin</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mixin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
+<span class="w">    </span><span class="no">Brief description of what process step or parameter group this mixin covers,</span>
+<span class="w">    </span><span class="no">and which classes are expected to use it.</span>
+<span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">slot_a</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">slot_b</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">slot_c</span>
+</code></pre></div>
 <p>Apply the mixin to a class via:</p>
-<pre><code class="language-yaml">SomeConcreteClass:
-  is_a: PreparationMethod
-  mixins:
-    - MyNewMixin
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">SomeConcreteClass</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PreparationMethod</span>
+<span class="w">  </span><span class="nt">mixins</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MyNewMixin</span>
+</code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Mixin scope</p>
 <p>A mixin should cover a coherent, reusable process step — not an arbitrary collection of slots. If a set of slots is only needed by one class, declare the slots directly on that class rather than creating a mixin.</p>
@@ -1560,8 +1558,8 @@ my_shared_slot:
 <p>This section is for schema developers who need to introduce a new chemistry-layer or intermediate module between CoreMeta4Cat and DCAT-AP-PLUS. Most users extending the four pillars do not need this.</p>
 </div>
 <p>CoreMeta4Cat sits at the top of a layered import chain:</p>
-<pre><code>catcore.yaml  →  catcore_common.yaml  →  chem_dcat_ap  →  …  →  dcat_ap_plus
-</code></pre>
+<div class="highlight"><pre><span></span><code>catcore.yaml  →  catcore_common.yaml  →  chem_dcat_ap  →  …  →  dcat_ap_plus
+</code></pre></div>
 <p>If you need to introduce a new intermediate chemistry layer (e.g. a <code>polymer_catalysis_ap</code> that adds polymer-specific base classes used across multiple pillars), add it between <code>catcore_common</code> and the first pillar that needs it. Import it in <code>catcore_common.yaml</code> via the <code>imports:</code> key, and document the new layer in the import hierarchy diagram in <code>catcore.yaml</code>.</p>
 <p>Do not import new intermediate layers directly in individual pillar files — this would create hidden import order dependencies and make the schema harder to reason about.</p>
 <hr />

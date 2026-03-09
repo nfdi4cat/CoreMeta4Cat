@@ -92,8 +92,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="CoreMeta4Cat" class="md-header__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -202,8 +201,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="CoreMeta4Cat" class="md-nav__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
 
     </a>
     CoreMeta4Cat
@@ -618,7 +616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elements/" class="md-nav__link">
+      <a href="../elements/overview/" class="md-nav__link">
         
   
   
@@ -762,29 +760,29 @@
 </details>
 <h2 id="slots">Slots</h2>
 <details open="open">
-<summary><strong>catalyst quantity</strong> (Required, Multivalued)</summary>
+<summary><strong>catalyst quantity</strong> (Mandatory, Multivalued)</summary>
 <p><strong>Description:</strong> Mass of catalyst loaded into the reactor.</p>
 <p><strong>Data Type:</strong> float</p>
-<p><strong>Cardinality:</strong>  Required, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/catcore/catalyst_quantity"><code>catcore:catalyst_quantity</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/catalyst_quantity/">catalyst_quantity</a></p>
+<p><strong>Cardinality:</strong>  Mandatory, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/catalyst_quantity"><code>coremeta4cat:catalyst_quantity</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_quantity/">catalyst_quantity</a></p>
 <p><strong>Unit:</strong> g</p>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_quantity target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_quantity target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
 </details>
 <details open="open">
-<summary><strong>reactant</strong> (Required, Multivalued)</summary>
+<summary><strong>reactant</strong> (Mandatory, Multivalued)</summary>
 <p><strong>Description:</strong> Reactant(s) used in the reaction. Provide compound name, CAS number,
 or SMILES. For feeds, include composition and flow rate where known.</p>
 <p><strong>Data Type:</strong> string</p>
-<p><strong>Cardinality:</strong>  Required, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000101"><code>voc4cat:0000101</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/reactant/">reactant</a></p>
+<p><strong>Cardinality:</strong>  Mandatory, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000101"><code>VOC4CAT:0000101</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/reactant/">reactant</a></p>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactant target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactant target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -795,10 +793,10 @@ or SMILES. For feeds, include composition and flow rate where known.</p>
 For heterogeneous catalysts, use voc4cat terms where available.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007014"><code>voc4cat:0007014</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/catalyst_type/">catalyst_type</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007014"><code>VOC4CAT:0007014</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_type/">catalyst_type</a></p>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -809,10 +807,10 @@ For heterogeneous catalysts, use voc4cat terms where available.</p>
 as a string range (e.g. "200–400 °C") or a single set-point.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007032"><code>voc4cat:0007032</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/reactor_temperature_range/">reactor_temperature_range</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007032"><code>VOC4CAT:0007032</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/reactor_temperature_range/">reactor_temperature_range</a></p>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_temperature_range target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_temperature_range target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -822,10 +820,10 @@ as a string range (e.g. "200–400 °C") or a single set-point.</p>
 <p><strong>Description:</strong> Gaseous environment or atmospheric conditions during a process.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/catcore/atmosphere"><code>catcore:atmosphere</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/atmosphere/">atmosphere</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/atmosphere"><code>coremeta4cat:atmosphere</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/atmosphere/">atmosphere</a></p>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -835,11 +833,11 @@ as a string range (e.g. "200–400 °C") or a single set-point.</p>
 <p><strong>Description:</strong> Total pressure in the reactor during the experiment.</p>
 <p><strong>Data Type:</strong> float</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000118"><code>voc4cat:0000118</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/experiment_pressure/">experiment_pressure</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000118"><code>VOC4CAT:0000118</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/experiment_pressure/">experiment_pressure</a></p>
 <p><strong>Unit:</strong> bar</p>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20experiment_pressure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20experiment_pressure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -850,10 +848,10 @@ as a string range (e.g. "200–400 °C") or a single set-point.</p>
 Record as a string; for individual component concentrations use reactant.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/catcore/feed_composition_range"><code>catcore:feed_composition_range</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/feed_composition_range/">feed_composition_range</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/feed_composition_range"><code>coremeta4cat:feed_composition_range</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/feed_composition_range/">feed_composition_range</a></p>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20feed_composition_range target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20feed_composition_range target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -864,21 +862,21 @@ Record as a string; for individual component concentrations use reactant.</p>
 <p><strong>Data Type:</strong> float</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="http://purl.allotrope.org/ontologies/result#AFR_0002455"><code>AFR:0002455</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/experiment_duration/">experiment_duration</a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/experiment_duration/">experiment_duration</a></p>
 <p><strong>Unit:</strong> h</p>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20experiment_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20experiment_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
 </details>
 <details open="open">
-<summary><strong>carried out by</strong> (Required, Multivalued)</summary>
+<summary><strong>carried out by</strong> (Mandatory, Multivalued)</summary>
 <p><strong>Description:</strong> The reactor in which the Reaction takes place, provided as a
 ReactorDesignType (Device) instance.</p>
 <p><strong>Data Type:</strong> ReactorDesignType</p>
-<p><strong>Cardinality:</strong>  Required, Multivalued</p>
-<p><strong>Schema Reference:</strong> <a href="../elements/carried_out_by/">carried_out_by</a></p>
+<p><strong>Cardinality:</strong>  Mandatory, Multivalued</p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/carried_out_by/">carried_out_by</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details open="open">
 <summary><strong>ReactorDesignType</strong></summary>
@@ -886,10 +884,10 @@ ReactorDesignType (Device) instance.</p>
 <p><strong>Description:</strong> Abstract Device representing the type of reactor used in a catalytic experiment.
 Concrete subclasses specify the reactor geometry and operating mode.
 Linked from Reaction via carried_out_by.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007018"><code>voc4cat:0007018</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/ReactorDesignType/">ReactorDesignType</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007018"><code>VOC4CAT:0007018</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/ReactorDesignType/">ReactorDesignType</a></p>
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ReactorDesignType target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ReactorDesignType target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
@@ -899,10 +897,10 @@ Linked from Reaction via carried_out_by.</p>
 <summary><strong>ElectrochemicalReactor</strong></summary>
 <p><strong>Description:</strong> Electrochemical reactor used in electrocatalytic experiments, including
 H-cells, flow cells, and membrane electrode assemblies.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000193"><code>voc4cat:0000193</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/ElectrochemicalReactor/">ElectrochemicalReactor</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000193"><code>VOC4CAT:0000193</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/ElectrochemicalReactor/">ElectrochemicalReactor</a></p>
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectrochemicalReactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectrochemicalReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
@@ -911,10 +909,10 @@ H-cells, flow cells, and membrane electrode assemblies.</p>
 <summary><strong>CSTR</strong></summary>
 <p><strong>Description:</strong> Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow
 reactor operating at steady state.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007019"><code>voc4cat:0007019</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/CSTR/">CSTR</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007019"><code>VOC4CAT:0007019</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/CSTR/">CSTR</a></p>
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CSTR target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CSTR target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
@@ -923,10 +921,10 @@ reactor operating at steady state.</p>
 <summary><strong>PlugFlowReactor</strong></summary>
 <p><strong>Description:</strong> Plug flow reactor (PFR) — a tubular reactor in which reactant composition
 varies along the axis with no axial mixing.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007102"><code>voc4cat:0007102</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/PlugFlowReactor/">PlugFlowReactor</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007102"><code>VOC4CAT:0007102</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/PlugFlowReactor/">PlugFlowReactor</a></p>
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PlugFlowReactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PlugFlowReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
@@ -936,9 +934,9 @@ varies along the axis with no axial mixing.</p>
 <p><strong>Description:</strong> Autoclave reactor — a sealed pressure vessel for batch reactions at
 elevated temperature and/or pressure.</p>
 <p><strong>CURIE:</strong> <a href="http://purl.obolibrary.org/obo/NCIT_C93052"><code>NCIT:C93052</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/Autoclave/">Autoclave</a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/Autoclave/">Autoclave</a></p>
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Autoclave target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Autoclave target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
@@ -947,10 +945,10 @@ elevated temperature and/or pressure.</p>
 <summary><strong>SlurryReactor</strong></summary>
 <p><strong>Description:</strong> Slurry reactor — a three-phase reactor in which catalyst particles are
 suspended in a liquid phase through which gas is bubbled.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/catcore/SlurryReactor"><code>catcore:SlurryReactor</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/SlurryReactor/">SlurryReactor</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/SlurryReactor"><code>coremeta4cat:SlurryReactor</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/SlurryReactor/">SlurryReactor</a></p>
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SlurryReactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SlurryReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
@@ -960,10 +958,10 @@ suspended in a liquid phase through which gas is bubbled.</p>
 <p><strong>Description:</strong> Microreactor — a miniaturised flow reactor with characteristic dimensions
 in the sub-millimetre range, enabling precise thermal control and rapid
 screening.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000234"><code>voc4cat:0000234</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/Microreactor/">Microreactor</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000234"><code>VOC4CAT:0000234</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/Microreactor/">Microreactor</a></p>
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Microreactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Microreactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
@@ -972,10 +970,10 @@ screening.</p>
 <summary><strong>FixedBedReactor</strong></summary>
 <p><strong>Description:</strong> Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.
 The most common reactor type in heterogeneous catalysis testing.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/catcore/FixedBedReactor"><code>catcore:FixedBedReactor</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/FixedBedReactor/">FixedBedReactor</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/FixedBedReactor"><code>coremeta4cat:FixedBedReactor</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/FixedBedReactor/">FixedBedReactor</a></p>
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FixedBedReactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FixedBedReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
@@ -984,18 +982,18 @@ The most common reactor type in heterogeneous catalysis testing.</p>
 <summary><strong>FluidizedBedReactor</strong></summary>
 <p><strong>Description:</strong> Fluidized bed reactor — a reactor in which the catalyst particles are
 suspended in an upward-flowing gas or liquid stream.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/catcore/FluidizedBedReactor"><code>catcore:FluidizedBedReactor</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/FluidizedBedReactor/">FluidizedBedReactor</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/FluidizedBedReactor"><code>coremeta4cat:FluidizedBedReactor</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/FluidizedBedReactor/">FluidizedBedReactor</a></p>
 <p><strong>Slots</strong></p>
 <details>
 <summary><strong>gas distributor type</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Type or design of the gas distributor plate in a fluidized bed reactor.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/catcore/gas_distributor_type"><code>catcore:gas_distributor_type</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/gas_distributor_type/">gas_distributor_type</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/gas_distributor_type"><code>coremeta4cat:gas_distributor_type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/gas_distributor_type/">gas_distributor_type</a></p>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20gas_distributor_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20gas_distributor_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -1005,11 +1003,11 @@ suspended in an upward-flowing gas or liquid stream.</p>
 <p><strong>Description:</strong> Height of bed expansion above the settled bed height under operating conditions.</p>
 <p><strong>Data Type:</strong> float</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/catcore/bed_expansion_height"><code>catcore:bed_expansion_height</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/bed_expansion_height/">bed_expansion_height</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/bed_expansion_height"><code>coremeta4cat:bed_expansion_height</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/bed_expansion_height/">bed_expansion_height</a></p>
 <p><strong>Unit:</strong> cm</p>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bed_expansion_height target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bed_expansion_height target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -1019,55 +1017,55 @@ suspended in an upward-flowing gas or liquid stream.</p>
 <p><strong>Description:</strong> Description or characterization of bubble size distribution in the fluidized bed.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/catcore/bubble_size_distribution"><code>catcore:bubble_size_distribution</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/bubble_size_distribution/">bubble_size_distribution</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/bubble_size_distribution"><code>coremeta4cat:bubble_size_distribution</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/bubble_size_distribution/">bubble_size_distribution</a></p>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bubble_size_distribution target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bubble_size_distribution target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
 </details>
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FluidizedBedReactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FluidizedBedReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
 </details>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20carried_out_by target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20carried_out_by target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
 </details>
 <details open="open">
-<summary><strong>product identification method</strong> (Required, Multivalued)</summary>
+<summary><strong>product identification method</strong> (Mandatory, Multivalued)</summary>
 <p><strong>Description:</strong> The analytical method used to identify and/or quantify reaction products.
 Should reference a CharacterizationTechnique instance (e.g. a GCMS or
-HPLC_MS object from catcore_characterization_ap). The abstract stub
+HPLC_MS object from coremeta4cat_characterization_ap). The abstract stub
 ProductIdentificationMethod is retained for backward compatibility.</p>
 <p><strong>Data Type:</strong> ProductIdentificationMethod</p>
-<p><strong>Cardinality:</strong>  Required, Multivalued</p>
-<p><strong>Schema Reference:</strong> <a href="./elements/product_identification_method.md">product_identification_method</a></p>
+<p><strong>Cardinality:</strong>  Mandatory, Multivalued</p>
+<p><strong>Schema Reference:</strong> <a href="./elements/slots/product_identification_method.md">product_identification_method</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details open="open">
 <summary><strong>ProductIdentificationMethod</strong></summary>
 <p><strong>Abstract Class</strong></p>
 <p><strong>Description:</strong> Abstract Plan representing the method used to identify and quantify reaction
 products. In practice, users should reference a concrete CharacterizationTechnique
-subclass from catcore_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).</p>
+subclass from coremeta4cat_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).</p>
 <p>This abstract class is retained for backward compatibility with the original
-CatCore monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
+CoreMeta4Cat monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
 it can participate in the realized_plan slot if needed.</p>
 <p><strong>CURIE:</strong> <a href="http://purl.obolibrary.org/obo/OBI_0000272"><code>OBI:0000272</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/ProductIdentificationMethod/">ProductIdentificationMethod</a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/ProductIdentificationMethod/">ProductIdentificationMethod</a></p>
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ProductIdentificationMethod target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ProductIdentificationMethod target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
 </details>
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20product_identification_method target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20product_identification_method target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>

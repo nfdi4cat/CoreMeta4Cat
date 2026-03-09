@@ -94,8 +94,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="CoreMeta4Cat" class="md-header__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -204,8 +203,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="CoreMeta4Cat" class="md-nav__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
 
     </a>
     CoreMeta4Cat
@@ -753,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elements/" class="md-nav__link">
+      <a href="../elements/overview/" class="md-nav__link">
         
   
   
@@ -1003,14 +1001,14 @@
 <p>Catalysis research is diverse. Some groups run highly standardised high-throughput experiments that map naturally onto structured data formats. Others carry out unique, exploratory investigations where no two experiments follow quite the same procedure — and where investing in dedicated data management infrastructure may not be feasible.</p>
 <p>CoreMeta4Cat does not require you to change your data collection workflows. What it offers instead is a <strong>shared vocabulary</strong>: a set of agreed-upon terms and field names that can be applied to your existing data, wherever it lives, at whatever level of detail works for your group.</p>
 <p>The path below goes from the simplest possible adoption — using the vocabulary reference to understand which terms exist — all the way to fully machine-readable, schema-validated records. You can stop at any point and already have something more interoperable than before.</p>
-<pre><code>Level 1 ──► Understand the vocabulary hierarchy
+<div class="highlight"><pre><span></span><code>Level 1 ──► Understand the vocabulary hierarchy
                ↓
 Level 2 ──► Annotate your own spreadsheets with Voc4Cat terms
                ↓
 Level 3 ──► Write a lightweight JSON converter for your sheet structure
                ↓
 Level 4 ──► Validate records against the full CoreMeta4Cat schema
-</code></pre>
+</code></pre></div>
 <hr />
 <h2 id="level-1-the-vocabulary-reference-workbook">Level 1 — The vocabulary reference workbook</h2>
 <p>To help you understand which terms exist and how they relate to each other, CoreMeta4Cat provides a reference Excel workbook. This workbook is <strong>not a data entry form to fill in</strong> — it is a structured overview of the CoreMeta4Cat vocabulary hierarchy, organised by data class, that you can use as a lookup reference when designing or annotating your own data sheets.</p>
@@ -1060,9 +1058,9 @@ Level 4 ──► Validate records against the full CoreMeta4Cat schema
 <h3 id="how-the-annotation-works">How the annotation works</h3>
 <p>Each column header in your sheet gets a Voc4Cat CURIE added alongside it, whether in a second header row, as a cell comment, or simply appended to the header text. There is no prescribed format — what matters is that the machine-readable term is present and unambiguous.</p>
 <p>The vocabulary reference workbook uses a two-line pattern in each column header as a model:</p>
-<pre><code>Human-readable label
+<div class="highlight"><pre><span></span><code>Human-readable label
 voc4cat:XXXXXXX
-</code></pre>
+</code></pre></div>
 <p>Here are some representative examples drawn from the reference workbook:</p>
 <p><strong>Synthesis fields:</strong></p>
 <table>
@@ -1277,96 +1275,96 @@ voc4cat:XXXXXXX
 <p>This may sound like more work, but in practice a converter for a synthesis sheet is typically 30–80 lines of Python. It is a one-time investment per sheet structure, and it produces a permanent, auditable record of exactly how your data maps onto the CoreMeta4Cat schema. If your sheet layout changes, you update the converter accordingly.</p>
 <p>The Voc4Cat annotations you added in Level 2 do most of the work: they are the mapping key that tells the converter which column corresponds to which CoreMeta4Cat field.</p>
 <h3 id="what-a-minimal-converter-looks-like">What a minimal converter looks like</h3>
-<pre><code class="language-python">import openpyxl, json
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">openpyxl</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
 
-wb = openpyxl.load_workbook(&quot;my_synthesis_data.xlsx&quot;)
-ws = wb[&quot;Synthesis&quot;]
+<span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="s2">&quot;my_synthesis_data.xlsx&quot;</span><span class="p">)</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">wb</span><span class="p">[</span><span class="s2">&quot;Synthesis&quot;</span><span class="p">]</span>
 
-# Read column headers — these carry the Voc4Cat annotations
-# so you know exactly which column maps to which CoreMeta4Cat field
-headers = [cell.value for cell in ws[1]]
+<span class="c1"># Read column headers — these carry the Voc4Cat annotations</span>
+<span class="c1"># so you know exactly which column maps to which CoreMeta4Cat field</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="n">cell</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">ws</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
 
-records = []
-for row in ws.iter_rows(min_row=2, values_only=True):
-    data = dict(zip(headers, row))
-    if not any(data.values()):
-        continue  # skip empty rows
+<span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">ws</span><span class="o">.</span><span class="n">iter_rows</span><span class="p">(</span><span class="n">min_row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">values_only</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">headers</span><span class="p">,</span> <span class="n">row</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+        <span class="k">continue</span>  <span class="c1"># skip empty rows</span>
 
-    record = {
-        &quot;type&quot;: &quot;CatalysisDataset&quot;,
-        &quot;was_generated_by&quot;: [{
-            &quot;type&quot;: &quot;Synthesis&quot;,
-            &quot;nominal_composition&quot;: data.get(&quot;Name&quot;),           # dct:title
-            &quot;realized_plan&quot;: {
-                &quot;type&quot;: &quot;Impregnation&quot;,
-                # voc4cat:0000058 — calcination final temperature
-                &quot;calcination_final_temperature&quot;:
-                    data.get(&quot;calcination final temperature&quot;),
-                # voc4cat:0000060 — calcination dwelling time
-                &quot;calcination_dwelling_time&quot;:
-                    data.get(&quot;calcination dwelling time&quot;),
-            },
-            &quot;had_input_entity&quot;: [{
-                &quot;type&quot;: &quot;Precursor&quot;,
-                &quot;name&quot;: data.get(&quot;Precursor 1&quot;),               # voc4cat:0007794
-                &quot;precursor_quantity&quot;: data.get(&quot;Precursor 1 amount&quot;)  # voc4cat:0007038
-            }]
-        }],
-        &quot;is_about_entity&quot;: [{
-            &quot;type&quot;: &quot;CatalystSample&quot;,
-            &quot;support&quot;: data.get(&quot;Support&quot;),                    # voc4cat:0007825
-            &quot;metal_loading_nominal&quot;:
-                data.get(&quot;Metal loading, nominal (wt%)&quot;)       # voc4cat:0007815
-        }]
-    }
-    records.append(record)
+    <span class="n">record</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CatalysisDataset&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;was_generated_by&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Synthesis&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;nominal_composition&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">),</span>           <span class="c1"># dct:title</span>
+            <span class="s2">&quot;realized_plan&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Impregnation&quot;</span><span class="p">,</span>
+                <span class="c1"># voc4cat:0000058 — calcination final temperature</span>
+                <span class="s2">&quot;calcination_final_temperature&quot;</span><span class="p">:</span>
+                    <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;calcination final temperature&quot;</span><span class="p">),</span>
+                <span class="c1"># voc4cat:0000060 — calcination dwelling time</span>
+                <span class="s2">&quot;calcination_dwelling_time&quot;</span><span class="p">:</span>
+                    <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;calcination dwelling time&quot;</span><span class="p">),</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;had_input_entity&quot;</span><span class="p">:</span> <span class="p">[{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Precursor&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Precursor 1&quot;</span><span class="p">),</span>               <span class="c1"># voc4cat:0007794</span>
+                <span class="s2">&quot;precursor_quantity&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Precursor 1 amount&quot;</span><span class="p">)</span>  <span class="c1"># voc4cat:0007038</span>
+            <span class="p">}]</span>
+        <span class="p">}],</span>
+        <span class="s2">&quot;is_about_entity&quot;</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;CatalystSample&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;support&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Support&quot;</span><span class="p">),</span>                    <span class="c1"># voc4cat:0007825</span>
+            <span class="s2">&quot;metal_loading_nominal&quot;</span><span class="p">:</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Metal loading, nominal (wt%)&quot;</span><span class="p">)</span>       <span class="c1"># voc4cat:0007815</span>
+        <span class="p">}]</span>
+    <span class="p">}</span>
+    <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
 
-with open(&quot;synthesis_records.json&quot;, &quot;w&quot;) as f:
-    json.dump(records, f, indent=2, ensure_ascii=False)
-</code></pre>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;synthesis_records.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
 <p>The column names passed to <code>data.get(...)</code> are the same human-readable labels you already have in your sheet header. The Voc4Cat CURIEs in the comments document the semantic meaning of each mapping for anyone reading the script later.</p>
 <h3 id="the-resulting-json-record">The resulting JSON record</h3>
 <p>Running this converter produces a record like the following, which is a valid CoreMeta4Cat JSON instance:</p>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;CatalysisDataset&quot;,
-  &quot;rdf_type&quot;: { &quot;id&quot;: &quot;voc4cat:0007001&quot;, &quot;title&quot;: &quot;heterogeneous catalysis&quot; },
-  &quot;was_generated_by&quot;: [
-    {
-      &quot;type&quot;: &quot;Synthesis&quot;,
-      &quot;nominal_composition&quot;: &quot;5wt% Ni/Al2O3&quot;,
-      &quot;realized_plan&quot;: {
-        &quot;type&quot;: &quot;Impregnation&quot;,
-        &quot;calcination_final_temperature&quot;: 500.0,
-        &quot;calcination_dwelling_time&quot;: 4.0
-      },
-      &quot;had_input_entity&quot;: [
-        {
-          &quot;type&quot;: &quot;Precursor&quot;,
-          &quot;name&quot;: &quot;Ni(NO3)2·6H2O&quot;,
-          &quot;precursor_quantity&quot;: 1.24
-        }
-      ]
-    }
-  ],
-  &quot;is_about_entity&quot;: [
-    {
-      &quot;type&quot;: &quot;CatalystSample&quot;,
-      &quot;support&quot;: &quot;Al2O3&quot;,
-      &quot;metal_loading_nominal&quot;: 5.0
-    }
-  ]
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CatalysisDataset&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;rdf_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;voc4cat:0007001&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;heterogeneous catalysis&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;was_generated_by&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Synthesis&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;nominal_composition&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5wt% Ni/Al2O3&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;realized_plan&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Impregnation&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;calcination_final_temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;calcination_dwelling_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">4.0</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;had_input_entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Precursor&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ni(NO3)2·6H2O&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;precursor_quantity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.24</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;is_about_entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CatalystSample&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;support&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Al2O3&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;metal_loading_nominal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h2 id="level-4-validating-against-the-full-schema">Level 4 — Validating against the full schema</h2>
 <p>Once you have JSON records, you can validate them against the CoreMeta4Cat schema using standard <a href="https://linkml.io/linkml/">LinkML tooling</a>:</p>
-<pre><code class="language-bash">pip install linkml
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>linkml
 
-linkml-validate \
-  --schema catcore.yaml \
-  --target-class CatalysisDataset \
-  synthesis_records.json
-</code></pre>
+linkml-validate<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--schema<span class="w"> </span>catcore.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-class<span class="w"> </span>CatalysisDataset<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>synthesis_records.json
+</code></pre></div>
 <p>Validation reports which mandatory fields are missing, which values fall outside the expected type or controlled vocabulary, and which cross-record links are incomplete. You do not need to reach full validation compliance in one step — treat it as a diagnostic tool that tells you where the gaps are and helps you prioritise what to add next.</p>
 <hr />
 <h2 id="what-each-level-gives-you">What each level gives you</h2>
@@ -1405,7 +1403,7 @@ linkml-validate \
 <hr />
 <h2 id="next-steps">Next steps</h2>
 <ul>
-<li><strong>Browse the full field reference</strong> for each pillar → <a href="elements/overview.md">Schema Reference</a></li>
+<li><strong>Browse the full field reference</strong> for each pillar → <a href="../elements/overview/">Schema Reference</a></li>
 <li><strong>Understand the design</strong> behind CoreMeta4Cat → <a href="../design-patterns/">Design Patterns</a></li>
 <li><strong>Add a field not yet in the schema</strong> → <a href="../how-to-extend/">How to Extend</a></li>
 <li><strong>Schema source and issue tracker</strong> → <a href="https://github.com/HendrikBorgelt/CoreMeta4Cat">CoreMeta4Cat on GitHub</a></li>

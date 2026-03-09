@@ -94,8 +94,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="CoreMeta4Cat" class="md-header__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -204,8 +203,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="CoreMeta4Cat" class="md-nav__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
 
     </a>
     CoreMeta4Cat
@@ -725,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../elements/" class="md-nav__link">
+      <a href="../elements/overview/" class="md-nav__link">
         
   
   
@@ -962,31 +960,31 @@
 <hr />
 <h2 id="quick-start-what-does-coremeta4cat-add">Quick Start: What does CoreMeta4Cat add?</h2>
 <p>In plain DCAT-AP, a <code>Dataset</code> can describe what data exists but says little about <em>how</em> it was produced or <em>what material</em> it concerns. DCAT-AP-PLUS adds a structured provenance graph via <code>prov:wasGeneratedBy</code>. CoreMeta4Cat specialises that graph for catalysis:</p>
-<pre><code class="language-yaml"># A dataset about the CO oxidation performance of a supported Pt catalyst
-id: ex:dataset-001
-title: &quot;CO oxidation activity of 1wt% Pt/Al2O3 at 200–400°C&quot;
-rdf_type:
-  id: voc4cat:0007001
-  title: &quot;heterogeneous catalysis&quot;
+<div class="highlight"><pre><span></span><code><span class="c1"># A dataset about the CO oxidation performance of a supported Pt catalyst</span>
+<span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:dataset-001</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CO</span><span class="nv"> </span><span class="s">oxidation</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">1wt%</span><span class="nv"> </span><span class="s">Pt/Al2O3</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">200–400°C&quot;</span>
+<span class="nt">rdf_type</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007001</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;heterogeneous</span><span class="nv"> </span><span class="s">catalysis&quot;</span>
 
-was_generated_by:
-  - id: ex:reaction-001
-    type: Reaction
-    catalyst_quantity: 100.0   # mg
-    reactant:
-      - &quot;1 vol% CO in N2&quot;
-      - &quot;2 vol% O2 in N2&quot;
-    reactor_temperature_range: &quot;200–400 °C&quot;
-    experiment_pressure: 1.0   # bar
-    carried_out_by:
-      id: ex:reactor-001
-      type: FixedBedReactor
+<span class="nt">was_generated_by</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:reaction-001</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reaction</span>
+<span class="w">    </span><span class="nt">catalyst_quantity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span><span class="w">   </span><span class="c1"># mg</span>
+<span class="w">    </span><span class="nt">reactant</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;1</span><span class="nv"> </span><span class="s">vol%</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">N2&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2</span><span class="nv"> </span><span class="s">vol%</span><span class="nv"> </span><span class="s">O2</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">N2&quot;</span>
+<span class="w">    </span><span class="nt">reactor_temperature_range</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;200–400</span><span class="nv"> </span><span class="s">°C&quot;</span>
+<span class="w">    </span><span class="nt">experiment_pressure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w">   </span><span class="c1"># bar</span>
+<span class="w">    </span><span class="nt">carried_out_by</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:reactor-001</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FixedBedReactor</span>
 
-is_about_entity:
-  - id: ex:catalyst-001
-    type: CatalystSample
-    nominal_composition: &quot;1wt% Pt/Al2O3&quot;
-</code></pre>
+<span class="nt">is_about_entity</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:catalyst-001</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalystSample</span>
+<span class="w">    </span><span class="nt">nominal_composition</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1wt%</span><span class="nv"> </span><span class="s">Pt/Al2O3&quot;</span>
+</code></pre></div>
 <p>This is valid CoreMeta4Cat instance data. Every class and property is mapped to a controlled ontology term (voc4cat, CHMO, OBI, …) and can be validated and converted to RDF using standard LinkML tooling.</p>
 <hr />
 <h2 id="two-layer-architecture">Two-layer architecture</h2>
@@ -1014,13 +1012,13 @@ is_about_entity:
 </tbody>
 </table>
 <p><strong>Layer 2 — Data-class-specific metadata</strong> is structured around the four <em>pillars</em>: Synthesis, Characterization, Reaction, and Simulation. Each pillar maps to a DCAT-AP-PLUS Activity subclass and carries its own set of Mandatory, Recommended, and Optional fields.</p>
-<pre><code>CatalysisDataset (dcat:Dataset)
+<div class="highlight"><pre><span></span><code>CatalysisDataset (dcat:Dataset)
  ├── rdf_type → CatalysisResearchFieldEnum   [Layer 1]
  ├── was_generated_by → Synthesis            [Layer 2]
  ├── was_generated_by → Characterization     [Layer 2]
  ├── was_generated_by → Simulation           [Layer 2]
  └── is_about_activity → Reaction            [Layer 2]
-</code></pre>
+</code></pre></div>
 <hr />
 <h2 id="the-four-coremeta4cat-pillars">The four CoreMeta4Cat pillars</h2>
 <h3 id="synthesis">Synthesis</h3>
@@ -1104,7 +1102,7 @@ is_about_entity:
 <td>Rules for adding new preparation methods, techniques, reactor types, and properties</td>
 </tr>
 <tr>
-<td><a href="elements/overview.md">Schema Reference</a></td>
+<td><a href="../elements/overview/">Schema Reference</a></td>
 <td>Auto-generated reference for all classes and slots</td>
 </tr>
 <tr>
@@ -1114,7 +1112,7 @@ is_about_entity:
 </tbody>
 </table>
 <h2 id="source-code">Source code</h2>
-<p>The LinkML schema, build scripts, and documentation source are on GitHub: <a href="https://github.com/HendrikBorgelt/CoreMeta4Cat">HendrikBorgelt/CoreMeta4Cat</a></p>
+<p>The LinkML schema, build scripts, and documentation source are on GitHub: <a href="https://github.com/nfdi4cat/CoreMeta4Cat">HendrikBorgelt/CoreMeta4Cat</a></p>
 <p>The schema is built as a domain-specific application profile on top of DCAT-AP-PLUS. The base layer is maintained by <a href="https://nfdi4cat.org">NFDI4Cat</a>.</p>
 
 
