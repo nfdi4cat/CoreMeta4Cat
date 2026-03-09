@@ -4,7 +4,7 @@ import glob
 import pytest
 from pathlib import Path
 
-import src.catcore.datamodel.catcore
+import src.coremeta4cat.datamodel.coremeta4cat
 from linkml_runtime.loaders import yaml_loader
 
 DATA_DIR_VALID = Path(__file__).parent / "data" / "valid"
