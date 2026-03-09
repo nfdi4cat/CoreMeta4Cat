@@ -98,7 +98,7 @@ The class follows a hierarchical structure in which selection of a characterizat
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000122`](https://w3id.org/nfdi4cat/voc4cat_0000122)
+**CURIE:** [`VOC4CAT:0000122`](https://w3id.org/nfdi4cat/voc4cat_0000122)
 
 **Schema Reference:** [sample_pretreatment](./elements/sample_pretreatment.md)
 
@@ -128,13 +128,13 @@ The class follows a hierarchical structure in which selection of a characterizat
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>realized plan</strong> (Required)</summary>
+<summary><strong>realized plan</strong> (Mandatory)</summary>
 
 **Description:** The CharacterizationTechnique (protocol) realized in this Characterization.
 
 **Data Type:** CharacterizationTechnique
 
-**Cardinality:**  Required
+**Cardinality:**  Mandatory
 
 **Schema Reference:** [realized_plan](./elements/realized_plan.md)
 
@@ -175,7 +175,7 @@ Linked from Characterization via realized_plan.
 <details markdown="1">
 <summary><strong>minimum 2theta</strong> (Optional, Multivalued)</summary>
 
-**Description:** Minimum 2θ angle in the diffraction scan.
+**Description:** Minimum 2theta angle in the diffraction scan.
 
 **Data Type:** float
 
@@ -196,7 +196,7 @@ Linked from Characterization via realized_plan.
 <details markdown="1">
 <summary><strong>maximum 2theta</strong> (Optional, Multivalued)</summary>
 
-**Description:** Maximum 2θ angle in the diffraction scan.
+**Description:** Maximum 2theta angle in the diffraction scan.
 
 **Data Type:** float
 
@@ -242,7 +242,7 @@ Linked from Characterization via realized_plan.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 **Schema Reference:** [operation_mode](./elements/operation_mode.md)
 
@@ -337,7 +337,7 @@ Linked from Characterization via realized_plan.
 <details markdown="1">
 <summary><strong>xray source</strong> (Optional, Multivalued)</summary>
 
-**Description:** X-ray source used (e.g. Cu Kα, Mo Kα, synchrotron).
+**Description:** X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).
 
 **Data Type:** string
 
@@ -413,7 +413,7 @@ Linked from Characterization via realized_plan.
 <details markdown="1">
 <summary><strong>xray source</strong> (Optional, Multivalued)</summary>
 
-**Description:** X-ray source used (e.g. Cu Kα, Mo Kα, synchrotron).
+**Description:** X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).
 
 **Data Type:** string
 
@@ -459,7 +459,7 @@ Linked from Characterization via realized_plan.
 
 **Description:** X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.
 
-**CURIE:** [`voc4cat:0000286`](https://w3id.org/nfdi4cat/voc4cat_0000286)
+**CURIE:** [`VOC4CAT:0000286`](https://w3id.org/nfdi4cat/voc4cat_0000286)
 
 **Schema Reference:** [XRayAbsorptionSpectroscopy](./elements/XRayAbsorptionSpectroscopy.md)
 
@@ -474,7 +474,7 @@ Linked from Characterization via realized_plan.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 **Schema Reference:** [operation_mode](./elements/operation_mode.md)
 
@@ -624,7 +624,7 @@ Linked from Characterization via realized_plan.
 <details markdown="1">
 <summary><strong>xray source</strong> (Optional, Multivalued)</summary>
 
-**Description:** X-ray source used (e.g. Cu Kα, Mo Kα, synchrotron).
+**Description:** X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).
 
 **Data Type:** string
 
@@ -828,7 +828,7 @@ Linked from Characterization via realized_plan.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 **Schema Reference:** [lense_mode](./elements/lense_mode.md)
 
@@ -879,7 +879,7 @@ Linked from Characterization via realized_plan.
 <details markdown="1">
 <summary><strong>xray source</strong> (Optional, Multivalued)</summary>
 
-**Description:** X-ray source used (e.g. Cu Kα, Mo Kα, synchrotron).
+**Description:** X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).
 
 **Data Type:** string
 
@@ -1079,7 +1079,7 @@ Linked from Characterization via realized_plan.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 **Schema Reference:** [operation_mode](./elements/operation_mode.md)
 
@@ -1451,7 +1451,7 @@ surface species identification under reactive gas conditions.
 
 **Description:** Raman spectroscopy for vibrational and structural characterization.
 
-**CURIE:** [`voc4cat:0000069`](https://w3id.org/nfdi4cat/voc4cat_0000069)
+**CURIE:** [`VOC4CAT:0000069`](https://w3id.org/nfdi4cat/voc4cat_0000069)
 
 **Schema Reference:** [RamanSpectroscopy](./elements/RamanSpectroscopy.md)
 
@@ -1631,7 +1631,7 @@ Note: for detailed liquid-state NMR minimum information, the dedicated
 nmr_dcat_ap profile (MARGARITAS) should be used in combination with
 this subprofile.
 
-**CURIE:** [`voc4cat:0000073`](https://w3id.org/nfdi4cat/voc4cat_0000073)
+**CURIE:** [`VOC4CAT:0000073`](https://w3id.org/nfdi4cat/voc4cat_0000073)
 
 **Schema Reference:** [NMRSpectroscopy](./elements/NMRSpectroscopy.md)
 
@@ -1665,7 +1665,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
+**CURIE:** [`VOC4CAT:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
 **Schema Reference:** [solvent](./elements/solvent.md)
 
@@ -1804,7 +1804,7 @@ this subprofile.
 
 **Description:** TEM for atomic-resolution imaging and diffraction of catalyst particles.
 
-**CURIE:** [`voc4cat:0000078`](https://w3id.org/nfdi4cat/voc4cat_0000078)
+**CURIE:** [`VOC4CAT:0000078`](https://w3id.org/nfdi4cat/voc4cat_0000078)
 
 **Schema Reference:** [TransmissionElectronMicroscopy](./elements/TransmissionElectronMicroscopy.md)
 
@@ -1819,7 +1819,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 **Schema Reference:** [operation_mode](./elements/operation_mode.md)
 
@@ -1899,7 +1899,7 @@ this subprofile.
 
 **Description:** SEM for surface morphology and particle size/shape imaging.
 
-**CURIE:** [`voc4cat:0000075`](https://w3id.org/nfdi4cat/voc4cat_0000075)
+**CURIE:** [`VOC4CAT:0000075`](https://w3id.org/nfdi4cat/voc4cat_0000075)
 
 **Schema Reference:** [ScanningElectronMicroscopy](./elements/ScanningElectronMicroscopy.md)
 
@@ -2030,7 +2030,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 **Schema Reference:** [operation_mode](./elements/operation_mode.md)
 
@@ -2738,7 +2738,7 @@ this subprofile.
 
 **Description:** UV-Vis spectroscopy for electronic transitions, band gap, and concentration determination.
 
-**CURIE:** [`voc4cat:0000079`](https://w3id.org/nfdi4cat/voc4cat_0000079)
+**CURIE:** [`VOC4CAT:0000079`](https://w3id.org/nfdi4cat/voc4cat_0000079)
 
 **Schema Reference:** [UVVisSpectroscopy](./elements/UVVisSpectroscopy.md)
 
@@ -2816,7 +2816,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
+**CURIE:** [`VOC4CAT:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
 **Schema Reference:** [solvent](./elements/solvent.md)
 
@@ -3189,7 +3189,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007213`](https://w3id.org/nfdi4cat/voc4cat_0007213)
+**CURIE:** [`VOC4CAT:0007213`](https://w3id.org/nfdi4cat/voc4cat_0007213)
 
 **Schema Reference:** [scan_rate](./elements/scan_rate.md)
 
@@ -3252,7 +3252,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007218`](https://w3id.org/nfdi4cat/voc4cat_0007218)
+**CURIE:** [`VOC4CAT:0007218`](https://w3id.org/nfdi4cat/voc4cat_0007218)
 
 **Schema Reference:** [step_size_potential](./elements/step_size_potential.md)
 
@@ -3292,7 +3292,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007204`](https://w3id.org/nfdi4cat/voc4cat_0007204)
+**CURIE:** [`VOC4CAT:0007204`](https://w3id.org/nfdi4cat/voc4cat_0007204)
 
 **Schema Reference:** [reference_electrode](./elements/reference_electrode.md)
 
@@ -3311,7 +3311,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007202`](https://w3id.org/nfdi4cat/voc4cat_0007202)
+**CURIE:** [`VOC4CAT:0007202`](https://w3id.org/nfdi4cat/voc4cat_0007202)
 
 **Schema Reference:** [working_electrode](./elements/working_electrode.md)
 
@@ -3330,7 +3330,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007203`](https://w3id.org/nfdi4cat/voc4cat_0007203)
+**CURIE:** [`VOC4CAT:0007203`](https://w3id.org/nfdi4cat/voc4cat_0007203)
 
 **Schema Reference:** [counter_electrode](./elements/counter_electrode.md)
 
@@ -3457,7 +3457,7 @@ this subprofile.
 </p></details>
 
 <details markdown="1">
-<summary><strong>frequency</strong> (Optional, Multivalued)</summary>
+<summary><strong>ac frequency</strong> (Optional, Multivalued)</summary>
 
 **Description:** Frequency of AC signal applied in impedance or conductivity measurement.
 
@@ -3465,14 +3465,14 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007239`](https://w3id.org/nfdi4cat/voc4cat_0007239)
+**CURIE:** [`VOC4CAT:0007239`](https://w3id.org/nfdi4cat/voc4cat_0007239)
 
-**Schema Reference:** [frequency](./elements/frequency.md)
+**Schema Reference:** [ac_frequency](./elements/ac_frequency.md)
 
 **Unit:** Hz
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20frequency target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ac_frequency target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3524,7 +3524,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007204`](https://w3id.org/nfdi4cat/voc4cat_0007204)
+**CURIE:** [`VOC4CAT:0007204`](https://w3id.org/nfdi4cat/voc4cat_0007204)
 
 **Schema Reference:** [reference_electrode](./elements/reference_electrode.md)
 
@@ -3543,7 +3543,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007202`](https://w3id.org/nfdi4cat/voc4cat_0007202)
+**CURIE:** [`VOC4CAT:0007202`](https://w3id.org/nfdi4cat/voc4cat_0007202)
 
 **Schema Reference:** [working_electrode](./elements/working_electrode.md)
 
@@ -3562,7 +3562,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007203`](https://w3id.org/nfdi4cat/voc4cat_0007203)
+**CURIE:** [`VOC4CAT:0007203`](https://w3id.org/nfdi4cat/voc4cat_0007203)
 
 **Schema Reference:** [counter_electrode](./elements/counter_electrode.md)
 
@@ -3678,7 +3678,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
+**CURIE:** [`VOC4CAT:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
 **Schema Reference:** [solvent](./elements/solvent.md)
 
@@ -3718,7 +3718,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000176`](https://w3id.org/nfdi4cat/voc4cat_0000176)
+**CURIE:** [`VOC4CAT:0000176`](https://w3id.org/nfdi4cat/voc4cat_0000176)
 
 **Schema Reference:** [light_wavelength](./elements/light_wavelength.md)
 
@@ -3857,7 +3857,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 **Schema Reference:** [operation_mode](./elements/operation_mode.md)
 
@@ -3918,7 +3918,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
+**CURIE:** [`VOC4CAT:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
 **Schema Reference:** [solvent_composition](./elements/solvent_composition.md)
 

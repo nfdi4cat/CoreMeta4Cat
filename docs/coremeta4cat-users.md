@@ -17,7 +17,11 @@ This page lists projects, data repositories, and communities that have adopted C
 
 ## NFDI4Cat
 
-![NFDI4Cat Logo](images/nfdi4cat-logo.png)</code>
+<div style="text-align: center;">
+    <a>
+    <img src="/CoreMeta4Cat/images/nfdi4cat-logo.png" alt="nfdi4cat-logo" style="width: 40%;">
+    </a>
+</div>
 
 CoreMeta4Cat is developed within the [NFDI4Cat](https://nfdi4cat.org) initiative — the National Research Data Infrastructure consortium for catalysis sciences in Germany. NFDI4Cat brings together universities, research institutions, and industrial partners to build shared data infrastructure for the catalysis community.
 

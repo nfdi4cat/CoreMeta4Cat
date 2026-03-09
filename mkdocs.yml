@@ -12,7 +12,7 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
-logo: /CoreMeta4Cat/images/CoreMeta4Cat_Picture.png
+  logo: /CoreMeta4Cat/images/CoreMeta4Cat_Picture.png
 
 # for adding extra css/js see https://www.mkdocs.org/user-guide/customizing-your-theme/
 

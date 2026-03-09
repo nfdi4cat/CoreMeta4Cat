@@ -33,14 +33,14 @@ Computational approaches are organized under the parent field simulation method,
 ## Slots
 
 <details markdown="1" open>
-<summary><strong>software package</strong> (Required, Multivalued)</summary>
+<summary><strong>software package</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** Software package or code used for the simulation (e.g. VASP, Quantum ESPRESSO,
 LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.
 
 **Data Type:** string
 
-**Cardinality:**  Required, Multivalued
+**Cardinality:**  Mandatory, Multivalued
 
 **CURIE:** [`catcore:software_package`](https://w3id.org/nfdi4cat/catcore/software_package)
 
@@ -53,14 +53,14 @@ LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>calculated property</strong> (Required, Multivalued)</summary>
+<summary><strong>calculated property</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** A property computed by this Simulation, provided as a CalculatedProperty
 instance. Multiple properties may be computed in a single simulation run.
 
 **Data Type:** CalculatedProperty
 
-**Cardinality:**  Required, Multivalued
+**Cardinality:**  Mandatory, Multivalued
 
 **CURIE:** [`catcore:calculated_property`](https://w3id.org/nfdi4cat/catcore/calculated_property)
 
@@ -565,7 +565,7 @@ Characterises the optical and static dielectric response of a material.
 <details markdown="1">
 <summary><strong>dielectric tensor</strong> (Optional, Multivalued)</summary>
 
-**Description:** Components of the static and/or high-frequency dielectric tensor ε_ij,
+**Description:** Components of the static and/or high-frequency dielectric tensor epsilon_ij,
 computed from DFPT.
 
 **Data Type:** string
@@ -1225,7 +1225,7 @@ sintering, and charge/defect segregation.
 <summary><strong>grain boundary plane</strong> (Optional, Multivalued)</summary>
 
 **Description:** Crystallographic plane of the grain boundary, expressed using
-Miller indices (e.g. "Σ5 (310)[001]").
+Miller indices (e.g. "Sigma5 (310)[001]").
 
 **Data Type:** string
 
@@ -1425,7 +1425,7 @@ electronic properties of a catalyst relevant to activity descriptors
 <summary><strong>smearing method</strong> (Optional, Multivalued)</summary>
 
 **Description:** Electronic smearing scheme and width used in the SCF calculation
-(e.g. Methfessel-Paxton order 1 with σ=0.2 eV, Gaussian with σ=0.05 eV).
+(e.g. Methfessel-Paxton order 1 with sigma=0.2 eV, Gaussian with sigma=0.05 eV).
 
 **Data Type:** string
 
@@ -1465,7 +1465,7 @@ electronic properties of a catalyst relevant to activity descriptors
 <summary><strong>band path</strong> (Optional, Multivalued)</summary>
 
 **Description:** High-symmetry k-path through the Brillouin zone used to plot the
-band structure (e.g. "Γ-X-M-Γ-R" for cubic, following SeeK-path convention).
+band structure (e.g. "Gamma-X-M-Gamma-R" for cubic, following SeeK-path convention).
 
 **Data Type:** string
 
@@ -1626,7 +1626,7 @@ ferroelectric-photocatalyst design.
 <summary><strong>polarization direction</strong> (Optional, Multivalued)</summary>
 
 **Description:** Crystallographic direction of the spontaneous electric polarization
-(e.g. "[001]" for tetragonal BaTiO₃).
+(e.g. "[001]" for tetragonal BaTiO_3).
 
 **Data Type:** string
 
@@ -1813,7 +1813,7 @@ calculated band gap.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0005056`](https://w3id.org/nfdi4cat/voc4cat_0005056)
+**CURIE:** [`VOC4CAT:0005056`](https://w3id.org/nfdi4cat/voc4cat_0005056)
 
 **Schema Reference:** [material_sample](./elements/material_sample.md)
 
@@ -2061,13 +2061,13 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>realized plan</strong> (Required, Multivalued)</summary>
+<summary><strong>realized plan</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** The SimulationMethod (protocol) realized in this Simulation.
 
 **Data Type:** SimulationMethod
 
-**Cardinality:**  Required, Multivalued
+**Cardinality:**  Mandatory, Multivalued
 
 **Schema Reference:** [realized_plan](./elements/realized_plan.md)
 

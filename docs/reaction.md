@@ -33,13 +33,13 @@ Core fields include reactor design type, operational parameters, and product ide
 ## Slots
 
 <details markdown="1" open>
-<summary><strong>catalyst quantity</strong> (Required, Multivalued)</summary>
+<summary><strong>catalyst quantity</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** Mass of catalyst loaded into the reactor.
 
 **Data Type:** float
 
-**Cardinality:**  Required, Multivalued
+**Cardinality:**  Mandatory, Multivalued
 
 **CURIE:** [`catcore:catalyst_quantity`](https://w3id.org/nfdi4cat/catcore/catalyst_quantity)
 
@@ -54,16 +54,16 @@ Core fields include reactor design type, operational parameters, and product ide
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>reactant</strong> (Required, Multivalued)</summary>
+<summary><strong>reactant</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** Reactant(s) used in the reaction. Provide compound name, CAS number,
 or SMILES. For feeds, include composition and flow rate where known.
 
 **Data Type:** string
 
-**Cardinality:**  Required, Multivalued
+**Cardinality:**  Mandatory, Multivalued
 
-**CURIE:** [`voc4cat:0000101`](https://w3id.org/nfdi4cat/voc4cat_0000101)
+**CURIE:** [`VOC4CAT:0000101`](https://w3id.org/nfdi4cat/voc4cat_0000101)
 
 **Schema Reference:** [reactant](./elements/reactant.md)
 
@@ -83,7 +83,7 @@ For heterogeneous catalysts, use voc4cat terms where available.
 
 **Cardinality:**  Recommended, Multivalued
 
-**CURIE:** [`voc4cat:0007014`](https://w3id.org/nfdi4cat/voc4cat_0007014)
+**CURIE:** [`VOC4CAT:0007014`](https://w3id.org/nfdi4cat/voc4cat_0007014)
 
 **Schema Reference:** [catalyst_type](./elements/catalyst_type.md)
 
@@ -103,7 +103,7 @@ as a string range (e.g. "200–400 °C") or a single set-point.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007032`](https://w3id.org/nfdi4cat/voc4cat_0007032)
+**CURIE:** [`VOC4CAT:0007032`](https://w3id.org/nfdi4cat/voc4cat_0007032)
 
 **Schema Reference:** [reactor_temperature_range](./elements/reactor_temperature_range.md)
 
@@ -141,7 +141,7 @@ as a string range (e.g. "200–400 °C") or a single set-point.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000118`](https://w3id.org/nfdi4cat/voc4cat_0000118)
+**CURIE:** [`VOC4CAT:0000118`](https://w3id.org/nfdi4cat/voc4cat_0000118)
 
 **Schema Reference:** [experiment_pressure](./elements/experiment_pressure.md)
 
@@ -195,14 +195,14 @@ Record as a string; for individual component concentrations use reactant.
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>carried out by</strong> (Required, Multivalued)</summary>
+<summary><strong>carried out by</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** The reactor in which the Reaction takes place, provided as a
 ReactorDesignType (Device) instance.
 
 **Data Type:** ReactorDesignType
 
-**Cardinality:**  Required, Multivalued
+**Cardinality:**  Mandatory, Multivalued
 
 **Schema Reference:** [carried_out_by](./elements/carried_out_by.md)
 
@@ -217,7 +217,7 @@ ReactorDesignType (Device) instance.
 Concrete subclasses specify the reactor geometry and operating mode.
 Linked from Reaction via carried_out_by.
 
-**CURIE:** [`voc4cat:0007018`](https://w3id.org/nfdi4cat/voc4cat_0007018)
+**CURIE:** [`VOC4CAT:0007018`](https://w3id.org/nfdi4cat/voc4cat_0007018)
 
 **Schema Reference:** [ReactorDesignType](./elements/ReactorDesignType.md)
 
@@ -235,7 +235,7 @@ Linked from Reaction via carried_out_by.
 **Description:** Electrochemical reactor used in electrocatalytic experiments, including
 H-cells, flow cells, and membrane electrode assemblies.
 
-**CURIE:** [`voc4cat:0000193`](https://w3id.org/nfdi4cat/voc4cat_0000193)
+**CURIE:** [`VOC4CAT:0000193`](https://w3id.org/nfdi4cat/voc4cat_0000193)
 
 **Schema Reference:** [ElectrochemicalReactor](./elements/ElectrochemicalReactor.md)
 
@@ -251,7 +251,7 @@ H-cells, flow cells, and membrane electrode assemblies.
 **Description:** Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow
 reactor operating at steady state.
 
-**CURIE:** [`voc4cat:0007019`](https://w3id.org/nfdi4cat/voc4cat_0007019)
+**CURIE:** [`VOC4CAT:0007019`](https://w3id.org/nfdi4cat/voc4cat_0007019)
 
 **Schema Reference:** [CSTR](./elements/CSTR.md)
 
@@ -267,7 +267,7 @@ reactor operating at steady state.
 **Description:** Plug flow reactor (PFR) — a tubular reactor in which reactant composition
 varies along the axis with no axial mixing.
 
-**CURIE:** [`voc4cat:0007102`](https://w3id.org/nfdi4cat/voc4cat_0007102)
+**CURIE:** [`VOC4CAT:0007102`](https://w3id.org/nfdi4cat/voc4cat_0007102)
 
 **Schema Reference:** [PlugFlowReactor](./elements/PlugFlowReactor.md)
 
@@ -316,7 +316,7 @@ suspended in a liquid phase through which gas is bubbled.
 in the sub-millimetre range, enabling precise thermal control and rapid
 screening.
 
-**CURIE:** [`voc4cat:0000234`](https://w3id.org/nfdi4cat/voc4cat_0000234)
+**CURIE:** [`VOC4CAT:0000234`](https://w3id.org/nfdi4cat/voc4cat_0000234)
 
 **Schema Reference:** [Microreactor](./elements/Microreactor.md)
 
@@ -426,7 +426,7 @@ suspended in an upward-flowing gas or liquid stream.
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>product identification method</strong> (Required, Multivalued)</summary>
+<summary><strong>product identification method</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** The analytical method used to identify and/or quantify reaction products.
 Should reference a CharacterizationTechnique instance (e.g. a GCMS or
@@ -435,7 +435,7 @@ ProductIdentificationMethod is retained for backward compatibility.
 
 **Data Type:** ProductIdentificationMethod
 
-**Cardinality:**  Required, Multivalued
+**Cardinality:**  Mandatory, Multivalued
 
 **Schema Reference:** [product_identification_method](./elements/product_identification_method.md)
 

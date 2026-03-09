@@ -34,13 +34,13 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 ## Slots
 
 <details markdown="1" open>
-<summary><strong>nominal composition</strong> (Required, Multivalued)</summary>
+<summary><strong>nominal composition</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** Nominal elemental or chemical composition of the catalyst (e.g. 5wt% Pt/Al2O3).
 
 **Data Type:** string
 
-**Cardinality:**  Required, Multivalued
+**Cardinality:**  Mandatory, Multivalued
 
 **CURIE:** [`catcore:nominal_composition`](https://w3id.org/nfdi4cat/catcore/nominal_composition)
 
@@ -53,14 +53,14 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>catalyst measured properties</strong> (Required, Multivalued)</summary>
+<summary><strong>catalyst measured properties</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** Key measured properties of the resulting catalyst
 (e.g. BET surface area, sieve fraction, molar ratio).
 
 **Data Type:** string
 
-**Cardinality:**  Required, Multivalued
+**Cardinality:**  Mandatory, Multivalued
 
 **CURIE:** [`catcore:catalyst_measured_properties`](https://w3id.org/nfdi4cat/catcore/catalyst_measured_properties)
 
@@ -119,7 +119,7 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
+**CURIE:** [`VOC4CAT:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
 **Schema Reference:** [solvent](./elements/solvent.md)
 
@@ -138,7 +138,7 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000122`](https://w3id.org/nfdi4cat/voc4cat_0000122)
+**CURIE:** [`VOC4CAT:0000122`](https://w3id.org/nfdi4cat/voc4cat_0000122)
 
 **Schema Reference:** [sample_pretreatment](./elements/sample_pretreatment.md)
 
@@ -149,13 +149,107 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>realized plan</strong> (Required)</summary>
+<summary><strong>had input entity</strong> (Mandatory, Multivalued)</summary>
+
+**Description:** The Precursor(s) consumed during this Synthesis.
+
+**Data Type:** Precursor
+
+**Cardinality:**  Mandatory, Multivalued
+
+**Schema Reference:** [had_input_entity](./elements/had_input_entity.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" open>
+<summary><strong>Precursor</strong></summary>
+
+**Description:** A MaterialSample that serves as input material in a catalyst Synthesis.
+Precursors are consumed or transformed during the preparation process.
+
+**CURIE:** [`CHEBI:52717`](http://purl.obolibrary.org/obo/CHEBI_52717)
+
+**Schema Reference:** [Precursor](./elements/Precursor.md)
+
+**Slots**
+
+<details markdown="1">
+<summary><strong>precursor quantity</strong> (Mandatory, Multivalued)</summary>
+
+**Description:** Quantity of precursor used in synthesis.
+
+**Data Type:** float
+
+**Cardinality:**  Mandatory, Multivalued
+
+**CURIE:** [`catcore:precursor_quantity`](https://w3id.org/nfdi4cat/catcore/precursor_quantity)
+
+**Schema Reference:** [precursor_quantity](./elements/precursor_quantity.md)
+
+**Unit:** g
+
+<p>
+  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precursor_quantity target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<p>
+      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Precursor target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
+<p>
+  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20had_input_entity target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1" open>
+<summary><strong>had output entity</strong> (Recommended, Multivalued)</summary>
+
+**Description:** The CatalystSample produced by this Synthesis.
+
+**Data Type:** CatalystSample
+
+**Cardinality:**  Recommended, Multivalued
+
+**Schema Reference:** [had_output_entity](./elements/had_output_entity.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" open>
+<summary><strong>CatalystSample</strong></summary>
+
+**Description:** A MaterialSample that is the product of a catalyst Synthesis.
+The specific type of catalyst (e.g. heterogeneous, supported metal)
+is expressed via rdf_type using a voc4cat term.
+
+**CURIE:** [`OBI:0000747`](http://purl.obolibrary.org/obo/OBI_0000747)
+
+**Schema Reference:** [CatalystSample](./elements/CatalystSample.md)
+
+<p>
+      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CatalystSample target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
+<p>
+  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20had_output_entity target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1" open>
+<summary><strong>realized plan</strong> (Mandatory)</summary>
 
 **Description:** The PreparationMethod (protocol) realized in this Synthesis.
 
 **Data Type:** PreparationMethod
 
-**Cardinality:**  Required
+**Cardinality:**  Mandatory
 
 **Schema Reference:** [realized_plan](./elements/realized_plan.md)
 
@@ -172,7 +266,7 @@ method-specific parameters. Linked from Synthesis via realized_plan.
 
 The specific preparation method type should additionally be expressed
 via rdf_type on the Synthesis activity using a voc4cat term
-(e.g. voc4cat:0007016 for preparation method).
+(e.g. VOC4CAT:0007016 for preparation method).
 
 **CURIE:** [`OBI:0000272`](http://purl.obolibrary.org/obo/OBI_0000272)
 
@@ -348,7 +442,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
+**CURIE:** [`VOC4CAT:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
 
 **Schema Reference:** [calcination_initial_temperature](./elements/calcination_initial_temperature.md)
 
@@ -369,7 +463,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
+**CURIE:** [`VOC4CAT:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
 
 **Schema Reference:** [calcination_final_temperature](./elements/calcination_final_temperature.md)
 
@@ -390,7 +484,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
+**CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
 **Schema Reference:** [calcination_dwelling_time](./elements/calcination_dwelling_time.md)
 
@@ -430,7 +524,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 **Schema Reference:** [calcination_gaseous_environment](./elements/calcination_gaseous_environment.md)
 
@@ -449,7 +543,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
+**CURIE:** [`VOC4CAT:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
 
 **Schema Reference:** [calcination_heating_rate](./elements/calcination_heating_rate.md)
 
@@ -470,7 +564,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
+**CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
 **Schema Reference:** [calcination_gas_flow_rate](./elements/calcination_gas_flow_rate.md)
 
@@ -549,7 +643,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000052`](https://w3id.org/nfdi4cat/voc4cat_0000052)
+**CURIE:** [`VOC4CAT:0000052`](https://w3id.org/nfdi4cat/voc4cat_0000052)
 
 **Schema Reference:** [synthesis_ph](./elements/synthesis_ph.md)
 
@@ -810,7 +904,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
+**CURIE:** [`VOC4CAT:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
 
 **Schema Reference:** [calcination_initial_temperature](./elements/calcination_initial_temperature.md)
 
@@ -831,7 +925,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
+**CURIE:** [`VOC4CAT:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
 
 **Schema Reference:** [calcination_final_temperature](./elements/calcination_final_temperature.md)
 
@@ -852,7 +946,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
+**CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
 **Schema Reference:** [calcination_dwelling_time](./elements/calcination_dwelling_time.md)
 
@@ -892,7 +986,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 **Schema Reference:** [calcination_gaseous_environment](./elements/calcination_gaseous_environment.md)
 
@@ -911,7 +1005,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
+**CURIE:** [`VOC4CAT:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
 
 **Schema Reference:** [calcination_heating_rate](./elements/calcination_heating_rate.md)
 
@@ -932,7 +1026,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
+**CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
 **Schema Reference:** [calcination_gas_flow_rate](./elements/calcination_gas_flow_rate.md)
 
@@ -1208,7 +1302,7 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
 
@@ -1229,7 +1323,7 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
 
@@ -1250,7 +1344,7 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
+**CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
 **Schema Reference:** [equipment](./elements/equipment.md)
 
@@ -1386,7 +1480,7 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000053`](https://w3id.org/nfdi4cat/voc4cat_0000053)
+**CURIE:** [`VOC4CAT:0000053`](https://w3id.org/nfdi4cat/voc4cat_0000053)
 
 **Schema Reference:** [synthesis_pressure](./elements/synthesis_pressure.md)
 
@@ -1407,7 +1501,7 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
 
@@ -1428,7 +1522,7 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
 
@@ -1449,7 +1543,7 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
+**CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
 **Schema Reference:** [equipment](./elements/equipment.md)
 
@@ -1621,7 +1715,7 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
 
@@ -1642,7 +1736,7 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
 
@@ -1663,7 +1757,7 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
+**CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
 **Schema Reference:** [equipment](./elements/equipment.md)
 
@@ -1739,7 +1833,7 @@ of active phase onto a substrate.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000024`](https://w3id.org/nfdi4cat/voc4cat_0000024)
+**CURIE:** [`VOC4CAT:0000024`](https://w3id.org/nfdi4cat/voc4cat_0000024)
 
 **Schema Reference:** [substrate](./elements/substrate.md)
 
@@ -1779,7 +1873,7 @@ of active phase onto a substrate.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000112`](https://w3id.org/nfdi4cat/voc4cat_0000112)
+**CURIE:** [`VOC4CAT:0000112`](https://w3id.org/nfdi4cat/voc4cat_0000112)
 
 **Schema Reference:** [purging_duration](./elements/purging_duration.md)
 
@@ -1959,7 +2053,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000052`](https://w3id.org/nfdi4cat/voc4cat_0000052)
+**CURIE:** [`VOC4CAT:0000052`](https://w3id.org/nfdi4cat/voc4cat_0000052)
 
 **Schema Reference:** [synthesis_ph](./elements/synthesis_ph.md)
 
@@ -2220,7 +2314,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
+**CURIE:** [`VOC4CAT:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
 
 **Schema Reference:** [calcination_initial_temperature](./elements/calcination_initial_temperature.md)
 
@@ -2241,7 +2335,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
+**CURIE:** [`VOC4CAT:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
 
 **Schema Reference:** [calcination_final_temperature](./elements/calcination_final_temperature.md)
 
@@ -2262,7 +2356,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
+**CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
 **Schema Reference:** [calcination_dwelling_time](./elements/calcination_dwelling_time.md)
 
@@ -2302,7 +2396,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 **Schema Reference:** [calcination_gaseous_environment](./elements/calcination_gaseous_environment.md)
 
@@ -2321,7 +2415,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
+**CURIE:** [`VOC4CAT:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
 
 **Schema Reference:** [calcination_heating_rate](./elements/calcination_heating_rate.md)
 
@@ -2342,7 +2436,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
+**CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
 **Schema Reference:** [calcination_gas_flow_rate](./elements/calcination_gas_flow_rate.md)
 
@@ -2423,7 +2517,7 @@ uniformly heat the reaction mixture.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
 
@@ -2444,7 +2538,7 @@ uniformly heat the reaction mixture.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
 
@@ -2465,7 +2559,7 @@ uniformly heat the reaction mixture.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
+**CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
 **Schema Reference:** [equipment](./elements/equipment.md)
 
@@ -2683,7 +2777,7 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
+**CURIE:** [`VOC4CAT:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
 
 **Schema Reference:** [calcination_initial_temperature](./elements/calcination_initial_temperature.md)
 
@@ -2704,7 +2798,7 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
+**CURIE:** [`VOC4CAT:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
 
 **Schema Reference:** [calcination_final_temperature](./elements/calcination_final_temperature.md)
 
@@ -2725,7 +2819,7 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
+**CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
 **Schema Reference:** [calcination_dwelling_time](./elements/calcination_dwelling_time.md)
 
@@ -2765,7 +2859,7 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 **Schema Reference:** [calcination_gaseous_environment](./elements/calcination_gaseous_environment.md)
 
@@ -2784,7 +2878,7 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
+**CURIE:** [`VOC4CAT:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
 
 **Schema Reference:** [calcination_heating_rate](./elements/calcination_heating_rate.md)
 
@@ -2805,7 +2899,7 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
+**CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
 **Schema Reference:** [calcination_gas_flow_rate](./elements/calcination_gas_flow_rate.md)
 
@@ -2829,7 +2923,7 @@ reactions via acoustic cavitation.
 **Description:** Catalyst preparation by flame spray pyrolysis (FSP): a liquid precursor
 solution is atomised and combusted in a flame to produce nanoparticles.
 
-**CURIE:** [`voc4cat:0007031`](https://w3id.org/nfdi4cat/voc4cat_0007031)
+**CURIE:** [`VOC4CAT:0007031`](https://w3id.org/nfdi4cat/voc4cat_0007031)
 
 **Schema Reference:** [FlameSprayPyrolysis](./elements/FlameSprayPyrolysis.md)
 
@@ -3178,7 +3272,7 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
 
@@ -3199,7 +3293,7 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
 
@@ -3220,7 +3314,7 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
+**CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
 **Schema Reference:** [equipment](./elements/equipment.md)
 
@@ -3295,7 +3389,7 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000053`](https://w3id.org/nfdi4cat/voc4cat_0000053)
+**CURIE:** [`VOC4CAT:0000053`](https://w3id.org/nfdi4cat/voc4cat_0000053)
 
 **Schema Reference:** [synthesis_pressure](./elements/synthesis_pressure.md)
 
@@ -3316,7 +3410,7 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
 
@@ -3337,7 +3431,7 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
 
@@ -3358,7 +3452,7 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
+**CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
 **Schema Reference:** [equipment](./elements/equipment.md)
 
@@ -3807,7 +3901,7 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
+**CURIE:** [`VOC4CAT:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
 
 **Schema Reference:** [calcination_initial_temperature](./elements/calcination_initial_temperature.md)
 
@@ -3828,7 +3922,7 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
+**CURIE:** [`VOC4CAT:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
 
 **Schema Reference:** [calcination_final_temperature](./elements/calcination_final_temperature.md)
 
@@ -3849,7 +3943,7 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
+**CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
 **Schema Reference:** [calcination_dwelling_time](./elements/calcination_dwelling_time.md)
 
@@ -3889,7 +3983,7 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 **Schema Reference:** [calcination_gaseous_environment](./elements/calcination_gaseous_environment.md)
 
@@ -3908,7 +4002,7 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
+**CURIE:** [`VOC4CAT:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
 
 **Schema Reference:** [calcination_heating_rate](./elements/calcination_heating_rate.md)
 
@@ -3929,7 +4023,7 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`voc4cat:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
+**CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
 **Schema Reference:** [calcination_gas_flow_rate](./elements/calcination_gas_flow_rate.md)
 
@@ -3949,100 +4043,6 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 <p>
   <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20realized_plan target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1" open>
-<summary><strong>had output entity</strong> (Recommended, Multivalued)</summary>
-
-**Description:** The CatalystSample produced by this Synthesis.
-
-**Data Type:** CatalystSample
-
-**Cardinality:**  Recommended, Multivalued
-
-**Schema Reference:** [had_output_entity](./elements/had_output_entity.md)
-
-**Data Type Class Details:**
-
-<details markdown="1" open>
-<summary><strong>CatalystSample</strong></summary>
-
-**Description:** A MaterialSample that is the product of a catalyst Synthesis.
-The specific type of catalyst (e.g. heterogeneous, supported metal)
-is expressed via rdf_type using a voc4cat term.
-
-**CURIE:** [`OBI:0000747`](http://purl.obolibrary.org/obo/OBI_0000747)
-
-**Schema Reference:** [CatalystSample](./elements/CatalystSample.md)
-
-<p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CatalystSample target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
-
-<p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20had_output_entity target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1" open>
-<summary><strong>had input entity</strong> (Required, Multivalued)</summary>
-
-**Description:** The Precursor(s) consumed during this Synthesis.
-
-**Data Type:** Precursor
-
-**Cardinality:**  Required, Multivalued
-
-**Schema Reference:** [had_input_entity](./elements/had_input_entity.md)
-
-**Data Type Class Details:**
-
-<details markdown="1" open>
-<summary><strong>Precursor</strong></summary>
-
-**Description:** A MaterialSample that serves as input material in a catalyst Synthesis.
-Precursors are consumed or transformed during the preparation process.
-
-**CURIE:** [`CHEBI:52717`](http://purl.obolibrary.org/obo/CHEBI_52717)
-
-**Schema Reference:** [Precursor](./elements/Precursor.md)
-
-**Slots**
-
-<details markdown="1">
-<summary><strong>precursor quantity</strong> (Required, Multivalued)</summary>
-
-**Description:** Quantity of precursor used in synthesis.
-
-**Data Type:** float
-
-**Cardinality:**  Required, Multivalued
-
-**CURIE:** [`catcore:precursor_quantity`](https://w3id.org/nfdi4cat/catcore/precursor_quantity)
-
-**Schema Reference:** [precursor_quantity](./elements/precursor_quantity.md)
-
-**Unit:** g
-
-<p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precursor_quantity target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Precursor target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
-
-<p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20had_input_entity target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
