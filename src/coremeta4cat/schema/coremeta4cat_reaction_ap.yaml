@@ -1,16 +1,16 @@
 ---
-id: https://w3id.org/nfdi4cat/catcore/reaction/
-name: catcore-reaction-ap
-title: CatCore Reaction Application Profile
+id: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+name: coremeta4cat-reaction-ap
+title: CoreMeta4cat Reaction Application Profile
 description: |-
-  Application profile for catalytic reactions within the CatCore metadata model.
+  Application profile for catalytic reactions within the CoreMeta4cat metadata model.
 
   This module defines:
   - Reaction — an EvaluatedActivity representing the catalytic process being studied
   - ReactorDesignType — Device subclass hierarchy (8 concrete reactor types)
   - OperationParameters — flattened as direct slots on Reaction (see note below)
   - ProductIdentificationMethod — abstract stub; users point to a
-    CharacterizationTechnique instance from catcore_characterization_ap
+    CharacterizationTechnique instance from coremeta4cat_characterization_ap
 
   Alignment to DCAT-AP-PLUS:
     Reaction          --> is_a: EvaluatedActivity  (the process being studied,
@@ -25,10 +25,10 @@ description: |-
 
   OperationParameters design decision:
   -------------------------------------
-  The original CatCore model wraps operation parameters in a nested class.
+  The original CoreMeta4Cat model wraps operation parameters in a nested class.
   In this modularised form they are flattened as direct slots on Reaction,
   consistent with how preparation method parameters are handled on
-  PreparationMethod subclasses in catcore_synthesis_ap. This avoids
+  PreparationMethod subclasses in coremeta4cat_synthesis_ap. This avoids
   an unnecessary wrapper object while preserving all the same information.
 
   ProductIdentificationMethod design decision:
@@ -36,16 +36,16 @@ description: |-
   The source defines ProductIdentificationMethod as an abstract class with
   no concrete subclasses — it is a forward reference to analytical techniques.
   Users should link a CharacterizationTechnique instance (defined in
-  catcore_characterization_ap) via product_identification_method. The abstract
+  coremeta4cat_characterization_ap) via product_identification_method. The abstract
   stub is retained for backward compatibility and schema completeness.
 
 license: CC-BY-4.0
 version: 1.0.0
 
 prefixes:
-  catcore: https://w3id.org/nfdi4cat/catcore/
+  coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
   VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
-  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
+  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
@@ -53,12 +53,12 @@ prefixes:
   SIO: http://semanticscience.org/resource/SIO_
   AFR: http://purl.allotrope.org/ontologies/result#AFR_
 
-default_prefix: catcore
+default_prefix: coremeta4cat
 default_range: string
 
 imports:
   - linkml:types
-  - catcore_common   # shared slots (atmosphere, flow_rate, temperature, …) + enums
+  - coremeta4cat_common   # shared slots (atmosphere, flow_rate, temperature, …) + enums
 
 # ==================== REACTION (EvaluatedActivity) ====================
 
@@ -117,7 +117,7 @@ classes:
         description: |-
           The analytical method used to identify and/or quantify reaction products.
           Should reference a CharacterizationTechnique instance (e.g. a GCMS or
-          HPLC_MS object from catcore_characterization_ap). The abstract stub
+          HPLC_MS object from coremeta4cat_characterization_ap). The abstract stub
           ProductIdentificationMethod is retained for backward compatibility.
         range: ProductIdentificationMethod
         required: true
@@ -133,10 +133,10 @@ classes:
     description: |-
       Abstract Plan representing the method used to identify and quantify reaction
       products. In practice, users should reference a concrete CharacterizationTechnique
-      subclass from catcore_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).
+      subclass from coremeta4cat_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).
 
       This abstract class is retained for backward compatibility with the original
-      CatCore monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
+      CoreMeta4Cat monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
       it can participate in the realized_plan slot if needed.
 
   # ==================== REACTOR DESIGN TYPES (Devices) ====================
@@ -183,7 +183,7 @@ classes:
 
   SlurryReactor:
     is_a: ReactorDesignType
-    class_uri: catcore:SlurryReactor
+    class_uri: coremeta4cat:SlurryReactor
     description: |-
       Slurry reactor — a three-phase reactor in which catalyst particles are
       suspended in a liquid phase through which gas is bubbled.
@@ -198,14 +198,14 @@ classes:
 
   FixedBedReactor:
     is_a: ReactorDesignType
-    class_uri: catcore:FixedBedReactor
+    class_uri: coremeta4cat:FixedBedReactor
     description: |-
       Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.
       The most common reactor type in heterogeneous catalysis testing.
 
   FluidizedBedReactor:
     is_a: ReactorDesignType
-    class_uri: catcore:FluidizedBedReactor
+    class_uri: coremeta4cat:FluidizedBedReactor
     description: |-
       Fluidized bed reactor — a reactor in which the catalyst particles are
       suspended in an upward-flowing gas or liquid stream.
@@ -216,7 +216,7 @@ classes:
 
 # ==================== SLOTS ====================
 # Shared slots (atmosphere, flow_rate, temperature, experiment_duration, …)
-# are inherited from catcore_common and not redeclared here.
+# are inherited from coremeta4cat_common and not redeclared here.
 
 slots:
 
@@ -225,7 +225,7 @@ slots:
   catalyst_quantity:
     description: Mass of catalyst loaded into the reactor.
     range: float
-    slot_uri: catcore:catalyst_quantity
+    slot_uri: coremeta4cat:catalyst_quantity
     required: true
     multivalued: true
     unit:
@@ -272,23 +272,23 @@ slots:
       Feed gas or liquid composition range studied (e.g. "1–10 vol% CO in N2").
       Record as a string; for individual component concentrations use reactant.
     range: string
-    slot_uri: catcore:feed_composition_range
+    slot_uri: coremeta4cat:feed_composition_range
     multivalued: true
 
-  # experiment_duration is inherited from catcore_common (AFR:0002455, unit h)
+  # experiment_duration is inherited from coremeta4cat_common (AFR:0002455, unit h)
 
   # ---- FluidizedBedReactor-specific slots ----
 
   gas_distributor_type:
     description: Type or design of the gas distributor plate in a fluidized bed reactor.
     range: string
-    slot_uri: catcore:gas_distributor_type
+    slot_uri: coremeta4cat:gas_distributor_type
     multivalued: true
 
   bed_expansion_height:
     description: Height of bed expansion above the settled bed height under operating conditions.
     range: float
-    slot_uri: catcore:bed_expansion_height
+    slot_uri: coremeta4cat:bed_expansion_height
     multivalued: true
     unit:
       ucum_code: cm
@@ -296,4 +296,4 @@ slots:
   bubble_size_distribution:
     description: Description or characterization of bubble size distribution in the fluidized bed.
     range: string
-    slot_uri: catcore:bubble_size_distribution
+    slot_uri: coremeta4cat:bubble_size_distribution

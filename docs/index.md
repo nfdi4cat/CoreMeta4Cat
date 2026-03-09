@@ -6,6 +6,10 @@ The model draws its terminology from [Voc4Cat](https://nfdi4cat.github.io/voc4ca
 
 > CoreMeta4Cat is a living standard. Community feedback — submitted via the **Submit Term Feedback** button — continuously shapes the addition, revision, and removal of data fields.
 
+<div style="text-align: center; margin: 1.5rem 0;">
+  <img src="images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat model overview" style="width: 60%; border-radius: 8px;">
+</div>
+
 ## Getting Started
 
 Choose the approach that fits your workflow. Both paths are fully compatible with the CoreMeta4Cat standard.
@@ -50,10 +54,6 @@ Semantically enrich your data using the CoreMeta4Cat LinkML schema. Ideal for pr
 
 CoreMeta4Cat is organized in two concentric layers. The **Inner CoreMeta4Cat** captures the essential metadata every catalysis dataset must provide. The **Expanded CoreMeta4Cat** adds four domain-specific groups covering the full research lifecycle.
 
-<div style="text-align: center; margin: 1.5rem 0;">
-  <img src="images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat model overview" style="width: 60%; border-radius: 8px;">
-</div>
-
 ### Inner CoreMeta4Cat
 
 The inner layer defines mandatory baseline metadata, enabling consistent categorization and discoverability of research data across repositories.
@@ -65,13 +65,6 @@ The inner layer defines mandatory baseline metadata, enabling consistent categor
 | **Active Site** | Recommended | Primary species responsible for catalytic activity — molecule, element, or other species |
 | **Identifier** | Recommended | User-defined label(s) for identifying the catalyst |
 
-
-
-<div style="text-align: center;">
-    <a>
-    <img src="images/CoreMeta4Cat_Picture.png" alt="CatCore logo" style="width: 50%;">
-    </a>
-</div>
 
 ## [Reaction](reaction.md)
 
@@ -122,6 +115,6 @@ The Simulation metadata group specifies the essential information for reporting 
 
 ## Schema
 
-The [Schema documentation](./elements/overview.md) for the metadata model written in LinkML Format can be found [here](elements/index.md)
+The [Schema documentation](./elements/overview.md) for the metadata model written in LinkML Format can be found [here](elements/overview.md)
 
 

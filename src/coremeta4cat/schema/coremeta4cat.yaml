@@ -1,23 +1,23 @@
 ---
-id: https://w3id.org/nfdi4cat/catcore
-name: catcore-metadata
-title: CatCore Metadata Reference Model
+id: https://w3id.org/nfdi4cat/coremeta4cat
+name: coremeta4cat-metadata
+title: CoreMeta4cat Metadata Reference Model
 description: |-
-  The CatCore describes the minimum information which must be reported with research
+  The CoreMeta4Cat describes the minimum information which must be reported with research
   data concerning the field of catalysis. This guideline helps to handle and
   standardize data based on the FAIR principle (Findable, Accessible, Interoperable,
   Reusable).
 
   Architecture
   ------------
-  CatCore follows the DCAT-AP-PLUS design patterns (see design-patterns.md):
+  CoreMeta4Cat follows the DCAT-AP-PLUS design patterns (see design-patterns.md):
 
   - The entry point is the dcat:Dataset, extended here as CatalysisDataset.
     The catalysis research field is expressed via rdf_type (ClassifierMixin,
     Pattern 3) using voc4cat terms — analogous to how NMRSpectroscopy uses
     rdf_type: CHMO:0000613 to classify the measurement type.
 
-  - The four CatCore pillars are modelled as DCAT-AP-PLUS Activity subclasses,
+  - The four CoreMeta4Cat pillars are modelled as DCAT-AP-PLUS Activity subclasses,
     following the same pattern as NMRSpectroscopy (is_a: DataGeneratingActivity):
 
       Synthesis      --> is_a: DataGeneratingActivity
@@ -49,30 +49,30 @@ description: |-
   - PreparationMethod, CharacterizationTechnique, and SimulationMethod are
     modelled as Plan (from dcat_ap_plus), the protocol realized by the Activity.
 
-  This file is the top-level aggregator. It imports catcore_common (shared
+  This file is the top-level aggregator. It imports coremeta4cat_common (shared
   slots and enums) and the four subprofile modules.
 
   Full import hierarchy:
-    catcore.yaml  (this file — aggregator + CatalysisDataset entry point)
-      +-- catcore_common.yaml         (shared slots, enums)
+    coremeta4cat.yaml  (this file — aggregator + CatalysisDataset entry point)
+      +-- coremeta4cat_common.yaml         (shared slots, enums)
             +-- chem_dcat_ap          (SubstanceSample, ChemicalSubstance, …)
                   +-- chemical_reaction_ap
                         +-- chemical_entities_ap
                               +-- material_entities_ap
                                     +-- dcat_ap_plus  (DCAT-AP-PLUS base)
-      +-- catcore_synthesis_ap         (Step 3 — Synthesis, PreparationMethod, mixins)
-      +-- catcore_characterization_ap  (Step 4 — Characterization, 24 techniques, mixins)
-      +-- catcore_reaction_ap          (Step 5 — Reaction, 8 ReactorDesignTypes)
-      +-- catcore_simulation_ap        (Step 6 — Simulation, 4 methods, 12 properties, mixins)
+      +-- coremeta4cat_synthesis_ap         (Step 3 — Synthesis, PreparationMethod, mixins)
+      +-- coremeta4cat_characterization_ap  (Step 4 — Characterization, 24 techniques, mixins)
+      +-- coremeta4cat_reaction_ap          (Step 5 — Reaction, 8 ReactorDesignTypes)
+      +-- coremeta4cat_simulation_ap        (Step 6 — Simulation, 4 methods, 12 properties, mixins)
 
 license: CC-BY-4.0
 version: 1.0.0
 
 prefixes:
-  catcore: https://w3id.org/nfdi4cat/catcore/
+  coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
   VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
   chemdcatap: https://nfdi-de.github.io/chem-dcat-ap/
-  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
+  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   dcat: http://www.w3.org/ns/dcat#
   dcterms: http://purl.org/dc/terms/
@@ -83,16 +83,16 @@ prefixes:
   SIO: http://semanticscience.org/resource/SIO_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
 
-default_prefix: catcore
+default_prefix: coremeta4cat
 default_range: string
 
 imports:
   - linkml:types
-  - catcore_common
-  - catcore_synthesis_ap
-  - catcore_characterization_ap
-  - catcore_reaction_ap
-  - catcore_simulation_ap
+  - coremeta4cat_common
+  - coremeta4cat_synthesis_ap
+  - coremeta4cat_characterization_ap
+  - coremeta4cat_reaction_ap
+  - coremeta4cat_simulation_ap
 
 # ==================== ENTRY POINT: CATALYSIS DATASET ====================
 
@@ -111,9 +111,9 @@ classes:
           id: VOC4CAT:0007001
           title: "heterogeneous catalysis"
 
-      The four CatCore minimum information pillars are linked via the slots
+      The four CoreMeta4Cat minimum information pillars are linked via the slots
       below, each pointing to the corresponding DataGeneratingActivity or
-      EvaluatedActivity subclass defined in the CatCore subprofile modules.
+      EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.
     slot_usage:
       rdf_type:
         description: |-

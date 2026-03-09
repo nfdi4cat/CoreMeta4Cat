@@ -1,9 +1,9 @@
 ---
-id: https://w3id.org/nfdi4cat/catcore/simulation/
-name: catcore-simulation-ap
-title: CatCore Simulation Application Profile
+id: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
+name: coremeta4cat-simulation-ap
+title: CoreMeta4cat Simulation Application Profile
 description: |-
-  Application profile for computational simulations within the CatCore metadata model.
+  Application profile for computational simulations within the CoreMeta4cat metadata model.
 
   This module defines:
   - Simulation — the DataGeneratingActivity in which a catalyst or catalytic
@@ -22,7 +22,7 @@ description: |-
     CalculatedProperty --> is_a: QualitativeAttribute   (output property descriptor)
 
   The specific simulation type is expressed via rdf_type on Simulation using an
-  ontology term (e.g. catcore:DFT, NCIT:C18097 for MD), following DCAT-AP-PLUS
+  ontology term (e.g. coremeta4cat:DFT, NCIT:C18097 for MD), following DCAT-AP-PLUS
   Pattern 3 — exactly as NMRSpectroscopy uses rdf_type: CHMO:0000613.
 
   The simulation software is linked via carried_out_by as a Software agent.
@@ -40,9 +40,9 @@ license: CC-BY-4.0
 version: 1.0.0
 
 prefixes:
-  catcore: https://w3id.org/nfdi4cat/catcore/
+  coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
   VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
-  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
+  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
@@ -51,12 +51,12 @@ prefixes:
   AFR: http://purl.allotrope.org/ontologies/result#AFR_
   APOLLO_SV: http://purl.obolibrary.org/obo/APOLLO_SV_
 
-default_prefix: catcore
+default_prefix: coremeta4cat
 default_range: string
 
 imports:
   - linkml:types
-  - catcore_common   # shared slots (temperature, pressure, …) + enums
+  - coremeta4cat_common   # shared slots (temperature, pressure, …) + enums
 
 # ==================== MIXINS ====================
 
@@ -99,7 +99,7 @@ classes:
       SimulationMethod instance. The catalyst model or reaction being simulated
       is linked via evaluated_entity or evaluated_activity.
 
-      The specific simulation type is expressed via rdf_type (e.g. catcore:DFT,
+      The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,
       NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.
     slots:
       - software_package
@@ -107,8 +107,8 @@ classes:
     slot_usage:
       rdf_type:
         description: |-
-          The type of simulation method as an ontology term (e.g. catcore:DFT,
-          NCIT:C18097 for MD, catcore:Microkinetics). This is the primary
+          The type of simulation method as an ontology term (e.g. coremeta4cat:DFT,
+          NCIT:C18097 for MD, coremeta4cat:Microkinetics). This is the primary
           machine-actionable classification of the simulation type.
         recommended: true
       realized_plan:
@@ -146,7 +146,7 @@ classes:
 
   DFT:
     is_a: SimulationMethod
-    class_uri: catcore:DFT
+    class_uri: coremeta4cat:DFT
     description: |-
       Density functional theory — a quantum mechanical method for calculating
       the electronic structure of atoms, molecules, and periodic solids.
@@ -175,7 +175,7 @@ classes:
 
   Microkinetics:
     is_a: SimulationMethod
-    class_uri: catcore:Microkinetics
+    class_uri: coremeta4cat:Microkinetics
     description: |-
       Microkinetic modelling — a mean-field kinetic approach that integrates
       elementary reaction steps and their rate constants to predict catalytic
@@ -190,7 +190,7 @@ classes:
 
   MonteCarlo:
     is_a: SimulationMethod
-    class_uri: catcore:MonteCarlo
+    class_uri: coremeta4cat:MonteCarlo
     description: |-
       Monte Carlo simulation — a stochastic method that samples configuration
       space using random moves accepted or rejected according to a statistical
@@ -209,7 +209,7 @@ classes:
 
   CalculatedProperty:
     is_a: QualitativeAttribute
-    class_uri: catcore:CalculatedProperty
+    class_uri: coremeta4cat:CalculatedProperty
     abstract: true
     description: |-
       Abstract QualitativeAttribute representing a property computed by a
@@ -219,7 +219,7 @@ classes:
 
   ThermodynamicStability:
     is_a: CalculatedProperty
-    class_uri: catcore:ThermodynamicStability
+    class_uri: coremeta4cat:ThermodynamicStability
     description: |-
       Thermodynamic stability of a material or phase, characterised by formation
       energy, convex hull distance, and competing phases. Used to screen catalyst
@@ -233,7 +233,7 @@ classes:
 
   Piezoelectricity:
     is_a: CalculatedProperty
-    class_uri: catcore:Piezoelectricity
+    class_uri: coremeta4cat:Piezoelectricity
     description: |-
       Piezoelectric response of a non-centrosymmetric material, described by the
       piezoelectric tensor. Relevant for piezocatalysis applications.
@@ -245,7 +245,7 @@ classes:
 
   ElasticConstants:
     is_a: CalculatedProperty
-    class_uri: catcore:ElasticConstants
+    class_uri: coremeta4cat:ElasticConstants
     description: |-
       Elastic mechanical properties of a material derived from the elastic tensor,
       including bulk modulus, shear modulus, and Young's modulus.
@@ -258,7 +258,7 @@ classes:
 
   Surfaces:
     is_a: CalculatedProperty
-    class_uri: catcore:Surfaces
+    class_uri: coremeta4cat:Surfaces
     description: |-
       Surface properties of a catalyst computed from a periodic slab model,
       including surface energy, Miller index, slab thickness, and vacuum spacing.
@@ -272,7 +272,7 @@ classes:
 
   DielectricTensors:
     is_a: CalculatedProperty
-    class_uri: catcore:DielectricTensors
+    class_uri: coremeta4cat:DielectricTensors
     mixins:
       - MaterialDescriptorMixin
       - DFTSettingsMixin
@@ -285,7 +285,7 @@ classes:
 
   PhononDispersion:
     is_a: CalculatedProperty
-    class_uri: catcore:PhononDispersion
+    class_uri: coremeta4cat:PhononDispersion
     mixins:
       - MaterialDescriptorMixin
     description: |-
@@ -300,7 +300,7 @@ classes:
 
   EquationsOfState:
     is_a: CalculatedProperty
-    class_uri: catcore:EquationsOfState
+    class_uri: coremeta4cat:EquationsOfState
     mixins:
       - MaterialDescriptorMixin
       - DFTSettingsMixin
@@ -316,7 +316,7 @@ classes:
 
   AqueousStability:
     is_a: CalculatedProperty
-    class_uri: catcore:AqueousStability
+    class_uri: coremeta4cat:AqueousStability
     mixins:
       - MaterialDescriptorMixin
     description: |-
@@ -332,7 +332,7 @@ classes:
 
   GrainBoundaries:
     is_a: CalculatedProperty
-    class_uri: catcore:GrainBoundaries
+    class_uri: coremeta4cat:GrainBoundaries
     mixins:
       - MaterialDescriptorMixin
     description: |-
@@ -350,7 +350,7 @@ classes:
 
   ElectronicStructure:
     is_a: CalculatedProperty
-    class_uri: catcore:ElectronicStructure
+    class_uri: coremeta4cat:ElectronicStructure
     mixins:
       - MaterialDescriptorMixin
       - DFTSettingsMixin
@@ -366,7 +366,7 @@ classes:
 
   Ferroelectrics:
     is_a: CalculatedProperty
-    class_uri: catcore:Ferroelectrics
+    class_uri: coremeta4cat:Ferroelectrics
     mixins:
       - MaterialDescriptorMixin
     description: |-
@@ -383,7 +383,7 @@ classes:
 
   BandGap:
     is_a: CalculatedProperty
-    class_uri: catcore:BandGap
+    class_uri: coremeta4cat:BandGap
     mixins:
       - MaterialDescriptorMixin
       - DFTSettingsMixin
@@ -401,7 +401,7 @@ classes:
       - excitonic_correction
 
 # ==================== SLOTS ====================
-# Shared slots (temperature, pressure, …) are inherited from catcore_common.
+# Shared slots (temperature, pressure, …) are inherited from coremeta4cat_common.
 
 slots:
 
@@ -412,7 +412,7 @@ slots:
       Software package or code used for the simulation (e.g. VASP, Quantum ESPRESSO,
       LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.
     range: string
-    slot_uri: catcore:software_package
+    slot_uri: coremeta4cat:software_package
     required: true
     multivalued: true
 
@@ -421,7 +421,7 @@ slots:
       A property computed by this Simulation, provided as a CalculatedProperty
       instance. Multiple properties may be computed in a single simulation run.
     range: CalculatedProperty
-    slot_uri: catcore:calculated_property
+    slot_uri: coremeta4cat:calculated_property
     required: true
     multivalued: true
     inlined_as_list: true
@@ -433,13 +433,13 @@ slots:
       Exchange-correlation functional used (e.g. PBE, PBEsol, RPBE, B3LYP,
       HSE06). The choice of functional directly affects accuracy.
     range: string
-    slot_uri: catcore:exchange_correlation_functional
+    slot_uri: coremeta4cat:exchange_correlation_functional
     multivalued: true
 
   energy_cutoff:
     description: Plane-wave kinetic energy cutoff for the basis set expansion.
     range: float
-    slot_uri: catcore:energy_cutoff
+    slot_uri: coremeta4cat:energy_cutoff
     multivalued: true
     unit:
       ucum_code: eV
@@ -449,7 +449,7 @@ slots:
       Convergence thresholds applied during self-consistent field (SCF) and/or
       geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
     range: string
-    slot_uri: catcore:convergence_criteria
+    slot_uri: coremeta4cat:convergence_criteria
     multivalued: true
 
   dft_u_parameters:
@@ -457,7 +457,7 @@ slots:
       Hubbard U correction parameters (DFT+U). Specify element, orbital, and
       U value (e.g. "Fe d: U=4.0 eV, J=0.0 eV").
     range: string
-    slot_uri: catcore:dft_u_parameters
+    slot_uri: coremeta4cat:dft_u_parameters
     multivalued: true
 
   spin_polarization:
@@ -465,13 +465,13 @@ slots:
       Whether spin polarization (collinear magnetism) is included in the DFT
       calculation. Set to true for systems containing magnetic elements.
     range: boolean
-    slot_uri: catcore:spin_polarization
+    slot_uri: coremeta4cat:spin_polarization
     multivalued: true
 
   total_energy_per_atom:
     description: Total DFT ground-state energy divided by number of atoms in the unit cell.
     range: float
-    slot_uri: catcore:total_energy_per_atom
+    slot_uri: coremeta4cat:total_energy_per_atom
     multivalued: true
     unit:
       ucum_code: eV
@@ -483,7 +483,7 @@ slots:
       Force field or interatomic potential used (e.g. ReaxFF, CHARMM, Tersoff,
       EAM). Include parametrisation source or reference.
     range: string
-    slot_uri: catcore:force_field
+    slot_uri: coremeta4cat:force_field
     multivalued: true
 
   simulation_timestep:
@@ -497,7 +497,7 @@ slots:
   simulation_time:
     description: Total simulated physical time of the MD trajectory.
     range: float
-    slot_uri: catcore:simulation_time
+    slot_uri: coremeta4cat:simulation_time
     multivalued: true
     unit:
       ucum_code: ps
@@ -507,13 +507,13 @@ slots:
       Statistical ensemble used in MD (e.g. NVE, NVT, NPT). Determines which
       thermodynamic quantities are conserved.
     range: string
-    slot_uri: catcore:ensemble_type
+    slot_uri: coremeta4cat:ensemble_type
     multivalued: true
 
   number_of_atoms:
     description: Number of atoms in the simulation cell or supercell.
     range: integer
-    slot_uri: catcore:number_of_atoms
+    slot_uri: coremeta4cat:number_of_atoms
     multivalued: true
 
   # ---- Microkinetics method slots ----
@@ -531,13 +531,13 @@ slots:
       Numerical solver used for the microkinetic rate equations (e.g. LSODA,
       stiff ODE solver, steady-state Newton method).
     range: string
-    slot_uri: catcore:solver_type
+    slot_uri: coremeta4cat:solver_type
     multivalued: true
 
   pressure:
     description: Total pressure used in microkinetic or Monte Carlo simulation.
     range: float
-    slot_uri: catcore:pressure
+    slot_uri: coremeta4cat:pressure
     multivalued: true
     unit:
       ucum_code: bar
@@ -545,13 +545,13 @@ slots:
   surface_coverage:
     description: Surface coverage of adsorbed species (fraction of surface sites occupied).
     range: float
-    slot_uri: catcore:surface_coverage
+    slot_uri: coremeta4cat:surface_coverage
     multivalued: true
 
   activation_energy:
     description: Activation energy for each elementary step in the reaction mechanism.
     range: float
-    slot_uri: catcore:activation_energy
+    slot_uri: coremeta4cat:activation_energy
     multivalued: true
     unit:
       ucum_code: eV
@@ -561,13 +561,13 @@ slots:
   interaction_potential:
     description: Interaction potential or Hamiltonian used to compute energies in MC moves.
     range: string
-    slot_uri: catcore:interaction_potential
+    slot_uri: coremeta4cat:interaction_potential
     multivalued: true
 
   number_of_steps:
     description: Total number of Monte Carlo moves or trial configurations generated.
     range: integer
-    slot_uri: catcore:number_of_steps
+    slot_uri: coremeta4cat:number_of_steps
     multivalued: true
 
   lattice_size_type:
@@ -575,7 +575,7 @@ slots:
       Lattice geometry and dimensions used in lattice-based MC (e.g.
       "100×100 square lattice", "hexagonal 50×50").
     range: string
-    slot_uri: catcore:lattice_size_type
+    slot_uri: coremeta4cat:lattice_size_type
     multivalued: true
 
   acceptance_criteria:
@@ -583,19 +583,19 @@ slots:
       Criterion for accepting or rejecting MC moves (e.g. Metropolis,
       Kawasaki, heat-bath algorithm).
     range: string
-    slot_uri: catcore:acceptance_criteria
+    slot_uri: coremeta4cat:acceptance_criteria
     multivalued: true
 
   equilibration_steps:
     description: Number of MC steps used for equilibration before data collection begins.
     range: integer
-    slot_uri: catcore:equilibration_steps
+    slot_uri: coremeta4cat:equilibration_steps
     multivalued: true
 
   sampling_interval:
     description: Interval between successive MC snapshots used for property averaging.
     range: integer
-    slot_uri: catcore:sampling_interval
+    slot_uri: coremeta4cat:sampling_interval
     multivalued: true
 
   # ---- MaterialDescriptorMixin slots ----
@@ -605,7 +605,7 @@ slots:
       Chemical composition of the simulated material (e.g. "Fe2O3", "Pt/CeO2").
       Use empirical formula or SMILES for molecular systems.
     range: string
-    slot_uri: catcore:material_composition
+    slot_uri: coremeta4cat:material_composition
     multivalued: true
 
   crystal_structure:
@@ -623,7 +623,7 @@ slots:
       Monkhorst-Pack k-point mesh used for Brillouin zone sampling
       (e.g. "4×4×1" for a surface slab, "8×8×8" for a bulk cell).
     range: string
-    slot_uri: catcore:k_point_mesh
+    slot_uri: coremeta4cat:k_point_mesh
     multivalued: true
 
   # ---- ThermodynamicStability slots ----
@@ -631,7 +631,7 @@ slots:
   formation_energy:
     description: Formation energy per atom relative to elemental reference states.
     range: float
-    slot_uri: catcore:formation_energy
+    slot_uri: coremeta4cat:formation_energy
     multivalued: true
     unit:
       ucum_code: eV
@@ -641,7 +641,7 @@ slots:
       Elemental reference energies used to compute formation energies
       (e.g. DFT total energies of elemental ground-state structures).
     range: string
-    slot_uri: catcore:reference_energies
+    slot_uri: coremeta4cat:reference_energies
     multivalued: true
 
   energy_above_hull:
@@ -649,7 +649,7 @@ slots:
       Distance above the convex hull of stable phases (thermodynamic stability
       metric). Zero for phases on the hull; positive values indicate metastability.
     range: float
-    slot_uri: catcore:energy_above_hull
+    slot_uri: coremeta4cat:energy_above_hull
     multivalued: true
     unit:
       ucum_code: eV
@@ -657,7 +657,7 @@ slots:
   phase_diagram_type:
     description: Type of phase diagram constructed (e.g. binary, ternary, quaternary).
     range: string
-    slot_uri: catcore:phase_diagram_type
+    slot_uri: coremeta4cat:phase_diagram_type
     multivalued: true
 
   competing_phases:
@@ -665,7 +665,7 @@ slots:
       List of stable competing phases used in convex hull construction
       (e.g. "Fe2O3, Fe3O4, FeO, Fe").
     range: string
-    slot_uri: catcore:competing_phases
+    slot_uri: coremeta4cat:competing_phases
     multivalued: true
 
   # ---- Piezoelectricity slots ----
@@ -675,19 +675,19 @@ slots:
       Components of the piezoelectric tensor e_ij (C/m²) or d_ij (pC/N),
       describing the coupling between stress and electric polarization.
     range: string
-    slot_uri: catcore:piezoelectric_tensor
+    slot_uri: coremeta4cat:piezoelectric_tensor
     multivalued: true
 
   crystal_symmetry:
     description: Point group or space group symmetry of the crystal structure.
     range: string
-    slot_uri: catcore:crystal_symmetry
+    slot_uri: coremeta4cat:crystal_symmetry
     multivalued: true
 
   strain_applied:
     description: Magnitude of applied strain in the piezoelectric calculation.
     range: float
-    slot_uri: catcore:strain_applied
+    slot_uri: coremeta4cat:strain_applied
     multivalued: true
 
   ionic_electronic_contributions:
@@ -695,7 +695,7 @@ slots:
       Decomposition of the piezoelectric or dielectric response into ionic
       (nuclear) and electronic contributions.
     range: string
-    slot_uri: catcore:ionic_electronic_contributions
+    slot_uri: coremeta4cat:ionic_electronic_contributions
     multivalued: true
 
   # ---- ElasticConstants slots ----
@@ -705,13 +705,13 @@ slots:
       Full Voigt-notation elastic tensor C_ij (GPa) describing the linear
       elastic response of the material.
     range: string
-    slot_uri: catcore:elastic_tensor
+    slot_uri: coremeta4cat:elastic_tensor
     multivalued: true
 
   bulk_modulus:
     description: Bulk modulus (resistance to uniform compression).
     range: float
-    slot_uri: catcore:bulk_modulus
+    slot_uri: coremeta4cat:bulk_modulus
     multivalued: true
     unit:
       ucum_code: GPa
@@ -719,7 +719,7 @@ slots:
   shear_modulus:
     description: Shear modulus (resistance to shear deformation).
     range: float
-    slot_uri: catcore:shear_modulus
+    slot_uri: coremeta4cat:shear_modulus
     multivalued: true
     unit:
       ucum_code: GPa
@@ -727,13 +727,13 @@ slots:
   poisson_ratio:
     description: Poisson's ratio (ratio of transverse to axial strain under uniaxial load).
     range: float
-    slot_uri: catcore:poisson_ratio
+    slot_uri: coremeta4cat:poisson_ratio
     multivalued: true
 
   young_modulus:
     description: Young's modulus (stiffness under uniaxial tension or compression).
     range: float
-    slot_uri: catcore:young_modulus
+    slot_uri: coremeta4cat:young_modulus
     multivalued: true
     unit:
       ucum_code: GPa
@@ -745,7 +745,7 @@ slots:
       Cleavage energy per unit area required to create the surface from the bulk.
       A lower value indicates a more stable surface facet.
     range: float
-    slot_uri: catcore:surface_energy
+    slot_uri: coremeta4cat:surface_energy
     multivalued: true
     unit:
       ucum_code: J/m2
@@ -754,13 +754,13 @@ slots:
     description: |-
       Miller indices of the modelled surface facet (e.g. "(111)", "(110)", "(100)").
     range: string
-    slot_uri: catcore:miller_indices
+    slot_uri: coremeta4cat:miller_indices
     multivalued: true
 
   slab_thickness:
     description: Thickness of the periodic slab model used to represent the surface.
     range: float
-    slot_uri: catcore:slab_thickness
+    slot_uri: coremeta4cat:slab_thickness
     multivalued: true
     unit:
       ucum_code: Ao   # angstrom
@@ -770,7 +770,7 @@ slots:
       Vacuum layer thickness added above the slab to prevent spurious
       periodic interactions between slab images.
     range: float
-    slot_uri: catcore:vacuum_spacing
+    slot_uri: coremeta4cat:vacuum_spacing
     multivalued: true
     unit:
       ucum_code: Ao   # angstrom
@@ -780,7 +780,7 @@ slots:
       Method used to terminate the slab and handle dangling bonds
       (e.g. H-passivation, OH-termination, dipole correction).
     range: string
-    slot_uri: catcore:surface_termination_method
+    slot_uri: coremeta4cat:surface_termination_method
     multivalued: true
 
   # ---- DielectricTensors slots ----
@@ -790,7 +790,7 @@ slots:
       Components of the static and/or high-frequency dielectric tensor epsilon_ij,
       computed from DFPT.
     range: string
-    slot_uri: catcore:dielectric_tensor
+    slot_uri: coremeta4cat:dielectric_tensor
     multivalued: true
 
   born_effective_charges:
@@ -798,7 +798,7 @@ slots:
       Born effective charge tensors Z*_ij for each atom, describing how
       the polarization changes with atomic displacements.
     range: string
-    slot_uri: catcore:born_effective_charges
+    slot_uri: coremeta4cat:born_effective_charges
     multivalued: true
 
   # ---- PhononDispersion slots ----
@@ -808,7 +808,7 @@ slots:
       Method used to compute the interatomic force constants (e.g. finite
       differences / supercell method, DFPT/linear response).
     range: string
-    slot_uri: catcore:force_constant_method
+    slot_uri: coremeta4cat:force_constant_method
     multivalued: true
 
   kq_point_mesh:
@@ -816,13 +816,13 @@ slots:
       k/q-point mesh for phonon Brillouin zone sampling (e.g. "8×8×8").
       Distinct from the electronic k-point mesh.
     range: string
-    slot_uri: catcore:kq_point_mesh
+    slot_uri: coremeta4cat:kq_point_mesh
     multivalued: true
 
   smearing_parameter:
     description: Smearing or broadening parameter applied to the phonon density of states.
     range: float
-    slot_uri: catcore:smearing_parameter
+    slot_uri: coremeta4cat:smearing_parameter
     multivalued: true
     unit:
       ucum_code: eV
@@ -832,7 +832,7 @@ slots:
       Whether imaginary (soft) phonon modes are present in the dispersion.
       Imaginary modes indicate dynamical instability of the structure.
     range: boolean
-    slot_uri: catcore:imaginary_modes
+    slot_uri: coremeta4cat:imaginary_modes
     multivalued: true
 
   # ---- EquationsOfState slots ----
@@ -842,19 +842,19 @@ slots:
       Parametric model used to fit the energy-volume curve
       (e.g. Birch-Murnaghan 3rd order, Vinet, Murnaghan).
     range: string
-    slot_uri: catcore:fit_method
+    slot_uri: coremeta4cat:fit_method
     multivalued: true
 
   pressure_derivative:
     description: Pressure derivative of the bulk modulus B' (dimensionless).
     range: float
-    slot_uri: catcore:pressure_derivative
+    slot_uri: coremeta4cat:pressure_derivative
     multivalued: true
 
   fit_residuals:
     description: Root-mean-square residuals of the energy-volume fit.
     range: float
-    slot_uri: catcore:fit_residuals
+    slot_uri: coremeta4cat:fit_residuals
     multivalued: true
 
   # ---- AqueousStability slots ----
@@ -862,7 +862,7 @@ slots:
   ph_range:
     description: pH range covered in the Pourbaix stability diagram (e.g. "0–14").
     range: string
-    slot_uri: catcore:ph_range
+    slot_uri: coremeta4cat:ph_range
     multivalued: true
 
   potential_range:
@@ -870,7 +870,7 @@ slots:
       Electrode potential range covered in the Pourbaix diagram
       (e.g. "-2 to +2 V vs SHE").
     range: string
-    slot_uri: catcore:potential_range
+    slot_uri: coremeta4cat:potential_range
     multivalued: true
 
   solvation_model:
@@ -878,13 +878,13 @@ slots:
       Implicit solvation model used to account for aqueous environment
       (e.g. VASPsol, SCCS/Environ, COSMO).
     range: string
-    slot_uri: catcore:solvation_model
+    slot_uri: coremeta4cat:solvation_model
     multivalued: true
 
   ionic_strength:
     description: Ionic strength of the electrolyte solution modelled.
     range: float
-    slot_uri: catcore:ionic_strength
+    slot_uri: coremeta4cat:ionic_strength
     multivalued: true
     unit:
       ucum_code: mol/L
@@ -896,13 +896,13 @@ slots:
       Crystallographic plane of the grain boundary, expressed using
       Miller indices (e.g. "Sigma5 (310)[001]").
     range: string
-    slot_uri: catcore:grain_boundary_plane
+    slot_uri: coremeta4cat:grain_boundary_plane
     multivalued: true
 
   misorientation_angle:
     description: Misorientation angle between adjacent grains at the boundary.
     range: float
-    slot_uri: catcore:misorientation_angle
+    slot_uri: coremeta4cat:misorientation_angle
     multivalued: true
     unit:
       ucum_code: deg
@@ -910,7 +910,7 @@ slots:
   grain_boundary_energy:
     description: Excess energy per unit area of the grain boundary.
     range: float
-    slot_uri: catcore:grain_boundary_energy
+    slot_uri: coremeta4cat:grain_boundary_energy
     multivalued: true
     unit:
       ucum_code: J/m2
@@ -920,13 +920,13 @@ slots:
       Dimensions of the simulation cell used to model the grain boundary
       (e.g. "10×10×30 nm").
     range: string
-    slot_uri: catcore:simulation_cell_size
+    slot_uri: coremeta4cat:simulation_cell_size
     multivalued: true
 
   gb_excess_volume:
     description: Excess volume per unit area associated with the grain boundary.
     range: float
-    slot_uri: catcore:gb_excess_volume
+    slot_uri: coremeta4cat:gb_excess_volume
     multivalued: true
 
   gb_structural_units:
@@ -934,7 +934,7 @@ slots:
       Description of the structural units (repeating atomic motifs) that
       constitute the grain boundary structure.
     range: string
-    slot_uri: catcore:gb_structural_units
+    slot_uri: coremeta4cat:gb_structural_units
     multivalued: true
 
   charge_defect_segregation:
@@ -942,7 +942,7 @@ slots:
       Data describing charge carrier or point defect segregation behaviour
       at the grain boundary (e.g. segregation energy per defect type).
     range: string
-    slot_uri: catcore:charge_defect_segregation
+    slot_uri: coremeta4cat:charge_defect_segregation
     multivalued: true
 
   # ---- ElectronicStructure slots ----
@@ -952,7 +952,7 @@ slots:
       Electronic smearing scheme and width used in the SCF calculation
       (e.g. Methfessel-Paxton order 1 with sigma=0.2 eV, Gaussian with sigma=0.05 eV).
     range: string
-    slot_uri: catcore:smearing_method
+    slot_uri: coremeta4cat:smearing_method
     multivalued: true
 
   spin_polarized:
@@ -960,7 +960,7 @@ slots:
       Whether the electronic structure calculation is spin-polarized
       (accounts for spin-up and spin-down electrons separately).
     range: boolean
-    slot_uri: catcore:spin_polarized
+    slot_uri: coremeta4cat:spin_polarized
     multivalued: true
 
   band_path:
@@ -968,13 +968,13 @@ slots:
       High-symmetry k-path through the Brillouin zone used to plot the
       band structure (e.g. "Gamma-X-M-Gamma-R" for cubic, following SeeK-path convention).
     range: string
-    slot_uri: catcore:band_path
+    slot_uri: coremeta4cat:band_path
     multivalued: true
 
   fermi_energy:
     description: Fermi energy (chemical potential of electrons) in the calculated system.
     range: float
-    slot_uri: catcore:fermi_energy
+    slot_uri: coremeta4cat:fermi_energy
     multivalued: true
     unit:
       ucum_code: eV
@@ -986,13 +986,13 @@ slots:
       Crystallographic direction of the spontaneous electric polarization
       (e.g. "[001]" for tetragonal BaTiO_3).
     range: string
-    slot_uri: catcore:polarization_direction
+    slot_uri: coremeta4cat:polarization_direction
     multivalued: true
 
   spontaneous_polarization:
     description: Magnitude of the spontaneous electric polarization.
     range: float
-    slot_uri: catcore:spontaneous_polarization
+    slot_uri: coremeta4cat:spontaneous_polarization
     multivalued: true
     unit:
       ucum_code: uC/cm2
@@ -1002,13 +1002,13 @@ slots:
       Reference (paraelectric/centrosymmetric) structure used as the zero-
       polarization endpoint in the Berry-phase polarization calculation.
     range: string
-    slot_uri: catcore:reference_structure
+    slot_uri: coremeta4cat:reference_structure
     multivalued: true
 
   switching_barrier:
     description: Energy barrier for polarization switching between equivalent states.
     range: float
-    slot_uri: catcore:switching_barrier
+    slot_uri: coremeta4cat:switching_barrier
     multivalued: true
     unit:
       ucum_code: eV
@@ -1016,7 +1016,7 @@ slots:
   coercive_field:
     description: Electric field required to reverse the polarization direction.
     range: float
-    slot_uri: catcore:coercive_field
+    slot_uri: coremeta4cat:coercive_field
     multivalued: true
     unit:
       ucum_code: kV/cm
@@ -1024,7 +1024,7 @@ slots:
   temperature_dependence:
     description: Description of how the ferroelectric properties vary with temperature.
     range: string
-    slot_uri: catcore:temperature_dependence
+    slot_uri: coremeta4cat:temperature_dependence
     multivalued: true
 
   # ---- BandGap slots ----
@@ -1042,13 +1042,13 @@ slots:
       Model structure used in the band gap calculation (e.g. bulk unit cell,
       surface slab, defect supercell).
     range: string
-    slot_uri: catcore:structure_model
+    slot_uri: coremeta4cat:structure_model
     multivalued: true
 
   smearing_broadening:
     description: Gaussian or Lorentzian broadening applied to the simulated spectrum.
     range: float
-    slot_uri: catcore:smearing_broadening
+    slot_uri: coremeta4cat:smearing_broadening
     multivalued: true
     unit:
       ucum_code: eV
@@ -1058,13 +1058,13 @@ slots:
       Band gap character: "direct" (VBM and CBM at same k-point) or
       "indirect" (VBM and CBM at different k-points).
     range: string
-    slot_uri: catcore:direct_indirect
+    slot_uri: coremeta4cat:direct_indirect
     multivalued: true
 
   experimental_reference:
     description: Experimental band gap value used for benchmarking the calculation.
     range: float
-    slot_uri: catcore:experimental_reference
+    slot_uri: coremeta4cat:experimental_reference
     multivalued: true
     unit:
       ucum_code: eV
@@ -1074,7 +1074,7 @@ slots:
       Whether a many-body GW correction or hybrid functional (e.g. HSE06)
       was applied to correct the DFT band gap underestimation.
     range: boolean
-    slot_uri: catcore:gw_hybrid_correction
+    slot_uri: coremeta4cat:gw_hybrid_correction
     multivalued: true
 
   excitonic_correction:
@@ -1082,7 +1082,7 @@ slots:
       Excitonic correction (from Bethe-Salpeter equation) applied to the
       optical band gap.
     range: float
-    slot_uri: catcore:excitonic_correction
+    slot_uri: coremeta4cat:excitonic_correction
     multivalued: true
     unit:
       ucum_code: eV

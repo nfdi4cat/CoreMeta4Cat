@@ -1,23 +1,23 @@
-# Auto generated from catcore.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-03-04T22:31:48
-# Schema: catcore-metadata
+# Auto generated from coremeta4cat.yaml by pythongen.py version: 0.0.1
+# Generation date: 2026-03-09T17:19:45
+# Schema: coremeta4cat-metadata
 #
-# id: https://w3id.org/nfdi4cat/catcore
-# description: The CatCore describes the minimum information which must be reported with research
+# id: https://w3id.org/nfdi4cat/coremeta4cat
+# description: The CoreMeta4Cat describes the minimum information which must be reported with research
 #   data concerning the field of catalysis. This guideline helps to handle and
 #   standardize data based on the FAIR principle (Findable, Accessible, Interoperable,
 #   Reusable).
 #
 #   Architecture
 #   ------------
-#   CatCore follows the DCAT-AP-PLUS design patterns (see design-patterns.md):
+#   CoreMeta4Cat follows the DCAT-AP-PLUS design patterns (see design-patterns.md):
 #
 #   - The entry point is the dcat:Dataset, extended here as CatalysisDataset.
 #     The catalysis research field is expressed via rdf_type (ClassifierMixin,
 #     Pattern 3) using voc4cat terms — analogous to how NMRSpectroscopy uses
 #     rdf_type: CHMO:0000613 to classify the measurement type.
 #
-#   - The four CatCore pillars are modelled as DCAT-AP-PLUS Activity subclasses,
+#   - The four CoreMeta4Cat pillars are modelled as DCAT-AP-PLUS Activity subclasses,
 #     following the same pattern as NMRSpectroscopy (is_a: DataGeneratingActivity):
 #
 #       Synthesis      --> is_a: DataGeneratingActivity
@@ -49,21 +49,21 @@
 #   - PreparationMethod, CharacterizationTechnique, and SimulationMethod are
 #     modelled as Plan (from dcat_ap_plus), the protocol realized by the Activity.
 #
-#   This file is the top-level aggregator. It imports catcore_common (shared
+#   This file is the top-level aggregator. It imports coremeta4cat_common (shared
 #   slots and enums) and the four subprofile modules.
 #
 #   Full import hierarchy:
-#     catcore.yaml  (this file — aggregator + CatalysisDataset entry point)
-#       +-- catcore_common.yaml         (shared slots, enums)
+#     coremeta4cat.yaml  (this file — aggregator + CatalysisDataset entry point)
+#       +-- coremeta4cat_common.yaml         (shared slots, enums)
 #             +-- chem_dcat_ap          (SubstanceSample, ChemicalSubstance, …)
 #                   +-- chemical_reaction_ap
 #                         +-- chemical_entities_ap
 #                               +-- material_entities_ap
 #                                     +-- dcat_ap_plus  (DCAT-AP-PLUS base)
-#       +-- catcore_synthesis_ap         (Step 3 — Synthesis, PreparationMethod, mixins)
-#       +-- catcore_characterization_ap  (Step 4 — Characterization, 24 techniques, mixins)
-#       +-- catcore_reaction_ap          (Step 5 — Reaction, 8 ReactorDesignTypes)
-#       +-- catcore_simulation_ap        (Step 6 — Simulation, 4 methods, 12 properties, mixins)
+#       +-- coremeta4cat_synthesis_ap         (Step 3 — Synthesis, PreparationMethod, mixins)
+#       +-- coremeta4cat_characterization_ap  (Step 4 — Characterization, 24 techniques, mixins)
+#       +-- coremeta4cat_reaction_ap          (Step 5 — Reaction, 8 ReactorDesignTypes)
+#       +-- coremeta4cat_simulation_ap        (Step 6 — Simulation, 4 methods, 12 properties, mixins)
 # license: CC-BY-4.0
 
 import dataclasses
@@ -148,12 +148,11 @@ RXNO = CurieNamespace('RXNO', 'http://purl.obolibrary.org/obo/RXNO_')
 SIO = CurieNamespace('SIO', 'http://semanticscience.org/resource/SIO_')
 VOC4CAT = CurieNamespace('VOC4CAT', 'https://w3id.org/nfdi4cat/voc4cat_')
 ADMS = CurieNamespace('adms', 'http://www.w3.org/ns/adms#')
-CATCORE = CurieNamespace('catcore', 'https://w3id.org/nfdi4cat/catcore/')
 CHEMDCATAP = CurieNamespace('chemdcatap', 'https://nfdi-de.github.io/chem-dcat-ap/')
+COREMETA4CAT = CurieNamespace('coremeta4cat', 'https://w3id.org/nfdi4cat/coremeta4cat/')
 DCAT = CurieNamespace('dcat', 'http://www.w3.org/ns/dcat#')
 DCATAP = CurieNamespace('dcatap', 'http://data.europa.eu/r5r/')
-DCATAP_PLUS = CurieNamespace('dcatap_plus', 'https://w3id.org/nfdi-de/dcat-ap-plus/')
-DCATAPPLUS = CurieNamespace('dcatapplus', 'https://nfdi-de.github.io/dcat-ap-plus/')
+DCATAPPLUS = CurieNamespace('dcatapplus', 'https://w3id.org/nfdi-de/dcat-ap-plus/')
 DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
 ELI = CurieNamespace('eli', 'http://data.europa.eu/eli/ontology#')
 EPOS = CurieNamespace('epos', 'https://www.epos-eu.org/epos-dcat-ap#')
@@ -172,7 +171,7 @@ SPDX = CurieNamespace('spdx', 'http://spdx.org/rdf/terms#')
 TIME = CurieNamespace('time', 'http://www.w3.org/2006/time#')
 VCARD = CurieNamespace('vcard', 'http://www.w3.org/2006/vcard/ns#')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
-DEFAULT_ = CATCORE
+DEFAULT_ = COREMETA4CAT
 
 
 # Types
@@ -181,7 +180,7 @@ class Duration(str):
     type_class_uri = XSD["duration"]
     type_class_curie = "xsd:duration"
     type_name = "duration"
-    type_model_uri = CATCORE.Duration
+    type_model_uri = COREMETA4CAT.Duration
 
 
 class HexBinary(str):
@@ -189,7 +188,7 @@ class HexBinary(str):
     type_class_uri = XSD["hexBinary"]
     type_class_curie = "xsd:hexBinary"
     type_name = "hexBinary"
-    type_model_uri = CATCORE.HexBinary
+    type_model_uri = COREMETA4CAT.HexBinary
 
 
 class NonNegativeInteger(int):
@@ -197,7 +196,7 @@ class NonNegativeInteger(int):
     type_class_uri = XSD["nonNegativeInteger"]
     type_class_curie = "xsd:nonNegativeInteger"
     type_name = "nonNegativeInteger"
-    type_model_uri = CATCORE.NonNegativeInteger
+    type_model_uri = COREMETA4CAT.NonNegativeInteger
 
 
 # Class references
@@ -403,10 +402,10 @@ class DryingMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["DryingMixin"]
-    class_class_curie: ClassVar[str] = "catcore:DryingMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["DryingMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:DryingMixin"
     class_name: ClassVar[str] = "DryingMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DryingMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DryingMixin
 
     drying_device: Optional[Union[str, list[str]]] = empty_list()
     drying_temperature: Optional[Union[float, list[float]]] = empty_list()
@@ -443,10 +442,10 @@ class CalcinationMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["CalcinationMixin"]
-    class_class_curie: ClassVar[str] = "catcore:CalcinationMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["CalcinationMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:CalcinationMixin"
     class_name: ClassVar[str] = "CalcinationMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.CalcinationMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CalcinationMixin
 
     calcination_initial_temperature: Optional[Union[float, list[float]]] = empty_list()
     calcination_final_temperature: Optional[Union[float, list[float]]] = empty_list()
@@ -497,10 +496,10 @@ class PrecipitationMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["PrecipitationMixin"]
-    class_class_curie: ClassVar[str] = "catcore:PrecipitationMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["PrecipitationMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:PrecipitationMixin"
     class_name: ClassVar[str] = "PrecipitationMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PrecipitationMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PrecipitationMixin
 
     precipitating_agent: Optional[Union[str, list[str]]] = empty_list()
     precipitating_concentration: Optional[Union[float, list[float]]] = empty_list()
@@ -572,10 +571,10 @@ class ThermalSynthesisMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["ThermalSynthesisMixin"]
-    class_class_curie: ClassVar[str] = "catcore:ThermalSynthesisMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ThermalSynthesisMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:ThermalSynthesisMixin"
     class_name: ClassVar[str] = "ThermalSynthesisMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ThermalSynthesisMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ThermalSynthesisMixin
 
     synthesis_temperature: Optional[Union[float, list[float]]] = empty_list()
     synthesis_duration: Optional[Union[float, list[float]]] = empty_list()
@@ -616,10 +615,10 @@ class XRaySourceMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["XRaySourceMixin"]
-    class_class_curie: ClassVar[str] = "catcore:XRaySourceMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["XRaySourceMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:XRaySourceMixin"
     class_name: ClassVar[str] = "XRaySourceMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.XRaySourceMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.XRaySourceMixin
 
     xray_source: Optional[Union[str, list[str]]] = empty_list()
     monochromator: Optional[Union[str, list[str]]] = empty_list()
@@ -644,10 +643,10 @@ class EnergyRangeMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["EnergyRangeMixin"]
-    class_class_curie: ClassVar[str] = "catcore:EnergyRangeMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["EnergyRangeMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:EnergyRangeMixin"
     class_name: ClassVar[str] = "EnergyRangeMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.EnergyRangeMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.EnergyRangeMixin
 
     minimum_energy: Optional[Union[float, list[float]]] = empty_list()
     maximum_energy: Optional[Union[float, list[float]]] = empty_list()
@@ -673,10 +672,10 @@ class ElectronMicroscopyMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["ElectronMicroscopyMixin"]
-    class_class_curie: ClassVar[str] = "catcore:ElectronMicroscopyMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ElectronMicroscopyMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:ElectronMicroscopyMixin"
     class_name: ClassVar[str] = "ElectronMicroscopyMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ElectronMicroscopyMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ElectronMicroscopyMixin
 
     gun_type: Optional[Union[str, list[str]]] = empty_list()
     acceleration_voltage: Optional[Union[float, list[float]]] = empty_list()
@@ -707,10 +706,10 @@ class TemperatureProgramMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["TemperatureProgramMixin"]
-    class_class_curie: ClassVar[str] = "catcore:TemperatureProgramMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["TemperatureProgramMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:TemperatureProgramMixin"
     class_name: ClassVar[str] = "TemperatureProgramMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.TemperatureProgramMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.TemperatureProgramMixin
 
     minimum_temperature: Optional[Union[float, list[float]]] = empty_list()
     maximum_temperature: Optional[Union[float, list[float]]] = empty_list()
@@ -745,10 +744,10 @@ class ChromatographyMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["ChromatographyMixin"]
-    class_class_curie: ClassVar[str] = "catcore:ChromatographyMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ChromatographyMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:ChromatographyMixin"
     class_name: ClassVar[str] = "ChromatographyMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ChromatographyMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ChromatographyMixin
 
     column_type: Optional[Union[str, list[str]]] = empty_list()
     eluent: Optional[Union[str, list[str]]] = empty_list()
@@ -793,10 +792,10 @@ class MassRangeMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["MassRangeMixin"]
-    class_class_curie: ClassVar[str] = "catcore:MassRangeMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["MassRangeMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:MassRangeMixin"
     class_name: ClassVar[str] = "MassRangeMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MassRangeMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MassRangeMixin
 
     mz_minimum: Optional[Union[float, list[float]]] = empty_list()
     mz_maximum: Optional[Union[float, list[float]]] = empty_list()
@@ -822,10 +821,10 @@ class PhotoluminescenceMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["PhotoluminescenceMixin"]
-    class_class_curie: ClassVar[str] = "catcore:PhotoluminescenceMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["PhotoluminescenceMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:PhotoluminescenceMixin"
     class_name: ClassVar[str] = "PhotoluminescenceMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PhotoluminescenceMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PhotoluminescenceMixin
 
     excitation_wavelength: Optional[Union[float, list[float]]] = empty_list()
     emission_wavelength: Optional[Union[float, list[float]]] = empty_list()
@@ -861,10 +860,10 @@ class ElectrochemistryMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["ElectrochemistryMixin"]
-    class_class_curie: ClassVar[str] = "catcore:ElectrochemistryMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ElectrochemistryMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:ElectrochemistryMixin"
     class_name: ClassVar[str] = "ElectrochemistryMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ElectrochemistryMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ElectrochemistryMixin
 
     reference_electrode: Optional[Union[str, list[str]]] = empty_list()
     working_electrode: Optional[Union[str, list[str]]] = empty_list()
@@ -917,10 +916,10 @@ class MaterialDescriptorMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["MaterialDescriptorMixin"]
-    class_class_curie: ClassVar[str] = "catcore:MaterialDescriptorMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["MaterialDescriptorMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:MaterialDescriptorMixin"
     class_name: ClassVar[str] = "MaterialDescriptorMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MaterialDescriptorMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MaterialDescriptorMixin
 
     material_composition: Optional[Union[str, list[str]]] = empty_list()
     crystal_structure: Optional[Union[str, list[str]]] = empty_list()
@@ -946,10 +945,10 @@ class DFTSettingsMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["DFTSettingsMixin"]
-    class_class_curie: ClassVar[str] = "catcore:DFTSettingsMixin"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["DFTSettingsMixin"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:DFTSettingsMixin"
     class_name: ClassVar[str] = "DFTSettingsMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DFTSettingsMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DFTSettingsMixin
 
     energy_cutoff: Optional[Union[float, list[float]]] = empty_list()
     convergence_criteria: Optional[Union[str, list[str]]] = empty_list()
@@ -981,7 +980,7 @@ class Activity(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = PROV["Activity"]
     class_class_curie: ClassVar[str] = "prov:Activity"
     class_name: ClassVar[str] = "Activity"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Activity
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Activity
 
     id: Union[str, ActivityId] = None
     title: Optional[Union[str, list[str]]] = empty_list()
@@ -1055,7 +1054,7 @@ class Agent(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = FOAF["Agent"]
     class_class_curie: ClassVar[str] = "foaf:Agent"
     class_name: ClassVar[str] = "Agent"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Agent
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Agent
 
     name: Union[str, list[str]] = None
     type: Optional[Union[dict, "Concept"]] = None
@@ -1083,7 +1082,7 @@ class AgenticEntity(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = PROV["Agent"]
     class_class_curie: ClassVar[str] = "prov:Agent"
     class_name: ClassVar[str] = "AgenticEntity"
-    class_model_uri: ClassVar[URIRef] = CATCORE.AgenticEntity
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.AgenticEntity
 
     id: Union[str, AgenticEntityId] = None
     title: Optional[str] = None
@@ -1145,7 +1144,7 @@ class Catalogue(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DCAT["Catalog"]
     class_class_curie: ClassVar[str] = "dcat:Catalog"
     class_name: ClassVar[str] = "Catalogue"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Catalogue
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Catalogue
 
     description: Union[str, list[str]] = None
     publisher: Union[dict, Agent] = None
@@ -1252,7 +1251,7 @@ class CatalogueRecord(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DCAT["CatalogRecord"]
     class_class_curie: ClassVar[str] = "dcat:CatalogRecord"
     class_name: ClassVar[str] = "CatalogueRecord"
-    class_model_uri: ClassVar[URIRef] = CATCORE.CatalogueRecord
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CatalogueRecord
 
     modification_date: Union[str, XSDDate] = None
     primary_topic: Union[dict, Any] = None
@@ -1308,7 +1307,7 @@ class Checksum(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = SPDX["Checksum"]
     class_class_curie: ClassVar[str] = "spdx:Checksum"
     class_name: ClassVar[str] = "Checksum"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Checksum
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Checksum
 
     algorithm: Union[dict, "ChecksumAlgorithm"] = None
     checksum_value: str = None
@@ -1334,10 +1333,10 @@ class ClassifierMixin(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = DCATAP_PLUS["ClassifierMixin"]
-    class_class_curie: ClassVar[str] = "dcatap_plus:ClassifierMixin"
+    class_class_uri: ClassVar[URIRef] = DCATAPPLUS["ClassifierMixin"]
+    class_class_curie: ClassVar[str] = "dcatapplus:ClassifierMixin"
     class_name: ClassVar[str] = "ClassifierMixin"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ClassifierMixin
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ClassifierMixin
 
     type: Optional[Union[dict, "DefinedTerm"]] = None
     rdf_type: Optional[Union[dict, "DefinedTerm"]] = None
@@ -1363,7 +1362,7 @@ class DataGeneratingActivity(Activity):
     class_class_uri: ClassVar[URIRef] = PROV["Activity"]
     class_class_curie: ClassVar[str] = "prov:Activity"
     class_name: ClassVar[str] = "DataGeneratingActivity"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DataGeneratingActivity
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DataGeneratingActivity
 
     id: Union[str, DataGeneratingActivityId] = None
     evaluated_entity: Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]] = empty_dict()
@@ -1409,7 +1408,7 @@ class Synthesis(DataGeneratingActivity):
     class_class_uri: ClassVar[URIRef] = OBI["0000070"]
     class_class_curie: ClassVar[str] = "OBI:0000070"
     class_name: ClassVar[str] = "Synthesis"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Synthesis
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Synthesis
 
     id: Union[str, SynthesisId] = None
     nominal_composition: Union[str, list[str]] = None
@@ -1491,7 +1490,7 @@ class Characterization(DataGeneratingActivity):
     class_class_uri: ClassVar[URIRef] = OBI["0000070"]
     class_class_curie: ClassVar[str] = "OBI:0000070"
     class_name: ClassVar[str] = "Characterization"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Characterization
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Characterization
 
     id: Union[str, CharacterizationId] = None
     equipment: Union[str, list[str]] = None
@@ -1560,7 +1559,7 @@ class Simulation(DataGeneratingActivity):
     SimulationMethod instance. The catalyst model or reaction being simulated
     is linked via evaluated_entity or evaluated_activity.
 
-    The specific simulation type is expressed via rdf_type (e.g. catcore:DFT,
+    The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,
     NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.
     """
     _inherited_slots: ClassVar[list[str]] = []
@@ -1568,7 +1567,7 @@ class Simulation(DataGeneratingActivity):
     class_class_uri: ClassVar[URIRef] = NCIT["C48936"]
     class_class_curie: ClassVar[str] = "NCIT:C48936"
     class_name: ClassVar[str] = "Simulation"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Simulation
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Simulation
 
     id: Union[str, SimulationId] = None
     software_package: Union[str, list[str]] = None
@@ -1622,7 +1621,7 @@ class DataAnalysis(DataGeneratingActivity):
     class_class_uri: ClassVar[URIRef] = PROV["Activity"]
     class_class_curie: ClassVar[str] = "prov:Activity"
     class_name: ClassVar[str] = "DataAnalysis"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DataAnalysis
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DataAnalysis
 
     id: Union[str, DataAnalysisId] = None
     evaluated_entity: Optional[Union[dict[Union[str, AnalysisSourceDataId], Union[dict, "AnalysisSourceData"]], list[Union[dict, "AnalysisSourceData"]]]] = empty_dict()
@@ -1648,7 +1647,7 @@ class DataService(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DCAT["DataService"]
     class_class_curie: ClassVar[str] = "dcat:DataService"
     class_name: ClassVar[str] = "DataService"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DataService
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DataService
 
     endpoint_URL: Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]] = empty_dict()
     title: Union[str, list[str]] = None
@@ -1735,7 +1734,7 @@ class Dataset(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DCAT["Dataset"]
     class_class_curie: ClassVar[str] = "dcat:Dataset"
     class_name: ClassVar[str] = "Dataset"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Dataset
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Dataset
 
     id: Union[str, DatasetId] = None
     description: Union[str, list[str]] = None
@@ -1928,16 +1927,16 @@ class CatalysisDataset(Dataset):
     id: VOC4CAT:0007001
     title: "heterogeneous catalysis"
 
-    The four CatCore minimum information pillars are linked via the slots
+    The four CoreMeta4Cat minimum information pillars are linked via the slots
     below, each pointing to the corresponding DataGeneratingActivity or
-    EvaluatedActivity subclass defined in the CatCore subprofile modules.
+    EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
     class_class_uri: ClassVar[URIRef] = DCAT["Dataset"]
     class_class_curie: ClassVar[str] = "dcat:Dataset"
     class_name: ClassVar[str] = "CatalysisDataset"
-    class_model_uri: ClassVar[URIRef] = CATCORE.CatalysisDataset
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CatalysisDataset
 
     id: Union[str, CatalysisDatasetId] = None
     description: Union[str, list[str]] = None
@@ -1977,7 +1976,7 @@ class AnalysisDataset(Dataset):
     class_class_uri: ClassVar[URIRef] = DCAT["Dataset"]
     class_class_curie: ClassVar[str] = "dcat:Dataset"
     class_name: ClassVar[str] = "AnalysisDataset"
-    class_model_uri: ClassVar[URIRef] = CATCORE.AnalysisDataset
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.AnalysisDataset
 
     id: Union[str, AnalysisDatasetId] = None
     description: Union[str, list[str]] = None
@@ -2005,7 +2004,7 @@ class DatasetSeries(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DCAT["DatasetSeries"]
     class_class_curie: ClassVar[str] = "dcat:DatasetSeries"
     class_name: ClassVar[str] = "DatasetSeries"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DatasetSeries
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DatasetSeries
 
     description: Union[str, list[str]] = None
     title: Union[str, list[str]] = None
@@ -2071,7 +2070,7 @@ class DefinedTerm(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = SCHEMA["DefinedTerm"]
     class_class_curie: ClassVar[str] = "schema:DefinedTerm"
     class_name: ClassVar[str] = "DefinedTerm"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DefinedTerm
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DefinedTerm
 
     id: Union[str, DefinedTermId] = None
     title: Optional[str] = None
@@ -2103,7 +2102,7 @@ class Device(AgenticEntity):
     class_class_uri: ClassVar[URIRef] = PROV["Agent"]
     class_class_curie: ClassVar[str] = "prov:Agent"
     class_name: ClassVar[str] = "Device"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Device
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Device
 
     id: Union[str, DeviceId] = None
     has_part: Optional[Union[dict[Union[str, DeviceId], Union[dict, "Device"]], list[Union[dict, "Device"]]]] = empty_dict()
@@ -2136,7 +2135,7 @@ class ReactorDesignType(Device):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0007018"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0007018"
     class_name: ClassVar[str] = "ReactorDesignType"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ReactorDesignType
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ReactorDesignType
 
     id: Union[str, ReactorDesignTypeId] = None
 
@@ -2151,7 +2150,7 @@ class ElectrochemicalReactor(ReactorDesignType):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0000193"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0000193"
     class_name: ClassVar[str] = "ElectrochemicalReactor"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ElectrochemicalReactor
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ElectrochemicalReactor
 
     id: Union[str, ElectrochemicalReactorId] = None
 
@@ -2175,7 +2174,7 @@ class CSTR(ReactorDesignType):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0007019"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0007019"
     class_name: ClassVar[str] = "CSTR"
-    class_model_uri: ClassVar[URIRef] = CATCORE.CSTR
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CSTR
 
     id: Union[str, CSTRId] = None
 
@@ -2199,7 +2198,7 @@ class PlugFlowReactor(ReactorDesignType):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0007102"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0007102"
     class_name: ClassVar[str] = "PlugFlowReactor"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PlugFlowReactor
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PlugFlowReactor
 
     id: Union[str, PlugFlowReactorId] = None
 
@@ -2223,7 +2222,7 @@ class Autoclave(ReactorDesignType):
     class_class_uri: ClassVar[URIRef] = NCIT["C93052"]
     class_class_curie: ClassVar[str] = "NCIT:C93052"
     class_name: ClassVar[str] = "Autoclave"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Autoclave
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Autoclave
 
     id: Union[str, AutoclaveId] = None
 
@@ -2244,10 +2243,10 @@ class SlurryReactor(ReactorDesignType):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["SlurryReactor"]
-    class_class_curie: ClassVar[str] = "catcore:SlurryReactor"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["SlurryReactor"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:SlurryReactor"
     class_name: ClassVar[str] = "SlurryReactor"
-    class_model_uri: ClassVar[URIRef] = CATCORE.SlurryReactor
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.SlurryReactor
 
     id: Union[str, SlurryReactorId] = None
 
@@ -2272,7 +2271,7 @@ class Microreactor(ReactorDesignType):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0000234"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0000234"
     class_name: ClassVar[str] = "Microreactor"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Microreactor
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Microreactor
 
     id: Union[str, MicroreactorId] = None
 
@@ -2293,10 +2292,10 @@ class FixedBedReactor(ReactorDesignType):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["FixedBedReactor"]
-    class_class_curie: ClassVar[str] = "catcore:FixedBedReactor"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["FixedBedReactor"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:FixedBedReactor"
     class_name: ClassVar[str] = "FixedBedReactor"
-    class_model_uri: ClassVar[URIRef] = CATCORE.FixedBedReactor
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.FixedBedReactor
 
     id: Union[str, FixedBedReactorId] = None
 
@@ -2317,10 +2316,10 @@ class FluidizedBedReactor(ReactorDesignType):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["FluidizedBedReactor"]
-    class_class_curie: ClassVar[str] = "catcore:FluidizedBedReactor"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["FluidizedBedReactor"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:FluidizedBedReactor"
     class_name: ClassVar[str] = "FluidizedBedReactor"
-    class_model_uri: ClassVar[URIRef] = CATCORE.FluidizedBedReactor
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.FluidizedBedReactor
 
     id: Union[str, FluidizedBedReactorId] = None
     gas_distributor_type: Optional[Union[str, list[str]]] = empty_list()
@@ -2357,7 +2356,7 @@ class Distribution(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DCAT["Distribution"]
     class_class_curie: ClassVar[str] = "dcat:Distribution"
     class_name: ClassVar[str] = "Distribution"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Distribution
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Distribution
 
     access_URL: Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]] = empty_dict()
     access_service: Optional[Union[Union[dict, DataService], list[Union[dict, DataService]]]] = empty_list()
@@ -2473,7 +2472,7 @@ class Entity(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = PROV["Entity"]
     class_class_curie: ClassVar[str] = "prov:Entity"
     class_name: ClassVar[str] = "Entity"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Entity
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Entity
 
     id: Union[str, EntityId] = None
     title: Optional[str] = None
@@ -2533,7 +2532,7 @@ class EvaluatedActivity(Activity):
     class_class_uri: ClassVar[URIRef] = PROV["Activity"]
     class_class_curie: ClassVar[str] = "prov:Activity"
     class_name: ClassVar[str] = "EvaluatedActivity"
-    class_model_uri: ClassVar[URIRef] = CATCORE.EvaluatedActivity
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.EvaluatedActivity
 
     id: Union[str, EvaluatedActivityId] = None
     other_identifier: Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]] = empty_list()
@@ -2575,7 +2574,7 @@ class Reaction(EvaluatedActivity):
     class_class_uri: ClassVar[URIRef] = SIO["010345"]
     class_class_curie: ClassVar[str] = "SIO:010345"
     class_name: ClassVar[str] = "Reaction"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Reaction
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Reaction
 
     id: Union[str, ReactionId] = None
     catalyst_quantity: Union[float, list[float]] = None
@@ -2661,7 +2660,7 @@ class EvaluatedEntity(Entity):
     class_class_uri: ClassVar[URIRef] = PROV["Entity"]
     class_class_curie: ClassVar[str] = "prov:Entity"
     class_name: ClassVar[str] = "EvaluatedEntity"
-    class_model_uri: ClassVar[URIRef] = CATCORE.EvaluatedEntity
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.EvaluatedEntity
 
     id: Union[str, EvaluatedEntityId] = None
     was_generated_by: Optional[Union[dict[Union[str, ActivityId], Union[dict, Activity]], list[Union[dict, Activity]]]] = empty_dict()
@@ -2700,7 +2699,7 @@ class AnalysisSourceData(EvaluatedEntity):
     class_class_uri: ClassVar[URIRef] = PROV["Entity"]
     class_class_curie: ClassVar[str] = "prov:Entity"
     class_name: ClassVar[str] = "AnalysisSourceData"
-    class_model_uri: ClassVar[URIRef] = CATCORE.AnalysisSourceData
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.AnalysisSourceData
 
     id: Union[str, AnalysisSourceDataId] = None
     was_generated_by: Optional[Union[dict[Union[str, DataGeneratingActivityId], Union[dict, DataGeneratingActivity]], list[Union[dict, DataGeneratingActivity]]]] = empty_dict()
@@ -2725,7 +2724,7 @@ class Kind(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = VCARD["Kind"]
     class_class_curie: ClassVar[str] = "vcard:Kind"
     class_name: ClassVar[str] = "Kind"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Kind
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Kind
 
 
 @dataclass(repr=False)
@@ -2738,7 +2737,7 @@ class Location(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DCTERMS["Location"]
     class_class_curie: ClassVar[str] = "dcterms:Location"
     class_name: ClassVar[str] = "Location"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Location
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Location
 
     bbox: Optional[str] = None
     centroid: Optional[str] = None
@@ -2768,7 +2767,7 @@ class Plan(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = PROV["Plan"]
     class_class_curie: ClassVar[str] = "prov:Plan"
     class_name: ClassVar[str] = "Plan"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Plan
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Plan
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -2806,7 +2805,7 @@ class PreparationMethod(Plan):
     class_class_uri: ClassVar[URIRef] = OBI["0000272"]
     class_class_curie: ClassVar[str] = "OBI:0000272"
     class_name: ClassVar[str] = "PreparationMethod"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PreparationMethod
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PreparationMethod
 
 
 @dataclass(repr=False)
@@ -2817,10 +2816,10 @@ class Impregnation(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["Impregnation"]
-    class_class_curie: ClassVar[str] = "catcore:Impregnation"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Impregnation"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:Impregnation"
     class_name: ClassVar[str] = "Impregnation"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Impregnation
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Impregnation
 
     impregnation_type: Optional[Union[Union[str, "ImpregnationTypeEnum"], list[Union[str, "ImpregnationTypeEnum"]]]] = empty_list()
     impregnation_duration: Optional[Union[float, list[float]]] = empty_list()
@@ -2905,10 +2904,10 @@ class CoPrecipitation(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["CoPrecipitation"]
-    class_class_curie: ClassVar[str] = "catcore:CoPrecipitation"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["CoPrecipitation"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:CoPrecipitation"
     class_name: ClassVar[str] = "CoPrecipitation"
-    class_model_uri: ClassVar[URIRef] = CATCORE.CoPrecipitation
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CoPrecipitation
 
     precipitating_agent: Optional[Union[str, list[str]]] = empty_list()
     precipitating_concentration: Optional[Union[float, list[float]]] = empty_list()
@@ -3033,10 +3032,10 @@ class SolGel(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["SolGel"]
-    class_class_curie: ClassVar[str] = "catcore:SolGel"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["SolGel"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:SolGel"
     class_name: ClassVar[str] = "SolGel"
-    class_model_uri: ClassVar[URIRef] = CATCORE.SolGel
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.SolGel
 
     hydrolysis_ratio: Optional[Union[float, list[float]]] = empty_list()
     aging_time: Optional[Union[float, list[float]]] = empty_list()
@@ -3091,10 +3090,10 @@ class Solvothermal(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["Solvothermal"]
-    class_class_curie: ClassVar[str] = "catcore:Solvothermal"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Solvothermal"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:Solvothermal"
     class_name: ClassVar[str] = "Solvothermal"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Solvothermal
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Solvothermal
 
     filling_volume: Optional[Union[float, list[float]]] = empty_list()
     stirrer_type: Optional[Union[str, list[str]]] = empty_list()
@@ -3149,10 +3148,10 @@ class PlasmaAssisted(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["PlasmaAssisted"]
-    class_class_curie: ClassVar[str] = "catcore:PlasmaAssisted"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["PlasmaAssisted"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:PlasmaAssisted"
     class_name: ClassVar[str] = "PlasmaAssisted"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PlasmaAssisted
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PlasmaAssisted
 
     plasma_type: Optional[Union[str, list[str]]] = empty_list()
     power_input: Optional[Union[float, list[float]]] = empty_list()
@@ -3212,10 +3211,10 @@ class CombustionSynthesis(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["CombustionSynthesis"]
-    class_class_curie: ClassVar[str] = "catcore:CombustionSynthesis"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["CombustionSynthesis"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:CombustionSynthesis"
     class_name: ClassVar[str] = "CombustionSynthesis"
-    class_model_uri: ClassVar[URIRef] = CATCORE.CombustionSynthesis
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CombustionSynthesis
 
     fuel: Optional[Union[str, list[str]]] = empty_list()
     oxidizer: Optional[Union[str, list[str]]] = empty_list()
@@ -3281,10 +3280,10 @@ class AtomicLayerDeposition(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["AtomicLayerDeposition"]
-    class_class_curie: ClassVar[str] = "catcore:AtomicLayerDeposition"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["AtomicLayerDeposition"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:AtomicLayerDeposition"
     class_name: ClassVar[str] = "AtomicLayerDeposition"
-    class_model_uri: ClassVar[URIRef] = CATCORE.AtomicLayerDeposition
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.AtomicLayerDeposition
 
     substrate: Optional[Union[str, list[str]]] = empty_list()
     pulse_time: Optional[Union[float, list[float]]] = empty_list()
@@ -3329,10 +3328,10 @@ class DepositionPrecipitation(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["DepositionPrecipitation"]
-    class_class_curie: ClassVar[str] = "catcore:DepositionPrecipitation"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["DepositionPrecipitation"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:DepositionPrecipitation"
     class_name: ClassVar[str] = "DepositionPrecipitation"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DepositionPrecipitation
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DepositionPrecipitation
 
     deposition_temperature: Optional[Union[float, list[float]]] = empty_list()
     deposition_time: Optional[Union[float, list[float]]] = empty_list()
@@ -3467,10 +3466,10 @@ class MicrowaveAssisted(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["MicrowaveAssisted"]
-    class_class_curie: ClassVar[str] = "catcore:MicrowaveAssisted"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["MicrowaveAssisted"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:MicrowaveAssisted"
     class_name: ClassVar[str] = "MicrowaveAssisted"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MicrowaveAssisted
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MicrowaveAssisted
 
     power: Optional[Union[float, list[float]]] = empty_list()
     microwave_frequency: Optional[Union[float, list[float]]] = empty_list()
@@ -3520,10 +3519,10 @@ class SonochemicalSynthesis(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["SonochemicalSynthesis"]
-    class_class_curie: ClassVar[str] = "catcore:SonochemicalSynthesis"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["SonochemicalSynthesis"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:SonochemicalSynthesis"
     class_name: ClassVar[str] = "SonochemicalSynthesis"
-    class_model_uri: ClassVar[URIRef] = CATCORE.SonochemicalSynthesis
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.SonochemicalSynthesis
 
     sonication_power: Optional[Union[float, list[float]]] = empty_list()
     sonication_duration: Optional[Union[float, list[float]]] = empty_list()
@@ -3611,7 +3610,7 @@ class FlameSprayPyrolysis(PreparationMethod):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0007031"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0007031"
     class_name: ClassVar[str] = "FlameSprayPyrolysis"
-    class_model_uri: ClassVar[URIRef] = CATCORE.FlameSprayPyrolysis
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.FlameSprayPyrolysis
 
     flame_type: Optional[Union[str, list[str]]] = empty_list()
     flow_rate: Optional[Union[float, list[float]]] = empty_list()
@@ -3671,10 +3670,10 @@ class MechanochemicalSynthesis(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["MechanochemicalSynthesis"]
-    class_class_curie: ClassVar[str] = "catcore:MechanochemicalSynthesis"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["MechanochemicalSynthesis"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:MechanochemicalSynthesis"
     class_name: ClassVar[str] = "MechanochemicalSynthesis"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MechanochemicalSynthesis
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MechanochemicalSynthesis
 
     vessel_volume: Optional[Union[float, list[float]]] = empty_list()
     size_and_material: Optional[Union[str, list[str]]] = empty_list()
@@ -3749,10 +3748,10 @@ class Sublimation(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["Sublimation"]
-    class_class_curie: ClassVar[str] = "catcore:Sublimation"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Sublimation"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:Sublimation"
     class_name: ClassVar[str] = "Sublimation"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Sublimation
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Sublimation
 
     synthesis_pressure: Optional[Union[float, list[float]]] = empty_list()
     synthesis_temperature: Optional[Union[float, list[float]]] = empty_list()
@@ -3797,10 +3796,10 @@ class MolecularSynthesis(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["MolecularSynthesis"]
-    class_class_curie: ClassVar[str] = "catcore:MolecularSynthesis"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["MolecularSynthesis"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:MolecularSynthesis"
     class_name: ClassVar[str] = "MolecularSynthesis"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MolecularSynthesis
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MolecularSynthesis
 
     reaction_vessel: Optional[Union[str, list[str]]] = empty_list()
     mixing_device: Optional[Union[str, list[str]]] = empty_list()
@@ -3905,10 +3904,10 @@ class ExsolutionSynthesis(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["ExsolutionSynthesis"]
-    class_class_curie: ClassVar[str] = "catcore:ExsolutionSynthesis"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ExsolutionSynthesis"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:ExsolutionSynthesis"
     class_name: ClassVar[str] = "ExsolutionSynthesis"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ExsolutionSynthesis
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ExsolutionSynthesis
 
     calcination_initial_temperature: Optional[Union[float, list[float]]] = empty_list()
     calcination_final_temperature: Optional[Union[float, list[float]]] = empty_list()
@@ -3961,7 +3960,7 @@ class CharacterizationTechnique(Plan):
     class_class_uri: ClassVar[URIRef] = OBI["0000272"]
     class_class_curie: ClassVar[str] = "OBI:0000272"
     class_name: ClassVar[str] = "CharacterizationTechnique"
-    class_model_uri: ClassVar[URIRef] = CATCORE.CharacterizationTechnique
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CharacterizationTechnique
 
 
 @dataclass(repr=False)
@@ -3974,7 +3973,7 @@ class PowderXRD(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0000158"]
     class_class_curie: ClassVar[str] = "CHMO:0000158"
     class_name: ClassVar[str] = "PowderXRD"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PowderXRD
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PowderXRD
 
     minimum_2theta: Optional[Union[float, list[float]]] = empty_list()
     maximum_2theta: Optional[Union[float, list[float]]] = empty_list()
@@ -4041,7 +4040,7 @@ class SingleCrystalXRD(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0000852"]
     class_class_curie: ClassVar[str] = "CHMO:0000852"
     class_name: ClassVar[str] = "SingleCrystalXRD"
-    class_model_uri: ClassVar[URIRef] = CATCORE.SingleCrystalXRD
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.SingleCrystalXRD
 
     temperature: Optional[Union[float, list[float]]] = empty_list()
     xray_source: Optional[Union[str, list[str]]] = empty_list()
@@ -4073,7 +4072,7 @@ class XRayAbsorptionSpectroscopy(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0000286"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0000286"
     class_name: ClassVar[str] = "XRayAbsorptionSpectroscopy"
-    class_model_uri: ClassVar[URIRef] = CATCORE.XRayAbsorptionSpectroscopy
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.XRayAbsorptionSpectroscopy
 
     operation_mode: Optional[Union[str, list[str]]] = empty_list()
     element_analyzed: Optional[Union[str, list[str]]] = empty_list()
@@ -4150,7 +4149,7 @@ class XPS(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0000404"]
     class_class_curie: ClassVar[str] = "CHMO:0000404"
     class_name: ClassVar[str] = "XPS"
-    class_model_uri: ClassVar[URIRef] = CATCORE.XPS
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.XPS
 
     total_acquisition_time: Optional[Union[float, list[float]]] = empty_list()
     number_of_scans: Optional[Union[int, list[int]]] = empty_list()
@@ -4227,7 +4226,7 @@ class EDX(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0000309"]
     class_class_curie: ClassVar[str] = "CHMO:0000309"
     class_name: ClassVar[str] = "EDX"
-    class_model_uri: ClassVar[URIRef] = CATCORE.EDX
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.EDX
 
     primary_energy: Optional[Union[float, list[float]]] = empty_list()
     counting_time: Optional[Union[float, list[float]]] = empty_list()
@@ -4261,10 +4260,10 @@ class InfraredSpectroscopy(CharacterizationTechnique):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["InfraredSpectroscopy"]
-    class_class_curie: ClassVar[str] = "catcore:InfraredSpectroscopy"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["InfraredSpectroscopy"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:InfraredSpectroscopy"
     class_name: ClassVar[str] = "InfraredSpectroscopy"
-    class_model_uri: ClassVar[URIRef] = CATCORE.InfraredSpectroscopy
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.InfraredSpectroscopy
 
     operation_mode: Optional[Union[str, list[str]]] = empty_list()
     minimum_wavenumber: Optional[Union[float, list[float]]] = empty_list()
@@ -4322,7 +4321,7 @@ class DRIFTS(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0000645"]
     class_class_curie: ClassVar[str] = "CHMO:0000645"
     class_name: ClassVar[str] = "DRIFTS"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DRIFTS
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DRIFTS
 
     adsorption_gas: Optional[Union[str, list[str]]] = empty_list()
     atmosphere: Optional[Union[str, list[str]]] = empty_list()
@@ -4389,7 +4388,7 @@ class RamanSpectroscopy(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0000069"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0000069"
     class_name: ClassVar[str] = "RamanSpectroscopy"
-    class_model_uri: ClassVar[URIRef] = CATCORE.RamanSpectroscopy
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.RamanSpectroscopy
 
     excitation_laser_wavelength: Optional[Union[float, list[float]]] = empty_list()
     excitation_laser_power: Optional[Union[float, list[float]]] = empty_list()
@@ -4449,7 +4448,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0000073"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0000073"
     class_name: ClassVar[str] = "NMRSpectroscopy"
-    class_model_uri: ClassVar[URIRef] = CATCORE.NMRSpectroscopy
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.NMRSpectroscopy
 
     nucleus: Optional[Union[str, list[str]]] = empty_list()
     solvent: Optional[Union[str, list[str]]] = empty_list()
@@ -4506,7 +4505,7 @@ class TransmissionElectronMicroscopy(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0000078"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0000078"
     class_name: ClassVar[str] = "TransmissionElectronMicroscopy"
-    class_model_uri: ClassVar[URIRef] = CATCORE.TransmissionElectronMicroscopy
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.TransmissionElectronMicroscopy
 
     operation_mode: Optional[Union[str, list[str]]] = empty_list()
     gun_type: Optional[Union[str, list[str]]] = empty_list()
@@ -4543,7 +4542,7 @@ class ScanningElectronMicroscopy(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0000075"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0000075"
     class_name: ClassVar[str] = "ScanningElectronMicroscopy"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ScanningElectronMicroscopy
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ScanningElectronMicroscopy
 
     image_resolution: Optional[Union[float, list[float]]] = empty_list()
     field_emitter: Optional[Union[str, list[str]]] = empty_list()
@@ -4585,7 +4584,7 @@ class Thermogravimetry(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0000690"]
     class_class_curie: ClassVar[str] = "CHMO:0000690"
     class_name: ClassVar[str] = "Thermogravimetry"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Thermogravimetry
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Thermogravimetry
 
     operation_mode: Optional[Union[str, list[str]]] = empty_list()
     atmosphere: Optional[Union[str, list[str]]] = empty_list()
@@ -4647,7 +4646,7 @@ class TPR(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0002908"]
     class_class_curie: ClassVar[str] = "CHMO:0002908"
     class_name: ClassVar[str] = "TPR"
-    class_model_uri: ClassVar[URIRef] = CATCORE.TPR
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.TPR
 
     reducing_gas_composition: Optional[Union[str, list[str]]] = empty_list()
     minimum_temperature: Optional[Union[float, list[float]]] = empty_list()
@@ -4689,7 +4688,7 @@ class TPO(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0002907"]
     class_class_curie: ClassVar[str] = "CHMO:0002907"
     class_name: ClassVar[str] = "TPO"
-    class_model_uri: ClassVar[URIRef] = CATCORE.TPO
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.TPO
 
     oxidizing_gas_composition: Optional[Union[str, list[str]]] = empty_list()
     minimum_temperature: Optional[Union[float, list[float]]] = empty_list()
@@ -4728,10 +4727,10 @@ class BET(CharacterizationTechnique):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["BET"]
-    class_class_curie: ClassVar[str] = "catcore:BET"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["BET"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:BET"
     class_name: ClassVar[str] = "BET"
-    class_model_uri: ClassVar[URIRef] = CATCORE.BET
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.BET
 
     adsorbate_gas: Optional[Union[str, list[str]]] = empty_list()
     degassing_temperature: Optional[Union[float, list[float]]] = empty_list()
@@ -4773,7 +4772,7 @@ class ICPAES(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0000267"]
     class_class_curie: ClassVar[str] = "CHMO:0000267"
     class_name: ClassVar[str] = "ICPAES"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ICPAES
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ICPAES
 
     element_analyzed: Optional[Union[str, list[str]]] = empty_list()
     calibration_method: Optional[Union[str, list[str]]] = empty_list()
@@ -4810,7 +4809,7 @@ class ElementalAnalysis(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0001075"]
     class_class_curie: ClassVar[str] = "CHMO:0001075"
     class_name: ClassVar[str] = "ElementalAnalysis"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ElementalAnalysis
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ElementalAnalysis
 
     elements_analyzed: Optional[Union[str, list[str]]] = empty_list()
     combustion_temperature: Optional[Union[float, list[float]]] = empty_list()
@@ -4842,7 +4841,7 @@ class UVVisSpectroscopy(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = VOC4CAT["0000079"]
     class_class_curie: ClassVar[str] = "VOC4CAT:0000079"
     class_name: ClassVar[str] = "UVVisSpectroscopy"
-    class_model_uri: ClassVar[URIRef] = CATCORE.UVVisSpectroscopy
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.UVVisSpectroscopy
 
     minimum_wavelength: Optional[Union[float, list[float]]] = empty_list()
     maximum_wavelength: Optional[Union[float, list[float]]] = empty_list()
@@ -4881,10 +4880,10 @@ class PhotoluminescenceSpectroscopy(CharacterizationTechnique):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["PhotoluminescenceSpectroscopy"]
-    class_class_curie: ClassVar[str] = "catcore:PhotoluminescenceSpectroscopy"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["PhotoluminescenceSpectroscopy"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:PhotoluminescenceSpectroscopy"
     class_name: ClassVar[str] = "PhotoluminescenceSpectroscopy"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PhotoluminescenceSpectroscopy
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PhotoluminescenceSpectroscopy
 
     emission_range: Optional[Union[str, list[str]]] = empty_list()
     slit_width: Optional[Union[float, list[float]]] = empty_list()
@@ -4938,10 +4937,10 @@ class PhotoluminescenceLifetime(CharacterizationTechnique):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["PhotoluminescenceLifetime"]
-    class_class_curie: ClassVar[str] = "catcore:PhotoluminescenceLifetime"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["PhotoluminescenceLifetime"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:PhotoluminescenceLifetime"
     class_name: ClassVar[str] = "PhotoluminescenceLifetime"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PhotoluminescenceLifetime
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PhotoluminescenceLifetime
 
     lifetime_fitting_model: Optional[Union[str, list[str]]] = empty_list()
     number_of_shots: Optional[Union[int, list[int]]] = empty_list()
@@ -4988,7 +4987,7 @@ class CyclicVoltammetry(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0000025"]
     class_class_curie: ClassVar[str] = "CHMO:0000025"
     class_name: ClassVar[str] = "CyclicVoltammetry"
-    class_model_uri: ClassVar[URIRef] = CATCORE.CyclicVoltammetry
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CyclicVoltammetry
 
     scan_rate: Optional[Union[float, list[float]]] = empty_list()
     minimum_potential: Optional[Union[float, list[float]]] = empty_list()
@@ -5062,10 +5061,10 @@ class ConductivityMeasurement(CharacterizationTechnique):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["ConductivityMeasurement"]
-    class_class_curie: ClassVar[str] = "catcore:ConductivityMeasurement"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ConductivityMeasurement"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:ConductivityMeasurement"
     class_name: ClassVar[str] = "ConductivityMeasurement"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ConductivityMeasurement
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ConductivityMeasurement
 
     electrode_configuration: Optional[Union[str, list[str]]] = empty_list()
     ac_frequency: Optional[Union[float, list[float]]] = empty_list()
@@ -5137,7 +5136,7 @@ class DynamicLightScattering(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0000167"]
     class_class_curie: ClassVar[str] = "CHMO:0000167"
     class_name: ClassVar[str] = "DynamicLightScattering"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DynamicLightScattering
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DynamicLightScattering
 
     solvent: Optional[Union[str, list[str]]] = empty_list()
     concentration: Optional[Union[float, list[float]]] = empty_list()
@@ -5185,7 +5184,7 @@ class DynamicLightScattering(CharacterizationTechnique):
 
 
 @dataclass(repr=False)
-class ESIMS(CharacterizationTechnique):
+class ElectroSprayIonizationMassSpectrometry(CharacterizationTechnique):
     """
     Electrospray ionisation mass spectrometry for molecular mass and identity determination.
     """
@@ -5193,8 +5192,8 @@ class ESIMS(CharacterizationTechnique):
 
     class_class_uri: ClassVar[URIRef] = CHMO["0000482"]
     class_class_curie: ClassVar[str] = "CHMO:0000482"
-    class_name: ClassVar[str] = "ESI_MS"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ESIMS
+    class_name: ClassVar[str] = "ElectroSprayIonizationMassSpectrometry"
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ElectroSprayIonizationMassSpectrometry
 
     operation_mode: Optional[Union[str, list[str]]] = empty_list()
     spray_voltage: Optional[Union[float, list[float]]] = empty_list()
@@ -5256,7 +5255,7 @@ class GCMS(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = CHMO["0000497"]
     class_class_curie: ClassVar[str] = "CHMO:0000497"
     class_name: ClassVar[str] = "GCMS"
-    class_model_uri: ClassVar[URIRef] = CATCORE.GCMS
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.GCMS
 
     carrier_gas: Optional[Union[str, list[str]]] = empty_list()
     carrier_gas_purity: Optional[Union[str, list[str]]] = empty_list()
@@ -5368,7 +5367,7 @@ class SizeExclusionChromatography(CharacterizationTechnique):
     class_class_uri: ClassVar[URIRef] = AFP["0000843"]
     class_class_curie: ClassVar[str] = "AFP:0000843"
     class_name: ClassVar[str] = "SizeExclusionChromatography"
-    class_model_uri: ClassVar[URIRef] = CATCORE.SizeExclusionChromatography
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.SizeExclusionChromatography
 
     temperature: Optional[Union[float, list[float]]] = empty_list()
     calibration_standard: Optional[Union[str, list[str]]] = empty_list()
@@ -5416,7 +5415,7 @@ class SizeExclusionChromatography(CharacterizationTechnique):
 
 
 @dataclass(repr=False)
-class HPLCMS(CharacterizationTechnique):
+class HighPerformanceLiquidChromatographyMassSpectrometry(CharacterizationTechnique):
     """
     High-performance liquid chromatography-mass spectrometry for compound identification and quantification.
     """
@@ -5424,8 +5423,8 @@ class HPLCMS(CharacterizationTechnique):
 
     class_class_uri: ClassVar[URIRef] = CHMO["0000796"]
     class_class_curie: ClassVar[str] = "CHMO:0000796"
-    class_name: ClassVar[str] = "HPLC_MS"
-    class_model_uri: ClassVar[URIRef] = CATCORE.HPLCMS
+    class_name: ClassVar[str] = "HighPerformanceLiquidChromatographyMassSpectrometry"
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.HighPerformanceLiquidChromatographyMassSpectrometry
 
     gradient_program: Optional[Union[str, list[str]]] = empty_list()
     ionization_mode: Optional[Union[str, list[str]]] = empty_list()
@@ -5481,10 +5480,10 @@ class ProductIdentificationMethod(Plan):
     """
     Abstract Plan representing the method used to identify and quantify reaction
     products. In practice, users should reference a concrete CharacterizationTechnique
-    subclass from catcore_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).
+    subclass from coremeta4cat_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).
 
     This abstract class is retained for backward compatibility with the original
-    CatCore monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
+    CoreMeta4Cat monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
     it can participate in the realized_plan slot if needed.
     """
     _inherited_slots: ClassVar[list[str]] = []
@@ -5492,7 +5491,7 @@ class ProductIdentificationMethod(Plan):
     class_class_uri: ClassVar[URIRef] = OBI["0000272"]
     class_class_curie: ClassVar[str] = "OBI:0000272"
     class_name: ClassVar[str] = "ProductIdentificationMethod"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ProductIdentificationMethod
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ProductIdentificationMethod
 
 
 class SimulationMethod(Plan):
@@ -5506,7 +5505,7 @@ class SimulationMethod(Plan):
     class_class_uri: ClassVar[URIRef] = OBI["0000272"]
     class_class_curie: ClassVar[str] = "OBI:0000272"
     class_name: ClassVar[str] = "SimulationMethod"
-    class_model_uri: ClassVar[URIRef] = CATCORE.SimulationMethod
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.SimulationMethod
 
 
 @dataclass(repr=False)
@@ -5518,10 +5517,10 @@ class DFT(SimulationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["DFT"]
-    class_class_curie: ClassVar[str] = "catcore:DFT"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["DFT"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:DFT"
     class_name: ClassVar[str] = "DFT"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DFT
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DFT
 
     exchange_correlation_functional: Optional[Union[str, list[str]]] = empty_list()
     energy_cutoff: Optional[Union[float, list[float]]] = empty_list()
@@ -5570,7 +5569,7 @@ class MolecularDynamics(SimulationMethod):
     class_class_uri: ClassVar[URIRef] = NCIT["C18097"]
     class_class_curie: ClassVar[str] = "NCIT:C18097"
     class_name: ClassVar[str] = "MolecularDynamics"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MolecularDynamics
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MolecularDynamics
 
     force_field: Optional[Union[str, list[str]]] = empty_list()
     simulation_timestep: Optional[Union[float, list[float]]] = empty_list()
@@ -5611,10 +5610,10 @@ class Microkinetics(SimulationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["Microkinetics"]
-    class_class_curie: ClassVar[str] = "catcore:Microkinetics"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Microkinetics"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:Microkinetics"
     class_name: ClassVar[str] = "Microkinetics"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Microkinetics
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Microkinetics
 
     rate_constants: Optional[Union[str, list[str]]] = empty_list()
     solver_type: Optional[Union[str, list[str]]] = empty_list()
@@ -5661,10 +5660,10 @@ class MonteCarlo(SimulationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["MonteCarlo"]
-    class_class_curie: ClassVar[str] = "catcore:MonteCarlo"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["MonteCarlo"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:MonteCarlo"
     class_name: ClassVar[str] = "MonteCarlo"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MonteCarlo
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MonteCarlo
 
     interaction_potential: Optional[Union[str, list[str]]] = empty_list()
     number_of_steps: Optional[Union[int, list[int]]] = empty_list()
@@ -5716,7 +5715,7 @@ class QualitativeAttribute(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = PROV["Entity"]
     class_class_curie: ClassVar[str] = "prov:Entity"
     class_name: ClassVar[str] = "QualitativeAttribute"
-    class_model_uri: ClassVar[URIRef] = CATCORE.QualitativeAttribute
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.QualitativeAttribute
 
     value: str = None
     title: Optional[str] = None
@@ -5755,10 +5754,10 @@ class CalculatedProperty(QualitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["CalculatedProperty"]
-    class_class_curie: ClassVar[str] = "catcore:CalculatedProperty"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["CalculatedProperty"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:CalculatedProperty"
     class_name: ClassVar[str] = "CalculatedProperty"
-    class_model_uri: ClassVar[URIRef] = CATCORE.CalculatedProperty
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CalculatedProperty
 
     value: str = None
 
@@ -5771,10 +5770,10 @@ class ThermodynamicStability(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["ThermodynamicStability"]
-    class_class_curie: ClassVar[str] = "catcore:ThermodynamicStability"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ThermodynamicStability"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:ThermodynamicStability"
     class_name: ClassVar[str] = "ThermodynamicStability"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ThermodynamicStability
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ThermodynamicStability
 
     value: str = None
     formation_energy: Optional[Union[float, list[float]]] = empty_list()
@@ -5815,10 +5814,10 @@ class Piezoelectricity(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["Piezoelectricity"]
-    class_class_curie: ClassVar[str] = "catcore:Piezoelectricity"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Piezoelectricity"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:Piezoelectricity"
     class_name: ClassVar[str] = "Piezoelectricity"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Piezoelectricity
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Piezoelectricity
 
     value: str = None
     piezoelectric_tensor: Optional[Union[str, list[str]]] = empty_list()
@@ -5854,10 +5853,10 @@ class ElasticConstants(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["ElasticConstants"]
-    class_class_curie: ClassVar[str] = "catcore:ElasticConstants"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ElasticConstants"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:ElasticConstants"
     class_name: ClassVar[str] = "ElasticConstants"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ElasticConstants
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ElasticConstants
 
     value: str = None
     elastic_tensor: Optional[Union[str, list[str]]] = empty_list()
@@ -5899,10 +5898,10 @@ class Surfaces(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["Surfaces"]
-    class_class_curie: ClassVar[str] = "catcore:Surfaces"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Surfaces"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:Surfaces"
     class_name: ClassVar[str] = "Surfaces"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Surfaces
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Surfaces
 
     value: str = None
     surface_energy: Optional[Union[float, list[float]]] = empty_list()
@@ -5943,10 +5942,10 @@ class DielectricTensors(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["DielectricTensors"]
-    class_class_curie: ClassVar[str] = "catcore:DielectricTensors"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["DielectricTensors"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:DielectricTensors"
     class_name: ClassVar[str] = "DielectricTensors"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DielectricTensors
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DielectricTensors
 
     value: str = None
     dielectric_tensor: Optional[Union[str, list[str]]] = empty_list()
@@ -5998,10 +5997,10 @@ class PhononDispersion(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["PhononDispersion"]
-    class_class_curie: ClassVar[str] = "catcore:PhononDispersion"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["PhononDispersion"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:PhononDispersion"
     class_name: ClassVar[str] = "PhononDispersion"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PhononDispersion
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PhononDispersion
 
     value: str = None
     force_constant_method: Optional[Union[str, list[str]]] = empty_list()
@@ -6048,10 +6047,10 @@ class EquationsOfState(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["EquationsOfState"]
-    class_class_curie: ClassVar[str] = "catcore:EquationsOfState"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["EquationsOfState"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:EquationsOfState"
     class_name: ClassVar[str] = "EquationsOfState"
-    class_model_uri: ClassVar[URIRef] = CATCORE.EquationsOfState
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.EquationsOfState
 
     value: str = None
     fit_method: Optional[Union[str, list[str]]] = empty_list()
@@ -6113,10 +6112,10 @@ class AqueousStability(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["AqueousStability"]
-    class_class_curie: ClassVar[str] = "catcore:AqueousStability"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["AqueousStability"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:AqueousStability"
     class_name: ClassVar[str] = "AqueousStability"
-    class_model_uri: ClassVar[URIRef] = CATCORE.AqueousStability
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.AqueousStability
 
     value: str = None
     ph_range: Optional[Union[str, list[str]]] = empty_list()
@@ -6168,10 +6167,10 @@ class GrainBoundaries(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["GrainBoundaries"]
-    class_class_curie: ClassVar[str] = "catcore:GrainBoundaries"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["GrainBoundaries"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:GrainBoundaries"
     class_name: ClassVar[str] = "GrainBoundaries"
-    class_model_uri: ClassVar[URIRef] = CATCORE.GrainBoundaries
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.GrainBoundaries
 
     value: str = None
     grain_boundary_plane: Optional[Union[str, list[str]]] = empty_list()
@@ -6233,10 +6232,10 @@ class ElectronicStructure(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["ElectronicStructure"]
-    class_class_curie: ClassVar[str] = "catcore:ElectronicStructure"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ElectronicStructure"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:ElectronicStructure"
     class_name: ClassVar[str] = "ElectronicStructure"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ElectronicStructure
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ElectronicStructure
 
     value: str = None
     smearing_method: Optional[Union[str, list[str]]] = empty_list()
@@ -6298,10 +6297,10 @@ class Ferroelectrics(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["Ferroelectrics"]
-    class_class_curie: ClassVar[str] = "catcore:Ferroelectrics"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Ferroelectrics"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:Ferroelectrics"
     class_name: ClassVar[str] = "Ferroelectrics"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Ferroelectrics
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Ferroelectrics
 
     value: str = None
     polarization_direction: Optional[Union[str, list[str]]] = empty_list()
@@ -6358,10 +6357,10 @@ class BandGap(CalculatedProperty):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = CATCORE["BandGap"]
-    class_class_curie: ClassVar[str] = "catcore:BandGap"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["BandGap"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:BandGap"
     class_name: ClassVar[str] = "BandGap"
-    class_model_uri: ClassVar[URIRef] = CATCORE.BandGap
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.BandGap
 
     value: str = None
     material_sample: Optional[Union[str, list[str]]] = empty_list()
@@ -6439,7 +6438,7 @@ class QuantitativeAttribute(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = QUDT["Quantity"]
     class_class_curie: ClassVar[str] = "qudt:Quantity"
     class_name: ClassVar[str] = "QuantitativeAttribute"
-    class_model_uri: ClassVar[URIRef] = CATCORE.QuantitativeAttribute
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.QuantitativeAttribute
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -6488,7 +6487,7 @@ class Relationship(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = DCAT["Relationship"]
     class_class_curie: ClassVar[str] = "dcat:Relationship"
     class_name: ClassVar[str] = "Relationship"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Relationship
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Relationship
 
     had_role: Union[Union[dict, "Role"], list[Union[dict, "Role"]]] = None
     relation: Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]] = empty_dict()
@@ -6517,7 +6516,7 @@ class Software(AgenticEntity):
     class_class_uri: ClassVar[URIRef] = PROV["SoftwareAgent"]
     class_class_curie: ClassVar[str] = "prov:SoftwareAgent"
     class_name: ClassVar[str] = "Software"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Software
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Software
 
     id: Union[str, SoftwareId] = None
     has_part: Optional[Union[dict[Union[str, SoftwareId], Union[dict, "Software"]], list[Union[dict, "Software"]]]] = empty_dict()
@@ -6546,10 +6545,10 @@ class SupportiveEntity(YAMLRoot):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = DCATAP_PLUS["SupportiveEntity"]
-    class_class_curie: ClassVar[str] = "dcatap_plus:SupportiveEntity"
+    class_class_uri: ClassVar[URIRef] = DCATAPPLUS["SupportiveEntity"]
+    class_class_curie: ClassVar[str] = "dcatapplus:SupportiveEntity"
     class_name: ClassVar[str] = "SupportiveEntity"
-    class_model_uri: ClassVar[URIRef] = CATCORE.SupportiveEntity
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.SupportiveEntity
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -6574,7 +6573,7 @@ class Attribution(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = PROV["Attribution"]
     class_class_curie: ClassVar[str] = "prov:Attribution"
     class_name: ClassVar[str] = "Attribution"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Attribution
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Attribution
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -6599,7 +6598,7 @@ class ChecksumAlgorithm(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = SPDX["ChecksumAlgorithm"]
     class_class_curie: ClassVar[str] = "spdx:ChecksumAlgorithm"
     class_name: ClassVar[str] = "ChecksumAlgorithm"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ChecksumAlgorithm
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ChecksumAlgorithm
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -6624,7 +6623,7 @@ class Concept(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = SKOS["Concept"]
     class_class_curie: ClassVar[str] = "skos:Concept"
     class_name: ClassVar[str] = "Concept"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Concept
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Concept
 
     preferred_label: Union[str, list[str]] = None
     title: Optional[str] = None
@@ -6656,7 +6655,7 @@ class ConceptScheme(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = SKOS["ConceptScheme"]
     class_class_curie: ClassVar[str] = "skos:ConceptScheme"
     class_name: ClassVar[str] = "ConceptScheme"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ConceptScheme
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ConceptScheme
 
     title: Union[str, list[str]] = None
     description: Optional[str] = None
@@ -6684,7 +6683,7 @@ class Document(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = FOAF["Document"]
     class_class_curie: ClassVar[str] = "foaf:Document"
     class_name: ClassVar[str] = "Document"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Document
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Document
 
     id: Union[str, DocumentId] = None
     title: Optional[str] = None
@@ -6715,7 +6714,7 @@ class Frequency(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = DCTERMS["Frequency"]
     class_class_curie: ClassVar[str] = "dcterms:Frequency"
     class_name: ClassVar[str] = "Frequency"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Frequency
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Frequency
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -6740,7 +6739,7 @@ class Geometry(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = LOCN["Geometry"]
     class_class_curie: ClassVar[str] = "locn:Geometry"
     class_name: ClassVar[str] = "Geometry"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Geometry
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Geometry
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -6765,7 +6764,7 @@ class Identifier(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = ADMS["Identifier"]
     class_class_curie: ClassVar[str] = "adms:Identifier"
     class_name: ClassVar[str] = "Identifier"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Identifier
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Identifier
 
     notation: str = None
     title: Optional[str] = None
@@ -6796,7 +6795,7 @@ class LegalResource(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = ELI["LegalResource"]
     class_class_curie: ClassVar[str] = "eli:LegalResource"
     class_name: ClassVar[str] = "LegalResource"
-    class_model_uri: ClassVar[URIRef] = CATCORE.LegalResource
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.LegalResource
 
     id: Union[str, LegalResourceId] = None
     title: Optional[str] = None
@@ -6827,7 +6826,7 @@ class LicenseDocument(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = DCTERMS["LicenseDocument"]
     class_class_curie: ClassVar[str] = "dcterms:LicenseDocument"
     class_name: ClassVar[str] = "LicenseDocument"
-    class_model_uri: ClassVar[URIRef] = CATCORE.LicenseDocument
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.LicenseDocument
 
     id: Union[str, LicenseDocumentId] = None
     type: Optional[Union[Union[dict, Concept], list[Union[dict, Concept]]]] = empty_list()
@@ -6863,7 +6862,7 @@ class LinguisticSystem(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = DCTERMS["LinguisticSystem"]
     class_class_curie: ClassVar[str] = "dcterms:LinguisticSystem"
     class_name: ClassVar[str] = "LinguisticSystem"
-    class_model_uri: ClassVar[URIRef] = CATCORE.LinguisticSystem
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.LinguisticSystem
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -6888,7 +6887,7 @@ class MediaType(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = DCTERMS["MediaType"]
     class_class_curie: ClassVar[str] = "dcterms:MediaType"
     class_name: ClassVar[str] = "MediaType"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MediaType
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MediaType
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -6913,7 +6912,7 @@ class MediaTypeOrExtent(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = DCTERMS["MediaTypeOrExtent"]
     class_class_curie: ClassVar[str] = "dcterms:MediaTypeOrExtent"
     class_name: ClassVar[str] = "MediaTypeOrExtent"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MediaTypeOrExtent
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MediaTypeOrExtent
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -6938,7 +6937,7 @@ class PeriodOfTime(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = DCTERMS["PeriodOfTime"]
     class_class_curie: ClassVar[str] = "dcterms:PeriodOfTime"
     class_name: ClassVar[str] = "PeriodOfTime"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PeriodOfTime
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PeriodOfTime
 
     beginning: Optional[Union[dict, "TimeInstant"]] = None
     end: Optional[Union[dict, "TimeInstant"]] = None
@@ -6979,7 +6978,7 @@ class Policy(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = ODRL["Policy"]
     class_class_curie: ClassVar[str] = "odrl:Policy"
     class_name: ClassVar[str] = "Policy"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Policy
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Policy
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -7004,7 +7003,7 @@ class ProvenanceStatement(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = DCTERMS["ProvenanceStatement"]
     class_class_curie: ClassVar[str] = "dcterms:ProvenanceStatement"
     class_name: ClassVar[str] = "ProvenanceStatement"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ProvenanceStatement
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ProvenanceStatement
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -7029,7 +7028,7 @@ class Resource(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = RDFS["Resource"]
     class_class_curie: ClassVar[str] = "rdfs:Resource"
     class_name: ClassVar[str] = "Resource"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Resource
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Resource
 
     id: Union[str, ResourceId] = None
     title: Optional[str] = None
@@ -7060,7 +7059,7 @@ class RightsStatement(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = DCTERMS["RightsStatement"]
     class_class_curie: ClassVar[str] = "dcterms:RightsStatement"
     class_name: ClassVar[str] = "RightsStatement"
-    class_model_uri: ClassVar[URIRef] = CATCORE.RightsStatement
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.RightsStatement
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -7085,7 +7084,7 @@ class Role(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = DCAT["Role"]
     class_class_curie: ClassVar[str] = "dcat:Role"
     class_name: ClassVar[str] = "Role"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Role
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Role
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -7110,7 +7109,7 @@ class Standard(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = DCTERMS["Standard"]
     class_class_curie: ClassVar[str] = "dcterms:Standard"
     class_name: ClassVar[str] = "Standard"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Standard
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Standard
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -7135,7 +7134,7 @@ class Surrounding(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = PROV["Location"]
     class_class_curie: ClassVar[str] = "prov:Location"
     class_name: ClassVar[str] = "Surrounding"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Surrounding
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Surrounding
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -7168,7 +7167,7 @@ class Laboratory(Surrounding):
     class_class_uri: ClassVar[URIRef] = ENVO["01001405"]
     class_class_curie: ClassVar[str] = "ENVO:01001405"
     class_name: ClassVar[str] = "Laboratory"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Laboratory
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Laboratory
 
 
 @dataclass(repr=False)
@@ -7181,7 +7180,7 @@ class TimeInstant(SupportiveEntity):
     class_class_uri: ClassVar[URIRef] = TIME["Instant"]
     class_class_curie: ClassVar[str] = "time:Instant"
     class_name: ClassVar[str] = "TimeInstant"
-    class_model_uri: ClassVar[URIRef] = CATCORE.TimeInstant
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.TimeInstant
 
     title: Optional[str] = None
     description: Optional[str] = None
@@ -7203,7 +7202,7 @@ class InChIKey(QualitativeAttribute):
     class_class_uri: ClassVar[URIRef] = CHEMINF["000059"]
     class_class_curie: ClassVar[str] = "CHEMINF:000059"
     class_name: ClassVar[str] = "InChIKey"
-    class_model_uri: ClassVar[URIRef] = CATCORE.InChIKey
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.InChIKey
 
     value: str = None
 
@@ -7217,7 +7216,7 @@ class InChi(QualitativeAttribute):
     class_class_uri: ClassVar[URIRef] = CHEMINF["000113"]
     class_class_curie: ClassVar[str] = "CHEMINF:000113"
     class_name: ClassVar[str] = "InChi"
-    class_model_uri: ClassVar[URIRef] = CATCORE.InChi
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.InChi
 
     value: str = None
 
@@ -7232,7 +7231,7 @@ class MolecularFormula(QualitativeAttribute):
     class_class_uri: ClassVar[URIRef] = CHEMINF["000042"]
     class_class_curie: ClassVar[str] = "CHEMINF:000042"
     class_name: ClassVar[str] = "MolecularFormula"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MolecularFormula
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MolecularFormula
 
     value: str = None
 
@@ -7247,7 +7246,7 @@ class IUPACName(QualitativeAttribute):
     class_class_uri: ClassVar[URIRef] = CHEMINF["000107"]
     class_class_curie: ClassVar[str] = "CHEMINF:000107"
     class_name: ClassVar[str] = "IUPACName"
-    class_model_uri: ClassVar[URIRef] = CATCORE.IUPACName
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.IUPACName
 
     value: str = None
 
@@ -7262,7 +7261,7 @@ class SMILES(QualitativeAttribute):
     class_class_uri: ClassVar[URIRef] = CHEMINF["000018"]
     class_class_curie: ClassVar[str] = "CHEMINF:000018"
     class_name: ClassVar[str] = "SMILES"
-    class_model_uri: ClassVar[URIRef] = CATCORE.SMILES
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.SMILES
 
     value: str = None
 
@@ -7277,7 +7276,7 @@ class Concentration(QuantitativeAttribute):
     class_class_uri: ClassVar[URIRef] = CHMO["0002820"]
     class_class_curie: ClassVar[str] = "CHMO:0002820"
     class_name: ClassVar[str] = "Concentration"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Concentration
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Concentration
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -7292,7 +7291,7 @@ class AmountOfSubstance(QuantitativeAttribute):
     class_class_uri: ClassVar[URIRef] = QUDT["Quantity"]
     class_class_curie: ClassVar[str] = "qudt:Quantity"
     class_name: ClassVar[str] = "AmountOfSubstance"
-    class_model_uri: ClassVar[URIRef] = CATCORE.AmountOfSubstance
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.AmountOfSubstance
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -7304,7 +7303,7 @@ class PHValue(QuantitativeAttribute):
     class_class_uri: ClassVar[URIRef] = SIO["001089"]
     class_class_curie: ClassVar[str] = "SIO:001089"
     class_name: ClassVar[str] = "PHValue"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PHValue
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PHValue
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -7319,7 +7318,7 @@ class ChemicalReaction(Activity):
     class_class_uri: ClassVar[URIRef] = SIO["010345"]
     class_class_curie: ClassVar[str] = "SIO:010345"
     class_name: ClassVar[str] = "ChemicalReaction"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ChemicalReaction
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ChemicalReaction
 
     id: Union[str, ChemicalReactionId] = None
     used_starting_material: Optional[Union[dict[Union[str, StartingMaterialId], Union[dict, "StartingMaterial"]], list[Union[dict, "StartingMaterial"]]]] = empty_dict()
@@ -7386,7 +7385,7 @@ class DissolvingSubstance(AgenticEntity):
     class_class_uri: ClassVar[URIRef] = SIO["010417"]
     class_class_curie: ClassVar[str] = "SIO:010417"
     class_name: ClassVar[str] = "DissolvingSubstance"
-    class_model_uri: ClassVar[URIRef] = CATCORE.DissolvingSubstance
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.DissolvingSubstance
 
     id: Union[str, DissolvingSubstanceId] = None
     title: Optional[str] = None
@@ -7489,7 +7488,7 @@ class Catalyst(AgenticEntity):
     class_class_uri: ClassVar[URIRef] = SIO["010344"]
     class_class_curie: ClassVar[str] = "SIO:010344"
     class_name: ClassVar[str] = "Catalyst"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Catalyst
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Catalyst
 
     id: Union[str, CatalystId] = None
     title: Optional[str] = None
@@ -7591,7 +7590,7 @@ class Reactor(Device):
     class_class_uri: ClassVar[URIRef] = AFE["0000153"]
     class_class_curie: ClassVar[str] = "AFE:0000153"
     class_name: ClassVar[str] = "Reactor"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Reactor
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Reactor
 
     id: Union[str, ReactorId] = None
     alternative_label: Optional[str] = None
@@ -7649,7 +7648,7 @@ class Yield(QuantitativeAttribute):
     class_class_uri: ClassVar[URIRef] = QUDT["Quantity"]
     class_class_curie: ClassVar[str] = "qudt:Quantity"
     class_name: ClassVar[str] = "Yield"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Yield
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Yield
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -7665,7 +7664,7 @@ class MolarEquivalent(QuantitativeAttribute):
     class_class_uri: ClassVar[URIRef] = QUDT["Quantity"]
     class_class_curie: ClassVar[str] = "qudt:Quantity"
     class_name: ClassVar[str] = "MolarEquivalent"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MolarEquivalent
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MolarEquivalent
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -7681,7 +7680,7 @@ class PercentageOfTotal(QuantitativeAttribute):
     class_class_uri: ClassVar[URIRef] = QUDT["Quantity"]
     class_class_curie: ClassVar[str] = "qudt:Quantity"
     class_name: ClassVar[str] = "PercentageOfTotal"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PercentageOfTotal
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PercentageOfTotal
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -7698,7 +7697,7 @@ class Materialistic(YAMLRoot):
     class_class_uri: ClassVar[URIRef] = MATERIAL_ENTITIES_AP["Materialistic"]
     class_class_curie: ClassVar[str] = "material_entities_ap:Materialistic"
     class_name: ClassVar[str] = "Materialistic"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Materialistic
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Materialistic
 
     alternative_label: Optional[str] = None
     has_physical_state: Optional[Union[str, "PhysicalStateEnum"]] = None
@@ -7748,7 +7747,7 @@ class MaterialEntity(Entity):
     class_class_uri: ClassVar[URIRef] = BFO["0000040"]
     class_class_curie: ClassVar[str] = "BFO:0000040"
     class_name: ClassVar[str] = "MaterialEntity"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MaterialEntity
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MaterialEntity
 
     id: Union[str, MaterialEntityId] = None
     has_part: Optional[Union[dict[Union[str, MaterialEntityId], Union[dict, "MaterialEntity"]], list[Union[dict, "MaterialEntity"]]]] = empty_dict()
@@ -7808,7 +7807,7 @@ class ChemicalEntity(MaterialEntity):
     class_class_uri: ClassVar[URIRef] = CHEBI["23367"]
     class_class_curie: ClassVar[str] = "CHEBI:23367"
     class_name: ClassVar[str] = "ChemicalEntity"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ChemicalEntity
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ChemicalEntity
 
     id: Union[str, ChemicalEntityId] = None
     inchi: Optional[Union[Union[dict, InChi], list[Union[dict, InChi]]]] = empty_list()
@@ -7861,7 +7860,7 @@ class Atom(ChemicalEntity):
     class_class_uri: ClassVar[URIRef] = CHEBI["33250"]
     class_class_curie: ClassVar[str] = "CHEBI:33250"
     class_name: ClassVar[str] = "Atom"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Atom
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Atom
 
     id: Union[str, AtomId] = None
     rdf_type: Union[dict, DefinedTerm] = None
@@ -7890,7 +7889,7 @@ class ChemicalSubstance(MaterialEntity):
     class_class_uri: ClassVar[URIRef] = CHEBI["59999"]
     class_class_curie: ClassVar[str] = "CHEBI:59999"
     class_name: ClassVar[str] = "ChemicalSubstance"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ChemicalSubstance
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ChemicalSubstance
 
     id: Union[str, ChemicalSubstanceId] = None
     has_concentration: Optional[Union[Union[dict, Concentration], list[Union[dict, Concentration]]]] = empty_list()
@@ -7937,7 +7936,7 @@ class Polymer(ChemicalSubstance):
     class_class_uri: ClassVar[URIRef] = CHEBI["60027"]
     class_class_curie: ClassVar[str] = "CHEBI:60027"
     class_name: ClassVar[str] = "Polymer"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Polymer
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Polymer
 
     id: Union[str, PolymerId] = None
 
@@ -7951,7 +7950,7 @@ class StartingMaterial(ChemicalSubstance):
     class_class_uri: ClassVar[URIRef] = PROCO["0000029"]
     class_class_curie: ClassVar[str] = "PROCO:0000029"
     class_name: ClassVar[str] = "StartingMaterial"
-    class_model_uri: ClassVar[URIRef] = CATCORE.StartingMaterial
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.StartingMaterial
 
     id: Union[str, StartingMaterialId] = None
     has_molar_equivalent: Optional[Union[Union[dict, MolarEquivalent], list[Union[dict, MolarEquivalent]]]] = empty_list()
@@ -7979,7 +7978,7 @@ class Reagent(ChemicalSubstance):
     class_class_uri: ClassVar[URIRef] = SIO["010411"]
     class_class_curie: ClassVar[str] = "SIO:010411"
     class_name: ClassVar[str] = "Reagent"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Reagent
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Reagent
 
     id: Union[str, ReagentId] = None
     has_molar_equivalent: Optional[Union[Union[dict, MolarEquivalent], list[Union[dict, MolarEquivalent]]]] = empty_list()
@@ -8007,7 +8006,7 @@ class ChemicalProduct(ChemicalSubstance):
     class_class_uri: ClassVar[URIRef] = NCIT["C48810"]
     class_class_curie: ClassVar[str] = "NCIT:C48810"
     class_name: ClassVar[str] = "ChemicalProduct"
-    class_model_uri: ClassVar[URIRef] = CATCORE.ChemicalProduct
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ChemicalProduct
 
     id: Union[str, ChemicalProductId] = None
 
@@ -8030,7 +8029,7 @@ class MaterialSample(EvaluatedEntity):
     class_class_uri: ClassVar[URIRef] = OBI["0000747"]
     class_class_curie: ClassVar[str] = "OBI:0000747"
     class_name: ClassVar[str] = "MaterialSample"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MaterialSample
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MaterialSample
 
     id: Union[str, MaterialSampleId] = None
     derived_from: Optional[Union[dict, Entity]] = None
@@ -8091,7 +8090,7 @@ class Precursor(MaterialSample):
     class_class_uri: ClassVar[URIRef] = CHEBI["52717"]
     class_class_curie: ClassVar[str] = "CHEBI:52717"
     class_name: ClassVar[str] = "Precursor"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Precursor
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Precursor
 
     id: Union[str, PrecursorId] = None
     precursor_quantity: Union[float, list[float]] = None
@@ -8123,7 +8122,7 @@ class CatalystSample(MaterialSample):
     class_class_uri: ClassVar[URIRef] = OBI["0000747"]
     class_class_curie: ClassVar[str] = "OBI:0000747"
     class_name: ClassVar[str] = "CatalystSample"
-    class_model_uri: ClassVar[URIRef] = CATCORE.CatalystSample
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CatalystSample
 
     id: Union[str, CatalystSampleId] = None
     derived_from: Optional[Union[dict, MaterialSample]] = None
@@ -8150,7 +8149,7 @@ class SubstanceSample(MaterialSample):
     class_class_uri: ClassVar[URIRef] = SIO["001378"]
     class_class_curie: ClassVar[str] = "SIO:001378"
     class_name: ClassVar[str] = "SubstanceSample"
-    class_model_uri: ClassVar[URIRef] = CATCORE.SubstanceSample
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.SubstanceSample
 
     id: Union[str, SubstanceSampleId] = None
     has_qualitative_attribute: Optional[Union[Union[dict, QualitativeAttribute], list[Union[dict, QualitativeAttribute]]]] = empty_list()
@@ -8217,7 +8216,7 @@ class PolymerSample(SubstanceSample):
     class_class_uri: ClassVar[URIRef] = SIO["001378"]
     class_class_curie: ClassVar[str] = "SIO:001378"
     class_name: ClassVar[str] = "PolymerSample"
-    class_model_uri: ClassVar[URIRef] = CATCORE.PolymerSample
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PolymerSample
 
     id: Union[str, PolymerSampleId] = None
     has_qualitative_attribute: Optional[Union[Union[dict, QualitativeAttribute], list[Union[dict, QualitativeAttribute]]]] = empty_list()
@@ -8284,7 +8283,7 @@ class Temperature(QuantitativeAttribute):
     class_class_uri: ClassVar[URIRef] = QUDT["Quantity"]
     class_class_curie: ClassVar[str] = "qudt:Quantity"
     class_name: ClassVar[str] = "Temperature"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Temperature
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Temperature
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -8299,7 +8298,7 @@ class Mass(QuantitativeAttribute):
     class_class_uri: ClassVar[URIRef] = QUDT["Quantity"]
     class_class_curie: ClassVar[str] = "qudt:Quantity"
     class_name: ClassVar[str] = "Mass"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Mass
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Mass
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -8315,7 +8314,7 @@ class MolarMass(Mass):
     class_class_uri: ClassVar[URIRef] = AFR["0002409"]
     class_class_curie: ClassVar[str] = "AFR:0002409"
     class_name: ClassVar[str] = "MolarMass"
-    class_model_uri: ClassVar[URIRef] = CATCORE.MolarMass
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MolarMass
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -8330,7 +8329,7 @@ class Volume(QuantitativeAttribute):
     class_class_uri: ClassVar[URIRef] = QUDT["Quantity"]
     class_class_curie: ClassVar[str] = "qudt:Quantity"
     class_name: ClassVar[str] = "Volume"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Volume
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Volume
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -8345,7 +8344,7 @@ class Density(QuantitativeAttribute):
     class_class_uri: ClassVar[URIRef] = SIO["001406"]
     class_class_curie: ClassVar[str] = "SIO:001406"
     class_name: ClassVar[str] = "Density"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Density
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Density
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -8357,7 +8356,7 @@ class Pressure(QuantitativeAttribute):
     class_class_uri: ClassVar[URIRef] = QUDT["Quantity"]
     class_class_curie: ClassVar[str] = "qudt:Quantity"
     class_name: ClassVar[str] = "Pressure"
-    class_model_uri: ClassVar[URIRef] = CATCORE.Pressure
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Pressure
 
     value: float = None
     has_quantity_type: Union[str, DefinedTermId] = None
@@ -8583,1865 +8582,1865 @@ class PhysicalStateEnum(EnumDefinitionImpl):
 class slots:
     pass
 
-slots.atmosphere = Slot(uri=CATCORE.atmosphere, name="atmosphere", curie=CATCORE.curie('atmosphere'),
-                   model_uri=CATCORE.atmosphere, domain=None, range=Optional[Union[str, list[str]]])
+slots.atmosphere = Slot(uri=COREMETA4CAT.atmosphere, name="atmosphere", curie=COREMETA4CAT.curie('atmosphere'),
+                   model_uri=COREMETA4CAT.atmosphere, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.temperature = Slot(uri=AFR['0001584'], name="temperature", curie=AFR.curie('0001584'),
-                   model_uri=CATCORE.temperature, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.temperature, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.equipment = Slot(uri=VOC4CAT['0000187'], name="equipment", curie=VOC4CAT.curie('0000187'),
-                   model_uri=CATCORE.equipment, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.equipment, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.flow_rate = Slot(uri=CATCORE.flow_rate, name="flow_rate", curie=CATCORE.curie('flow_rate'),
-                   model_uri=CATCORE.flow_rate, domain=None, range=Optional[Union[float, list[float]]])
+slots.flow_rate = Slot(uri=COREMETA4CAT.flow_rate, name="flow_rate", curie=COREMETA4CAT.curie('flow_rate'),
+                   model_uri=COREMETA4CAT.flow_rate, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.heating_rate = Slot(uri=CATCORE.heating_rate, name="heating_rate", curie=CATCORE.curie('heating_rate'),
-                   model_uri=CATCORE.heating_rate, domain=None, range=Optional[Union[float, list[float]]])
+slots.heating_rate = Slot(uri=COREMETA4CAT.heating_rate, name="heating_rate", curie=COREMETA4CAT.curie('heating_rate'),
+                   model_uri=COREMETA4CAT.heating_rate, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.heating_procedure = Slot(uri=CATCORE.heating_procedure, name="heating_procedure", curie=CATCORE.curie('heating_procedure'),
-                   model_uri=CATCORE.heating_procedure, domain=None, range=Optional[Union[str, list[str]]])
+slots.heating_procedure = Slot(uri=COREMETA4CAT.heating_procedure, name="heating_procedure", curie=COREMETA4CAT.curie('heating_procedure'),
+                   model_uri=COREMETA4CAT.heating_procedure, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.number_of_cycles = Slot(uri=CATCORE.number_of_cycles, name="number_of_cycles", curie=CATCORE.curie('number_of_cycles'),
-                   model_uri=CATCORE.number_of_cycles, domain=None, range=Optional[Union[int, list[int]]])
+slots.number_of_cycles = Slot(uri=COREMETA4CAT.number_of_cycles, name="number_of_cycles", curie=COREMETA4CAT.curie('number_of_cycles'),
+                   model_uri=COREMETA4CAT.number_of_cycles, domain=None, range=Optional[Union[int, list[int]]])
 
-slots.sample_mass = Slot(uri=CATCORE.sample_mass, name="sample_mass", curie=CATCORE.curie('sample_mass'),
-                   model_uri=CATCORE.sample_mass, domain=None, range=Optional[Union[float, list[float]]])
+slots.sample_mass = Slot(uri=COREMETA4CAT.sample_mass, name="sample_mass", curie=COREMETA4CAT.curie('sample_mass'),
+                   model_uri=COREMETA4CAT.sample_mass, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.sample_pretreatment = Slot(uri=VOC4CAT['0000122'], name="sample_pretreatment", curie=VOC4CAT.curie('0000122'),
-                   model_uri=CATCORE.sample_pretreatment, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.sample_pretreatment, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.stirring_speed = Slot(uri=CATCORE.stirring_speed, name="stirring_speed", curie=CATCORE.curie('stirring_speed'),
-                   model_uri=CATCORE.stirring_speed, domain=None, range=Optional[Union[float, list[float]]])
+slots.stirring_speed = Slot(uri=COREMETA4CAT.stirring_speed, name="stirring_speed", curie=COREMETA4CAT.curie('stirring_speed'),
+                   model_uri=COREMETA4CAT.stirring_speed, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.stirring_duration = Slot(uri=CATCORE.stirring_duration, name="stirring_duration", curie=CATCORE.curie('stirring_duration'),
-                   model_uri=CATCORE.stirring_duration, domain=None, range=Optional[Union[float, list[float]]])
+slots.stirring_duration = Slot(uri=COREMETA4CAT.stirring_duration, name="stirring_duration", curie=COREMETA4CAT.curie('stirring_duration'),
+                   model_uri=COREMETA4CAT.stirring_duration, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.vessel_type = Slot(uri=CATCORE.vessel_type, name="vessel_type", curie=CATCORE.curie('vessel_type'),
-                   model_uri=CATCORE.vessel_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.vessel_type = Slot(uri=COREMETA4CAT.vessel_type, name="vessel_type", curie=COREMETA4CAT.curie('vessel_type'),
+                   model_uri=COREMETA4CAT.vessel_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.carrier_gas = Slot(uri=CATCORE.carrier_gas, name="carrier_gas", curie=CATCORE.curie('carrier_gas'),
-                   model_uri=CATCORE.carrier_gas, domain=None, range=Optional[Union[str, list[str]]])
+slots.carrier_gas = Slot(uri=COREMETA4CAT.carrier_gas, name="carrier_gas", curie=COREMETA4CAT.curie('carrier_gas'),
+                   model_uri=COREMETA4CAT.carrier_gas, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.dispersant = Slot(uri=CATCORE.dispersant, name="dispersant", curie=CATCORE.curie('dispersant'),
-                   model_uri=CATCORE.dispersant, domain=None, range=Optional[Union[str, list[str]]])
+slots.dispersant = Slot(uri=COREMETA4CAT.dispersant, name="dispersant", curie=COREMETA4CAT.curie('dispersant'),
+                   model_uri=COREMETA4CAT.dispersant, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.drying_device = Slot(uri=CATCORE.drying_device, name="drying_device", curie=CATCORE.curie('drying_device'),
-                   model_uri=CATCORE.drying_device, domain=None, range=Optional[Union[str, list[str]]])
+slots.drying_device = Slot(uri=COREMETA4CAT.drying_device, name="drying_device", curie=COREMETA4CAT.curie('drying_device'),
+                   model_uri=COREMETA4CAT.drying_device, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.drying_temperature = Slot(uri=CATCORE.drying_temperature, name="drying_temperature", curie=CATCORE.curie('drying_temperature'),
-                   model_uri=CATCORE.drying_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.drying_temperature = Slot(uri=COREMETA4CAT.drying_temperature, name="drying_temperature", curie=COREMETA4CAT.curie('drying_temperature'),
+                   model_uri=COREMETA4CAT.drying_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.drying_time = Slot(uri=CATCORE.drying_time, name="drying_time", curie=CATCORE.curie('drying_time'),
-                   model_uri=CATCORE.drying_time, domain=None, range=Optional[Union[float, list[float]]])
+slots.drying_time = Slot(uri=COREMETA4CAT.drying_time, name="drying_time", curie=COREMETA4CAT.curie('drying_time'),
+                   model_uri=COREMETA4CAT.drying_time, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.drying_atmosphere = Slot(uri=CATCORE.drying_atmosphere, name="drying_atmosphere", curie=CATCORE.curie('drying_atmosphere'),
-                   model_uri=CATCORE.drying_atmosphere, domain=None, range=Optional[Union[str, list[str]]])
+slots.drying_atmosphere = Slot(uri=COREMETA4CAT.drying_atmosphere, name="drying_atmosphere", curie=COREMETA4CAT.curie('drying_atmosphere'),
+                   model_uri=COREMETA4CAT.drying_atmosphere, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.calcination_initial_temperature = Slot(uri=VOC4CAT['0000057'], name="calcination_initial_temperature", curie=VOC4CAT.curie('0000057'),
-                   model_uri=CATCORE.calcination_initial_temperature, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.calcination_initial_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.calcination_final_temperature = Slot(uri=VOC4CAT['0000058'], name="calcination_final_temperature", curie=VOC4CAT.curie('0000058'),
-                   model_uri=CATCORE.calcination_final_temperature, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.calcination_final_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.calcination_dwelling_time = Slot(uri=VOC4CAT['0000060'], name="calcination_dwelling_time", curie=VOC4CAT.curie('0000060'),
-                   model_uri=CATCORE.calcination_dwelling_time, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.calcination_dwelling_time, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.calcination_gaseous_environment = Slot(uri=VOC4CAT['0000055'], name="calcination_gaseous_environment", curie=VOC4CAT.curie('0000055'),
-                   model_uri=CATCORE.calcination_gaseous_environment, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.calcination_gaseous_environment, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.calcination_heating_rate = Slot(uri=VOC4CAT['0000059'], name="calcination_heating_rate", curie=VOC4CAT.curie('0000059'),
-                   model_uri=CATCORE.calcination_heating_rate, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.calcination_heating_rate, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.calcination_gas_flow_rate = Slot(uri=VOC4CAT['0000056'], name="calcination_gas_flow_rate", curie=VOC4CAT.curie('0000056'),
-                   model_uri=CATCORE.calcination_gas_flow_rate, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.calcination_gas_flow_rate, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.step_size = Slot(uri=AFR['0000950'], name="step_size", curie=AFR.curie('0000950'),
-                   model_uri=CATCORE.step_size, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.step_size, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.resolution = Slot(uri=CATCORE.resolution, name="resolution", curie=CATCORE.curie('resolution'),
-                   model_uri=CATCORE.resolution, domain=None, range=Optional[Union[float, list[float]]])
+slots.resolution = Slot(uri=COREMETA4CAT.resolution, name="resolution", curie=COREMETA4CAT.curie('resolution'),
+                   model_uri=COREMETA4CAT.resolution, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.integration_time = Slot(uri=CATCORE.integration_time, name="integration_time", curie=CATCORE.curie('integration_time'),
-                   model_uri=CATCORE.integration_time, domain=None, range=Optional[Union[float, list[float]]])
+slots.integration_time = Slot(uri=COREMETA4CAT.integration_time, name="integration_time", curie=COREMETA4CAT.curie('integration_time'),
+                   model_uri=COREMETA4CAT.integration_time, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.number_of_scans = Slot(uri=CATCORE.number_of_scans, name="number_of_scans", curie=CATCORE.curie('number_of_scans'),
-                   model_uri=CATCORE.number_of_scans, domain=None, range=Optional[Union[int, list[int]]])
+slots.number_of_scans = Slot(uri=COREMETA4CAT.number_of_scans, name="number_of_scans", curie=COREMETA4CAT.curie('number_of_scans'),
+                   model_uri=COREMETA4CAT.number_of_scans, domain=None, range=Optional[Union[int, list[int]]])
 
 slots.operation_mode = Slot(uri=VOC4CAT['0000108'], name="operation_mode", curie=VOC4CAT.curie('0000108'),
-                   model_uri=CATCORE.operation_mode, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.operation_mode, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.concentration = Slot(uri=CATCORE.concentration, name="concentration", curie=CATCORE.curie('concentration'),
-                   model_uri=CATCORE.concentration, domain=None, range=Optional[Union[float, list[float]]])
+slots.concentration = Slot(uri=COREMETA4CAT.concentration, name="concentration", curie=COREMETA4CAT.curie('concentration'),
+                   model_uri=COREMETA4CAT.concentration, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.solvent = Slot(uri=VOC4CAT['0007246'], name="solvent", curie=VOC4CAT.curie('0007246'),
-                   model_uri=CATCORE.solvent, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.solvent, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.injection_volume = Slot(uri=CATCORE.injection_volume, name="injection_volume", curie=CATCORE.curie('injection_volume'),
-                   model_uri=CATCORE.injection_volume, domain=None, range=Optional[Union[float, list[float]]])
+slots.injection_volume = Slot(uri=COREMETA4CAT.injection_volume, name="injection_volume", curie=COREMETA4CAT.curie('injection_volume'),
+                   model_uri=COREMETA4CAT.injection_volume, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.external_standard = Slot(uri=CATCORE.external_standard, name="external_standard", curie=CATCORE.curie('external_standard'),
-                   model_uri=CATCORE.external_standard, domain=None, range=Optional[Union[str, list[str]]])
+slots.external_standard = Slot(uri=COREMETA4CAT.external_standard, name="external_standard", curie=COREMETA4CAT.curie('external_standard'),
+                   model_uri=COREMETA4CAT.external_standard, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.internal_standard = Slot(uri=CATCORE.internal_standard, name="internal_standard", curie=CATCORE.curie('internal_standard'),
-                   model_uri=CATCORE.internal_standard, domain=None, range=Optional[Union[str, list[str]]])
+slots.internal_standard = Slot(uri=COREMETA4CAT.internal_standard, name="internal_standard", curie=COREMETA4CAT.curie('internal_standard'),
+                   model_uri=COREMETA4CAT.internal_standard, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.calibration_method = Slot(uri=CATCORE.calibration_method, name="calibration_method", curie=CATCORE.curie('calibration_method'),
-                   model_uri=CATCORE.calibration_method, domain=None, range=Optional[Union[str, list[str]]])
+slots.calibration_method = Slot(uri=COREMETA4CAT.calibration_method, name="calibration_method", curie=COREMETA4CAT.curie('calibration_method'),
+                   model_uri=COREMETA4CAT.calibration_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.column_type = Slot(uri=CATCORE.column_type, name="column_type", curie=CATCORE.curie('column_type'),
-                   model_uri=CATCORE.column_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.column_type = Slot(uri=COREMETA4CAT.column_type, name="column_type", curie=COREMETA4CAT.curie('column_type'),
+                   model_uri=COREMETA4CAT.column_type, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.experiment_duration = Slot(uri=AFR['0002455'], name="experiment_duration", curie=AFR.curie('0002455'),
-                   model_uri=CATCORE.experiment_duration, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.experiment_duration, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.filtration_device = Slot(uri=CATCORE.filtration_device, name="filtration_device", curie=CATCORE.curie('filtration_device'),
-                   model_uri=CATCORE.filtration_device, domain=None, range=Optional[Union[str, list[str]]])
+slots.filtration_device = Slot(uri=COREMETA4CAT.filtration_device, name="filtration_device", curie=COREMETA4CAT.curie('filtration_device'),
+                   model_uri=COREMETA4CAT.filtration_device, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.filter_type = Slot(uri=CATCORE.filter_type, name="filter_type", curie=CATCORE.curie('filter_type'),
-                   model_uri=CATCORE.filter_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.filter_type = Slot(uri=COREMETA4CAT.filter_type, name="filter_type", curie=COREMETA4CAT.curie('filter_type'),
+                   model_uri=COREMETA4CAT.filter_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.nominal_composition = Slot(uri=CATCORE.nominal_composition, name="nominal_composition", curie=CATCORE.curie('nominal_composition'),
-                   model_uri=CATCORE.nominal_composition, domain=None, range=Optional[Union[str, list[str]]])
+slots.nominal_composition = Slot(uri=COREMETA4CAT.nominal_composition, name="nominal_composition", curie=COREMETA4CAT.curie('nominal_composition'),
+                   model_uri=COREMETA4CAT.nominal_composition, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.catalyst_measured_properties = Slot(uri=CATCORE.catalyst_measured_properties, name="catalyst_measured_properties", curie=CATCORE.curie('catalyst_measured_properties'),
-                   model_uri=CATCORE.catalyst_measured_properties, domain=None, range=Optional[Union[str, list[str]]])
+slots.catalyst_measured_properties = Slot(uri=COREMETA4CAT.catalyst_measured_properties, name="catalyst_measured_properties", curie=COREMETA4CAT.curie('catalyst_measured_properties'),
+                   model_uri=COREMETA4CAT.catalyst_measured_properties, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.storage_conditions = Slot(uri=CATCORE.storage_conditions, name="storage_conditions", curie=CATCORE.curie('storage_conditions'),
-                   model_uri=CATCORE.storage_conditions, domain=None, range=Optional[Union[str, list[str]]])
+slots.storage_conditions = Slot(uri=COREMETA4CAT.storage_conditions, name="storage_conditions", curie=COREMETA4CAT.curie('storage_conditions'),
+                   model_uri=COREMETA4CAT.storage_conditions, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.support = Slot(uri=CATCORE.support, name="support", curie=CATCORE.curie('support'),
-                   model_uri=CATCORE.support, domain=None, range=Optional[Union[str, list[str]]])
+slots.support = Slot(uri=COREMETA4CAT.support, name="support", curie=COREMETA4CAT.curie('support'),
+                   model_uri=COREMETA4CAT.support, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.precursor_quantity = Slot(uri=CATCORE.precursor_quantity, name="precursor_quantity", curie=CATCORE.curie('precursor_quantity'),
-                   model_uri=CATCORE.precursor_quantity, domain=None, range=Optional[Union[float, list[float]]])
+slots.precursor_quantity = Slot(uri=COREMETA4CAT.precursor_quantity, name="precursor_quantity", curie=COREMETA4CAT.curie('precursor_quantity'),
+                   model_uri=COREMETA4CAT.precursor_quantity, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.impregnation_type = Slot(uri=CATCORE.impregnation_type, name="impregnation_type", curie=CATCORE.curie('impregnation_type'),
-                   model_uri=CATCORE.impregnation_type, domain=None, range=Optional[Union[Union[str, "ImpregnationTypeEnum"], list[Union[str, "ImpregnationTypeEnum"]]]])
+slots.impregnation_type = Slot(uri=COREMETA4CAT.impregnation_type, name="impregnation_type", curie=COREMETA4CAT.curie('impregnation_type'),
+                   model_uri=COREMETA4CAT.impregnation_type, domain=None, range=Optional[Union[Union[str, "ImpregnationTypeEnum"], list[Union[str, "ImpregnationTypeEnum"]]]])
 
-slots.impregnation_duration = Slot(uri=CATCORE.impregnation_duration, name="impregnation_duration", curie=CATCORE.curie('impregnation_duration'),
-                   model_uri=CATCORE.impregnation_duration, domain=None, range=Optional[Union[float, list[float]]])
+slots.impregnation_duration = Slot(uri=COREMETA4CAT.impregnation_duration, name="impregnation_duration", curie=COREMETA4CAT.curie('impregnation_duration'),
+                   model_uri=COREMETA4CAT.impregnation_duration, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.impregnation_temperature = Slot(uri=CATCORE.impregnation_temperature, name="impregnation_temperature", curie=CATCORE.curie('impregnation_temperature'),
-                   model_uri=CATCORE.impregnation_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.impregnation_temperature = Slot(uri=COREMETA4CAT.impregnation_temperature, name="impregnation_temperature", curie=COREMETA4CAT.curie('impregnation_temperature'),
+                   model_uri=COREMETA4CAT.impregnation_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.precipitating_agent = Slot(uri=CATCORE.precipitating_agent, name="precipitating_agent", curie=CATCORE.curie('precipitating_agent'),
-                   model_uri=CATCORE.precipitating_agent, domain=None, range=Optional[Union[str, list[str]]])
+slots.precipitating_agent = Slot(uri=COREMETA4CAT.precipitating_agent, name="precipitating_agent", curie=COREMETA4CAT.curie('precipitating_agent'),
+                   model_uri=COREMETA4CAT.precipitating_agent, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.precipitating_concentration = Slot(uri=CATCORE.precipitating_concentration, name="precipitating_concentration", curie=CATCORE.curie('precipitating_concentration'),
-                   model_uri=CATCORE.precipitating_concentration, domain=None, range=Optional[Union[float, list[float]]])
+slots.precipitating_concentration = Slot(uri=COREMETA4CAT.precipitating_concentration, name="precipitating_concentration", curie=COREMETA4CAT.curie('precipitating_concentration'),
+                   model_uri=COREMETA4CAT.precipitating_concentration, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.synthesis_ph = Slot(uri=VOC4CAT['0000052'], name="synthesis_ph", curie=VOC4CAT.curie('0000052'),
-                   model_uri=CATCORE.synthesis_ph, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.synthesis_ph, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.mixing_rate = Slot(uri=CATCORE.mixing_rate, name="mixing_rate", curie=CATCORE.curie('mixing_rate'),
-                   model_uri=CATCORE.mixing_rate, domain=None, range=Optional[Union[float, list[float]]])
+slots.mixing_rate = Slot(uri=COREMETA4CAT.mixing_rate, name="mixing_rate", curie=COREMETA4CAT.curie('mixing_rate'),
+                   model_uri=COREMETA4CAT.mixing_rate, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.mixing_time = Slot(uri=CATCORE.mixing_time, name="mixing_time", curie=CATCORE.curie('mixing_time'),
-                   model_uri=CATCORE.mixing_time, domain=None, range=Optional[Union[float, list[float]]])
+slots.mixing_time = Slot(uri=COREMETA4CAT.mixing_time, name="mixing_time", curie=COREMETA4CAT.curie('mixing_time'),
+                   model_uri=COREMETA4CAT.mixing_time, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.mixing_temperature = Slot(uri=CATCORE.mixing_temperature, name="mixing_temperature", curie=CATCORE.curie('mixing_temperature'),
-                   model_uri=CATCORE.mixing_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.mixing_temperature = Slot(uri=COREMETA4CAT.mixing_temperature, name="mixing_temperature", curie=COREMETA4CAT.curie('mixing_temperature'),
+                   model_uri=COREMETA4CAT.mixing_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.order_of_addition = Slot(uri=CATCORE.order_of_addition, name="order_of_addition", curie=CATCORE.curie('order_of_addition'),
-                   model_uri=CATCORE.order_of_addition, domain=None, range=Optional[Union[str, list[str]]])
+slots.order_of_addition = Slot(uri=COREMETA4CAT.order_of_addition, name="order_of_addition", curie=COREMETA4CAT.curie('order_of_addition'),
+                   model_uri=COREMETA4CAT.order_of_addition, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.filtration = Slot(uri=CATCORE.filtration, name="filtration", curie=CATCORE.curie('filtration'),
-                   model_uri=CATCORE.filtration, domain=None, range=Optional[Union[str, list[str]]])
+slots.filtration = Slot(uri=COREMETA4CAT.filtration, name="filtration", curie=COREMETA4CAT.curie('filtration'),
+                   model_uri=COREMETA4CAT.filtration, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.purification = Slot(uri=CATCORE.purification, name="purification", curie=CATCORE.curie('purification'),
-                   model_uri=CATCORE.purification, domain=None, range=Optional[Union[str, list[str]]])
+slots.purification = Slot(uri=COREMETA4CAT.purification, name="purification", curie=COREMETA4CAT.curie('purification'),
+                   model_uri=COREMETA4CAT.purification, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.aging_temperature = Slot(uri=CATCORE.aging_temperature, name="aging_temperature", curie=CATCORE.curie('aging_temperature'),
-                   model_uri=CATCORE.aging_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.aging_temperature = Slot(uri=COREMETA4CAT.aging_temperature, name="aging_temperature", curie=COREMETA4CAT.curie('aging_temperature'),
+                   model_uri=COREMETA4CAT.aging_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.aging_time = Slot(uri=CATCORE.aging_time, name="aging_time", curie=CATCORE.curie('aging_time'),
-                   model_uri=CATCORE.aging_time, domain=None, range=Optional[Union[float, list[float]]])
+slots.aging_time = Slot(uri=COREMETA4CAT.aging_time, name="aging_time", curie=COREMETA4CAT.curie('aging_time'),
+                   model_uri=COREMETA4CAT.aging_time, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.deposition_temperature = Slot(uri=CATCORE.deposition_temperature, name="deposition_temperature", curie=CATCORE.curie('deposition_temperature'),
-                   model_uri=CATCORE.deposition_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.deposition_temperature = Slot(uri=COREMETA4CAT.deposition_temperature, name="deposition_temperature", curie=COREMETA4CAT.curie('deposition_temperature'),
+                   model_uri=COREMETA4CAT.deposition_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.deposition_time = Slot(uri=CATCORE.deposition_time, name="deposition_time", curie=CATCORE.curie('deposition_time'),
-                   model_uri=CATCORE.deposition_time, domain=None, range=Optional[Union[float, list[float]]])
+slots.deposition_time = Slot(uri=COREMETA4CAT.deposition_time, name="deposition_time", curie=COREMETA4CAT.curie('deposition_time'),
+                   model_uri=COREMETA4CAT.deposition_time, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.synthesis_temperature = Slot(uri=VOC4CAT['0000051'], name="synthesis_temperature", curie=VOC4CAT.curie('0000051'),
-                   model_uri=CATCORE.synthesis_temperature, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.synthesis_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.synthesis_duration = Slot(uri=VOC4CAT['0000050'], name="synthesis_duration", curie=VOC4CAT.curie('0000050'),
-                   model_uri=CATCORE.synthesis_duration, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.synthesis_duration, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.synthesis_pressure = Slot(uri=VOC4CAT['0000053'], name="synthesis_pressure", curie=VOC4CAT.curie('0000053'),
-                   model_uri=CATCORE.synthesis_pressure, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.synthesis_pressure, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.hydrolysis_ratio = Slot(uri=CATCORE.hydrolysis_ratio, name="hydrolysis_ratio", curie=CATCORE.curie('hydrolysis_ratio'),
-                   model_uri=CATCORE.hydrolysis_ratio, domain=None, range=Optional[Union[float, list[float]]])
+slots.hydrolysis_ratio = Slot(uri=COREMETA4CAT.hydrolysis_ratio, name="hydrolysis_ratio", curie=COREMETA4CAT.curie('hydrolysis_ratio'),
+                   model_uri=COREMETA4CAT.hydrolysis_ratio, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.drying = Slot(uri=CATCORE.drying, name="drying", curie=CATCORE.curie('drying'),
-                   model_uri=CATCORE.drying, domain=None, range=Optional[Union[str, list[str]]])
+slots.drying = Slot(uri=COREMETA4CAT.drying, name="drying", curie=COREMETA4CAT.curie('drying'),
+                   model_uri=COREMETA4CAT.drying, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.surfactant_template = Slot(uri=CATCORE.surfactant_template, name="surfactant_template", curie=CATCORE.curie('surfactant_template'),
-                   model_uri=CATCORE.surfactant_template, domain=None, range=Optional[Union[str, list[str]]])
+slots.surfactant_template = Slot(uri=COREMETA4CAT.surfactant_template, name="surfactant_template", curie=COREMETA4CAT.curie('surfactant_template'),
+                   model_uri=COREMETA4CAT.surfactant_template, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.filling_volume = Slot(uri=CATCORE.filling_volume, name="filling_volume", curie=CATCORE.curie('filling_volume'),
-                   model_uri=CATCORE.filling_volume, domain=None, range=Optional[Union[float, list[float]]])
+slots.filling_volume = Slot(uri=COREMETA4CAT.filling_volume, name="filling_volume", curie=COREMETA4CAT.curie('filling_volume'),
+                   model_uri=COREMETA4CAT.filling_volume, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.stirrer_type = Slot(uri=CATCORE.stirrer_type, name="stirrer_type", curie=CATCORE.curie('stirrer_type'),
-                   model_uri=CATCORE.stirrer_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.stirrer_type = Slot(uri=COREMETA4CAT.stirrer_type, name="stirrer_type", curie=COREMETA4CAT.curie('stirrer_type'),
+                   model_uri=COREMETA4CAT.stirrer_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.cooling_rate = Slot(uri=CATCORE.cooling_rate, name="cooling_rate", curie=CATCORE.curie('cooling_rate'),
-                   model_uri=CATCORE.cooling_rate, domain=None, range=Optional[Union[float, list[float]]])
+slots.cooling_rate = Slot(uri=COREMETA4CAT.cooling_rate, name="cooling_rate", curie=COREMETA4CAT.curie('cooling_rate'),
+                   model_uri=COREMETA4CAT.cooling_rate, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.plasma_type = Slot(uri=CATCORE.plasma_type, name="plasma_type", curie=CATCORE.curie('plasma_type'),
-                   model_uri=CATCORE.plasma_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.plasma_type = Slot(uri=COREMETA4CAT.plasma_type, name="plasma_type", curie=COREMETA4CAT.curie('plasma_type'),
+                   model_uri=COREMETA4CAT.plasma_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.power_input = Slot(uri=CATCORE.power_input, name="power_input", curie=CATCORE.curie('power_input'),
-                   model_uri=CATCORE.power_input, domain=None, range=Optional[Union[float, list[float]]])
+slots.power_input = Slot(uri=COREMETA4CAT.power_input, name="power_input", curie=COREMETA4CAT.curie('power_input'),
+                   model_uri=COREMETA4CAT.power_input, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.exposure_time = Slot(uri=CATCORE.exposure_time, name="exposure_time", curie=CATCORE.curie('exposure_time'),
-                   model_uri=CATCORE.exposure_time, domain=None, range=Optional[Union[float, list[float]]])
+slots.exposure_time = Slot(uri=COREMETA4CAT.exposure_time, name="exposure_time", curie=COREMETA4CAT.curie('exposure_time'),
+                   model_uri=COREMETA4CAT.exposure_time, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.fuel = Slot(uri=CATCORE.fuel, name="fuel", curie=CATCORE.curie('fuel'),
-                   model_uri=CATCORE.fuel, domain=None, range=Optional[Union[str, list[str]]])
+slots.fuel = Slot(uri=COREMETA4CAT.fuel, name="fuel", curie=COREMETA4CAT.curie('fuel'),
+                   model_uri=COREMETA4CAT.fuel, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.oxidizer = Slot(uri=CATCORE.oxidizer, name="oxidizer", curie=CATCORE.curie('oxidizer'),
-                   model_uri=CATCORE.oxidizer, domain=None, range=Optional[Union[str, list[str]]])
+slots.oxidizer = Slot(uri=COREMETA4CAT.oxidizer, name="oxidizer", curie=COREMETA4CAT.curie('oxidizer'),
+                   model_uri=COREMETA4CAT.oxidizer, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.fuel_to_oxidizer_ratio = Slot(uri=CATCORE.fuel_to_oxidizer_ratio, name="fuel_to_oxidizer_ratio", curie=CATCORE.curie('fuel_to_oxidizer_ratio'),
-                   model_uri=CATCORE.fuel_to_oxidizer_ratio, domain=None, range=Optional[Union[float, list[float]]])
+slots.fuel_to_oxidizer_ratio = Slot(uri=COREMETA4CAT.fuel_to_oxidizer_ratio, name="fuel_to_oxidizer_ratio", curie=COREMETA4CAT.curie('fuel_to_oxidizer_ratio'),
+                   model_uri=COREMETA4CAT.fuel_to_oxidizer_ratio, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.set_temperature = Slot(uri=CATCORE.set_temperature, name="set_temperature", curie=CATCORE.curie('set_temperature'),
-                   model_uri=CATCORE.set_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.set_temperature = Slot(uri=COREMETA4CAT.set_temperature, name="set_temperature", curie=COREMETA4CAT.curie('set_temperature'),
+                   model_uri=COREMETA4CAT.set_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.post_treatment = Slot(uri=CATCORE.post_treatment, name="post_treatment", curie=CATCORE.curie('post_treatment'),
-                   model_uri=CATCORE.post_treatment, domain=None, range=Optional[Union[str, list[str]]])
+slots.post_treatment = Slot(uri=COREMETA4CAT.post_treatment, name="post_treatment", curie=COREMETA4CAT.curie('post_treatment'),
+                   model_uri=COREMETA4CAT.post_treatment, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.substrate = Slot(uri=VOC4CAT['0000024'], name="substrate", curie=VOC4CAT.curie('0000024'),
-                   model_uri=CATCORE.substrate, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.substrate, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.pulse_time = Slot(uri=CATCORE.pulse_time, name="pulse_time", curie=CATCORE.curie('pulse_time'),
-                   model_uri=CATCORE.pulse_time, domain=None, range=Optional[Union[float, list[float]]])
+slots.pulse_time = Slot(uri=COREMETA4CAT.pulse_time, name="pulse_time", curie=COREMETA4CAT.curie('pulse_time'),
+                   model_uri=COREMETA4CAT.pulse_time, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.purging_duration = Slot(uri=VOC4CAT['0000112'], name="purging_duration", curie=VOC4CAT.curie('0000112'),
-                   model_uri=CATCORE.purging_duration, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.purging_duration, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.power = Slot(uri=CATCORE.power, name="power", curie=CATCORE.curie('power'),
-                   model_uri=CATCORE.power, domain=None, range=Optional[Union[float, list[float]]])
+slots.power = Slot(uri=COREMETA4CAT.power, name="power", curie=COREMETA4CAT.curie('power'),
+                   model_uri=COREMETA4CAT.power, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.microwave_frequency = Slot(uri=CATCORE.microwave_frequency, name="microwave_frequency", curie=CATCORE.curie('microwave_frequency'),
-                   model_uri=CATCORE.microwave_frequency, domain=None, range=Optional[Union[float, list[float]]])
+slots.microwave_frequency = Slot(uri=COREMETA4CAT.microwave_frequency, name="microwave_frequency", curie=COREMETA4CAT.curie('microwave_frequency'),
+                   model_uri=COREMETA4CAT.microwave_frequency, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.sonication_power = Slot(uri=CATCORE.sonication_power, name="sonication_power", curie=CATCORE.curie('sonication_power'),
-                   model_uri=CATCORE.sonication_power, domain=None, range=Optional[Union[float, list[float]]])
+slots.sonication_power = Slot(uri=COREMETA4CAT.sonication_power, name="sonication_power", curie=COREMETA4CAT.curie('sonication_power'),
+                   model_uri=COREMETA4CAT.sonication_power, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.sonication_duration = Slot(uri=CATCORE.sonication_duration, name="sonication_duration", curie=CATCORE.curie('sonication_duration'),
-                   model_uri=CATCORE.sonication_duration, domain=None, range=Optional[Union[float, list[float]]])
+slots.sonication_duration = Slot(uri=COREMETA4CAT.sonication_duration, name="sonication_duration", curie=COREMETA4CAT.curie('sonication_duration'),
+                   model_uri=COREMETA4CAT.sonication_duration, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.flame_type = Slot(uri=CATCORE.flame_type, name="flame_type", curie=CATCORE.curie('flame_type'),
-                   model_uri=CATCORE.flame_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.flame_type = Slot(uri=COREMETA4CAT.flame_type, name="flame_type", curie=COREMETA4CAT.curie('flame_type'),
+                   model_uri=COREMETA4CAT.flame_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.inlet_system = Slot(uri=CATCORE.inlet_system, name="inlet_system", curie=CATCORE.curie('inlet_system'),
-                   model_uri=CATCORE.inlet_system, domain=None, range=Optional[Union[str, list[str]]])
+slots.inlet_system = Slot(uri=COREMETA4CAT.inlet_system, name="inlet_system", curie=COREMETA4CAT.curie('inlet_system'),
+                   model_uri=COREMETA4CAT.inlet_system, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.flame_ring = Slot(uri=CATCORE.flame_ring, name="flame_ring", curie=CATCORE.curie('flame_ring'),
-                   model_uri=CATCORE.flame_ring, domain=None, range=Optional[Union[str, list[str]]])
+slots.flame_ring = Slot(uri=COREMETA4CAT.flame_ring, name="flame_ring", curie=COREMETA4CAT.curie('flame_ring'),
+                   model_uri=COREMETA4CAT.flame_ring, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.capillary_pressure = Slot(uri=CATCORE.capillary_pressure, name="capillary_pressure", curie=CATCORE.curie('capillary_pressure'),
-                   model_uri=CATCORE.capillary_pressure, domain=None, range=Optional[Union[float, list[float]]])
+slots.capillary_pressure = Slot(uri=COREMETA4CAT.capillary_pressure, name="capillary_pressure", curie=COREMETA4CAT.curie('capillary_pressure'),
+                   model_uri=COREMETA4CAT.capillary_pressure, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.fuel_dispersant_ratio = Slot(uri=CATCORE.fuel_dispersant_ratio, name="fuel_dispersant_ratio", curie=CATCORE.curie('fuel_dispersant_ratio'),
-                   model_uri=CATCORE.fuel_dispersant_ratio, domain=None, range=Optional[Union[float, list[float]]])
+slots.fuel_dispersant_ratio = Slot(uri=COREMETA4CAT.fuel_dispersant_ratio, name="fuel_dispersant_ratio", curie=COREMETA4CAT.curie('fuel_dispersant_ratio'),
+                   model_uri=COREMETA4CAT.fuel_dispersant_ratio, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.vessel_volume = Slot(uri=CATCORE.vessel_volume, name="vessel_volume", curie=CATCORE.curie('vessel_volume'),
-                   model_uri=CATCORE.vessel_volume, domain=None, range=Optional[Union[float, list[float]]])
+slots.vessel_volume = Slot(uri=COREMETA4CAT.vessel_volume, name="vessel_volume", curie=COREMETA4CAT.curie('vessel_volume'),
+                   model_uri=COREMETA4CAT.vessel_volume, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.size_and_material = Slot(uri=CATCORE.size_and_material, name="size_and_material", curie=CATCORE.curie('size_and_material'),
-                   model_uri=CATCORE.size_and_material, domain=None, range=Optional[Union[str, list[str]]])
+slots.size_and_material = Slot(uri=COREMETA4CAT.size_and_material, name="size_and_material", curie=COREMETA4CAT.curie('size_and_material'),
+                   model_uri=COREMETA4CAT.size_and_material, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.milling_speed = Slot(uri=CATCORE.milling_speed, name="milling_speed", curie=CATCORE.curie('milling_speed'),
-                   model_uri=CATCORE.milling_speed, domain=None, range=Optional[Union[float, list[float]]])
+slots.milling_speed = Slot(uri=COREMETA4CAT.milling_speed, name="milling_speed", curie=COREMETA4CAT.curie('milling_speed'),
+                   model_uri=COREMETA4CAT.milling_speed, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.milling_duration = Slot(uri=CATCORE.milling_duration, name="milling_duration", curie=CATCORE.curie('milling_duration'),
-                   model_uri=CATCORE.milling_duration, domain=None, range=Optional[Union[float, list[float]]])
+slots.milling_duration = Slot(uri=COREMETA4CAT.milling_duration, name="milling_duration", curie=COREMETA4CAT.curie('milling_duration'),
+                   model_uri=COREMETA4CAT.milling_duration, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.ball_material = Slot(uri=CATCORE.ball_material, name="ball_material", curie=CATCORE.curie('ball_material'),
-                   model_uri=CATCORE.ball_material, domain=None, range=Optional[Union[str, list[str]]])
+slots.ball_material = Slot(uri=COREMETA4CAT.ball_material, name="ball_material", curie=COREMETA4CAT.curie('ball_material'),
+                   model_uri=COREMETA4CAT.ball_material, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.ball_size = Slot(uri=CATCORE.ball_size, name="ball_size", curie=CATCORE.curie('ball_size'),
-                   model_uri=CATCORE.ball_size, domain=None, range=Optional[Union[float, list[float]]])
+slots.ball_size = Slot(uri=COREMETA4CAT.ball_size, name="ball_size", curie=COREMETA4CAT.curie('ball_size'),
+                   model_uri=COREMETA4CAT.ball_size, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.ball_to_powder_ratio = Slot(uri=CATCORE.ball_to_powder_ratio, name="ball_to_powder_ratio", curie=CATCORE.curie('ball_to_powder_ratio'),
-                   model_uri=CATCORE.ball_to_powder_ratio, domain=None, range=Optional[Union[float, list[float]]])
+slots.ball_to_powder_ratio = Slot(uri=COREMETA4CAT.ball_to_powder_ratio, name="ball_to_powder_ratio", curie=COREMETA4CAT.curie('ball_to_powder_ratio'),
+                   model_uri=COREMETA4CAT.ball_to_powder_ratio, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.reaction_vessel = Slot(uri=CATCORE.reaction_vessel, name="reaction_vessel", curie=CATCORE.curie('reaction_vessel'),
-                   model_uri=CATCORE.reaction_vessel, domain=None, range=Optional[Union[str, list[str]]])
+slots.reaction_vessel = Slot(uri=COREMETA4CAT.reaction_vessel, name="reaction_vessel", curie=COREMETA4CAT.curie('reaction_vessel'),
+                   model_uri=COREMETA4CAT.reaction_vessel, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.mixing_device = Slot(uri=CATCORE.mixing_device, name="mixing_device", curie=CATCORE.curie('mixing_device'),
-                   model_uri=CATCORE.mixing_device, domain=None, range=Optional[Union[str, list[str]]])
+slots.mixing_device = Slot(uri=COREMETA4CAT.mixing_device, name="mixing_device", curie=COREMETA4CAT.curie('mixing_device'),
+                   model_uri=COREMETA4CAT.mixing_device, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.crystallisation_solvents = Slot(uri=CATCORE.crystallisation_solvents, name="crystallisation_solvents", curie=CATCORE.curie('crystallisation_solvents'),
-                   model_uri=CATCORE.crystallisation_solvents, domain=None, range=Optional[Union[str, list[str]]])
+slots.crystallisation_solvents = Slot(uri=COREMETA4CAT.crystallisation_solvents, name="crystallisation_solvents", curie=COREMETA4CAT.curie('crystallisation_solvents'),
+                   model_uri=COREMETA4CAT.crystallisation_solvents, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.precipitation_agent = Slot(uri=CATCORE.precipitation_agent, name="precipitation_agent", curie=CATCORE.curie('precipitation_agent'),
-                   model_uri=CATCORE.precipitation_agent, domain=None, range=Optional[Union[str, list[str]]])
+slots.precipitation_agent = Slot(uri=COREMETA4CAT.precipitation_agent, name="precipitation_agent", curie=COREMETA4CAT.curie('precipitation_agent'),
+                   model_uri=COREMETA4CAT.precipitation_agent, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.crystallisation_duration = Slot(uri=CATCORE.crystallisation_duration, name="crystallisation_duration", curie=CATCORE.curie('crystallisation_duration'),
-                   model_uri=CATCORE.crystallisation_duration, domain=None, range=Optional[Union[float, list[float]]])
+slots.crystallisation_duration = Slot(uri=COREMETA4CAT.crystallisation_duration, name="crystallisation_duration", curie=COREMETA4CAT.curie('crystallisation_duration'),
+                   model_uri=COREMETA4CAT.crystallisation_duration, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.purification_solvent = Slot(uri=CATCORE.purification_solvent, name="purification_solvent", curie=CATCORE.curie('purification_solvent'),
-                   model_uri=CATCORE.purification_solvent, domain=None, range=Optional[Union[str, list[str]]])
+slots.purification_solvent = Slot(uri=COREMETA4CAT.purification_solvent, name="purification_solvent", curie=COREMETA4CAT.curie('purification_solvent'),
+                   model_uri=COREMETA4CAT.purification_solvent, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.temperature_ramp = Slot(uri=CATCORE.temperature_ramp, name="temperature_ramp", curie=CATCORE.curie('temperature_ramp'),
-                   model_uri=CATCORE.temperature_ramp, domain=None, range=Optional[Union[float, list[float]]])
+slots.temperature_ramp = Slot(uri=COREMETA4CAT.temperature_ramp, name="temperature_ramp", curie=COREMETA4CAT.curie('temperature_ramp'),
+                   model_uri=COREMETA4CAT.temperature_ramp, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.sample_state = Slot(uri=CATCORE.sample_state, name="sample_state", curie=CATCORE.curie('sample_state'),
-                   model_uri=CATCORE.sample_state, domain=None, range=Optional[Union[Union[str, "SampleStateEnum"], list[Union[str, "SampleStateEnum"]]]])
+slots.sample_state = Slot(uri=COREMETA4CAT.sample_state, name="sample_state", curie=COREMETA4CAT.curie('sample_state'),
+                   model_uri=COREMETA4CAT.sample_state, domain=None, range=Optional[Union[Union[str, "SampleStateEnum"], list[Union[str, "SampleStateEnum"]]]])
 
-slots.sample_description = Slot(uri=CATCORE.sample_description, name="sample_description", curie=CATCORE.curie('sample_description'),
-                   model_uri=CATCORE.sample_description, domain=None, range=Optional[Union[str, list[str]]])
+slots.sample_description = Slot(uri=COREMETA4CAT.sample_description, name="sample_description", curie=COREMETA4CAT.curie('sample_description'),
+                   model_uri=COREMETA4CAT.sample_description, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.sample_preparation = Slot(uri=AFP['0001159'], name="sample_preparation", curie=AFP.curie('0001159'),
-                   model_uri=CATCORE.sample_preparation, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.sample_preparation, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.detector_type = Slot(uri=AFR['0000317'], name="detector_type", curie=AFR.curie('0000317'),
-                   model_uri=CATCORE.detector_type, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.detector_type, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.xray_source = Slot(uri=OBI['0001138'], name="xray_source", curie=OBI.curie('0001138'),
-                   model_uri=CATCORE.xray_source, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.xray_source, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.monochromator = Slot(uri=CHMO['0002120'], name="monochromator", curie=CHMO.curie('0002120'),
-                   model_uri=CATCORE.monochromator, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.monochromator, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.minimum_energy = Slot(uri=CATCORE.minimum_energy, name="minimum_energy", curie=CATCORE.curie('minimum_energy'),
-                   model_uri=CATCORE.minimum_energy, domain=None, range=Optional[Union[float, list[float]]])
+slots.minimum_energy = Slot(uri=COREMETA4CAT.minimum_energy, name="minimum_energy", curie=COREMETA4CAT.curie('minimum_energy'),
+                   model_uri=COREMETA4CAT.minimum_energy, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.maximum_energy = Slot(uri=CATCORE.maximum_energy, name="maximum_energy", curie=CATCORE.curie('maximum_energy'),
-                   model_uri=CATCORE.maximum_energy, domain=None, range=Optional[Union[float, list[float]]])
+slots.maximum_energy = Slot(uri=COREMETA4CAT.maximum_energy, name="maximum_energy", curie=COREMETA4CAT.curie('maximum_energy'),
+                   model_uri=COREMETA4CAT.maximum_energy, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.gun_type = Slot(uri=CATCORE.gun_type, name="gun_type", curie=CATCORE.curie('gun_type'),
-                   model_uri=CATCORE.gun_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.gun_type = Slot(uri=COREMETA4CAT.gun_type, name="gun_type", curie=COREMETA4CAT.curie('gun_type'),
+                   model_uri=COREMETA4CAT.gun_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.acceleration_voltage = Slot(uri=CATCORE.acceleration_voltage, name="acceleration_voltage", curie=CATCORE.curie('acceleration_voltage'),
-                   model_uri=CATCORE.acceleration_voltage, domain=None, range=Optional[Union[float, list[float]]])
+slots.acceleration_voltage = Slot(uri=COREMETA4CAT.acceleration_voltage, name="acceleration_voltage", curie=COREMETA4CAT.curie('acceleration_voltage'),
+                   model_uri=COREMETA4CAT.acceleration_voltage, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.magnification_setting = Slot(uri=AFR['0002226'], name="magnification_setting", curie=AFR.curie('0002226'),
-                   model_uri=CATCORE.magnification_setting, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.magnification_setting, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.minimum_temperature = Slot(uri=CATCORE.minimum_temperature, name="minimum_temperature", curie=CATCORE.curie('minimum_temperature'),
-                   model_uri=CATCORE.minimum_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.minimum_temperature = Slot(uri=COREMETA4CAT.minimum_temperature, name="minimum_temperature", curie=COREMETA4CAT.curie('minimum_temperature'),
+                   model_uri=COREMETA4CAT.minimum_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.maximum_temperature = Slot(uri=CATCORE.maximum_temperature, name="maximum_temperature", curie=CATCORE.curie('maximum_temperature'),
-                   model_uri=CATCORE.maximum_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.maximum_temperature = Slot(uri=COREMETA4CAT.maximum_temperature, name="maximum_temperature", curie=COREMETA4CAT.curie('maximum_temperature'),
+                   model_uri=COREMETA4CAT.maximum_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.initial_temperature = Slot(uri=NCIT.C164644, name="initial_temperature", curie=NCIT.curie('C164644'),
-                   model_uri=CATCORE.initial_temperature, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.initial_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.final_temperature = Slot(uri=NCIT.C164644, name="final_temperature", curie=NCIT.curie('C164644'),
-                   model_uri=CATCORE.final_temperature, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.final_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.mz_minimum = Slot(uri=AFR['0002652'], name="mz_minimum", curie=AFR.curie('0002652'),
-                   model_uri=CATCORE.mz_minimum, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.mz_minimum, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.mz_maximum = Slot(uri=AFR['0002653'], name="mz_maximum", curie=AFR.curie('0002653'),
-                   model_uri=CATCORE.mz_maximum, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.mz_maximum, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.excitation_wavelength = Slot(uri=AFR['0002479'], name="excitation_wavelength", curie=AFR.curie('0002479'),
-                   model_uri=CATCORE.excitation_wavelength, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.excitation_wavelength, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.emission_wavelength = Slot(uri=NCIT.C204101, name="emission_wavelength", curie=NCIT.curie('C204101'),
-                   model_uri=CATCORE.emission_wavelength, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.emission_wavelength, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.optical_filter = Slot(uri=CATCORE.optical_filter, name="optical_filter", curie=CATCORE.curie('optical_filter'),
-                   model_uri=CATCORE.optical_filter, domain=None, range=Optional[Union[str, list[str]]])
+slots.optical_filter = Slot(uri=COREMETA4CAT.optical_filter, name="optical_filter", curie=COREMETA4CAT.curie('optical_filter'),
+                   model_uri=COREMETA4CAT.optical_filter, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.reference_electrode = Slot(uri=VOC4CAT['0007204'], name="reference_electrode", curie=VOC4CAT.curie('0007204'),
-                   model_uri=CATCORE.reference_electrode, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.reference_electrode, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.working_electrode = Slot(uri=VOC4CAT['0007202'], name="working_electrode", curie=VOC4CAT.curie('0007202'),
-                   model_uri=CATCORE.working_electrode, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.working_electrode, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.counter_electrode = Slot(uri=VOC4CAT['0007203'], name="counter_electrode", curie=VOC4CAT.curie('0007203'),
-                   model_uri=CATCORE.counter_electrode, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.counter_electrode, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.electrolyte_composition = Slot(uri=CATCORE.electrolyte_composition, name="electrolyte_composition", curie=CATCORE.curie('electrolyte_composition'),
-                   model_uri=CATCORE.electrolyte_composition, domain=None, range=Optional[Union[str, list[str]]])
+slots.electrolyte_composition = Slot(uri=COREMETA4CAT.electrolyte_composition, name="electrolyte_composition", curie=COREMETA4CAT.curie('electrolyte_composition'),
+                   model_uri=COREMETA4CAT.electrolyte_composition, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.electrolyte_concentration = Slot(uri=CATCORE.electrolyte_concentration, name="electrolyte_concentration", curie=CATCORE.curie('electrolyte_concentration'),
-                   model_uri=CATCORE.electrolyte_concentration, domain=None, range=Optional[Union[float, list[float]]])
+slots.electrolyte_concentration = Slot(uri=COREMETA4CAT.electrolyte_concentration, name="electrolyte_concentration", curie=COREMETA4CAT.curie('electrolyte_concentration'),
+                   model_uri=COREMETA4CAT.electrolyte_concentration, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.minimum_2theta = Slot(uri=CATCORE.minimum_2theta, name="minimum_2theta", curie=CATCORE.curie('minimum_2theta'),
-                   model_uri=CATCORE.minimum_2theta, domain=None, range=Optional[Union[float, list[float]]])
+slots.minimum_2theta = Slot(uri=COREMETA4CAT.minimum_2theta, name="minimum_2theta", curie=COREMETA4CAT.curie('minimum_2theta'),
+                   model_uri=COREMETA4CAT.minimum_2theta, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.maximum_2theta = Slot(uri=CATCORE.maximum_2theta, name="maximum_2theta", curie=CATCORE.curie('maximum_2theta'),
-                   model_uri=CATCORE.maximum_2theta, domain=None, range=Optional[Union[float, list[float]]])
+slots.maximum_2theta = Slot(uri=COREMETA4CAT.maximum_2theta, name="maximum_2theta", curie=COREMETA4CAT.curie('maximum_2theta'),
+                   model_uri=COREMETA4CAT.maximum_2theta, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.sample_spinning_speed = Slot(uri=CATCORE.sample_spinning_speed, name="sample_spinning_speed", curie=CATCORE.curie('sample_spinning_speed'),
-                   model_uri=CATCORE.sample_spinning_speed, domain=None, range=Optional[Union[float, list[float]]])
+slots.sample_spinning_speed = Slot(uri=COREMETA4CAT.sample_spinning_speed, name="sample_spinning_speed", curie=COREMETA4CAT.curie('sample_spinning_speed'),
+                   model_uri=COREMETA4CAT.sample_spinning_speed, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.absorption_edge = Slot(uri=CATCORE.absorption_edge, name="absorption_edge", curie=CATCORE.curie('absorption_edge'),
-                   model_uri=CATCORE.absorption_edge, domain=None, range=Optional[Union[str, list[str]]])
+slots.absorption_edge = Slot(uri=COREMETA4CAT.absorption_edge, name="absorption_edge", curie=COREMETA4CAT.curie('absorption_edge'),
+                   model_uri=COREMETA4CAT.absorption_edge, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.element_analyzed = Slot(uri=CATCORE.element_analyzed, name="element_analyzed", curie=CATCORE.curie('element_analyzed'),
-                   model_uri=CATCORE.element_analyzed, domain=None, range=Optional[Union[str, list[str]]])
+slots.element_analyzed = Slot(uri=COREMETA4CAT.element_analyzed, name="element_analyzed", curie=COREMETA4CAT.curie('element_analyzed'),
+                   model_uri=COREMETA4CAT.element_analyzed, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.beamline_source = Slot(uri=CATCORE.beamline_source, name="beamline_source", curie=CATCORE.curie('beamline_source'),
-                   model_uri=CATCORE.beamline_source, domain=None, range=Optional[Union[str, list[str]]])
+slots.beamline_source = Slot(uri=COREMETA4CAT.beamline_source, name="beamline_source", curie=COREMETA4CAT.curie('beamline_source'),
+                   model_uri=COREMETA4CAT.beamline_source, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.noise_of_measurement = Slot(uri=CATCORE.noise_of_measurement, name="noise_of_measurement", curie=CATCORE.curie('noise_of_measurement'),
-                   model_uri=CATCORE.noise_of_measurement, domain=None, range=Optional[Union[float, list[float]]])
+slots.noise_of_measurement = Slot(uri=COREMETA4CAT.noise_of_measurement, name="noise_of_measurement", curie=COREMETA4CAT.curie('noise_of_measurement'),
+                   model_uri=COREMETA4CAT.noise_of_measurement, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.energy_resolution = Slot(uri=AFR['0000950'], name="energy_resolution", curie=AFR.curie('0000950'),
-                   model_uri=CATCORE.energy_resolution, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.energy_resolution, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.total_acquisition_time = Slot(uri=CATCORE.total_acquisition_time, name="total_acquisition_time", curie=CATCORE.curie('total_acquisition_time'),
-                   model_uri=CATCORE.total_acquisition_time, domain=None, range=Optional[Union[float, list[float]]])
+slots.total_acquisition_time = Slot(uri=COREMETA4CAT.total_acquisition_time, name="total_acquisition_time", curie=COREMETA4CAT.curie('total_acquisition_time'),
+                   model_uri=COREMETA4CAT.total_acquisition_time, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.pass_energy = Slot(uri=CATCORE.pass_energy, name="pass_energy", curie=CATCORE.curie('pass_energy'),
-                   model_uri=CATCORE.pass_energy, domain=None, range=Optional[Union[float, list[float]]])
+slots.pass_energy = Slot(uri=COREMETA4CAT.pass_energy, name="pass_energy", curie=COREMETA4CAT.curie('pass_energy'),
+                   model_uri=COREMETA4CAT.pass_energy, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.spot_size = Slot(uri=CATCORE.spot_size, name="spot_size", curie=CATCORE.curie('spot_size'),
-                   model_uri=CATCORE.spot_size, domain=None, range=Optional[Union[float, list[float]]])
+slots.spot_size = Slot(uri=COREMETA4CAT.spot_size, name="spot_size", curie=COREMETA4CAT.curie('spot_size'),
+                   model_uri=COREMETA4CAT.spot_size, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.lense_mode = Slot(uri=VOC4CAT['0000108'], name="lense_mode", curie=VOC4CAT.curie('0000108'),
-                   model_uri=CATCORE.lense_mode, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.lense_mode, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.charge_compensation = Slot(uri=CATCORE.charge_compensation, name="charge_compensation", curie=CATCORE.curie('charge_compensation'),
-                   model_uri=CATCORE.charge_compensation, domain=None, range=Optional[Union[str, list[str]]])
+slots.charge_compensation = Slot(uri=COREMETA4CAT.charge_compensation, name="charge_compensation", curie=COREMETA4CAT.curie('charge_compensation'),
+                   model_uri=COREMETA4CAT.charge_compensation, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.primary_energy = Slot(uri=CATCORE.primary_energy, name="primary_energy", curie=CATCORE.curie('primary_energy'),
-                   model_uri=CATCORE.primary_energy, domain=None, range=Optional[Union[float, list[float]]])
+slots.primary_energy = Slot(uri=COREMETA4CAT.primary_energy, name="primary_energy", curie=COREMETA4CAT.curie('primary_energy'),
+                   model_uri=COREMETA4CAT.primary_energy, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.counting_time = Slot(uri=CATCORE.counting_time, name="counting_time", curie=CATCORE.curie('counting_time'),
-                   model_uri=CATCORE.counting_time, domain=None, range=Optional[Union[float, list[float]]])
+slots.counting_time = Slot(uri=COREMETA4CAT.counting_time, name="counting_time", curie=COREMETA4CAT.curie('counting_time'),
+                   model_uri=COREMETA4CAT.counting_time, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.minimum_wavenumber = Slot(uri=CATCORE.minimum_wavenumber, name="minimum_wavenumber", curie=CATCORE.curie('minimum_wavenumber'),
-                   model_uri=CATCORE.minimum_wavenumber, domain=None, range=Optional[Union[float, list[float]]])
+slots.minimum_wavenumber = Slot(uri=COREMETA4CAT.minimum_wavenumber, name="minimum_wavenumber", curie=COREMETA4CAT.curie('minimum_wavenumber'),
+                   model_uri=COREMETA4CAT.minimum_wavenumber, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.maximum_wavenumber = Slot(uri=CATCORE.maximum_wavenumber, name="maximum_wavenumber", curie=CATCORE.curie('maximum_wavenumber'),
-                   model_uri=CATCORE.maximum_wavenumber, domain=None, range=Optional[Union[float, list[float]]])
+slots.maximum_wavenumber = Slot(uri=COREMETA4CAT.maximum_wavenumber, name="maximum_wavenumber", curie=COREMETA4CAT.curie('maximum_wavenumber'),
+                   model_uri=COREMETA4CAT.maximum_wavenumber, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.background_correction = Slot(uri=AFP['0003721'], name="background_correction", curie=AFP.curie('0003721'),
-                   model_uri=CATCORE.background_correction, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.background_correction, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.adsorption_gas = Slot(uri=CATCORE.adsorption_gas, name="adsorption_gas", curie=CATCORE.curie('adsorption_gas'),
-                   model_uri=CATCORE.adsorption_gas, domain=None, range=Optional[Union[str, list[str]]])
+slots.adsorption_gas = Slot(uri=COREMETA4CAT.adsorption_gas, name="adsorption_gas", curie=COREMETA4CAT.curie('adsorption_gas'),
+                   model_uri=COREMETA4CAT.adsorption_gas, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.diluting_reference = Slot(uri=CATCORE.diluting_reference, name="diluting_reference", curie=CATCORE.curie('diluting_reference'),
-                   model_uri=CATCORE.diluting_reference, domain=None, range=Optional[Union[str, list[str]]])
+slots.diluting_reference = Slot(uri=COREMETA4CAT.diluting_reference, name="diluting_reference", curie=COREMETA4CAT.curie('diluting_reference'),
+                   model_uri=COREMETA4CAT.diluting_reference, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.ratio_reference_sample = Slot(uri=CATCORE.ratio_reference_sample, name="ratio_reference_sample", curie=CATCORE.curie('ratio_reference_sample'),
-                   model_uri=CATCORE.ratio_reference_sample, domain=None, range=Optional[Union[float, list[float]]])
+slots.ratio_reference_sample = Slot(uri=COREMETA4CAT.ratio_reference_sample, name="ratio_reference_sample", curie=COREMETA4CAT.curie('ratio_reference_sample'),
+                   model_uri=COREMETA4CAT.ratio_reference_sample, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.background_correction_method = Slot(uri=CATCORE.background_correction_method, name="background_correction_method", curie=CATCORE.curie('background_correction_method'),
-                   model_uri=CATCORE.background_correction_method, domain=None, range=Optional[Union[str, list[str]]])
+slots.background_correction_method = Slot(uri=COREMETA4CAT.background_correction_method, name="background_correction_method", curie=COREMETA4CAT.curie('background_correction_method'),
+                   model_uri=COREMETA4CAT.background_correction_method, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.excitation_laser_wavelength = Slot(uri=AFR['0001594'], name="excitation_laser_wavelength", curie=AFR.curie('0001594'),
-                   model_uri=CATCORE.excitation_laser_wavelength, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.excitation_laser_wavelength, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.excitation_laser_power = Slot(uri=AFR['0001595'], name="excitation_laser_power", curie=AFR.curie('0001595'),
-                   model_uri=CATCORE.excitation_laser_power, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.excitation_laser_power, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.filter_or_grating = Slot(uri=CATCORE.filter_or_grating, name="filter_or_grating", curie=CATCORE.curie('filter_or_grating'),
-                   model_uri=CATCORE.filter_or_grating, domain=None, range=Optional[Union[str, list[str]]])
+slots.filter_or_grating = Slot(uri=COREMETA4CAT.filter_or_grating, name="filter_or_grating", curie=COREMETA4CAT.curie('filter_or_grating'),
+                   model_uri=COREMETA4CAT.filter_or_grating, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.nucleus = Slot(uri=CATCORE.nucleus, name="nucleus", curie=CATCORE.curie('nucleus'),
-                   model_uri=CATCORE.nucleus, domain=None, range=Optional[Union[str, list[str]]])
+slots.nucleus = Slot(uri=COREMETA4CAT.nucleus, name="nucleus", curie=COREMETA4CAT.curie('nucleus'),
+                   model_uri=COREMETA4CAT.nucleus, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.irradiation_frequency = Slot(uri=CATCORE.irradiation_frequency, name="irradiation_frequency", curie=CATCORE.curie('irradiation_frequency'),
-                   model_uri=CATCORE.irradiation_frequency, domain=None, range=Optional[Union[float, list[float]]])
+slots.irradiation_frequency = Slot(uri=COREMETA4CAT.irradiation_frequency, name="irradiation_frequency", curie=COREMETA4CAT.curie('irradiation_frequency'),
+                   model_uri=COREMETA4CAT.irradiation_frequency, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.nmr_pulse_sequence = Slot(uri=CATCORE.nmr_pulse_sequence, name="nmr_pulse_sequence", curie=CATCORE.curie('nmr_pulse_sequence'),
-                   model_uri=CATCORE.nmr_pulse_sequence, domain=None, range=Optional[Union[str, list[str]]])
+slots.nmr_pulse_sequence = Slot(uri=COREMETA4CAT.nmr_pulse_sequence, name="nmr_pulse_sequence", curie=COREMETA4CAT.curie('nmr_pulse_sequence'),
+                   model_uri=COREMETA4CAT.nmr_pulse_sequence, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.nmr_sample_tube = Slot(uri=CATCORE.nmr_sample_tube, name="nmr_sample_tube", curie=CATCORE.curie('nmr_sample_tube'),
-                   model_uri=CATCORE.nmr_sample_tube, domain=None, range=Optional[Union[str, list[str]]])
+slots.nmr_sample_tube = Slot(uri=COREMETA4CAT.nmr_sample_tube, name="nmr_sample_tube", curie=COREMETA4CAT.curie('nmr_sample_tube'),
+                   model_uri=COREMETA4CAT.nmr_sample_tube, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.image_resolution = Slot(uri=CATCORE.image_resolution, name="image_resolution", curie=CATCORE.curie('image_resolution'),
-                   model_uri=CATCORE.image_resolution, domain=None, range=Optional[Union[float, list[float]]])
+slots.image_resolution = Slot(uri=COREMETA4CAT.image_resolution, name="image_resolution", curie=COREMETA4CAT.curie('image_resolution'),
+                   model_uri=COREMETA4CAT.image_resolution, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.field_emitter = Slot(uri=CATCORE.field_emitter, name="field_emitter", curie=CATCORE.curie('field_emitter'),
-                   model_uri=CATCORE.field_emitter, domain=None, range=Optional[Union[str, list[str]]])
+slots.field_emitter = Slot(uri=COREMETA4CAT.field_emitter, name="field_emitter", curie=COREMETA4CAT.curie('field_emitter'),
+                   model_uri=COREMETA4CAT.field_emitter, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.reducing_gas_composition = Slot(uri=CATCORE.reducing_gas_composition, name="reducing_gas_composition", curie=CATCORE.curie('reducing_gas_composition'),
-                   model_uri=CATCORE.reducing_gas_composition, domain=None, range=Optional[Union[str, list[str]]])
+slots.reducing_gas_composition = Slot(uri=COREMETA4CAT.reducing_gas_composition, name="reducing_gas_composition", curie=COREMETA4CAT.curie('reducing_gas_composition'),
+                   model_uri=COREMETA4CAT.reducing_gas_composition, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.oxidizing_gas_composition = Slot(uri=CATCORE.oxidizing_gas_composition, name="oxidizing_gas_composition", curie=CATCORE.curie('oxidizing_gas_composition'),
-                   model_uri=CATCORE.oxidizing_gas_composition, domain=None, range=Optional[Union[str, list[str]]])
+slots.oxidizing_gas_composition = Slot(uri=COREMETA4CAT.oxidizing_gas_composition, name="oxidizing_gas_composition", curie=COREMETA4CAT.curie('oxidizing_gas_composition'),
+                   model_uri=COREMETA4CAT.oxidizing_gas_composition, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.adsorbate_gas = Slot(uri=CATCORE.adsorbate_gas, name="adsorbate_gas", curie=CATCORE.curie('adsorbate_gas'),
-                   model_uri=CATCORE.adsorbate_gas, domain=None, range=Optional[Union[str, list[str]]])
+slots.adsorbate_gas = Slot(uri=COREMETA4CAT.adsorbate_gas, name="adsorbate_gas", curie=COREMETA4CAT.curie('adsorbate_gas'),
+                   model_uri=COREMETA4CAT.adsorbate_gas, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.degassing_temperature = Slot(uri=CATCORE.degassing_temperature, name="degassing_temperature", curie=CATCORE.curie('degassing_temperature'),
-                   model_uri=CATCORE.degassing_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.degassing_temperature = Slot(uri=COREMETA4CAT.degassing_temperature, name="degassing_temperature", curie=COREMETA4CAT.curie('degassing_temperature'),
+                   model_uri=COREMETA4CAT.degassing_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.measurement_temperature = Slot(uri=CATCORE.measurement_temperature, name="measurement_temperature", curie=CATCORE.curie('measurement_temperature'),
-                   model_uri=CATCORE.measurement_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.measurement_temperature = Slot(uri=COREMETA4CAT.measurement_temperature, name="measurement_temperature", curie=COREMETA4CAT.curie('measurement_temperature'),
+                   model_uri=COREMETA4CAT.measurement_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.pore_size_distribution_method = Slot(uri=CATCORE.pore_size_distribution_method, name="pore_size_distribution_method", curie=CATCORE.curie('pore_size_distribution_method'),
-                   model_uri=CATCORE.pore_size_distribution_method, domain=None, range=Optional[Union[str, list[str]]])
+slots.pore_size_distribution_method = Slot(uri=COREMETA4CAT.pore_size_distribution_method, name="pore_size_distribution_method", curie=COREMETA4CAT.curie('pore_size_distribution_method'),
+                   model_uri=COREMETA4CAT.pore_size_distribution_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.elements_analyzed = Slot(uri=CATCORE.elements_analyzed, name="elements_analyzed", curie=CATCORE.curie('elements_analyzed'),
-                   model_uri=CATCORE.elements_analyzed, domain=None, range=Optional[Union[str, list[str]]])
+slots.elements_analyzed = Slot(uri=COREMETA4CAT.elements_analyzed, name="elements_analyzed", curie=COREMETA4CAT.curie('elements_analyzed'),
+                   model_uri=COREMETA4CAT.elements_analyzed, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.combustion_temperature = Slot(uri=CATCORE.combustion_temperature, name="combustion_temperature", curie=CATCORE.curie('combustion_temperature'),
-                   model_uri=CATCORE.combustion_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.combustion_temperature = Slot(uri=COREMETA4CAT.combustion_temperature, name="combustion_temperature", curie=COREMETA4CAT.curie('combustion_temperature'),
+                   model_uri=COREMETA4CAT.combustion_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.detection_limit = Slot(uri=NCIT.C105701, name="detection_limit", curie=NCIT.curie('C105701'),
-                   model_uri=CATCORE.detection_limit, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.detection_limit, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.matrix_effect_correction = Slot(uri=CATCORE.matrix_effect_correction, name="matrix_effect_correction", curie=CATCORE.curie('matrix_effect_correction'),
-                   model_uri=CATCORE.matrix_effect_correction, domain=None, range=Optional[Union[str, list[str]]])
+slots.matrix_effect_correction = Slot(uri=COREMETA4CAT.matrix_effect_correction, name="matrix_effect_correction", curie=COREMETA4CAT.curie('matrix_effect_correction'),
+                   model_uri=COREMETA4CAT.matrix_effect_correction, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.minimum_wavelength = Slot(uri=CATCORE.minimum_wavelength, name="minimum_wavelength", curie=CATCORE.curie('minimum_wavelength'),
-                   model_uri=CATCORE.minimum_wavelength, domain=None, range=Optional[Union[float, list[float]]])
+slots.minimum_wavelength = Slot(uri=COREMETA4CAT.minimum_wavelength, name="minimum_wavelength", curie=COREMETA4CAT.curie('minimum_wavelength'),
+                   model_uri=COREMETA4CAT.minimum_wavelength, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.maximum_wavelength = Slot(uri=CATCORE.maximum_wavelength, name="maximum_wavelength", curie=CATCORE.curie('maximum_wavelength'),
-                   model_uri=CATCORE.maximum_wavelength, domain=None, range=Optional[Union[float, list[float]]])
+slots.maximum_wavelength = Slot(uri=COREMETA4CAT.maximum_wavelength, name="maximum_wavelength", curie=COREMETA4CAT.curie('maximum_wavelength'),
+                   model_uri=COREMETA4CAT.maximum_wavelength, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.path_length = Slot(uri=AFQ['0000268'], name="path_length", curie=AFQ.curie('0000268'),
-                   model_uri=CATCORE.path_length, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.path_length, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.emission_range = Slot(uri=CATCORE.emission_range, name="emission_range", curie=CATCORE.curie('emission_range'),
-                   model_uri=CATCORE.emission_range, domain=None, range=Optional[Union[str, list[str]]])
+slots.emission_range = Slot(uri=COREMETA4CAT.emission_range, name="emission_range", curie=COREMETA4CAT.curie('emission_range'),
+                   model_uri=COREMETA4CAT.emission_range, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.slit_width = Slot(uri=CATCORE.slit_width, name="slit_width", curie=CATCORE.curie('slit_width'),
-                   model_uri=CATCORE.slit_width, domain=None, range=Optional[Union[float, list[float]]])
+slots.slit_width = Slot(uri=COREMETA4CAT.slit_width, name="slit_width", curie=COREMETA4CAT.curie('slit_width'),
+                   model_uri=COREMETA4CAT.slit_width, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.lifetime_fitting_model = Slot(uri=CATCORE.lifetime_fitting_model, name="lifetime_fitting_model", curie=CATCORE.curie('lifetime_fitting_model'),
-                   model_uri=CATCORE.lifetime_fitting_model, domain=None, range=Optional[Union[str, list[str]]])
+slots.lifetime_fitting_model = Slot(uri=COREMETA4CAT.lifetime_fitting_model, name="lifetime_fitting_model", curie=COREMETA4CAT.curie('lifetime_fitting_model'),
+                   model_uri=COREMETA4CAT.lifetime_fitting_model, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.number_of_shots = Slot(uri=CATCORE.number_of_shots, name="number_of_shots", curie=CATCORE.curie('number_of_shots'),
-                   model_uri=CATCORE.number_of_shots, domain=None, range=Optional[Union[int, list[int]]])
+slots.number_of_shots = Slot(uri=COREMETA4CAT.number_of_shots, name="number_of_shots", curie=COREMETA4CAT.curie('number_of_shots'),
+                   model_uri=COREMETA4CAT.number_of_shots, domain=None, range=Optional[Union[int, list[int]]])
 
 slots.scan_rate = Slot(uri=VOC4CAT['0007213'], name="scan_rate", curie=VOC4CAT.curie('0007213'),
-                   model_uri=CATCORE.scan_rate, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.scan_rate, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.minimum_potential = Slot(uri=CATCORE.minimum_potential, name="minimum_potential", curie=CATCORE.curie('minimum_potential'),
-                   model_uri=CATCORE.minimum_potential, domain=None, range=Optional[Union[float, list[float]]])
+slots.minimum_potential = Slot(uri=COREMETA4CAT.minimum_potential, name="minimum_potential", curie=COREMETA4CAT.curie('minimum_potential'),
+                   model_uri=COREMETA4CAT.minimum_potential, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.maximum_potential = Slot(uri=CATCORE.maximum_potential, name="maximum_potential", curie=CATCORE.curie('maximum_potential'),
-                   model_uri=CATCORE.maximum_potential, domain=None, range=Optional[Union[float, list[float]]])
+slots.maximum_potential = Slot(uri=COREMETA4CAT.maximum_potential, name="maximum_potential", curie=COREMETA4CAT.curie('maximum_potential'),
+                   model_uri=COREMETA4CAT.maximum_potential, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.step_size_potential = Slot(uri=VOC4CAT['0007218'], name="step_size_potential", curie=VOC4CAT.curie('0007218'),
-                   model_uri=CATCORE.step_size_potential, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.step_size_potential, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.electrode_configuration = Slot(uri=CATCORE.electrode_configuration, name="electrode_configuration", curie=CATCORE.curie('electrode_configuration'),
-                   model_uri=CATCORE.electrode_configuration, domain=None, range=Optional[Union[str, list[str]]])
+slots.electrode_configuration = Slot(uri=COREMETA4CAT.electrode_configuration, name="electrode_configuration", curie=COREMETA4CAT.curie('electrode_configuration'),
+                   model_uri=COREMETA4CAT.electrode_configuration, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.ac_frequency = Slot(uri=VOC4CAT['0007239'], name="ac_frequency", curie=VOC4CAT.curie('0007239'),
-                   model_uri=CATCORE.ac_frequency, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.ac_frequency, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.ac_dc_mode = Slot(uri=CATCORE.ac_dc_mode, name="ac_dc_mode", curie=CATCORE.curie('ac_dc_mode'),
-                   model_uri=CATCORE.ac_dc_mode, domain=None, range=Optional[Union[str, list[str]]])
+slots.ac_dc_mode = Slot(uri=COREMETA4CAT.ac_dc_mode, name="ac_dc_mode", curie=COREMETA4CAT.curie('ac_dc_mode'),
+                   model_uri=COREMETA4CAT.ac_dc_mode, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.sample_geometry = Slot(uri=CATCORE.sample_geometry, name="sample_geometry", curie=CATCORE.curie('sample_geometry'),
-                   model_uri=CATCORE.sample_geometry, domain=None, range=Optional[Union[str, list[str]]])
+slots.sample_geometry = Slot(uri=COREMETA4CAT.sample_geometry, name="sample_geometry", curie=COREMETA4CAT.curie('sample_geometry'),
+                   model_uri=COREMETA4CAT.sample_geometry, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.light_wavelength = Slot(uri=VOC4CAT['0000176'], name="light_wavelength", curie=VOC4CAT.curie('0000176'),
-                   model_uri=CATCORE.light_wavelength, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.light_wavelength, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.scattering_angle = Slot(uri=CATCORE.scattering_angle, name="scattering_angle", curie=CATCORE.curie('scattering_angle'),
-                   model_uri=CATCORE.scattering_angle, domain=None, range=Optional[Union[float, list[float]]])
+slots.scattering_angle = Slot(uri=COREMETA4CAT.scattering_angle, name="scattering_angle", curie=COREMETA4CAT.curie('scattering_angle'),
+                   model_uri=COREMETA4CAT.scattering_angle, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.refractive_index = Slot(uri=CATCORE.refractive_index, name="refractive_index", curie=CATCORE.curie('refractive_index'),
-                   model_uri=CATCORE.refractive_index, domain=None, range=Optional[Union[float, list[float]]])
+slots.refractive_index = Slot(uri=COREMETA4CAT.refractive_index, name="refractive_index", curie=COREMETA4CAT.curie('refractive_index'),
+                   model_uri=COREMETA4CAT.refractive_index, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.measurement_duration = Slot(uri=CATCORE.measurement_duration, name="measurement_duration", curie=CATCORE.curie('measurement_duration'),
-                   model_uri=CATCORE.measurement_duration, domain=None, range=Optional[Union[float, list[float]]])
+slots.measurement_duration = Slot(uri=COREMETA4CAT.measurement_duration, name="measurement_duration", curie=COREMETA4CAT.curie('measurement_duration'),
+                   model_uri=COREMETA4CAT.measurement_duration, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.spray_voltage = Slot(uri=CHMO['0002792'], name="spray_voltage", curie=CHMO.curie('0002792'),
-                   model_uri=CATCORE.spray_voltage, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.spray_voltage, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.capillary_temperature = Slot(uri=CATCORE.capillary_temperature, name="capillary_temperature", curie=CATCORE.curie('capillary_temperature'),
-                   model_uri=CATCORE.capillary_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.capillary_temperature = Slot(uri=COREMETA4CAT.capillary_temperature, name="capillary_temperature", curie=COREMETA4CAT.curie('capillary_temperature'),
+                   model_uri=COREMETA4CAT.capillary_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.solvent_composition = Slot(uri=VOC4CAT['0007246'], name="solvent_composition", curie=VOC4CAT.curie('0007246'),
-                   model_uri=CATCORE.solvent_composition, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.solvent_composition, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.carrier_gas_purity = Slot(uri=CATCORE.carrier_gas_purity, name="carrier_gas_purity", curie=CATCORE.curie('carrier_gas_purity'),
-                   model_uri=CATCORE.carrier_gas_purity, domain=None, range=Optional[Union[str, list[str]]])
+slots.carrier_gas_purity = Slot(uri=COREMETA4CAT.carrier_gas_purity, name="carrier_gas_purity", curie=COREMETA4CAT.curie('carrier_gas_purity'),
+                   model_uri=COREMETA4CAT.carrier_gas_purity, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.inlet_temperature = Slot(uri=CATCORE.inlet_temperature, name="inlet_temperature", curie=CATCORE.curie('inlet_temperature'),
-                   model_uri=CATCORE.inlet_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.inlet_temperature = Slot(uri=COREMETA4CAT.inlet_temperature, name="inlet_temperature", curie=COREMETA4CAT.curie('inlet_temperature'),
+                   model_uri=COREMETA4CAT.inlet_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.minimum_oven_temperature = Slot(uri=CATCORE.minimum_oven_temperature, name="minimum_oven_temperature", curie=CATCORE.curie('minimum_oven_temperature'),
-                   model_uri=CATCORE.minimum_oven_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.minimum_oven_temperature = Slot(uri=COREMETA4CAT.minimum_oven_temperature, name="minimum_oven_temperature", curie=COREMETA4CAT.curie('minimum_oven_temperature'),
+                   model_uri=COREMETA4CAT.minimum_oven_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.maximum_oven_temperature = Slot(uri=CATCORE.maximum_oven_temperature, name="maximum_oven_temperature", curie=CATCORE.curie('maximum_oven_temperature'),
-                   model_uri=CATCORE.maximum_oven_temperature, domain=None, range=Optional[Union[float, list[float]]])
+slots.maximum_oven_temperature = Slot(uri=COREMETA4CAT.maximum_oven_temperature, name="maximum_oven_temperature", curie=COREMETA4CAT.curie('maximum_oven_temperature'),
+                   model_uri=COREMETA4CAT.maximum_oven_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.heating_ramp = Slot(uri=CATCORE.heating_ramp, name="heating_ramp", curie=CATCORE.curie('heating_ramp'),
-                   model_uri=CATCORE.heating_ramp, domain=None, range=Optional[Union[float, list[float]]])
+slots.heating_ramp = Slot(uri=COREMETA4CAT.heating_ramp, name="heating_ramp", curie=COREMETA4CAT.curie('heating_ramp'),
+                   model_uri=COREMETA4CAT.heating_ramp, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.acquisition_mode = Slot(uri=CATCORE.acquisition_mode, name="acquisition_mode", curie=CATCORE.curie('acquisition_mode'),
-                   model_uri=CATCORE.acquisition_mode, domain=None, range=Optional[Union[str, list[str]]])
+slots.acquisition_mode = Slot(uri=COREMETA4CAT.acquisition_mode, name="acquisition_mode", curie=COREMETA4CAT.curie('acquisition_mode'),
+                   model_uri=COREMETA4CAT.acquisition_mode, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.solvent_delay = Slot(uri=CATCORE.solvent_delay, name="solvent_delay", curie=CATCORE.curie('solvent_delay'),
-                   model_uri=CATCORE.solvent_delay, domain=None, range=Optional[Union[float, list[float]]])
+slots.solvent_delay = Slot(uri=COREMETA4CAT.solvent_delay, name="solvent_delay", curie=COREMETA4CAT.curie('solvent_delay'),
+                   model_uri=COREMETA4CAT.solvent_delay, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.trace_ion_detection = Slot(uri=CATCORE.trace_ion_detection, name="trace_ion_detection", curie=CATCORE.curie('trace_ion_detection'),
-                   model_uri=CATCORE.trace_ion_detection, domain=None, range=Optional[Union[str, list[str]]])
+slots.trace_ion_detection = Slot(uri=COREMETA4CAT.trace_ion_detection, name="trace_ion_detection", curie=COREMETA4CAT.curie('trace_ion_detection'),
+                   model_uri=COREMETA4CAT.trace_ion_detection, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.split_ratio = Slot(uri=CATCORE.split_ratio, name="split_ratio", curie=CATCORE.curie('split_ratio'),
-                   model_uri=CATCORE.split_ratio, domain=None, range=Optional[Union[float, list[float]]])
+slots.split_ratio = Slot(uri=COREMETA4CAT.split_ratio, name="split_ratio", curie=COREMETA4CAT.curie('split_ratio'),
+                   model_uri=COREMETA4CAT.split_ratio, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.eluent = Slot(uri=AFRL['0000011'], name="eluent", curie=AFRL.curie('0000011'),
-                   model_uri=CATCORE.eluent, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.eluent, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.calibration_standard = Slot(uri=CATCORE.calibration_standard, name="calibration_standard", curie=CATCORE.curie('calibration_standard'),
-                   model_uri=CATCORE.calibration_standard, domain=None, range=Optional[Union[str, list[str]]])
+slots.calibration_standard = Slot(uri=COREMETA4CAT.calibration_standard, name="calibration_standard", curie=COREMETA4CAT.curie('calibration_standard'),
+                   model_uri=COREMETA4CAT.calibration_standard, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.gradient_program = Slot(uri=CATCORE.gradient_program, name="gradient_program", curie=CATCORE.curie('gradient_program'),
-                   model_uri=CATCORE.gradient_program, domain=None, range=Optional[Union[str, list[str]]])
+slots.gradient_program = Slot(uri=COREMETA4CAT.gradient_program, name="gradient_program", curie=COREMETA4CAT.curie('gradient_program'),
+                   model_uri=COREMETA4CAT.gradient_program, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.ionization_mode = Slot(uri=CATCORE.ionization_mode, name="ionization_mode", curie=CATCORE.curie('ionization_mode'),
-                   model_uri=CATCORE.ionization_mode, domain=None, range=Optional[Union[str, list[str]]])
+slots.ionization_mode = Slot(uri=COREMETA4CAT.ionization_mode, name="ionization_mode", curie=COREMETA4CAT.curie('ionization_mode'),
+                   model_uri=COREMETA4CAT.ionization_mode, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.catalyst_quantity = Slot(uri=CATCORE.catalyst_quantity, name="catalyst_quantity", curie=CATCORE.curie('catalyst_quantity'),
-                   model_uri=CATCORE.catalyst_quantity, domain=None, range=Union[float, list[float]])
+slots.catalyst_quantity = Slot(uri=COREMETA4CAT.catalyst_quantity, name="catalyst_quantity", curie=COREMETA4CAT.curie('catalyst_quantity'),
+                   model_uri=COREMETA4CAT.catalyst_quantity, domain=None, range=Union[float, list[float]])
 
 slots.reactant = Slot(uri=VOC4CAT['0000101'], name="reactant", curie=VOC4CAT.curie('0000101'),
-                   model_uri=CATCORE.reactant, domain=None, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.reactant, domain=None, range=Union[str, list[str]])
 
 slots.catalyst_type = Slot(uri=VOC4CAT['0007014'], name="catalyst_type", curie=VOC4CAT.curie('0007014'),
-                   model_uri=CATCORE.catalyst_type, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.catalyst_type, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.reactor_temperature_range = Slot(uri=VOC4CAT['0007032'], name="reactor_temperature_range", curie=VOC4CAT.curie('0007032'),
-                   model_uri=CATCORE.reactor_temperature_range, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.reactor_temperature_range, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.experiment_pressure = Slot(uri=VOC4CAT['0000118'], name="experiment_pressure", curie=VOC4CAT.curie('0000118'),
-                   model_uri=CATCORE.experiment_pressure, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.experiment_pressure, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.feed_composition_range = Slot(uri=CATCORE.feed_composition_range, name="feed_composition_range", curie=CATCORE.curie('feed_composition_range'),
-                   model_uri=CATCORE.feed_composition_range, domain=None, range=Optional[Union[str, list[str]]])
+slots.feed_composition_range = Slot(uri=COREMETA4CAT.feed_composition_range, name="feed_composition_range", curie=COREMETA4CAT.curie('feed_composition_range'),
+                   model_uri=COREMETA4CAT.feed_composition_range, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.gas_distributor_type = Slot(uri=CATCORE.gas_distributor_type, name="gas_distributor_type", curie=CATCORE.curie('gas_distributor_type'),
-                   model_uri=CATCORE.gas_distributor_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.gas_distributor_type = Slot(uri=COREMETA4CAT.gas_distributor_type, name="gas_distributor_type", curie=COREMETA4CAT.curie('gas_distributor_type'),
+                   model_uri=COREMETA4CAT.gas_distributor_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.bed_expansion_height = Slot(uri=CATCORE.bed_expansion_height, name="bed_expansion_height", curie=CATCORE.curie('bed_expansion_height'),
-                   model_uri=CATCORE.bed_expansion_height, domain=None, range=Optional[Union[float, list[float]]])
+slots.bed_expansion_height = Slot(uri=COREMETA4CAT.bed_expansion_height, name="bed_expansion_height", curie=COREMETA4CAT.curie('bed_expansion_height'),
+                   model_uri=COREMETA4CAT.bed_expansion_height, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.bubble_size_distribution = Slot(uri=CATCORE.bubble_size_distribution, name="bubble_size_distribution", curie=CATCORE.curie('bubble_size_distribution'),
-                   model_uri=CATCORE.bubble_size_distribution, domain=None, range=Optional[str])
+slots.bubble_size_distribution = Slot(uri=COREMETA4CAT.bubble_size_distribution, name="bubble_size_distribution", curie=COREMETA4CAT.curie('bubble_size_distribution'),
+                   model_uri=COREMETA4CAT.bubble_size_distribution, domain=None, range=Optional[str])
 
-slots.software_package = Slot(uri=CATCORE.software_package, name="software_package", curie=CATCORE.curie('software_package'),
-                   model_uri=CATCORE.software_package, domain=None, range=Union[str, list[str]])
+slots.software_package = Slot(uri=COREMETA4CAT.software_package, name="software_package", curie=COREMETA4CAT.curie('software_package'),
+                   model_uri=COREMETA4CAT.software_package, domain=None, range=Union[str, list[str]])
 
-slots.calculated_property = Slot(uri=CATCORE.calculated_property, name="calculated_property", curie=CATCORE.curie('calculated_property'),
-                   model_uri=CATCORE.calculated_property, domain=None, range=Union[Union[dict, CalculatedProperty], list[Union[dict, CalculatedProperty]]])
+slots.calculated_property = Slot(uri=COREMETA4CAT.calculated_property, name="calculated_property", curie=COREMETA4CAT.curie('calculated_property'),
+                   model_uri=COREMETA4CAT.calculated_property, domain=None, range=Union[Union[dict, CalculatedProperty], list[Union[dict, CalculatedProperty]]])
 
-slots.exchange_correlation_functional = Slot(uri=CATCORE.exchange_correlation_functional, name="exchange_correlation_functional", curie=CATCORE.curie('exchange_correlation_functional'),
-                   model_uri=CATCORE.exchange_correlation_functional, domain=None, range=Optional[Union[str, list[str]]])
+slots.exchange_correlation_functional = Slot(uri=COREMETA4CAT.exchange_correlation_functional, name="exchange_correlation_functional", curie=COREMETA4CAT.curie('exchange_correlation_functional'),
+                   model_uri=COREMETA4CAT.exchange_correlation_functional, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.energy_cutoff = Slot(uri=CATCORE.energy_cutoff, name="energy_cutoff", curie=CATCORE.curie('energy_cutoff'),
-                   model_uri=CATCORE.energy_cutoff, domain=None, range=Optional[Union[float, list[float]]])
+slots.energy_cutoff = Slot(uri=COREMETA4CAT.energy_cutoff, name="energy_cutoff", curie=COREMETA4CAT.curie('energy_cutoff'),
+                   model_uri=COREMETA4CAT.energy_cutoff, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.convergence_criteria = Slot(uri=CATCORE.convergence_criteria, name="convergence_criteria", curie=CATCORE.curie('convergence_criteria'),
-                   model_uri=CATCORE.convergence_criteria, domain=None, range=Optional[Union[str, list[str]]])
+slots.convergence_criteria = Slot(uri=COREMETA4CAT.convergence_criteria, name="convergence_criteria", curie=COREMETA4CAT.curie('convergence_criteria'),
+                   model_uri=COREMETA4CAT.convergence_criteria, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.dft_u_parameters = Slot(uri=CATCORE.dft_u_parameters, name="dft_u_parameters", curie=CATCORE.curie('dft_u_parameters'),
-                   model_uri=CATCORE.dft_u_parameters, domain=None, range=Optional[Union[str, list[str]]])
+slots.dft_u_parameters = Slot(uri=COREMETA4CAT.dft_u_parameters, name="dft_u_parameters", curie=COREMETA4CAT.curie('dft_u_parameters'),
+                   model_uri=COREMETA4CAT.dft_u_parameters, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.spin_polarization = Slot(uri=CATCORE.spin_polarization, name="spin_polarization", curie=CATCORE.curie('spin_polarization'),
-                   model_uri=CATCORE.spin_polarization, domain=None, range=Optional[Union[Union[bool, Bool], list[Union[bool, Bool]]]])
+slots.spin_polarization = Slot(uri=COREMETA4CAT.spin_polarization, name="spin_polarization", curie=COREMETA4CAT.curie('spin_polarization'),
+                   model_uri=COREMETA4CAT.spin_polarization, domain=None, range=Optional[Union[Union[bool, Bool], list[Union[bool, Bool]]]])
 
-slots.total_energy_per_atom = Slot(uri=CATCORE.total_energy_per_atom, name="total_energy_per_atom", curie=CATCORE.curie('total_energy_per_atom'),
-                   model_uri=CATCORE.total_energy_per_atom, domain=None, range=Optional[Union[float, list[float]]])
+slots.total_energy_per_atom = Slot(uri=COREMETA4CAT.total_energy_per_atom, name="total_energy_per_atom", curie=COREMETA4CAT.curie('total_energy_per_atom'),
+                   model_uri=COREMETA4CAT.total_energy_per_atom, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.force_field = Slot(uri=CATCORE.force_field, name="force_field", curie=CATCORE.curie('force_field'),
-                   model_uri=CATCORE.force_field, domain=None, range=Optional[Union[str, list[str]]])
+slots.force_field = Slot(uri=COREMETA4CAT.force_field, name="force_field", curie=COREMETA4CAT.curie('force_field'),
+                   model_uri=COREMETA4CAT.force_field, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.simulation_timestep = Slot(uri=APOLLO_SV['00000012'], name="simulation_timestep", curie=APOLLO_SV.curie('00000012'),
-                   model_uri=CATCORE.simulation_timestep, domain=None, range=Optional[Union[float, list[float]]])
+                   model_uri=COREMETA4CAT.simulation_timestep, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.simulation_time = Slot(uri=CATCORE.simulation_time, name="simulation_time", curie=CATCORE.curie('simulation_time'),
-                   model_uri=CATCORE.simulation_time, domain=None, range=Optional[Union[float, list[float]]])
+slots.simulation_time = Slot(uri=COREMETA4CAT.simulation_time, name="simulation_time", curie=COREMETA4CAT.curie('simulation_time'),
+                   model_uri=COREMETA4CAT.simulation_time, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.ensemble_type = Slot(uri=CATCORE.ensemble_type, name="ensemble_type", curie=CATCORE.curie('ensemble_type'),
-                   model_uri=CATCORE.ensemble_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.ensemble_type = Slot(uri=COREMETA4CAT.ensemble_type, name="ensemble_type", curie=COREMETA4CAT.curie('ensemble_type'),
+                   model_uri=COREMETA4CAT.ensemble_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.number_of_atoms = Slot(uri=CATCORE.number_of_atoms, name="number_of_atoms", curie=CATCORE.curie('number_of_atoms'),
-                   model_uri=CATCORE.number_of_atoms, domain=None, range=Optional[Union[int, list[int]]])
+slots.number_of_atoms = Slot(uri=COREMETA4CAT.number_of_atoms, name="number_of_atoms", curie=COREMETA4CAT.curie('number_of_atoms'),
+                   model_uri=COREMETA4CAT.number_of_atoms, domain=None, range=Optional[Union[int, list[int]]])
 
 slots.rate_constants = Slot(uri=NCIT.C94967, name="rate_constants", curie=NCIT.curie('C94967'),
-                   model_uri=CATCORE.rate_constants, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.rate_constants, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.solver_type = Slot(uri=CATCORE.solver_type, name="solver_type", curie=CATCORE.curie('solver_type'),
-                   model_uri=CATCORE.solver_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.solver_type = Slot(uri=COREMETA4CAT.solver_type, name="solver_type", curie=COREMETA4CAT.curie('solver_type'),
+                   model_uri=COREMETA4CAT.solver_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.pressure = Slot(uri=CATCORE.pressure, name="pressure", curie=CATCORE.curie('pressure'),
-                   model_uri=CATCORE.pressure, domain=None, range=Optional[Union[float, list[float]]])
+slots.pressure = Slot(uri=COREMETA4CAT.pressure, name="pressure", curie=COREMETA4CAT.curie('pressure'),
+                   model_uri=COREMETA4CAT.pressure, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.surface_coverage = Slot(uri=CATCORE.surface_coverage, name="surface_coverage", curie=CATCORE.curie('surface_coverage'),
-                   model_uri=CATCORE.surface_coverage, domain=None, range=Optional[Union[float, list[float]]])
+slots.surface_coverage = Slot(uri=COREMETA4CAT.surface_coverage, name="surface_coverage", curie=COREMETA4CAT.curie('surface_coverage'),
+                   model_uri=COREMETA4CAT.surface_coverage, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.activation_energy = Slot(uri=CATCORE.activation_energy, name="activation_energy", curie=CATCORE.curie('activation_energy'),
-                   model_uri=CATCORE.activation_energy, domain=None, range=Optional[Union[float, list[float]]])
+slots.activation_energy = Slot(uri=COREMETA4CAT.activation_energy, name="activation_energy", curie=COREMETA4CAT.curie('activation_energy'),
+                   model_uri=COREMETA4CAT.activation_energy, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.interaction_potential = Slot(uri=CATCORE.interaction_potential, name="interaction_potential", curie=CATCORE.curie('interaction_potential'),
-                   model_uri=CATCORE.interaction_potential, domain=None, range=Optional[Union[str, list[str]]])
+slots.interaction_potential = Slot(uri=COREMETA4CAT.interaction_potential, name="interaction_potential", curie=COREMETA4CAT.curie('interaction_potential'),
+                   model_uri=COREMETA4CAT.interaction_potential, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.number_of_steps = Slot(uri=CATCORE.number_of_steps, name="number_of_steps", curie=CATCORE.curie('number_of_steps'),
-                   model_uri=CATCORE.number_of_steps, domain=None, range=Optional[Union[int, list[int]]])
+slots.number_of_steps = Slot(uri=COREMETA4CAT.number_of_steps, name="number_of_steps", curie=COREMETA4CAT.curie('number_of_steps'),
+                   model_uri=COREMETA4CAT.number_of_steps, domain=None, range=Optional[Union[int, list[int]]])
 
-slots.lattice_size_type = Slot(uri=CATCORE.lattice_size_type, name="lattice_size_type", curie=CATCORE.curie('lattice_size_type'),
-                   model_uri=CATCORE.lattice_size_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.lattice_size_type = Slot(uri=COREMETA4CAT.lattice_size_type, name="lattice_size_type", curie=COREMETA4CAT.curie('lattice_size_type'),
+                   model_uri=COREMETA4CAT.lattice_size_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.acceptance_criteria = Slot(uri=CATCORE.acceptance_criteria, name="acceptance_criteria", curie=CATCORE.curie('acceptance_criteria'),
-                   model_uri=CATCORE.acceptance_criteria, domain=None, range=Optional[Union[str, list[str]]])
+slots.acceptance_criteria = Slot(uri=COREMETA4CAT.acceptance_criteria, name="acceptance_criteria", curie=COREMETA4CAT.curie('acceptance_criteria'),
+                   model_uri=COREMETA4CAT.acceptance_criteria, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.equilibration_steps = Slot(uri=CATCORE.equilibration_steps, name="equilibration_steps", curie=CATCORE.curie('equilibration_steps'),
-                   model_uri=CATCORE.equilibration_steps, domain=None, range=Optional[Union[int, list[int]]])
+slots.equilibration_steps = Slot(uri=COREMETA4CAT.equilibration_steps, name="equilibration_steps", curie=COREMETA4CAT.curie('equilibration_steps'),
+                   model_uri=COREMETA4CAT.equilibration_steps, domain=None, range=Optional[Union[int, list[int]]])
 
-slots.sampling_interval = Slot(uri=CATCORE.sampling_interval, name="sampling_interval", curie=CATCORE.curie('sampling_interval'),
-                   model_uri=CATCORE.sampling_interval, domain=None, range=Optional[Union[int, list[int]]])
+slots.sampling_interval = Slot(uri=COREMETA4CAT.sampling_interval, name="sampling_interval", curie=COREMETA4CAT.curie('sampling_interval'),
+                   model_uri=COREMETA4CAT.sampling_interval, domain=None, range=Optional[Union[int, list[int]]])
 
-slots.material_composition = Slot(uri=CATCORE.material_composition, name="material_composition", curie=CATCORE.curie('material_composition'),
-                   model_uri=CATCORE.material_composition, domain=None, range=Optional[Union[str, list[str]]])
+slots.material_composition = Slot(uri=COREMETA4CAT.material_composition, name="material_composition", curie=COREMETA4CAT.curie('material_composition'),
+                   model_uri=COREMETA4CAT.material_composition, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.crystal_structure = Slot(uri=SIO['001100'], name="crystal_structure", curie=SIO.curie('001100'),
-                   model_uri=CATCORE.crystal_structure, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.crystal_structure, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.k_point_mesh = Slot(uri=CATCORE.k_point_mesh, name="k_point_mesh", curie=CATCORE.curie('k_point_mesh'),
-                   model_uri=CATCORE.k_point_mesh, domain=None, range=Optional[Union[str, list[str]]])
+slots.k_point_mesh = Slot(uri=COREMETA4CAT.k_point_mesh, name="k_point_mesh", curie=COREMETA4CAT.curie('k_point_mesh'),
+                   model_uri=COREMETA4CAT.k_point_mesh, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.formation_energy = Slot(uri=CATCORE.formation_energy, name="formation_energy", curie=CATCORE.curie('formation_energy'),
-                   model_uri=CATCORE.formation_energy, domain=None, range=Optional[Union[float, list[float]]])
+slots.formation_energy = Slot(uri=COREMETA4CAT.formation_energy, name="formation_energy", curie=COREMETA4CAT.curie('formation_energy'),
+                   model_uri=COREMETA4CAT.formation_energy, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.reference_energies = Slot(uri=CATCORE.reference_energies, name="reference_energies", curie=CATCORE.curie('reference_energies'),
-                   model_uri=CATCORE.reference_energies, domain=None, range=Optional[Union[str, list[str]]])
+slots.reference_energies = Slot(uri=COREMETA4CAT.reference_energies, name="reference_energies", curie=COREMETA4CAT.curie('reference_energies'),
+                   model_uri=COREMETA4CAT.reference_energies, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.energy_above_hull = Slot(uri=CATCORE.energy_above_hull, name="energy_above_hull", curie=CATCORE.curie('energy_above_hull'),
-                   model_uri=CATCORE.energy_above_hull, domain=None, range=Optional[Union[float, list[float]]])
+slots.energy_above_hull = Slot(uri=COREMETA4CAT.energy_above_hull, name="energy_above_hull", curie=COREMETA4CAT.curie('energy_above_hull'),
+                   model_uri=COREMETA4CAT.energy_above_hull, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.phase_diagram_type = Slot(uri=CATCORE.phase_diagram_type, name="phase_diagram_type", curie=CATCORE.curie('phase_diagram_type'),
-                   model_uri=CATCORE.phase_diagram_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.phase_diagram_type = Slot(uri=COREMETA4CAT.phase_diagram_type, name="phase_diagram_type", curie=COREMETA4CAT.curie('phase_diagram_type'),
+                   model_uri=COREMETA4CAT.phase_diagram_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.competing_phases = Slot(uri=CATCORE.competing_phases, name="competing_phases", curie=CATCORE.curie('competing_phases'),
-                   model_uri=CATCORE.competing_phases, domain=None, range=Optional[Union[str, list[str]]])
+slots.competing_phases = Slot(uri=COREMETA4CAT.competing_phases, name="competing_phases", curie=COREMETA4CAT.curie('competing_phases'),
+                   model_uri=COREMETA4CAT.competing_phases, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.piezoelectric_tensor = Slot(uri=CATCORE.piezoelectric_tensor, name="piezoelectric_tensor", curie=CATCORE.curie('piezoelectric_tensor'),
-                   model_uri=CATCORE.piezoelectric_tensor, domain=None, range=Optional[Union[str, list[str]]])
+slots.piezoelectric_tensor = Slot(uri=COREMETA4CAT.piezoelectric_tensor, name="piezoelectric_tensor", curie=COREMETA4CAT.curie('piezoelectric_tensor'),
+                   model_uri=COREMETA4CAT.piezoelectric_tensor, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.crystal_symmetry = Slot(uri=CATCORE.crystal_symmetry, name="crystal_symmetry", curie=CATCORE.curie('crystal_symmetry'),
-                   model_uri=CATCORE.crystal_symmetry, domain=None, range=Optional[Union[str, list[str]]])
+slots.crystal_symmetry = Slot(uri=COREMETA4CAT.crystal_symmetry, name="crystal_symmetry", curie=COREMETA4CAT.curie('crystal_symmetry'),
+                   model_uri=COREMETA4CAT.crystal_symmetry, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.strain_applied = Slot(uri=CATCORE.strain_applied, name="strain_applied", curie=CATCORE.curie('strain_applied'),
-                   model_uri=CATCORE.strain_applied, domain=None, range=Optional[Union[float, list[float]]])
+slots.strain_applied = Slot(uri=COREMETA4CAT.strain_applied, name="strain_applied", curie=COREMETA4CAT.curie('strain_applied'),
+                   model_uri=COREMETA4CAT.strain_applied, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.ionic_electronic_contributions = Slot(uri=CATCORE.ionic_electronic_contributions, name="ionic_electronic_contributions", curie=CATCORE.curie('ionic_electronic_contributions'),
-                   model_uri=CATCORE.ionic_electronic_contributions, domain=None, range=Optional[Union[str, list[str]]])
+slots.ionic_electronic_contributions = Slot(uri=COREMETA4CAT.ionic_electronic_contributions, name="ionic_electronic_contributions", curie=COREMETA4CAT.curie('ionic_electronic_contributions'),
+                   model_uri=COREMETA4CAT.ionic_electronic_contributions, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.elastic_tensor = Slot(uri=CATCORE.elastic_tensor, name="elastic_tensor", curie=CATCORE.curie('elastic_tensor'),
-                   model_uri=CATCORE.elastic_tensor, domain=None, range=Optional[Union[str, list[str]]])
+slots.elastic_tensor = Slot(uri=COREMETA4CAT.elastic_tensor, name="elastic_tensor", curie=COREMETA4CAT.curie('elastic_tensor'),
+                   model_uri=COREMETA4CAT.elastic_tensor, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.bulk_modulus = Slot(uri=CATCORE.bulk_modulus, name="bulk_modulus", curie=CATCORE.curie('bulk_modulus'),
-                   model_uri=CATCORE.bulk_modulus, domain=None, range=Optional[Union[float, list[float]]])
+slots.bulk_modulus = Slot(uri=COREMETA4CAT.bulk_modulus, name="bulk_modulus", curie=COREMETA4CAT.curie('bulk_modulus'),
+                   model_uri=COREMETA4CAT.bulk_modulus, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.shear_modulus = Slot(uri=CATCORE.shear_modulus, name="shear_modulus", curie=CATCORE.curie('shear_modulus'),
-                   model_uri=CATCORE.shear_modulus, domain=None, range=Optional[Union[float, list[float]]])
+slots.shear_modulus = Slot(uri=COREMETA4CAT.shear_modulus, name="shear_modulus", curie=COREMETA4CAT.curie('shear_modulus'),
+                   model_uri=COREMETA4CAT.shear_modulus, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.poisson_ratio = Slot(uri=CATCORE.poisson_ratio, name="poisson_ratio", curie=CATCORE.curie('poisson_ratio'),
-                   model_uri=CATCORE.poisson_ratio, domain=None, range=Optional[Union[float, list[float]]])
+slots.poisson_ratio = Slot(uri=COREMETA4CAT.poisson_ratio, name="poisson_ratio", curie=COREMETA4CAT.curie('poisson_ratio'),
+                   model_uri=COREMETA4CAT.poisson_ratio, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.young_modulus = Slot(uri=CATCORE.young_modulus, name="young_modulus", curie=CATCORE.curie('young_modulus'),
-                   model_uri=CATCORE.young_modulus, domain=None, range=Optional[Union[float, list[float]]])
+slots.young_modulus = Slot(uri=COREMETA4CAT.young_modulus, name="young_modulus", curie=COREMETA4CAT.curie('young_modulus'),
+                   model_uri=COREMETA4CAT.young_modulus, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.surface_energy = Slot(uri=CATCORE.surface_energy, name="surface_energy", curie=CATCORE.curie('surface_energy'),
-                   model_uri=CATCORE.surface_energy, domain=None, range=Optional[Union[float, list[float]]])
+slots.surface_energy = Slot(uri=COREMETA4CAT.surface_energy, name="surface_energy", curie=COREMETA4CAT.curie('surface_energy'),
+                   model_uri=COREMETA4CAT.surface_energy, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.miller_indices = Slot(uri=CATCORE.miller_indices, name="miller_indices", curie=CATCORE.curie('miller_indices'),
-                   model_uri=CATCORE.miller_indices, domain=None, range=Optional[Union[str, list[str]]])
+slots.miller_indices = Slot(uri=COREMETA4CAT.miller_indices, name="miller_indices", curie=COREMETA4CAT.curie('miller_indices'),
+                   model_uri=COREMETA4CAT.miller_indices, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.slab_thickness = Slot(uri=CATCORE.slab_thickness, name="slab_thickness", curie=CATCORE.curie('slab_thickness'),
-                   model_uri=CATCORE.slab_thickness, domain=None, range=Optional[Union[float, list[float]]])
+slots.slab_thickness = Slot(uri=COREMETA4CAT.slab_thickness, name="slab_thickness", curie=COREMETA4CAT.curie('slab_thickness'),
+                   model_uri=COREMETA4CAT.slab_thickness, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.vacuum_spacing = Slot(uri=CATCORE.vacuum_spacing, name="vacuum_spacing", curie=CATCORE.curie('vacuum_spacing'),
-                   model_uri=CATCORE.vacuum_spacing, domain=None, range=Optional[Union[float, list[float]]])
+slots.vacuum_spacing = Slot(uri=COREMETA4CAT.vacuum_spacing, name="vacuum_spacing", curie=COREMETA4CAT.curie('vacuum_spacing'),
+                   model_uri=COREMETA4CAT.vacuum_spacing, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.surface_termination_method = Slot(uri=CATCORE.surface_termination_method, name="surface_termination_method", curie=CATCORE.curie('surface_termination_method'),
-                   model_uri=CATCORE.surface_termination_method, domain=None, range=Optional[Union[str, list[str]]])
+slots.surface_termination_method = Slot(uri=COREMETA4CAT.surface_termination_method, name="surface_termination_method", curie=COREMETA4CAT.curie('surface_termination_method'),
+                   model_uri=COREMETA4CAT.surface_termination_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.dielectric_tensor = Slot(uri=CATCORE.dielectric_tensor, name="dielectric_tensor", curie=CATCORE.curie('dielectric_tensor'),
-                   model_uri=CATCORE.dielectric_tensor, domain=None, range=Optional[Union[str, list[str]]])
+slots.dielectric_tensor = Slot(uri=COREMETA4CAT.dielectric_tensor, name="dielectric_tensor", curie=COREMETA4CAT.curie('dielectric_tensor'),
+                   model_uri=COREMETA4CAT.dielectric_tensor, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.born_effective_charges = Slot(uri=CATCORE.born_effective_charges, name="born_effective_charges", curie=CATCORE.curie('born_effective_charges'),
-                   model_uri=CATCORE.born_effective_charges, domain=None, range=Optional[Union[str, list[str]]])
+slots.born_effective_charges = Slot(uri=COREMETA4CAT.born_effective_charges, name="born_effective_charges", curie=COREMETA4CAT.curie('born_effective_charges'),
+                   model_uri=COREMETA4CAT.born_effective_charges, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.force_constant_method = Slot(uri=CATCORE.force_constant_method, name="force_constant_method", curie=CATCORE.curie('force_constant_method'),
-                   model_uri=CATCORE.force_constant_method, domain=None, range=Optional[Union[str, list[str]]])
+slots.force_constant_method = Slot(uri=COREMETA4CAT.force_constant_method, name="force_constant_method", curie=COREMETA4CAT.curie('force_constant_method'),
+                   model_uri=COREMETA4CAT.force_constant_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.kq_point_mesh = Slot(uri=CATCORE.kq_point_mesh, name="kq_point_mesh", curie=CATCORE.curie('kq_point_mesh'),
-                   model_uri=CATCORE.kq_point_mesh, domain=None, range=Optional[Union[str, list[str]]])
+slots.kq_point_mesh = Slot(uri=COREMETA4CAT.kq_point_mesh, name="kq_point_mesh", curie=COREMETA4CAT.curie('kq_point_mesh'),
+                   model_uri=COREMETA4CAT.kq_point_mesh, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.smearing_parameter = Slot(uri=CATCORE.smearing_parameter, name="smearing_parameter", curie=CATCORE.curie('smearing_parameter'),
-                   model_uri=CATCORE.smearing_parameter, domain=None, range=Optional[Union[float, list[float]]])
+slots.smearing_parameter = Slot(uri=COREMETA4CAT.smearing_parameter, name="smearing_parameter", curie=COREMETA4CAT.curie('smearing_parameter'),
+                   model_uri=COREMETA4CAT.smearing_parameter, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.imaginary_modes = Slot(uri=CATCORE.imaginary_modes, name="imaginary_modes", curie=CATCORE.curie('imaginary_modes'),
-                   model_uri=CATCORE.imaginary_modes, domain=None, range=Optional[Union[Union[bool, Bool], list[Union[bool, Bool]]]])
+slots.imaginary_modes = Slot(uri=COREMETA4CAT.imaginary_modes, name="imaginary_modes", curie=COREMETA4CAT.curie('imaginary_modes'),
+                   model_uri=COREMETA4CAT.imaginary_modes, domain=None, range=Optional[Union[Union[bool, Bool], list[Union[bool, Bool]]]])
 
-slots.fit_method = Slot(uri=CATCORE.fit_method, name="fit_method", curie=CATCORE.curie('fit_method'),
-                   model_uri=CATCORE.fit_method, domain=None, range=Optional[Union[str, list[str]]])
+slots.fit_method = Slot(uri=COREMETA4CAT.fit_method, name="fit_method", curie=COREMETA4CAT.curie('fit_method'),
+                   model_uri=COREMETA4CAT.fit_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.pressure_derivative = Slot(uri=CATCORE.pressure_derivative, name="pressure_derivative", curie=CATCORE.curie('pressure_derivative'),
-                   model_uri=CATCORE.pressure_derivative, domain=None, range=Optional[Union[float, list[float]]])
+slots.pressure_derivative = Slot(uri=COREMETA4CAT.pressure_derivative, name="pressure_derivative", curie=COREMETA4CAT.curie('pressure_derivative'),
+                   model_uri=COREMETA4CAT.pressure_derivative, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.fit_residuals = Slot(uri=CATCORE.fit_residuals, name="fit_residuals", curie=CATCORE.curie('fit_residuals'),
-                   model_uri=CATCORE.fit_residuals, domain=None, range=Optional[Union[float, list[float]]])
+slots.fit_residuals = Slot(uri=COREMETA4CAT.fit_residuals, name="fit_residuals", curie=COREMETA4CAT.curie('fit_residuals'),
+                   model_uri=COREMETA4CAT.fit_residuals, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.ph_range = Slot(uri=CATCORE.ph_range, name="ph_range", curie=CATCORE.curie('ph_range'),
-                   model_uri=CATCORE.ph_range, domain=None, range=Optional[Union[str, list[str]]])
+slots.ph_range = Slot(uri=COREMETA4CAT.ph_range, name="ph_range", curie=COREMETA4CAT.curie('ph_range'),
+                   model_uri=COREMETA4CAT.ph_range, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.potential_range = Slot(uri=CATCORE.potential_range, name="potential_range", curie=CATCORE.curie('potential_range'),
-                   model_uri=CATCORE.potential_range, domain=None, range=Optional[Union[str, list[str]]])
+slots.potential_range = Slot(uri=COREMETA4CAT.potential_range, name="potential_range", curie=COREMETA4CAT.curie('potential_range'),
+                   model_uri=COREMETA4CAT.potential_range, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.solvation_model = Slot(uri=CATCORE.solvation_model, name="solvation_model", curie=CATCORE.curie('solvation_model'),
-                   model_uri=CATCORE.solvation_model, domain=None, range=Optional[Union[str, list[str]]])
+slots.solvation_model = Slot(uri=COREMETA4CAT.solvation_model, name="solvation_model", curie=COREMETA4CAT.curie('solvation_model'),
+                   model_uri=COREMETA4CAT.solvation_model, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.ionic_strength = Slot(uri=CATCORE.ionic_strength, name="ionic_strength", curie=CATCORE.curie('ionic_strength'),
-                   model_uri=CATCORE.ionic_strength, domain=None, range=Optional[Union[float, list[float]]])
+slots.ionic_strength = Slot(uri=COREMETA4CAT.ionic_strength, name="ionic_strength", curie=COREMETA4CAT.curie('ionic_strength'),
+                   model_uri=COREMETA4CAT.ionic_strength, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.grain_boundary_plane = Slot(uri=CATCORE.grain_boundary_plane, name="grain_boundary_plane", curie=CATCORE.curie('grain_boundary_plane'),
-                   model_uri=CATCORE.grain_boundary_plane, domain=None, range=Optional[Union[str, list[str]]])
+slots.grain_boundary_plane = Slot(uri=COREMETA4CAT.grain_boundary_plane, name="grain_boundary_plane", curie=COREMETA4CAT.curie('grain_boundary_plane'),
+                   model_uri=COREMETA4CAT.grain_boundary_plane, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.misorientation_angle = Slot(uri=CATCORE.misorientation_angle, name="misorientation_angle", curie=CATCORE.curie('misorientation_angle'),
-                   model_uri=CATCORE.misorientation_angle, domain=None, range=Optional[Union[float, list[float]]])
+slots.misorientation_angle = Slot(uri=COREMETA4CAT.misorientation_angle, name="misorientation_angle", curie=COREMETA4CAT.curie('misorientation_angle'),
+                   model_uri=COREMETA4CAT.misorientation_angle, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.grain_boundary_energy = Slot(uri=CATCORE.grain_boundary_energy, name="grain_boundary_energy", curie=CATCORE.curie('grain_boundary_energy'),
-                   model_uri=CATCORE.grain_boundary_energy, domain=None, range=Optional[Union[float, list[float]]])
+slots.grain_boundary_energy = Slot(uri=COREMETA4CAT.grain_boundary_energy, name="grain_boundary_energy", curie=COREMETA4CAT.curie('grain_boundary_energy'),
+                   model_uri=COREMETA4CAT.grain_boundary_energy, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.simulation_cell_size = Slot(uri=CATCORE.simulation_cell_size, name="simulation_cell_size", curie=CATCORE.curie('simulation_cell_size'),
-                   model_uri=CATCORE.simulation_cell_size, domain=None, range=Optional[Union[str, list[str]]])
+slots.simulation_cell_size = Slot(uri=COREMETA4CAT.simulation_cell_size, name="simulation_cell_size", curie=COREMETA4CAT.curie('simulation_cell_size'),
+                   model_uri=COREMETA4CAT.simulation_cell_size, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.gb_excess_volume = Slot(uri=CATCORE.gb_excess_volume, name="gb_excess_volume", curie=CATCORE.curie('gb_excess_volume'),
-                   model_uri=CATCORE.gb_excess_volume, domain=None, range=Optional[Union[float, list[float]]])
+slots.gb_excess_volume = Slot(uri=COREMETA4CAT.gb_excess_volume, name="gb_excess_volume", curie=COREMETA4CAT.curie('gb_excess_volume'),
+                   model_uri=COREMETA4CAT.gb_excess_volume, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.gb_structural_units = Slot(uri=CATCORE.gb_structural_units, name="gb_structural_units", curie=CATCORE.curie('gb_structural_units'),
-                   model_uri=CATCORE.gb_structural_units, domain=None, range=Optional[Union[str, list[str]]])
+slots.gb_structural_units = Slot(uri=COREMETA4CAT.gb_structural_units, name="gb_structural_units", curie=COREMETA4CAT.curie('gb_structural_units'),
+                   model_uri=COREMETA4CAT.gb_structural_units, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.charge_defect_segregation = Slot(uri=CATCORE.charge_defect_segregation, name="charge_defect_segregation", curie=CATCORE.curie('charge_defect_segregation'),
-                   model_uri=CATCORE.charge_defect_segregation, domain=None, range=Optional[Union[str, list[str]]])
+slots.charge_defect_segregation = Slot(uri=COREMETA4CAT.charge_defect_segregation, name="charge_defect_segregation", curie=COREMETA4CAT.curie('charge_defect_segregation'),
+                   model_uri=COREMETA4CAT.charge_defect_segregation, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.smearing_method = Slot(uri=CATCORE.smearing_method, name="smearing_method", curie=CATCORE.curie('smearing_method'),
-                   model_uri=CATCORE.smearing_method, domain=None, range=Optional[Union[str, list[str]]])
+slots.smearing_method = Slot(uri=COREMETA4CAT.smearing_method, name="smearing_method", curie=COREMETA4CAT.curie('smearing_method'),
+                   model_uri=COREMETA4CAT.smearing_method, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.spin_polarized = Slot(uri=CATCORE.spin_polarized, name="spin_polarized", curie=CATCORE.curie('spin_polarized'),
-                   model_uri=CATCORE.spin_polarized, domain=None, range=Optional[Union[Union[bool, Bool], list[Union[bool, Bool]]]])
+slots.spin_polarized = Slot(uri=COREMETA4CAT.spin_polarized, name="spin_polarized", curie=COREMETA4CAT.curie('spin_polarized'),
+                   model_uri=COREMETA4CAT.spin_polarized, domain=None, range=Optional[Union[Union[bool, Bool], list[Union[bool, Bool]]]])
 
-slots.band_path = Slot(uri=CATCORE.band_path, name="band_path", curie=CATCORE.curie('band_path'),
-                   model_uri=CATCORE.band_path, domain=None, range=Optional[Union[str, list[str]]])
+slots.band_path = Slot(uri=COREMETA4CAT.band_path, name="band_path", curie=COREMETA4CAT.curie('band_path'),
+                   model_uri=COREMETA4CAT.band_path, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.fermi_energy = Slot(uri=CATCORE.fermi_energy, name="fermi_energy", curie=CATCORE.curie('fermi_energy'),
-                   model_uri=CATCORE.fermi_energy, domain=None, range=Optional[Union[float, list[float]]])
+slots.fermi_energy = Slot(uri=COREMETA4CAT.fermi_energy, name="fermi_energy", curie=COREMETA4CAT.curie('fermi_energy'),
+                   model_uri=COREMETA4CAT.fermi_energy, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.polarization_direction = Slot(uri=CATCORE.polarization_direction, name="polarization_direction", curie=CATCORE.curie('polarization_direction'),
-                   model_uri=CATCORE.polarization_direction, domain=None, range=Optional[Union[str, list[str]]])
+slots.polarization_direction = Slot(uri=COREMETA4CAT.polarization_direction, name="polarization_direction", curie=COREMETA4CAT.curie('polarization_direction'),
+                   model_uri=COREMETA4CAT.polarization_direction, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.spontaneous_polarization = Slot(uri=CATCORE.spontaneous_polarization, name="spontaneous_polarization", curie=CATCORE.curie('spontaneous_polarization'),
-                   model_uri=CATCORE.spontaneous_polarization, domain=None, range=Optional[Union[float, list[float]]])
+slots.spontaneous_polarization = Slot(uri=COREMETA4CAT.spontaneous_polarization, name="spontaneous_polarization", curie=COREMETA4CAT.curie('spontaneous_polarization'),
+                   model_uri=COREMETA4CAT.spontaneous_polarization, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.reference_structure = Slot(uri=CATCORE.reference_structure, name="reference_structure", curie=CATCORE.curie('reference_structure'),
-                   model_uri=CATCORE.reference_structure, domain=None, range=Optional[Union[str, list[str]]])
+slots.reference_structure = Slot(uri=COREMETA4CAT.reference_structure, name="reference_structure", curie=COREMETA4CAT.curie('reference_structure'),
+                   model_uri=COREMETA4CAT.reference_structure, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.switching_barrier = Slot(uri=CATCORE.switching_barrier, name="switching_barrier", curie=CATCORE.curie('switching_barrier'),
-                   model_uri=CATCORE.switching_barrier, domain=None, range=Optional[Union[float, list[float]]])
+slots.switching_barrier = Slot(uri=COREMETA4CAT.switching_barrier, name="switching_barrier", curie=COREMETA4CAT.curie('switching_barrier'),
+                   model_uri=COREMETA4CAT.switching_barrier, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.coercive_field = Slot(uri=CATCORE.coercive_field, name="coercive_field", curie=CATCORE.curie('coercive_field'),
-                   model_uri=CATCORE.coercive_field, domain=None, range=Optional[Union[float, list[float]]])
+slots.coercive_field = Slot(uri=COREMETA4CAT.coercive_field, name="coercive_field", curie=COREMETA4CAT.curie('coercive_field'),
+                   model_uri=COREMETA4CAT.coercive_field, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.temperature_dependence = Slot(uri=CATCORE.temperature_dependence, name="temperature_dependence", curie=CATCORE.curie('temperature_dependence'),
-                   model_uri=CATCORE.temperature_dependence, domain=None, range=Optional[Union[str, list[str]]])
+slots.temperature_dependence = Slot(uri=COREMETA4CAT.temperature_dependence, name="temperature_dependence", curie=COREMETA4CAT.curie('temperature_dependence'),
+                   model_uri=COREMETA4CAT.temperature_dependence, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.material_sample = Slot(uri=VOC4CAT['0005056'], name="material_sample", curie=VOC4CAT.curie('0005056'),
-                   model_uri=CATCORE.material_sample, domain=None, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.material_sample, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.structure_model = Slot(uri=CATCORE.structure_model, name="structure_model", curie=CATCORE.curie('structure_model'),
-                   model_uri=CATCORE.structure_model, domain=None, range=Optional[Union[str, list[str]]])
+slots.structure_model = Slot(uri=COREMETA4CAT.structure_model, name="structure_model", curie=COREMETA4CAT.curie('structure_model'),
+                   model_uri=COREMETA4CAT.structure_model, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.smearing_broadening = Slot(uri=CATCORE.smearing_broadening, name="smearing_broadening", curie=CATCORE.curie('smearing_broadening'),
-                   model_uri=CATCORE.smearing_broadening, domain=None, range=Optional[Union[float, list[float]]])
+slots.smearing_broadening = Slot(uri=COREMETA4CAT.smearing_broadening, name="smearing_broadening", curie=COREMETA4CAT.curie('smearing_broadening'),
+                   model_uri=COREMETA4CAT.smearing_broadening, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.direct_indirect = Slot(uri=CATCORE.direct_indirect, name="direct_indirect", curie=CATCORE.curie('direct_indirect'),
-                   model_uri=CATCORE.direct_indirect, domain=None, range=Optional[Union[str, list[str]]])
+slots.direct_indirect = Slot(uri=COREMETA4CAT.direct_indirect, name="direct_indirect", curie=COREMETA4CAT.curie('direct_indirect'),
+                   model_uri=COREMETA4CAT.direct_indirect, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.experimental_reference = Slot(uri=CATCORE.experimental_reference, name="experimental_reference", curie=CATCORE.curie('experimental_reference'),
-                   model_uri=CATCORE.experimental_reference, domain=None, range=Optional[Union[float, list[float]]])
+slots.experimental_reference = Slot(uri=COREMETA4CAT.experimental_reference, name="experimental_reference", curie=COREMETA4CAT.curie('experimental_reference'),
+                   model_uri=COREMETA4CAT.experimental_reference, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.gw_hybrid_correction = Slot(uri=CATCORE.gw_hybrid_correction, name="gw_hybrid_correction", curie=CATCORE.curie('gw_hybrid_correction'),
-                   model_uri=CATCORE.gw_hybrid_correction, domain=None, range=Optional[Union[Union[bool, Bool], list[Union[bool, Bool]]]])
+slots.gw_hybrid_correction = Slot(uri=COREMETA4CAT.gw_hybrid_correction, name="gw_hybrid_correction", curie=COREMETA4CAT.curie('gw_hybrid_correction'),
+                   model_uri=COREMETA4CAT.gw_hybrid_correction, domain=None, range=Optional[Union[Union[bool, Bool], list[Union[bool, Bool]]]])
 
-slots.excitonic_correction = Slot(uri=CATCORE.excitonic_correction, name="excitonic_correction", curie=CATCORE.curie('excitonic_correction'),
-                   model_uri=CATCORE.excitonic_correction, domain=None, range=Optional[Union[float, list[float]]])
+slots.excitonic_correction = Slot(uri=COREMETA4CAT.excitonic_correction, name="excitonic_correction", curie=COREMETA4CAT.curie('excitonic_correction'),
+                   model_uri=COREMETA4CAT.excitonic_correction, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.access_URL = Slot(uri=DCAT.accessURL, name="access_URL", curie=DCAT.curie('accessURL'),
-                   model_uri=CATCORE.access_URL, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.access_URL, domain=None, range=Optional[str])
 
 slots.access_rights = Slot(uri=DCTERMS.accessRights, name="access_rights", curie=DCTERMS.curie('accessRights'),
-                   model_uri=CATCORE.access_rights, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.access_rights, domain=None, range=Optional[str])
 
 slots.access_service = Slot(uri=DCAT.accessService, name="access_service", curie=DCAT.curie('accessService'),
-                   model_uri=CATCORE.access_service, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.access_service, domain=None, range=Optional[str])
 
 slots.algorithm = Slot(uri=SPDX.algorithm, name="algorithm", curie=SPDX.curie('algorithm'),
-                   model_uri=CATCORE.algorithm, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.algorithm, domain=None, range=Optional[str])
 
 slots.applicable_legislation = Slot(uri=DCATAP.applicableLegislation, name="applicable_legislation", curie=DCATAP.curie('applicableLegislation'),
-                   model_uri=CATCORE.applicable_legislation, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.applicable_legislation, domain=None, range=Optional[str])
 
 slots.application_profile = Slot(uri=DCTERMS.conformsTo, name="application_profile", curie=DCTERMS.curie('conformsTo'),
-                   model_uri=CATCORE.application_profile, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.application_profile, domain=None, range=Optional[str])
 
 slots.availability = Slot(uri=DCATAP.availability, name="availability", curie=DCATAP.curie('availability'),
-                   model_uri=CATCORE.availability, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.availability, domain=None, range=Optional[str])
 
 slots.bbox = Slot(uri=DCAT.bbox, name="bbox", curie=DCAT.curie('bbox'),
-                   model_uri=CATCORE.bbox, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.bbox, domain=None, range=Optional[str])
 
 slots.beginning = Slot(uri=TIME.hasBeginning, name="beginning", curie=TIME.curie('hasBeginning'),
-                   model_uri=CATCORE.beginning, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.beginning, domain=None, range=Optional[str])
 
 slots.byte_size = Slot(uri=DCAT.byteSize, name="byte_size", curie=DCAT.curie('byteSize'),
-                   model_uri=CATCORE.byte_size, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.byte_size, domain=None, range=Optional[str])
 
 slots.carried_out_by = Slot(uri=PROV.wasAssociatedWith, name="carried_out_by", curie=PROV.curie('wasAssociatedWith'),
-                   model_uri=CATCORE.carried_out_by, domain=None, range=Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, AgenticEntity]], list[Union[dict, AgenticEntity]]]])
+                   model_uri=COREMETA4CAT.carried_out_by, domain=None, range=Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, AgenticEntity]], list[Union[dict, AgenticEntity]]]])
 
 slots.catalogue = Slot(uri=DCAT.catalog, name="catalogue", curie=DCAT.curie('catalog'),
-                   model_uri=CATCORE.catalogue, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.catalogue, domain=None, range=Optional[str])
 
 slots.centroid = Slot(uri=DCAT.centroid, name="centroid", curie=DCAT.curie('centroid'),
-                   model_uri=CATCORE.centroid, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.centroid, domain=None, range=Optional[str])
 
 slots.change_type = Slot(uri=ADMS.status, name="change_type", curie=ADMS.curie('status'),
-                   model_uri=CATCORE.change_type, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.change_type, domain=None, range=Optional[str])
 
 slots.checksum = Slot(uri=SPDX.checksum, name="checksum", curie=SPDX.curie('checksum'),
-                   model_uri=CATCORE.checksum, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.checksum, domain=None, range=Optional[str])
 
 slots.checksum_value = Slot(uri=SPDX.checksumValue, name="checksum_value", curie=SPDX.curie('checksumValue'),
-                   model_uri=CATCORE.checksum_value, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.checksum_value, domain=None, range=Optional[str])
 
 slots.compression_format = Slot(uri=DCAT.compressFormat, name="compression_format", curie=DCAT.curie('compressFormat'),
-                   model_uri=CATCORE.compression_format, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.compression_format, domain=None, range=Optional[str])
 
 slots.conforms_to = Slot(uri=DCTERMS.conformsTo, name="conforms_to", curie=DCTERMS.curie('conformsTo'),
-                   model_uri=CATCORE.conforms_to, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.conforms_to, domain=None, range=Optional[str])
 
 slots.contact_point = Slot(uri=DCAT.contactPoint, name="contact_point", curie=DCAT.curie('contactPoint'),
-                   model_uri=CATCORE.contact_point, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.contact_point, domain=None, range=Optional[str])
 
 slots.creator = Slot(uri=DCTERMS.creator, name="creator", curie=DCTERMS.curie('creator'),
-                   model_uri=CATCORE.creator, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.creator, domain=None, range=Optional[str])
 
 slots.dataset_distribution = Slot(uri=DCAT.distribution, name="dataset_distribution", curie=DCAT.curie('distribution'),
-                   model_uri=CATCORE.dataset_distribution, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.dataset_distribution, domain=None, range=Optional[str])
 
 slots.description = Slot(uri=DCTERMS.description, name="description", curie=DCTERMS.curie('description'),
-                   model_uri=CATCORE.description, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.description, domain=None, range=Optional[str])
 
 slots.documentation = Slot(uri=FOAF.page, name="documentation", curie=FOAF.curie('page'),
-                   model_uri=CATCORE.documentation, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.documentation, domain=None, range=Optional[str])
 
 slots.download_URL = Slot(uri=DCAT.downloadURL, name="download_URL", curie=DCAT.curie('downloadURL'),
-                   model_uri=CATCORE.download_URL, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.download_URL, domain=None, range=Optional[str])
 
 slots.end = Slot(uri=TIME.hasEnd, name="end", curie=TIME.curie('hasEnd'),
-                   model_uri=CATCORE.end, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.end, domain=None, range=Optional[str])
 
 slots.end_date = Slot(uri=DCAT.endDate, name="end_date", curie=DCAT.curie('endDate'),
-                   model_uri=CATCORE.end_date, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.end_date, domain=None, range=Optional[str])
 
 slots.endpoint_URL = Slot(uri=DCAT.endpointURL, name="endpoint_URL", curie=DCAT.curie('endpointURL'),
-                   model_uri=CATCORE.endpoint_URL, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.endpoint_URL, domain=None, range=Optional[str])
 
 slots.endpoint_description = Slot(uri=DCAT.endpointDescription, name="endpoint_description", curie=DCAT.curie('endpointDescription'),
-                   model_uri=CATCORE.endpoint_description, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.endpoint_description, domain=None, range=Optional[str])
 
 slots.evaluated_activity = Slot(uri=PROV.wasInformedBy, name="evaluated_activity", curie=PROV.curie('wasInformedBy'),
-                   model_uri=CATCORE.evaluated_activity, domain=None, range=Optional[Union[dict[Union[str, EvaluatedActivityId], Union[dict, EvaluatedActivity]], list[Union[dict, EvaluatedActivity]]]])
+                   model_uri=COREMETA4CAT.evaluated_activity, domain=None, range=Optional[Union[dict[Union[str, EvaluatedActivityId], Union[dict, EvaluatedActivity]], list[Union[dict, EvaluatedActivity]]]])
 
 slots.evaluated_entity = Slot(uri=PROV.used, name="evaluated_entity", curie=PROV.curie('used'),
-                   model_uri=CATCORE.evaluated_entity, domain=None, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, EvaluatedEntity]], list[Union[dict, EvaluatedEntity]]]])
+                   model_uri=COREMETA4CAT.evaluated_entity, domain=None, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, EvaluatedEntity]], list[Union[dict, EvaluatedEntity]]]])
 
 slots.format = Slot(uri=DCTERMS.format, name="format", curie=DCTERMS.curie('format'),
-                   model_uri=CATCORE.format, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.format, domain=None, range=Optional[str])
 
 slots.frequency = Slot(uri=DCTERMS.accrualPeriodicity, name="frequency", curie=DCTERMS.curie('accrualPeriodicity'),
-                   model_uri=CATCORE.frequency, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.frequency, domain=None, range=Optional[str])
 
 slots.geographical_coverage = Slot(uri=DCTERMS.spatial, name="geographical_coverage", curie=DCTERMS.curie('spatial'),
-                   model_uri=CATCORE.geographical_coverage, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.geographical_coverage, domain=None, range=Optional[str])
 
 slots.geometry = Slot(uri=LOCN.geometry, name="geometry", curie=LOCN.curie('geometry'),
-                   model_uri=CATCORE.geometry, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.geometry, domain=None, range=Optional[str])
 
 slots.had_input_activity = Slot(uri=PROV.wasInformedBy, name="had_input_activity", curie=PROV.curie('wasInformedBy'),
-                   model_uri=CATCORE.had_input_activity, domain=None, range=Optional[Union[dict[Union[str, ActivityId], Union[dict, Activity]], list[Union[dict, Activity]]]])
+                   model_uri=COREMETA4CAT.had_input_activity, domain=None, range=Optional[Union[dict[Union[str, ActivityId], Union[dict, Activity]], list[Union[dict, Activity]]]])
 
 slots.had_input_entity = Slot(uri=PROV.used, name="had_input_entity", curie=PROV.curie('used'),
-                   model_uri=CATCORE.had_input_entity, domain=None, range=Optional[Union[dict[Union[str, EntityId], Union[dict, Entity]], list[Union[dict, Entity]]]])
+                   model_uri=COREMETA4CAT.had_input_entity, domain=None, range=Optional[Union[dict[Union[str, EntityId], Union[dict, Entity]], list[Union[dict, Entity]]]])
 
 slots.had_output_entity = Slot(uri=PROV.generated, name="had_output_entity", curie=PROV.curie('generated'),
-                   model_uri=CATCORE.had_output_entity, domain=None, range=Optional[Union[dict[Union[str, EntityId], Union[dict, Entity]], list[Union[dict, Entity]]]])
+                   model_uri=COREMETA4CAT.had_output_entity, domain=None, range=Optional[Union[dict[Union[str, EntityId], Union[dict, Entity]], list[Union[dict, Entity]]]])
 
 slots.had_role = Slot(uri=DCAT.hadRole, name="had_role", curie=DCAT.curie('hadRole'),
-                   model_uri=CATCORE.had_role, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.had_role, domain=None, range=Optional[str])
 
 slots.has_dataset = Slot(uri=DCAT.dataset, name="has_dataset", curie=DCAT.curie('dataset'),
-                   model_uri=CATCORE.has_dataset, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.has_dataset, domain=None, range=Optional[str])
 
 slots.has_part = Slot(uri=DCTERMS.hasPart, name="has_part", curie=DCTERMS.curie('hasPart'),
-                   model_uri=CATCORE.has_part, domain=None, range=Optional[Union[str, ActivityId]])
+                   model_uri=COREMETA4CAT.has_part, domain=None, range=Optional[Union[str, ActivityId]])
 
 slots.has_policy = Slot(uri=ODRL.hasPolicy, name="has_policy", curie=ODRL.curie('hasPolicy'),
-                   model_uri=CATCORE.has_policy, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.has_policy, domain=None, range=Optional[str])
 
 slots.has_qualitative_attribute = Slot(uri=DCTERMS.relation, name="has_qualitative_attribute", curie=DCTERMS.curie('relation'),
-                   model_uri=CATCORE.has_qualitative_attribute, domain=None, range=Optional[Union[Union[dict, QualitativeAttribute], list[Union[dict, QualitativeAttribute]]]])
+                   model_uri=COREMETA4CAT.has_qualitative_attribute, domain=None, range=Optional[Union[Union[dict, QualitativeAttribute], list[Union[dict, QualitativeAttribute]]]])
 
 slots.has_quantitative_attribute = Slot(uri=DCTERMS.relation, name="has_quantitative_attribute", curie=DCTERMS.curie('relation'),
-                   model_uri=CATCORE.has_quantitative_attribute, domain=None, range=Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]])
+                   model_uri=COREMETA4CAT.has_quantitative_attribute, domain=None, range=Optional[Union[Union[dict, QuantitativeAttribute], list[Union[dict, QuantitativeAttribute]]]])
 
 slots.has_version = Slot(uri=DCAT.hasVersion, name="has_version", curie=DCAT.curie('hasVersion'),
-                   model_uri=CATCORE.has_version, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.has_version, domain=None, range=Optional[str])
 
 slots.homepage = Slot(uri=FOAF.homepage, name="homepage", curie=FOAF.curie('homepage'),
-                   model_uri=CATCORE.homepage, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.homepage, domain=None, range=Optional[str])
 
-slots.id = Slot(uri=DCATAP_PLUS.id, name="id", curie=DCATAP_PLUS.curie('id'),
-                   model_uri=CATCORE.id, domain=None, range=URIRef)
+slots.id = Slot(uri=DCATAPPLUS.id, name="id", curie=DCATAPPLUS.curie('id'),
+                   model_uri=COREMETA4CAT.id, domain=None, range=URIRef)
 
 slots.identifier = Slot(uri=DCTERMS.identifier, name="identifier", curie=DCTERMS.curie('identifier'),
-                   model_uri=CATCORE.identifier, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.identifier, domain=None, range=Optional[str])
 
 slots.in_series = Slot(uri=DCAT.inSeries, name="in_series", curie=DCAT.curie('inSeries'),
-                   model_uri=CATCORE.in_series, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.in_series, domain=None, range=Optional[str])
 
 slots.is_about_activity = Slot(uri=DCTERMS.subject, name="is_about_activity", curie=DCTERMS.curie('subject'),
-                   model_uri=CATCORE.is_about_activity, domain=None, range=Optional[Union[dict[Union[str, EvaluatedActivityId], Union[dict, EvaluatedActivity]], list[Union[dict, EvaluatedActivity]]]])
+                   model_uri=COREMETA4CAT.is_about_activity, domain=None, range=Optional[Union[dict[Union[str, EvaluatedActivityId], Union[dict, EvaluatedActivity]], list[Union[dict, EvaluatedActivity]]]])
 
 slots.is_about_entity = Slot(uri=DCTERMS.subject, name="is_about_entity", curie=DCTERMS.curie('subject'),
-                   model_uri=CATCORE.is_about_entity, domain=None, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, EvaluatedEntity]], list[Union[dict, EvaluatedEntity]]]])
+                   model_uri=COREMETA4CAT.is_about_entity, domain=None, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, EvaluatedEntity]], list[Union[dict, EvaluatedEntity]]]])
 
 slots.is_referenced_by = Slot(uri=DCTERMS.isReferencedBy, name="is_referenced_by", curie=DCTERMS.curie('isReferencedBy'),
-                   model_uri=CATCORE.is_referenced_by, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.is_referenced_by, domain=None, range=Optional[str])
 
 slots.keyword = Slot(uri=DCAT.keyword, name="keyword", curie=DCAT.curie('keyword'),
-                   model_uri=CATCORE.keyword, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.keyword, domain=None, range=Optional[str])
 
 slots.landing_page = Slot(uri=DCAT.landingPage, name="landing_page", curie=DCAT.curie('landingPage'),
-                   model_uri=CATCORE.landing_page, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.landing_page, domain=None, range=Optional[str])
 
 slots.language = Slot(uri=DCTERMS.language, name="language", curie=DCTERMS.curie('language'),
-                   model_uri=CATCORE.language, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.language, domain=None, range=Optional[str])
 
 slots.licence = Slot(uri=DCTERMS.license, name="licence", curie=DCTERMS.curie('license'),
-                   model_uri=CATCORE.licence, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.licence, domain=None, range=Optional[str])
 
 slots.linked_schemas = Slot(uri=DCTERMS.conformsTo, name="linked_schemas", curie=DCTERMS.curie('conformsTo'),
-                   model_uri=CATCORE.linked_schemas, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.linked_schemas, domain=None, range=Optional[str])
 
 slots.listing_date = Slot(uri=DCTERMS.issued, name="listing_date", curie=DCTERMS.curie('issued'),
-                   model_uri=CATCORE.listing_date, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.listing_date, domain=None, range=Optional[str])
 
 slots.media_type = Slot(uri=DCAT.mediaType, name="media_type", curie=DCAT.curie('mediaType'),
-                   model_uri=CATCORE.media_type, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.media_type, domain=None, range=Optional[str])
 
 slots.modification_date = Slot(uri=DCTERMS.modified, name="modification_date", curie=DCTERMS.curie('modified'),
-                   model_uri=CATCORE.modification_date, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.modification_date, domain=None, range=Optional[str])
 
 slots.name = Slot(uri=FOAF.name, name="name", curie=FOAF.curie('name'),
-                   model_uri=CATCORE.name, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.name, domain=None, range=Optional[str])
 
 slots.notation = Slot(uri=SKOS.notation, name="notation", curie=SKOS.curie('notation'),
-                   model_uri=CATCORE.notation, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.notation, domain=None, range=Optional[str])
 
 slots.occurred_in = Slot(uri=PROV.atLocation, name="occurred_in", curie=PROV.curie('atLocation'),
-                   model_uri=CATCORE.occurred_in, domain=None, range=Optional[Union[dict, Surrounding]])
+                   model_uri=COREMETA4CAT.occurred_in, domain=None, range=Optional[Union[dict, Surrounding]])
 
 slots.other_identifier = Slot(uri=ADMS.identifier, name="other_identifier", curie=ADMS.curie('identifier'),
-                   model_uri=CATCORE.other_identifier, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.other_identifier, domain=None, range=Optional[str])
 
 slots.packaging_format = Slot(uri=DCAT.packageFormat, name="packaging_format", curie=DCAT.curie('packageFormat'),
-                   model_uri=CATCORE.packaging_format, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.packaging_format, domain=None, range=Optional[str])
 
 slots.part_of = Slot(uri=DCTERMS.isPartOf, name="part_of", curie=DCTERMS.curie('isPartOf'),
-                   model_uri=CATCORE.part_of, domain=None, range=Optional[Union[str, ActivityId]])
+                   model_uri=COREMETA4CAT.part_of, domain=None, range=Optional[Union[str, ActivityId]])
 
 slots.preferred_label = Slot(uri=SKOS.prefLabel, name="preferred_label", curie=SKOS.curie('prefLabel'),
-                   model_uri=CATCORE.preferred_label, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.preferred_label, domain=None, range=Optional[str])
 
 slots.primary_topic = Slot(uri=FOAF.primaryTopic, name="primary_topic", curie=FOAF.curie('primaryTopic'),
-                   model_uri=CATCORE.primary_topic, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.primary_topic, domain=None, range=Optional[str])
 
 slots.provenance = Slot(uri=DCTERMS.provenance, name="provenance", curie=DCTERMS.curie('provenance'),
-                   model_uri=CATCORE.provenance, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.provenance, domain=None, range=Optional[str])
 
 slots.publisher = Slot(uri=DCTERMS.publisher, name="publisher", curie=DCTERMS.curie('publisher'),
-                   model_uri=CATCORE.publisher, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.publisher, domain=None, range=Optional[str])
 
 slots.qualified_attribution = Slot(uri=PROV.qualifiedAttribution, name="qualified_attribution", curie=PROV.curie('qualifiedAttribution'),
-                   model_uri=CATCORE.qualified_attribution, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.qualified_attribution, domain=None, range=Optional[str])
 
 slots.qualified_relation = Slot(uri=DCAT.qualifiedRelation, name="qualified_relation", curie=DCAT.curie('qualifiedRelation'),
-                   model_uri=CATCORE.qualified_relation, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.qualified_relation, domain=None, range=Optional[str])
 
 slots.rdf_type = Slot(uri=RDF.type, name="rdf_type", curie=RDF.curie('type'),
-                   model_uri=CATCORE.rdf_type, domain=None, range=Optional[Union[dict, DefinedTerm]])
+                   model_uri=COREMETA4CAT.rdf_type, domain=None, range=Optional[Union[dict, DefinedTerm]])
 
 slots.realized_plan = Slot(uri=PROV.used, name="realized_plan", curie=PROV.curie('used'),
-                   model_uri=CATCORE.realized_plan, domain=None, range=Optional[Union[dict, Plan]])
+                   model_uri=COREMETA4CAT.realized_plan, domain=None, range=Optional[Union[dict, Plan]])
 
 slots.record = Slot(uri=DCAT.record, name="record", curie=DCAT.curie('record'),
-                   model_uri=CATCORE.record, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.record, domain=None, range=Optional[str])
 
 slots.related_resource = Slot(uri=DCTERMS.relation, name="related_resource", curie=DCTERMS.curie('relation'),
-                   model_uri=CATCORE.related_resource, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.related_resource, domain=None, range=Optional[str])
 
 slots.relation = Slot(uri=DCTERMS.relation, name="relation", curie=DCTERMS.curie('relation'),
-                   model_uri=CATCORE.relation, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.relation, domain=None, range=Optional[str])
 
 slots.release_date = Slot(uri=DCTERMS.issued, name="release_date", curie=DCTERMS.curie('issued'),
-                   model_uri=CATCORE.release_date, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.release_date, domain=None, range=Optional[str])
 
 slots.rights = Slot(uri=DCTERMS.rights, name="rights", curie=DCTERMS.curie('rights'),
-                   model_uri=CATCORE.rights, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.rights, domain=None, range=Optional[str])
 
 slots.sample = Slot(uri=ADMS.sample, name="sample", curie=ADMS.curie('sample'),
-                   model_uri=CATCORE.sample, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.sample, domain=None, range=Optional[str])
 
 slots.serves_dataset = Slot(uri=DCAT.servesDataset, name="serves_dataset", curie=DCAT.curie('servesDataset'),
-                   model_uri=CATCORE.serves_dataset, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.serves_dataset, domain=None, range=Optional[str])
 
 slots.service = Slot(uri=DCAT.service, name="service", curie=DCAT.curie('service'),
-                   model_uri=CATCORE.service, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.service, domain=None, range=Optional[str])
 
 slots.source = Slot(uri=DCTERMS.source, name="source", curie=DCTERMS.curie('source'),
-                   model_uri=CATCORE.source, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.source, domain=None, range=Optional[str])
 
 slots.source_metadata = Slot(uri=DCTERMS.source, name="source_metadata", curie=DCTERMS.curie('source'),
-                   model_uri=CATCORE.source_metadata, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.source_metadata, domain=None, range=Optional[str])
 
 slots.spatial_resolution = Slot(uri=DCAT.spatialResolutionInMeters, name="spatial_resolution", curie=DCAT.curie('spatialResolutionInMeters'),
-                   model_uri=CATCORE.spatial_resolution, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.spatial_resolution, domain=None, range=Optional[str])
 
 slots.start_date = Slot(uri=DCAT.startDate, name="start_date", curie=DCAT.curie('startDate'),
-                   model_uri=CATCORE.start_date, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.start_date, domain=None, range=Optional[str])
 
 slots.status = Slot(uri=ADMS.status, name="status", curie=ADMS.curie('status'),
-                   model_uri=CATCORE.status, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.status, domain=None, range=Optional[str])
 
 slots.temporal_coverage = Slot(uri=DCTERMS.temporal, name="temporal_coverage", curie=DCTERMS.curie('temporal'),
-                   model_uri=CATCORE.temporal_coverage, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.temporal_coverage, domain=None, range=Optional[str])
 
 slots.temporal_resolution = Slot(uri=DCAT.temporalResolution, name="temporal_resolution", curie=DCAT.curie('temporalResolution'),
-                   model_uri=CATCORE.temporal_resolution, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.temporal_resolution, domain=None, range=Optional[str])
 
 slots.theme = Slot(uri=DCAT.theme, name="theme", curie=DCAT.curie('theme'),
-                   model_uri=CATCORE.theme, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.theme, domain=None, range=Optional[str])
 
 slots.themes = Slot(uri=DCAT.themeTaxonomy, name="themes", curie=DCAT.curie('themeTaxonomy'),
-                   model_uri=CATCORE.themes, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.themes, domain=None, range=Optional[str])
 
 slots.title = Slot(uri=DCTERMS.title, name="title", curie=DCTERMS.curie('title'),
-                   model_uri=CATCORE.title, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.title, domain=None, range=Optional[str])
 
 slots.type = Slot(uri=DCTERMS.type, name="type", curie=DCTERMS.curie('type'),
-                   model_uri=CATCORE.type, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.type, domain=None, range=Optional[str])
 
 slots.value = Slot(uri=PROV.value, name="value", curie=PROV.curie('value'),
-                   model_uri=CATCORE.value, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.value, domain=None, range=Optional[str])
 
 slots.version = Slot(uri=DCAT.version, name="version", curie=DCAT.curie('version'),
-                   model_uri=CATCORE.version, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.version, domain=None, range=Optional[str])
 
 slots.version_notes = Slot(uri=ADMS.versionNotes, name="version_notes", curie=ADMS.curie('versionNotes'),
-                   model_uri=CATCORE.version_notes, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.version_notes, domain=None, range=Optional[str])
 
 slots.was_generated_by = Slot(uri=PROV.wasGeneratedBy, name="was_generated_by", curie=PROV.curie('wasGeneratedBy'),
-                   model_uri=CATCORE.was_generated_by, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.was_generated_by, domain=None, range=Optional[str])
 
 slots.composed_of = Slot(uri=BFO['0000051'], name="composed_of", curie=BFO.curie('0000051'),
-                   model_uri=CATCORE.composed_of, domain=None, range=Optional[Union[dict[Union[str, ChemicalEntityId], Union[dict, ChemicalEntity]], list[Union[dict, ChemicalEntity]]]])
+                   model_uri=COREMETA4CAT.composed_of, domain=None, range=Optional[Union[dict[Union[str, ChemicalEntityId], Union[dict, ChemicalEntity]], list[Union[dict, ChemicalEntity]]]])
 
 slots.has_concentration = Slot(uri=SIO['000008'], name="has_concentration", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_concentration, domain=None, range=Optional[Union[Union[dict, Concentration], list[Union[dict, Concentration]]]])
+                   model_uri=COREMETA4CAT.has_concentration, domain=None, range=Optional[Union[Union[dict, Concentration], list[Union[dict, Concentration]]]])
 
 slots.has_amount = Slot(uri=SIO['000008'], name="has_amount", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_amount, domain=None, range=Optional[Union[Union[dict, AmountOfSubstance], list[Union[dict, AmountOfSubstance]]]])
+                   model_uri=COREMETA4CAT.has_amount, domain=None, range=Optional[Union[Union[dict, AmountOfSubstance], list[Union[dict, AmountOfSubstance]]]])
 
 slots.has_ph_value = Slot(uri=SIO['000008'], name="has_ph_value", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_ph_value, domain=None, range=Optional[Union[Union[dict, PHValue], list[Union[dict, PHValue]]]])
+                   model_uri=COREMETA4CAT.has_ph_value, domain=None, range=Optional[Union[Union[dict, PHValue], list[Union[dict, PHValue]]]])
 
 slots.inchi = Slot(uri=SIO['000008'], name="inchi", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.inchi, domain=None, range=Optional[Union[Union[dict, InChi], list[Union[dict, InChi]]]])
+                   model_uri=COREMETA4CAT.inchi, domain=None, range=Optional[Union[Union[dict, InChi], list[Union[dict, InChi]]]])
 
 slots.inchikey = Slot(uri=SIO['000008'], name="inchikey", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.inchikey, domain=None, range=Optional[Union[Union[dict, InChIKey], list[Union[dict, InChIKey]]]])
+                   model_uri=COREMETA4CAT.inchikey, domain=None, range=Optional[Union[Union[dict, InChIKey], list[Union[dict, InChIKey]]]])
 
 slots.smiles = Slot(uri=SIO['000008'], name="smiles", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.smiles, domain=None, range=Optional[Union[Union[dict, SMILES], list[Union[dict, SMILES]]]])
+                   model_uri=COREMETA4CAT.smiles, domain=None, range=Optional[Union[Union[dict, SMILES], list[Union[dict, SMILES]]]])
 
 slots.molecular_formula = Slot(uri=SIO['000008'], name="molecular_formula", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.molecular_formula, domain=None, range=Optional[Union[Union[dict, MolecularFormula], list[Union[dict, MolecularFormula]]]])
+                   model_uri=COREMETA4CAT.molecular_formula, domain=None, range=Optional[Union[Union[dict, MolecularFormula], list[Union[dict, MolecularFormula]]]])
 
 slots.iupac_name = Slot(uri=SIO['000008'], name="iupac_name", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.iupac_name, domain=None, range=Optional[Union[Union[dict, IUPACName], list[Union[dict, IUPACName]]]])
+                   model_uri=COREMETA4CAT.iupac_name, domain=None, range=Optional[Union[Union[dict, IUPACName], list[Union[dict, IUPACName]]]])
 
 slots.has_molar_mass = Slot(uri=SIO['000008'], name="has_molar_mass", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_molar_mass, domain=None, range=Optional[Union[Union[dict, MolarMass], list[Union[dict, MolarMass]]]])
+                   model_uri=COREMETA4CAT.has_molar_mass, domain=None, range=Optional[Union[Union[dict, MolarMass], list[Union[dict, MolarMass]]]])
 
 slots.used_starting_material = Slot(uri=RO['0004009'], name="used_starting_material", curie=RO.curie('0004009'),
-                   model_uri=CATCORE.used_starting_material, domain=None, range=Optional[Union[dict[Union[str, StartingMaterialId], Union[dict, StartingMaterial]], list[Union[dict, StartingMaterial]]]])
+                   model_uri=COREMETA4CAT.used_starting_material, domain=None, range=Optional[Union[dict[Union[str, StartingMaterialId], Union[dict, StartingMaterial]], list[Union[dict, StartingMaterial]]]])
 
 slots.used_reactant = Slot(uri=RO['0004009'], name="used_reactant", curie=RO.curie('0004009'),
-                   model_uri=CATCORE.used_reactant, domain=None, range=Optional[Union[dict[Union[str, ReagentId], Union[dict, Reagent]], list[Union[dict, Reagent]]]])
+                   model_uri=COREMETA4CAT.used_reactant, domain=None, range=Optional[Union[dict[Union[str, ReagentId], Union[dict, Reagent]], list[Union[dict, Reagent]]]])
 
 slots.generated_product = Slot(uri=RO['0004008'], name="generated_product", curie=RO.curie('0004008'),
-                   model_uri=CATCORE.generated_product, domain=None, range=Optional[Union[dict[Union[str, ChemicalProductId], Union[dict, ChemicalProduct]], list[Union[dict, ChemicalProduct]]]])
+                   model_uri=COREMETA4CAT.generated_product, domain=None, range=Optional[Union[dict[Union[str, ChemicalProductId], Union[dict, ChemicalProduct]], list[Union[dict, ChemicalProduct]]]])
 
 slots.used_catalyst = Slot(uri=RXNO['0000425'], name="used_catalyst", curie=RXNO.curie('0000425'),
-                   model_uri=CATCORE.used_catalyst, domain=None, range=Optional[Union[dict[Union[str, CatalystId], Union[dict, Catalyst]], list[Union[dict, Catalyst]]]])
+                   model_uri=COREMETA4CAT.used_catalyst, domain=None, range=Optional[Union[dict[Union[str, CatalystId], Union[dict, Catalyst]], list[Union[dict, Catalyst]]]])
 
 slots.used_solvent = Slot(uri=PROV.wasAssociatedWith, name="used_solvent", curie=PROV.curie('wasAssociatedWith'),
-                   model_uri=CATCORE.used_solvent, domain=None, range=Optional[Union[dict[Union[str, DissolvingSubstanceId], Union[dict, DissolvingSubstance]], list[Union[dict, DissolvingSubstance]]]])
+                   model_uri=COREMETA4CAT.used_solvent, domain=None, range=Optional[Union[dict[Union[str, DissolvingSubstanceId], Union[dict, DissolvingSubstance]], list[Union[dict, DissolvingSubstance]]]])
 
 slots.has_duration = Slot(uri=SCHEMA.duration, name="has_duration", curie=SCHEMA.curie('duration'),
-                   model_uri=CATCORE.has_duration, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.has_duration, domain=None, range=Optional[str])
 
 slots.used_reactor = Slot(uri=PROV.wasAssociatedWith, name="used_reactor", curie=PROV.curie('wasAssociatedWith'),
-                   model_uri=CATCORE.used_reactor, domain=None, range=Optional[Union[dict[Union[str, ReactorId], Union[dict, Reactor]], list[Union[dict, Reactor]]]])
+                   model_uri=COREMETA4CAT.used_reactor, domain=None, range=Optional[Union[dict[Union[str, ReactorId], Union[dict, Reactor]], list[Union[dict, Reactor]]]])
 
 slots.has_yield = Slot(uri=SIO['000008'], name="has_yield", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_yield, domain=None, range=Optional[Union[Union[dict, Yield], list[Union[dict, Yield]]]])
+                   model_uri=COREMETA4CAT.has_yield, domain=None, range=Optional[Union[Union[dict, Yield], list[Union[dict, Yield]]]])
 
 slots.has_molar_equivalent = Slot(uri=SIO['000008'], name="has_molar_equivalent", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_molar_equivalent, domain=None, range=Optional[Union[Union[dict, MolarEquivalent], list[Union[dict, MolarEquivalent]]]])
+                   model_uri=COREMETA4CAT.has_molar_equivalent, domain=None, range=Optional[Union[Union[dict, MolarEquivalent], list[Union[dict, MolarEquivalent]]]])
 
 slots.has_percentage_of_total = Slot(uri=SIO['000008'], name="has_percentage_of_total", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_percentage_of_total, domain=None, range=Optional[Union[Union[dict, PercentageOfTotal], list[Union[dict, PercentageOfTotal]]]])
+                   model_uri=COREMETA4CAT.has_percentage_of_total, domain=None, range=Optional[Union[Union[dict, PercentageOfTotal], list[Union[dict, PercentageOfTotal]]]])
 
 slots.has_reaction_step = Slot(uri=BFO['0000051'], name="has_reaction_step", curie=BFO.curie('0000051'),
-                   model_uri=CATCORE.has_reaction_step, domain=None, range=Optional[Union[str, ChemicalReactionId]])
+                   model_uri=COREMETA4CAT.has_reaction_step, domain=None, range=Optional[Union[str, ChemicalReactionId]])
 
 slots.alternative_label = Slot(uri=SKOS.altLabel, name="alternative_label", curie=SKOS.curie('altLabel'),
-                   model_uri=CATCORE.alternative_label, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.alternative_label, domain=None, range=Optional[str])
 
 slots.has_physical_state = Slot(uri=SIO['000008'], name="has_physical_state", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_physical_state, domain=None, range=Optional[Union[str, "PhysicalStateEnum"]])
+                   model_uri=COREMETA4CAT.has_physical_state, domain=None, range=Optional[Union[str, "PhysicalStateEnum"]])
 
 slots.has_temperature = Slot(uri=SIO['000008'], name="has_temperature", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_temperature, domain=None, range=Optional[Union[Union[dict, Temperature], list[Union[dict, Temperature]]]])
+                   model_uri=COREMETA4CAT.has_temperature, domain=None, range=Optional[Union[Union[dict, Temperature], list[Union[dict, Temperature]]]])
 
 slots.has_mass = Slot(uri=SIO['000008'], name="has_mass", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_mass, domain=None, range=Optional[Union[Union[dict, Mass], list[Union[dict, Mass]]]])
+                   model_uri=COREMETA4CAT.has_mass, domain=None, range=Optional[Union[Union[dict, Mass], list[Union[dict, Mass]]]])
 
 slots.has_volume = Slot(uri=SIO['000008'], name="has_volume", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_volume, domain=None, range=Optional[Union[Union[dict, Volume], list[Union[dict, Volume]]]])
+                   model_uri=COREMETA4CAT.has_volume, domain=None, range=Optional[Union[Union[dict, Volume], list[Union[dict, Volume]]]])
 
 slots.has_density = Slot(uri=SIO['000008'], name="has_density", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_density, domain=None, range=Optional[Union[Union[dict, Density], list[Union[dict, Density]]]])
+                   model_uri=COREMETA4CAT.has_density, domain=None, range=Optional[Union[Union[dict, Density], list[Union[dict, Density]]]])
 
 slots.has_pressure = Slot(uri=SIO['000008'], name="has_pressure", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.has_pressure, domain=None, range=Optional[Union[Union[dict, Pressure], list[Union[dict, Pressure]]]])
+                   model_uri=COREMETA4CAT.has_pressure, domain=None, range=Optional[Union[Union[dict, Pressure], list[Union[dict, Pressure]]]])
 
 slots.derived_from = Slot(uri=PROV.wasDerivedFrom, name="derived_from", curie=PROV.curie('wasDerivedFrom'),
-                   model_uri=CATCORE.derived_from, domain=None, range=Optional[Union[dict, Entity]])
+                   model_uri=COREMETA4CAT.derived_from, domain=None, range=Optional[Union[dict, Entity]])
 
 slots.definedTerm__from_CV = Slot(uri=SCHEMA.inDefinedTermSet, name="definedTerm__from_CV", curie=SCHEMA.curie('inDefinedTermSet'),
-                   model_uri=CATCORE.definedTerm__from_CV, domain=None, range=Optional[Union[str, URIorCURIE]])
+                   model_uri=COREMETA4CAT.definedTerm__from_CV, domain=None, range=Optional[Union[str, URIorCURIE]])
 
 slots.quantitativeAttribute__has_quantity_type = Slot(uri=QUDT.hasQuantityKind, name="quantitativeAttribute__has_quantity_type", curie=QUDT.curie('hasQuantityKind'),
-                   model_uri=CATCORE.quantitativeAttribute__has_quantity_type, domain=None, range=Union[str, DefinedTermId])
+                   model_uri=COREMETA4CAT.quantitativeAttribute__has_quantity_type, domain=None, range=Union[str, DefinedTermId])
 
 slots.quantitativeAttribute__unit = Slot(uri=QUDT.unit, name="quantitativeAttribute__unit", curie=QUDT.curie('unit'),
-                   model_uri=CATCORE.quantitativeAttribute__unit, domain=None, range=Optional[Union[str, DefinedTermId]])
+                   model_uri=COREMETA4CAT.quantitativeAttribute__unit, domain=None, range=Optional[Union[str, DefinedTermId]])
 
-slots.product_identification_method = Slot(uri=CATCORE.product_identification_method, name="product_identification_method", curie=CATCORE.curie('product_identification_method'),
-                   model_uri=CATCORE.product_identification_method, domain=None, range=Union[Union[dict, ProductIdentificationMethod], list[Union[dict, ProductIdentificationMethod]]])
+slots.product_identification_method = Slot(uri=COREMETA4CAT.product_identification_method, name="product_identification_method", curie=COREMETA4CAT.curie('product_identification_method'),
+                   model_uri=COREMETA4CAT.product_identification_method, domain=None, range=Union[Union[dict, ProductIdentificationMethod], list[Union[dict, ProductIdentificationMethod]]])
 
 slots.CatalysisDataset_rdf_type = Slot(uri=RDF.type, name="CatalysisDataset_rdf_type", curie=RDF.curie('type'),
-                   model_uri=CATCORE.CatalysisDataset_rdf_type, domain=CatalysisDataset, range=Optional[Union[dict, "DefinedTerm"]])
+                   model_uri=COREMETA4CAT.CatalysisDataset_rdf_type, domain=CatalysisDataset, range=Optional[Union[dict, "DefinedTerm"]])
 
 slots.CatalysisDataset_was_generated_by = Slot(uri=PROV.wasGeneratedBy, name="CatalysisDataset_was_generated_by", curie=PROV.curie('wasGeneratedBy'),
-                   model_uri=CATCORE.CatalysisDataset_was_generated_by, domain=CatalysisDataset, range=Optional[Union[dict[Union[str, DataGeneratingActivityId], Union[dict, DataGeneratingActivity]], list[Union[dict, DataGeneratingActivity]]]])
+                   model_uri=COREMETA4CAT.CatalysisDataset_was_generated_by, domain=CatalysisDataset, range=Optional[Union[dict[Union[str, DataGeneratingActivityId], Union[dict, DataGeneratingActivity]], list[Union[dict, DataGeneratingActivity]]]])
 
 slots.CatalysisDataset_is_about_activity = Slot(uri=DCTERMS.subject, name="CatalysisDataset_is_about_activity", curie=DCTERMS.curie('subject'),
-                   model_uri=CATCORE.CatalysisDataset_is_about_activity, domain=CatalysisDataset, range=Optional[Union[dict[Union[str, EvaluatedActivityId], Union[dict, "EvaluatedActivity"]], list[Union[dict, "EvaluatedActivity"]]]])
+                   model_uri=COREMETA4CAT.CatalysisDataset_is_about_activity, domain=CatalysisDataset, range=Optional[Union[dict[Union[str, EvaluatedActivityId], Union[dict, "EvaluatedActivity"]], list[Union[dict, "EvaluatedActivity"]]]])
 
 slots.CatalysisDataset_is_about_entity = Slot(uri=DCTERMS.subject, name="CatalysisDataset_is_about_entity", curie=DCTERMS.curie('subject'),
-                   model_uri=CATCORE.CatalysisDataset_is_about_entity, domain=CatalysisDataset, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]])
+                   model_uri=COREMETA4CAT.CatalysisDataset_is_about_entity, domain=CatalysisDataset, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]])
 
-slots.Synthesis_nominal_composition = Slot(uri=CATCORE.nominal_composition, name="Synthesis_nominal_composition", curie=CATCORE.curie('nominal_composition'),
-                   model_uri=CATCORE.Synthesis_nominal_composition, domain=Synthesis, range=Union[str, list[str]])
+slots.Synthesis_nominal_composition = Slot(uri=COREMETA4CAT.nominal_composition, name="Synthesis_nominal_composition", curie=COREMETA4CAT.curie('nominal_composition'),
+                   model_uri=COREMETA4CAT.Synthesis_nominal_composition, domain=Synthesis, range=Union[str, list[str]])
 
-slots.Synthesis_catalyst_measured_properties = Slot(uri=CATCORE.catalyst_measured_properties, name="Synthesis_catalyst_measured_properties", curie=CATCORE.curie('catalyst_measured_properties'),
-                   model_uri=CATCORE.Synthesis_catalyst_measured_properties, domain=Synthesis, range=Union[str, list[str]])
+slots.Synthesis_catalyst_measured_properties = Slot(uri=COREMETA4CAT.catalyst_measured_properties, name="Synthesis_catalyst_measured_properties", curie=COREMETA4CAT.curie('catalyst_measured_properties'),
+                   model_uri=COREMETA4CAT.Synthesis_catalyst_measured_properties, domain=Synthesis, range=Union[str, list[str]])
 
 slots.Synthesis_had_input_entity = Slot(uri=PROV.used, name="Synthesis_had_input_entity", curie=PROV.curie('used'),
-                   model_uri=CATCORE.Synthesis_had_input_entity, domain=Synthesis, range=Union[dict[Union[str, PrecursorId], Union[dict, "Precursor"]], list[Union[dict, "Precursor"]]])
+                   model_uri=COREMETA4CAT.Synthesis_had_input_entity, domain=Synthesis, range=Union[dict[Union[str, PrecursorId], Union[dict, "Precursor"]], list[Union[dict, "Precursor"]]])
 
 slots.Synthesis_had_output_entity = Slot(uri=PROV.generated, name="Synthesis_had_output_entity", curie=PROV.curie('generated'),
-                   model_uri=CATCORE.Synthesis_had_output_entity, domain=Synthesis, range=Optional[Union[dict[Union[str, CatalystSampleId], Union[dict, "CatalystSample"]], list[Union[dict, "CatalystSample"]]]])
+                   model_uri=COREMETA4CAT.Synthesis_had_output_entity, domain=Synthesis, range=Optional[Union[dict[Union[str, CatalystSampleId], Union[dict, "CatalystSample"]], list[Union[dict, "CatalystSample"]]]])
 
 slots.Synthesis_realized_plan = Slot(uri=PROV.used, name="Synthesis_realized_plan", curie=PROV.curie('used'),
-                   model_uri=CATCORE.Synthesis_realized_plan, domain=Synthesis, range=Union[dict, "PreparationMethod"])
+                   model_uri=COREMETA4CAT.Synthesis_realized_plan, domain=Synthesis, range=Union[dict, "PreparationMethod"])
 
-slots.Synthesis_storage_conditions = Slot(uri=CATCORE.storage_conditions, name="Synthesis_storage_conditions", curie=CATCORE.curie('storage_conditions'),
-                   model_uri=CATCORE.Synthesis_storage_conditions, domain=Synthesis, range=Optional[Union[str, list[str]]])
+slots.Synthesis_storage_conditions = Slot(uri=COREMETA4CAT.storage_conditions, name="Synthesis_storage_conditions", curie=COREMETA4CAT.curie('storage_conditions'),
+                   model_uri=COREMETA4CAT.Synthesis_storage_conditions, domain=Synthesis, range=Optional[Union[str, list[str]]])
 
-slots.Precursor_precursor_quantity = Slot(uri=CATCORE.precursor_quantity, name="Precursor_precursor_quantity", curie=CATCORE.curie('precursor_quantity'),
-                   model_uri=CATCORE.Precursor_precursor_quantity, domain=Precursor, range=Union[float, list[float]])
+slots.Precursor_precursor_quantity = Slot(uri=COREMETA4CAT.precursor_quantity, name="Precursor_precursor_quantity", curie=COREMETA4CAT.curie('precursor_quantity'),
+                   model_uri=COREMETA4CAT.Precursor_precursor_quantity, domain=Precursor, range=Union[float, list[float]])
 
 slots.CatalystSample_derived_from = Slot(uri=PROV.wasDerivedFrom, name="CatalystSample_derived_from", curie=PROV.curie('wasDerivedFrom'),
-                   model_uri=CATCORE.CatalystSample_derived_from, domain=CatalystSample, range=Optional[Union[dict, MaterialSample]])
+                   model_uri=COREMETA4CAT.CatalystSample_derived_from, domain=CatalystSample, range=Optional[Union[dict, MaterialSample]])
 
 slots.Characterization_equipment = Slot(uri=VOC4CAT['0000187'], name="Characterization_equipment", curie=VOC4CAT.curie('0000187'),
-                   model_uri=CATCORE.Characterization_equipment, domain=Characterization, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.Characterization_equipment, domain=Characterization, range=Union[str, list[str]])
 
 slots.Characterization_evaluated_entity = Slot(uri=PROV.used, name="Characterization_evaluated_entity", curie=PROV.curie('used'),
-                   model_uri=CATCORE.Characterization_evaluated_entity, domain=Characterization, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]])
+                   model_uri=COREMETA4CAT.Characterization_evaluated_entity, domain=Characterization, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]])
 
 slots.Characterization_realized_plan = Slot(uri=PROV.used, name="Characterization_realized_plan", curie=PROV.curie('used'),
-                   model_uri=CATCORE.Characterization_realized_plan, domain=Characterization, range=Union[dict, "CharacterizationTechnique"])
+                   model_uri=COREMETA4CAT.Characterization_realized_plan, domain=Characterization, range=Union[dict, "CharacterizationTechnique"])
 
 slots.Characterization_rdf_type = Slot(uri=RDF.type, name="Characterization_rdf_type", curie=RDF.curie('type'),
-                   model_uri=CATCORE.Characterization_rdf_type, domain=Characterization, range=Optional[Union[dict, "DefinedTerm"]])
+                   model_uri=COREMETA4CAT.Characterization_rdf_type, domain=Characterization, range=Optional[Union[dict, "DefinedTerm"]])
 
 slots.Reaction_rdf_type = Slot(uri=RDF.type, name="Reaction_rdf_type", curie=RDF.curie('type'),
-                   model_uri=CATCORE.Reaction_rdf_type, domain=Reaction, range=Optional[Union[dict, DefinedTerm]])
+                   model_uri=COREMETA4CAT.Reaction_rdf_type, domain=Reaction, range=Optional[Union[dict, DefinedTerm]])
 
 slots.Reaction_carried_out_by = Slot(uri=PROV.wasAssociatedWith, name="Reaction_carried_out_by", curie=PROV.curie('wasAssociatedWith'),
-                   model_uri=CATCORE.Reaction_carried_out_by, domain=Reaction, range=Union[dict[Union[str, ReactorDesignTypeId], Union[dict, ReactorDesignType]], list[Union[dict, ReactorDesignType]]])
+                   model_uri=COREMETA4CAT.Reaction_carried_out_by, domain=Reaction, range=Union[dict[Union[str, ReactorDesignTypeId], Union[dict, ReactorDesignType]], list[Union[dict, ReactorDesignType]]])
 
 slots.Reaction_had_input_entity = Slot(uri=PROV.used, name="Reaction_had_input_entity", curie=PROV.curie('used'),
-                   model_uri=CATCORE.Reaction_had_input_entity, domain=Reaction, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]])
+                   model_uri=COREMETA4CAT.Reaction_had_input_entity, domain=Reaction, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]])
 
-slots.Reaction_product_identification_method = Slot(uri=CATCORE.product_identification_method, name="Reaction_product_identification_method", curie=CATCORE.curie('product_identification_method'),
-                   model_uri=CATCORE.Reaction_product_identification_method, domain=Reaction, range=Union[Union[dict, "ProductIdentificationMethod"], list[Union[dict, "ProductIdentificationMethod"]]])
+slots.Reaction_product_identification_method = Slot(uri=COREMETA4CAT.product_identification_method, name="Reaction_product_identification_method", curie=COREMETA4CAT.curie('product_identification_method'),
+                   model_uri=COREMETA4CAT.Reaction_product_identification_method, domain=Reaction, range=Union[Union[dict, "ProductIdentificationMethod"], list[Union[dict, "ProductIdentificationMethod"]]])
 
 slots.Simulation_rdf_type = Slot(uri=RDF.type, name="Simulation_rdf_type", curie=RDF.curie('type'),
-                   model_uri=CATCORE.Simulation_rdf_type, domain=Simulation, range=Optional[Union[dict, "DefinedTerm"]])
+                   model_uri=COREMETA4CAT.Simulation_rdf_type, domain=Simulation, range=Optional[Union[dict, "DefinedTerm"]])
 
 slots.Simulation_realized_plan = Slot(uri=PROV.used, name="Simulation_realized_plan", curie=PROV.curie('used'),
-                   model_uri=CATCORE.Simulation_realized_plan, domain=Simulation, range=Union[Union[dict, "SimulationMethod"], list[Union[dict, "SimulationMethod"]]])
+                   model_uri=COREMETA4CAT.Simulation_realized_plan, domain=Simulation, range=Union[Union[dict, "SimulationMethod"], list[Union[dict, "SimulationMethod"]]])
 
 slots.Simulation_carried_out_by = Slot(uri=PROV.wasAssociatedWith, name="Simulation_carried_out_by", curie=PROV.curie('wasAssociatedWith'),
-                   model_uri=CATCORE.Simulation_carried_out_by, domain=Simulation, range=Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, AgenticEntity]], list[Union[dict, AgenticEntity]]]])
+                   model_uri=COREMETA4CAT.Simulation_carried_out_by, domain=Simulation, range=Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, AgenticEntity]], list[Union[dict, AgenticEntity]]]])
 
 slots.Simulation_evaluated_entity = Slot(uri=PROV.used, name="Simulation_evaluated_entity", curie=PROV.curie('used'),
-                   model_uri=CATCORE.Simulation_evaluated_entity, domain=Simulation, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]])
+                   model_uri=COREMETA4CAT.Simulation_evaluated_entity, domain=Simulation, range=Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]])
 
 slots.Activity_title = Slot(uri=DCTERMS.title, name="Activity_title", curie=DCTERMS.curie('title'),
-                   model_uri=CATCORE.Activity_title, domain=Activity, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.Activity_title, domain=Activity, range=Optional[Union[str, list[str]]])
 
 slots.Activity_description = Slot(uri=DCTERMS.description, name="Activity_description", curie=DCTERMS.curie('description'),
-                   model_uri=CATCORE.Activity_description, domain=Activity, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.Activity_description, domain=Activity, range=Optional[Union[str, list[str]]])
 
 slots.Activity_has_part = Slot(uri=DCTERMS.hasPart, name="Activity_has_part", curie=DCTERMS.curie('hasPart'),
-                   model_uri=CATCORE.Activity_has_part, domain=Activity, range=Optional[Union[dict[Union[str, ActivityId], Union[dict, "Activity"]], list[Union[dict, "Activity"]]]])
+                   model_uri=COREMETA4CAT.Activity_has_part, domain=Activity, range=Optional[Union[dict[Union[str, ActivityId], Union[dict, "Activity"]], list[Union[dict, "Activity"]]]])
 
 slots.Activity_part_of = Slot(uri=DCTERMS.isPartOf, name="Activity_part_of", curie=DCTERMS.curie('isPartOf'),
-                   model_uri=CATCORE.Activity_part_of, domain=Activity, range=Optional[Union[dict[Union[str, ActivityId], Union[dict, "Activity"]], list[Union[dict, "Activity"]]]])
+                   model_uri=COREMETA4CAT.Activity_part_of, domain=Activity, range=Optional[Union[dict[Union[str, ActivityId], Union[dict, "Activity"]], list[Union[dict, "Activity"]]]])
 
 slots.Activity_other_identifier = Slot(uri=ADMS.identifier, name="Activity_other_identifier", curie=ADMS.curie('identifier'),
-                   model_uri=CATCORE.Activity_other_identifier, domain=Activity, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
+                   model_uri=COREMETA4CAT.Activity_other_identifier, domain=Activity, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
 
 slots.Activity_has_qualitative_attribute = Slot(uri=DCTERMS.relation, name="Activity_has_qualitative_attribute", curie=DCTERMS.curie('relation'),
-                   model_uri=CATCORE.Activity_has_qualitative_attribute, domain=Activity, range=Optional[Union[Union[dict, "QualitativeAttribute"], list[Union[dict, "QualitativeAttribute"]]]])
+                   model_uri=COREMETA4CAT.Activity_has_qualitative_attribute, domain=Activity, range=Optional[Union[Union[dict, "QualitativeAttribute"], list[Union[dict, "QualitativeAttribute"]]]])
 
 slots.Activity_has_quantitative_attribute = Slot(uri=DCTERMS.relation, name="Activity_has_quantitative_attribute", curie=DCTERMS.curie('relation'),
-                   model_uri=CATCORE.Activity_has_quantitative_attribute, domain=Activity, range=Optional[Union[Union[dict, "QuantitativeAttribute"], list[Union[dict, "QuantitativeAttribute"]]]])
+                   model_uri=COREMETA4CAT.Activity_has_quantitative_attribute, domain=Activity, range=Optional[Union[Union[dict, "QuantitativeAttribute"], list[Union[dict, "QuantitativeAttribute"]]]])
 
 slots.Activity_had_input_entity = Slot(uri=PROV.used, name="Activity_had_input_entity", curie=PROV.curie('used'),
-                   model_uri=CATCORE.Activity_had_input_entity, domain=Activity, range=Optional[Union[dict[Union[str, EntityId], Union[dict, "Entity"]], list[Union[dict, "Entity"]]]])
+                   model_uri=COREMETA4CAT.Activity_had_input_entity, domain=Activity, range=Optional[Union[dict[Union[str, EntityId], Union[dict, "Entity"]], list[Union[dict, "Entity"]]]])
 
 slots.Activity_had_output_entity = Slot(uri=PROV.generated, name="Activity_had_output_entity", curie=PROV.curie('generated'),
-                   model_uri=CATCORE.Activity_had_output_entity, domain=Activity, range=Optional[Union[dict[Union[str, EntityId], Union[dict, "Entity"]], list[Union[dict, "Entity"]]]])
+                   model_uri=COREMETA4CAT.Activity_had_output_entity, domain=Activity, range=Optional[Union[dict[Union[str, EntityId], Union[dict, "Entity"]], list[Union[dict, "Entity"]]]])
 
 slots.Activity_had_input_activity = Slot(uri=PROV.wasInformedBy, name="Activity_had_input_activity", curie=PROV.curie('wasInformedBy'),
-                   model_uri=CATCORE.Activity_had_input_activity, domain=Activity, range=Optional[Union[dict[Union[str, ActivityId], Union[dict, "Activity"]], list[Union[dict, "Activity"]]]])
+                   model_uri=COREMETA4CAT.Activity_had_input_activity, domain=Activity, range=Optional[Union[dict[Union[str, ActivityId], Union[dict, "Activity"]], list[Union[dict, "Activity"]]]])
 
 slots.Activity_carried_out_by = Slot(uri=PROV.wasAssociatedWith, name="Activity_carried_out_by", curie=PROV.curie('wasAssociatedWith'),
-                   model_uri=CATCORE.Activity_carried_out_by, domain=Activity, range=Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, "AgenticEntity"]], list[Union[dict, "AgenticEntity"]]]])
+                   model_uri=COREMETA4CAT.Activity_carried_out_by, domain=Activity, range=Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, "AgenticEntity"]], list[Union[dict, "AgenticEntity"]]]])
 
 slots.Agent_name = Slot(uri=FOAF.name, name="Agent_name", curie=FOAF.curie('name'),
-                   model_uri=CATCORE.Agent_name, domain=Agent, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.Agent_name, domain=Agent, range=Union[str, list[str]])
 
 slots.Agent_type = Slot(uri=DCTERMS.type, name="Agent_type", curie=DCTERMS.curie('type'),
-                   model_uri=CATCORE.Agent_type, domain=Agent, range=Optional[Union[dict, "Concept"]])
+                   model_uri=COREMETA4CAT.Agent_type, domain=Agent, range=Optional[Union[dict, "Concept"]])
 
 slots.AgenticEntity_has_part = Slot(uri=DCTERMS.hasPart, name="AgenticEntity_has_part", curie=DCTERMS.curie('hasPart'),
-                   model_uri=CATCORE.AgenticEntity_has_part, domain=AgenticEntity, range=Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, "AgenticEntity"]], list[Union[dict, "AgenticEntity"]]]])
+                   model_uri=COREMETA4CAT.AgenticEntity_has_part, domain=AgenticEntity, range=Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, "AgenticEntity"]], list[Union[dict, "AgenticEntity"]]]])
 
 slots.AgenticEntity_part_of = Slot(uri=DCTERMS.isPartOf, name="AgenticEntity_part_of", curie=DCTERMS.curie('isPartOf'),
-                   model_uri=CATCORE.AgenticEntity_part_of, domain=AgenticEntity, range=Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, "AgenticEntity"]], list[Union[dict, "AgenticEntity"]]]])
+                   model_uri=COREMETA4CAT.AgenticEntity_part_of, domain=AgenticEntity, range=Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, "AgenticEntity"]], list[Union[dict, "AgenticEntity"]]]])
 
 slots.AgenticEntity_other_identifier = Slot(uri=ADMS.identifier, name="AgenticEntity_other_identifier", curie=ADMS.curie('identifier'),
-                   model_uri=CATCORE.AgenticEntity_other_identifier, domain=AgenticEntity, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
+                   model_uri=COREMETA4CAT.AgenticEntity_other_identifier, domain=AgenticEntity, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
 
 slots.AnalysisDataset_was_generated_by = Slot(uri=PROV.wasGeneratedBy, name="AnalysisDataset_was_generated_by", curie=PROV.curie('wasGeneratedBy'),
-                   model_uri=CATCORE.AnalysisDataset_was_generated_by, domain=AnalysisDataset, range=Optional[Union[dict[Union[str, DataAnalysisId], Union[dict, DataAnalysis]], list[Union[dict, DataAnalysis]]]])
+                   model_uri=COREMETA4CAT.AnalysisDataset_was_generated_by, domain=AnalysisDataset, range=Optional[Union[dict[Union[str, DataAnalysisId], Union[dict, DataAnalysis]], list[Union[dict, DataAnalysis]]]])
 
 slots.AnalysisSourceData_was_generated_by = Slot(uri=PROV.wasGeneratedBy, name="AnalysisSourceData_was_generated_by", curie=PROV.curie('wasGeneratedBy'),
-                   model_uri=CATCORE.AnalysisSourceData_was_generated_by, domain=AnalysisSourceData, range=Optional[Union[dict[Union[str, DataGeneratingActivityId], Union[dict, DataGeneratingActivity]], list[Union[dict, DataGeneratingActivity]]]])
+                   model_uri=COREMETA4CAT.AnalysisSourceData_was_generated_by, domain=AnalysisSourceData, range=Optional[Union[dict[Union[str, DataGeneratingActivityId], Union[dict, DataGeneratingActivity]], list[Union[dict, DataGeneratingActivity]]]])
 
 slots.Catalogue_applicable_legislation = Slot(uri=DCATAP.applicableLegislation, name="Catalogue_applicable_legislation", curie=DCATAP.curie('applicableLegislation'),
-                   model_uri=CATCORE.Catalogue_applicable_legislation, domain=Catalogue, range=Optional[Union[dict[Union[str, LegalResourceId], Union[dict, "LegalResource"]], list[Union[dict, "LegalResource"]]]])
+                   model_uri=COREMETA4CAT.Catalogue_applicable_legislation, domain=Catalogue, range=Optional[Union[dict[Union[str, LegalResourceId], Union[dict, "LegalResource"]], list[Union[dict, "LegalResource"]]]])
 
 slots.Catalogue_catalogue = Slot(uri=DCAT.catalog, name="Catalogue_catalogue", curie=DCAT.curie('catalog'),
-                   model_uri=CATCORE.Catalogue_catalogue, domain=Catalogue, range=Optional[Union[Union[dict, "Catalogue"], list[Union[dict, "Catalogue"]]]])
+                   model_uri=COREMETA4CAT.Catalogue_catalogue, domain=Catalogue, range=Optional[Union[Union[dict, "Catalogue"], list[Union[dict, "Catalogue"]]]])
 
 slots.Catalogue_creator = Slot(uri=DCTERMS.creator, name="Catalogue_creator", curie=DCTERMS.curie('creator'),
-                   model_uri=CATCORE.Catalogue_creator, domain=Catalogue, range=Optional[Union[dict, Agent]])
+                   model_uri=COREMETA4CAT.Catalogue_creator, domain=Catalogue, range=Optional[Union[dict, Agent]])
 
 slots.Catalogue_description = Slot(uri=DCTERMS.description, name="Catalogue_description", curie=DCTERMS.curie('description'),
-                   model_uri=CATCORE.Catalogue_description, domain=Catalogue, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.Catalogue_description, domain=Catalogue, range=Union[str, list[str]])
 
 slots.Catalogue_geographical_coverage = Slot(uri=DCTERMS.spatial, name="Catalogue_geographical_coverage", curie=DCTERMS.curie('spatial'),
-                   model_uri=CATCORE.Catalogue_geographical_coverage, domain=Catalogue, range=Optional[Union[Union[dict, "Location"], list[Union[dict, "Location"]]]])
+                   model_uri=COREMETA4CAT.Catalogue_geographical_coverage, domain=Catalogue, range=Optional[Union[Union[dict, "Location"], list[Union[dict, "Location"]]]])
 
 slots.Catalogue_has_dataset = Slot(uri=DCAT.dataset, name="Catalogue_has_dataset", curie=DCAT.curie('dataset'),
-                   model_uri=CATCORE.Catalogue_has_dataset, domain=Catalogue, range=Optional[Union[dict[Union[str, DatasetId], Union[dict, "Dataset"]], list[Union[dict, "Dataset"]]]])
+                   model_uri=COREMETA4CAT.Catalogue_has_dataset, domain=Catalogue, range=Optional[Union[dict[Union[str, DatasetId], Union[dict, "Dataset"]], list[Union[dict, "Dataset"]]]])
 
 slots.Catalogue_has_part = Slot(uri=DCTERMS.hasPart, name="Catalogue_has_part", curie=DCTERMS.curie('hasPart'),
-                   model_uri=CATCORE.Catalogue_has_part, domain=Catalogue, range=Optional[Union[Union[dict, "Catalogue"], list[Union[dict, "Catalogue"]]]])
+                   model_uri=COREMETA4CAT.Catalogue_has_part, domain=Catalogue, range=Optional[Union[Union[dict, "Catalogue"], list[Union[dict, "Catalogue"]]]])
 
 slots.Catalogue_homepage = Slot(uri=FOAF.homepage, name="Catalogue_homepage", curie=FOAF.curie('homepage'),
-                   model_uri=CATCORE.Catalogue_homepage, domain=Catalogue, range=Optional[Union[dict, "Document"]])
+                   model_uri=COREMETA4CAT.Catalogue_homepage, domain=Catalogue, range=Optional[Union[dict, "Document"]])
 
 slots.Catalogue_language = Slot(uri=DCTERMS.language, name="Catalogue_language", curie=DCTERMS.curie('language'),
-                   model_uri=CATCORE.Catalogue_language, domain=Catalogue, range=Optional[Union[Union[dict, "LinguisticSystem"], list[Union[dict, "LinguisticSystem"]]]])
+                   model_uri=COREMETA4CAT.Catalogue_language, domain=Catalogue, range=Optional[Union[Union[dict, "LinguisticSystem"], list[Union[dict, "LinguisticSystem"]]]])
 
 slots.Catalogue_licence = Slot(uri=DCTERMS.license, name="Catalogue_licence", curie=DCTERMS.curie('license'),
-                   model_uri=CATCORE.Catalogue_licence, domain=Catalogue, range=Optional[Union[dict, "LicenseDocument"]])
+                   model_uri=COREMETA4CAT.Catalogue_licence, domain=Catalogue, range=Optional[Union[dict, "LicenseDocument"]])
 
 slots.Catalogue_modification_date = Slot(uri=DCTERMS.modified, name="Catalogue_modification_date", curie=DCTERMS.curie('modified'),
-                   model_uri=CATCORE.Catalogue_modification_date, domain=Catalogue, range=Optional[Union[str, XSDDate]])
+                   model_uri=COREMETA4CAT.Catalogue_modification_date, domain=Catalogue, range=Optional[Union[str, XSDDate]])
 
 slots.Catalogue_publisher = Slot(uri=DCTERMS.publisher, name="Catalogue_publisher", curie=DCTERMS.curie('publisher'),
-                   model_uri=CATCORE.Catalogue_publisher, domain=Catalogue, range=Union[dict, Agent])
+                   model_uri=COREMETA4CAT.Catalogue_publisher, domain=Catalogue, range=Union[dict, Agent])
 
 slots.Catalogue_record = Slot(uri=DCAT.record, name="Catalogue_record", curie=DCAT.curie('record'),
-                   model_uri=CATCORE.Catalogue_record, domain=Catalogue, range=Optional[Union[Union[dict, "CatalogueRecord"], list[Union[dict, "CatalogueRecord"]]]])
+                   model_uri=COREMETA4CAT.Catalogue_record, domain=Catalogue, range=Optional[Union[Union[dict, "CatalogueRecord"], list[Union[dict, "CatalogueRecord"]]]])
 
 slots.Catalogue_release_date = Slot(uri=DCTERMS.issued, name="Catalogue_release_date", curie=DCTERMS.curie('issued'),
-                   model_uri=CATCORE.Catalogue_release_date, domain=Catalogue, range=Optional[Union[str, XSDDate]])
+                   model_uri=COREMETA4CAT.Catalogue_release_date, domain=Catalogue, range=Optional[Union[str, XSDDate]])
 
 slots.Catalogue_rights = Slot(uri=DCTERMS.rights, name="Catalogue_rights", curie=DCTERMS.curie('rights'),
-                   model_uri=CATCORE.Catalogue_rights, domain=Catalogue, range=Optional[Union[dict, "RightsStatement"]])
+                   model_uri=COREMETA4CAT.Catalogue_rights, domain=Catalogue, range=Optional[Union[dict, "RightsStatement"]])
 
 slots.Catalogue_service = Slot(uri=DCAT.service, name="Catalogue_service", curie=DCAT.curie('service'),
-                   model_uri=CATCORE.Catalogue_service, domain=Catalogue, range=Optional[Union[Union[dict, "DataService"], list[Union[dict, "DataService"]]]])
+                   model_uri=COREMETA4CAT.Catalogue_service, domain=Catalogue, range=Optional[Union[Union[dict, "DataService"], list[Union[dict, "DataService"]]]])
 
 slots.Catalogue_temporal_coverage = Slot(uri=DCTERMS.temporal, name="Catalogue_temporal_coverage", curie=DCTERMS.curie('temporal'),
-                   model_uri=CATCORE.Catalogue_temporal_coverage, domain=Catalogue, range=Optional[Union[Union[dict, "PeriodOfTime"], list[Union[dict, "PeriodOfTime"]]]])
+                   model_uri=COREMETA4CAT.Catalogue_temporal_coverage, domain=Catalogue, range=Optional[Union[Union[dict, "PeriodOfTime"], list[Union[dict, "PeriodOfTime"]]]])
 
 slots.Catalogue_themes = Slot(uri=DCAT.themeTaxonomy, name="Catalogue_themes", curie=DCAT.curie('themeTaxonomy'),
-                   model_uri=CATCORE.Catalogue_themes, domain=Catalogue, range=Optional[Union[Union[dict, "ConceptScheme"], list[Union[dict, "ConceptScheme"]]]])
+                   model_uri=COREMETA4CAT.Catalogue_themes, domain=Catalogue, range=Optional[Union[Union[dict, "ConceptScheme"], list[Union[dict, "ConceptScheme"]]]])
 
 slots.Catalogue_title = Slot(uri=DCTERMS.title, name="Catalogue_title", curie=DCTERMS.curie('title'),
-                   model_uri=CATCORE.Catalogue_title, domain=Catalogue, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.Catalogue_title, domain=Catalogue, range=Union[str, list[str]])
 
 slots.CatalogueRecord_application_profile = Slot(uri=DCTERMS.conformsTo, name="CatalogueRecord_application_profile", curie=DCTERMS.curie('conformsTo'),
-                   model_uri=CATCORE.CatalogueRecord_application_profile, domain=CatalogueRecord, range=Optional[Union[Union[dict, "Standard"], list[Union[dict, "Standard"]]]])
+                   model_uri=COREMETA4CAT.CatalogueRecord_application_profile, domain=CatalogueRecord, range=Optional[Union[Union[dict, "Standard"], list[Union[dict, "Standard"]]]])
 
 slots.CatalogueRecord_change_type = Slot(uri=ADMS.status, name="CatalogueRecord_change_type", curie=ADMS.curie('status'),
-                   model_uri=CATCORE.CatalogueRecord_change_type, domain=CatalogueRecord, range=Optional[Union[dict, "Concept"]])
+                   model_uri=COREMETA4CAT.CatalogueRecord_change_type, domain=CatalogueRecord, range=Optional[Union[dict, "Concept"]])
 
 slots.CatalogueRecord_description = Slot(uri=DCTERMS.description, name="CatalogueRecord_description", curie=DCTERMS.curie('description'),
-                   model_uri=CATCORE.CatalogueRecord_description, domain=CatalogueRecord, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.CatalogueRecord_description, domain=CatalogueRecord, range=Optional[Union[str, list[str]]])
 
 slots.CatalogueRecord_language = Slot(uri=DCTERMS.language, name="CatalogueRecord_language", curie=DCTERMS.curie('language'),
-                   model_uri=CATCORE.CatalogueRecord_language, domain=CatalogueRecord, range=Optional[Union[Union[dict, "LinguisticSystem"], list[Union[dict, "LinguisticSystem"]]]])
+                   model_uri=COREMETA4CAT.CatalogueRecord_language, domain=CatalogueRecord, range=Optional[Union[Union[dict, "LinguisticSystem"], list[Union[dict, "LinguisticSystem"]]]])
 
 slots.CatalogueRecord_listing_date = Slot(uri=DCTERMS.issued, name="CatalogueRecord_listing_date", curie=DCTERMS.curie('issued'),
-                   model_uri=CATCORE.CatalogueRecord_listing_date, domain=CatalogueRecord, range=Optional[Union[str, XSDDate]])
+                   model_uri=COREMETA4CAT.CatalogueRecord_listing_date, domain=CatalogueRecord, range=Optional[Union[str, XSDDate]])
 
 slots.CatalogueRecord_modification_date = Slot(uri=DCTERMS.modified, name="CatalogueRecord_modification_date", curie=DCTERMS.curie('modified'),
-                   model_uri=CATCORE.CatalogueRecord_modification_date, domain=CatalogueRecord, range=Union[str, XSDDate])
+                   model_uri=COREMETA4CAT.CatalogueRecord_modification_date, domain=CatalogueRecord, range=Union[str, XSDDate])
 
 slots.CatalogueRecord_primary_topic = Slot(uri=FOAF.primaryTopic, name="CatalogueRecord_primary_topic", curie=FOAF.curie('primaryTopic'),
-                   model_uri=CATCORE.CatalogueRecord_primary_topic, domain=CatalogueRecord, range=Union[dict, Any])
+                   model_uri=COREMETA4CAT.CatalogueRecord_primary_topic, domain=CatalogueRecord, range=Union[dict, Any])
 
 slots.CatalogueRecord_source_metadata = Slot(uri=DCTERMS.source, name="CatalogueRecord_source_metadata", curie=DCTERMS.curie('source'),
-                   model_uri=CATCORE.CatalogueRecord_source_metadata, domain=CatalogueRecord, range=Optional[Union[dict, "CatalogueRecord"]])
+                   model_uri=COREMETA4CAT.CatalogueRecord_source_metadata, domain=CatalogueRecord, range=Optional[Union[dict, "CatalogueRecord"]])
 
 slots.CatalogueRecord_title = Slot(uri=DCTERMS.title, name="CatalogueRecord_title", curie=DCTERMS.curie('title'),
-                   model_uri=CATCORE.CatalogueRecord_title, domain=CatalogueRecord, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.CatalogueRecord_title, domain=CatalogueRecord, range=Optional[Union[str, list[str]]])
 
 slots.Checksum_algorithm = Slot(uri=SPDX.algorithm, name="Checksum_algorithm", curie=SPDX.curie('algorithm'),
-                   model_uri=CATCORE.Checksum_algorithm, domain=Checksum, range=Union[dict, "ChecksumAlgorithm"])
+                   model_uri=COREMETA4CAT.Checksum_algorithm, domain=Checksum, range=Union[dict, "ChecksumAlgorithm"])
 
 slots.Checksum_checksum_value = Slot(uri=SPDX.checksumValue, name="Checksum_checksum_value", curie=SPDX.curie('checksumValue'),
-                   model_uri=CATCORE.Checksum_checksum_value, domain=Checksum, range=str)
+                   model_uri=COREMETA4CAT.Checksum_checksum_value, domain=Checksum, range=str)
 
 slots.ClassifierMixin_type = Slot(uri=DCTERMS.type, name="ClassifierMixin_type", curie=DCTERMS.curie('type'),
-                   model_uri=CATCORE.ClassifierMixin_type, domain=None, range=Optional[Union[dict, "DefinedTerm"]])
+                   model_uri=COREMETA4CAT.ClassifierMixin_type, domain=None, range=Optional[Union[dict, "DefinedTerm"]])
 
 slots.Concept_preferred_label = Slot(uri=SKOS.prefLabel, name="Concept_preferred_label", curie=SKOS.curie('prefLabel'),
-                   model_uri=CATCORE.Concept_preferred_label, domain=Concept, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.Concept_preferred_label, domain=Concept, range=Union[str, list[str]])
 
 slots.ConceptScheme_title = Slot(uri=DCTERMS.title, name="ConceptScheme_title", curie=DCTERMS.curie('title'),
-                   model_uri=CATCORE.ConceptScheme_title, domain=ConceptScheme, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.ConceptScheme_title, domain=ConceptScheme, range=Union[str, list[str]])
 
 slots.DataAnalysis_evaluated_entity = Slot(uri=PROV.used, name="DataAnalysis_evaluated_entity", curie=PROV.curie('used'),
-                   model_uri=CATCORE.DataAnalysis_evaluated_entity, domain=DataAnalysis, range=Optional[Union[dict[Union[str, AnalysisSourceDataId], Union[dict, "AnalysisSourceData"]], list[Union[dict, "AnalysisSourceData"]]]])
+                   model_uri=COREMETA4CAT.DataAnalysis_evaluated_entity, domain=DataAnalysis, range=Optional[Union[dict[Union[str, AnalysisSourceDataId], Union[dict, "AnalysisSourceData"]], list[Union[dict, "AnalysisSourceData"]]]])
 
 slots.DataService_access_rights = Slot(uri=DCTERMS.accessRights, name="DataService_access_rights", curie=DCTERMS.curie('accessRights'),
-                   model_uri=CATCORE.DataService_access_rights, domain=DataService, range=Optional[Union[dict, "RightsStatement"]])
+                   model_uri=COREMETA4CAT.DataService_access_rights, domain=DataService, range=Optional[Union[dict, "RightsStatement"]])
 
 slots.DataService_applicable_legislation = Slot(uri=DCATAP.applicableLegislation, name="DataService_applicable_legislation", curie=DCATAP.curie('applicableLegislation'),
-                   model_uri=CATCORE.DataService_applicable_legislation, domain=DataService, range=Optional[Union[dict[Union[str, LegalResourceId], Union[dict, "LegalResource"]], list[Union[dict, "LegalResource"]]]])
+                   model_uri=COREMETA4CAT.DataService_applicable_legislation, domain=DataService, range=Optional[Union[dict[Union[str, LegalResourceId], Union[dict, "LegalResource"]], list[Union[dict, "LegalResource"]]]])
 
 slots.DataService_conforms_to = Slot(uri=DCTERMS.conformsTo, name="DataService_conforms_to", curie=DCTERMS.curie('conformsTo'),
-                   model_uri=CATCORE.DataService_conforms_to, domain=DataService, range=Optional[Union[Union[dict, "Standard"], list[Union[dict, "Standard"]]]])
+                   model_uri=COREMETA4CAT.DataService_conforms_to, domain=DataService, range=Optional[Union[Union[dict, "Standard"], list[Union[dict, "Standard"]]]])
 
 slots.DataService_contact_point = Slot(uri=DCAT.contactPoint, name="DataService_contact_point", curie=DCAT.curie('contactPoint'),
-                   model_uri=CATCORE.DataService_contact_point, domain=DataService, range=Optional[Union[Union[dict, "Kind"], list[Union[dict, "Kind"]]]])
+                   model_uri=COREMETA4CAT.DataService_contact_point, domain=DataService, range=Optional[Union[Union[dict, "Kind"], list[Union[dict, "Kind"]]]])
 
 slots.DataService_description = Slot(uri=DCTERMS.description, name="DataService_description", curie=DCTERMS.curie('description'),
-                   model_uri=CATCORE.DataService_description, domain=DataService, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.DataService_description, domain=DataService, range=Optional[Union[str, list[str]]])
 
 slots.DataService_documentation = Slot(uri=FOAF.page, name="DataService_documentation", curie=FOAF.curie('page'),
-                   model_uri=CATCORE.DataService_documentation, domain=DataService, range=Optional[Union[dict[Union[str, DocumentId], Union[dict, "Document"]], list[Union[dict, "Document"]]]])
+                   model_uri=COREMETA4CAT.DataService_documentation, domain=DataService, range=Optional[Union[dict[Union[str, DocumentId], Union[dict, "Document"]], list[Union[dict, "Document"]]]])
 
 slots.DataService_endpoint_URL = Slot(uri=DCAT.endpointURL, name="DataService_endpoint_URL", curie=DCAT.curie('endpointURL'),
-                   model_uri=CATCORE.DataService_endpoint_URL, domain=DataService, range=Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]])
+                   model_uri=COREMETA4CAT.DataService_endpoint_URL, domain=DataService, range=Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]])
 
 slots.DataService_endpoint_description = Slot(uri=DCAT.endpointDescription, name="DataService_endpoint_description", curie=DCAT.curie('endpointDescription'),
-                   model_uri=CATCORE.DataService_endpoint_description, domain=DataService, range=Optional[Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]]])
+                   model_uri=COREMETA4CAT.DataService_endpoint_description, domain=DataService, range=Optional[Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]]])
 
 slots.DataService_format = Slot(uri=DCTERMS.format, name="DataService_format", curie=DCTERMS.curie('format'),
-                   model_uri=CATCORE.DataService_format, domain=DataService, range=Optional[Union[Union[dict, "MediaTypeOrExtent"], list[Union[dict, "MediaTypeOrExtent"]]]])
+                   model_uri=COREMETA4CAT.DataService_format, domain=DataService, range=Optional[Union[Union[dict, "MediaTypeOrExtent"], list[Union[dict, "MediaTypeOrExtent"]]]])
 
 slots.DataService_keyword = Slot(uri=DCAT.keyword, name="DataService_keyword", curie=DCAT.curie('keyword'),
-                   model_uri=CATCORE.DataService_keyword, domain=DataService, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.DataService_keyword, domain=DataService, range=Optional[Union[str, list[str]]])
 
 slots.DataService_landing_page = Slot(uri=DCAT.landingPage, name="DataService_landing_page", curie=DCAT.curie('landingPage'),
-                   model_uri=CATCORE.DataService_landing_page, domain=DataService, range=Optional[Union[dict[Union[str, DocumentId], Union[dict, "Document"]], list[Union[dict, "Document"]]]])
+                   model_uri=COREMETA4CAT.DataService_landing_page, domain=DataService, range=Optional[Union[dict[Union[str, DocumentId], Union[dict, "Document"]], list[Union[dict, "Document"]]]])
 
 slots.DataService_licence = Slot(uri=DCTERMS.license, name="DataService_licence", curie=DCTERMS.curie('license'),
-                   model_uri=CATCORE.DataService_licence, domain=DataService, range=Optional[Union[dict, "LicenseDocument"]])
+                   model_uri=COREMETA4CAT.DataService_licence, domain=DataService, range=Optional[Union[dict, "LicenseDocument"]])
 
 slots.DataService_publisher = Slot(uri=DCTERMS.publisher, name="DataService_publisher", curie=DCTERMS.curie('publisher'),
-                   model_uri=CATCORE.DataService_publisher, domain=DataService, range=Optional[Union[dict, Agent]])
+                   model_uri=COREMETA4CAT.DataService_publisher, domain=DataService, range=Optional[Union[dict, Agent]])
 
 slots.DataService_serves_dataset = Slot(uri=DCAT.servesDataset, name="DataService_serves_dataset", curie=DCAT.curie('servesDataset'),
-                   model_uri=CATCORE.DataService_serves_dataset, domain=DataService, range=Optional[Union[dict[Union[str, DatasetId], Union[dict, "Dataset"]], list[Union[dict, "Dataset"]]]])
+                   model_uri=COREMETA4CAT.DataService_serves_dataset, domain=DataService, range=Optional[Union[dict[Union[str, DatasetId], Union[dict, "Dataset"]], list[Union[dict, "Dataset"]]]])
 
 slots.DataService_theme = Slot(uri=DCAT.theme, name="DataService_theme", curie=DCAT.curie('theme'),
-                   model_uri=CATCORE.DataService_theme, domain=DataService, range=Optional[Union[Union[dict, "Concept"], list[Union[dict, "Concept"]]]])
+                   model_uri=COREMETA4CAT.DataService_theme, domain=DataService, range=Optional[Union[Union[dict, "Concept"], list[Union[dict, "Concept"]]]])
 
 slots.DataService_title = Slot(uri=DCTERMS.title, name="DataService_title", curie=DCTERMS.curie('title'),
-                   model_uri=CATCORE.DataService_title, domain=DataService, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.DataService_title, domain=DataService, range=Union[str, list[str]])
 
 slots.Dataset_access_rights = Slot(uri=DCTERMS.accessRights, name="Dataset_access_rights", curie=DCTERMS.curie('accessRights'),
-                   model_uri=CATCORE.Dataset_access_rights, domain=Dataset, range=Optional[Union[dict, "RightsStatement"]])
+                   model_uri=COREMETA4CAT.Dataset_access_rights, domain=Dataset, range=Optional[Union[dict, "RightsStatement"]])
 
 slots.Dataset_applicable_legislation = Slot(uri=DCATAP.applicableLegislation, name="Dataset_applicable_legislation", curie=DCATAP.curie('applicableLegislation'),
-                   model_uri=CATCORE.Dataset_applicable_legislation, domain=Dataset, range=Optional[Union[dict[Union[str, LegalResourceId], Union[dict, "LegalResource"]], list[Union[dict, "LegalResource"]]]])
+                   model_uri=COREMETA4CAT.Dataset_applicable_legislation, domain=Dataset, range=Optional[Union[dict[Union[str, LegalResourceId], Union[dict, "LegalResource"]], list[Union[dict, "LegalResource"]]]])
 
 slots.Dataset_conforms_to = Slot(uri=DCTERMS.conformsTo, name="Dataset_conforms_to", curie=DCTERMS.curie('conformsTo'),
-                   model_uri=CATCORE.Dataset_conforms_to, domain=Dataset, range=Optional[Union[Union[dict, "Standard"], list[Union[dict, "Standard"]]]])
+                   model_uri=COREMETA4CAT.Dataset_conforms_to, domain=Dataset, range=Optional[Union[Union[dict, "Standard"], list[Union[dict, "Standard"]]]])
 
 slots.Dataset_contact_point = Slot(uri=DCAT.contactPoint, name="Dataset_contact_point", curie=DCAT.curie('contactPoint'),
-                   model_uri=CATCORE.Dataset_contact_point, domain=Dataset, range=Optional[Union[Union[dict, "Kind"], list[Union[dict, "Kind"]]]])
+                   model_uri=COREMETA4CAT.Dataset_contact_point, domain=Dataset, range=Optional[Union[Union[dict, "Kind"], list[Union[dict, "Kind"]]]])
 
 slots.Dataset_creator = Slot(uri=DCTERMS.creator, name="Dataset_creator", curie=DCTERMS.curie('creator'),
-                   model_uri=CATCORE.Dataset_creator, domain=Dataset, range=Optional[Union[Union[dict, Agent], list[Union[dict, Agent]]]])
+                   model_uri=COREMETA4CAT.Dataset_creator, domain=Dataset, range=Optional[Union[Union[dict, Agent], list[Union[dict, Agent]]]])
 
 slots.Dataset_dataset_distribution = Slot(uri=DCAT.distribution, name="Dataset_dataset_distribution", curie=DCAT.curie('distribution'),
-                   model_uri=CATCORE.Dataset_dataset_distribution, domain=Dataset, range=Optional[Union[Union[dict, "Distribution"], list[Union[dict, "Distribution"]]]])
+                   model_uri=COREMETA4CAT.Dataset_dataset_distribution, domain=Dataset, range=Optional[Union[Union[dict, "Distribution"], list[Union[dict, "Distribution"]]]])
 
 slots.Dataset_description = Slot(uri=DCTERMS.description, name="Dataset_description", curie=DCTERMS.curie('description'),
-                   model_uri=CATCORE.Dataset_description, domain=Dataset, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.Dataset_description, domain=Dataset, range=Union[str, list[str]])
 
 slots.Dataset_documentation = Slot(uri=FOAF.page, name="Dataset_documentation", curie=FOAF.curie('page'),
-                   model_uri=CATCORE.Dataset_documentation, domain=Dataset, range=Optional[Union[dict[Union[str, DocumentId], Union[dict, "Document"]], list[Union[dict, "Document"]]]])
+                   model_uri=COREMETA4CAT.Dataset_documentation, domain=Dataset, range=Optional[Union[dict[Union[str, DocumentId], Union[dict, "Document"]], list[Union[dict, "Document"]]]])
 
 slots.Dataset_frequency = Slot(uri=DCTERMS.accrualPeriodicity, name="Dataset_frequency", curie=DCTERMS.curie('accrualPeriodicity'),
-                   model_uri=CATCORE.Dataset_frequency, domain=Dataset, range=Optional[Union[dict, "Frequency"]])
+                   model_uri=COREMETA4CAT.Dataset_frequency, domain=Dataset, range=Optional[Union[dict, "Frequency"]])
 
 slots.Dataset_geographical_coverage = Slot(uri=DCTERMS.spatial, name="Dataset_geographical_coverage", curie=DCTERMS.curie('spatial'),
-                   model_uri=CATCORE.Dataset_geographical_coverage, domain=Dataset, range=Optional[Union[Union[dict, "Location"], list[Union[dict, "Location"]]]])
+                   model_uri=COREMETA4CAT.Dataset_geographical_coverage, domain=Dataset, range=Optional[Union[Union[dict, "Location"], list[Union[dict, "Location"]]]])
 
 slots.Dataset_has_version = Slot(uri=DCAT.hasVersion, name="Dataset_has_version", curie=DCAT.curie('hasVersion'),
-                   model_uri=CATCORE.Dataset_has_version, domain=Dataset, range=Optional[Union[dict[Union[str, DatasetId], Union[dict, "Dataset"]], list[Union[dict, "Dataset"]]]])
+                   model_uri=COREMETA4CAT.Dataset_has_version, domain=Dataset, range=Optional[Union[dict[Union[str, DatasetId], Union[dict, "Dataset"]], list[Union[dict, "Dataset"]]]])
 
 slots.Dataset_identifier = Slot(uri=DCTERMS.identifier, name="Dataset_identifier", curie=DCTERMS.curie('identifier'),
-                   model_uri=CATCORE.Dataset_identifier, domain=Dataset, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.Dataset_identifier, domain=Dataset, range=Optional[Union[str, list[str]]])
 
 slots.Dataset_in_series = Slot(uri=DCAT.inSeries, name="Dataset_in_series", curie=DCAT.curie('inSeries'),
-                   model_uri=CATCORE.Dataset_in_series, domain=Dataset, range=Optional[Union[Union[dict, "DatasetSeries"], list[Union[dict, "DatasetSeries"]]]])
+                   model_uri=COREMETA4CAT.Dataset_in_series, domain=Dataset, range=Optional[Union[Union[dict, "DatasetSeries"], list[Union[dict, "DatasetSeries"]]]])
 
 slots.Dataset_is_referenced_by = Slot(uri=DCTERMS.isReferencedBy, name="Dataset_is_referenced_by", curie=DCTERMS.curie('isReferencedBy'),
-                   model_uri=CATCORE.Dataset_is_referenced_by, domain=Dataset, range=Optional[Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]]])
+                   model_uri=COREMETA4CAT.Dataset_is_referenced_by, domain=Dataset, range=Optional[Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]]])
 
 slots.Dataset_keyword = Slot(uri=DCAT.keyword, name="Dataset_keyword", curie=DCAT.curie('keyword'),
-                   model_uri=CATCORE.Dataset_keyword, domain=Dataset, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.Dataset_keyword, domain=Dataset, range=Optional[Union[str, list[str]]])
 
 slots.Dataset_landing_page = Slot(uri=DCAT.landingPage, name="Dataset_landing_page", curie=DCAT.curie('landingPage'),
-                   model_uri=CATCORE.Dataset_landing_page, domain=Dataset, range=Optional[Union[dict[Union[str, DocumentId], Union[dict, "Document"]], list[Union[dict, "Document"]]]])
+                   model_uri=COREMETA4CAT.Dataset_landing_page, domain=Dataset, range=Optional[Union[dict[Union[str, DocumentId], Union[dict, "Document"]], list[Union[dict, "Document"]]]])
 
 slots.Dataset_language = Slot(uri=DCTERMS.language, name="Dataset_language", curie=DCTERMS.curie('language'),
-                   model_uri=CATCORE.Dataset_language, domain=Dataset, range=Optional[Union[Union[dict, "LinguisticSystem"], list[Union[dict, "LinguisticSystem"]]]])
+                   model_uri=COREMETA4CAT.Dataset_language, domain=Dataset, range=Optional[Union[Union[dict, "LinguisticSystem"], list[Union[dict, "LinguisticSystem"]]]])
 
 slots.Dataset_modification_date = Slot(uri=DCTERMS.modified, name="Dataset_modification_date", curie=DCTERMS.curie('modified'),
-                   model_uri=CATCORE.Dataset_modification_date, domain=Dataset, range=Optional[Union[str, XSDDate]])
+                   model_uri=COREMETA4CAT.Dataset_modification_date, domain=Dataset, range=Optional[Union[str, XSDDate]])
 
 slots.Dataset_other_identifier = Slot(uri=ADMS.identifier, name="Dataset_other_identifier", curie=ADMS.curie('identifier'),
-                   model_uri=CATCORE.Dataset_other_identifier, domain=Dataset, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
+                   model_uri=COREMETA4CAT.Dataset_other_identifier, domain=Dataset, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
 
 slots.Dataset_provenance = Slot(uri=DCTERMS.provenance, name="Dataset_provenance", curie=DCTERMS.curie('provenance'),
-                   model_uri=CATCORE.Dataset_provenance, domain=Dataset, range=Optional[Union[Union[dict, "ProvenanceStatement"], list[Union[dict, "ProvenanceStatement"]]]])
+                   model_uri=COREMETA4CAT.Dataset_provenance, domain=Dataset, range=Optional[Union[Union[dict, "ProvenanceStatement"], list[Union[dict, "ProvenanceStatement"]]]])
 
 slots.Dataset_publisher = Slot(uri=DCTERMS.publisher, name="Dataset_publisher", curie=DCTERMS.curie('publisher'),
-                   model_uri=CATCORE.Dataset_publisher, domain=Dataset, range=Optional[Union[dict, Agent]])
+                   model_uri=COREMETA4CAT.Dataset_publisher, domain=Dataset, range=Optional[Union[dict, Agent]])
 
 slots.Dataset_qualified_attribution = Slot(uri=PROV.qualifiedAttribution, name="Dataset_qualified_attribution", curie=PROV.curie('qualifiedAttribution'),
-                   model_uri=CATCORE.Dataset_qualified_attribution, domain=Dataset, range=Optional[Union[Union[dict, "Attribution"], list[Union[dict, "Attribution"]]]])
+                   model_uri=COREMETA4CAT.Dataset_qualified_attribution, domain=Dataset, range=Optional[Union[Union[dict, "Attribution"], list[Union[dict, "Attribution"]]]])
 
 slots.Dataset_qualified_relation = Slot(uri=DCAT.qualifiedRelation, name="Dataset_qualified_relation", curie=DCAT.curie('qualifiedRelation'),
-                   model_uri=CATCORE.Dataset_qualified_relation, domain=Dataset, range=Optional[Union[Union[dict, "Relationship"], list[Union[dict, "Relationship"]]]])
+                   model_uri=COREMETA4CAT.Dataset_qualified_relation, domain=Dataset, range=Optional[Union[Union[dict, "Relationship"], list[Union[dict, "Relationship"]]]])
 
 slots.Dataset_related_resource = Slot(uri=DCTERMS.relation, name="Dataset_related_resource", curie=DCTERMS.curie('relation'),
-                   model_uri=CATCORE.Dataset_related_resource, domain=Dataset, range=Optional[Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]]])
+                   model_uri=COREMETA4CAT.Dataset_related_resource, domain=Dataset, range=Optional[Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]]])
 
 slots.Dataset_release_date = Slot(uri=DCTERMS.issued, name="Dataset_release_date", curie=DCTERMS.curie('issued'),
-                   model_uri=CATCORE.Dataset_release_date, domain=Dataset, range=Optional[Union[str, XSDDate]])
+                   model_uri=COREMETA4CAT.Dataset_release_date, domain=Dataset, range=Optional[Union[str, XSDDate]])
 
 slots.Dataset_sample = Slot(uri=ADMS.sample, name="Dataset_sample", curie=ADMS.curie('sample'),
-                   model_uri=CATCORE.Dataset_sample, domain=Dataset, range=Optional[Union[Union[dict, "Distribution"], list[Union[dict, "Distribution"]]]])
+                   model_uri=COREMETA4CAT.Dataset_sample, domain=Dataset, range=Optional[Union[Union[dict, "Distribution"], list[Union[dict, "Distribution"]]]])
 
 slots.Dataset_source = Slot(uri=DCTERMS.source, name="Dataset_source", curie=DCTERMS.curie('source'),
-                   model_uri=CATCORE.Dataset_source, domain=Dataset, range=Optional[Union[dict[Union[str, DatasetId], Union[dict, "Dataset"]], list[Union[dict, "Dataset"]]]])
+                   model_uri=COREMETA4CAT.Dataset_source, domain=Dataset, range=Optional[Union[dict[Union[str, DatasetId], Union[dict, "Dataset"]], list[Union[dict, "Dataset"]]]])
 
 slots.Dataset_spatial_resolution = Slot(uri=DCAT.spatialResolutionInMeters, name="Dataset_spatial_resolution", curie=DCAT.curie('spatialResolutionInMeters'),
-                   model_uri=CATCORE.Dataset_spatial_resolution, domain=Dataset, range=Optional[Decimal])
+                   model_uri=COREMETA4CAT.Dataset_spatial_resolution, domain=Dataset, range=Optional[Decimal])
 
 slots.Dataset_temporal_coverage = Slot(uri=DCTERMS.temporal, name="Dataset_temporal_coverage", curie=DCTERMS.curie('temporal'),
-                   model_uri=CATCORE.Dataset_temporal_coverage, domain=Dataset, range=Optional[Union[Union[dict, "PeriodOfTime"], list[Union[dict, "PeriodOfTime"]]]])
+                   model_uri=COREMETA4CAT.Dataset_temporal_coverage, domain=Dataset, range=Optional[Union[Union[dict, "PeriodOfTime"], list[Union[dict, "PeriodOfTime"]]]])
 
 slots.Dataset_temporal_resolution = Slot(uri=DCAT.temporalResolution, name="Dataset_temporal_resolution", curie=DCAT.curie('temporalResolution'),
-                   model_uri=CATCORE.Dataset_temporal_resolution, domain=Dataset, range=Optional[str])
+                   model_uri=COREMETA4CAT.Dataset_temporal_resolution, domain=Dataset, range=Optional[str])
 
 slots.Dataset_theme = Slot(uri=DCAT.theme, name="Dataset_theme", curie=DCAT.curie('theme'),
-                   model_uri=CATCORE.Dataset_theme, domain=Dataset, range=Optional[Union[Union[dict, "Concept"], list[Union[dict, "Concept"]]]])
+                   model_uri=COREMETA4CAT.Dataset_theme, domain=Dataset, range=Optional[Union[Union[dict, "Concept"], list[Union[dict, "Concept"]]]])
 
 slots.Dataset_title = Slot(uri=DCTERMS.title, name="Dataset_title", curie=DCTERMS.curie('title'),
-                   model_uri=CATCORE.Dataset_title, domain=Dataset, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.Dataset_title, domain=Dataset, range=Union[str, list[str]])
 
 slots.Dataset_type = Slot(uri=DCTERMS.type, name="Dataset_type", curie=DCTERMS.curie('type'),
-                   model_uri=CATCORE.Dataset_type, domain=Dataset, range=Optional[Union[Union[dict, "Concept"], list[Union[dict, "Concept"]]]])
+                   model_uri=COREMETA4CAT.Dataset_type, domain=Dataset, range=Optional[Union[Union[dict, "Concept"], list[Union[dict, "Concept"]]]])
 
 slots.Dataset_version = Slot(uri=DCAT.version, name="Dataset_version", curie=DCAT.curie('version'),
-                   model_uri=CATCORE.Dataset_version, domain=Dataset, range=Optional[str])
+                   model_uri=COREMETA4CAT.Dataset_version, domain=Dataset, range=Optional[str])
 
 slots.Dataset_version_notes = Slot(uri=ADMS.versionNotes, name="Dataset_version_notes", curie=ADMS.curie('versionNotes'),
-                   model_uri=CATCORE.Dataset_version_notes, domain=Dataset, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.Dataset_version_notes, domain=Dataset, range=Optional[Union[str, list[str]]])
 
 slots.Dataset_was_generated_by = Slot(uri=PROV.wasGeneratedBy, name="Dataset_was_generated_by", curie=PROV.curie('wasGeneratedBy'),
-                   model_uri=CATCORE.Dataset_was_generated_by, domain=Dataset, range=Union[dict[Union[str, DataGeneratingActivityId], Union[dict, DataGeneratingActivity]], list[Union[dict, DataGeneratingActivity]]])
+                   model_uri=COREMETA4CAT.Dataset_was_generated_by, domain=Dataset, range=Union[dict[Union[str, DataGeneratingActivityId], Union[dict, DataGeneratingActivity]], list[Union[dict, DataGeneratingActivity]]])
 
 slots.DatasetSeries_applicable_legislation = Slot(uri=DCATAP.applicableLegislation, name="DatasetSeries_applicable_legislation", curie=DCATAP.curie('applicableLegislation'),
-                   model_uri=CATCORE.DatasetSeries_applicable_legislation, domain=DatasetSeries, range=Optional[Union[dict[Union[str, LegalResourceId], Union[dict, "LegalResource"]], list[Union[dict, "LegalResource"]]]])
+                   model_uri=COREMETA4CAT.DatasetSeries_applicable_legislation, domain=DatasetSeries, range=Optional[Union[dict[Union[str, LegalResourceId], Union[dict, "LegalResource"]], list[Union[dict, "LegalResource"]]]])
 
 slots.DatasetSeries_contact_point = Slot(uri=DCAT.contactPoint, name="DatasetSeries_contact_point", curie=DCAT.curie('contactPoint'),
-                   model_uri=CATCORE.DatasetSeries_contact_point, domain=DatasetSeries, range=Optional[Union[Union[dict, "Kind"], list[Union[dict, "Kind"]]]])
+                   model_uri=COREMETA4CAT.DatasetSeries_contact_point, domain=DatasetSeries, range=Optional[Union[Union[dict, "Kind"], list[Union[dict, "Kind"]]]])
 
 slots.DatasetSeries_description = Slot(uri=DCTERMS.description, name="DatasetSeries_description", curie=DCTERMS.curie('description'),
-                   model_uri=CATCORE.DatasetSeries_description, domain=DatasetSeries, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.DatasetSeries_description, domain=DatasetSeries, range=Union[str, list[str]])
 
 slots.DatasetSeries_frequency = Slot(uri=DCTERMS.accrualPeriodicity, name="DatasetSeries_frequency", curie=DCTERMS.curie('accrualPeriodicity'),
-                   model_uri=CATCORE.DatasetSeries_frequency, domain=DatasetSeries, range=Optional[Union[dict, "Frequency"]])
+                   model_uri=COREMETA4CAT.DatasetSeries_frequency, domain=DatasetSeries, range=Optional[Union[dict, "Frequency"]])
 
 slots.DatasetSeries_geographical_coverage = Slot(uri=DCTERMS.spatial, name="DatasetSeries_geographical_coverage", curie=DCTERMS.curie('spatial'),
-                   model_uri=CATCORE.DatasetSeries_geographical_coverage, domain=DatasetSeries, range=Optional[Union[Union[dict, "Location"], list[Union[dict, "Location"]]]])
+                   model_uri=COREMETA4CAT.DatasetSeries_geographical_coverage, domain=DatasetSeries, range=Optional[Union[Union[dict, "Location"], list[Union[dict, "Location"]]]])
 
 slots.DatasetSeries_modification_date = Slot(uri=DCTERMS.modified, name="DatasetSeries_modification_date", curie=DCTERMS.curie('modified'),
-                   model_uri=CATCORE.DatasetSeries_modification_date, domain=DatasetSeries, range=Optional[Union[str, XSDDate]])
+                   model_uri=COREMETA4CAT.DatasetSeries_modification_date, domain=DatasetSeries, range=Optional[Union[str, XSDDate]])
 
 slots.DatasetSeries_publisher = Slot(uri=DCTERMS.publisher, name="DatasetSeries_publisher", curie=DCTERMS.curie('publisher'),
-                   model_uri=CATCORE.DatasetSeries_publisher, domain=DatasetSeries, range=Optional[Union[dict, Agent]])
+                   model_uri=COREMETA4CAT.DatasetSeries_publisher, domain=DatasetSeries, range=Optional[Union[dict, Agent]])
 
 slots.DatasetSeries_release_date = Slot(uri=DCTERMS.issued, name="DatasetSeries_release_date", curie=DCTERMS.curie('issued'),
-                   model_uri=CATCORE.DatasetSeries_release_date, domain=DatasetSeries, range=Optional[Union[str, XSDDate]])
+                   model_uri=COREMETA4CAT.DatasetSeries_release_date, domain=DatasetSeries, range=Optional[Union[str, XSDDate]])
 
 slots.DatasetSeries_temporal_coverage = Slot(uri=DCTERMS.temporal, name="DatasetSeries_temporal_coverage", curie=DCTERMS.curie('temporal'),
-                   model_uri=CATCORE.DatasetSeries_temporal_coverage, domain=DatasetSeries, range=Optional[Union[Union[dict, "PeriodOfTime"], list[Union[dict, "PeriodOfTime"]]]])
+                   model_uri=COREMETA4CAT.DatasetSeries_temporal_coverage, domain=DatasetSeries, range=Optional[Union[Union[dict, "PeriodOfTime"], list[Union[dict, "PeriodOfTime"]]]])
 
 slots.DatasetSeries_title = Slot(uri=DCTERMS.title, name="DatasetSeries_title", curie=DCTERMS.curie('title'),
-                   model_uri=CATCORE.DatasetSeries_title, domain=DatasetSeries, range=Union[str, list[str]])
+                   model_uri=COREMETA4CAT.DatasetSeries_title, domain=DatasetSeries, range=Union[str, list[str]])
 
 slots.DefinedTerm_title = Slot(uri=SCHEMA.name, name="DefinedTerm_title", curie=SCHEMA.curie('name'),
-                   model_uri=CATCORE.DefinedTerm_title, domain=DefinedTerm, range=Optional[str])
+                   model_uri=COREMETA4CAT.DefinedTerm_title, domain=DefinedTerm, range=Optional[str])
 
 slots.Device_has_part = Slot(uri=DCTERMS.hasPart, name="Device_has_part", curie=DCTERMS.curie('hasPart'),
-                   model_uri=CATCORE.Device_has_part, domain=Device, range=Optional[Union[dict[Union[str, DeviceId], Union[dict, "Device"]], list[Union[dict, "Device"]]]])
+                   model_uri=COREMETA4CAT.Device_has_part, domain=Device, range=Optional[Union[dict[Union[str, DeviceId], Union[dict, "Device"]], list[Union[dict, "Device"]]]])
 
 slots.Device_other_identifier = Slot(uri=ADMS.identifier, name="Device_other_identifier", curie=ADMS.curie('identifier'),
-                   model_uri=CATCORE.Device_other_identifier, domain=Device, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
+                   model_uri=COREMETA4CAT.Device_other_identifier, domain=Device, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
 
 slots.Distribution_access_URL = Slot(uri=DCAT.accessURL, name="Distribution_access_URL", curie=DCAT.curie('accessURL'),
-                   model_uri=CATCORE.Distribution_access_URL, domain=Distribution, range=Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]])
+                   model_uri=COREMETA4CAT.Distribution_access_URL, domain=Distribution, range=Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]])
 
 slots.Distribution_access_service = Slot(uri=DCAT.accessService, name="Distribution_access_service", curie=DCAT.curie('accessService'),
-                   model_uri=CATCORE.Distribution_access_service, domain=Distribution, range=Optional[Union[Union[dict, DataService], list[Union[dict, DataService]]]])
+                   model_uri=COREMETA4CAT.Distribution_access_service, domain=Distribution, range=Optional[Union[Union[dict, DataService], list[Union[dict, DataService]]]])
 
 slots.Distribution_applicable_legislation = Slot(uri=DCATAP.applicableLegislation, name="Distribution_applicable_legislation", curie=DCATAP.curie('applicableLegislation'),
-                   model_uri=CATCORE.Distribution_applicable_legislation, domain=Distribution, range=Optional[Union[dict[Union[str, LegalResourceId], Union[dict, "LegalResource"]], list[Union[dict, "LegalResource"]]]])
+                   model_uri=COREMETA4CAT.Distribution_applicable_legislation, domain=Distribution, range=Optional[Union[dict[Union[str, LegalResourceId], Union[dict, "LegalResource"]], list[Union[dict, "LegalResource"]]]])
 
 slots.Distribution_availability = Slot(uri=DCATAP.availability, name="Distribution_availability", curie=DCATAP.curie('availability'),
-                   model_uri=CATCORE.Distribution_availability, domain=Distribution, range=Optional[Union[dict, "Concept"]])
+                   model_uri=COREMETA4CAT.Distribution_availability, domain=Distribution, range=Optional[Union[dict, "Concept"]])
 
 slots.Distribution_byte_size = Slot(uri=DCAT.byteSize, name="Distribution_byte_size", curie=DCAT.curie('byteSize'),
-                   model_uri=CATCORE.Distribution_byte_size, domain=Distribution, range=Optional[int])
+                   model_uri=COREMETA4CAT.Distribution_byte_size, domain=Distribution, range=Optional[int])
 
 slots.Distribution_checksum = Slot(uri=SPDX.checksum, name="Distribution_checksum", curie=SPDX.curie('checksum'),
-                   model_uri=CATCORE.Distribution_checksum, domain=Distribution, range=Optional[Union[dict, Checksum]])
+                   model_uri=COREMETA4CAT.Distribution_checksum, domain=Distribution, range=Optional[Union[dict, Checksum]])
 
 slots.Distribution_compression_format = Slot(uri=DCAT.compressFormat, name="Distribution_compression_format", curie=DCAT.curie('compressFormat'),
-                   model_uri=CATCORE.Distribution_compression_format, domain=Distribution, range=Optional[Union[dict, "MediaType"]])
+                   model_uri=COREMETA4CAT.Distribution_compression_format, domain=Distribution, range=Optional[Union[dict, "MediaType"]])
 
 slots.Distribution_description = Slot(uri=DCTERMS.description, name="Distribution_description", curie=DCTERMS.curie('description'),
-                   model_uri=CATCORE.Distribution_description, domain=Distribution, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.Distribution_description, domain=Distribution, range=Optional[Union[str, list[str]]])
 
 slots.Distribution_documentation = Slot(uri=FOAF.page, name="Distribution_documentation", curie=FOAF.curie('page'),
-                   model_uri=CATCORE.Distribution_documentation, domain=Distribution, range=Optional[Union[dict[Union[str, DocumentId], Union[dict, "Document"]], list[Union[dict, "Document"]]]])
+                   model_uri=COREMETA4CAT.Distribution_documentation, domain=Distribution, range=Optional[Union[dict[Union[str, DocumentId], Union[dict, "Document"]], list[Union[dict, "Document"]]]])
 
 slots.Distribution_download_URL = Slot(uri=DCAT.downloadURL, name="Distribution_download_URL", curie=DCAT.curie('downloadURL'),
-                   model_uri=CATCORE.Distribution_download_URL, domain=Distribution, range=Optional[Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]]])
+                   model_uri=COREMETA4CAT.Distribution_download_URL, domain=Distribution, range=Optional[Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]]])
 
 slots.Distribution_format = Slot(uri=DCTERMS.format, name="Distribution_format", curie=DCTERMS.curie('format'),
-                   model_uri=CATCORE.Distribution_format, domain=Distribution, range=Optional[Union[dict, "MediaTypeOrExtent"]])
+                   model_uri=COREMETA4CAT.Distribution_format, domain=Distribution, range=Optional[Union[dict, "MediaTypeOrExtent"]])
 
 slots.Distribution_has_policy = Slot(uri=ODRL.hasPolicy, name="Distribution_has_policy", curie=ODRL.curie('hasPolicy'),
-                   model_uri=CATCORE.Distribution_has_policy, domain=Distribution, range=Optional[Union[dict, "Policy"]])
+                   model_uri=COREMETA4CAT.Distribution_has_policy, domain=Distribution, range=Optional[Union[dict, "Policy"]])
 
 slots.Distribution_language = Slot(uri=DCTERMS.language, name="Distribution_language", curie=DCTERMS.curie('language'),
-                   model_uri=CATCORE.Distribution_language, domain=Distribution, range=Optional[Union[Union[dict, "LinguisticSystem"], list[Union[dict, "LinguisticSystem"]]]])
+                   model_uri=COREMETA4CAT.Distribution_language, domain=Distribution, range=Optional[Union[Union[dict, "LinguisticSystem"], list[Union[dict, "LinguisticSystem"]]]])
 
 slots.Distribution_licence = Slot(uri=DCTERMS.license, name="Distribution_licence", curie=DCTERMS.curie('license'),
-                   model_uri=CATCORE.Distribution_licence, domain=Distribution, range=Optional[Union[dict, "LicenseDocument"]])
+                   model_uri=COREMETA4CAT.Distribution_licence, domain=Distribution, range=Optional[Union[dict, "LicenseDocument"]])
 
 slots.Distribution_linked_schemas = Slot(uri=DCTERMS.conformsTo, name="Distribution_linked_schemas", curie=DCTERMS.curie('conformsTo'),
-                   model_uri=CATCORE.Distribution_linked_schemas, domain=Distribution, range=Optional[Union[Union[dict, "Standard"], list[Union[dict, "Standard"]]]])
+                   model_uri=COREMETA4CAT.Distribution_linked_schemas, domain=Distribution, range=Optional[Union[Union[dict, "Standard"], list[Union[dict, "Standard"]]]])
 
 slots.Distribution_media_type = Slot(uri=DCAT.mediaType, name="Distribution_media_type", curie=DCAT.curie('mediaType'),
-                   model_uri=CATCORE.Distribution_media_type, domain=Distribution, range=Optional[Union[dict, "MediaType"]])
+                   model_uri=COREMETA4CAT.Distribution_media_type, domain=Distribution, range=Optional[Union[dict, "MediaType"]])
 
 slots.Distribution_modification_date = Slot(uri=DCTERMS.modified, name="Distribution_modification_date", curie=DCTERMS.curie('modified'),
-                   model_uri=CATCORE.Distribution_modification_date, domain=Distribution, range=Optional[Union[str, XSDDate]])
+                   model_uri=COREMETA4CAT.Distribution_modification_date, domain=Distribution, range=Optional[Union[str, XSDDate]])
 
 slots.Distribution_packaging_format = Slot(uri=DCAT.packageFormat, name="Distribution_packaging_format", curie=DCAT.curie('packageFormat'),
-                   model_uri=CATCORE.Distribution_packaging_format, domain=Distribution, range=Optional[Union[dict, "MediaType"]])
+                   model_uri=COREMETA4CAT.Distribution_packaging_format, domain=Distribution, range=Optional[Union[dict, "MediaType"]])
 
 slots.Distribution_release_date = Slot(uri=DCTERMS.issued, name="Distribution_release_date", curie=DCTERMS.curie('issued'),
-                   model_uri=CATCORE.Distribution_release_date, domain=Distribution, range=Optional[Union[str, XSDDate]])
+                   model_uri=COREMETA4CAT.Distribution_release_date, domain=Distribution, range=Optional[Union[str, XSDDate]])
 
 slots.Distribution_rights = Slot(uri=DCTERMS.rights, name="Distribution_rights", curie=DCTERMS.curie('rights'),
-                   model_uri=CATCORE.Distribution_rights, domain=Distribution, range=Optional[Union[dict, "RightsStatement"]])
+                   model_uri=COREMETA4CAT.Distribution_rights, domain=Distribution, range=Optional[Union[dict, "RightsStatement"]])
 
 slots.Distribution_spatial_resolution = Slot(uri=DCAT.spatialResolutionInMeters, name="Distribution_spatial_resolution", curie=DCAT.curie('spatialResolutionInMeters'),
-                   model_uri=CATCORE.Distribution_spatial_resolution, domain=Distribution, range=Optional[Decimal])
+                   model_uri=COREMETA4CAT.Distribution_spatial_resolution, domain=Distribution, range=Optional[Decimal])
 
 slots.Distribution_status = Slot(uri=ADMS.status, name="Distribution_status", curie=ADMS.curie('status'),
-                   model_uri=CATCORE.Distribution_status, domain=Distribution, range=Optional[Union[dict, "Concept"]])
+                   model_uri=COREMETA4CAT.Distribution_status, domain=Distribution, range=Optional[Union[dict, "Concept"]])
 
 slots.Distribution_temporal_resolution = Slot(uri=DCAT.temporalResolution, name="Distribution_temporal_resolution", curie=DCAT.curie('temporalResolution'),
-                   model_uri=CATCORE.Distribution_temporal_resolution, domain=Distribution, range=Optional[str])
+                   model_uri=COREMETA4CAT.Distribution_temporal_resolution, domain=Distribution, range=Optional[str])
 
 slots.Distribution_title = Slot(uri=DCTERMS.title, name="Distribution_title", curie=DCTERMS.curie('title'),
-                   model_uri=CATCORE.Distribution_title, domain=Distribution, range=Optional[Union[str, list[str]]])
+                   model_uri=COREMETA4CAT.Distribution_title, domain=Distribution, range=Optional[Union[str, list[str]]])
 
 slots.Entity_title = Slot(uri=DCTERMS.title, name="Entity_title", curie=DCTERMS.curie('title'),
-                   model_uri=CATCORE.Entity_title, domain=Entity, range=Optional[str])
+                   model_uri=COREMETA4CAT.Entity_title, domain=Entity, range=Optional[str])
 
 slots.Entity_description = Slot(uri=DCTERMS.description, name="Entity_description", curie=DCTERMS.curie('description'),
-                   model_uri=CATCORE.Entity_description, domain=Entity, range=Optional[str])
+                   model_uri=COREMETA4CAT.Entity_description, domain=Entity, range=Optional[str])
 
 slots.Entity_other_identifier = Slot(uri=ADMS.identifier, name="Entity_other_identifier", curie=ADMS.curie('identifier'),
-                   model_uri=CATCORE.Entity_other_identifier, domain=Entity, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
+                   model_uri=COREMETA4CAT.Entity_other_identifier, domain=Entity, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
 
 slots.Entity_has_part = Slot(uri=DCTERMS.hasPart, name="Entity_has_part", curie=DCTERMS.curie('hasPart'),
-                   model_uri=CATCORE.Entity_has_part, domain=Entity, range=Optional[Union[dict[Union[str, EntityId], Union[dict, "Entity"]], list[Union[dict, "Entity"]]]])
+                   model_uri=COREMETA4CAT.Entity_has_part, domain=Entity, range=Optional[Union[dict[Union[str, EntityId], Union[dict, "Entity"]], list[Union[dict, "Entity"]]]])
 
 slots.Entity_part_of = Slot(uri=DCTERMS.isPartOf, name="Entity_part_of", curie=DCTERMS.curie('isPartOf'),
-                   model_uri=CATCORE.Entity_part_of, domain=Entity, range=Optional[Union[dict[Union[str, EntityId], Union[dict, "Entity"]], list[Union[dict, "Entity"]]]])
+                   model_uri=COREMETA4CAT.Entity_part_of, domain=Entity, range=Optional[Union[dict[Union[str, EntityId], Union[dict, "Entity"]], list[Union[dict, "Entity"]]]])
 
 slots.EvaluatedActivity_other_identifier = Slot(uri=ADMS.identifier, name="EvaluatedActivity_other_identifier", curie=ADMS.curie('identifier'),
-                   model_uri=CATCORE.EvaluatedActivity_other_identifier, domain=EvaluatedActivity, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
+                   model_uri=COREMETA4CAT.EvaluatedActivity_other_identifier, domain=EvaluatedActivity, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
 
 slots.EvaluatedEntity_title = Slot(uri=DCTERMS.title, name="EvaluatedEntity_title", curie=DCTERMS.curie('title'),
-                   model_uri=CATCORE.EvaluatedEntity_title, domain=EvaluatedEntity, range=Optional[str])
+                   model_uri=COREMETA4CAT.EvaluatedEntity_title, domain=EvaluatedEntity, range=Optional[str])
 
 slots.EvaluatedEntity_description = Slot(uri=DCTERMS.description, name="EvaluatedEntity_description", curie=DCTERMS.curie('description'),
-                   model_uri=CATCORE.EvaluatedEntity_description, domain=EvaluatedEntity, range=Optional[str])
+                   model_uri=COREMETA4CAT.EvaluatedEntity_description, domain=EvaluatedEntity, range=Optional[str])
 
 slots.EvaluatedEntity_was_generated_by = Slot(uri=PROV.wasGeneratedBy, name="EvaluatedEntity_was_generated_by", curie=PROV.curie('wasGeneratedBy'),
-                   model_uri=CATCORE.EvaluatedEntity_was_generated_by, domain=EvaluatedEntity, range=Optional[Union[dict[Union[str, ActivityId], Union[dict, Activity]], list[Union[dict, Activity]]]])
+                   model_uri=COREMETA4CAT.EvaluatedEntity_was_generated_by, domain=EvaluatedEntity, range=Optional[Union[dict[Union[str, ActivityId], Union[dict, Activity]], list[Union[dict, Activity]]]])
 
 slots.EvaluatedEntity_other_identifier = Slot(uri=ADMS.identifier, name="EvaluatedEntity_other_identifier", curie=ADMS.curie('identifier'),
-                   model_uri=CATCORE.EvaluatedEntity_other_identifier, domain=EvaluatedEntity, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
+                   model_uri=COREMETA4CAT.EvaluatedEntity_other_identifier, domain=EvaluatedEntity, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
 
 slots.Identifier_notation = Slot(uri=SKOS.notation, name="Identifier_notation", curie=SKOS.curie('notation'),
-                   model_uri=CATCORE.Identifier_notation, domain=Identifier, range=str)
+                   model_uri=COREMETA4CAT.Identifier_notation, domain=Identifier, range=str)
 
 slots.LicenseDocument_type = Slot(uri=DCTERMS.type, name="LicenseDocument_type", curie=DCTERMS.curie('type'),
-                   model_uri=CATCORE.LicenseDocument_type, domain=LicenseDocument, range=Optional[Union[Union[dict, Concept], list[Union[dict, Concept]]]])
+                   model_uri=COREMETA4CAT.LicenseDocument_type, domain=LicenseDocument, range=Optional[Union[Union[dict, Concept], list[Union[dict, Concept]]]])
 
 slots.Location_bbox = Slot(uri=DCAT.bbox, name="Location_bbox", curie=DCAT.curie('bbox'),
-                   model_uri=CATCORE.Location_bbox, domain=Location, range=Optional[str])
+                   model_uri=COREMETA4CAT.Location_bbox, domain=Location, range=Optional[str])
 
 slots.Location_centroid = Slot(uri=DCAT.centroid, name="Location_centroid", curie=DCAT.curie('centroid'),
-                   model_uri=CATCORE.Location_centroid, domain=Location, range=Optional[str])
+                   model_uri=COREMETA4CAT.Location_centroid, domain=Location, range=Optional[str])
 
 slots.Location_geometry = Slot(uri=LOCN.geometry, name="Location_geometry", curie=LOCN.curie('geometry'),
-                   model_uri=CATCORE.Location_geometry, domain=Location, range=Optional[Union[dict, "Geometry"]])
+                   model_uri=COREMETA4CAT.Location_geometry, domain=Location, range=Optional[Union[dict, "Geometry"]])
 
 slots.PeriodOfTime_beginning = Slot(uri=TIME.hasBeginning, name="PeriodOfTime_beginning", curie=TIME.curie('hasBeginning'),
-                   model_uri=CATCORE.PeriodOfTime_beginning, domain=PeriodOfTime, range=Optional[Union[dict, "TimeInstant"]])
+                   model_uri=COREMETA4CAT.PeriodOfTime_beginning, domain=PeriodOfTime, range=Optional[Union[dict, "TimeInstant"]])
 
 slots.PeriodOfTime_end = Slot(uri=TIME.hasEnd, name="PeriodOfTime_end", curie=TIME.curie('hasEnd'),
-                   model_uri=CATCORE.PeriodOfTime_end, domain=PeriodOfTime, range=Optional[Union[dict, "TimeInstant"]])
+                   model_uri=COREMETA4CAT.PeriodOfTime_end, domain=PeriodOfTime, range=Optional[Union[dict, "TimeInstant"]])
 
 slots.PeriodOfTime_end_date = Slot(uri=DCAT.endDate, name="PeriodOfTime_end_date", curie=DCAT.curie('endDate'),
-                   model_uri=CATCORE.PeriodOfTime_end_date, domain=PeriodOfTime, range=Optional[Union[str, XSDDate]])
+                   model_uri=COREMETA4CAT.PeriodOfTime_end_date, domain=PeriodOfTime, range=Optional[Union[str, XSDDate]])
 
 slots.PeriodOfTime_start_date = Slot(uri=DCAT.startDate, name="PeriodOfTime_start_date", curie=DCAT.curie('startDate'),
-                   model_uri=CATCORE.PeriodOfTime_start_date, domain=PeriodOfTime, range=Optional[Union[str, XSDDate]])
+                   model_uri=COREMETA4CAT.PeriodOfTime_start_date, domain=PeriodOfTime, range=Optional[Union[str, XSDDate]])
 
 slots.QualitativeAttribute_value = Slot(uri=PROV.value, name="QualitativeAttribute_value", curie=PROV.curie('value'),
-                   model_uri=CATCORE.QualitativeAttribute_value, domain=QualitativeAttribute, range=str)
+                   model_uri=COREMETA4CAT.QualitativeAttribute_value, domain=QualitativeAttribute, range=str)
 
 slots.QuantitativeAttribute_value = Slot(uri=PROV.value, name="QuantitativeAttribute_value", curie=PROV.curie('value'),
-                   model_uri=CATCORE.QuantitativeAttribute_value, domain=QuantitativeAttribute, range=float)
+                   model_uri=COREMETA4CAT.QuantitativeAttribute_value, domain=QuantitativeAttribute, range=float)
 
 slots.Relationship_had_role = Slot(uri=DCAT.hadRole, name="Relationship_had_role", curie=DCAT.curie('hadRole'),
-                   model_uri=CATCORE.Relationship_had_role, domain=Relationship, range=Union[Union[dict, "Role"], list[Union[dict, "Role"]]])
+                   model_uri=COREMETA4CAT.Relationship_had_role, domain=Relationship, range=Union[Union[dict, "Role"], list[Union[dict, "Role"]]])
 
 slots.Relationship_relation = Slot(uri=DCTERMS.relation, name="Relationship_relation", curie=DCTERMS.curie('relation'),
-                   model_uri=CATCORE.Relationship_relation, domain=Relationship, range=Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]])
+                   model_uri=COREMETA4CAT.Relationship_relation, domain=Relationship, range=Union[dict[Union[str, ResourceId], Union[dict, "Resource"]], list[Union[dict, "Resource"]]])
 
 slots.Software_has_part = Slot(uri=DCTERMS.hasPart, name="Software_has_part", curie=DCTERMS.curie('hasPart'),
-                   model_uri=CATCORE.Software_has_part, domain=Software, range=Optional[Union[dict[Union[str, SoftwareId], Union[dict, "Software"]], list[Union[dict, "Software"]]]])
+                   model_uri=COREMETA4CAT.Software_has_part, domain=Software, range=Optional[Union[dict[Union[str, SoftwareId], Union[dict, "Software"]], list[Union[dict, "Software"]]]])
 
 slots.Software_other_identifier = Slot(uri=ADMS.identifier, name="Software_other_identifier", curie=ADMS.curie('identifier'),
-                   model_uri=CATCORE.Software_other_identifier, domain=Software, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
+                   model_uri=COREMETA4CAT.Software_other_identifier, domain=Software, range=Optional[Union[Union[dict, "Identifier"], list[Union[dict, "Identifier"]]]])
 
 slots.Atom_rdf_type = Slot(uri=RDF.type, name="Atom_rdf_type", curie=RDF.curie('type'),
-                   model_uri=CATCORE.Atom_rdf_type, domain=Atom, range=Union[dict, DefinedTerm])
+                   model_uri=COREMETA4CAT.Atom_rdf_type, domain=Atom, range=Union[dict, DefinedTerm])
 
 slots.ChemicalReaction_has_temperature = Slot(uri=SIO['000008'], name="ChemicalReaction_has_temperature", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.ChemicalReaction_has_temperature, domain=ChemicalReaction, range=Optional[Union[Union[dict, "Temperature"], list[Union[dict, "Temperature"]]]])
+                   model_uri=COREMETA4CAT.ChemicalReaction_has_temperature, domain=ChemicalReaction, range=Optional[Union[Union[dict, "Temperature"], list[Union[dict, "Temperature"]]]])
 
 slots.ChemicalReaction_has_pressure = Slot(uri=SIO['000008'], name="ChemicalReaction_has_pressure", curie=SIO.curie('000008'),
-                   model_uri=CATCORE.ChemicalReaction_has_pressure, domain=ChemicalReaction, range=Optional[Union[Union[dict, "Pressure"], list[Union[dict, "Pressure"]]]])
+                   model_uri=COREMETA4CAT.ChemicalReaction_has_pressure, domain=ChemicalReaction, range=Optional[Union[Union[dict, "Pressure"], list[Union[dict, "Pressure"]]]])
 
 slots.ChemicalReaction_related_resource = Slot(uri=DCTERMS.relation, name="ChemicalReaction_related_resource", curie=DCTERMS.curie('relation'),
-                   model_uri=CATCORE.ChemicalReaction_related_resource, domain=ChemicalReaction, range=Optional[Union[dict[Union[str, ResourceId], Union[dict, Resource]], list[Union[dict, Resource]]]])
+                   model_uri=COREMETA4CAT.ChemicalReaction_related_resource, domain=ChemicalReaction, range=Optional[Union[dict[Union[str, ResourceId], Union[dict, Resource]], list[Union[dict, Resource]]]])
 
 slots.MaterialEntity_has_part = Slot(uri=BFO['0000051'], name="MaterialEntity_has_part", curie=BFO.curie('0000051'),
-                   model_uri=CATCORE.MaterialEntity_has_part, domain=MaterialEntity, range=Optional[Union[dict[Union[str, MaterialEntityId], Union[dict, "MaterialEntity"]], list[Union[dict, "MaterialEntity"]]]])
+                   model_uri=COREMETA4CAT.MaterialEntity_has_part, domain=MaterialEntity, range=Optional[Union[dict[Union[str, MaterialEntityId], Union[dict, "MaterialEntity"]], list[Union[dict, "MaterialEntity"]]]])
 
 slots.MaterialSample_derived_from = Slot(uri=PROV.wasDerivedFrom, name="MaterialSample_derived_from", curie=PROV.curie('wasDerivedFrom'),
-                   model_uri=CATCORE.MaterialSample_derived_from, domain=MaterialSample, range=Optional[Union[dict, Entity]])
+                   model_uri=COREMETA4CAT.MaterialSample_derived_from, domain=MaterialSample, range=Optional[Union[dict, Entity]])

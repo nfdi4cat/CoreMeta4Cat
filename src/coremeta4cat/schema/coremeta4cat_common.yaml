@@ -1,24 +1,24 @@
 ---
-id: https://w3id.org/nfdi4cat/catcore/common/
-name: catcore-common
-title: CatCore Common — Shared Slots and Enumerations
+id: https://w3id.org/nfdi4cat/coremeta4cat/common/
+name: coremeta4cat-common
+title: CoreMeta4cat Common — Shared Slots and Enumerations
 description: |-
-  Shared infrastructure for all CatCore subprofiles.
+  Shared infrastructure for all CoreMeta4cat subprofiles.
 
   This module provides:
-  - Shared slots reused across two or more CatCore subprofiles
+  - Shared slots reused across two or more CoreMeta4cat subprofiles
     (atmosphere, temperature, equipment, calcination parameters, …)
   - Domain-level enumerations (CatalysisResearchFieldEnum, SampleStateEnum, …)
 
-  Design note: This module intentionally does NOT define a CatCoreEntity root
+  Design note: This module intentionally does NOT define a CoreMeta4catEntity root
   class. Following the DCAT-AP-PLUS design patterns, the catalysis domain is
   expressed at the dcat:Dataset level via rdf_type (ClassifierMixin, Pattern 3)
-  using voc4cat terms. The four CatCore pillars — Synthesis, Characterization,
+  using voc4cat terms. The four CoreMeta4cat pillars — Synthesis, Characterization,
   Reaction, Simulation — are modelled as DCAT-AP-PLUS Activity subclasses in
   their respective subprofile modules, not as subclasses of a shared root.
 
   Import hierarchy:
-    catcore_common.yaml  (this file)
+    coremeta4cat_common.yaml  (this file)
       +-- chem_dcat_ap   (chemistry layer)
             +-- chemical_reaction_ap
                   +-- chemical_entities_ap
@@ -29,10 +29,10 @@ license: CC-BY-4.0
 version: 1.0.0
 
 prefixes:
-  catcore: https://w3id.org/nfdi4cat/catcore/
+  coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
   VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
   chemdcatap: https://nfdi-de.github.io/chem-dcat-ap/
-  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
+  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   dcterms: http://purl.org/dc/terms/
   prov: http://www.w3.org/ns/prov#
@@ -44,7 +44,7 @@ prefixes:
   AFR: http://purl.allotrope.org/ontologies/result#AFR_
   AFP: http://purl.allotrope.org/ontologies/process#AFP_
 
-default_prefix: catcore
+default_prefix: coremeta4cat
 default_range: string
 
 imports:
@@ -53,7 +53,7 @@ imports:
 
 # ==================== SHARED SLOTS ====================
 #
-# A slot is placed here when it is referenced by two or more CatCore subprofiles.
+# A slot is placed here when it is referenced by two or more CoreMeta4cat subprofiles.
 # Slots exclusive to one subprofile are declared in that subprofile file.
 
 slots:
@@ -64,7 +64,7 @@ slots:
   atmosphere:
     description: Gaseous environment or atmospheric conditions during a process.
     range: string
-    slot_uri: catcore:atmosphere
+    slot_uri: coremeta4cat:atmosphere
     multivalued: true
 
   temperature:
@@ -84,7 +84,7 @@ slots:
   flow_rate:
     description: Flow rate of a fluid or gas.
     range: float
-    slot_uri: catcore:flow_rate
+    slot_uri: coremeta4cat:flow_rate
     multivalued: true
     unit:
       ucum_code: mL/min
@@ -92,7 +92,7 @@ slots:
   heating_rate:
     description: Rate at which temperature is increased during a process.
     range: float
-    slot_uri: catcore:heating_rate
+    slot_uri: coremeta4cat:heating_rate
     multivalued: true
     unit:
       ucum_code: Cel/min
@@ -100,19 +100,19 @@ slots:
   heating_procedure:
     description: Description of the heating procedure applied.
     range: string
-    slot_uri: catcore:heating_procedure
+    slot_uri: coremeta4cat:heating_procedure
     multivalued: true
 
   number_of_cycles:
     description: Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).
     range: integer
-    slot_uri: catcore:number_of_cycles
+    slot_uri: coremeta4cat:number_of_cycles
     multivalued: true
 
   sample_mass:
     description: Mass of the sample used in a process or measurement.
     range: float
-    slot_uri: catcore:sample_mass
+    slot_uri: coremeta4cat:sample_mass
     multivalued: true
     unit:
       ucum_code: mg
@@ -126,7 +126,7 @@ slots:
   stirring_speed:
     description: Rotational speed of stirring or agitation.
     range: float
-    slot_uri: catcore:stirring_speed
+    slot_uri: coremeta4cat:stirring_speed
     multivalued: true
     unit:
       ucum_code: rpm
@@ -134,7 +134,7 @@ slots:
   stirring_duration:
     description: Duration of stirring or agitation.
     range: float
-    slot_uri: catcore:stirring_duration
+    slot_uri: coremeta4cat:stirring_duration
     multivalued: true
     unit:
       ucum_code: h
@@ -142,19 +142,19 @@ slots:
   vessel_type:
     description: Type of reaction or synthesis vessel used.
     range: string
-    slot_uri: catcore:vessel_type
+    slot_uri: coremeta4cat:vessel_type
     multivalued: true
 
   carrier_gas:
     description: Carrier gas used in a process (e.g. in GC analysis or ALD deposition).
     range: string
-    slot_uri: catcore:carrier_gas
+    slot_uri: coremeta4cat:carrier_gas
     multivalued: true
 
   dispersant:
     description: Dispersant used (e.g. in DLS measurement or flame spray pyrolysis).
     range: string
-    slot_uri: catcore:dispersant
+    slot_uri: coremeta4cat:dispersant
     multivalued: true
 
   # ---- Drying and calcination parameters ----
@@ -163,13 +163,13 @@ slots:
   drying_device:
     description: Device used for drying (e.g. oven, rotary evaporator).
     range: string
-    slot_uri: catcore:drying_device
+    slot_uri: coremeta4cat:drying_device
     multivalued: true
 
   drying_temperature:
     description: Temperature applied during drying.
     range: float
-    slot_uri: catcore:drying_temperature
+    slot_uri: coremeta4cat:drying_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -177,7 +177,7 @@ slots:
   drying_time:
     description: Duration of the drying step.
     range: float
-    slot_uri: catcore:drying_time
+    slot_uri: coremeta4cat:drying_time
     multivalued: true
     unit:
       ucum_code: h
@@ -185,7 +185,7 @@ slots:
   drying_atmosphere:
     description: Atmosphere maintained during drying (e.g. air, N2).
     range: string
-    slot_uri: catcore:drying_atmosphere
+    slot_uri: coremeta4cat:drying_atmosphere
     multivalued: true
 
   calcination_initial_temperature:
@@ -246,13 +246,13 @@ slots:
   resolution:
     description: Resolution of a measurement or detector.
     range: float
-    slot_uri: catcore:resolution
+    slot_uri: coremeta4cat:resolution
     multivalued: true
 
   integration_time:
     description: Integration or acquisition time per measurement step.
     range: float
-    slot_uri: catcore:integration_time
+    slot_uri: coremeta4cat:integration_time
     multivalued: true
     unit:
       ucum_code: s
@@ -260,7 +260,7 @@ slots:
   number_of_scans:
     description: Number of scans or accumulations recorded.
     range: integer
-    slot_uri: catcore:number_of_scans
+    slot_uri: coremeta4cat:number_of_scans
     multivalued: true
 
   operation_mode:
@@ -272,7 +272,7 @@ slots:
   concentration:
     description: Concentration of a substance in a sample or solution.
     range: float
-    slot_uri: catcore:concentration
+    slot_uri: coremeta4cat:concentration
     multivalued: true
     unit:
       ucum_code: mol/L
@@ -286,7 +286,7 @@ slots:
   injection_volume:
     description: Volume injected in a chromatographic or mass spectrometric experiment.
     range: float
-    slot_uri: catcore:injection_volume
+    slot_uri: coremeta4cat:injection_volume
     multivalued: true
     unit:
       ucum_code: uL
@@ -294,25 +294,25 @@ slots:
   external_standard:
     description: External standard used for quantification or calibration.
     range: string
-    slot_uri: catcore:external_standard
+    slot_uri: coremeta4cat:external_standard
     multivalued: true
 
   internal_standard:
     description: Internal standard used for quantification or calibration.
     range: string
-    slot_uri: catcore:internal_standard
+    slot_uri: coremeta4cat:internal_standard
     multivalued: true
 
   calibration_method:
     description: Calibration method applied during a measurement.
     range: string
-    slot_uri: catcore:calibration_method
+    slot_uri: coremeta4cat:calibration_method
     multivalued: true
 
   column_type:
     description: Type of chromatographic column used.
     range: string
-    slot_uri: catcore:column_type
+    slot_uri: coremeta4cat:column_type
     multivalued: true
 
   experiment_duration:
@@ -326,13 +326,13 @@ slots:
   filtration_device:
     description: Device used for filtration.
     range: string
-    slot_uri: catcore:filtration_device
+    slot_uri: coremeta4cat:filtration_device
     multivalued: true
 
   filter_type:
     description: Type of filter membrane or medium used.
     range: string
-    slot_uri: catcore:filter_type
+    slot_uri: coremeta4cat:filter_type
     multivalued: true
 
 # ==================== ENUMERATIONS ====================

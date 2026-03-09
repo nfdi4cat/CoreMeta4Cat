@@ -12,7 +12,7 @@ see_also:
 prefixes:
   dcat_4c_ap: https://nfdi-de.github.io/chem-dcat-ap/dcat_4c_ap.yaml#
   chemdcatap: https://nfdi-de.github.io/chem-dcat-ap/
-  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
+  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/

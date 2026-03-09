@@ -3,10 +3,10 @@
 # Target class: Synthesis
 #
 # NOTE: realized_plan range is PreparationMethod (abstract, no domain slots).
-# Domain synthesis parameters that live on catcore_common ARE accepted on Synthesis directly.
+# Domain synthesis parameters that live on coremeta4cat_common ARE accepted on Synthesis directly.
 # realized_plan: title/description only — the loader cannot dispatch to Impregnation subclass.
 
-id: "catcore:SYNTH_001_Pt_Al2O3"
+id: "coremeta4cat:SYNTH_001_Pt_Al2O3"
 nominal_composition:
   - "5 wt% Pt/Al2O3"
 catalyst_measured_properties:
@@ -20,7 +20,7 @@ solvent:
 sample_pretreatment:
   - "reduction in H2 at 400 deg C for 2 hours prior to catalytic testing"
 had_input_entity:
-  - id: "catcore:PREC_001_H2PtCl6"
+  - id: "coremeta4cat:PREC_001_H2PtCl6"
     title: "chloroplatinic acid hexahydrate"
     precursor_quantity:
       - 0.0485

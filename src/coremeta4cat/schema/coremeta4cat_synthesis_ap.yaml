@@ -1,9 +1,9 @@
 ---
-id: https://w3id.org/nfdi4cat/catcore/synthesis/
-name: catcore-synthesis-ap
-title: CatCore Synthesis Application Profile
+id: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
+name: coremeta4cat-synthesis-ap
+title: CoreMeta4cat Synthesis Application Profile
 description: |-
-  Application profile for catalyst synthesis within the CatCore metadata model.
+  Application profile for catalyst synthesis within the CoreMeta4cat metadata model.
 
   This module defines:
   - Synthesis — the DataGeneratingActivity in which a catalyst is prepared
@@ -25,9 +25,9 @@ license: CC-BY-4.0
 version: 1.0.0
 
 prefixes:
-  catcore: https://w3id.org/nfdi4cat/catcore/
+  coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
   VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
-  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
+  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
@@ -37,12 +37,12 @@ prefixes:
   AFR: http://purl.allotrope.org/ontologies/result#AFR_
   AFP: http://purl.allotrope.org/ontologies/process#AFP_
 
-default_prefix: catcore
+default_prefix: coremeta4cat
 default_range: string
 
 imports:
   - linkml:types
-  - catcore_common   # shared slots (atmosphere, temperature, drying_*, calcination_*, …) + enums
+  - coremeta4cat_common   # shared slots (atmosphere, temperature, drying_*, calcination_*, …) + enums
 
 # ==================== MIXINS ====================
 # Slot groups shared across multiple PreparationMethod subclasses.
@@ -205,7 +205,7 @@ classes:
 
   Impregnation:
     is_a: PreparationMethod
-    class_uri: catcore:Impregnation
+    class_uri: coremeta4cat:Impregnation
     mixins:
       - DryingMixin
       - CalcinationMixin
@@ -219,7 +219,7 @@ classes:
 
   CoPrecipitation:
     is_a: PreparationMethod
-    class_uri: catcore:CoPrecipitation
+    class_uri: coremeta4cat:CoPrecipitation
     mixins:
       - PrecipitationMixin
       - DryingMixin
@@ -230,7 +230,7 @@ classes:
 
   SolGel:
     is_a: PreparationMethod
-    class_uri: catcore:SolGel
+    class_uri: coremeta4cat:SolGel
     mixins:
       - DryingMixin
     description: |-
@@ -244,7 +244,7 @@ classes:
 
   Solvothermal:
     is_a: PreparationMethod
-    class_uri: catcore:Solvothermal
+    class_uri: coremeta4cat:Solvothermal
     mixins:
       - ThermalSynthesisMixin
     description: |-
@@ -257,7 +257,7 @@ classes:
 
   PlasmaAssisted:
     is_a: PreparationMethod
-    class_uri: catcore:PlasmaAssisted
+    class_uri: coremeta4cat:PlasmaAssisted
     mixins:
       - ThermalSynthesisMixin
     description: |-
@@ -271,7 +271,7 @@ classes:
 
   CombustionSynthesis:
     is_a: PreparationMethod
-    class_uri: catcore:CombustionSynthesis
+    class_uri: coremeta4cat:CombustionSynthesis
     mixins:
       - ThermalSynthesisMixin
     description: |-
@@ -286,7 +286,7 @@ classes:
 
   AtomicLayerDeposition:
     is_a: PreparationMethod
-    class_uri: catcore:AtomicLayerDeposition
+    class_uri: coremeta4cat:AtomicLayerDeposition
     description: |-
       Catalyst preparation by atomic layer deposition (ALD): sequential
       self-limiting surface reactions deposit a conformal thin film
@@ -301,7 +301,7 @@ classes:
 
   DepositionPrecipitation:
     is_a: PreparationMethod
-    class_uri: catcore:DepositionPrecipitation
+    class_uri: coremeta4cat:DepositionPrecipitation
     mixins:
       - PrecipitationMixin
       - DryingMixin
@@ -315,7 +315,7 @@ classes:
 
   MicrowaveAssisted:
     is_a: PreparationMethod
-    class_uri: catcore:MicrowaveAssisted
+    class_uri: coremeta4cat:MicrowaveAssisted
     mixins:
       - ThermalSynthesisMixin
     description: |-
@@ -327,7 +327,7 @@ classes:
 
   SonochemicalSynthesis:
     is_a: PreparationMethod
-    class_uri: catcore:SonochemicalSynthesis
+    class_uri: coremeta4cat:SonochemicalSynthesis
     mixins:
       - DryingMixin
       - CalcinationMixin
@@ -358,7 +358,7 @@ classes:
 
   MechanochemicalSynthesis:
     is_a: PreparationMethod
-    class_uri: catcore:MechanochemicalSynthesis
+    class_uri: coremeta4cat:MechanochemicalSynthesis
     mixins:
       - ThermalSynthesisMixin
     description: |-
@@ -375,7 +375,7 @@ classes:
 
   Sublimation:
     is_a: PreparationMethod
-    class_uri: catcore:Sublimation
+    class_uri: coremeta4cat:Sublimation
     mixins:
       - ThermalSynthesisMixin
     description: |-
@@ -386,7 +386,7 @@ classes:
 
   MolecularSynthesis:
     is_a: PreparationMethod
-    class_uri: catcore:MolecularSynthesis
+    class_uri: coremeta4cat:MolecularSynthesis
     mixins:
       - DryingMixin
     description: |-
@@ -410,7 +410,7 @@ classes:
 
   ExsolutionSynthesis:
     is_a: PreparationMethod
-    class_uri: catcore:ExsolutionSynthesis
+    class_uri: coremeta4cat:ExsolutionSynthesis
     mixins:
       - CalcinationMixin
     description: |-
@@ -421,7 +421,7 @@ classes:
 # Only slots exclusive to this subprofile are declared here.
 # Shared slots (atmosphere, temperature, drying_*, calcination_*, equipment,
 # vessel_type, carrier_gas, stirring_*, number_of_cycles, …) are inherited
-# from catcore_common.
+# from coremeta4cat_common.
 
 slots:
 
@@ -430,7 +430,7 @@ slots:
   nominal_composition:
     description: Nominal elemental or chemical composition of the catalyst (e.g. 5wt% Pt/Al2O3).
     range: string
-    slot_uri: catcore:nominal_composition
+    slot_uri: coremeta4cat:nominal_composition
     multivalued: true
 
   catalyst_measured_properties:
@@ -438,19 +438,19 @@ slots:
       Key measured properties of the resulting catalyst
       (e.g. BET surface area, sieve fraction, molar ratio).
     range: string
-    slot_uri: catcore:catalyst_measured_properties
+    slot_uri: coremeta4cat:catalyst_measured_properties
     multivalued: true
 
   storage_conditions:
     description: Conditions under which the catalyst is stored (e.g. inert atmosphere, 4°C).
     range: string
-    slot_uri: catcore:storage_conditions
+    slot_uri: coremeta4cat:storage_conditions
     multivalued: true
 
   support:
     description: Support material on which the active phase is deposited (e.g. Al2O3, SiO2).
     range: string
-    slot_uri: catcore:support
+    slot_uri: coremeta4cat:support
     multivalued: true
 
   # ---- Precursor slots ----
@@ -458,7 +458,7 @@ slots:
   precursor_quantity:
     description: Quantity of precursor used in synthesis.
     range: float
-    slot_uri: catcore:precursor_quantity
+    slot_uri: coremeta4cat:precursor_quantity
     multivalued: true
     unit:
       ucum_code: g
@@ -468,13 +468,13 @@ slots:
   impregnation_type:
     description: Type of impregnation used (wet, dry, incipient wetness).
     range: ImpregnationTypeEnum
-    slot_uri: catcore:impregnation_type
+    slot_uri: coremeta4cat:impregnation_type
     multivalued: true
 
   impregnation_duration:
     description: Duration of the impregnation step.
     range: float
-    slot_uri: catcore:impregnation_duration
+    slot_uri: coremeta4cat:impregnation_duration
     multivalued: true
     unit:
       ucum_code: h
@@ -482,7 +482,7 @@ slots:
   impregnation_temperature:
     description: Temperature during the impregnation step.
     range: float
-    slot_uri: catcore:impregnation_temperature
+    slot_uri: coremeta4cat:impregnation_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -492,13 +492,13 @@ slots:
   precipitating_agent:
     description: Chemical agent used to induce precipitation (e.g. NaOH, NH3).
     range: string
-    slot_uri: catcore:precipitating_agent
+    slot_uri: coremeta4cat:precipitating_agent
     multivalued: true
 
   precipitating_concentration:
     description: Concentration of the precipitating agent.
     range: float
-    slot_uri: catcore:precipitating_concentration
+    slot_uri: coremeta4cat:precipitating_concentration
     multivalued: true
     unit:
       ucum_code: mol/L
@@ -512,7 +512,7 @@ slots:
   mixing_rate:
     description: Stirring rate during mixing of synthesis components.
     range: float
-    slot_uri: catcore:mixing_rate
+    slot_uri: coremeta4cat:mixing_rate
     multivalued: true
     unit:
       ucum_code: rpm
@@ -520,7 +520,7 @@ slots:
   mixing_time:
     description: Duration of the mixing step.
     range: float
-    slot_uri: catcore:mixing_time
+    slot_uri: coremeta4cat:mixing_time
     multivalued: true
     unit:
       ucum_code: h
@@ -528,7 +528,7 @@ slots:
   mixing_temperature:
     description: Temperature during mixing.
     range: float
-    slot_uri: catcore:mixing_temperature
+    slot_uri: coremeta4cat:mixing_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -536,25 +536,25 @@ slots:
   order_of_addition:
     description: Order in which reagents or components are combined.
     range: string
-    slot_uri: catcore:order_of_addition
+    slot_uri: coremeta4cat:order_of_addition
     multivalued: true
 
   filtration:
     description: Filtration method used to separate the precipitate (e.g. vacuum filtration).
     range: string
-    slot_uri: catcore:filtration
+    slot_uri: coremeta4cat:filtration
     multivalued: true
 
   purification:
     description: Purification method applied after synthesis (e.g. washing, dialysis).
     range: string
-    slot_uri: catcore:purification
+    slot_uri: coremeta4cat:purification
     multivalued: true
 
   aging_temperature:
     description: Temperature during aging of the precipitate or gel.
     range: float
-    slot_uri: catcore:aging_temperature
+    slot_uri: coremeta4cat:aging_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -562,7 +562,7 @@ slots:
   aging_time:
     description: Duration of the aging step.
     range: float
-    slot_uri: catcore:aging_time
+    slot_uri: coremeta4cat:aging_time
     multivalued: true
     unit:
       ucum_code: h
@@ -572,7 +572,7 @@ slots:
   deposition_temperature:
     description: Temperature during the deposition step.
     range: float
-    slot_uri: catcore:deposition_temperature
+    slot_uri: coremeta4cat:deposition_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -580,7 +580,7 @@ slots:
   deposition_time:
     description: Duration of the deposition step.
     range: float
-    slot_uri: catcore:deposition_time
+    slot_uri: coremeta4cat:deposition_time
     multivalued: true
     unit:
       ucum_code: h
@@ -616,19 +616,19 @@ slots:
   hydrolysis_ratio:
     description: Molar ratio of water to alkoxide precursor used in hydrolysis.
     range: float
-    slot_uri: catcore:hydrolysis_ratio
+    slot_uri: coremeta4cat:hydrolysis_ratio
     multivalued: true
 
   drying:
     description: Drying method used for the gel (e.g. supercritical drying, freeze drying).
     range: string
-    slot_uri: catcore:drying
+    slot_uri: coremeta4cat:drying
     multivalued: true
 
   surfactant_template:
     description: Surfactant or structure-directing agent used as a template.
     range: string
-    slot_uri: catcore:surfactant_template
+    slot_uri: coremeta4cat:surfactant_template
     multivalued: true
 
   # ---- Solvothermal-specific slots ----
@@ -636,7 +636,7 @@ slots:
   filling_volume:
     description: Volume of solution relative to autoclave volume (filling degree).
     range: float
-    slot_uri: catcore:filling_volume
+    slot_uri: coremeta4cat:filling_volume
     multivalued: true
     unit:
       ucum_code: mL
@@ -644,13 +644,13 @@ slots:
   stirrer_type:
     description: Type of stirrer used (e.g. magnetic, mechanical, none).
     range: string
-    slot_uri: catcore:stirrer_type
+    slot_uri: coremeta4cat:stirrer_type
     multivalued: true
 
   cooling_rate:
     description: Rate at which the reactor is cooled after synthesis.
     range: float
-    slot_uri: catcore:cooling_rate
+    slot_uri: coremeta4cat:cooling_rate
     multivalued: true
     unit:
       ucum_code: Cel/min
@@ -660,13 +660,13 @@ slots:
   plasma_type:
     description: Type of plasma used (e.g. DBD, microwave, RF plasma).
     range: string
-    slot_uri: catcore:plasma_type
+    slot_uri: coremeta4cat:plasma_type
     multivalued: true
 
   power_input:
     description: Power input to the plasma reactor or other energy source.
     range: float
-    slot_uri: catcore:power_input
+    slot_uri: coremeta4cat:power_input
     multivalued: true
     unit:
       ucum_code: W
@@ -674,7 +674,7 @@ slots:
   exposure_time:
     description: Duration of plasma or other energy exposure.
     range: float
-    slot_uri: catcore:exposure_time
+    slot_uri: coremeta4cat:exposure_time
     multivalued: true
     unit:
       ucum_code: min
@@ -684,25 +684,25 @@ slots:
   fuel:
     description: Organic fuel used in combustion synthesis (e.g. urea, glycine).
     range: string
-    slot_uri: catcore:fuel
+    slot_uri: coremeta4cat:fuel
     multivalued: true
 
   oxidizer:
     description: Oxidizer used in combustion synthesis (e.g. metal nitrates).
     range: string
-    slot_uri: catcore:oxidizer
+    slot_uri: coremeta4cat:oxidizer
     multivalued: true
 
   fuel_to_oxidizer_ratio:
     description: Molar ratio of fuel to oxidizer.
     range: float
-    slot_uri: catcore:fuel_to_oxidizer_ratio
+    slot_uri: coremeta4cat:fuel_to_oxidizer_ratio
     multivalued: true
 
   set_temperature:
     description: Target temperature set for the combustion reaction.
     range: float
-    slot_uri: catcore:set_temperature
+    slot_uri: coremeta4cat:set_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -710,7 +710,7 @@ slots:
   post_treatment:
     description: Post-synthesis treatment applied to the combustion product.
     range: string
-    slot_uri: catcore:post_treatment
+    slot_uri: coremeta4cat:post_treatment
     multivalued: true
 
   # ---- AtomicLayerDeposition-specific slots ----
@@ -724,7 +724,7 @@ slots:
   pulse_time:
     description: Duration of the precursor pulse in each ALD cycle.
     range: float
-    slot_uri: catcore:pulse_time
+    slot_uri: coremeta4cat:pulse_time
     multivalued: true
     unit:
       ucum_code: s
@@ -742,7 +742,7 @@ slots:
   power:
     description: Microwave power applied.
     range: float
-    slot_uri: catcore:power
+    slot_uri: coremeta4cat:power
     multivalued: true
     unit:
       ucum_code: W
@@ -750,7 +750,7 @@ slots:
   microwave_frequency:
     description: Frequency of microwave irradiation.
     range: float
-    slot_uri: catcore:microwave_frequency
+    slot_uri: coremeta4cat:microwave_frequency
     multivalued: true
     unit:
       ucum_code: GHz
@@ -760,7 +760,7 @@ slots:
   sonication_power:
     description: Acoustic power applied during sonication.
     range: float
-    slot_uri: catcore:sonication_power
+    slot_uri: coremeta4cat:sonication_power
     multivalued: true
     unit:
       ucum_code: W
@@ -768,7 +768,7 @@ slots:
   sonication_duration:
     description: Duration of ultrasonic irradiation.
     range: float
-    slot_uri: catcore:sonication_duration
+    slot_uri: coremeta4cat:sonication_duration
     multivalued: true
     unit:
       ucum_code: min
@@ -778,25 +778,25 @@ slots:
   flame_type:
     description: Type of flame used in FSP (e.g. methane/oxygen, H2/O2).
     range: string
-    slot_uri: catcore:flame_type
+    slot_uri: coremeta4cat:flame_type
     multivalued: true
 
   inlet_system:
     description: Configuration of the precursor inlet system.
     range: string
-    slot_uri: catcore:inlet_system
+    slot_uri: coremeta4cat:inlet_system
     multivalued: true
 
   flame_ring:
     description: Configuration of the supporting flame ring.
     range: string
-    slot_uri: catcore:flame_ring
+    slot_uri: coremeta4cat:flame_ring
     multivalued: true
 
   capillary_pressure:
     description: Pressure applied at the capillary nozzle during FSP.
     range: float
-    slot_uri: catcore:capillary_pressure
+    slot_uri: coremeta4cat:capillary_pressure
     multivalued: true
     unit:
       ucum_code: bar
@@ -804,7 +804,7 @@ slots:
   fuel_dispersant_ratio:
     description: Volume ratio of fuel to dispersant used in FSP.
     range: float
-    slot_uri: catcore:fuel_dispersant_ratio
+    slot_uri: coremeta4cat:fuel_dispersant_ratio
     multivalued: true
 
   # ---- MechanochemicalSynthesis-specific slots ----
@@ -812,7 +812,7 @@ slots:
   vessel_volume:
     description: Volume of the milling vessel.
     range: float
-    slot_uri: catcore:vessel_volume
+    slot_uri: coremeta4cat:vessel_volume
     multivalued: true
     unit:
       ucum_code: mL
@@ -820,13 +820,13 @@ slots:
   size_and_material:
     description: Size and material of the milling vessel and components.
     range: string
-    slot_uri: catcore:size_and_material
+    slot_uri: coremeta4cat:size_and_material
     multivalued: true
 
   milling_speed:
     description: Rotational speed during milling.
     range: float
-    slot_uri: catcore:milling_speed
+    slot_uri: coremeta4cat:milling_speed
     multivalued: true
     unit:
       ucum_code: rpm
@@ -834,7 +834,7 @@ slots:
   milling_duration:
     description: Total duration of the milling process.
     range: float
-    slot_uri: catcore:milling_duration
+    slot_uri: coremeta4cat:milling_duration
     multivalued: true
     unit:
       ucum_code: h
@@ -842,13 +842,13 @@ slots:
   ball_material:
     description: Material of the milling balls (e.g. zirconia, stainless steel).
     range: string
-    slot_uri: catcore:ball_material
+    slot_uri: coremeta4cat:ball_material
     multivalued: true
 
   ball_size:
     description: Diameter of the milling balls.
     range: float
-    slot_uri: catcore:ball_size
+    slot_uri: coremeta4cat:ball_size
     multivalued: true
     unit:
       ucum_code: mm
@@ -856,7 +856,7 @@ slots:
   ball_to_powder_ratio:
     description: Mass ratio of milling balls to powder charge.
     range: float
-    slot_uri: catcore:ball_to_powder_ratio
+    slot_uri: coremeta4cat:ball_to_powder_ratio
     multivalued: true
 
   # ---- MolecularSynthesis-specific slots ----
@@ -864,31 +864,31 @@ slots:
   reaction_vessel:
     description: Type of reaction vessel used (e.g. Schlenk flask, round-bottom flask).
     range: string
-    slot_uri: catcore:reaction_vessel
+    slot_uri: coremeta4cat:reaction_vessel
     multivalued: true
 
   mixing_device:
     description: Device used for mixing (e.g. magnetic stirrer, vortex mixer).
     range: string
-    slot_uri: catcore:mixing_device
+    slot_uri: coremeta4cat:mixing_device
     multivalued: true
 
   crystallisation_solvents:
     description: Solvent(s) used for crystallisation.
     range: string
-    slot_uri: catcore:crystallisation_solvents
+    slot_uri: coremeta4cat:crystallisation_solvents
     multivalued: true
 
   precipitation_agent:
     description: Agent used to induce precipitation in molecular synthesis.
     range: string
-    slot_uri: catcore:precipitation_agent
+    slot_uri: coremeta4cat:precipitation_agent
     multivalued: true
 
   crystallisation_duration:
     description: Duration of the crystallisation step.
     range: float
-    slot_uri: catcore:crystallisation_duration
+    slot_uri: coremeta4cat:crystallisation_duration
     multivalued: true
     unit:
       ucum_code: h
@@ -896,13 +896,13 @@ slots:
   purification_solvent:
     description: Solvent used for washing or recrystallisation during purification.
     range: string
-    slot_uri: catcore:purification_solvent
+    slot_uri: coremeta4cat:purification_solvent
     multivalued: true
 
   temperature_ramp:
     description: Temperature ramp rate applied during drying or activation.
     range: float
-    slot_uri: catcore:temperature_ramp
+    slot_uri: coremeta4cat:temperature_ramp
     multivalued: true
     unit:
       ucum_code: Cel/min

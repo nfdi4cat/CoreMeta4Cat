@@ -1,9 +1,9 @@
 ---
-id: https://w3id.org/nfdi4cat/catcore/characterization/
-name: catcore-characterization-ap
-title: CatCore Characterization Application Profile
+id: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
+name: coremeta4cat-characterization-ap
+title: CoreMeta4cat Characterization Application Profile
 description: |-
-  Application profile for catalyst characterization within the CatCore metadata model.
+  Application profile for catalyst characterization within the CoreMeta4cat metadata model.
 
   This module defines:
   - Characterization — the DataGeneratingActivity in which a catalyst sample is
@@ -29,9 +29,9 @@ license: CC-BY-4.0
 version: 1.0.0
 
 prefixes:
-  catcore: https://w3id.org/nfdi4cat/catcore/
+  coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
   VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
-  dcatapplus: https://nfdi-de.github.io/dcat-ap-plus/
+  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
@@ -42,12 +42,12 @@ prefixes:
   AFQ: http://purl.allotrope.org/ontologies/quality#AFQ_
   AFRL: http://purl.allotrope.org/ontologies/role#AFRL_
 
-default_prefix: catcore
+default_prefix: coremeta4cat
 default_range: string
 
 imports:
   - linkml:types
-  - catcore_common   # shared slots (atmosphere, temperature, equipment, sample_mass, …) + enums
+  - coremeta4cat_common   # shared slots (atmosphere, temperature, equipment, sample_mass, …) + enums
 
 # ==================== MIXINS ====================
 # Pure slot containers. Each targets a slot group shared by >=2 techniques.
@@ -278,7 +278,7 @@ classes:
 
   InfraredSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: catcore:InfraredSpectroscopy
+    class_uri: coremeta4cat:InfraredSpectroscopy
     description: Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.
     slots:
       - operation_mode
@@ -400,7 +400,7 @@ classes:
 
   BET:
     is_a: CharacterizationTechnique
-    class_uri: catcore:BET
+    class_uri: coremeta4cat:BET
     description: Brunauer-Emmett-Teller analysis for specific surface area and pore size distribution.
     slots:
       - adsorbate_gas
@@ -445,7 +445,7 @@ classes:
 
   PhotoluminescenceSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: catcore:PhotoluminescenceSpectroscopy
+    class_uri: coremeta4cat:PhotoluminescenceSpectroscopy
     mixins:
       - PhotoluminescenceMixin
     description: Photoluminescence spectroscopy for defect and charge carrier characterization.
@@ -457,7 +457,7 @@ classes:
 
   PhotoluminescenceLifetime:
     is_a: CharacterizationTechnique
-    class_uri: catcore:PhotoluminescenceLifetime
+    class_uri: coremeta4cat:PhotoluminescenceLifetime
     mixins:
       - PhotoluminescenceMixin
     description: Time-resolved photoluminescence for charge carrier lifetime and recombination dynamics.
@@ -482,7 +482,7 @@ classes:
 
   ConductivityMeasurement:
     is_a: CharacterizationTechnique
-    class_uri: catcore:ConductivityMeasurement
+    class_uri: coremeta4cat:ConductivityMeasurement
     mixins:
       - ElectrochemistryMixin
     description: Electrical conductivity measurement for ionic and electronic transport characterization.
@@ -510,7 +510,7 @@ classes:
 
   # ==================== MASS SPECTROMETRY ====================
 
-  ESI_MS:
+  ElectroSprayIonizationMassSpectrometry:
     is_a: CharacterizationTechnique
     class_uri: CHMO:0000482
     mixins:
@@ -557,7 +557,7 @@ classes:
       - temperature
       - calibration_standard
 
-  HPLC_MS:
+  HighPerformanceLiquidChromatographyMassSpectrometry:
     is_a: CharacterizationTechnique
     class_uri: CHMO:0000796
     mixins:
@@ -575,7 +575,7 @@ classes:
 # concentration, solvent, injection_volume, external_standard, internal_standard,
 # calibration_method, column_type, experiment_duration, flow_rate,
 # filtration_device, filter_type, heating_rate, heating_procedure, dispersant, …)
-# are inherited from catcore_common.
+# are inherited from coremeta4cat_common.
 
 slots:
 
@@ -584,13 +584,13 @@ slots:
   sample_state:
     description: Physical state of the sample during characterization.
     range: SampleStateEnum
-    slot_uri: catcore:sample_state
+    slot_uri: coremeta4cat:sample_state
     multivalued: true
 
   sample_description:
     description: Free-text description of the sample used in this characterization.
     range: string
-    slot_uri: catcore:sample_description
+    slot_uri: coremeta4cat:sample_description
     multivalued: true
 
   sample_preparation:
@@ -624,7 +624,7 @@ slots:
   minimum_energy:
     description: Minimum energy of the scan range.
     range: float
-    slot_uri: catcore:minimum_energy
+    slot_uri: coremeta4cat:minimum_energy
     multivalued: true
     unit:
       ucum_code: eV
@@ -632,7 +632,7 @@ slots:
   maximum_energy:
     description: Maximum energy of the scan range.
     range: float
-    slot_uri: catcore:maximum_energy
+    slot_uri: coremeta4cat:maximum_energy
     multivalued: true
     unit:
       ucum_code: eV
@@ -642,13 +642,13 @@ slots:
   gun_type:
     description: Type of electron gun (e.g. FEG, thermionic LaB6).
     range: string
-    slot_uri: catcore:gun_type
+    slot_uri: coremeta4cat:gun_type
     multivalued: true
 
   acceleration_voltage:
     description: Acceleration voltage applied to the electron beam.
     range: float
-    slot_uri: catcore:acceleration_voltage
+    slot_uri: coremeta4cat:acceleration_voltage
     multivalued: true
     unit:
       ucum_code: kV
@@ -664,7 +664,7 @@ slots:
   minimum_temperature:
     description: Minimum (start) temperature in a temperature programme.
     range: float
-    slot_uri: catcore:minimum_temperature
+    slot_uri: coremeta4cat:minimum_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -672,7 +672,7 @@ slots:
   maximum_temperature:
     description: Maximum (final) temperature in a temperature programme.
     range: float
-    slot_uri: catcore:maximum_temperature
+    slot_uri: coremeta4cat:maximum_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -728,7 +728,7 @@ slots:
   optical_filter:
     description: Optical filter used in the emission or excitation path.
     range: string
-    slot_uri: catcore:optical_filter
+    slot_uri: coremeta4cat:optical_filter
     multivalued: true
 
   # ---- Electrochemistry (ElectrochemistryMixin) ----
@@ -754,13 +754,13 @@ slots:
   electrolyte_composition:
     description: Chemical composition of the electrolyte solution.
     range: string
-    slot_uri: catcore:electrolyte_composition
+    slot_uri: coremeta4cat:electrolyte_composition
     multivalued: true
 
   electrolyte_concentration:
     description: Concentration of the electrolyte.
     range: float
-    slot_uri: catcore:electrolyte_concentration
+    slot_uri: coremeta4cat:electrolyte_concentration
     multivalued: true
     unit:
       ucum_code: mol/L
@@ -770,7 +770,7 @@ slots:
   minimum_2theta:
     description: Minimum 2theta angle in the diffraction scan.
     range: float
-    slot_uri: catcore:minimum_2theta
+    slot_uri: coremeta4cat:minimum_2theta
     multivalued: true
     unit:
       ucum_code: deg
@@ -778,7 +778,7 @@ slots:
   maximum_2theta:
     description: Maximum 2theta angle in the diffraction scan.
     range: float
-    slot_uri: catcore:maximum_2theta
+    slot_uri: coremeta4cat:maximum_2theta
     multivalued: true
     unit:
       ucum_code: deg
@@ -786,7 +786,7 @@ slots:
   sample_spinning_speed:
     description: Sample spinning speed during XRD measurement.
     range: float
-    slot_uri: catcore:sample_spinning_speed
+    slot_uri: coremeta4cat:sample_spinning_speed
     multivalued: true
     unit:
       ucum_code: rpm
@@ -796,25 +796,25 @@ slots:
   absorption_edge:
     description: X-ray absorption edge measured (e.g. K-edge, L3-edge).
     range: string
-    slot_uri: catcore:absorption_edge
+    slot_uri: coremeta4cat:absorption_edge
     multivalued: true
 
   element_analyzed:
     description: Chemical element analysed (e.g. Fe, Cu, Pt).
     range: string
-    slot_uri: catcore:element_analyzed
+    slot_uri: coremeta4cat:element_analyzed
     multivalued: true
 
   beamline_source:
     description: Synchrotron beamline or X-ray source identifier.
     range: string
-    slot_uri: catcore:beamline_source
+    slot_uri: coremeta4cat:beamline_source
     multivalued: true
 
   noise_of_measurement:
     description: Noise level of the XAS measurement (signal-to-noise ratio).
     range: float
-    slot_uri: catcore:noise_of_measurement
+    slot_uri: coremeta4cat:noise_of_measurement
     multivalued: true
 
   energy_resolution:
@@ -830,7 +830,7 @@ slots:
   total_acquisition_time:
     description: Total time for XPS spectrum acquisition.
     range: float
-    slot_uri: catcore:total_acquisition_time
+    slot_uri: coremeta4cat:total_acquisition_time
     multivalued: true
     unit:
       ucum_code: s
@@ -838,7 +838,7 @@ slots:
   pass_energy:
     description: Analyser pass energy setting in XPS.
     range: float
-    slot_uri: catcore:pass_energy
+    slot_uri: coremeta4cat:pass_energy
     multivalued: true
     unit:
       ucum_code: eV
@@ -846,7 +846,7 @@ slots:
   spot_size:
     description: X-ray spot size on the sample surface.
     range: float
-    slot_uri: catcore:spot_size
+    slot_uri: coremeta4cat:spot_size
     multivalued: true
     unit:
       ucum_code: mm
@@ -860,7 +860,7 @@ slots:
   charge_compensation:
     description: Charge compensation method applied during XPS measurement.
     range: string
-    slot_uri: catcore:charge_compensation
+    slot_uri: coremeta4cat:charge_compensation
     multivalued: true
 
   # ---- EDX-specific ----
@@ -868,7 +868,7 @@ slots:
   primary_energy:
     description: Primary electron beam energy for EDX excitation.
     range: float
-    slot_uri: catcore:primary_energy
+    slot_uri: coremeta4cat:primary_energy
     multivalued: true
     unit:
       ucum_code: keV
@@ -876,7 +876,7 @@ slots:
   counting_time:
     description: X-ray counting time per point or spectrum.
     range: float
-    slot_uri: catcore:counting_time
+    slot_uri: coremeta4cat:counting_time
     multivalued: true
     unit:
       ucum_code: s
@@ -886,7 +886,7 @@ slots:
   minimum_wavenumber:
     description: Minimum wavenumber of the IR scan range.
     range: float
-    slot_uri: catcore:minimum_wavenumber
+    slot_uri: coremeta4cat:minimum_wavenumber
     multivalued: true
     unit:
       ucum_code: cm-1
@@ -894,7 +894,7 @@ slots:
   maximum_wavenumber:
     description: Maximum wavenumber of the IR scan range.
     range: float
-    slot_uri: catcore:maximum_wavenumber
+    slot_uri: coremeta4cat:maximum_wavenumber
     multivalued: true
     unit:
       ucum_code: cm-1
@@ -908,25 +908,25 @@ slots:
   adsorption_gas:
     description: Probe gas adsorbed during in-situ DRIFTS measurement.
     range: string
-    slot_uri: catcore:adsorption_gas
+    slot_uri: coremeta4cat:adsorption_gas
     multivalued: true
 
   diluting_reference:
     description: Reference material used to dilute the DRIFTS sample (e.g. KBr).
     range: string
-    slot_uri: catcore:diluting_reference
+    slot_uri: coremeta4cat:diluting_reference
     multivalued: true
 
   ratio_reference_sample:
     description: Mass ratio of reference material to catalyst sample in DRIFTS cup.
     range: float
-    slot_uri: catcore:ratio_reference_sample
+    slot_uri: coremeta4cat:ratio_reference_sample
     multivalued: true
 
   background_correction_method:
     description: Specific background correction method used in DRIFTS.
     range: string
-    slot_uri: catcore:background_correction_method
+    slot_uri: coremeta4cat:background_correction_method
     multivalued: true
 
   # ---- Raman-specific ----
@@ -950,7 +950,7 @@ slots:
   filter_or_grating:
     description: Optical filter or grating used in Raman spectrometer.
     range: string
-    slot_uri: catcore:filter_or_grating
+    slot_uri: coremeta4cat:filter_or_grating
     multivalued: true
 
   # ---- NMR-specific ----
@@ -958,13 +958,13 @@ slots:
   nucleus:
     description: NMR-active nucleus observed (e.g. 1H, 13C, 31P).
     range: string
-    slot_uri: catcore:nucleus
+    slot_uri: coremeta4cat:nucleus
     multivalued: true
 
   irradiation_frequency:
     description: Irradiation frequency of the NMR spectrometer.
     range: float
-    slot_uri: catcore:irradiation_frequency
+    slot_uri: coremeta4cat:irradiation_frequency
     multivalued: true
     unit:
       ucum_code: MHz
@@ -972,13 +972,13 @@ slots:
   nmr_pulse_sequence:
     description: NMR pulse sequence used (e.g. zgpg30, dept).
     range: string
-    slot_uri: catcore:nmr_pulse_sequence
+    slot_uri: coremeta4cat:nmr_pulse_sequence
     multivalued: true
 
   nmr_sample_tube:
     description: NMR sample tube type (e.g. 5mm standard, Shigemi tube).
     range: string
-    slot_uri: catcore:nmr_sample_tube
+    slot_uri: coremeta4cat:nmr_sample_tube
     multivalued: true
 
   # ---- SEM-specific ----
@@ -986,7 +986,7 @@ slots:
   image_resolution:
     description: Spatial resolution of SEM images.
     range: float
-    slot_uri: catcore:image_resolution
+    slot_uri: coremeta4cat:image_resolution
     multivalued: true
     unit:
       ucum_code: nm
@@ -994,7 +994,7 @@ slots:
   field_emitter:
     description: Type of field emitter used in FE-SEM instrument.
     range: string
-    slot_uri: catcore:field_emitter
+    slot_uri: coremeta4cat:field_emitter
     multivalued: true
 
   # ---- TGA-specific ----
@@ -1002,13 +1002,13 @@ slots:
   reducing_gas_composition:
     description: Composition of reducing gas used in TPR (e.g. 5% H2/Ar).
     range: string
-    slot_uri: catcore:reducing_gas_composition
+    slot_uri: coremeta4cat:reducing_gas_composition
     multivalued: true
 
   oxidizing_gas_composition:
     description: Composition of oxidising gas used in TPO (e.g. 5% O2/Ar).
     range: string
-    slot_uri: catcore:oxidizing_gas_composition
+    slot_uri: coremeta4cat:oxidizing_gas_composition
     multivalued: true
 
   # ---- BET-specific ----
@@ -1016,13 +1016,13 @@ slots:
   adsorbate_gas:
     description: Adsorbate gas used in BET surface area measurement (e.g. N2, Ar).
     range: string
-    slot_uri: catcore:adsorbate_gas
+    slot_uri: coremeta4cat:adsorbate_gas
     multivalued: true
 
   degassing_temperature:
     description: Temperature at which sample is degassed before BET measurement.
     range: float
-    slot_uri: catcore:degassing_temperature
+    slot_uri: coremeta4cat:degassing_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -1030,7 +1030,7 @@ slots:
   measurement_temperature:
     description: Temperature at which BET adsorption isotherm is measured (e.g. 77 K for N2).
     range: float
-    slot_uri: catcore:measurement_temperature
+    slot_uri: coremeta4cat:measurement_temperature
     multivalued: true
     unit:
       ucum_code: K
@@ -1038,7 +1038,7 @@ slots:
   pore_size_distribution_method:
     description: Method used for pore size distribution calculation (e.g. BJH, DFT, HK).
     range: string
-    slot_uri: catcore:pore_size_distribution_method
+    slot_uri: coremeta4cat:pore_size_distribution_method
     multivalued: true
 
   # ---- Elemental Analysis-specific ----
@@ -1046,13 +1046,13 @@ slots:
   elements_analyzed:
     description: List of elements analysed by combustion elemental analysis (e.g. C, H, N, S).
     range: string
-    slot_uri: catcore:elements_analyzed
+    slot_uri: coremeta4cat:elements_analyzed
     multivalued: true
 
   combustion_temperature:
     description: Combustion furnace temperature for elemental analysis.
     range: float
-    slot_uri: catcore:combustion_temperature
+    slot_uri: coremeta4cat:combustion_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -1068,7 +1068,7 @@ slots:
   matrix_effect_correction:
     description: Method used to correct for matrix effects in ICP-AES.
     range: string
-    slot_uri: catcore:matrix_effect_correction
+    slot_uri: coremeta4cat:matrix_effect_correction
     multivalued: true
 
   # ---- UV-Vis-specific ----
@@ -1076,7 +1076,7 @@ slots:
   minimum_wavelength:
     description: Minimum wavelength of the UV-Vis scan range.
     range: float
-    slot_uri: catcore:minimum_wavelength
+    slot_uri: coremeta4cat:minimum_wavelength
     multivalued: true
     unit:
       ucum_code: nm
@@ -1084,7 +1084,7 @@ slots:
   maximum_wavelength:
     description: Maximum wavelength of the UV-Vis scan range.
     range: float
-    slot_uri: catcore:maximum_wavelength
+    slot_uri: coremeta4cat:maximum_wavelength
     multivalued: true
     unit:
       ucum_code: nm
@@ -1102,13 +1102,13 @@ slots:
   emission_range:
     description: Wavelength range over which emission is detected.
     range: string
-    slot_uri: catcore:emission_range
+    slot_uri: coremeta4cat:emission_range
     multivalued: true
 
   slit_width:
     description: Spectrometer entrance or exit slit width.
     range: float
-    slot_uri: catcore:slit_width
+    slot_uri: coremeta4cat:slit_width
     multivalued: true
     unit:
       ucum_code: nm
@@ -1116,13 +1116,13 @@ slots:
   lifetime_fitting_model:
     description: Mathematical model used for fluorescence lifetime fitting (e.g. mono-exponential, bi-exponential).
     range: string
-    slot_uri: catcore:lifetime_fitting_model
+    slot_uri: coremeta4cat:lifetime_fitting_model
     multivalued: true
 
   number_of_shots:
     description: Number of laser shots accumulated per measurement point.
     range: integer
-    slot_uri: catcore:number_of_shots
+    slot_uri: coremeta4cat:number_of_shots
     multivalued: true
 
   # ---- CyclicVoltammetry-specific ----
@@ -1138,7 +1138,7 @@ slots:
   minimum_potential:
     description: Lower potential limit in cyclic voltammetry.
     range: float
-    slot_uri: catcore:minimum_potential
+    slot_uri: coremeta4cat:minimum_potential
     multivalued: true
     unit:
       ucum_code: V
@@ -1146,7 +1146,7 @@ slots:
   maximum_potential:
     description: Upper potential limit in cyclic voltammetry.
     range: float
-    slot_uri: catcore:maximum_potential
+    slot_uri: coremeta4cat:maximum_potential
     multivalued: true
     unit:
       ucum_code: V
@@ -1164,7 +1164,7 @@ slots:
   electrode_configuration:
     description: Configuration of electrodes used in conductivity measurement (e.g. 2-probe, 4-probe).
     range: string
-    slot_uri: catcore:electrode_configuration
+    slot_uri: coremeta4cat:electrode_configuration
     multivalued: true
 
   ac_frequency:
@@ -1178,13 +1178,13 @@ slots:
   ac_dc_mode:
     description: AC or DC measurement mode used in conductivity measurement.
     range: string
-    slot_uri: catcore:ac_dc_mode
+    slot_uri: coremeta4cat:ac_dc_mode
     multivalued: true
 
   sample_geometry:
     description: Geometry of the sample used in conductivity measurement (e.g. pellet, thin film).
     range: string
-    slot_uri: catcore:sample_geometry
+    slot_uri: coremeta4cat:sample_geometry
     multivalued: true
 
   # ---- DLS-specific ----
@@ -1200,7 +1200,7 @@ slots:
   scattering_angle:
     description: Scattering angle at which intensity is detected in DLS.
     range: float
-    slot_uri: catcore:scattering_angle
+    slot_uri: coremeta4cat:scattering_angle
     multivalued: true
     unit:
       ucum_code: deg
@@ -1208,13 +1208,13 @@ slots:
   refractive_index:
     description: Refractive index of the solvent used in DLS measurement.
     range: float
-    slot_uri: catcore:refractive_index
+    slot_uri: coremeta4cat:refractive_index
     multivalued: true
 
   measurement_duration:
     description: Duration of a single DLS acquisition.
     range: float
-    slot_uri: catcore:measurement_duration
+    slot_uri: coremeta4cat:measurement_duration
     multivalued: true
     unit:
       ucum_code: s
@@ -1232,7 +1232,7 @@ slots:
   capillary_temperature:
     description: Capillary or desolvation temperature in ESI source.
     range: float
-    slot_uri: catcore:capillary_temperature
+    slot_uri: coremeta4cat:capillary_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -1248,13 +1248,13 @@ slots:
   carrier_gas_purity:
     description: Purity grade of the carrier gas used in GC.
     range: string
-    slot_uri: catcore:carrier_gas_purity
+    slot_uri: coremeta4cat:carrier_gas_purity
     multivalued: true
 
   inlet_temperature:
     description: GC inlet temperature.
     range: float
-    slot_uri: catcore:inlet_temperature
+    slot_uri: coremeta4cat:inlet_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -1262,7 +1262,7 @@ slots:
   minimum_oven_temperature:
     description: Minimum oven temperature in GC temperature programme.
     range: float
-    slot_uri: catcore:minimum_oven_temperature
+    slot_uri: coremeta4cat:minimum_oven_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -1270,7 +1270,7 @@ slots:
   maximum_oven_temperature:
     description: Maximum oven temperature in GC temperature programme.
     range: float
-    slot_uri: catcore:maximum_oven_temperature
+    slot_uri: coremeta4cat:maximum_oven_temperature
     multivalued: true
     unit:
       ucum_code: Cel
@@ -1278,7 +1278,7 @@ slots:
   heating_ramp:
     description: Temperature ramp rate in GC oven programme.
     range: float
-    slot_uri: catcore:heating_ramp
+    slot_uri: coremeta4cat:heating_ramp
     multivalued: true
     unit:
       ucum_code: Cel/min
@@ -1286,13 +1286,13 @@ slots:
   acquisition_mode:
     description: Mass spectrometer acquisition mode (e.g. full scan, SIM, SRM).
     range: string
-    slot_uri: catcore:acquisition_mode
+    slot_uri: coremeta4cat:acquisition_mode
     multivalued: true
 
   solvent_delay:
     description: Solvent delay time before MS acquisition begins.
     range: float
-    slot_uri: catcore:solvent_delay
+    slot_uri: coremeta4cat:solvent_delay
     multivalued: true
     unit:
       ucum_code: min
@@ -1300,13 +1300,13 @@ slots:
   trace_ion_detection:
     description: Trace ion detection setting or threshold.
     range: string
-    slot_uri: catcore:trace_ion_detection
+    slot_uri: coremeta4cat:trace_ion_detection
     multivalued: true
 
   split_ratio:
     description: Split ratio at the GC injector.
     range: float
-    slot_uri: catcore:split_ratio
+    slot_uri: coremeta4cat:split_ratio
     multivalued: true
 
   # ---- SEC / HPLC-MS-specific ----
@@ -1320,17 +1320,17 @@ slots:
   calibration_standard:
     description: Calibration standard used for molecular weight or retention time calibration.
     range: string
-    slot_uri: catcore:calibration_standard
+    slot_uri: coremeta4cat:calibration_standard
     multivalued: true
 
   gradient_program:
     description: Gradient elution programme used in HPLC-MS.
     range: string
-    slot_uri: catcore:gradient_program
+    slot_uri: coremeta4cat:gradient_program
     multivalued: true
 
   ionization_mode:
     description: Ionisation mode used in HPLC-MS (e.g. positive, negative, APCI, ESI).
     range: string
-    slot_uri: catcore:ionization_mode
+    slot_uri: coremeta4cat:ionization_mode
     multivalued: true

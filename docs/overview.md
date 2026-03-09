@@ -156,6 +156,6 @@ The **Simulation** pillar covers four major computational method classes, each a
 
 ## Source code
 
-The LinkML schema, build scripts, and documentation source are on GitHub: [HendrikBorgelt/CoreMeta4Cat](https://github.com/HendrikBorgelt/CoreMeta4Cat)
+The LinkML schema, build scripts, and documentation source are on GitHub: [HendrikBorgelt/CoreMeta4Cat](https://github.com/nfdi4cat/CoreMeta4Cat)
 
 The schema is built as a domain-specific application profile on top of DCAT-AP-PLUS. The base layer is maintained by [NFDI4Cat](https://nfdi4cat.org).

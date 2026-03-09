@@ -42,12 +42,12 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **Cardinality:**  Mandatory, Multivalued
 
-**CURIE:** [`catcore:nominal_composition`](https://w3id.org/nfdi4cat/catcore/nominal_composition)
+**CURIE:** [`coremeta4cat:nominal_composition`](https://w3id.org/nfdi4cat/coremeta4cat/nominal_composition)
 
-**Schema Reference:** [nominal_composition](./elements/nominal_composition.md)
+**Schema Reference:** [nominal_composition](./elements/slots/nominal_composition.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20nominal_composition target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20nominal_composition target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -62,12 +62,12 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **Cardinality:**  Mandatory, Multivalued
 
-**CURIE:** [`catcore:catalyst_measured_properties`](https://w3id.org/nfdi4cat/catcore/catalyst_measured_properties)
+**CURIE:** [`coremeta4cat:catalyst_measured_properties`](https://w3id.org/nfdi4cat/coremeta4cat/catalyst_measured_properties)
 
-**Schema Reference:** [catalyst_measured_properties](./elements/catalyst_measured_properties.md)
+**Schema Reference:** [catalyst_measured_properties](./elements/slots/catalyst_measured_properties.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_measured_properties target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_measured_properties target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -81,12 +81,12 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **Cardinality:**  Recommended, Multivalued
 
-**CURIE:** [`catcore:storage_conditions`](https://w3id.org/nfdi4cat/catcore/storage_conditions)
+**CURIE:** [`coremeta4cat:storage_conditions`](https://w3id.org/nfdi4cat/coremeta4cat/storage_conditions)
 
-**Schema Reference:** [storage_conditions](./elements/storage_conditions.md)
+**Schema Reference:** [storage_conditions](./elements/slots/storage_conditions.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20storage_conditions target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20storage_conditions target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -100,12 +100,12 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:support`](https://w3id.org/nfdi4cat/catcore/support)
+**CURIE:** [`coremeta4cat:support`](https://w3id.org/nfdi4cat/coremeta4cat/support)
 
-**Schema Reference:** [support](./elements/support.md)
+**Schema Reference:** [support](./elements/slots/support.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20support target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20support target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -121,10 +121,10 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **CURIE:** [`VOC4CAT:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
-**Schema Reference:** [solvent](./elements/solvent.md)
+**Schema Reference:** [solvent](./elements/slots/solvent.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20solvent target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20solvent target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -140,10 +140,10 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **CURIE:** [`VOC4CAT:0000122`](https://w3id.org/nfdi4cat/voc4cat_0000122)
 
-**Schema Reference:** [sample_pretreatment](./elements/sample_pretreatment.md)
+**Schema Reference:** [sample_pretreatment](./elements/slots/sample_pretreatment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20sample_pretreatment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20sample_pretreatment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -157,7 +157,7 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **Cardinality:**  Mandatory, Multivalued
 
-**Schema Reference:** [had_input_entity](./elements/had_input_entity.md)
+**Schema Reference:** [had_input_entity](./elements/slots/had_input_entity.md)
 
 **Data Type Class Details:**
 
@@ -169,7 +169,7 @@ Precursors are consumed or transformed during the preparation process.
 
 **CURIE:** [`CHEBI:52717`](http://purl.obolibrary.org/obo/CHEBI_52717)
 
-**Schema Reference:** [Precursor](./elements/Precursor.md)
+**Schema Reference:** [Precursor](./elements/classes/Precursor.md)
 
 **Slots**
 
@@ -182,26 +182,26 @@ Precursors are consumed or transformed during the preparation process.
 
 **Cardinality:**  Mandatory, Multivalued
 
-**CURIE:** [`catcore:precursor_quantity`](https://w3id.org/nfdi4cat/catcore/precursor_quantity)
+**CURIE:** [`coremeta4cat:precursor_quantity`](https://w3id.org/nfdi4cat/coremeta4cat/precursor_quantity)
 
-**Schema Reference:** [precursor_quantity](./elements/precursor_quantity.md)
+**Schema Reference:** [precursor_quantity](./elements/slots/precursor_quantity.md)
 
 **Unit:** g
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precursor_quantity target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precursor_quantity target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Precursor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Precursor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20had_input_entity target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20had_input_entity target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -215,7 +215,7 @@ Precursors are consumed or transformed during the preparation process.
 
 **Cardinality:**  Recommended, Multivalued
 
-**Schema Reference:** [had_output_entity](./elements/had_output_entity.md)
+**Schema Reference:** [had_output_entity](./elements/slots/had_output_entity.md)
 
 **Data Type Class Details:**
 
@@ -228,16 +228,16 @@ is expressed via rdf_type using a voc4cat term.
 
 **CURIE:** [`OBI:0000747`](http://purl.obolibrary.org/obo/OBI_0000747)
 
-**Schema Reference:** [CatalystSample](./elements/CatalystSample.md)
+**Schema Reference:** [CatalystSample](./elements/classes/CatalystSample.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CatalystSample target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CatalystSample target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20had_output_entity target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20had_output_entity target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -251,7 +251,7 @@ is expressed via rdf_type using a voc4cat term.
 
 **Cardinality:**  Mandatory
 
-**Schema Reference:** [realized_plan](./elements/realized_plan.md)
+**Schema Reference:** [realized_plan](./elements/slots/realized_plan.md)
 
 **Data Type Class Details:**
 
@@ -270,10 +270,10 @@ via rdf_type on the Synthesis activity using a voc4cat term
 
 **CURIE:** [`OBI:0000272`](http://purl.obolibrary.org/obo/OBI_0000272)
 
-**Schema Reference:** [PreparationMethod](./elements/PreparationMethod.md)
+**Schema Reference:** [PreparationMethod](./elements/classes/PreparationMethod.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PreparationMethod target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PreparationMethod target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -286,9 +286,9 @@ via rdf_type on the Synthesis activity using a voc4cat term
 **Description:** Catalyst preparation by impregnation: a solution of the active phase
 precursor is brought into contact with the support material.
 
-**CURIE:** [`catcore:Impregnation`](https://w3id.org/nfdi4cat/catcore/Impregnation)
+**CURIE:** [`coremeta4cat:Impregnation`](https://w3id.org/nfdi4cat/coremeta4cat/Impregnation)
 
-**Schema Reference:** [Impregnation](./elements/Impregnation.md)
+**Schema Reference:** [Impregnation](./elements/classes/Impregnation.md)
 
 **Slots**
 
@@ -301,12 +301,12 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:impregnation_type`](https://w3id.org/nfdi4cat/catcore/impregnation_type)
+**CURIE:** [`coremeta4cat:impregnation_type`](https://w3id.org/nfdi4cat/coremeta4cat/impregnation_type)
 
-**Schema Reference:** [impregnation_type](./elements/impregnation_type.md)
+**Schema Reference:** [impregnation_type](./elements/slots/impregnation_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20impregnation_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20impregnation_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -320,14 +320,14 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:impregnation_duration`](https://w3id.org/nfdi4cat/catcore/impregnation_duration)
+**CURIE:** [`coremeta4cat:impregnation_duration`](https://w3id.org/nfdi4cat/coremeta4cat/impregnation_duration)
 
-**Schema Reference:** [impregnation_duration](./elements/impregnation_duration.md)
+**Schema Reference:** [impregnation_duration](./elements/slots/impregnation_duration.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20impregnation_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20impregnation_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -341,14 +341,14 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:impregnation_temperature`](https://w3id.org/nfdi4cat/catcore/impregnation_temperature)
+**CURIE:** [`coremeta4cat:impregnation_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/impregnation_temperature)
 
-**Schema Reference:** [impregnation_temperature](./elements/impregnation_temperature.md)
+**Schema Reference:** [impregnation_temperature](./elements/slots/impregnation_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20impregnation_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20impregnation_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -362,12 +362,12 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_device`](https://w3id.org/nfdi4cat/catcore/drying_device)
+**CURIE:** [`coremeta4cat:drying_device`](https://w3id.org/nfdi4cat/coremeta4cat/drying_device)
 
-**Schema Reference:** [drying_device](./elements/drying_device.md)
+**Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -381,14 +381,14 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_temperature`](https://w3id.org/nfdi4cat/catcore/drying_temperature)
+**CURIE:** [`coremeta4cat:drying_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/drying_temperature)
 
-**Schema Reference:** [drying_temperature](./elements/drying_temperature.md)
+**Schema Reference:** [drying_temperature](./elements/slots/drying_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -402,14 +402,14 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_time`](https://w3id.org/nfdi4cat/catcore/drying_time)
+**CURIE:** [`coremeta4cat:drying_time`](https://w3id.org/nfdi4cat/coremeta4cat/drying_time)
 
-**Schema Reference:** [drying_time](./elements/drying_time.md)
+**Schema Reference:** [drying_time](./elements/slots/drying_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -423,12 +423,12 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_atmosphere`](https://w3id.org/nfdi4cat/catcore/drying_atmosphere)
+**CURIE:** [`coremeta4cat:drying_atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/drying_atmosphere)
 
-**Schema Reference:** [drying_atmosphere](./elements/drying_atmosphere.md)
+**Schema Reference:** [drying_atmosphere](./elements/slots/drying_atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -444,12 +444,12 @@ precursor is brought into contact with the support material.
 
 **CURIE:** [`VOC4CAT:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
 
-**Schema Reference:** [calcination_initial_temperature](./elements/calcination_initial_temperature.md)
+**Schema Reference:** [calcination_initial_temperature](./elements/slots/calcination_initial_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_initial_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_initial_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -465,12 +465,12 @@ precursor is brought into contact with the support material.
 
 **CURIE:** [`VOC4CAT:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
 
-**Schema Reference:** [calcination_final_temperature](./elements/calcination_final_temperature.md)
+**Schema Reference:** [calcination_final_temperature](./elements/slots/calcination_final_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_final_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_final_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -486,12 +486,12 @@ precursor is brought into contact with the support material.
 
 **CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
-**Schema Reference:** [calcination_dwelling_time](./elements/calcination_dwelling_time.md)
+**Schema Reference:** [calcination_dwelling_time](./elements/slots/calcination_dwelling_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_dwelling_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_dwelling_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -505,12 +505,12 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:number_of_cycles`](https://w3id.org/nfdi4cat/catcore/number_of_cycles)
+**CURIE:** [`coremeta4cat:number_of_cycles`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_cycles)
 
-**Schema Reference:** [number_of_cycles](./elements/number_of_cycles.md)
+**Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -526,10 +526,10 @@ precursor is brought into contact with the support material.
 
 **CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
-**Schema Reference:** [calcination_gaseous_environment](./elements/calcination_gaseous_environment.md)
+**Schema Reference:** [calcination_gaseous_environment](./elements/slots/calcination_gaseous_environment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gaseous_environment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gaseous_environment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -545,12 +545,12 @@ precursor is brought into contact with the support material.
 
 **CURIE:** [`VOC4CAT:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
 
-**Schema Reference:** [calcination_heating_rate](./elements/calcination_heating_rate.md)
+**Schema Reference:** [calcination_heating_rate](./elements/slots/calcination_heating_rate.md)
 
 **Unit:** Cel/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_heating_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_heating_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -566,18 +566,18 @@ precursor is brought into contact with the support material.
 
 **CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
-**Schema Reference:** [calcination_gas_flow_rate](./elements/calcination_gas_flow_rate.md)
+**Schema Reference:** [calcination_gas_flow_rate](./elements/slots/calcination_gas_flow_rate.md)
 
 **Unit:** mL/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gas_flow_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gas_flow_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Impregnation target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Impregnation target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -588,9 +588,9 @@ precursor is brought into contact with the support material.
 **Description:** Catalyst preparation by co-precipitation: precursor salts are
 simultaneously precipitated from solution by a precipitating agent.
 
-**CURIE:** [`catcore:CoPrecipitation`](https://w3id.org/nfdi4cat/catcore/CoPrecipitation)
+**CURIE:** [`coremeta4cat:CoPrecipitation`](https://w3id.org/nfdi4cat/coremeta4cat/CoPrecipitation)
 
-**Schema Reference:** [CoPrecipitation](./elements/CoPrecipitation.md)
+**Schema Reference:** [CoPrecipitation](./elements/classes/CoPrecipitation.md)
 
 **Slots**
 
@@ -603,12 +603,12 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:precipitating_agent`](https://w3id.org/nfdi4cat/catcore/precipitating_agent)
+**CURIE:** [`coremeta4cat:precipitating_agent`](https://w3id.org/nfdi4cat/coremeta4cat/precipitating_agent)
 
-**Schema Reference:** [precipitating_agent](./elements/precipitating_agent.md)
+**Schema Reference:** [precipitating_agent](./elements/slots/precipitating_agent.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precipitating_agent target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precipitating_agent target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -622,14 +622,14 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:precipitating_concentration`](https://w3id.org/nfdi4cat/catcore/precipitating_concentration)
+**CURIE:** [`coremeta4cat:precipitating_concentration`](https://w3id.org/nfdi4cat/coremeta4cat/precipitating_concentration)
 
-**Schema Reference:** [precipitating_concentration](./elements/precipitating_concentration.md)
+**Schema Reference:** [precipitating_concentration](./elements/slots/precipitating_concentration.md)
 
 **Unit:** mol/L
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precipitating_concentration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precipitating_concentration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -645,10 +645,10 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **CURIE:** [`VOC4CAT:0000052`](https://w3id.org/nfdi4cat/voc4cat_0000052)
 
-**Schema Reference:** [synthesis_ph](./elements/synthesis_ph.md)
+**Schema Reference:** [synthesis_ph](./elements/slots/synthesis_ph.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_ph target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_ph target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -662,14 +662,14 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:mixing_rate`](https://w3id.org/nfdi4cat/catcore/mixing_rate)
+**CURIE:** [`coremeta4cat:mixing_rate`](https://w3id.org/nfdi4cat/coremeta4cat/mixing_rate)
 
-**Schema Reference:** [mixing_rate](./elements/mixing_rate.md)
+**Schema Reference:** [mixing_rate](./elements/slots/mixing_rate.md)
 
 **Unit:** rpm
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -683,14 +683,14 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:mixing_time`](https://w3id.org/nfdi4cat/catcore/mixing_time)
+**CURIE:** [`coremeta4cat:mixing_time`](https://w3id.org/nfdi4cat/coremeta4cat/mixing_time)
 
-**Schema Reference:** [mixing_time](./elements/mixing_time.md)
+**Schema Reference:** [mixing_time](./elements/slots/mixing_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -704,14 +704,14 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:mixing_temperature`](https://w3id.org/nfdi4cat/catcore/mixing_temperature)
+**CURIE:** [`coremeta4cat:mixing_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/mixing_temperature)
 
-**Schema Reference:** [mixing_temperature](./elements/mixing_temperature.md)
+**Schema Reference:** [mixing_temperature](./elements/slots/mixing_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -725,12 +725,12 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:order_of_addition`](https://w3id.org/nfdi4cat/catcore/order_of_addition)
+**CURIE:** [`coremeta4cat:order_of_addition`](https://w3id.org/nfdi4cat/coremeta4cat/order_of_addition)
 
-**Schema Reference:** [order_of_addition](./elements/order_of_addition.md)
+**Schema Reference:** [order_of_addition](./elements/slots/order_of_addition.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20order_of_addition target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20order_of_addition target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -744,12 +744,12 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:filtration`](https://w3id.org/nfdi4cat/catcore/filtration)
+**CURIE:** [`coremeta4cat:filtration`](https://w3id.org/nfdi4cat/coremeta4cat/filtration)
 
-**Schema Reference:** [filtration](./elements/filtration.md)
+**Schema Reference:** [filtration](./elements/slots/filtration.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filtration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filtration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -763,12 +763,12 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:purification`](https://w3id.org/nfdi4cat/catcore/purification)
+**CURIE:** [`coremeta4cat:purification`](https://w3id.org/nfdi4cat/coremeta4cat/purification)
 
-**Schema Reference:** [purification](./elements/purification.md)
+**Schema Reference:** [purification](./elements/slots/purification.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20purification target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20purification target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -782,14 +782,14 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:aging_temperature`](https://w3id.org/nfdi4cat/catcore/aging_temperature)
+**CURIE:** [`coremeta4cat:aging_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/aging_temperature)
 
-**Schema Reference:** [aging_temperature](./elements/aging_temperature.md)
+**Schema Reference:** [aging_temperature](./elements/slots/aging_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20aging_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20aging_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -803,14 +803,14 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:aging_time`](https://w3id.org/nfdi4cat/catcore/aging_time)
+**CURIE:** [`coremeta4cat:aging_time`](https://w3id.org/nfdi4cat/coremeta4cat/aging_time)
 
-**Schema Reference:** [aging_time](./elements/aging_time.md)
+**Schema Reference:** [aging_time](./elements/slots/aging_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20aging_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20aging_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -824,12 +824,12 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_device`](https://w3id.org/nfdi4cat/catcore/drying_device)
+**CURIE:** [`coremeta4cat:drying_device`](https://w3id.org/nfdi4cat/coremeta4cat/drying_device)
 
-**Schema Reference:** [drying_device](./elements/drying_device.md)
+**Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -843,14 +843,14 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_temperature`](https://w3id.org/nfdi4cat/catcore/drying_temperature)
+**CURIE:** [`coremeta4cat:drying_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/drying_temperature)
 
-**Schema Reference:** [drying_temperature](./elements/drying_temperature.md)
+**Schema Reference:** [drying_temperature](./elements/slots/drying_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -864,14 +864,14 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_time`](https://w3id.org/nfdi4cat/catcore/drying_time)
+**CURIE:** [`coremeta4cat:drying_time`](https://w3id.org/nfdi4cat/coremeta4cat/drying_time)
 
-**Schema Reference:** [drying_time](./elements/drying_time.md)
+**Schema Reference:** [drying_time](./elements/slots/drying_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -885,12 +885,12 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_atmosphere`](https://w3id.org/nfdi4cat/catcore/drying_atmosphere)
+**CURIE:** [`coremeta4cat:drying_atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/drying_atmosphere)
 
-**Schema Reference:** [drying_atmosphere](./elements/drying_atmosphere.md)
+**Schema Reference:** [drying_atmosphere](./elements/slots/drying_atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -906,12 +906,12 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **CURIE:** [`VOC4CAT:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
 
-**Schema Reference:** [calcination_initial_temperature](./elements/calcination_initial_temperature.md)
+**Schema Reference:** [calcination_initial_temperature](./elements/slots/calcination_initial_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_initial_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_initial_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -927,12 +927,12 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **CURIE:** [`VOC4CAT:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
 
-**Schema Reference:** [calcination_final_temperature](./elements/calcination_final_temperature.md)
+**Schema Reference:** [calcination_final_temperature](./elements/slots/calcination_final_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_final_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_final_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -948,12 +948,12 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
-**Schema Reference:** [calcination_dwelling_time](./elements/calcination_dwelling_time.md)
+**Schema Reference:** [calcination_dwelling_time](./elements/slots/calcination_dwelling_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_dwelling_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_dwelling_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -967,12 +967,12 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:number_of_cycles`](https://w3id.org/nfdi4cat/catcore/number_of_cycles)
+**CURIE:** [`coremeta4cat:number_of_cycles`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_cycles)
 
-**Schema Reference:** [number_of_cycles](./elements/number_of_cycles.md)
+**Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -988,10 +988,10 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
-**Schema Reference:** [calcination_gaseous_environment](./elements/calcination_gaseous_environment.md)
+**Schema Reference:** [calcination_gaseous_environment](./elements/slots/calcination_gaseous_environment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gaseous_environment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gaseous_environment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1007,12 +1007,12 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **CURIE:** [`VOC4CAT:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
 
-**Schema Reference:** [calcination_heating_rate](./elements/calcination_heating_rate.md)
+**Schema Reference:** [calcination_heating_rate](./elements/slots/calcination_heating_rate.md)
 
 **Unit:** Cel/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_heating_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_heating_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1028,18 +1028,18 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
-**Schema Reference:** [calcination_gas_flow_rate](./elements/calcination_gas_flow_rate.md)
+**Schema Reference:** [calcination_gas_flow_rate](./elements/slots/calcination_gas_flow_rate.md)
 
 **Unit:** mL/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gas_flow_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gas_flow_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CoPrecipitation target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CoPrecipitation target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -1050,9 +1050,9 @@ simultaneously precipitated from solution by a precipitating agent.
 **Description:** Catalyst preparation by the sol-gel process: hydrolysis and condensation
 of precursor molecules to form a colloidal network (gel).
 
-**CURIE:** [`catcore:SolGel`](https://w3id.org/nfdi4cat/catcore/SolGel)
+**CURIE:** [`coremeta4cat:SolGel`](https://w3id.org/nfdi4cat/coremeta4cat/SolGel)
 
-**Schema Reference:** [SolGel](./elements/SolGel.md)
+**Schema Reference:** [SolGel](./elements/classes/SolGel.md)
 
 **Slots**
 
@@ -1065,12 +1065,12 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:hydrolysis_ratio`](https://w3id.org/nfdi4cat/catcore/hydrolysis_ratio)
+**CURIE:** [`coremeta4cat:hydrolysis_ratio`](https://w3id.org/nfdi4cat/coremeta4cat/hydrolysis_ratio)
 
-**Schema Reference:** [hydrolysis_ratio](./elements/hydrolysis_ratio.md)
+**Schema Reference:** [hydrolysis_ratio](./elements/slots/hydrolysis_ratio.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20hydrolysis_ratio target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20hydrolysis_ratio target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1084,14 +1084,14 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:aging_time`](https://w3id.org/nfdi4cat/catcore/aging_time)
+**CURIE:** [`coremeta4cat:aging_time`](https://w3id.org/nfdi4cat/coremeta4cat/aging_time)
 
-**Schema Reference:** [aging_time](./elements/aging_time.md)
+**Schema Reference:** [aging_time](./elements/slots/aging_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20aging_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20aging_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1105,12 +1105,12 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying`](https://w3id.org/nfdi4cat/catcore/drying)
+**CURIE:** [`coremeta4cat:drying`](https://w3id.org/nfdi4cat/coremeta4cat/drying)
 
-**Schema Reference:** [drying](./elements/drying.md)
+**Schema Reference:** [drying](./elements/slots/drying.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1124,12 +1124,12 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:surfactant_template`](https://w3id.org/nfdi4cat/catcore/surfactant_template)
+**CURIE:** [`coremeta4cat:surfactant_template`](https://w3id.org/nfdi4cat/coremeta4cat/surfactant_template)
 
-**Schema Reference:** [surfactant_template](./elements/surfactant_template.md)
+**Schema Reference:** [surfactant_template](./elements/slots/surfactant_template.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20surfactant_template target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20surfactant_template target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1143,12 +1143,12 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_device`](https://w3id.org/nfdi4cat/catcore/drying_device)
+**CURIE:** [`coremeta4cat:drying_device`](https://w3id.org/nfdi4cat/coremeta4cat/drying_device)
 
-**Schema Reference:** [drying_device](./elements/drying_device.md)
+**Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1162,14 +1162,14 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_temperature`](https://w3id.org/nfdi4cat/catcore/drying_temperature)
+**CURIE:** [`coremeta4cat:drying_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/drying_temperature)
 
-**Schema Reference:** [drying_temperature](./elements/drying_temperature.md)
+**Schema Reference:** [drying_temperature](./elements/slots/drying_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1183,14 +1183,14 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_time`](https://w3id.org/nfdi4cat/catcore/drying_time)
+**CURIE:** [`coremeta4cat:drying_time`](https://w3id.org/nfdi4cat/coremeta4cat/drying_time)
 
-**Schema Reference:** [drying_time](./elements/drying_time.md)
+**Schema Reference:** [drying_time](./elements/slots/drying_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1204,18 +1204,18 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_atmosphere`](https://w3id.org/nfdi4cat/catcore/drying_atmosphere)
+**CURIE:** [`coremeta4cat:drying_atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/drying_atmosphere)
 
-**Schema Reference:** [drying_atmosphere](./elements/drying_atmosphere.md)
+**Schema Reference:** [drying_atmosphere](./elements/slots/drying_atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SolGel target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SolGel target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -1226,9 +1226,9 @@ of precursor molecules to form a colloidal network (gel).
 **Description:** Catalyst preparation under elevated temperature and pressure in a
 sealed vessel using a non-aqueous solvent.
 
-**CURIE:** [`catcore:Solvothermal`](https://w3id.org/nfdi4cat/catcore/Solvothermal)
+**CURIE:** [`coremeta4cat:Solvothermal`](https://w3id.org/nfdi4cat/coremeta4cat/Solvothermal)
 
-**Schema Reference:** [Solvothermal](./elements/Solvothermal.md)
+**Schema Reference:** [Solvothermal](./elements/classes/Solvothermal.md)
 
 **Slots**
 
@@ -1241,14 +1241,14 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:filling_volume`](https://w3id.org/nfdi4cat/catcore/filling_volume)
+**CURIE:** [`coremeta4cat:filling_volume`](https://w3id.org/nfdi4cat/coremeta4cat/filling_volume)
 
-**Schema Reference:** [filling_volume](./elements/filling_volume.md)
+**Schema Reference:** [filling_volume](./elements/slots/filling_volume.md)
 
 **Unit:** mL
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filling_volume target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filling_volume target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1262,12 +1262,12 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:stirrer_type`](https://w3id.org/nfdi4cat/catcore/stirrer_type)
+**CURIE:** [`coremeta4cat:stirrer_type`](https://w3id.org/nfdi4cat/coremeta4cat/stirrer_type)
 
-**Schema Reference:** [stirrer_type](./elements/stirrer_type.md)
+**Schema Reference:** [stirrer_type](./elements/slots/stirrer_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20stirrer_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20stirrer_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1281,14 +1281,14 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:cooling_rate`](https://w3id.org/nfdi4cat/catcore/cooling_rate)
+**CURIE:** [`coremeta4cat:cooling_rate`](https://w3id.org/nfdi4cat/coremeta4cat/cooling_rate)
 
-**Schema Reference:** [cooling_rate](./elements/cooling_rate.md)
+**Schema Reference:** [cooling_rate](./elements/slots/cooling_rate.md)
 
 **Unit:** Cel/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20cooling_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20cooling_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1304,12 +1304,12 @@ sealed vessel using a non-aqueous solvent.
 
 **CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
-**Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
+**Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1325,12 +1325,12 @@ sealed vessel using a non-aqueous solvent.
 
 **CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
-**Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
+**Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1346,10 +1346,10 @@ sealed vessel using a non-aqueous solvent.
 
 **CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
-**Schema Reference:** [equipment](./elements/equipment.md)
+**Schema Reference:** [equipment](./elements/slots/equipment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1363,12 +1363,12 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:vessel_type`](https://w3id.org/nfdi4cat/catcore/vessel_type)
+**CURIE:** [`coremeta4cat:vessel_type`](https://w3id.org/nfdi4cat/coremeta4cat/vessel_type)
 
-**Schema Reference:** [vessel_type](./elements/vessel_type.md)
+**Schema Reference:** [vessel_type](./elements/slots/vessel_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1382,18 +1382,18 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:atmosphere`](https://w3id.org/nfdi4cat/catcore/atmosphere)
+**CURIE:** [`coremeta4cat:atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/atmosphere)
 
-**Schema Reference:** [atmosphere](./elements/atmosphere.md)
+**Schema Reference:** [atmosphere](./elements/slots/atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Solvothermal target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Solvothermal target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -1404,9 +1404,9 @@ sealed vessel using a non-aqueous solvent.
 **Description:** Catalyst preparation using plasma treatment to modify surface
 properties or deposit active components.
 
-**CURIE:** [`catcore:PlasmaAssisted`](https://w3id.org/nfdi4cat/catcore/PlasmaAssisted)
+**CURIE:** [`coremeta4cat:PlasmaAssisted`](https://w3id.org/nfdi4cat/coremeta4cat/PlasmaAssisted)
 
-**Schema Reference:** [PlasmaAssisted](./elements/PlasmaAssisted.md)
+**Schema Reference:** [PlasmaAssisted](./elements/classes/PlasmaAssisted.md)
 
 **Slots**
 
@@ -1419,12 +1419,12 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:plasma_type`](https://w3id.org/nfdi4cat/catcore/plasma_type)
+**CURIE:** [`coremeta4cat:plasma_type`](https://w3id.org/nfdi4cat/coremeta4cat/plasma_type)
 
-**Schema Reference:** [plasma_type](./elements/plasma_type.md)
+**Schema Reference:** [plasma_type](./elements/slots/plasma_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plasma_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plasma_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1438,14 +1438,14 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:power_input`](https://w3id.org/nfdi4cat/catcore/power_input)
+**CURIE:** [`coremeta4cat:power_input`](https://w3id.org/nfdi4cat/coremeta4cat/power_input)
 
-**Schema Reference:** [power_input](./elements/power_input.md)
+**Schema Reference:** [power_input](./elements/slots/power_input.md)
 
 **Unit:** W
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20power_input target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20power_input target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1459,14 +1459,14 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:exposure_time`](https://w3id.org/nfdi4cat/catcore/exposure_time)
+**CURIE:** [`coremeta4cat:exposure_time`](https://w3id.org/nfdi4cat/coremeta4cat/exposure_time)
 
-**Schema Reference:** [exposure_time](./elements/exposure_time.md)
+**Schema Reference:** [exposure_time](./elements/slots/exposure_time.md)
 
 **Unit:** min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20exposure_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20exposure_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1482,12 +1482,12 @@ properties or deposit active components.
 
 **CURIE:** [`VOC4CAT:0000053`](https://w3id.org/nfdi4cat/voc4cat_0000053)
 
-**Schema Reference:** [synthesis_pressure](./elements/synthesis_pressure.md)
+**Schema Reference:** [synthesis_pressure](./elements/slots/synthesis_pressure.md)
 
 **Unit:** bar
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_pressure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_pressure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1503,12 +1503,12 @@ properties or deposit active components.
 
 **CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
-**Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
+**Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1524,12 +1524,12 @@ properties or deposit active components.
 
 **CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
-**Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
+**Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1545,10 +1545,10 @@ properties or deposit active components.
 
 **CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
-**Schema Reference:** [equipment](./elements/equipment.md)
+**Schema Reference:** [equipment](./elements/slots/equipment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1562,12 +1562,12 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:vessel_type`](https://w3id.org/nfdi4cat/catcore/vessel_type)
+**CURIE:** [`coremeta4cat:vessel_type`](https://w3id.org/nfdi4cat/coremeta4cat/vessel_type)
 
-**Schema Reference:** [vessel_type](./elements/vessel_type.md)
+**Schema Reference:** [vessel_type](./elements/slots/vessel_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1581,18 +1581,18 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:atmosphere`](https://w3id.org/nfdi4cat/catcore/atmosphere)
+**CURIE:** [`coremeta4cat:atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/atmosphere)
 
-**Schema Reference:** [atmosphere](./elements/atmosphere.md)
+**Schema Reference:** [atmosphere](./elements/slots/atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PlasmaAssisted target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PlasmaAssisted target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -1603,9 +1603,9 @@ properties or deposit active components.
 **Description:** Catalyst preparation by combustion of a fuel/oxidizer mixture,
 producing metal oxide catalysts in a single rapid step.
 
-**CURIE:** [`catcore:CombustionSynthesis`](https://w3id.org/nfdi4cat/catcore/CombustionSynthesis)
+**CURIE:** [`coremeta4cat:CombustionSynthesis`](https://w3id.org/nfdi4cat/coremeta4cat/CombustionSynthesis)
 
-**Schema Reference:** [CombustionSynthesis](./elements/CombustionSynthesis.md)
+**Schema Reference:** [CombustionSynthesis](./elements/classes/CombustionSynthesis.md)
 
 **Slots**
 
@@ -1618,12 +1618,12 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:fuel`](https://w3id.org/nfdi4cat/catcore/fuel)
+**CURIE:** [`coremeta4cat:fuel`](https://w3id.org/nfdi4cat/coremeta4cat/fuel)
 
-**Schema Reference:** [fuel](./elements/fuel.md)
+**Schema Reference:** [fuel](./elements/slots/fuel.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fuel target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fuel target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1637,12 +1637,12 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:oxidizer`](https://w3id.org/nfdi4cat/catcore/oxidizer)
+**CURIE:** [`coremeta4cat:oxidizer`](https://w3id.org/nfdi4cat/coremeta4cat/oxidizer)
 
-**Schema Reference:** [oxidizer](./elements/oxidizer.md)
+**Schema Reference:** [oxidizer](./elements/slots/oxidizer.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20oxidizer target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20oxidizer target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1656,12 +1656,12 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:fuel_to_oxidizer_ratio`](https://w3id.org/nfdi4cat/catcore/fuel_to_oxidizer_ratio)
+**CURIE:** [`coremeta4cat:fuel_to_oxidizer_ratio`](https://w3id.org/nfdi4cat/coremeta4cat/fuel_to_oxidizer_ratio)
 
-**Schema Reference:** [fuel_to_oxidizer_ratio](./elements/fuel_to_oxidizer_ratio.md)
+**Schema Reference:** [fuel_to_oxidizer_ratio](./elements/slots/fuel_to_oxidizer_ratio.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fuel_to_oxidizer_ratio target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fuel_to_oxidizer_ratio target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1675,14 +1675,14 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:set_temperature`](https://w3id.org/nfdi4cat/catcore/set_temperature)
+**CURIE:** [`coremeta4cat:set_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/set_temperature)
 
-**Schema Reference:** [set_temperature](./elements/set_temperature.md)
+**Schema Reference:** [set_temperature](./elements/slots/set_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20set_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20set_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1696,12 +1696,12 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:post_treatment`](https://w3id.org/nfdi4cat/catcore/post_treatment)
+**CURIE:** [`coremeta4cat:post_treatment`](https://w3id.org/nfdi4cat/coremeta4cat/post_treatment)
 
-**Schema Reference:** [post_treatment](./elements/post_treatment.md)
+**Schema Reference:** [post_treatment](./elements/slots/post_treatment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20post_treatment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20post_treatment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1717,12 +1717,12 @@ producing metal oxide catalysts in a single rapid step.
 
 **CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
-**Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
+**Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1738,12 +1738,12 @@ producing metal oxide catalysts in a single rapid step.
 
 **CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
-**Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
+**Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1759,10 +1759,10 @@ producing metal oxide catalysts in a single rapid step.
 
 **CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
-**Schema Reference:** [equipment](./elements/equipment.md)
+**Schema Reference:** [equipment](./elements/slots/equipment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1776,12 +1776,12 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:vessel_type`](https://w3id.org/nfdi4cat/catcore/vessel_type)
+**CURIE:** [`coremeta4cat:vessel_type`](https://w3id.org/nfdi4cat/coremeta4cat/vessel_type)
 
-**Schema Reference:** [vessel_type](./elements/vessel_type.md)
+**Schema Reference:** [vessel_type](./elements/slots/vessel_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1795,18 +1795,18 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:atmosphere`](https://w3id.org/nfdi4cat/catcore/atmosphere)
+**CURIE:** [`coremeta4cat:atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/atmosphere)
 
-**Schema Reference:** [atmosphere](./elements/atmosphere.md)
+**Schema Reference:** [atmosphere](./elements/slots/atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CombustionSynthesis target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CombustionSynthesis target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -1818,9 +1818,9 @@ producing metal oxide catalysts in a single rapid step.
 self-limiting surface reactions deposit a conformal thin film
 of active phase onto a substrate.
 
-**CURIE:** [`catcore:AtomicLayerDeposition`](https://w3id.org/nfdi4cat/catcore/AtomicLayerDeposition)
+**CURIE:** [`coremeta4cat:AtomicLayerDeposition`](https://w3id.org/nfdi4cat/coremeta4cat/AtomicLayerDeposition)
 
-**Schema Reference:** [AtomicLayerDeposition](./elements/AtomicLayerDeposition.md)
+**Schema Reference:** [AtomicLayerDeposition](./elements/classes/AtomicLayerDeposition.md)
 
 **Slots**
 
@@ -1835,10 +1835,10 @@ of active phase onto a substrate.
 
 **CURIE:** [`VOC4CAT:0000024`](https://w3id.org/nfdi4cat/voc4cat_0000024)
 
-**Schema Reference:** [substrate](./elements/substrate.md)
+**Schema Reference:** [substrate](./elements/slots/substrate.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20substrate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20substrate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1852,14 +1852,14 @@ of active phase onto a substrate.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:pulse_time`](https://w3id.org/nfdi4cat/catcore/pulse_time)
+**CURIE:** [`coremeta4cat:pulse_time`](https://w3id.org/nfdi4cat/coremeta4cat/pulse_time)
 
-**Schema Reference:** [pulse_time](./elements/pulse_time.md)
+**Schema Reference:** [pulse_time](./elements/slots/pulse_time.md)
 
 **Unit:** s
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20pulse_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20pulse_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1875,12 +1875,12 @@ of active phase onto a substrate.
 
 **CURIE:** [`VOC4CAT:0000112`](https://w3id.org/nfdi4cat/voc4cat_0000112)
 
-**Schema Reference:** [purging_duration](./elements/purging_duration.md)
+**Schema Reference:** [purging_duration](./elements/slots/purging_duration.md)
 
 **Unit:** s
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20purging_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20purging_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1894,12 +1894,12 @@ of active phase onto a substrate.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:number_of_cycles`](https://w3id.org/nfdi4cat/catcore/number_of_cycles)
+**CURIE:** [`coremeta4cat:number_of_cycles`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_cycles)
 
-**Schema Reference:** [number_of_cycles](./elements/number_of_cycles.md)
+**Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1913,14 +1913,14 @@ of active phase onto a substrate.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:deposition_temperature`](https://w3id.org/nfdi4cat/catcore/deposition_temperature)
+**CURIE:** [`coremeta4cat:deposition_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/deposition_temperature)
 
-**Schema Reference:** [deposition_temperature](./elements/deposition_temperature.md)
+**Schema Reference:** [deposition_temperature](./elements/slots/deposition_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20deposition_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20deposition_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1934,18 +1934,18 @@ of active phase onto a substrate.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:carrier_gas`](https://w3id.org/nfdi4cat/catcore/carrier_gas)
+**CURIE:** [`coremeta4cat:carrier_gas`](https://w3id.org/nfdi4cat/coremeta4cat/carrier_gas)
 
-**Schema Reference:** [carrier_gas](./elements/carrier_gas.md)
+**Schema Reference:** [carrier_gas](./elements/slots/carrier_gas.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20carrier_gas target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20carrier_gas target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20AtomicLayerDeposition target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20AtomicLayerDeposition target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -1956,9 +1956,9 @@ of active phase onto a substrate.
 **Description:** Catalyst preparation by deposition-precipitation: the active phase
 is precipitated directly onto the support surface.
 
-**CURIE:** [`catcore:DepositionPrecipitation`](https://w3id.org/nfdi4cat/catcore/DepositionPrecipitation)
+**CURIE:** [`coremeta4cat:DepositionPrecipitation`](https://w3id.org/nfdi4cat/coremeta4cat/DepositionPrecipitation)
 
-**Schema Reference:** [DepositionPrecipitation](./elements/DepositionPrecipitation.md)
+**Schema Reference:** [DepositionPrecipitation](./elements/classes/DepositionPrecipitation.md)
 
 **Slots**
 
@@ -1971,14 +1971,14 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:deposition_temperature`](https://w3id.org/nfdi4cat/catcore/deposition_temperature)
+**CURIE:** [`coremeta4cat:deposition_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/deposition_temperature)
 
-**Schema Reference:** [deposition_temperature](./elements/deposition_temperature.md)
+**Schema Reference:** [deposition_temperature](./elements/slots/deposition_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20deposition_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20deposition_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1992,14 +1992,14 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:deposition_time`](https://w3id.org/nfdi4cat/catcore/deposition_time)
+**CURIE:** [`coremeta4cat:deposition_time`](https://w3id.org/nfdi4cat/coremeta4cat/deposition_time)
 
-**Schema Reference:** [deposition_time](./elements/deposition_time.md)
+**Schema Reference:** [deposition_time](./elements/slots/deposition_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20deposition_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20deposition_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2013,12 +2013,12 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:precipitating_agent`](https://w3id.org/nfdi4cat/catcore/precipitating_agent)
+**CURIE:** [`coremeta4cat:precipitating_agent`](https://w3id.org/nfdi4cat/coremeta4cat/precipitating_agent)
 
-**Schema Reference:** [precipitating_agent](./elements/precipitating_agent.md)
+**Schema Reference:** [precipitating_agent](./elements/slots/precipitating_agent.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precipitating_agent target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precipitating_agent target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2032,14 +2032,14 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:precipitating_concentration`](https://w3id.org/nfdi4cat/catcore/precipitating_concentration)
+**CURIE:** [`coremeta4cat:precipitating_concentration`](https://w3id.org/nfdi4cat/coremeta4cat/precipitating_concentration)
 
-**Schema Reference:** [precipitating_concentration](./elements/precipitating_concentration.md)
+**Schema Reference:** [precipitating_concentration](./elements/slots/precipitating_concentration.md)
 
 **Unit:** mol/L
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precipitating_concentration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precipitating_concentration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2055,10 +2055,10 @@ is precipitated directly onto the support surface.
 
 **CURIE:** [`VOC4CAT:0000052`](https://w3id.org/nfdi4cat/voc4cat_0000052)
 
-**Schema Reference:** [synthesis_ph](./elements/synthesis_ph.md)
+**Schema Reference:** [synthesis_ph](./elements/slots/synthesis_ph.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_ph target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_ph target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2072,14 +2072,14 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:mixing_rate`](https://w3id.org/nfdi4cat/catcore/mixing_rate)
+**CURIE:** [`coremeta4cat:mixing_rate`](https://w3id.org/nfdi4cat/coremeta4cat/mixing_rate)
 
-**Schema Reference:** [mixing_rate](./elements/mixing_rate.md)
+**Schema Reference:** [mixing_rate](./elements/slots/mixing_rate.md)
 
 **Unit:** rpm
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2093,14 +2093,14 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:mixing_time`](https://w3id.org/nfdi4cat/catcore/mixing_time)
+**CURIE:** [`coremeta4cat:mixing_time`](https://w3id.org/nfdi4cat/coremeta4cat/mixing_time)
 
-**Schema Reference:** [mixing_time](./elements/mixing_time.md)
+**Schema Reference:** [mixing_time](./elements/slots/mixing_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2114,14 +2114,14 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:mixing_temperature`](https://w3id.org/nfdi4cat/catcore/mixing_temperature)
+**CURIE:** [`coremeta4cat:mixing_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/mixing_temperature)
 
-**Schema Reference:** [mixing_temperature](./elements/mixing_temperature.md)
+**Schema Reference:** [mixing_temperature](./elements/slots/mixing_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2135,12 +2135,12 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:order_of_addition`](https://w3id.org/nfdi4cat/catcore/order_of_addition)
+**CURIE:** [`coremeta4cat:order_of_addition`](https://w3id.org/nfdi4cat/coremeta4cat/order_of_addition)
 
-**Schema Reference:** [order_of_addition](./elements/order_of_addition.md)
+**Schema Reference:** [order_of_addition](./elements/slots/order_of_addition.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20order_of_addition target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20order_of_addition target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2154,12 +2154,12 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:filtration`](https://w3id.org/nfdi4cat/catcore/filtration)
+**CURIE:** [`coremeta4cat:filtration`](https://w3id.org/nfdi4cat/coremeta4cat/filtration)
 
-**Schema Reference:** [filtration](./elements/filtration.md)
+**Schema Reference:** [filtration](./elements/slots/filtration.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filtration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filtration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2173,12 +2173,12 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:purification`](https://w3id.org/nfdi4cat/catcore/purification)
+**CURIE:** [`coremeta4cat:purification`](https://w3id.org/nfdi4cat/coremeta4cat/purification)
 
-**Schema Reference:** [purification](./elements/purification.md)
+**Schema Reference:** [purification](./elements/slots/purification.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20purification target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20purification target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2192,14 +2192,14 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:aging_temperature`](https://w3id.org/nfdi4cat/catcore/aging_temperature)
+**CURIE:** [`coremeta4cat:aging_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/aging_temperature)
 
-**Schema Reference:** [aging_temperature](./elements/aging_temperature.md)
+**Schema Reference:** [aging_temperature](./elements/slots/aging_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20aging_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20aging_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2213,14 +2213,14 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:aging_time`](https://w3id.org/nfdi4cat/catcore/aging_time)
+**CURIE:** [`coremeta4cat:aging_time`](https://w3id.org/nfdi4cat/coremeta4cat/aging_time)
 
-**Schema Reference:** [aging_time](./elements/aging_time.md)
+**Schema Reference:** [aging_time](./elements/slots/aging_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20aging_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20aging_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2234,12 +2234,12 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_device`](https://w3id.org/nfdi4cat/catcore/drying_device)
+**CURIE:** [`coremeta4cat:drying_device`](https://w3id.org/nfdi4cat/coremeta4cat/drying_device)
 
-**Schema Reference:** [drying_device](./elements/drying_device.md)
+**Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2253,14 +2253,14 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_temperature`](https://w3id.org/nfdi4cat/catcore/drying_temperature)
+**CURIE:** [`coremeta4cat:drying_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/drying_temperature)
 
-**Schema Reference:** [drying_temperature](./elements/drying_temperature.md)
+**Schema Reference:** [drying_temperature](./elements/slots/drying_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2274,14 +2274,14 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_time`](https://w3id.org/nfdi4cat/catcore/drying_time)
+**CURIE:** [`coremeta4cat:drying_time`](https://w3id.org/nfdi4cat/coremeta4cat/drying_time)
 
-**Schema Reference:** [drying_time](./elements/drying_time.md)
+**Schema Reference:** [drying_time](./elements/slots/drying_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2295,12 +2295,12 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_atmosphere`](https://w3id.org/nfdi4cat/catcore/drying_atmosphere)
+**CURIE:** [`coremeta4cat:drying_atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/drying_atmosphere)
 
-**Schema Reference:** [drying_atmosphere](./elements/drying_atmosphere.md)
+**Schema Reference:** [drying_atmosphere](./elements/slots/drying_atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2316,12 +2316,12 @@ is precipitated directly onto the support surface.
 
 **CURIE:** [`VOC4CAT:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
 
-**Schema Reference:** [calcination_initial_temperature](./elements/calcination_initial_temperature.md)
+**Schema Reference:** [calcination_initial_temperature](./elements/slots/calcination_initial_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_initial_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_initial_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2337,12 +2337,12 @@ is precipitated directly onto the support surface.
 
 **CURIE:** [`VOC4CAT:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
 
-**Schema Reference:** [calcination_final_temperature](./elements/calcination_final_temperature.md)
+**Schema Reference:** [calcination_final_temperature](./elements/slots/calcination_final_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_final_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_final_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2358,12 +2358,12 @@ is precipitated directly onto the support surface.
 
 **CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
-**Schema Reference:** [calcination_dwelling_time](./elements/calcination_dwelling_time.md)
+**Schema Reference:** [calcination_dwelling_time](./elements/slots/calcination_dwelling_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_dwelling_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_dwelling_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2377,12 +2377,12 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:number_of_cycles`](https://w3id.org/nfdi4cat/catcore/number_of_cycles)
+**CURIE:** [`coremeta4cat:number_of_cycles`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_cycles)
 
-**Schema Reference:** [number_of_cycles](./elements/number_of_cycles.md)
+**Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2398,10 +2398,10 @@ is precipitated directly onto the support surface.
 
 **CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
-**Schema Reference:** [calcination_gaseous_environment](./elements/calcination_gaseous_environment.md)
+**Schema Reference:** [calcination_gaseous_environment](./elements/slots/calcination_gaseous_environment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gaseous_environment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gaseous_environment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2417,12 +2417,12 @@ is precipitated directly onto the support surface.
 
 **CURIE:** [`VOC4CAT:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
 
-**Schema Reference:** [calcination_heating_rate](./elements/calcination_heating_rate.md)
+**Schema Reference:** [calcination_heating_rate](./elements/slots/calcination_heating_rate.md)
 
 **Unit:** Cel/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_heating_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_heating_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2438,18 +2438,18 @@ is precipitated directly onto the support surface.
 
 **CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
-**Schema Reference:** [calcination_gas_flow_rate](./elements/calcination_gas_flow_rate.md)
+**Schema Reference:** [calcination_gas_flow_rate](./elements/slots/calcination_gas_flow_rate.md)
 
 **Unit:** mL/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gas_flow_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gas_flow_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20DepositionPrecipitation target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20DepositionPrecipitation target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -2460,9 +2460,9 @@ is precipitated directly onto the support surface.
 **Description:** Catalyst preparation using microwave irradiation to rapidly and
 uniformly heat the reaction mixture.
 
-**CURIE:** [`catcore:MicrowaveAssisted`](https://w3id.org/nfdi4cat/catcore/MicrowaveAssisted)
+**CURIE:** [`coremeta4cat:MicrowaveAssisted`](https://w3id.org/nfdi4cat/coremeta4cat/MicrowaveAssisted)
 
-**Schema Reference:** [MicrowaveAssisted](./elements/MicrowaveAssisted.md)
+**Schema Reference:** [MicrowaveAssisted](./elements/classes/MicrowaveAssisted.md)
 
 **Slots**
 
@@ -2475,14 +2475,14 @@ uniformly heat the reaction mixture.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:power`](https://w3id.org/nfdi4cat/catcore/power)
+**CURIE:** [`coremeta4cat:power`](https://w3id.org/nfdi4cat/coremeta4cat/power)
 
-**Schema Reference:** [power](./elements/power.md)
+**Schema Reference:** [power](./elements/slots/power.md)
 
 **Unit:** W
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20power target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20power target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2496,14 +2496,14 @@ uniformly heat the reaction mixture.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:microwave_frequency`](https://w3id.org/nfdi4cat/catcore/microwave_frequency)
+**CURIE:** [`coremeta4cat:microwave_frequency`](https://w3id.org/nfdi4cat/coremeta4cat/microwave_frequency)
 
-**Schema Reference:** [microwave_frequency](./elements/microwave_frequency.md)
+**Schema Reference:** [microwave_frequency](./elements/slots/microwave_frequency.md)
 
 **Unit:** GHz
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20microwave_frequency target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20microwave_frequency target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2519,12 +2519,12 @@ uniformly heat the reaction mixture.
 
 **CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
-**Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
+**Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2540,12 +2540,12 @@ uniformly heat the reaction mixture.
 
 **CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
-**Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
+**Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2561,10 +2561,10 @@ uniformly heat the reaction mixture.
 
 **CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
-**Schema Reference:** [equipment](./elements/equipment.md)
+**Schema Reference:** [equipment](./elements/slots/equipment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2578,12 +2578,12 @@ uniformly heat the reaction mixture.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:vessel_type`](https://w3id.org/nfdi4cat/catcore/vessel_type)
+**CURIE:** [`coremeta4cat:vessel_type`](https://w3id.org/nfdi4cat/coremeta4cat/vessel_type)
 
-**Schema Reference:** [vessel_type](./elements/vessel_type.md)
+**Schema Reference:** [vessel_type](./elements/slots/vessel_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2597,18 +2597,18 @@ uniformly heat the reaction mixture.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:atmosphere`](https://w3id.org/nfdi4cat/catcore/atmosphere)
+**CURIE:** [`coremeta4cat:atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/atmosphere)
 
-**Schema Reference:** [atmosphere](./elements/atmosphere.md)
+**Schema Reference:** [atmosphere](./elements/slots/atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MicrowaveAssisted target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MicrowaveAssisted target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -2619,9 +2619,9 @@ uniformly heat the reaction mixture.
 **Description:** Catalyst preparation using ultrasonic irradiation to drive chemical
 reactions via acoustic cavitation.
 
-**CURIE:** [`catcore:SonochemicalSynthesis`](https://w3id.org/nfdi4cat/catcore/SonochemicalSynthesis)
+**CURIE:** [`coremeta4cat:SonochemicalSynthesis`](https://w3id.org/nfdi4cat/coremeta4cat/SonochemicalSynthesis)
 
-**Schema Reference:** [SonochemicalSynthesis](./elements/SonochemicalSynthesis.md)
+**Schema Reference:** [SonochemicalSynthesis](./elements/classes/SonochemicalSynthesis.md)
 
 **Slots**
 
@@ -2634,14 +2634,14 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:sonication_power`](https://w3id.org/nfdi4cat/catcore/sonication_power)
+**CURIE:** [`coremeta4cat:sonication_power`](https://w3id.org/nfdi4cat/coremeta4cat/sonication_power)
 
-**Schema Reference:** [sonication_power](./elements/sonication_power.md)
+**Schema Reference:** [sonication_power](./elements/slots/sonication_power.md)
 
 **Unit:** W
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20sonication_power target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20sonication_power target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2655,14 +2655,14 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:sonication_duration`](https://w3id.org/nfdi4cat/catcore/sonication_duration)
+**CURIE:** [`coremeta4cat:sonication_duration`](https://w3id.org/nfdi4cat/coremeta4cat/sonication_duration)
 
-**Schema Reference:** [sonication_duration](./elements/sonication_duration.md)
+**Schema Reference:** [sonication_duration](./elements/slots/sonication_duration.md)
 
 **Unit:** min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20sonication_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20sonication_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2678,12 +2678,12 @@ reactions via acoustic cavitation.
 
 **CURIE:** [`AFR:0001584`](http://purl.allotrope.org/ontologies/result#AFR_0001584)
 
-**Schema Reference:** [temperature](./elements/temperature.md)
+**Schema Reference:** [temperature](./elements/slots/temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2697,12 +2697,12 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_device`](https://w3id.org/nfdi4cat/catcore/drying_device)
+**CURIE:** [`coremeta4cat:drying_device`](https://w3id.org/nfdi4cat/coremeta4cat/drying_device)
 
-**Schema Reference:** [drying_device](./elements/drying_device.md)
+**Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2716,14 +2716,14 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_temperature`](https://w3id.org/nfdi4cat/catcore/drying_temperature)
+**CURIE:** [`coremeta4cat:drying_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/drying_temperature)
 
-**Schema Reference:** [drying_temperature](./elements/drying_temperature.md)
+**Schema Reference:** [drying_temperature](./elements/slots/drying_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2737,14 +2737,14 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_time`](https://w3id.org/nfdi4cat/catcore/drying_time)
+**CURIE:** [`coremeta4cat:drying_time`](https://w3id.org/nfdi4cat/coremeta4cat/drying_time)
 
-**Schema Reference:** [drying_time](./elements/drying_time.md)
+**Schema Reference:** [drying_time](./elements/slots/drying_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2758,12 +2758,12 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_atmosphere`](https://w3id.org/nfdi4cat/catcore/drying_atmosphere)
+**CURIE:** [`coremeta4cat:drying_atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/drying_atmosphere)
 
-**Schema Reference:** [drying_atmosphere](./elements/drying_atmosphere.md)
+**Schema Reference:** [drying_atmosphere](./elements/slots/drying_atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2779,12 +2779,12 @@ reactions via acoustic cavitation.
 
 **CURIE:** [`VOC4CAT:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
 
-**Schema Reference:** [calcination_initial_temperature](./elements/calcination_initial_temperature.md)
+**Schema Reference:** [calcination_initial_temperature](./elements/slots/calcination_initial_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_initial_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_initial_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2800,12 +2800,12 @@ reactions via acoustic cavitation.
 
 **CURIE:** [`VOC4CAT:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
 
-**Schema Reference:** [calcination_final_temperature](./elements/calcination_final_temperature.md)
+**Schema Reference:** [calcination_final_temperature](./elements/slots/calcination_final_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_final_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_final_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2821,12 +2821,12 @@ reactions via acoustic cavitation.
 
 **CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
-**Schema Reference:** [calcination_dwelling_time](./elements/calcination_dwelling_time.md)
+**Schema Reference:** [calcination_dwelling_time](./elements/slots/calcination_dwelling_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_dwelling_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_dwelling_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2840,12 +2840,12 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:number_of_cycles`](https://w3id.org/nfdi4cat/catcore/number_of_cycles)
+**CURIE:** [`coremeta4cat:number_of_cycles`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_cycles)
 
-**Schema Reference:** [number_of_cycles](./elements/number_of_cycles.md)
+**Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2861,10 +2861,10 @@ reactions via acoustic cavitation.
 
 **CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
-**Schema Reference:** [calcination_gaseous_environment](./elements/calcination_gaseous_environment.md)
+**Schema Reference:** [calcination_gaseous_environment](./elements/slots/calcination_gaseous_environment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gaseous_environment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gaseous_environment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2880,12 +2880,12 @@ reactions via acoustic cavitation.
 
 **CURIE:** [`VOC4CAT:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
 
-**Schema Reference:** [calcination_heating_rate](./elements/calcination_heating_rate.md)
+**Schema Reference:** [calcination_heating_rate](./elements/slots/calcination_heating_rate.md)
 
 **Unit:** Cel/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_heating_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_heating_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2901,18 +2901,18 @@ reactions via acoustic cavitation.
 
 **CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
-**Schema Reference:** [calcination_gas_flow_rate](./elements/calcination_gas_flow_rate.md)
+**Schema Reference:** [calcination_gas_flow_rate](./elements/slots/calcination_gas_flow_rate.md)
 
 **Unit:** mL/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gas_flow_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gas_flow_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SonochemicalSynthesis target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SonochemicalSynthesis target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -2925,7 +2925,7 @@ solution is atomised and combusted in a flame to produce nanoparticles.
 
 **CURIE:** [`VOC4CAT:0007031`](https://w3id.org/nfdi4cat/voc4cat_0007031)
 
-**Schema Reference:** [FlameSprayPyrolysis](./elements/FlameSprayPyrolysis.md)
+**Schema Reference:** [FlameSprayPyrolysis](./elements/classes/FlameSprayPyrolysis.md)
 
 **Slots**
 
@@ -2938,12 +2938,12 @@ solution is atomised and combusted in a flame to produce nanoparticles.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:flame_type`](https://w3id.org/nfdi4cat/catcore/flame_type)
+**CURIE:** [`coremeta4cat:flame_type`](https://w3id.org/nfdi4cat/coremeta4cat/flame_type)
 
-**Schema Reference:** [flame_type](./elements/flame_type.md)
+**Schema Reference:** [flame_type](./elements/slots/flame_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20flame_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20flame_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2957,14 +2957,14 @@ solution is atomised and combusted in a flame to produce nanoparticles.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:flow_rate`](https://w3id.org/nfdi4cat/catcore/flow_rate)
+**CURIE:** [`coremeta4cat:flow_rate`](https://w3id.org/nfdi4cat/coremeta4cat/flow_rate)
 
-**Schema Reference:** [flow_rate](./elements/flow_rate.md)
+**Schema Reference:** [flow_rate](./elements/slots/flow_rate.md)
 
 **Unit:** mL/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20flow_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20flow_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2978,12 +2978,12 @@ solution is atomised and combusted in a flame to produce nanoparticles.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:inlet_system`](https://w3id.org/nfdi4cat/catcore/inlet_system)
+**CURIE:** [`coremeta4cat:inlet_system`](https://w3id.org/nfdi4cat/coremeta4cat/inlet_system)
 
-**Schema Reference:** [inlet_system](./elements/inlet_system.md)
+**Schema Reference:** [inlet_system](./elements/slots/inlet_system.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20inlet_system target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20inlet_system target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2997,12 +2997,12 @@ solution is atomised and combusted in a flame to produce nanoparticles.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:flame_ring`](https://w3id.org/nfdi4cat/catcore/flame_ring)
+**CURIE:** [`coremeta4cat:flame_ring`](https://w3id.org/nfdi4cat/coremeta4cat/flame_ring)
 
-**Schema Reference:** [flame_ring](./elements/flame_ring.md)
+**Schema Reference:** [flame_ring](./elements/slots/flame_ring.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20flame_ring target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20flame_ring target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3016,12 +3016,12 @@ solution is atomised and combusted in a flame to produce nanoparticles.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:dispersant`](https://w3id.org/nfdi4cat/catcore/dispersant)
+**CURIE:** [`coremeta4cat:dispersant`](https://w3id.org/nfdi4cat/coremeta4cat/dispersant)
 
-**Schema Reference:** [dispersant](./elements/dispersant.md)
+**Schema Reference:** [dispersant](./elements/slots/dispersant.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20dispersant target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20dispersant target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3035,14 +3035,14 @@ solution is atomised and combusted in a flame to produce nanoparticles.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:capillary_pressure`](https://w3id.org/nfdi4cat/catcore/capillary_pressure)
+**CURIE:** [`coremeta4cat:capillary_pressure`](https://w3id.org/nfdi4cat/coremeta4cat/capillary_pressure)
 
-**Schema Reference:** [capillary_pressure](./elements/capillary_pressure.md)
+**Schema Reference:** [capillary_pressure](./elements/slots/capillary_pressure.md)
 
 **Unit:** bar
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20capillary_pressure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20capillary_pressure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3056,12 +3056,12 @@ solution is atomised and combusted in a flame to produce nanoparticles.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:fuel_dispersant_ratio`](https://w3id.org/nfdi4cat/catcore/fuel_dispersant_ratio)
+**CURIE:** [`coremeta4cat:fuel_dispersant_ratio`](https://w3id.org/nfdi4cat/coremeta4cat/fuel_dispersant_ratio)
 
-**Schema Reference:** [fuel_dispersant_ratio](./elements/fuel_dispersant_ratio.md)
+**Schema Reference:** [fuel_dispersant_ratio](./elements/slots/fuel_dispersant_ratio.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fuel_dispersant_ratio target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fuel_dispersant_ratio target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3075,12 +3075,12 @@ solution is atomised and combusted in a flame to produce nanoparticles.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:filtration_device`](https://w3id.org/nfdi4cat/catcore/filtration_device)
+**CURIE:** [`coremeta4cat:filtration_device`](https://w3id.org/nfdi4cat/coremeta4cat/filtration_device)
 
-**Schema Reference:** [filtration_device](./elements/filtration_device.md)
+**Schema Reference:** [filtration_device](./elements/slots/filtration_device.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filtration_device target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filtration_device target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3094,18 +3094,18 @@ solution is atomised and combusted in a flame to produce nanoparticles.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:filter_type`](https://w3id.org/nfdi4cat/catcore/filter_type)
+**CURIE:** [`coremeta4cat:filter_type`](https://w3id.org/nfdi4cat/coremeta4cat/filter_type)
 
-**Schema Reference:** [filter_type](./elements/filter_type.md)
+**Schema Reference:** [filter_type](./elements/slots/filter_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filter_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filter_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FlameSprayPyrolysis target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FlameSprayPyrolysis target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -3116,9 +3116,9 @@ solution is atomised and combusted in a flame to produce nanoparticles.
 **Description:** Catalyst preparation by mechanical milling or grinding, optionally
 combined with thermal treatment.
 
-**CURIE:** [`catcore:MechanochemicalSynthesis`](https://w3id.org/nfdi4cat/catcore/MechanochemicalSynthesis)
+**CURIE:** [`coremeta4cat:MechanochemicalSynthesis`](https://w3id.org/nfdi4cat/coremeta4cat/MechanochemicalSynthesis)
 
-**Schema Reference:** [MechanochemicalSynthesis](./elements/MechanochemicalSynthesis.md)
+**Schema Reference:** [MechanochemicalSynthesis](./elements/classes/MechanochemicalSynthesis.md)
 
 **Slots**
 
@@ -3131,14 +3131,14 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:vessel_volume`](https://w3id.org/nfdi4cat/catcore/vessel_volume)
+**CURIE:** [`coremeta4cat:vessel_volume`](https://w3id.org/nfdi4cat/coremeta4cat/vessel_volume)
 
-**Schema Reference:** [vessel_volume](./elements/vessel_volume.md)
+**Schema Reference:** [vessel_volume](./elements/slots/vessel_volume.md)
 
 **Unit:** mL
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_volume target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_volume target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3152,12 +3152,12 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:size_and_material`](https://w3id.org/nfdi4cat/catcore/size_and_material)
+**CURIE:** [`coremeta4cat:size_and_material`](https://w3id.org/nfdi4cat/coremeta4cat/size_and_material)
 
-**Schema Reference:** [size_and_material](./elements/size_and_material.md)
+**Schema Reference:** [size_and_material](./elements/slots/size_and_material.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20size_and_material target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20size_and_material target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3171,14 +3171,14 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:milling_speed`](https://w3id.org/nfdi4cat/catcore/milling_speed)
+**CURIE:** [`coremeta4cat:milling_speed`](https://w3id.org/nfdi4cat/coremeta4cat/milling_speed)
 
-**Schema Reference:** [milling_speed](./elements/milling_speed.md)
+**Schema Reference:** [milling_speed](./elements/slots/milling_speed.md)
 
 **Unit:** rpm
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20milling_speed target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20milling_speed target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3192,14 +3192,14 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:milling_duration`](https://w3id.org/nfdi4cat/catcore/milling_duration)
+**CURIE:** [`coremeta4cat:milling_duration`](https://w3id.org/nfdi4cat/coremeta4cat/milling_duration)
 
-**Schema Reference:** [milling_duration](./elements/milling_duration.md)
+**Schema Reference:** [milling_duration](./elements/slots/milling_duration.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20milling_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20milling_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3213,12 +3213,12 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:ball_material`](https://w3id.org/nfdi4cat/catcore/ball_material)
+**CURIE:** [`coremeta4cat:ball_material`](https://w3id.org/nfdi4cat/coremeta4cat/ball_material)
 
-**Schema Reference:** [ball_material](./elements/ball_material.md)
+**Schema Reference:** [ball_material](./elements/slots/ball_material.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ball_material target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ball_material target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3232,14 +3232,14 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:ball_size`](https://w3id.org/nfdi4cat/catcore/ball_size)
+**CURIE:** [`coremeta4cat:ball_size`](https://w3id.org/nfdi4cat/coremeta4cat/ball_size)
 
-**Schema Reference:** [ball_size](./elements/ball_size.md)
+**Schema Reference:** [ball_size](./elements/slots/ball_size.md)
 
 **Unit:** mm
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ball_size target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ball_size target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3253,12 +3253,12 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:ball_to_powder_ratio`](https://w3id.org/nfdi4cat/catcore/ball_to_powder_ratio)
+**CURIE:** [`coremeta4cat:ball_to_powder_ratio`](https://w3id.org/nfdi4cat/coremeta4cat/ball_to_powder_ratio)
 
-**Schema Reference:** [ball_to_powder_ratio](./elements/ball_to_powder_ratio.md)
+**Schema Reference:** [ball_to_powder_ratio](./elements/slots/ball_to_powder_ratio.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ball_to_powder_ratio target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ball_to_powder_ratio target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3274,12 +3274,12 @@ combined with thermal treatment.
 
 **CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
-**Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
+**Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3295,12 +3295,12 @@ combined with thermal treatment.
 
 **CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
-**Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
+**Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3316,10 +3316,10 @@ combined with thermal treatment.
 
 **CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
-**Schema Reference:** [equipment](./elements/equipment.md)
+**Schema Reference:** [equipment](./elements/slots/equipment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3333,12 +3333,12 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:vessel_type`](https://w3id.org/nfdi4cat/catcore/vessel_type)
+**CURIE:** [`coremeta4cat:vessel_type`](https://w3id.org/nfdi4cat/coremeta4cat/vessel_type)
 
-**Schema Reference:** [vessel_type](./elements/vessel_type.md)
+**Schema Reference:** [vessel_type](./elements/slots/vessel_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3352,18 +3352,18 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:atmosphere`](https://w3id.org/nfdi4cat/catcore/atmosphere)
+**CURIE:** [`coremeta4cat:atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/atmosphere)
 
-**Schema Reference:** [atmosphere](./elements/atmosphere.md)
+**Schema Reference:** [atmosphere](./elements/slots/atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MechanochemicalSynthesis target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MechanochemicalSynthesis target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -3374,9 +3374,9 @@ combined with thermal treatment.
 **Description:** Catalyst preparation by sublimation: a solid precursor is vaporised
 and deposited onto a substrate without passing through a liquid phase.
 
-**CURIE:** [`catcore:Sublimation`](https://w3id.org/nfdi4cat/catcore/Sublimation)
+**CURIE:** [`coremeta4cat:Sublimation`](https://w3id.org/nfdi4cat/coremeta4cat/Sublimation)
 
-**Schema Reference:** [Sublimation](./elements/Sublimation.md)
+**Schema Reference:** [Sublimation](./elements/classes/Sublimation.md)
 
 **Slots**
 
@@ -3391,12 +3391,12 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **CURIE:** [`VOC4CAT:0000053`](https://w3id.org/nfdi4cat/voc4cat_0000053)
 
-**Schema Reference:** [synthesis_pressure](./elements/synthesis_pressure.md)
+**Schema Reference:** [synthesis_pressure](./elements/slots/synthesis_pressure.md)
 
 **Unit:** bar
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_pressure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_pressure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3412,12 +3412,12 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
-**Schema Reference:** [synthesis_temperature](./elements/synthesis_temperature.md)
+**Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3433,12 +3433,12 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
-**Schema Reference:** [synthesis_duration](./elements/synthesis_duration.md)
+**Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20synthesis_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3454,10 +3454,10 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
 
-**Schema Reference:** [equipment](./elements/equipment.md)
+**Schema Reference:** [equipment](./elements/slots/equipment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3471,12 +3471,12 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:vessel_type`](https://w3id.org/nfdi4cat/catcore/vessel_type)
+**CURIE:** [`coremeta4cat:vessel_type`](https://w3id.org/nfdi4cat/coremeta4cat/vessel_type)
 
-**Schema Reference:** [vessel_type](./elements/vessel_type.md)
+**Schema Reference:** [vessel_type](./elements/slots/vessel_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3490,18 +3490,18 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:atmosphere`](https://w3id.org/nfdi4cat/catcore/atmosphere)
+**CURIE:** [`coremeta4cat:atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/atmosphere)
 
-**Schema Reference:** [atmosphere](./elements/atmosphere.md)
+**Schema Reference:** [atmosphere](./elements/slots/atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Sublimation target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Sublimation target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -3512,9 +3512,9 @@ and deposited onto a substrate without passing through a liquid phase.
 **Description:** Catalyst preparation by molecular (organometallic or coordination)
 chemistry routes, including crystallisation and purification steps.
 
-**CURIE:** [`catcore:MolecularSynthesis`](https://w3id.org/nfdi4cat/catcore/MolecularSynthesis)
+**CURIE:** [`coremeta4cat:MolecularSynthesis`](https://w3id.org/nfdi4cat/coremeta4cat/MolecularSynthesis)
 
-**Schema Reference:** [MolecularSynthesis](./elements/MolecularSynthesis.md)
+**Schema Reference:** [MolecularSynthesis](./elements/classes/MolecularSynthesis.md)
 
 **Slots**
 
@@ -3527,12 +3527,12 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:reaction_vessel`](https://w3id.org/nfdi4cat/catcore/reaction_vessel)
+**CURIE:** [`coremeta4cat:reaction_vessel`](https://w3id.org/nfdi4cat/coremeta4cat/reaction_vessel)
 
-**Schema Reference:** [reaction_vessel](./elements/reaction_vessel.md)
+**Schema Reference:** [reaction_vessel](./elements/slots/reaction_vessel.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reaction_vessel target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reaction_vessel target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3546,12 +3546,12 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:mixing_device`](https://w3id.org/nfdi4cat/catcore/mixing_device)
+**CURIE:** [`coremeta4cat:mixing_device`](https://w3id.org/nfdi4cat/coremeta4cat/mixing_device)
 
-**Schema Reference:** [mixing_device](./elements/mixing_device.md)
+**Schema Reference:** [mixing_device](./elements/slots/mixing_device.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_device target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_device target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3565,14 +3565,14 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:stirring_duration`](https://w3id.org/nfdi4cat/catcore/stirring_duration)
+**CURIE:** [`coremeta4cat:stirring_duration`](https://w3id.org/nfdi4cat/coremeta4cat/stirring_duration)
 
-**Schema Reference:** [stirring_duration](./elements/stirring_duration.md)
+**Schema Reference:** [stirring_duration](./elements/slots/stirring_duration.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20stirring_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20stirring_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3586,14 +3586,14 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:stirring_speed`](https://w3id.org/nfdi4cat/catcore/stirring_speed)
+**CURIE:** [`coremeta4cat:stirring_speed`](https://w3id.org/nfdi4cat/coremeta4cat/stirring_speed)
 
-**Schema Reference:** [stirring_speed](./elements/stirring_speed.md)
+**Schema Reference:** [stirring_speed](./elements/slots/stirring_speed.md)
 
 **Unit:** rpm
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20stirring_speed target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20stirring_speed target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3607,14 +3607,14 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:mixing_temperature`](https://w3id.org/nfdi4cat/catcore/mixing_temperature)
+**CURIE:** [`coremeta4cat:mixing_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/mixing_temperature)
 
-**Schema Reference:** [mixing_temperature](./elements/mixing_temperature.md)
+**Schema Reference:** [mixing_temperature](./elements/slots/mixing_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20mixing_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3628,12 +3628,12 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:filtration_device`](https://w3id.org/nfdi4cat/catcore/filtration_device)
+**CURIE:** [`coremeta4cat:filtration_device`](https://w3id.org/nfdi4cat/coremeta4cat/filtration_device)
 
-**Schema Reference:** [filtration_device](./elements/filtration_device.md)
+**Schema Reference:** [filtration_device](./elements/slots/filtration_device.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filtration_device target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filtration_device target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3647,12 +3647,12 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:filter_type`](https://w3id.org/nfdi4cat/catcore/filter_type)
+**CURIE:** [`coremeta4cat:filter_type`](https://w3id.org/nfdi4cat/coremeta4cat/filter_type)
 
-**Schema Reference:** [filter_type](./elements/filter_type.md)
+**Schema Reference:** [filter_type](./elements/slots/filter_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filter_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filter_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3666,12 +3666,12 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:crystallisation_solvents`](https://w3id.org/nfdi4cat/catcore/crystallisation_solvents)
+**CURIE:** [`coremeta4cat:crystallisation_solvents`](https://w3id.org/nfdi4cat/coremeta4cat/crystallisation_solvents)
 
-**Schema Reference:** [crystallisation_solvents](./elements/crystallisation_solvents.md)
+**Schema Reference:** [crystallisation_solvents](./elements/slots/crystallisation_solvents.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystallisation_solvents target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystallisation_solvents target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3685,12 +3685,12 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:precipitation_agent`](https://w3id.org/nfdi4cat/catcore/precipitation_agent)
+**CURIE:** [`coremeta4cat:precipitation_agent`](https://w3id.org/nfdi4cat/coremeta4cat/precipitation_agent)
 
-**Schema Reference:** [precipitation_agent](./elements/precipitation_agent.md)
+**Schema Reference:** [precipitation_agent](./elements/slots/precipitation_agent.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precipitation_agent target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precipitation_agent target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3704,14 +3704,14 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:crystallisation_duration`](https://w3id.org/nfdi4cat/catcore/crystallisation_duration)
+**CURIE:** [`coremeta4cat:crystallisation_duration`](https://w3id.org/nfdi4cat/coremeta4cat/crystallisation_duration)
 
-**Schema Reference:** [crystallisation_duration](./elements/crystallisation_duration.md)
+**Schema Reference:** [crystallisation_duration](./elements/slots/crystallisation_duration.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystallisation_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystallisation_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3725,12 +3725,12 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:purification_solvent`](https://w3id.org/nfdi4cat/catcore/purification_solvent)
+**CURIE:** [`coremeta4cat:purification_solvent`](https://w3id.org/nfdi4cat/coremeta4cat/purification_solvent)
 
-**Schema Reference:** [purification_solvent](./elements/purification_solvent.md)
+**Schema Reference:** [purification_solvent](./elements/slots/purification_solvent.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20purification_solvent target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20purification_solvent target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3744,12 +3744,12 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:number_of_cycles`](https://w3id.org/nfdi4cat/catcore/number_of_cycles)
+**CURIE:** [`coremeta4cat:number_of_cycles`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_cycles)
 
-**Schema Reference:** [number_of_cycles](./elements/number_of_cycles.md)
+**Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3763,14 +3763,14 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:temperature_ramp`](https://w3id.org/nfdi4cat/catcore/temperature_ramp)
+**CURIE:** [`coremeta4cat:temperature_ramp`](https://w3id.org/nfdi4cat/coremeta4cat/temperature_ramp)
 
-**Schema Reference:** [temperature_ramp](./elements/temperature_ramp.md)
+**Schema Reference:** [temperature_ramp](./elements/slots/temperature_ramp.md)
 
 **Unit:** Cel/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature_ramp target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature_ramp target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3784,12 +3784,12 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:atmosphere`](https://w3id.org/nfdi4cat/catcore/atmosphere)
+**CURIE:** [`coremeta4cat:atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/atmosphere)
 
-**Schema Reference:** [atmosphere](./elements/atmosphere.md)
+**Schema Reference:** [atmosphere](./elements/slots/atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3803,12 +3803,12 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_device`](https://w3id.org/nfdi4cat/catcore/drying_device)
+**CURIE:** [`coremeta4cat:drying_device`](https://w3id.org/nfdi4cat/coremeta4cat/drying_device)
 
-**Schema Reference:** [drying_device](./elements/drying_device.md)
+**Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3822,14 +3822,14 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_temperature`](https://w3id.org/nfdi4cat/catcore/drying_temperature)
+**CURIE:** [`coremeta4cat:drying_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/drying_temperature)
 
-**Schema Reference:** [drying_temperature](./elements/drying_temperature.md)
+**Schema Reference:** [drying_temperature](./elements/slots/drying_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3843,14 +3843,14 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_time`](https://w3id.org/nfdi4cat/catcore/drying_time)
+**CURIE:** [`coremeta4cat:drying_time`](https://w3id.org/nfdi4cat/coremeta4cat/drying_time)
 
-**Schema Reference:** [drying_time](./elements/drying_time.md)
+**Schema Reference:** [drying_time](./elements/slots/drying_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3864,18 +3864,18 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:drying_atmosphere`](https://w3id.org/nfdi4cat/catcore/drying_atmosphere)
+**CURIE:** [`coremeta4cat:drying_atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/drying_atmosphere)
 
-**Schema Reference:** [drying_atmosphere](./elements/drying_atmosphere.md)
+**Schema Reference:** [drying_atmosphere](./elements/slots/drying_atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MolecularSynthesis target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MolecularSynthesis target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -3886,9 +3886,9 @@ chemistry routes, including crystallisation and purification steps.
 **Description:** Catalyst preparation by exsolution: metal nanoparticles are grown on
 a perovskite oxide surface by reduction/oxidation cycling.
 
-**CURIE:** [`catcore:ExsolutionSynthesis`](https://w3id.org/nfdi4cat/catcore/ExsolutionSynthesis)
+**CURIE:** [`coremeta4cat:ExsolutionSynthesis`](https://w3id.org/nfdi4cat/coremeta4cat/ExsolutionSynthesis)
 
-**Schema Reference:** [ExsolutionSynthesis](./elements/ExsolutionSynthesis.md)
+**Schema Reference:** [ExsolutionSynthesis](./elements/classes/ExsolutionSynthesis.md)
 
 **Slots**
 
@@ -3903,12 +3903,12 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **CURIE:** [`VOC4CAT:0000057`](https://w3id.org/nfdi4cat/voc4cat_0000057)
 
-**Schema Reference:** [calcination_initial_temperature](./elements/calcination_initial_temperature.md)
+**Schema Reference:** [calcination_initial_temperature](./elements/slots/calcination_initial_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_initial_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_initial_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3924,12 +3924,12 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **CURIE:** [`VOC4CAT:0000058`](https://w3id.org/nfdi4cat/voc4cat_0000058)
 
-**Schema Reference:** [calcination_final_temperature](./elements/calcination_final_temperature.md)
+**Schema Reference:** [calcination_final_temperature](./elements/slots/calcination_final_temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_final_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_final_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3945,12 +3945,12 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
-**Schema Reference:** [calcination_dwelling_time](./elements/calcination_dwelling_time.md)
+**Schema Reference:** [calcination_dwelling_time](./elements/slots/calcination_dwelling_time.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_dwelling_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_dwelling_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3964,12 +3964,12 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:number_of_cycles`](https://w3id.org/nfdi4cat/catcore/number_of_cycles)
+**CURIE:** [`coremeta4cat:number_of_cycles`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_cycles)
 
-**Schema Reference:** [number_of_cycles](./elements/number_of_cycles.md)
+**Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3985,10 +3985,10 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
-**Schema Reference:** [calcination_gaseous_environment](./elements/calcination_gaseous_environment.md)
+**Schema Reference:** [calcination_gaseous_environment](./elements/slots/calcination_gaseous_environment.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gaseous_environment target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gaseous_environment target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -4004,12 +4004,12 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **CURIE:** [`VOC4CAT:0000059`](https://w3id.org/nfdi4cat/voc4cat_0000059)
 
-**Schema Reference:** [calcination_heating_rate](./elements/calcination_heating_rate.md)
+**Schema Reference:** [calcination_heating_rate](./elements/slots/calcination_heating_rate.md)
 
 **Unit:** Cel/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_heating_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_heating_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -4025,24 +4025,24 @@ a perovskite oxide surface by reduction/oxidation cycling.
 
 **CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
-**Schema Reference:** [calcination_gas_flow_rate](./elements/calcination_gas_flow_rate.md)
+**Schema Reference:** [calcination_gas_flow_rate](./elements/slots/calcination_gas_flow_rate.md)
 
 **Unit:** mL/min
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gas_flow_rate target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calcination_gas_flow_rate target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ExsolutionSynthesis target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ExsolutionSynthesis target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20realized_plan target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20realized_plan target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>

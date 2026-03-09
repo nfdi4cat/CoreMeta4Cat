@@ -28,7 +28,7 @@ plugins:
   #       - gen_pages.py  # or any other name or path
 
 watch:
-  - src/catcore/schema
+  - src/coremeta4cat/schema
 
 nav:
   - Home: index.md
@@ -47,14 +47,14 @@ nav:
     - Characterization: characterization.md
     - Synthesis: synthesis.md
     - Simulation: simulation.md
-  - Schema: elements/index.md
+  - Schema: elements/overview.md
   - About: about.md
 
 exclude_docs: |
   /templates-linkml/
 
 extra_css:
-  - stylesheets/no-details-box.css
+  - stylesheets//no-details-box.css
 
 site_url: https://HendrikBorgelt.github.io/CoreMeta4Cat
 repo_url: https://github.com/HendrikBorgelt/CoreMeta4Cat
@@ -73,3 +73,9 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences:
+      # make exceptions to highlighting of code:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom

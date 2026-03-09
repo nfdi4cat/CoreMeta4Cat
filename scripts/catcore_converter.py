@@ -2,15 +2,15 @@ import yaml
 from pathlib import Path
 from typing import List, Set, Optional
 
-# catcore.yaml is loaded FIRST so its generic stubs (range: Plan, range: AgenticEntity)
+# coremeta4cat.yaml is loaded FIRST so its generic stubs (range: Plan, range: AgenticEntity)
 # are overwritten by the specific ranges in the subprofile modules.
 MODULE_FILES = [
-    "catcore.yaml",           # load first: generic stubs get overwritten by subprofiles
-    "catcore_common.yaml",
-    "catcore_synthesis_ap.yaml",
-    "catcore_characterization_ap.yaml",
-    "catcore_reaction_ap.yaml",
-    "catcore_simulation_ap.yaml",
+    "coremeta4cat.yaml",           # load first: generic stubs get overwritten by subprofiles
+    "coremeta4cat_common.yaml",
+    "coremeta4cat_synthesis_ap.yaml",
+    "coremeta4cat_characterization_ap.yaml",
+    "coremeta4cat_reaction_ap.yaml",
+    "coremeta4cat_simulation_ap.yaml",
 ]
 
 
@@ -31,7 +31,7 @@ def merge_schemas(modules: List[dict]) -> dict:
     """
     Merge all module dicts into one flat schema.
     Later modules win on key collision, so subprofile modules (loaded last)
-    correctly override the generic stubs in catcore.yaml (loaded first).
+    correctly override the generic stubs in coremeta4cat.yaml (loaded first).
     """
     merged: dict = {"prefixes": {}, "classes": {}, "slots": {}, "enums": {}}
 
@@ -233,7 +233,7 @@ def format_class_markdown(schema: dict, class_name: str, level: int = 3,
     md += f"**Description:** {description}\n\n"
     if class_uri:
         md += f"**CURIE:** [`{class_uri}`]({expand_curie(schema, class_uri)})\n\n"
-    md += f"**Schema Reference:** [{class_name}](./elements/{class_name}.md)\n\n"
+    md += f"**Schema Reference:** [{class_name}](./elements/classes/{class_name}.md)\n\n"
 
     slots = get_all_class_slots(schema, class_name)
     if slots:
@@ -243,7 +243,7 @@ def format_class_markdown(schema: dict, class_name: str, level: int = 3,
             md += format_slot_markdown(schema, slot_name, slot_details, level + 2,
                                        processed_classes.copy(), class_name)
 
-    md += (f"<p>\n      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new"
+    md += (f"<p>\n      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new"
            f"?template=term_improvement.yaml&title=Term%20Feedback:%20{class_name}"
            f' target="_blank" class="md-button md-button--primary">\n'
            f"        💡 Submit Term Feedback\n      </a>\n    </p>")
@@ -275,7 +275,7 @@ def format_slot_markdown(schema: dict, slot_name: str, slot_details: dict,
     md += f"**Cardinality:** {striped}\n\n"
     if slot_uri:
         md += f"**CURIE:** [`{slot_uri}`]({expand_curie(schema, slot_uri)})\n\n"
-    md += f"**Schema Reference:** [{slot_name}](./elements/{slot_name}.md)\n\n"
+    md += f"**Schema Reference:** [{slot_name}](./elements/slots/{slot_name}.md)\n\n"
     if unit and unit.get("ucum_code"):
         md += f"**Unit:** {unit['ucum_code']}\n\n"
 
@@ -291,7 +291,7 @@ def format_slot_markdown(schema: dict, slot_name: str, slot_details: dict,
                     md += format_class_markdown(schema, subclass, level + 1,
                                                 processed_classes, None)
 
-    md += (f"<p>\n  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new"
+    md += (f"<p>\n  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new"
            f"?template=term_improvement.yaml&title=Term%20Feedback:%20{slot_name}"
            f' target="_blank" class="md-button md-button--primary">\n'
            f"    💡 Submit Term Feedback\n  </a>\n</p>")
@@ -383,7 +383,7 @@ def generate_markdown_for_main_class(schema: dict, main_class: str, output_file:
 # ─────────────────────────────────────────────────────────────────────────────
 
 def main(schema_dir: str, output_dir: str = "."):
-    print(f"\nLoading CatCore modules from: {schema_dir}")
+    print(f"\nLoading CoreMeta4Cat modules from: {schema_dir}")
     schema = load_merged_schema(schema_dir)
 
     output_path = Path(output_dir)
@@ -405,7 +405,7 @@ def main(schema_dir: str, output_dir: str = "."):
 
 if __name__ == "__main__":
     # ── Edit these two paths to match your local setup ──────────────────────
-    schema_dir = "./src/catcore/schema"
-    output_dir = "./docs"
+    schema_dir = "../src/coremeta4cat/schema"
+    output_dir = "../docs"
     # ────────────────────────────────────────────────────────────────────────
     main(schema_dir, output_dir)

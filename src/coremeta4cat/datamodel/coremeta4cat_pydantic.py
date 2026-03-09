@@ -78,10 +78,10 @@ class LinkMLMeta(RootModel):
         return key in self.root
 
 
-linkml_meta = LinkMLMeta({'default_prefix': 'catcore',
+linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
      'default_range': 'string',
-     'description': 'The CatCore describes the minimum information which must be '
-                    'reported with research\n'
+     'description': 'The CoreMeta4Cat describes the minimum information which must '
+                    'be reported with research\n'
                     'data concerning the field of catalysis. This guideline helps '
                     'to handle and\n'
                     'standardize data based on the FAIR principle (Findable, '
@@ -90,7 +90,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'catcore',
                     '\n'
                     'Architecture\n'
                     '------------\n'
-                    'CatCore follows the DCAT-AP-PLUS design patterns (see '
+                    'CoreMeta4Cat follows the DCAT-AP-PLUS design patterns (see '
                     'design-patterns.md):\n'
                     '\n'
                     '- The entry point is the dcat:Dataset, extended here as '
@@ -101,7 +101,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'catcore',
                     'NMRSpectroscopy uses\n'
                     '  rdf_type: CHMO:0000613 to classify the measurement type.\n'
                     '\n'
-                    '- The four CatCore pillars are modelled as DCAT-AP-PLUS '
+                    '- The four CoreMeta4Cat pillars are modelled as DCAT-AP-PLUS '
                     'Activity subclasses,\n'
                     '  following the same pattern as NMRSpectroscopy (is_a: '
                     'DataGeneratingActivity):\n'
@@ -151,13 +151,14 @@ linkml_meta = LinkMLMeta({'default_prefix': 'catcore',
                     'by the Activity.\n'
                     '\n'
                     'This file is the top-level aggregator. It imports '
-                    'catcore_common (shared\n'
+                    'coremeta4cat_common (shared\n'
                     'slots and enums) and the four subprofile modules.\n'
                     '\n'
                     'Full import hierarchy:\n'
-                    '  catcore.yaml  (this file — aggregator + CatalysisDataset '
-                    'entry point)\n'
-                    '    +-- catcore_common.yaml         (shared slots, enums)\n'
+                    '  coremeta4cat.yaml  (this file — aggregator + '
+                    'CatalysisDataset entry point)\n'
+                    '    +-- coremeta4cat_common.yaml         (shared slots, '
+                    'enums)\n'
                     '          +-- chem_dcat_ap          (SubstanceSample, '
                     'ChemicalSubstance, …)\n'
                     '                +-- chemical_reaction_ap\n'
@@ -165,23 +166,23 @@ linkml_meta = LinkMLMeta({'default_prefix': 'catcore',
                     '                            +-- material_entities_ap\n'
                     '                                  +-- dcat_ap_plus  '
                     '(DCAT-AP-PLUS base)\n'
-                    '    +-- catcore_synthesis_ap         (Step 3 — Synthesis, '
-                    'PreparationMethod, mixins)\n'
-                    '    +-- catcore_characterization_ap  (Step 4 — '
+                    '    +-- coremeta4cat_synthesis_ap         (Step 3 — '
+                    'Synthesis, PreparationMethod, mixins)\n'
+                    '    +-- coremeta4cat_characterization_ap  (Step 4 — '
                     'Characterization, 24 techniques, mixins)\n'
-                    '    +-- catcore_reaction_ap          (Step 5 — Reaction, 8 '
-                    'ReactorDesignTypes)\n'
-                    '    +-- catcore_simulation_ap        (Step 6 — Simulation, 4 '
-                    'methods, 12 properties, mixins)',
-     'id': 'https://w3id.org/nfdi4cat/catcore',
+                    '    +-- coremeta4cat_reaction_ap          (Step 5 — Reaction, '
+                    '8 ReactorDesignTypes)\n'
+                    '    +-- coremeta4cat_simulation_ap        (Step 6 — '
+                    'Simulation, 4 methods, 12 properties, mixins)',
+     'id': 'https://w3id.org/nfdi4cat/coremeta4cat',
      'imports': ['linkml:types',
-                 'catcore_common',
-                 'catcore_synthesis_ap',
-                 'catcore_characterization_ap',
-                 'catcore_reaction_ap',
-                 'catcore_simulation_ap'],
+                 'coremeta4cat_common',
+                 'coremeta4cat_synthesis_ap',
+                 'coremeta4cat_characterization_ap',
+                 'coremeta4cat_reaction_ap',
+                 'coremeta4cat_simulation_ap'],
      'license': 'CC-BY-4.0',
-     'name': 'catcore-metadata',
+     'name': 'coremeta4cat-metadata',
      'prefixes': {'IAO': {'prefix_prefix': 'IAO',
                           'prefix_reference': 'http://purl.obolibrary.org/obo/IAO_'},
                   'NCIT': {'prefix_prefix': 'NCIT',
@@ -192,14 +193,14 @@ linkml_meta = LinkMLMeta({'default_prefix': 'catcore',
                           'prefix_reference': 'http://semanticscience.org/resource/SIO_'},
                   'VOC4CAT': {'prefix_prefix': 'VOC4CAT',
                               'prefix_reference': 'https://w3id.org/nfdi4cat/voc4cat_'},
-                  'catcore': {'prefix_prefix': 'catcore',
-                              'prefix_reference': 'https://w3id.org/nfdi4cat/catcore/'},
                   'chemdcatap': {'prefix_prefix': 'chemdcatap',
                                  'prefix_reference': 'https://nfdi-de.github.io/chem-dcat-ap/'},
+                  'coremeta4cat': {'prefix_prefix': 'coremeta4cat',
+                                   'prefix_reference': 'https://w3id.org/nfdi4cat/coremeta4cat/'},
                   'dcat': {'prefix_prefix': 'dcat',
                            'prefix_reference': 'http://www.w3.org/ns/dcat#'},
                   'dcatapplus': {'prefix_prefix': 'dcatapplus',
-                                 'prefix_reference': 'https://nfdi-de.github.io/dcat-ap-plus/'},
+                                 'prefix_reference': 'https://w3id.org/nfdi-de/dcat-ap-plus/'},
                   'dcterms': {'prefix_prefix': 'dcterms',
                               'prefix_reference': 'http://purl.org/dc/terms/'},
                   'linkml': {'prefix_prefix': 'linkml',
@@ -208,8 +209,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'catcore',
                            'prefix_reference': 'http://www.w3.org/ns/prov#'},
                   'rdf': {'prefix_prefix': 'rdf',
                           'prefix_reference': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'}},
-     'source_file': 'src/catcore/schema/catcore.yaml',
-     'title': 'CatCore Metadata Reference Model'} )
+     'source_file': 'src/coremeta4cat/schema/coremeta4cat.yaml',
+     'title': 'CoreMeta4cat Metadata Reference Model'} )
 
 class CatalysisResearchFieldEnum(str, Enum):
     """
@@ -418,16 +419,17 @@ class DryingMixin(ConfiguredBaseModel):
     (Impregnation, CoPrecipitation, DepositionPrecipitation,
     SonochemicalSynthesis, MolecularSynthesis).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/', 'mixin': True})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
+         'mixin': True})
 
-    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_device'} })
+    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
     drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_temperature',
+         'slot_uri': 'coremeta4cat:drying_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_time',
+         'slot_uri': 'coremeta4cat:drying_time',
          'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_atmosphere'} })
+    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_atmosphere'} })
 
 
 class CalcinationMixin(ConfiguredBaseModel):
@@ -437,7 +439,8 @@ class CalcinationMixin(ConfiguredBaseModel):
     (Impregnation, CoPrecipitation, DepositionPrecipitation,
     SonochemicalSynthesis, ExsolutionSynthesis).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/', 'mixin': True})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
+         'mixin': True})
 
     calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
          'slot_uri': 'VOC4CAT:0000057',
@@ -453,7 +456,7 @@ class CalcinationMixin(ConfiguredBaseModel):
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
-         'slot_uri': 'catcore:number_of_cycles'} })
+         'slot_uri': 'coremeta4cat:number_of_cycles'} })
     calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
     calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
          'slot_uri': 'VOC4CAT:0000059',
@@ -469,30 +472,33 @@ class PrecipitationMixin(ConfiguredBaseModel):
     preparation methods based on precipitation from solution
     (CoPrecipitation, DepositionPrecipitation).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/', 'mixin': True})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
+         'mixin': True})
 
-    precipitating_agent: Optional[list[str]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:precipitating_agent'} })
+    precipitating_agent: Optional[list[str]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'slot_uri': 'coremeta4cat:precipitating_agent'} })
     precipitating_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the precipitating agent.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:precipitating_concentration',
+         'slot_uri': 'coremeta4cat:precipitating_concentration',
          'unit': {'ucum_code': 'mol/L'}} })
     synthesis_ph: Optional[list[float]] = Field(default=[], description="""pH value maintained or targeted during synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'VOC4CAT:0000052'} })
     mixing_rate: Optional[list[float]] = Field(default=[], description="""Stirring rate during mixing of synthesis components.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:mixing_rate',
+         'slot_uri': 'coremeta4cat:mixing_rate',
          'unit': {'ucum_code': 'rpm'}} })
     mixing_time: Optional[list[float]] = Field(default=[], description="""Duration of the mixing step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:mixing_time',
+         'slot_uri': 'coremeta4cat:mixing_time',
          'unit': {'ucum_code': 'h'}} })
     mixing_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
-         'slot_uri': 'catcore:mixing_temperature',
+         'slot_uri': 'coremeta4cat:mixing_temperature',
          'unit': {'ucum_code': 'Cel'}} })
-    order_of_addition: Optional[list[str]] = Field(default=[], description="""Order in which reagents or components are combined.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:order_of_addition'} })
-    filtration: Optional[list[str]] = Field(default=[], description="""Filtration method used to separate the precipitate (e.g. vacuum filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:filtration'} })
-    purification: Optional[list[str]] = Field(default=[], description="""Purification method applied after synthesis (e.g. washing, dialysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:purification'} })
+    order_of_addition: Optional[list[str]] = Field(default=[], description="""Order in which reagents or components are combined.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'slot_uri': 'coremeta4cat:order_of_addition'} })
+    filtration: Optional[list[str]] = Field(default=[], description="""Filtration method used to separate the precipitate (e.g. vacuum filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:filtration'} })
+    purification: Optional[list[str]] = Field(default=[], description="""Purification method applied after synthesis (e.g. washing, dialysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:purification'} })
     aging_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during aging of the precipitate or gel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:aging_temperature',
+         'slot_uri': 'coremeta4cat:aging_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     aging_time: Optional[list[float]] = Field(default=[], description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
-         'slot_uri': 'catcore:aging_time',
+         'slot_uri': 'coremeta4cat:aging_time',
          'unit': {'ucum_code': 'h'}} })
 
 
@@ -503,7 +509,8 @@ class ThermalSynthesisMixin(ConfiguredBaseModel):
     (Solvothermal, PlasmaAssisted, CombustionSynthesis,
     MicrowaveAssisted, MechanochemicalSynthesis, Sublimation).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/', 'mixin': True})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
+         'mixin': True})
 
     synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000051',
@@ -512,7 +519,7 @@ class ThermalSynthesisMixin(ConfiguredBaseModel):
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
     equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'catcore:vessel_type'} })
+    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -524,7 +531,7 @@ class ThermalSynthesisMixin(ConfiguredBaseModel):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
 
 
 class XRaySourceMixin(ConfiguredBaseModel):
@@ -533,7 +540,7 @@ class XRaySourceMixin(ConfiguredBaseModel):
     X-ray based techniques (PowderXRD, XRayAbsorptionSpectroscopy, XPS,
     SingleCrystalXRD).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
     xray_source: Optional[list[str]] = Field(default=[], description="""X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'OBI:0001138'} })
@@ -545,14 +552,14 @@ class EnergyRangeMixin(ConfiguredBaseModel):
     Mixin providing energy scan range slots, shared by X-ray spectroscopy
     techniques that scan over an energy range (XRayAbsorptionSpectroscopy, XPS).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
     minimum_energy: Optional[list[float]] = Field(default=[], description="""Minimum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'catcore:minimum_energy',
+         'slot_uri': 'coremeta4cat:minimum_energy',
          'unit': {'ucum_code': 'eV'}} })
     maximum_energy: Optional[list[float]] = Field(default=[], description="""Maximum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'catcore:maximum_energy',
+         'slot_uri': 'coremeta4cat:maximum_energy',
          'unit': {'ucum_code': 'eV'}} })
 
 
@@ -562,12 +569,12 @@ class ElectronMicroscopyMixin(ConfiguredBaseModel):
     microscopy techniques (TransmissionElectronMicroscopy,
     ScanningElectronMicroscopy).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
-    gun_type: Optional[list[str]] = Field(default=[], description="""Type of electron gun (e.g. FEG, thermionic LaB6).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'], 'slot_uri': 'catcore:gun_type'} })
+    gun_type: Optional[list[str]] = Field(default=[], description="""Type of electron gun (e.g. FEG, thermionic LaB6).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'], 'slot_uri': 'coremeta4cat:gun_type'} })
     acceleration_voltage: Optional[list[float]] = Field(default=[], description="""Acceleration voltage applied to the electron beam.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'],
-         'slot_uri': 'catcore:acceleration_voltage',
+         'slot_uri': 'coremeta4cat:acceleration_voltage',
          'unit': {'ucum_code': 'kV'}} })
     magnification_setting: Optional[list[float]] = Field(default=[], description="""Magnification setting used for imaging.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin', 'RamanSpectroscopy'],
          'slot_uri': 'AFR:0002226'} })
@@ -579,20 +586,20 @@ class TemperatureProgramMixin(ConfiguredBaseModel):
     analysis and temperature-programmed reaction techniques
     (Thermogravimetry, TPO, TPR).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
     minimum_temperature: Optional[list[float]] = Field(default=[], description="""Minimum (start) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:minimum_temperature',
+         'slot_uri': 'coremeta4cat:minimum_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     maximum_temperature: Optional[list[float]] = Field(default=[], description="""Maximum (final) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:maximum_temperature',
+         'slot_uri': 'coremeta4cat:maximum_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     heating_rate: Optional[list[float]] = Field(default=[], description="""Rate at which temperature is increased during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:heating_rate',
+         'slot_uri': 'coremeta4cat:heating_rate',
          'unit': {'ucum_code': 'Cel/min'}} })
     heating_procedure: Optional[list[str]] = Field(default=[], description="""Description of the heating procedure applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
-         'slot_uri': 'catcore:heating_procedure'} })
+         'slot_uri': 'coremeta4cat:heating_procedure'} })
 
 
 class ChromatographyMixin(ConfiguredBaseModel):
@@ -600,22 +607,24 @@ class ChromatographyMixin(ConfiguredBaseModel):
     Mixin providing chromatographic separation parameters shared by
     separation techniques (GCMS, SizeExclusionChromatography, HPLC_MS).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
-    column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:column_type'} })
+    column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'coremeta4cat:column_type'} })
     eluent: Optional[list[str]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
     flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
-                       'ESI_MS'],
-         'slot_uri': 'catcore:flow_rate',
+                       'ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:flow_rate',
          'unit': {'ucum_code': 'mL/min'}} })
     injection_volume: Optional[list[float]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
-         'slot_uri': 'catcore:injection_volume',
+         'slot_uri': 'coremeta4cat:injection_volume',
          'unit': {'ucum_code': 'uL'}} })
-    external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:external_standard'} })
-    internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:internal_standard'} })
+    external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'slot_uri': 'coremeta4cat:external_standard'} })
+    internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'slot_uri': 'coremeta4cat:internal_standard'} })
 
 
 class MassRangeMixin(ConfiguredBaseModel):
@@ -623,7 +632,7 @@ class MassRangeMixin(ConfiguredBaseModel):
     Mixin providing mass-to-charge scan range slots shared by mass
     spectrometry techniques (GCMS, ESI_MS).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
     mz_minimum: Optional[list[float]] = Field(default=[], description="""Minimum m/z value in the mass scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'AFR:0002652'} })
@@ -636,7 +645,7 @@ class PhotoluminescenceMixin(ConfiguredBaseModel):
     photoluminescence techniques (PhotoluminescenceSpectroscopy,
     PhotoluminescenceLifetime).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
     excitation_wavelength: Optional[list[float]] = Field(default=[], description="""Excitation wavelength used in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
@@ -645,7 +654,8 @@ class PhotoluminescenceMixin(ConfiguredBaseModel):
     emission_wavelength: Optional[list[float]] = Field(default=[], description="""Emission wavelength detected in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
          'slot_uri': 'NCIT:C204101',
          'unit': {'ucum_code': 'nm'}} })
-    optical_filter: Optional[list[str]] = Field(default=[], description="""Optical filter used in the emission or excitation path.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'], 'slot_uri': 'catcore:optical_filter'} })
+    optical_filter: Optional[list[str]] = Field(default=[], description="""Optical filter used in the emission or excitation path.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
+         'slot_uri': 'coremeta4cat:optical_filter'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -658,7 +668,7 @@ class PhotoluminescenceMixin(ConfiguredBaseModel):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
@@ -672,16 +682,16 @@ class ElectrochemistryMixin(ConfiguredBaseModel):
     electrochemical characterization techniques (CyclicVoltammetry,
     ConductivityMeasurement).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
     reference_electrode: Optional[list[str]] = Field(default=[], description="""Reference electrode used in electrochemical cell (e.g. Ag/AgCl, RHE).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007204'} })
     working_electrode: Optional[list[str]] = Field(default=[], description="""Working electrode used in electrochemical cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007202'} })
     counter_electrode: Optional[list[str]] = Field(default=[], description="""Counter electrode used in electrochemical cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007203'} })
     electrolyte_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the electrolyte solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
-         'slot_uri': 'catcore:electrolyte_composition'} })
+         'slot_uri': 'coremeta4cat:electrolyte_composition'} })
     electrolyte_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the electrolyte.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
-         'slot_uri': 'catcore:electrolyte_concentration',
+         'slot_uri': 'coremeta4cat:electrolyte_concentration',
          'unit': {'ucum_code': 'mol/L'}} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -694,7 +704,7 @@ class ElectrochemistryMixin(ConfiguredBaseModel):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -707,7 +717,7 @@ class ElectrochemistryMixin(ConfiguredBaseModel):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
@@ -1795,7 +1805,7 @@ class Synthesis(DataGeneratingActivity):
     Pattern 3.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000070',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'slot_usage': {'catalyst_measured_properties': {'name': 'catalyst_measured_properties',
                                                          'required': True},
                         'had_input_entity': {'description': 'The Precursor(s) consumed '
@@ -1824,13 +1834,14 @@ class Synthesis(DataGeneratingActivity):
                         'storage_conditions': {'name': 'storage_conditions',
                                                'recommended': True}}})
 
-    nominal_composition: list[str] = Field(default=..., description="""Nominal elemental or chemical composition of the catalyst (e.g. 5wt% Pt/Al2O3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'], 'slot_uri': 'catcore:nominal_composition'} })
+    nominal_composition: list[str] = Field(default=..., description="""Nominal elemental or chemical composition of the catalyst (e.g. 5wt% Pt/Al2O3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'], 'slot_uri': 'coremeta4cat:nominal_composition'} })
     catalyst_measured_properties: list[str] = Field(default=..., description="""Key measured properties of the resulting catalyst
-(e.g. BET surface area, sieve fraction, molar ratio).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'], 'slot_uri': 'catcore:catalyst_measured_properties'} })
+(e.g. BET surface area, sieve fraction, molar ratio).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'],
+         'slot_uri': 'coremeta4cat:catalyst_measured_properties'} })
     storage_conditions: Optional[list[str]] = Field(default=[], description="""Conditions under which the catalyst is stored (e.g. inert atmosphere, 4°C).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'],
          'recommended': True,
-         'slot_uri': 'catcore:storage_conditions'} })
-    support: Optional[list[str]] = Field(default=[], description="""Support material on which the active phase is deposited (e.g. Al2O3, SiO2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'], 'slot_uri': 'catcore:support'} })
+         'slot_uri': 'coremeta4cat:storage_conditions'} })
+    support: Optional[list[str]] = Field(default=[], description="""Support material on which the active phase is deposited (e.g. Al2O3, SiO2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'], 'slot_uri': 'coremeta4cat:support'} })
     solvent: Optional[list[str]] = Field(default=[], description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
                        'NMRSpectroscopy',
                        'UVVisSpectroscopy',
@@ -2005,7 +2016,7 @@ class Characterization(DataGeneratingActivity):
     rdf_type: CHMO:0000613.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000070',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'slot_usage': {'equipment': {'description': 'Instrument or equipment used for '
                                                      'characterization.',
                                       'name': 'equipment',
@@ -2034,8 +2045,9 @@ class Characterization(DataGeneratingActivity):
                                           'range': 'CharacterizationTechnique',
                                           'required': True}}})
 
-    sample_state: Optional[list[SampleStateEnum]] = Field(default=[], description="""Physical state of the sample during characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'], 'slot_uri': 'catcore:sample_state'} })
-    sample_description: Optional[list[str]] = Field(default=[], description="""Free-text description of the sample used in this characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'], 'slot_uri': 'catcore:sample_description'} })
+    sample_state: Optional[list[SampleStateEnum]] = Field(default=[], description="""Physical state of the sample during characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'], 'slot_uri': 'coremeta4cat:sample_state'} })
+    sample_description: Optional[list[str]] = Field(default=[], description="""Free-text description of the sample used in this characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'],
+         'slot_uri': 'coremeta4cat:sample_description'} })
     sample_preparation: Optional[list[str]] = Field(default=[], description="""Sample preparation steps applied immediately before measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'], 'slot_uri': 'AFP:0001159'} })
     sample_pretreatment: Optional[list[str]] = Field(default=[], description="""Pre-treatment applied to the sample before a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis', 'Characterization'], 'slot_uri': 'VOC4CAT:0000122'} })
     detector_type: Optional[list[str]] = Field(default=[], description="""Type of detector used in the measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'], 'slot_uri': 'AFR:0000317'} })
@@ -3688,7 +3700,7 @@ class ReactorDesignType(Device):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'class_uri': 'VOC4CAT:0007018',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/reaction/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -3806,7 +3818,7 @@ class ElectrochemicalReactor(ReactorDesignType):
     H-cells, flow cells, and membrane electrode assemblies.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000193',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/reaction/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -3924,7 +3936,7 @@ class CSTR(ReactorDesignType):
     reactor operating at steady state.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0007019',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/reaction/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -4042,7 +4054,7 @@ class PlugFlowReactor(ReactorDesignType):
     varies along the axis with no axial mixing.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0007102',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/reaction/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -4160,7 +4172,7 @@ class Autoclave(ReactorDesignType):
     elevated temperature and/or pressure.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NCIT:C93052',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/reaction/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -4277,8 +4289,8 @@ class SlurryReactor(ReactorDesignType):
     Slurry reactor — a three-phase reactor in which catalyst particles are
     suspended in a liquid phase through which gas is bubbled.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:SlurryReactor',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/reaction/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:SlurryReactor',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -4397,7 +4409,7 @@ class Microreactor(ReactorDesignType):
     screening.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000234',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/reaction/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -4514,8 +4526,8 @@ class FixedBedReactor(ReactorDesignType):
     Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.
     The most common reactor type in heterogeneous catalysis testing.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:FixedBedReactor',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/reaction/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:FixedBedReactor',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -4632,16 +4644,16 @@ class FluidizedBedReactor(ReactorDesignType):
     Fluidized bed reactor — a reactor in which the catalyst particles are
     suspended in an upward-flowing gas or liquid stream.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:FluidizedBedReactor',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/reaction/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:FluidizedBedReactor',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     gas_distributor_type: Optional[list[str]] = Field(default=[], description="""Type or design of the gas distributor plate in a fluidized bed reactor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FluidizedBedReactor'],
-         'slot_uri': 'catcore:gas_distributor_type'} })
+         'slot_uri': 'coremeta4cat:gas_distributor_type'} })
     bed_expansion_height: Optional[list[float]] = Field(default=[], description="""Height of bed expansion above the settled bed height under operating conditions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FluidizedBedReactor'],
-         'slot_uri': 'catcore:bed_expansion_height',
+         'slot_uri': 'coremeta4cat:bed_expansion_height',
          'unit': {'ucum_code': 'cm'}} })
     bubble_size_distribution: Optional[str] = Field(default=None, description="""Description or characterization of bubble size distribution in the fluidized bed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FluidizedBedReactor'],
-         'slot_uri': 'catcore:bubble_size_distribution'} })
+         'slot_uri': 'coremeta4cat:bubble_size_distribution'} })
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Dataset',
@@ -5418,7 +5430,7 @@ class Reaction(EvaluatedActivity):
     voc4cat or ChemO term.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SIO:010345',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/reaction/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/',
          'slot_usage': {'carried_out_by': {'description': 'The reactor in which the '
                                                           'Reaction takes place, '
                                                           'provided as a\n'
@@ -5453,7 +5465,7 @@ class Reaction(EvaluatedActivity):
                                                                          'or\n'
                                                                          'HPLC_MS '
                                                                          'object from '
-                                                                         'catcore_characterization_ap). '
+                                                                         'coremeta4cat_characterization_ap). '
                                                                          'The abstract '
                                                                          'stub\n'
                                                                          'ProductIdentificationMethod '
@@ -5474,7 +5486,7 @@ class Reaction(EvaluatedActivity):
                                      'recommended': True}}})
 
     catalyst_quantity: list[float] = Field(default=..., description="""Mass of catalyst loaded into the reactor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'],
-         'slot_uri': 'catcore:catalyst_quantity',
+         'slot_uri': 'coremeta4cat:catalyst_quantity',
          'unit': {'ucum_code': 'g'}} })
     reactant: list[str] = Field(default=..., description="""Reactant(s) used in the reaction. Provide compound name, CAS number,
 or SMILES. For feeds, include composition and flow rate where known.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'], 'slot_uri': 'VOC4CAT:0000101'} })
@@ -5493,12 +5505,12 @@ as a string range (e.g. \"200–400 °C\") or a single set-point.""", json_schema_e
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     experiment_pressure: Optional[list[float]] = Field(default=[], description="""Total pressure in the reactor during the experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'],
          'slot_uri': 'VOC4CAT:0000118',
          'unit': {'ucum_code': 'bar'}} })
     feed_composition_range: Optional[list[str]] = Field(default=[], description="""Feed gas or liquid composition range studied (e.g. \"1–10 vol% CO in N2\").
-Record as a string; for individual component concentrations use reactant.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'], 'slot_uri': 'catcore:feed_composition_range'} })
+Record as a string; for individual component concentrations use reactant.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'], 'slot_uri': 'coremeta4cat:feed_composition_range'} })
     experiment_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the experiment or measurement run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD', 'Reaction'],
          'slot_uri': 'AFR:0002455',
          'unit': {'ucum_code': 'h'}} })
@@ -6065,7 +6077,7 @@ class PreparationMethod(Plan):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'class_uri': 'OBI:0000272',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -6155,25 +6167,25 @@ class Impregnation(PreparationMethod, CalcinationMixin, DryingMixin):
     Catalyst preparation by impregnation: a solution of the active phase
     precursor is brought into contact with the support material.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:Impregnation',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:Impregnation',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['DryingMixin', 'CalcinationMixin']})
 
-    impregnation_type: Optional[list[ImpregnationTypeEnum]] = Field(default=[], description="""Type of impregnation used (wet, dry, incipient wetness).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Impregnation'], 'slot_uri': 'catcore:impregnation_type'} })
+    impregnation_type: Optional[list[ImpregnationTypeEnum]] = Field(default=[], description="""Type of impregnation used (wet, dry, incipient wetness).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Impregnation'], 'slot_uri': 'coremeta4cat:impregnation_type'} })
     impregnation_duration: Optional[list[float]] = Field(default=[], description="""Duration of the impregnation step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Impregnation'],
-         'slot_uri': 'catcore:impregnation_duration',
+         'slot_uri': 'coremeta4cat:impregnation_duration',
          'unit': {'ucum_code': 'h'}} })
     impregnation_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during the impregnation step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Impregnation'],
-         'slot_uri': 'catcore:impregnation_temperature',
+         'slot_uri': 'coremeta4cat:impregnation_temperature',
          'unit': {'ucum_code': 'Cel'}} })
-    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_device'} })
+    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
     drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_temperature',
+         'slot_uri': 'coremeta4cat:drying_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_time',
+         'slot_uri': 'coremeta4cat:drying_time',
          'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_atmosphere'} })
+    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_atmosphere'} })
     calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
          'slot_uri': 'VOC4CAT:0000057',
          'unit': {'ucum_code': 'Cel'}} })
@@ -6188,7 +6200,7 @@ class Impregnation(PreparationMethod, CalcinationMixin, DryingMixin):
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
-         'slot_uri': 'catcore:number_of_cycles'} })
+         'slot_uri': 'coremeta4cat:number_of_cycles'} })
     calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
     calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
          'slot_uri': 'VOC4CAT:0000059',
@@ -6284,41 +6296,43 @@ class CoPrecipitation(PreparationMethod, PrecipitationMixin, CalcinationMixin, D
     Catalyst preparation by co-precipitation: precursor salts are
     simultaneously precipitated from solution by a precipitating agent.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:CoPrecipitation',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:CoPrecipitation',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['PrecipitationMixin', 'DryingMixin', 'CalcinationMixin']})
 
-    precipitating_agent: Optional[list[str]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:precipitating_agent'} })
+    precipitating_agent: Optional[list[str]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'slot_uri': 'coremeta4cat:precipitating_agent'} })
     precipitating_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the precipitating agent.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:precipitating_concentration',
+         'slot_uri': 'coremeta4cat:precipitating_concentration',
          'unit': {'ucum_code': 'mol/L'}} })
     synthesis_ph: Optional[list[float]] = Field(default=[], description="""pH value maintained or targeted during synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'VOC4CAT:0000052'} })
     mixing_rate: Optional[list[float]] = Field(default=[], description="""Stirring rate during mixing of synthesis components.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:mixing_rate',
+         'slot_uri': 'coremeta4cat:mixing_rate',
          'unit': {'ucum_code': 'rpm'}} })
     mixing_time: Optional[list[float]] = Field(default=[], description="""Duration of the mixing step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:mixing_time',
+         'slot_uri': 'coremeta4cat:mixing_time',
          'unit': {'ucum_code': 'h'}} })
     mixing_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
-         'slot_uri': 'catcore:mixing_temperature',
+         'slot_uri': 'coremeta4cat:mixing_temperature',
          'unit': {'ucum_code': 'Cel'}} })
-    order_of_addition: Optional[list[str]] = Field(default=[], description="""Order in which reagents or components are combined.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:order_of_addition'} })
-    filtration: Optional[list[str]] = Field(default=[], description="""Filtration method used to separate the precipitate (e.g. vacuum filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:filtration'} })
-    purification: Optional[list[str]] = Field(default=[], description="""Purification method applied after synthesis (e.g. washing, dialysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:purification'} })
+    order_of_addition: Optional[list[str]] = Field(default=[], description="""Order in which reagents or components are combined.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'slot_uri': 'coremeta4cat:order_of_addition'} })
+    filtration: Optional[list[str]] = Field(default=[], description="""Filtration method used to separate the precipitate (e.g. vacuum filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:filtration'} })
+    purification: Optional[list[str]] = Field(default=[], description="""Purification method applied after synthesis (e.g. washing, dialysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:purification'} })
     aging_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during aging of the precipitate or gel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:aging_temperature',
+         'slot_uri': 'coremeta4cat:aging_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     aging_time: Optional[list[float]] = Field(default=[], description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
-         'slot_uri': 'catcore:aging_time',
+         'slot_uri': 'coremeta4cat:aging_time',
          'unit': {'ucum_code': 'h'}} })
-    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_device'} })
+    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
     drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_temperature',
+         'slot_uri': 'coremeta4cat:drying_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_time',
+         'slot_uri': 'coremeta4cat:drying_time',
          'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_atmosphere'} })
+    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_atmosphere'} })
     calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
          'slot_uri': 'VOC4CAT:0000057',
          'unit': {'ucum_code': 'Cel'}} })
@@ -6333,7 +6347,7 @@ class CoPrecipitation(PreparationMethod, PrecipitationMixin, CalcinationMixin, D
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
-         'slot_uri': 'catcore:number_of_cycles'} })
+         'slot_uri': 'coremeta4cat:number_of_cycles'} })
     calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
     calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
          'slot_uri': 'VOC4CAT:0000059',
@@ -6429,24 +6443,24 @@ class SolGel(PreparationMethod, DryingMixin):
     Catalyst preparation by the sol-gel process: hydrolysis and condensation
     of precursor molecules to form a colloidal network (gel).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:SolGel',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:SolGel',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['DryingMixin']})
 
-    hydrolysis_ratio: Optional[list[float]] = Field(default=[], description="""Molar ratio of water to alkoxide precursor used in hydrolysis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolGel'], 'slot_uri': 'catcore:hydrolysis_ratio'} })
+    hydrolysis_ratio: Optional[list[float]] = Field(default=[], description="""Molar ratio of water to alkoxide precursor used in hydrolysis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolGel'], 'slot_uri': 'coremeta4cat:hydrolysis_ratio'} })
     aging_time: Optional[list[float]] = Field(default=[], description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
-         'slot_uri': 'catcore:aging_time',
+         'slot_uri': 'coremeta4cat:aging_time',
          'unit': {'ucum_code': 'h'}} })
-    drying: Optional[list[str]] = Field(default=[], description="""Drying method used for the gel (e.g. supercritical drying, freeze drying).""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolGel'], 'slot_uri': 'catcore:drying'} })
-    surfactant_template: Optional[list[str]] = Field(default=[], description="""Surfactant or structure-directing agent used as a template.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolGel'], 'slot_uri': 'catcore:surfactant_template'} })
-    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_device'} })
+    drying: Optional[list[str]] = Field(default=[], description="""Drying method used for the gel (e.g. supercritical drying, freeze drying).""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolGel'], 'slot_uri': 'coremeta4cat:drying'} })
+    surfactant_template: Optional[list[str]] = Field(default=[], description="""Surfactant or structure-directing agent used as a template.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolGel'], 'slot_uri': 'coremeta4cat:surfactant_template'} })
+    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
     drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_temperature',
+         'slot_uri': 'coremeta4cat:drying_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_time',
+         'slot_uri': 'coremeta4cat:drying_time',
          'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_atmosphere'} })
+    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_atmosphere'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -6535,16 +6549,16 @@ class Solvothermal(PreparationMethod, ThermalSynthesisMixin):
     Catalyst preparation under elevated temperature and pressure in a
     sealed vessel using a non-aqueous solvent.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:Solvothermal',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:Solvothermal',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['ThermalSynthesisMixin']})
 
     filling_volume: Optional[list[float]] = Field(default=[], description="""Volume of solution relative to autoclave volume (filling degree).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Solvothermal'],
-         'slot_uri': 'catcore:filling_volume',
+         'slot_uri': 'coremeta4cat:filling_volume',
          'unit': {'ucum_code': 'mL'}} })
-    stirrer_type: Optional[list[str]] = Field(default=[], description="""Type of stirrer used (e.g. magnetic, mechanical, none).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Solvothermal'], 'slot_uri': 'catcore:stirrer_type'} })
+    stirrer_type: Optional[list[str]] = Field(default=[], description="""Type of stirrer used (e.g. magnetic, mechanical, none).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Solvothermal'], 'slot_uri': 'coremeta4cat:stirrer_type'} })
     cooling_rate: Optional[list[float]] = Field(default=[], description="""Rate at which the reactor is cooled after synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Solvothermal'],
-         'slot_uri': 'catcore:cooling_rate',
+         'slot_uri': 'coremeta4cat:cooling_rate',
          'unit': {'ucum_code': 'Cel/min'}} })
     synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000051',
@@ -6553,7 +6567,7 @@ class Solvothermal(PreparationMethod, ThermalSynthesisMixin):
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
     equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'catcore:vessel_type'} })
+    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -6565,7 +6579,7 @@ class Solvothermal(PreparationMethod, ThermalSynthesisMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -6654,16 +6668,16 @@ class PlasmaAssisted(PreparationMethod, ThermalSynthesisMixin):
     Catalyst preparation using plasma treatment to modify surface
     properties or deposit active components.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:PlasmaAssisted',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:PlasmaAssisted',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['ThermalSynthesisMixin']})
 
-    plasma_type: Optional[list[str]] = Field(default=[], description="""Type of plasma used (e.g. DBD, microwave, RF plasma).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'], 'slot_uri': 'catcore:plasma_type'} })
+    plasma_type: Optional[list[str]] = Field(default=[], description="""Type of plasma used (e.g. DBD, microwave, RF plasma).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'], 'slot_uri': 'coremeta4cat:plasma_type'} })
     power_input: Optional[list[float]] = Field(default=[], description="""Power input to the plasma reactor or other energy source.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'],
-         'slot_uri': 'catcore:power_input',
+         'slot_uri': 'coremeta4cat:power_input',
          'unit': {'ucum_code': 'W'}} })
     exposure_time: Optional[list[float]] = Field(default=[], description="""Duration of plasma or other energy exposure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'],
-         'slot_uri': 'catcore:exposure_time',
+         'slot_uri': 'coremeta4cat:exposure_time',
          'unit': {'ucum_code': 'min'}} })
     synthesis_pressure: Optional[list[float]] = Field(default=[], description="""Pressure applied during synthesis (e.g. in autoclave or plasma reactor).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted', 'Sublimation'],
          'slot_uri': 'VOC4CAT:0000053',
@@ -6675,7 +6689,7 @@ class PlasmaAssisted(PreparationMethod, ThermalSynthesisMixin):
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
     equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'catcore:vessel_type'} })
+    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -6687,7 +6701,7 @@ class PlasmaAssisted(PreparationMethod, ThermalSynthesisMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -6776,18 +6790,19 @@ class CombustionSynthesis(PreparationMethod, ThermalSynthesisMixin):
     Catalyst preparation by combustion of a fuel/oxidizer mixture,
     producing metal oxide catalysts in a single rapid step.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:CombustionSynthesis',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:CombustionSynthesis',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['ThermalSynthesisMixin']})
 
-    fuel: Optional[list[str]] = Field(default=[], description="""Organic fuel used in combustion synthesis (e.g. urea, glycine).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'], 'slot_uri': 'catcore:fuel'} })
-    oxidizer: Optional[list[str]] = Field(default=[], description="""Oxidizer used in combustion synthesis (e.g. metal nitrates).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'], 'slot_uri': 'catcore:oxidizer'} })
+    fuel: Optional[list[str]] = Field(default=[], description="""Organic fuel used in combustion synthesis (e.g. urea, glycine).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'], 'slot_uri': 'coremeta4cat:fuel'} })
+    oxidizer: Optional[list[str]] = Field(default=[], description="""Oxidizer used in combustion synthesis (e.g. metal nitrates).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'], 'slot_uri': 'coremeta4cat:oxidizer'} })
     fuel_to_oxidizer_ratio: Optional[list[float]] = Field(default=[], description="""Molar ratio of fuel to oxidizer.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'],
-         'slot_uri': 'catcore:fuel_to_oxidizer_ratio'} })
+         'slot_uri': 'coremeta4cat:fuel_to_oxidizer_ratio'} })
     set_temperature: Optional[list[float]] = Field(default=[], description="""Target temperature set for the combustion reaction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'],
-         'slot_uri': 'catcore:set_temperature',
+         'slot_uri': 'coremeta4cat:set_temperature',
          'unit': {'ucum_code': 'Cel'}} })
-    post_treatment: Optional[list[str]] = Field(default=[], description="""Post-synthesis treatment applied to the combustion product.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'], 'slot_uri': 'catcore:post_treatment'} })
+    post_treatment: Optional[list[str]] = Field(default=[], description="""Post-synthesis treatment applied to the combustion product.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'],
+         'slot_uri': 'coremeta4cat:post_treatment'} })
     synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000051',
          'unit': {'ucum_code': 'Cel'}} })
@@ -6795,7 +6810,7 @@ class CombustionSynthesis(PreparationMethod, ThermalSynthesisMixin):
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
     equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'catcore:vessel_type'} })
+    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -6807,7 +6822,7 @@ class CombustionSynthesis(PreparationMethod, ThermalSynthesisMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -6897,12 +6912,12 @@ class AtomicLayerDeposition(PreparationMethod):
     self-limiting surface reactions deposit a conformal thin film
     of active phase onto a substrate.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:AtomicLayerDeposition',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:AtomicLayerDeposition',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/'})
 
     substrate: Optional[list[str]] = Field(default=[], description="""Substrate material on which the ALD film is deposited.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition'], 'slot_uri': 'VOC4CAT:0000024'} })
     pulse_time: Optional[list[float]] = Field(default=[], description="""Duration of the precursor pulse in each ALD cycle.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition'],
-         'slot_uri': 'catcore:pulse_time',
+         'slot_uri': 'coremeta4cat:pulse_time',
          'unit': {'ucum_code': 's'}} })
     purging_duration: Optional[list[float]] = Field(default=[], description="""Duration of the purge step between ALD pulses.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition'],
          'slot_uri': 'VOC4CAT:0000112',
@@ -6912,12 +6927,15 @@ class AtomicLayerDeposition(PreparationMethod):
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
-         'slot_uri': 'catcore:number_of_cycles'} })
+         'slot_uri': 'coremeta4cat:number_of_cycles'} })
     deposition_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during the deposition step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition', 'DepositionPrecipitation'],
-         'slot_uri': 'catcore:deposition_temperature',
+         'slot_uri': 'coremeta4cat:deposition_temperature',
          'unit': {'ucum_code': 'Cel'}} })
-    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition', 'ElementalAnalysis', 'ESI_MS', 'GCMS'],
-         'slot_uri': 'catcore:carrier_gas'} })
+    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
+                       'ElementalAnalysis',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'GCMS'],
+         'slot_uri': 'coremeta4cat:carrier_gas'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -7006,47 +7024,49 @@ class DepositionPrecipitation(PreparationMethod, PrecipitationMixin, Calcination
     Catalyst preparation by deposition-precipitation: the active phase
     is precipitated directly onto the support surface.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:DepositionPrecipitation',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:DepositionPrecipitation',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['PrecipitationMixin', 'DryingMixin', 'CalcinationMixin']})
 
     deposition_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during the deposition step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition', 'DepositionPrecipitation'],
-         'slot_uri': 'catcore:deposition_temperature',
+         'slot_uri': 'coremeta4cat:deposition_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     deposition_time: Optional[list[float]] = Field(default=[], description="""Duration of the deposition step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DepositionPrecipitation'],
-         'slot_uri': 'catcore:deposition_time',
+         'slot_uri': 'coremeta4cat:deposition_time',
          'unit': {'ucum_code': 'h'}} })
-    precipitating_agent: Optional[list[str]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:precipitating_agent'} })
+    precipitating_agent: Optional[list[str]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'slot_uri': 'coremeta4cat:precipitating_agent'} })
     precipitating_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the precipitating agent.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:precipitating_concentration',
+         'slot_uri': 'coremeta4cat:precipitating_concentration',
          'unit': {'ucum_code': 'mol/L'}} })
     synthesis_ph: Optional[list[float]] = Field(default=[], description="""pH value maintained or targeted during synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'VOC4CAT:0000052'} })
     mixing_rate: Optional[list[float]] = Field(default=[], description="""Stirring rate during mixing of synthesis components.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:mixing_rate',
+         'slot_uri': 'coremeta4cat:mixing_rate',
          'unit': {'ucum_code': 'rpm'}} })
     mixing_time: Optional[list[float]] = Field(default=[], description="""Duration of the mixing step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:mixing_time',
+         'slot_uri': 'coremeta4cat:mixing_time',
          'unit': {'ucum_code': 'h'}} })
     mixing_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
-         'slot_uri': 'catcore:mixing_temperature',
+         'slot_uri': 'coremeta4cat:mixing_temperature',
          'unit': {'ucum_code': 'Cel'}} })
-    order_of_addition: Optional[list[str]] = Field(default=[], description="""Order in which reagents or components are combined.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:order_of_addition'} })
-    filtration: Optional[list[str]] = Field(default=[], description="""Filtration method used to separate the precipitate (e.g. vacuum filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:filtration'} })
-    purification: Optional[list[str]] = Field(default=[], description="""Purification method applied after synthesis (e.g. washing, dialysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'catcore:purification'} })
+    order_of_addition: Optional[list[str]] = Field(default=[], description="""Order in which reagents or components are combined.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'slot_uri': 'coremeta4cat:order_of_addition'} })
+    filtration: Optional[list[str]] = Field(default=[], description="""Filtration method used to separate the precipitate (e.g. vacuum filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:filtration'} })
+    purification: Optional[list[str]] = Field(default=[], description="""Purification method applied after synthesis (e.g. washing, dialysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:purification'} })
     aging_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during aging of the precipitate or gel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'catcore:aging_temperature',
+         'slot_uri': 'coremeta4cat:aging_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     aging_time: Optional[list[float]] = Field(default=[], description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
-         'slot_uri': 'catcore:aging_time',
+         'slot_uri': 'coremeta4cat:aging_time',
          'unit': {'ucum_code': 'h'}} })
-    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_device'} })
+    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
     drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_temperature',
+         'slot_uri': 'coremeta4cat:drying_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_time',
+         'slot_uri': 'coremeta4cat:drying_time',
          'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_atmosphere'} })
+    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_atmosphere'} })
     calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
          'slot_uri': 'VOC4CAT:0000057',
          'unit': {'ucum_code': 'Cel'}} })
@@ -7061,7 +7081,7 @@ class DepositionPrecipitation(PreparationMethod, PrecipitationMixin, Calcination
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
-         'slot_uri': 'catcore:number_of_cycles'} })
+         'slot_uri': 'coremeta4cat:number_of_cycles'} })
     calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
     calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
          'slot_uri': 'VOC4CAT:0000059',
@@ -7157,15 +7177,15 @@ class MicrowaveAssisted(PreparationMethod, ThermalSynthesisMixin):
     Catalyst preparation using microwave irradiation to rapidly and
     uniformly heat the reaction mixture.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:MicrowaveAssisted',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:MicrowaveAssisted',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['ThermalSynthesisMixin']})
 
     power: Optional[list[float]] = Field(default=[], description="""Microwave power applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MicrowaveAssisted'],
-         'slot_uri': 'catcore:power',
+         'slot_uri': 'coremeta4cat:power',
          'unit': {'ucum_code': 'W'}} })
     microwave_frequency: Optional[list[float]] = Field(default=[], description="""Frequency of microwave irradiation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MicrowaveAssisted'],
-         'slot_uri': 'catcore:microwave_frequency',
+         'slot_uri': 'coremeta4cat:microwave_frequency',
          'unit': {'ucum_code': 'GHz'}} })
     synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000051',
@@ -7174,7 +7194,7 @@ class MicrowaveAssisted(PreparationMethod, ThermalSynthesisMixin):
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
     equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'catcore:vessel_type'} })
+    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -7186,7 +7206,7 @@ class MicrowaveAssisted(PreparationMethod, ThermalSynthesisMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -7275,15 +7295,15 @@ class SonochemicalSynthesis(PreparationMethod, CalcinationMixin, DryingMixin):
     Catalyst preparation using ultrasonic irradiation to drive chemical
     reactions via acoustic cavitation.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:SonochemicalSynthesis',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:SonochemicalSynthesis',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['DryingMixin', 'CalcinationMixin']})
 
     sonication_power: Optional[list[float]] = Field(default=[], description="""Acoustic power applied during sonication.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis'],
-         'slot_uri': 'catcore:sonication_power',
+         'slot_uri': 'coremeta4cat:sonication_power',
          'unit': {'ucum_code': 'W'}} })
     sonication_duration: Optional[list[float]] = Field(default=[], description="""Duration of ultrasonic irradiation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis'],
-         'slot_uri': 'catcore:sonication_duration',
+         'slot_uri': 'coremeta4cat:sonication_duration',
          'unit': {'ucum_code': 'min'}} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
@@ -7297,20 +7317,20 @@ class SonochemicalSynthesis(PreparationMethod, CalcinationMixin, DryingMixin):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
          'slot_uri': 'AFR:0001584',
          'unit': {'ucum_code': 'Cel'}} })
-    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_device'} })
+    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
     drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_temperature',
+         'slot_uri': 'coremeta4cat:drying_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_time',
+         'slot_uri': 'coremeta4cat:drying_time',
          'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_atmosphere'} })
+    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_atmosphere'} })
     calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
          'slot_uri': 'VOC4CAT:0000057',
          'unit': {'ucum_code': 'Cel'}} })
@@ -7325,7 +7345,7 @@ class SonochemicalSynthesis(PreparationMethod, CalcinationMixin, DryingMixin):
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
-         'slot_uri': 'catcore:number_of_cycles'} })
+         'slot_uri': 'coremeta4cat:number_of_cycles'} })
     calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
     calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
          'slot_uri': 'VOC4CAT:0000059',
@@ -7422,28 +7442,28 @@ class FlameSprayPyrolysis(PreparationMethod):
     solution is atomised and combusted in a flame to produce nanoparticles.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0007031',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/'})
 
-    flame_type: Optional[list[str]] = Field(default=[], description="""Type of flame used in FSP (e.g. methane/oxygen, H2/O2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'], 'slot_uri': 'catcore:flame_type'} })
+    flame_type: Optional[list[str]] = Field(default=[], description="""Type of flame used in FSP (e.g. methane/oxygen, H2/O2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'], 'slot_uri': 'coremeta4cat:flame_type'} })
     flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
-                       'ESI_MS'],
-         'slot_uri': 'catcore:flow_rate',
+                       'ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:flow_rate',
          'unit': {'ucum_code': 'mL/min'}} })
-    inlet_system: Optional[list[str]] = Field(default=[], description="""Configuration of the precursor inlet system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'], 'slot_uri': 'catcore:inlet_system'} })
-    flame_ring: Optional[list[str]] = Field(default=[], description="""Configuration of the supporting flame ring.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'], 'slot_uri': 'catcore:flame_ring'} })
+    inlet_system: Optional[list[str]] = Field(default=[], description="""Configuration of the precursor inlet system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'], 'slot_uri': 'coremeta4cat:inlet_system'} })
+    flame_ring: Optional[list[str]] = Field(default=[], description="""Configuration of the supporting flame ring.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'], 'slot_uri': 'coremeta4cat:flame_ring'} })
     dispersant: Optional[list[str]] = Field(default=[], description="""Dispersant used (e.g. in DLS measurement or flame spray pyrolysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'DynamicLightScattering'],
-         'slot_uri': 'catcore:dispersant'} })
+         'slot_uri': 'coremeta4cat:dispersant'} })
     capillary_pressure: Optional[list[float]] = Field(default=[], description="""Pressure applied at the capillary nozzle during FSP.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'],
-         'slot_uri': 'catcore:capillary_pressure',
+         'slot_uri': 'coremeta4cat:capillary_pressure',
          'unit': {'ucum_code': 'bar'}} })
     fuel_dispersant_ratio: Optional[list[float]] = Field(default=[], description="""Volume ratio of fuel to dispersant used in FSP.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'],
-         'slot_uri': 'catcore:fuel_dispersant_ratio'} })
+         'slot_uri': 'coremeta4cat:fuel_dispersant_ratio'} })
     filtration_device: Optional[list[str]] = Field(default=[], description="""Device used for filtration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'MolecularSynthesis'],
-         'slot_uri': 'catcore:filtration_device'} })
+         'slot_uri': 'coremeta4cat:filtration_device'} })
     filter_type: Optional[list[str]] = Field(default=[], description="""Type of filter membrane or medium used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'MolecularSynthesis'],
-         'slot_uri': 'catcore:filter_type'} })
+         'slot_uri': 'coremeta4cat:filter_type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -7532,27 +7552,28 @@ class MechanochemicalSynthesis(PreparationMethod, ThermalSynthesisMixin):
     Catalyst preparation by mechanical milling or grinding, optionally
     combined with thermal treatment.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:MechanochemicalSynthesis',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:MechanochemicalSynthesis',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['ThermalSynthesisMixin']})
 
     vessel_volume: Optional[list[float]] = Field(default=[], description="""Volume of the milling vessel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MechanochemicalSynthesis'],
-         'slot_uri': 'catcore:vessel_volume',
+         'slot_uri': 'coremeta4cat:vessel_volume',
          'unit': {'ucum_code': 'mL'}} })
     size_and_material: Optional[list[str]] = Field(default=[], description="""Size and material of the milling vessel and components.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MechanochemicalSynthesis'],
-         'slot_uri': 'catcore:size_and_material'} })
+         'slot_uri': 'coremeta4cat:size_and_material'} })
     milling_speed: Optional[list[float]] = Field(default=[], description="""Rotational speed during milling.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MechanochemicalSynthesis'],
-         'slot_uri': 'catcore:milling_speed',
+         'slot_uri': 'coremeta4cat:milling_speed',
          'unit': {'ucum_code': 'rpm'}} })
     milling_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the milling process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MechanochemicalSynthesis'],
-         'slot_uri': 'catcore:milling_duration',
+         'slot_uri': 'coremeta4cat:milling_duration',
          'unit': {'ucum_code': 'h'}} })
-    ball_material: Optional[list[str]] = Field(default=[], description="""Material of the milling balls (e.g. zirconia, stainless steel).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MechanochemicalSynthesis'], 'slot_uri': 'catcore:ball_material'} })
+    ball_material: Optional[list[str]] = Field(default=[], description="""Material of the milling balls (e.g. zirconia, stainless steel).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MechanochemicalSynthesis'],
+         'slot_uri': 'coremeta4cat:ball_material'} })
     ball_size: Optional[list[float]] = Field(default=[], description="""Diameter of the milling balls.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MechanochemicalSynthesis'],
-         'slot_uri': 'catcore:ball_size',
+         'slot_uri': 'coremeta4cat:ball_size',
          'unit': {'ucum_code': 'mm'}} })
     ball_to_powder_ratio: Optional[list[float]] = Field(default=[], description="""Mass ratio of milling balls to powder charge.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MechanochemicalSynthesis'],
-         'slot_uri': 'catcore:ball_to_powder_ratio'} })
+         'slot_uri': 'coremeta4cat:ball_to_powder_ratio'} })
     synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000051',
          'unit': {'ucum_code': 'Cel'}} })
@@ -7560,7 +7581,7 @@ class MechanochemicalSynthesis(PreparationMethod, ThermalSynthesisMixin):
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
     equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'catcore:vessel_type'} })
+    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -7572,7 +7593,7 @@ class MechanochemicalSynthesis(PreparationMethod, ThermalSynthesisMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -7661,8 +7682,8 @@ class Sublimation(PreparationMethod, ThermalSynthesisMixin):
     Catalyst preparation by sublimation: a solid precursor is vaporised
     and deposited onto a substrate without passing through a liquid phase.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:Sublimation',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:Sublimation',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['ThermalSynthesisMixin']})
 
     synthesis_pressure: Optional[list[float]] = Field(default=[], description="""Pressure applied during synthesis (e.g. in autoclave or plasma reactor).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted', 'Sublimation'],
@@ -7675,7 +7696,7 @@ class Sublimation(PreparationMethod, ThermalSynthesisMixin):
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
     equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'catcore:vessel_type'} })
+    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -7687,7 +7708,7 @@ class Sublimation(PreparationMethod, ThermalSynthesisMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -7776,41 +7797,43 @@ class MolecularSynthesis(PreparationMethod, DryingMixin):
     Catalyst preparation by molecular (organometallic or coordination)
     chemistry routes, including crystallisation and purification steps.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:MolecularSynthesis',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:MolecularSynthesis',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['DryingMixin']})
 
-    reaction_vessel: Optional[list[str]] = Field(default=[], description="""Type of reaction vessel used (e.g. Schlenk flask, round-bottom flask).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'], 'slot_uri': 'catcore:reaction_vessel'} })
-    mixing_device: Optional[list[str]] = Field(default=[], description="""Device used for mixing (e.g. magnetic stirrer, vortex mixer).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'], 'slot_uri': 'catcore:mixing_device'} })
+    reaction_vessel: Optional[list[str]] = Field(default=[], description="""Type of reaction vessel used (e.g. Schlenk flask, round-bottom flask).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
+         'slot_uri': 'coremeta4cat:reaction_vessel'} })
+    mixing_device: Optional[list[str]] = Field(default=[], description="""Device used for mixing (e.g. magnetic stirrer, vortex mixer).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'], 'slot_uri': 'coremeta4cat:mixing_device'} })
     stirring_duration: Optional[list[float]] = Field(default=[], description="""Duration of stirring or agitation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
-         'slot_uri': 'catcore:stirring_duration',
+         'slot_uri': 'coremeta4cat:stirring_duration',
          'unit': {'ucum_code': 'h'}} })
     stirring_speed: Optional[list[float]] = Field(default=[], description="""Rotational speed of stirring or agitation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
-         'slot_uri': 'catcore:stirring_speed',
+         'slot_uri': 'coremeta4cat:stirring_speed',
          'unit': {'ucum_code': 'rpm'}} })
     mixing_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
-         'slot_uri': 'catcore:mixing_temperature',
+         'slot_uri': 'coremeta4cat:mixing_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     filtration_device: Optional[list[str]] = Field(default=[], description="""Device used for filtration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'MolecularSynthesis'],
-         'slot_uri': 'catcore:filtration_device'} })
+         'slot_uri': 'coremeta4cat:filtration_device'} })
     filter_type: Optional[list[str]] = Field(default=[], description="""Type of filter membrane or medium used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'MolecularSynthesis'],
-         'slot_uri': 'catcore:filter_type'} })
+         'slot_uri': 'coremeta4cat:filter_type'} })
     crystallisation_solvents: Optional[list[str]] = Field(default=[], description="""Solvent(s) used for crystallisation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
-         'slot_uri': 'catcore:crystallisation_solvents'} })
-    precipitation_agent: Optional[list[str]] = Field(default=[], description="""Agent used to induce precipitation in molecular synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'], 'slot_uri': 'catcore:precipitation_agent'} })
+         'slot_uri': 'coremeta4cat:crystallisation_solvents'} })
+    precipitation_agent: Optional[list[str]] = Field(default=[], description="""Agent used to induce precipitation in molecular synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
+         'slot_uri': 'coremeta4cat:precipitation_agent'} })
     crystallisation_duration: Optional[list[float]] = Field(default=[], description="""Duration of the crystallisation step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
-         'slot_uri': 'catcore:crystallisation_duration',
+         'slot_uri': 'coremeta4cat:crystallisation_duration',
          'unit': {'ucum_code': 'h'}} })
     purification_solvent: Optional[list[str]] = Field(default=[], description="""Solvent used for washing or recrystallisation during purification.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
-         'slot_uri': 'catcore:purification_solvent'} })
+         'slot_uri': 'coremeta4cat:purification_solvent'} })
     number_of_cycles: Optional[list[int]] = Field(default=[], description="""Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin',
                        'AtomicLayerDeposition',
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
-         'slot_uri': 'catcore:number_of_cycles'} })
+         'slot_uri': 'coremeta4cat:number_of_cycles'} })
     temperature_ramp: Optional[list[float]] = Field(default=[], description="""Temperature ramp rate applied during drying or activation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
-         'slot_uri': 'catcore:temperature_ramp',
+         'slot_uri': 'coremeta4cat:temperature_ramp',
          'unit': {'ucum_code': 'Cel/min'}} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -7823,15 +7846,15 @@ class MolecularSynthesis(PreparationMethod, DryingMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
-    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_device'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
+    drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
     drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_temperature',
+         'slot_uri': 'coremeta4cat:drying_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'catcore:drying_time',
+         'slot_uri': 'coremeta4cat:drying_time',
          'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'catcore:drying_atmosphere'} })
+    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_atmosphere'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -7920,8 +7943,8 @@ class ExsolutionSynthesis(PreparationMethod, CalcinationMixin):
     Catalyst preparation by exsolution: metal nanoparticles are grown on
     a perovskite oxide surface by reduction/oxidation cycling.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:ExsolutionSynthesis',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:ExsolutionSynthesis',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['CalcinationMixin']})
 
     calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
@@ -7938,7 +7961,7 @@ class ExsolutionSynthesis(PreparationMethod, CalcinationMixin):
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
-         'slot_uri': 'catcore:number_of_cycles'} })
+         'slot_uri': 'coremeta4cat:number_of_cycles'} })
     calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
     calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
          'slot_uri': 'VOC4CAT:0000059',
@@ -8037,7 +8060,7 @@ class CharacterizationTechnique(Plan):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'class_uri': 'OBI:0000272',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -8127,14 +8150,14 @@ class PowderXRD(CharacterizationTechnique, XRaySourceMixin):
     Powder X-ray diffraction for phase identification and structural analysis.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000158',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin']})
 
     minimum_2theta: Optional[list[float]] = Field(default=[], description="""Minimum 2theta angle in the diffraction scan.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD'],
-         'slot_uri': 'catcore:minimum_2theta',
+         'slot_uri': 'coremeta4cat:minimum_2theta',
          'unit': {'ucum_code': 'deg'}} })
     maximum_2theta: Optional[list[float]] = Field(default=[], description="""Maximum 2theta angle in the diffraction scan.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD'],
-         'slot_uri': 'catcore:maximum_2theta',
+         'slot_uri': 'coremeta4cat:maximum_2theta',
          'unit': {'ucum_code': 'deg'}} })
     step_size: Optional[list[float]] = Field(default=[], description="""Step size for a scan (angle, wavelength, energy, or potential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XPS',
@@ -8147,7 +8170,7 @@ class PowderXRD(CharacterizationTechnique, XRaySourceMixin):
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
-                       'ESI_MS'],
+                       'ElectroSprayIonizationMassSpectrometry'],
          'slot_uri': 'VOC4CAT:0000108'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -8160,7 +8183,7 @@ class PowderXRD(CharacterizationTechnique, XRaySourceMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -8173,14 +8196,14 @@ class PowderXRD(CharacterizationTechnique, XRaySourceMixin):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
          'slot_uri': 'AFR:0001584',
          'unit': {'ucum_code': 'Cel'}} })
     sample_spinning_speed: Optional[list[float]] = Field(default=[], description="""Sample spinning speed during XRD measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD'],
-         'slot_uri': 'catcore:sample_spinning_speed',
+         'slot_uri': 'coremeta4cat:sample_spinning_speed',
          'unit': {'ucum_code': 'rpm'}} })
     experiment_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the experiment or measurement run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD', 'Reaction'],
          'slot_uri': 'AFR:0002455',
@@ -8275,7 +8298,7 @@ class SingleCrystalXRD(CharacterizationTechnique, XRaySourceMixin):
     Single crystal X-ray diffraction for structure determination.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000852',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin']})
 
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
@@ -8290,7 +8313,7 @@ class SingleCrystalXRD(CharacterizationTechnique, XRaySourceMixin):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
@@ -8386,7 +8409,7 @@ class XRayAbsorptionSpectroscopy(CharacterizationTechnique, EnergyRangeMixin, XR
     X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000286',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin', 'EnergyRangeMixin']})
 
     operation_mode: Optional[list[str]] = Field(default=[], description="""Operation mode of an instrument (e.g. transmission, reflection, AC, DC).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
@@ -8394,12 +8417,12 @@ class XRayAbsorptionSpectroscopy(CharacterizationTechnique, EnergyRangeMixin, XR
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
-                       'ESI_MS'],
+                       'ElectroSprayIonizationMassSpectrometry'],
          'slot_uri': 'VOC4CAT:0000108'} })
     element_analyzed: Optional[list[str]] = Field(default=[], description="""Chemical element analysed (e.g. Fe, Cu, Pt).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy', 'ICPAES'],
-         'slot_uri': 'catcore:element_analyzed'} })
+         'slot_uri': 'coremeta4cat:element_analyzed'} })
     absorption_edge: Optional[list[str]] = Field(default=[], description="""X-ray absorption edge measured (e.g. K-edge, L3-edge).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy'],
-         'slot_uri': 'catcore:absorption_edge'} })
+         'slot_uri': 'coremeta4cat:absorption_edge'} })
     energy_resolution: Optional[list[float]] = Field(default=[], description="""Energy resolution of the spectrometer or monochromator.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy'],
          'slot_uri': 'AFR:0000950',
          'unit': {'ucum_code': 'eV'}} })
@@ -8415,29 +8438,29 @@ class XRayAbsorptionSpectroscopy(CharacterizationTechnique, EnergyRangeMixin, XR
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
          'slot_uri': 'AFR:0001584',
          'unit': {'ucum_code': 'Cel'}} })
     beamline_source: Optional[list[str]] = Field(default=[], description="""Synchrotron beamline or X-ray source identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy'],
-         'slot_uri': 'catcore:beamline_source'} })
+         'slot_uri': 'coremeta4cat:beamline_source'} })
     noise_of_measurement: Optional[list[float]] = Field(default=[], description="""Noise level of the XAS measurement (signal-to-noise ratio).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy'],
-         'slot_uri': 'catcore:noise_of_measurement'} })
+         'slot_uri': 'coremeta4cat:noise_of_measurement'} })
     number_of_cycles: Optional[list[int]] = Field(default=[], description="""Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin',
                        'AtomicLayerDeposition',
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
-         'slot_uri': 'catcore:number_of_cycles'} })
+         'slot_uri': 'coremeta4cat:number_of_cycles'} })
     xray_source: Optional[list[str]] = Field(default=[], description="""X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'OBI:0001138'} })
     monochromator: Optional[list[str]] = Field(default=[], description="""Monochromator type or configuration used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'CHMO:0002120'} })
     minimum_energy: Optional[list[float]] = Field(default=[], description="""Minimum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'catcore:minimum_energy',
+         'slot_uri': 'coremeta4cat:minimum_energy',
          'unit': {'ucum_code': 'eV'}} })
     maximum_energy: Optional[list[float]] = Field(default=[], description="""Maximum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'catcore:maximum_energy',
+         'slot_uri': 'coremeta4cat:maximum_energy',
          'unit': {'ucum_code': 'eV'}} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -8527,18 +8550,18 @@ class XPS(CharacterizationTechnique, EnergyRangeMixin, XRaySourceMixin):
     X-ray photoelectron spectroscopy for surface elemental and chemical state analysis.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000404',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin', 'EnergyRangeMixin']})
 
     total_acquisition_time: Optional[list[float]] = Field(default=[], description="""Total time for XPS spectrum acquisition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'],
-         'slot_uri': 'catcore:total_acquisition_time',
+         'slot_uri': 'coremeta4cat:total_acquisition_time',
          'unit': {'ucum_code': 's'}} })
     number_of_scans: Optional[list[int]] = Field(default=[], description="""Number of scans or accumulations recorded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS',
                        'InfraredSpectroscopy',
                        'DRIFTS',
                        'RamanSpectroscopy',
                        'NMRSpectroscopy'],
-         'slot_uri': 'catcore:number_of_scans'} })
+         'slot_uri': 'coremeta4cat:number_of_scans'} })
     step_size: Optional[list[float]] = Field(default=[], description="""Step size for a scan (angle, wavelength, energy, or potential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XPS',
                        'InfraredSpectroscopy',
@@ -8546,13 +8569,13 @@ class XPS(CharacterizationTechnique, EnergyRangeMixin, XRaySourceMixin):
                        'PhotoluminescenceSpectroscopy'],
          'slot_uri': 'AFR:0000950'} })
     pass_energy: Optional[list[float]] = Field(default=[], description="""Analyser pass energy setting in XPS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'],
-         'slot_uri': 'catcore:pass_energy',
+         'slot_uri': 'coremeta4cat:pass_energy',
          'unit': {'ucum_code': 'eV'}} })
     spot_size: Optional[list[float]] = Field(default=[], description="""X-ray spot size on the sample surface.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'],
-         'slot_uri': 'catcore:spot_size',
+         'slot_uri': 'coremeta4cat:spot_size',
          'unit': {'ucum_code': 'mm'}} })
     lense_mode: Optional[list[str]] = Field(default=[], description="""Electron lens mode setting in XPS analyser.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'], 'slot_uri': 'VOC4CAT:0000108'} })
-    charge_compensation: Optional[list[str]] = Field(default=[], description="""Charge compensation method applied during XPS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'], 'slot_uri': 'catcore:charge_compensation'} })
+    charge_compensation: Optional[list[str]] = Field(default=[], description="""Charge compensation method applied during XPS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'], 'slot_uri': 'coremeta4cat:charge_compensation'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -8564,14 +8587,14 @@ class XPS(CharacterizationTechnique, EnergyRangeMixin, XRaySourceMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     xray_source: Optional[list[str]] = Field(default=[], description="""X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'OBI:0001138'} })
     monochromator: Optional[list[str]] = Field(default=[], description="""Monochromator type or configuration used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'CHMO:0002120'} })
     minimum_energy: Optional[list[float]] = Field(default=[], description="""Minimum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'catcore:minimum_energy',
+         'slot_uri': 'coremeta4cat:minimum_energy',
          'unit': {'ucum_code': 'eV'}} })
     maximum_energy: Optional[list[float]] = Field(default=[], description="""Maximum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'catcore:maximum_energy',
+         'slot_uri': 'coremeta4cat:maximum_energy',
          'unit': {'ucum_code': 'eV'}} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -8661,16 +8684,16 @@ class EDX(CharacterizationTechnique):
     Energy-dispersive X-ray spectroscopy for elemental mapping and quantification.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000309',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     primary_energy: Optional[list[float]] = Field(default=[], description="""Primary electron beam energy for EDX excitation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX'],
-         'slot_uri': 'catcore:primary_energy',
+         'slot_uri': 'coremeta4cat:primary_energy',
          'unit': {'ucum_code': 'keV'}} })
     counting_time: Optional[list[float]] = Field(default=[], description="""X-ray counting time per point or spectrum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX'],
-         'slot_uri': 'catcore:counting_time',
+         'slot_uri': 'coremeta4cat:counting_time',
          'unit': {'ucum_code': 's'}} })
-    resolution: Optional[list[float]] = Field(default=[], description="""Resolution of a measurement or detector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'DRIFTS'], 'slot_uri': 'catcore:resolution'} })
-    calibration_method: Optional[list[str]] = Field(default=[], description="""Calibration method applied during a measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'ICPAES'], 'slot_uri': 'catcore:calibration_method'} })
+    resolution: Optional[list[float]] = Field(default=[], description="""Resolution of a measurement or detector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'DRIFTS'], 'slot_uri': 'coremeta4cat:resolution'} })
+    calibration_method: Optional[list[str]] = Field(default=[], description="""Calibration method applied during a measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'ICPAES'], 'slot_uri': 'coremeta4cat:calibration_method'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -8758,21 +8781,21 @@ class InfraredSpectroscopy(CharacterizationTechnique):
     """
     Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:InfraredSpectroscopy',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:InfraredSpectroscopy',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     operation_mode: Optional[list[str]] = Field(default=[], description="""Operation mode of an instrument (e.g. transmission, reflection, AC, DC).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XRayAbsorptionSpectroscopy',
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
-                       'ESI_MS'],
+                       'ElectroSprayIonizationMassSpectrometry'],
          'slot_uri': 'VOC4CAT:0000108'} })
     minimum_wavenumber: Optional[list[float]] = Field(default=[], description="""Minimum wavenumber of the IR scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InfraredSpectroscopy'],
-         'slot_uri': 'catcore:minimum_wavenumber',
+         'slot_uri': 'coremeta4cat:minimum_wavenumber',
          'unit': {'ucum_code': 'cm-1'}} })
     maximum_wavenumber: Optional[list[float]] = Field(default=[], description="""Maximum wavenumber of the IR scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InfraredSpectroscopy'],
-         'slot_uri': 'catcore:maximum_wavenumber',
+         'slot_uri': 'coremeta4cat:maximum_wavenumber',
          'unit': {'ucum_code': 'cm-1'}} })
     step_size: Optional[list[float]] = Field(default=[], description="""Step size for a scan (angle, wavelength, energy, or potential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XPS',
@@ -8792,7 +8815,7 @@ class InfraredSpectroscopy(CharacterizationTechnique):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
@@ -8804,7 +8827,7 @@ class InfraredSpectroscopy(CharacterizationTechnique):
                        'DRIFTS',
                        'RamanSpectroscopy',
                        'NMRSpectroscopy'],
-         'slot_uri': 'catcore:number_of_scans'} })
+         'slot_uri': 'coremeta4cat:number_of_scans'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -8816,7 +8839,7 @@ class InfraredSpectroscopy(CharacterizationTechnique):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -8906,9 +8929,9 @@ class DRIFTS(CharacterizationTechnique):
     surface species identification under reactive gas conditions.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000645',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    adsorption_gas: Optional[list[str]] = Field(default=[], description="""Probe gas adsorbed during in-situ DRIFTS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'], 'slot_uri': 'catcore:adsorption_gas'} })
+    adsorption_gas: Optional[list[str]] = Field(default=[], description="""Probe gas adsorbed during in-situ DRIFTS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'], 'slot_uri': 'coremeta4cat:adsorption_gas'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -8920,23 +8943,24 @@ class DRIFTS(CharacterizationTechnique):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
-                       'ESI_MS'],
-         'slot_uri': 'catcore:flow_rate',
+                       'ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:flow_rate',
          'unit': {'ucum_code': 'mL/min'}} })
-    diluting_reference: Optional[list[str]] = Field(default=[], description="""Reference material used to dilute the DRIFTS sample (e.g. KBr).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'], 'slot_uri': 'catcore:diluting_reference'} })
-    ratio_reference_sample: Optional[list[float]] = Field(default=[], description="""Mass ratio of reference material to catalyst sample in DRIFTS cup.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'], 'slot_uri': 'catcore:ratio_reference_sample'} })
+    diluting_reference: Optional[list[str]] = Field(default=[], description="""Reference material used to dilute the DRIFTS sample (e.g. KBr).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'], 'slot_uri': 'coremeta4cat:diluting_reference'} })
+    ratio_reference_sample: Optional[list[float]] = Field(default=[], description="""Mass ratio of reference material to catalyst sample in DRIFTS cup.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'], 'slot_uri': 'coremeta4cat:ratio_reference_sample'} })
     step_size: Optional[list[float]] = Field(default=[], description="""Step size for a scan (angle, wavelength, energy, or potential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XPS',
                        'InfraredSpectroscopy',
                        'DRIFTS',
                        'PhotoluminescenceSpectroscopy'],
          'slot_uri': 'AFR:0000950'} })
-    resolution: Optional[list[float]] = Field(default=[], description="""Resolution of a measurement or detector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'DRIFTS'], 'slot_uri': 'catcore:resolution'} })
-    background_correction_method: Optional[list[str]] = Field(default=[], description="""Specific background correction method used in DRIFTS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'], 'slot_uri': 'catcore:background_correction_method'} })
+    resolution: Optional[list[float]] = Field(default=[], description="""Resolution of a measurement or detector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'DRIFTS'], 'slot_uri': 'coremeta4cat:resolution'} })
+    background_correction_method: Optional[list[str]] = Field(default=[], description="""Specific background correction method used in DRIFTS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'],
+         'slot_uri': 'coremeta4cat:background_correction_method'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -8949,7 +8973,7 @@ class DRIFTS(CharacterizationTechnique):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
@@ -8960,7 +8984,7 @@ class DRIFTS(CharacterizationTechnique):
                        'DRIFTS',
                        'RamanSpectroscopy',
                        'NMRSpectroscopy'],
-         'slot_uri': 'catcore:number_of_scans'} })
+         'slot_uri': 'coremeta4cat:number_of_scans'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -9049,7 +9073,7 @@ class RamanSpectroscopy(CharacterizationTechnique):
     Raman spectroscopy for vibrational and structural characterization.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000069',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     excitation_laser_wavelength: Optional[list[float]] = Field(default=[], description="""Wavelength of excitation laser used in Raman spectroscopy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy'],
          'slot_uri': 'AFR:0001594',
@@ -9060,14 +9084,14 @@ class RamanSpectroscopy(CharacterizationTechnique):
     magnification_setting: Optional[list[float]] = Field(default=[], description="""Magnification setting used for imaging.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin', 'RamanSpectroscopy'],
          'slot_uri': 'AFR:0002226'} })
     integration_time: Optional[list[float]] = Field(default=[], description="""Integration or acquisition time per measurement step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy', 'PhotoluminescenceSpectroscopy'],
-         'slot_uri': 'catcore:integration_time',
+         'slot_uri': 'coremeta4cat:integration_time',
          'unit': {'ucum_code': 's'}} })
     number_of_scans: Optional[list[int]] = Field(default=[], description="""Number of scans or accumulations recorded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS',
                        'InfraredSpectroscopy',
                        'DRIFTS',
                        'RamanSpectroscopy',
                        'NMRSpectroscopy'],
-         'slot_uri': 'catcore:number_of_scans'} })
+         'slot_uri': 'coremeta4cat:number_of_scans'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -9079,7 +9103,7 @@ class RamanSpectroscopy(CharacterizationTechnique):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -9092,13 +9116,14 @@ class RamanSpectroscopy(CharacterizationTechnique):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
          'slot_uri': 'AFR:0001584',
          'unit': {'ucum_code': 'Cel'}} })
-    filter_or_grating: Optional[list[str]] = Field(default=[], description="""Optical filter or grating used in Raman spectrometer.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy'], 'slot_uri': 'catcore:filter_or_grating'} })
+    filter_or_grating: Optional[list[str]] = Field(default=[], description="""Optical filter or grating used in Raman spectrometer.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy'],
+         'slot_uri': 'coremeta4cat:filter_or_grating'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -9190,16 +9215,16 @@ class NMRSpectroscopy(CharacterizationTechnique):
     this subprofile.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000073',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    nucleus: Optional[list[str]] = Field(default=[], description="""NMR-active nucleus observed (e.g. 1H, 13C, 31P).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'], 'slot_uri': 'catcore:nucleus'} })
+    nucleus: Optional[list[str]] = Field(default=[], description="""NMR-active nucleus observed (e.g. 1H, 13C, 31P).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'], 'slot_uri': 'coremeta4cat:nucleus'} })
     solvent: Optional[list[str]] = Field(default=[], description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
                        'NMRSpectroscopy',
                        'UVVisSpectroscopy',
                        'DynamicLightScattering'],
          'slot_uri': 'VOC4CAT:0007246'} })
     irradiation_frequency: Optional[list[float]] = Field(default=[], description="""Irradiation frequency of the NMR spectrometer.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
-         'slot_uri': 'catcore:irradiation_frequency',
+         'slot_uri': 'coremeta4cat:irradiation_frequency',
          'unit': {'ucum_code': 'MHz'}} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
@@ -9213,20 +9238,21 @@ class NMRSpectroscopy(CharacterizationTechnique):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
          'slot_uri': 'AFR:0001584',
          'unit': {'ucum_code': 'Cel'}} })
-    nmr_pulse_sequence: Optional[list[str]] = Field(default=[], description="""NMR pulse sequence used (e.g. zgpg30, dept).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'], 'slot_uri': 'catcore:nmr_pulse_sequence'} })
-    nmr_sample_tube: Optional[list[str]] = Field(default=[], description="""NMR sample tube type (e.g. 5mm standard, Shigemi tube).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'], 'slot_uri': 'catcore:nmr_sample_tube'} })
+    nmr_pulse_sequence: Optional[list[str]] = Field(default=[], description="""NMR pulse sequence used (e.g. zgpg30, dept).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
+         'slot_uri': 'coremeta4cat:nmr_pulse_sequence'} })
+    nmr_sample_tube: Optional[list[str]] = Field(default=[], description="""NMR sample tube type (e.g. 5mm standard, Shigemi tube).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'], 'slot_uri': 'coremeta4cat:nmr_sample_tube'} })
     number_of_scans: Optional[list[int]] = Field(default=[], description="""Number of scans or accumulations recorded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS',
                        'InfraredSpectroscopy',
                        'DRIFTS',
                        'RamanSpectroscopy',
                        'NMRSpectroscopy'],
-         'slot_uri': 'catcore:number_of_scans'} })
+         'slot_uri': 'coremeta4cat:number_of_scans'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
@@ -9238,7 +9264,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -9327,7 +9353,7 @@ class TransmissionElectronMicroscopy(CharacterizationTechnique, ElectronMicrosco
     TEM for atomic-resolution imaging and diffraction of catalyst particles.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000078',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ElectronMicroscopyMixin']})
 
     operation_mode: Optional[list[str]] = Field(default=[], description="""Operation mode of an instrument (e.g. transmission, reflection, AC, DC).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
@@ -9335,11 +9361,11 @@ class TransmissionElectronMicroscopy(CharacterizationTechnique, ElectronMicrosco
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
-                       'ESI_MS'],
+                       'ElectroSprayIonizationMassSpectrometry'],
          'slot_uri': 'VOC4CAT:0000108'} })
-    gun_type: Optional[list[str]] = Field(default=[], description="""Type of electron gun (e.g. FEG, thermionic LaB6).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'], 'slot_uri': 'catcore:gun_type'} })
+    gun_type: Optional[list[str]] = Field(default=[], description="""Type of electron gun (e.g. FEG, thermionic LaB6).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'], 'slot_uri': 'coremeta4cat:gun_type'} })
     acceleration_voltage: Optional[list[float]] = Field(default=[], description="""Acceleration voltage applied to the electron beam.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'],
-         'slot_uri': 'catcore:acceleration_voltage',
+         'slot_uri': 'coremeta4cat:acceleration_voltage',
          'unit': {'ucum_code': 'kV'}} })
     magnification_setting: Optional[list[float]] = Field(default=[], description="""Magnification setting used for imaging.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin', 'RamanSpectroscopy'],
          'slot_uri': 'AFR:0002226'} })
@@ -9431,17 +9457,17 @@ class ScanningElectronMicroscopy(CharacterizationTechnique, ElectronMicroscopyMi
     SEM for surface morphology and particle size/shape imaging.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000075',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ElectronMicroscopyMixin']})
 
     image_resolution: Optional[list[float]] = Field(default=[], description="""Spatial resolution of SEM images.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ScanningElectronMicroscopy'],
-         'slot_uri': 'catcore:image_resolution',
+         'slot_uri': 'coremeta4cat:image_resolution',
          'unit': {'ucum_code': 'nm'}} })
     field_emitter: Optional[list[str]] = Field(default=[], description="""Type of field emitter used in FE-SEM instrument.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ScanningElectronMicroscopy'],
-         'slot_uri': 'catcore:field_emitter'} })
-    gun_type: Optional[list[str]] = Field(default=[], description="""Type of electron gun (e.g. FEG, thermionic LaB6).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'], 'slot_uri': 'catcore:gun_type'} })
+         'slot_uri': 'coremeta4cat:field_emitter'} })
+    gun_type: Optional[list[str]] = Field(default=[], description="""Type of electron gun (e.g. FEG, thermionic LaB6).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'], 'slot_uri': 'coremeta4cat:gun_type'} })
     acceleration_voltage: Optional[list[float]] = Field(default=[], description="""Acceleration voltage applied to the electron beam.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'],
-         'slot_uri': 'catcore:acceleration_voltage',
+         'slot_uri': 'coremeta4cat:acceleration_voltage',
          'unit': {'ucum_code': 'kV'}} })
     magnification_setting: Optional[list[float]] = Field(default=[], description="""Magnification setting used for imaging.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin', 'RamanSpectroscopy'],
          'slot_uri': 'AFR:0002226'} })
@@ -9533,7 +9559,7 @@ class Thermogravimetry(CharacterizationTechnique, TemperatureProgramMixin):
     Thermogravimetric analysis (TGA/DTG) for mass loss, decomposition, and oxidation state characterization.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000690',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['TemperatureProgramMixin']})
 
     operation_mode: Optional[list[str]] = Field(default=[], description="""Operation mode of an instrument (e.g. transmission, reflection, AC, DC).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
@@ -9541,7 +9567,7 @@ class Thermogravimetry(CharacterizationTechnique, TemperatureProgramMixin):
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
-                       'ESI_MS'],
+                       'ElectroSprayIonizationMassSpectrometry'],
          'slot_uri': 'VOC4CAT:0000108'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -9554,7 +9580,7 @@ class Thermogravimetry(CharacterizationTechnique, TemperatureProgramMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature at the start of a thermal analysis run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Thermogravimetry'],
          'slot_uri': 'NCIT:C164644',
          'unit': {'ucum_code': 'Cel'}} })
@@ -9562,19 +9588,19 @@ class Thermogravimetry(CharacterizationTechnique, TemperatureProgramMixin):
          'slot_uri': 'NCIT:C164644',
          'unit': {'ucum_code': 'Cel'}} })
     sample_mass: Optional[list[float]] = Field(default=[], description="""Mass of the sample used in a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Thermogravimetry', 'BET'],
-         'slot_uri': 'catcore:sample_mass',
+         'slot_uri': 'coremeta4cat:sample_mass',
          'unit': {'ucum_code': 'mg'}} })
     minimum_temperature: Optional[list[float]] = Field(default=[], description="""Minimum (start) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:minimum_temperature',
+         'slot_uri': 'coremeta4cat:minimum_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     maximum_temperature: Optional[list[float]] = Field(default=[], description="""Maximum (final) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:maximum_temperature',
+         'slot_uri': 'coremeta4cat:maximum_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     heating_rate: Optional[list[float]] = Field(default=[], description="""Rate at which temperature is increased during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:heating_rate',
+         'slot_uri': 'coremeta4cat:heating_rate',
          'unit': {'ucum_code': 'Cel/min'}} })
     heating_procedure: Optional[list[str]] = Field(default=[], description="""Description of the heating procedure applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
-         'slot_uri': 'catcore:heating_procedure'} })
+         'slot_uri': 'coremeta4cat:heating_procedure'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -9663,21 +9689,21 @@ class TPR(CharacterizationTechnique, TemperatureProgramMixin):
     Temperature-programmed reduction for reducibility and metal-support interaction characterization.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0002908',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['TemperatureProgramMixin']})
 
-    reducing_gas_composition: Optional[list[str]] = Field(default=[], description="""Composition of reducing gas used in TPR (e.g. 5% H2/Ar).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TPR'], 'slot_uri': 'catcore:reducing_gas_composition'} })
+    reducing_gas_composition: Optional[list[str]] = Field(default=[], description="""Composition of reducing gas used in TPR (e.g. 5% H2/Ar).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TPR'], 'slot_uri': 'coremeta4cat:reducing_gas_composition'} })
     minimum_temperature: Optional[list[float]] = Field(default=[], description="""Minimum (start) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:minimum_temperature',
+         'slot_uri': 'coremeta4cat:minimum_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     maximum_temperature: Optional[list[float]] = Field(default=[], description="""Maximum (final) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:maximum_temperature',
+         'slot_uri': 'coremeta4cat:maximum_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     heating_rate: Optional[list[float]] = Field(default=[], description="""Rate at which temperature is increased during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:heating_rate',
+         'slot_uri': 'coremeta4cat:heating_rate',
          'unit': {'ucum_code': 'Cel/min'}} })
     heating_procedure: Optional[list[str]] = Field(default=[], description="""Description of the heating procedure applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
-         'slot_uri': 'catcore:heating_procedure'} })
+         'slot_uri': 'coremeta4cat:heating_procedure'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -9766,21 +9792,21 @@ class TPO(CharacterizationTechnique, TemperatureProgramMixin):
     Temperature-programmed oxidation for coke quantification and reoxidation characterization.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0002907',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['TemperatureProgramMixin']})
 
-    oxidizing_gas_composition: Optional[list[str]] = Field(default=[], description="""Composition of oxidising gas used in TPO (e.g. 5% O2/Ar).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TPO'], 'slot_uri': 'catcore:oxidizing_gas_composition'} })
+    oxidizing_gas_composition: Optional[list[str]] = Field(default=[], description="""Composition of oxidising gas used in TPO (e.g. 5% O2/Ar).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TPO'], 'slot_uri': 'coremeta4cat:oxidizing_gas_composition'} })
     minimum_temperature: Optional[list[float]] = Field(default=[], description="""Minimum (start) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:minimum_temperature',
+         'slot_uri': 'coremeta4cat:minimum_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     maximum_temperature: Optional[list[float]] = Field(default=[], description="""Maximum (final) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:maximum_temperature',
+         'slot_uri': 'coremeta4cat:maximum_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     heating_rate: Optional[list[float]] = Field(default=[], description="""Rate at which temperature is increased during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'catcore:heating_rate',
+         'slot_uri': 'coremeta4cat:heating_rate',
          'unit': {'ucum_code': 'Cel/min'}} })
     heating_procedure: Optional[list[str]] = Field(default=[], description="""Description of the heating procedure applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
-         'slot_uri': 'catcore:heating_procedure'} })
+         'slot_uri': 'coremeta4cat:heating_procedure'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -9868,19 +9894,19 @@ class BET(CharacterizationTechnique):
     """
     Brunauer-Emmett-Teller analysis for specific surface area and pore size distribution.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:BET',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:BET',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    adsorbate_gas: Optional[list[str]] = Field(default=[], description="""Adsorbate gas used in BET surface area measurement (e.g. N2, Ar).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'], 'slot_uri': 'catcore:adsorbate_gas'} })
+    adsorbate_gas: Optional[list[str]] = Field(default=[], description="""Adsorbate gas used in BET surface area measurement (e.g. N2, Ar).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'], 'slot_uri': 'coremeta4cat:adsorbate_gas'} })
     degassing_temperature: Optional[list[float]] = Field(default=[], description="""Temperature at which sample is degassed before BET measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'],
-         'slot_uri': 'catcore:degassing_temperature',
+         'slot_uri': 'coremeta4cat:degassing_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     measurement_temperature: Optional[list[float]] = Field(default=[], description="""Temperature at which BET adsorption isotherm is measured (e.g. 77 K for N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'],
-         'slot_uri': 'catcore:measurement_temperature',
+         'slot_uri': 'coremeta4cat:measurement_temperature',
          'unit': {'ucum_code': 'K'}} })
-    pore_size_distribution_method: Optional[list[str]] = Field(default=[], description="""Method used for pore size distribution calculation (e.g. BJH, DFT, HK).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'], 'slot_uri': 'catcore:pore_size_distribution_method'} })
+    pore_size_distribution_method: Optional[list[str]] = Field(default=[], description="""Method used for pore size distribution calculation (e.g. BJH, DFT, HK).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'], 'slot_uri': 'coremeta4cat:pore_size_distribution_method'} })
     sample_mass: Optional[list[float]] = Field(default=[], description="""Mass of the sample used in a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Thermogravimetry', 'BET'],
-         'slot_uri': 'catcore:sample_mass',
+         'slot_uri': 'coremeta4cat:sample_mass',
          'unit': {'ucum_code': 'mg'}} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -9970,13 +9996,13 @@ class ICPAES(CharacterizationTechnique):
     Inductively coupled plasma atomic emission spectroscopy for bulk elemental composition.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000267',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     element_analyzed: Optional[list[str]] = Field(default=[], description="""Chemical element analysed (e.g. Fe, Cu, Pt).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy', 'ICPAES'],
-         'slot_uri': 'catcore:element_analyzed'} })
-    calibration_method: Optional[list[str]] = Field(default=[], description="""Calibration method applied during a measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'ICPAES'], 'slot_uri': 'catcore:calibration_method'} })
+         'slot_uri': 'coremeta4cat:element_analyzed'} })
+    calibration_method: Optional[list[str]] = Field(default=[], description="""Calibration method applied during a measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'ICPAES'], 'slot_uri': 'coremeta4cat:calibration_method'} })
     detection_limit: Optional[list[float]] = Field(default=[], description="""Detection limit of the analytical method.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ICPAES'], 'slot_uri': 'NCIT:C105701'} })
-    matrix_effect_correction: Optional[list[str]] = Field(default=[], description="""Method used to correct for matrix effects in ICP-AES.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ICPAES'], 'slot_uri': 'catcore:matrix_effect_correction'} })
+    matrix_effect_correction: Optional[list[str]] = Field(default=[], description="""Method used to correct for matrix effects in ICP-AES.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ICPAES'], 'slot_uri': 'coremeta4cat:matrix_effect_correction'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -10065,14 +10091,18 @@ class ElementalAnalysis(CharacterizationTechnique):
     Combustion elemental analysis (CHNS/O) for carbon, hydrogen, nitrogen, sulfur content.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0001075',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    elements_analyzed: Optional[list[str]] = Field(default=[], description="""List of elements analysed by combustion elemental analysis (e.g. C, H, N, S).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElementalAnalysis'], 'slot_uri': 'catcore:elements_analyzed'} })
+    elements_analyzed: Optional[list[str]] = Field(default=[], description="""List of elements analysed by combustion elemental analysis (e.g. C, H, N, S).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElementalAnalysis'],
+         'slot_uri': 'coremeta4cat:elements_analyzed'} })
     combustion_temperature: Optional[list[float]] = Field(default=[], description="""Combustion furnace temperature for elemental analysis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElementalAnalysis'],
-         'slot_uri': 'catcore:combustion_temperature',
+         'slot_uri': 'coremeta4cat:combustion_temperature',
          'unit': {'ucum_code': 'Cel'}} })
-    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition', 'ElementalAnalysis', 'ESI_MS', 'GCMS'],
-         'slot_uri': 'catcore:carrier_gas'} })
+    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
+                       'ElementalAnalysis',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'GCMS'],
+         'slot_uri': 'coremeta4cat:carrier_gas'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -10161,13 +10191,13 @@ class UVVisSpectroscopy(CharacterizationTechnique):
     UV-Vis spectroscopy for electronic transitions, band gap, and concentration determination.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000079',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     minimum_wavelength: Optional[list[float]] = Field(default=[], description="""Minimum wavelength of the UV-Vis scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy'],
-         'slot_uri': 'catcore:minimum_wavelength',
+         'slot_uri': 'coremeta4cat:minimum_wavelength',
          'unit': {'ucum_code': 'nm'}} })
     maximum_wavelength: Optional[list[float]] = Field(default=[], description="""Maximum wavelength of the UV-Vis scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy'],
-         'slot_uri': 'catcore:maximum_wavelength',
+         'slot_uri': 'coremeta4cat:maximum_wavelength',
          'unit': {'ucum_code': 'nm'}} })
     path_length: Optional[list[float]] = Field(default=[], description="""Optical path length of the measurement cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy'],
          'slot_uri': 'AFQ:0000268',
@@ -10177,8 +10207,10 @@ class UVVisSpectroscopy(CharacterizationTechnique):
                        'UVVisSpectroscopy',
                        'DynamicLightScattering'],
          'slot_uri': 'VOC4CAT:0007246'} })
-    concentration: Optional[list[float]] = Field(default=[], description="""Concentration of a substance in a sample or solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy', 'DynamicLightScattering', 'ESI_MS'],
-         'slot_uri': 'catcore:concentration',
+    concentration: Optional[list[float]] = Field(default=[], description="""Concentration of a substance in a sample or solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:concentration',
          'unit': {'ucum_code': 'mol/L'}} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -10267,14 +10299,14 @@ class PhotoluminescenceSpectroscopy(CharacterizationTechnique, Photoluminescence
     """
     Photoluminescence spectroscopy for defect and charge carrier characterization.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:PhotoluminescenceSpectroscopy',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:PhotoluminescenceSpectroscopy',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['PhotoluminescenceMixin']})
 
     emission_range: Optional[list[str]] = Field(default=[], description="""Wavelength range over which emission is detected.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceSpectroscopy'],
-         'slot_uri': 'catcore:emission_range'} })
+         'slot_uri': 'coremeta4cat:emission_range'} })
     slit_width: Optional[list[float]] = Field(default=[], description="""Spectrometer entrance or exit slit width.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceSpectroscopy'],
-         'slot_uri': 'catcore:slit_width',
+         'slot_uri': 'coremeta4cat:slit_width',
          'unit': {'ucum_code': 'nm'}} })
     step_size: Optional[list[float]] = Field(default=[], description="""Step size for a scan (angle, wavelength, energy, or potential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XPS',
@@ -10283,7 +10315,7 @@ class PhotoluminescenceSpectroscopy(CharacterizationTechnique, Photoluminescence
                        'PhotoluminescenceSpectroscopy'],
          'slot_uri': 'AFR:0000950'} })
     integration_time: Optional[list[float]] = Field(default=[], description="""Integration or acquisition time per measurement step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy', 'PhotoluminescenceSpectroscopy'],
-         'slot_uri': 'catcore:integration_time',
+         'slot_uri': 'coremeta4cat:integration_time',
          'unit': {'ucum_code': 's'}} })
     excitation_wavelength: Optional[list[float]] = Field(default=[], description="""Excitation wavelength used in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
          'slot_uri': 'AFR:0002479',
@@ -10291,7 +10323,8 @@ class PhotoluminescenceSpectroscopy(CharacterizationTechnique, Photoluminescence
     emission_wavelength: Optional[list[float]] = Field(default=[], description="""Emission wavelength detected in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
          'slot_uri': 'NCIT:C204101',
          'unit': {'ucum_code': 'nm'}} })
-    optical_filter: Optional[list[str]] = Field(default=[], description="""Optical filter used in the emission or excitation path.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'], 'slot_uri': 'catcore:optical_filter'} })
+    optical_filter: Optional[list[str]] = Field(default=[], description="""Optical filter used in the emission or excitation path.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
+         'slot_uri': 'coremeta4cat:optical_filter'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -10304,7 +10337,7 @@ class PhotoluminescenceSpectroscopy(CharacterizationTechnique, Photoluminescence
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
@@ -10397,21 +10430,22 @@ class PhotoluminescenceLifetime(CharacterizationTechnique, PhotoluminescenceMixi
     """
     Time-resolved photoluminescence for charge carrier lifetime and recombination dynamics.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:PhotoluminescenceLifetime',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:PhotoluminescenceLifetime',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['PhotoluminescenceMixin']})
 
     lifetime_fitting_model: Optional[list[str]] = Field(default=[], description="""Mathematical model used for fluorescence lifetime fitting (e.g. mono-exponential, bi-exponential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceLifetime'],
-         'slot_uri': 'catcore:lifetime_fitting_model'} })
+         'slot_uri': 'coremeta4cat:lifetime_fitting_model'} })
     number_of_shots: Optional[list[int]] = Field(default=[], description="""Number of laser shots accumulated per measurement point.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceLifetime'],
-         'slot_uri': 'catcore:number_of_shots'} })
+         'slot_uri': 'coremeta4cat:number_of_shots'} })
     excitation_wavelength: Optional[list[float]] = Field(default=[], description="""Excitation wavelength used in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
          'slot_uri': 'AFR:0002479',
          'unit': {'ucum_code': 'nm'}} })
     emission_wavelength: Optional[list[float]] = Field(default=[], description="""Emission wavelength detected in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
          'slot_uri': 'NCIT:C204101',
          'unit': {'ucum_code': 'nm'}} })
-    optical_filter: Optional[list[str]] = Field(default=[], description="""Optical filter used in the emission or excitation path.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'], 'slot_uri': 'catcore:optical_filter'} })
+    optical_filter: Optional[list[str]] = Field(default=[], description="""Optical filter used in the emission or excitation path.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
+         'slot_uri': 'coremeta4cat:optical_filter'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -10424,7 +10458,7 @@ class PhotoluminescenceLifetime(CharacterizationTechnique, PhotoluminescenceMixi
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
@@ -10518,17 +10552,17 @@ class CyclicVoltammetry(CharacterizationTechnique, ElectrochemistryMixin):
     Cyclic voltammetry for electrochemical activity, redox potential, and capacitance characterization.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000025',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ElectrochemistryMixin']})
 
     scan_rate: Optional[list[float]] = Field(default=[], description="""Potential scan rate in cyclic voltammetry.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CyclicVoltammetry'],
          'slot_uri': 'VOC4CAT:0007213',
          'unit': {'ucum_code': 'mV/s'}} })
     minimum_potential: Optional[list[float]] = Field(default=[], description="""Lower potential limit in cyclic voltammetry.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CyclicVoltammetry'],
-         'slot_uri': 'catcore:minimum_potential',
+         'slot_uri': 'coremeta4cat:minimum_potential',
          'unit': {'ucum_code': 'V'}} })
     maximum_potential: Optional[list[float]] = Field(default=[], description="""Upper potential limit in cyclic voltammetry.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CyclicVoltammetry'],
-         'slot_uri': 'catcore:maximum_potential',
+         'slot_uri': 'coremeta4cat:maximum_potential',
          'unit': {'ucum_code': 'V'}} })
     step_size_potential: Optional[list[float]] = Field(default=[], description="""Potential step size in cyclic voltammetry.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CyclicVoltammetry'],
          'slot_uri': 'VOC4CAT:0007218',
@@ -10538,14 +10572,14 @@ class CyclicVoltammetry(CharacterizationTechnique, ElectrochemistryMixin):
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
-         'slot_uri': 'catcore:number_of_cycles'} })
+         'slot_uri': 'coremeta4cat:number_of_cycles'} })
     reference_electrode: Optional[list[str]] = Field(default=[], description="""Reference electrode used in electrochemical cell (e.g. Ag/AgCl, RHE).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007204'} })
     working_electrode: Optional[list[str]] = Field(default=[], description="""Working electrode used in electrochemical cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007202'} })
     counter_electrode: Optional[list[str]] = Field(default=[], description="""Counter electrode used in electrochemical cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007203'} })
     electrolyte_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the electrolyte solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
-         'slot_uri': 'catcore:electrolyte_composition'} })
+         'slot_uri': 'coremeta4cat:electrolyte_composition'} })
     electrolyte_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the electrolyte.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
-         'slot_uri': 'catcore:electrolyte_concentration',
+         'slot_uri': 'coremeta4cat:electrolyte_concentration',
          'unit': {'ucum_code': 'mol/L'}} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -10558,7 +10592,7 @@ class CyclicVoltammetry(CharacterizationTechnique, ElectrochemistryMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -10571,7 +10605,7 @@ class CyclicVoltammetry(CharacterizationTechnique, ElectrochemistryMixin):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
@@ -10664,25 +10698,26 @@ class ConductivityMeasurement(CharacterizationTechnique, ElectrochemistryMixin):
     """
     Electrical conductivity measurement for ionic and electronic transport characterization.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:ConductivityMeasurement',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:ConductivityMeasurement',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ElectrochemistryMixin']})
 
     electrode_configuration: Optional[list[str]] = Field(default=[], description="""Configuration of electrodes used in conductivity measurement (e.g. 2-probe, 4-probe).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConductivityMeasurement'],
-         'slot_uri': 'catcore:electrode_configuration'} })
+         'slot_uri': 'coremeta4cat:electrode_configuration'} })
     ac_frequency: Optional[list[float]] = Field(default=[], description="""Frequency of AC signal applied in impedance or conductivity measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConductivityMeasurement'],
          'slot_uri': 'VOC4CAT:0007239',
          'unit': {'ucum_code': 'Hz'}} })
-    ac_dc_mode: Optional[list[str]] = Field(default=[], description="""AC or DC measurement mode used in conductivity measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConductivityMeasurement'], 'slot_uri': 'catcore:ac_dc_mode'} })
+    ac_dc_mode: Optional[list[str]] = Field(default=[], description="""AC or DC measurement mode used in conductivity measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConductivityMeasurement'],
+         'slot_uri': 'coremeta4cat:ac_dc_mode'} })
     sample_geometry: Optional[list[str]] = Field(default=[], description="""Geometry of the sample used in conductivity measurement (e.g. pellet, thin film).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConductivityMeasurement'],
-         'slot_uri': 'catcore:sample_geometry'} })
+         'slot_uri': 'coremeta4cat:sample_geometry'} })
     reference_electrode: Optional[list[str]] = Field(default=[], description="""Reference electrode used in electrochemical cell (e.g. Ag/AgCl, RHE).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007204'} })
     working_electrode: Optional[list[str]] = Field(default=[], description="""Working electrode used in electrochemical cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007202'} })
     counter_electrode: Optional[list[str]] = Field(default=[], description="""Counter electrode used in electrochemical cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007203'} })
     electrolyte_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the electrolyte solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
-         'slot_uri': 'catcore:electrolyte_composition'} })
+         'slot_uri': 'coremeta4cat:electrolyte_composition'} })
     electrolyte_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the electrolyte.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
-         'slot_uri': 'catcore:electrolyte_concentration',
+         'slot_uri': 'coremeta4cat:electrolyte_concentration',
          'unit': {'ucum_code': 'mol/L'}} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -10695,7 +10730,7 @@ class ConductivityMeasurement(CharacterizationTechnique, ElectrochemistryMixin):
                        'NMRSpectroscopy',
                        'Thermogravimetry',
                        'Reaction'],
-         'slot_uri': 'catcore:atmosphere'} })
+         'slot_uri': 'coremeta4cat:atmosphere'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -10708,7 +10743,7 @@ class ConductivityMeasurement(CharacterizationTechnique, ElectrochemistryMixin):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
@@ -10802,24 +10837,26 @@ class DynamicLightScattering(CharacterizationTechnique):
     Dynamic light scattering for hydrodynamic particle size distribution in suspension.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000167',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     solvent: Optional[list[str]] = Field(default=[], description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
                        'NMRSpectroscopy',
                        'UVVisSpectroscopy',
                        'DynamicLightScattering'],
          'slot_uri': 'VOC4CAT:0007246'} })
-    concentration: Optional[list[float]] = Field(default=[], description="""Concentration of a substance in a sample or solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy', 'DynamicLightScattering', 'ESI_MS'],
-         'slot_uri': 'catcore:concentration',
+    concentration: Optional[list[float]] = Field(default=[], description="""Concentration of a substance in a sample or solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:concentration',
          'unit': {'ucum_code': 'mol/L'}} })
     light_wavelength: Optional[list[float]] = Field(default=[], description="""Wavelength of the laser used in DLS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DynamicLightScattering'],
          'slot_uri': 'VOC4CAT:0000176',
          'unit': {'ucum_code': 'nm'}} })
     scattering_angle: Optional[list[float]] = Field(default=[], description="""Scattering angle at which intensity is detected in DLS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DynamicLightScattering'],
-         'slot_uri': 'catcore:scattering_angle',
+         'slot_uri': 'coremeta4cat:scattering_angle',
          'unit': {'ucum_code': 'deg'}} })
     refractive_index: Optional[list[float]] = Field(default=[], description="""Refractive index of the solvent used in DLS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DynamicLightScattering'],
-         'slot_uri': 'catcore:refractive_index'} })
+         'slot_uri': 'coremeta4cat:refractive_index'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -10832,16 +10869,16 @@ class DynamicLightScattering(CharacterizationTechnique):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
          'slot_uri': 'AFR:0001584',
          'unit': {'ucum_code': 'Cel'}} })
     dispersant: Optional[list[str]] = Field(default=[], description="""Dispersant used (e.g. in DLS measurement or flame spray pyrolysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'DynamicLightScattering'],
-         'slot_uri': 'catcore:dispersant'} })
+         'slot_uri': 'coremeta4cat:dispersant'} })
     measurement_duration: Optional[list[float]] = Field(default=[], description="""Duration of a single DLS acquisition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DynamicLightScattering'],
-         'slot_uri': 'catcore:measurement_duration',
+         'slot_uri': 'coremeta4cat:measurement_duration',
          'unit': {'ucum_code': 's'}} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -10926,12 +10963,12 @@ class DynamicLightScattering(CharacterizationTechnique):
          'slot_uri': 'rdf:type'} })
 
 
-class ESIMS(CharacterizationTechnique, MassRangeMixin):
+class ElectroSprayIonizationMassSpectrometry(CharacterizationTechnique, MassRangeMixin):
     """
     Electrospray ionisation mass spectrometry for molecular mass and identity determination.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000482',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['MassRangeMixin']})
 
     operation_mode: Optional[list[str]] = Field(default=[], description="""Operation mode of an instrument (e.g. transmission, reflection, AC, DC).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
@@ -10939,25 +10976,31 @@ class ESIMS(CharacterizationTechnique, MassRangeMixin):
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
-                       'ESI_MS'],
+                       'ElectroSprayIonizationMassSpectrometry'],
          'slot_uri': 'VOC4CAT:0000108'} })
-    spray_voltage: Optional[list[float]] = Field(default=[], description="""Spray voltage applied in electrospray ionisation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ESI_MS'],
+    spray_voltage: Optional[list[float]] = Field(default=[], description="""Spray voltage applied in electrospray ionisation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectroSprayIonizationMassSpectrometry'],
          'slot_uri': 'CHMO:0002792',
          'unit': {'ucum_code': 'kV'}} })
-    capillary_temperature: Optional[list[float]] = Field(default=[], description="""Capillary or desolvation temperature in ESI source.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ESI_MS'],
-         'slot_uri': 'catcore:capillary_temperature',
+    capillary_temperature: Optional[list[float]] = Field(default=[], description="""Capillary or desolvation temperature in ESI source.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:capillary_temperature',
          'unit': {'ucum_code': 'Cel'}} })
-    solvent_composition: Optional[list[str]] = Field(default=[], description="""Solvent composition used for ESI spray solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ESI_MS'], 'slot_uri': 'VOC4CAT:0007246'} })
+    solvent_composition: Optional[list[str]] = Field(default=[], description="""Solvent composition used for ESI spray solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'VOC4CAT:0007246'} })
     flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
-                       'ESI_MS'],
-         'slot_uri': 'catcore:flow_rate',
+                       'ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:flow_rate',
          'unit': {'ucum_code': 'mL/min'}} })
-    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition', 'ElementalAnalysis', 'ESI_MS', 'GCMS'],
-         'slot_uri': 'catcore:carrier_gas'} })
-    concentration: Optional[list[float]] = Field(default=[], description="""Concentration of a substance in a sample or solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy', 'DynamicLightScattering', 'ESI_MS'],
-         'slot_uri': 'catcore:concentration',
+    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
+                       'ElementalAnalysis',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'GCMS'],
+         'slot_uri': 'coremeta4cat:carrier_gas'} })
+    concentration: Optional[list[float]] = Field(default=[], description="""Concentration of a substance in a sample or solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:concentration',
          'unit': {'ucum_code': 'mol/L'}} })
     mz_minimum: Optional[list[float]] = Field(default=[], description="""Minimum m/z value in the mass scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'AFR:0002652'} })
     mz_maximum: Optional[list[float]] = Field(default=[], description="""Maximum m/z value in the mass scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'AFR:0002653'} })
@@ -11049,45 +11092,50 @@ class GCMS(CharacterizationTechnique, MassRangeMixin, ChromatographyMixin):
     Gas chromatography-mass spectrometry for volatile compound identification and quantification.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000497',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ChromatographyMixin', 'MassRangeMixin']})
 
-    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition', 'ElementalAnalysis', 'ESI_MS', 'GCMS'],
-         'slot_uri': 'catcore:carrier_gas'} })
-    carrier_gas_purity: Optional[list[str]] = Field(default=[], description="""Purity grade of the carrier gas used in GC.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'catcore:carrier_gas_purity'} })
+    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
+                       'ElementalAnalysis',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'GCMS'],
+         'slot_uri': 'coremeta4cat:carrier_gas'} })
+    carrier_gas_purity: Optional[list[str]] = Field(default=[], description="""Purity grade of the carrier gas used in GC.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:carrier_gas_purity'} })
     inlet_temperature: Optional[list[float]] = Field(default=[], description="""GC inlet temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'],
-         'slot_uri': 'catcore:inlet_temperature',
+         'slot_uri': 'coremeta4cat:inlet_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     minimum_oven_temperature: Optional[list[float]] = Field(default=[], description="""Minimum oven temperature in GC temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'],
-         'slot_uri': 'catcore:minimum_oven_temperature',
+         'slot_uri': 'coremeta4cat:minimum_oven_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     maximum_oven_temperature: Optional[list[float]] = Field(default=[], description="""Maximum oven temperature in GC temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'],
-         'slot_uri': 'catcore:maximum_oven_temperature',
+         'slot_uri': 'coremeta4cat:maximum_oven_temperature',
          'unit': {'ucum_code': 'Cel'}} })
     heating_ramp: Optional[list[float]] = Field(default=[], description="""Temperature ramp rate in GC oven programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'],
-         'slot_uri': 'catcore:heating_ramp',
+         'slot_uri': 'coremeta4cat:heating_ramp',
          'unit': {'ucum_code': 'Cel/min'}} })
     heating_procedure: Optional[list[str]] = Field(default=[], description="""Description of the heating procedure applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
-         'slot_uri': 'catcore:heating_procedure'} })
-    acquisition_mode: Optional[list[str]] = Field(default=[], description="""Mass spectrometer acquisition mode (e.g. full scan, SIM, SRM).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'catcore:acquisition_mode'} })
+         'slot_uri': 'coremeta4cat:heating_procedure'} })
+    acquisition_mode: Optional[list[str]] = Field(default=[], description="""Mass spectrometer acquisition mode (e.g. full scan, SIM, SRM).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:acquisition_mode'} })
     solvent_delay: Optional[list[float]] = Field(default=[], description="""Solvent delay time before MS acquisition begins.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'],
-         'slot_uri': 'catcore:solvent_delay',
+         'slot_uri': 'coremeta4cat:solvent_delay',
          'unit': {'ucum_code': 'min'}} })
-    trace_ion_detection: Optional[list[str]] = Field(default=[], description="""Trace ion detection setting or threshold.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'catcore:trace_ion_detection'} })
-    split_ratio: Optional[list[float]] = Field(default=[], description="""Split ratio at the GC injector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'catcore:split_ratio'} })
-    column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:column_type'} })
+    trace_ion_detection: Optional[list[str]] = Field(default=[], description="""Trace ion detection setting or threshold.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:trace_ion_detection'} })
+    split_ratio: Optional[list[float]] = Field(default=[], description="""Split ratio at the GC injector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:split_ratio'} })
+    column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'coremeta4cat:column_type'} })
     eluent: Optional[list[str]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
     flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
-                       'ESI_MS'],
-         'slot_uri': 'catcore:flow_rate',
+                       'ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:flow_rate',
          'unit': {'ucum_code': 'mL/min'}} })
     injection_volume: Optional[list[float]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
-         'slot_uri': 'catcore:injection_volume',
+         'slot_uri': 'coremeta4cat:injection_volume',
          'unit': {'ucum_code': 'uL'}} })
-    external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:external_standard'} })
-    internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:internal_standard'} })
+    external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'slot_uri': 'coremeta4cat:external_standard'} })
+    internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'slot_uri': 'coremeta4cat:internal_standard'} })
     mz_minimum: Optional[list[float]] = Field(default=[], description="""Minimum m/z value in the mass scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'AFR:0002652'} })
     mz_maximum: Optional[list[float]] = Field(default=[], description="""Maximum m/z value in the mass scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'AFR:0002653'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
@@ -11178,7 +11226,7 @@ class SizeExclusionChromatography(CharacterizationTechnique, ChromatographyMixin
     Size exclusion chromatography for molecular weight distribution determination.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'AFP:0000843',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ChromatographyMixin']})
 
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
@@ -11193,27 +11241,29 @@ class SizeExclusionChromatography(CharacterizationTechnique, ChromatographyMixin
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
          'slot_uri': 'AFR:0001584',
          'unit': {'ucum_code': 'Cel'}} })
     calibration_standard: Optional[list[str]] = Field(default=[], description="""Calibration standard used for molecular weight or retention time calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SizeExclusionChromatography'],
-         'slot_uri': 'catcore:calibration_standard'} })
-    column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:column_type'} })
+         'slot_uri': 'coremeta4cat:calibration_standard'} })
+    column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'coremeta4cat:column_type'} })
     eluent: Optional[list[str]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
     flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
-                       'ESI_MS'],
-         'slot_uri': 'catcore:flow_rate',
+                       'ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:flow_rate',
          'unit': {'ucum_code': 'mL/min'}} })
     injection_volume: Optional[list[float]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
-         'slot_uri': 'catcore:injection_volume',
+         'slot_uri': 'coremeta4cat:injection_volume',
          'unit': {'ucum_code': 'uL'}} })
-    external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:external_standard'} })
-    internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:internal_standard'} })
+    external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'slot_uri': 'coremeta4cat:external_standard'} })
+    internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'slot_uri': 'coremeta4cat:internal_standard'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -11297,16 +11347,18 @@ class SizeExclusionChromatography(CharacterizationTechnique, ChromatographyMixin
          'slot_uri': 'rdf:type'} })
 
 
-class HPLCMS(CharacterizationTechnique, ChromatographyMixin):
+class HighPerformanceLiquidChromatographyMassSpectrometry(CharacterizationTechnique, ChromatographyMixin):
     """
     High-performance liquid chromatography-mass spectrometry for compound identification and quantification.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000796',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/characterization/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ChromatographyMixin']})
 
-    gradient_program: Optional[list[str]] = Field(default=[], description="""Gradient elution programme used in HPLC-MS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HPLC_MS'], 'slot_uri': 'catcore:gradient_program'} })
-    ionization_mode: Optional[list[str]] = Field(default=[], description="""Ionisation mode used in HPLC-MS (e.g. positive, negative, APCI, ESI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['HPLC_MS'], 'slot_uri': 'catcore:ionization_mode'} })
+    gradient_program: Optional[list[str]] = Field(default=[], description="""Gradient elution programme used in HPLC-MS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['HighPerformanceLiquidChromatographyMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:gradient_program'} })
+    ionization_mode: Optional[list[str]] = Field(default=[], description="""Ionisation mode used in HPLC-MS (e.g. positive, negative, APCI, ESI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['HighPerformanceLiquidChromatographyMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:ionization_mode'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -11319,25 +11371,27 @@ class HPLCMS(CharacterizationTechnique, ChromatographyMixin):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
          'slot_uri': 'AFR:0001584',
          'unit': {'ucum_code': 'Cel'}} })
-    column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:column_type'} })
+    column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'coremeta4cat:column_type'} })
     eluent: Optional[list[str]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
     flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
-                       'ESI_MS'],
-         'slot_uri': 'catcore:flow_rate',
+                       'ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:flow_rate',
          'unit': {'ucum_code': 'mL/min'}} })
     injection_volume: Optional[list[float]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
-         'slot_uri': 'catcore:injection_volume',
+         'slot_uri': 'coremeta4cat:injection_volume',
          'unit': {'ucum_code': 'uL'}} })
-    external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:external_standard'} })
-    internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'catcore:internal_standard'} })
+    external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'slot_uri': 'coremeta4cat:external_standard'} })
+    internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'slot_uri': 'coremeta4cat:internal_standard'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -11425,15 +11479,15 @@ class ProductIdentificationMethod(Plan):
     """
     Abstract Plan representing the method used to identify and quantify reaction
     products. In practice, users should reference a concrete CharacterizationTechnique
-    subclass from catcore_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).
+    subclass from coremeta4cat_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).
 
     This abstract class is retained for backward compatibility with the original
-    CatCore monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
+    CoreMeta4Cat monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
     it can participate in the realized_plan slot if needed.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'class_uri': 'OBI:0000272',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/reaction/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -15806,12 +15860,12 @@ class Precursor(MaterialSample):
     Precursors are consumed or transformed during the preparation process.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHEBI:52717',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'slot_usage': {'precursor_quantity': {'name': 'precursor_quantity',
                                                'required': True}}})
 
     precursor_quantity: list[float] = Field(default=..., description="""Quantity of precursor used in synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Precursor'],
-         'slot_uri': 'catcore:precursor_quantity',
+         'slot_uri': 'coremeta4cat:precursor_quantity',
          'unit': {'ucum_code': 'g'}} })
     derived_from: Optional[Entity] = Field(default=None, description="""The slot to specify the MaterialEntity or MaterialSample from which the MaterialSample was created.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['BFO:0000050', 'dcterms:partOf'],
          'domain_of': ['MaterialSample'],
@@ -15965,7 +16019,7 @@ class CatalystSample(MaterialSample):
     is expressed via rdf_type using a voc4cat term.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000747',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/synthesis/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'slot_usage': {'derived_from': {'description': 'The Precursor(s) or other '
                                                         'MaterialSample from which '
                                                         'this\n'
@@ -18791,11 +18845,12 @@ class MaterialDescriptorMixin(ConfiguredBaseModel):
     AqueousStability, GrainBoundaries, ElectronicStructure, Ferroelectrics,
     BandGap).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/', 'mixin': True})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
+         'mixin': True})
 
     material_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
-         'slot_uri': 'catcore:material_composition'} })
+         'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
 lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
 
@@ -18806,16 +18861,17 @@ class DFTSettingsMixin(ConfiguredBaseModel):
     subclasses that are computed with periodic DFT (DielectricTensors,
     EquationsOfState, ElectronicStructure, BandGap).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/', 'mixin': True})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
+         'mixin': True})
 
     energy_cutoff: Optional[list[float]] = Field(default=[], description="""Plane-wave kinetic energy cutoff for the basis set expansion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:energy_cutoff',
+         'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
 geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:convergence_criteria'} })
+         'slot_uri': 'coremeta4cat:convergence_criteria'} })
     k_point_mesh: Optional[list[str]] = Field(default=[], description="""Monkhorst-Pack k-point mesh used for Brillouin zone sampling
-(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'catcore:k_point_mesh'} })
+(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
 
 
 class Simulation(DataGeneratingActivity):
@@ -18828,11 +18884,11 @@ class Simulation(DataGeneratingActivity):
     SimulationMethod instance. The catalyst model or reaction being simulated
     is linked via evaluated_entity or evaluated_activity.
 
-    The specific simulation type is expressed via rdf_type (e.g. catcore:DFT,
+    The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,
     NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NCIT:C48936',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'slot_usage': {'carried_out_by': {'description': 'The simulation software '
                                                           'used, provided as a '
                                                           'Software agent instance.',
@@ -18851,10 +18907,10 @@ class Simulation(DataGeneratingActivity):
                                              'recommended': True},
                         'rdf_type': {'description': 'The type of simulation method as '
                                                     'an ontology term (e.g. '
-                                                    'catcore:DFT,\n'
+                                                    'coremeta4cat:DFT,\n'
                                                     'NCIT:C18097 for MD, '
-                                                    'catcore:Microkinetics). This is '
-                                                    'the primary\n'
+                                                    'coremeta4cat:Microkinetics). This '
+                                                    'is the primary\n'
                                                     'machine-actionable classification '
                                                     'of the simulation type.',
                                      'name': 'rdf_type',
@@ -18869,9 +18925,9 @@ class Simulation(DataGeneratingActivity):
                                           'required': True}}})
 
     software_package: list[str] = Field(default=..., description="""Software package or code used for the simulation (e.g. VASP, Quantum ESPRESSO,
-LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Simulation'], 'slot_uri': 'catcore:software_package'} })
+LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Simulation'], 'slot_uri': 'coremeta4cat:software_package'} })
     calculated_property: list[CalculatedProperty] = Field(default=..., description="""A property computed by this Simulation, provided as a CalculatedProperty
-instance. Multiple properties may be computed in a single simulation run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Simulation'], 'slot_uri': 'catcore:calculated_property'} })
+instance. Multiple properties may be computed in a single simulation run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Simulation'], 'slot_uri': 'coremeta4cat:calculated_property'} })
     evaluated_entity: Optional[list[EvaluatedEntity]] = Field(default=[], description="""The catalyst model, surface slab, or molecule being simulated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
          'in_subset': ['domain_agnostic_core'],
          'is_a': 'had_input_entity',
@@ -19018,8 +19074,8 @@ instance. Multiple properties may be computed in a single simulation run.""", js
          'slot_uri': 'dcterms:isPartOf'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
          'slot_uri': 'dcterms:type'} })
-    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The type of simulation method as an ontology term (e.g. catcore:DFT,
-NCIT:C18097 for MD, catcore:Microkinetics). This is the primary
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The type of simulation method as an ontology term (e.g. coremeta4cat:DFT,
+NCIT:C18097 for MD, coremeta4cat:Microkinetics). This is the primary
 machine-actionable classification of the simulation type.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
          'in_subset': ['domain_agnostic_core'],
          'recommended': True,
@@ -19034,7 +19090,7 @@ class SimulationMethod(Plan):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'class_uri': 'OBI:0000272',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -19125,23 +19181,24 @@ class DFT(SimulationMethod):
     the electronic structure of atoms, molecules, and periodic solids.
     The most widely used ab initio method in computational catalysis.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:DFT',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:DFT',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
     exchange_correlation_functional: Optional[list[str]] = Field(default=[], description="""Exchange-correlation functional used (e.g. PBE, PBEsol, RPBE, B3LYP,
-HSE06). The choice of functional directly affects accuracy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFT'], 'slot_uri': 'catcore:exchange_correlation_functional'} })
+HSE06). The choice of functional directly affects accuracy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFT'],
+         'slot_uri': 'coremeta4cat:exchange_correlation_functional'} })
     energy_cutoff: Optional[list[float]] = Field(default=[], description="""Plane-wave kinetic energy cutoff for the basis set expansion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:energy_cutoff',
+         'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
 geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:convergence_criteria'} })
+         'slot_uri': 'coremeta4cat:convergence_criteria'} })
     dft_u_parameters: Optional[list[str]] = Field(default=[], description="""Hubbard U correction parameters (DFT+U). Specify element, orbital, and
-U value (e.g. \"Fe d: U=4.0 eV, J=0.0 eV\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFT'], 'slot_uri': 'catcore:dft_u_parameters'} })
+U value (e.g. \"Fe d: U=4.0 eV, J=0.0 eV\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFT'], 'slot_uri': 'coremeta4cat:dft_u_parameters'} })
     spin_polarization: Optional[list[bool]] = Field(default=[], description="""Whether spin polarization (collinear magnetism) is included in the DFT
-calculation. Set to true for systems containing magnetic elements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFT'], 'slot_uri': 'catcore:spin_polarization'} })
+calculation. Set to true for systems containing magnetic elements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFT'], 'slot_uri': 'coremeta4cat:spin_polarization'} })
     total_energy_per_atom: Optional[list[float]] = Field(default=[], description="""Total DFT ground-state energy divided by number of atoms in the unit cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFT'],
-         'slot_uri': 'catcore:total_energy_per_atom',
+         'slot_uri': 'coremeta4cat:total_energy_per_atom',
          'unit': {'ucum_code': 'eV'}} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -19233,19 +19290,19 @@ class MolecularDynamics(SimulationMethod):
     Used to study diffusion, reaction kinetics, and thermal properties.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NCIT:C18097',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
     force_field: Optional[list[str]] = Field(default=[], description="""Force field or interatomic potential used (e.g. ReaxFF, CHARMM, Tersoff,
-EAM). Include parametrisation source or reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularDynamics'], 'slot_uri': 'catcore:force_field'} })
+EAM). Include parametrisation source or reference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularDynamics'], 'slot_uri': 'coremeta4cat:force_field'} })
     simulation_timestep: Optional[list[float]] = Field(default=[], description="""Integration timestep used in molecular dynamics.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularDynamics'],
          'slot_uri': 'APOLLO_SV:00000012',
          'unit': {'ucum_code': 'fs'}} })
     simulation_time: Optional[list[float]] = Field(default=[], description="""Total simulated physical time of the MD trajectory.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularDynamics'],
-         'slot_uri': 'catcore:simulation_time',
+         'slot_uri': 'coremeta4cat:simulation_time',
          'unit': {'ucum_code': 'ps'}} })
     ensemble_type: Optional[list[str]] = Field(default=[], description="""Statistical ensemble used in MD (e.g. NVE, NVT, NPT). Determines which
-thermodynamic quantities are conserved.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularDynamics'], 'slot_uri': 'catcore:ensemble_type'} })
-    number_of_atoms: Optional[list[int]] = Field(default=[], description="""Number of atoms in the simulation cell or supercell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularDynamics'], 'slot_uri': 'catcore:number_of_atoms'} })
+thermodynamic quantities are conserved.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularDynamics'], 'slot_uri': 'coremeta4cat:ensemble_type'} })
+    number_of_atoms: Optional[list[int]] = Field(default=[], description="""Number of atoms in the simulation cell or supercell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularDynamics'], 'slot_uri': 'coremeta4cat:number_of_atoms'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -19335,13 +19392,13 @@ class Microkinetics(SimulationMethod):
     elementary reaction steps and their rate constants to predict catalytic
     activity and selectivity under reaction conditions.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:Microkinetics',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:Microkinetics',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
     rate_constants: Optional[list[str]] = Field(default=[], description="""Rate constants or Arrhenius parameters (pre-exponential factor and
 activation energy) for each elementary step in the reaction network.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'], 'slot_uri': 'NCIT:C94967'} })
     solver_type: Optional[list[str]] = Field(default=[], description="""Numerical solver used for the microkinetic rate equations (e.g. LSODA,
-stiff ODE solver, steady-state Newton method).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'], 'slot_uri': 'catcore:solver_type'} })
+stiff ODE solver, steady-state Newton method).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'], 'slot_uri': 'coremeta4cat:solver_type'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -19354,18 +19411,18 @@ stiff ODE solver, steady-state Newton method).""", json_schema_extra = { "linkml
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
          'slot_uri': 'AFR:0001584',
          'unit': {'ucum_code': 'Cel'}} })
     pressure: Optional[list[float]] = Field(default=[], description="""Total pressure used in microkinetic or Monte Carlo simulation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'],
-         'slot_uri': 'catcore:pressure',
+         'slot_uri': 'coremeta4cat:pressure',
          'unit': {'ucum_code': 'bar'}} })
-    surface_coverage: Optional[list[float]] = Field(default=[], description="""Surface coverage of adsorbed species (fraction of surface sites occupied).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'], 'slot_uri': 'catcore:surface_coverage'} })
+    surface_coverage: Optional[list[float]] = Field(default=[], description="""Surface coverage of adsorbed species (fraction of surface sites occupied).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'], 'slot_uri': 'coremeta4cat:surface_coverage'} })
     activation_energy: Optional[list[float]] = Field(default=[], description="""Activation energy for each elementary step in the reaction mechanism.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'],
-         'slot_uri': 'catcore:activation_energy',
+         'slot_uri': 'coremeta4cat:activation_energy',
          'unit': {'ucum_code': 'eV'}} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -19457,11 +19514,11 @@ class MonteCarlo(SimulationMethod):
     criterion (e.g. Metropolis). Used for adsorption isotherms, phase diagrams,
     and lattice-based kinetics.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:MonteCarlo',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:MonteCarlo',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
-    interaction_potential: Optional[list[str]] = Field(default=[], description="""Interaction potential or Hamiltonian used to compute energies in MC moves.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'catcore:interaction_potential'} })
-    number_of_steps: Optional[list[int]] = Field(default=[], description="""Total number of Monte Carlo moves or trial configurations generated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'catcore:number_of_steps'} })
+    interaction_potential: Optional[list[str]] = Field(default=[], description="""Interaction potential or Hamiltonian used to compute energies in MC moves.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:interaction_potential'} })
+    number_of_steps: Optional[list[int]] = Field(default=[], description="""Total number of Monte Carlo moves or trial configurations generated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:number_of_steps'} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
@@ -19474,18 +19531,18 @@ class MonteCarlo(SimulationMethod):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
          'slot_uri': 'AFR:0001584',
          'unit': {'ucum_code': 'Cel'}} })
     lattice_size_type: Optional[list[str]] = Field(default=[], description="""Lattice geometry and dimensions used in lattice-based MC (e.g.
-\"100×100 square lattice\", \"hexagonal 50×50\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'catcore:lattice_size_type'} })
+\"100×100 square lattice\", \"hexagonal 50×50\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:lattice_size_type'} })
     acceptance_criteria: Optional[list[str]] = Field(default=[], description="""Criterion for accepting or rejecting MC moves (e.g. Metropolis,
-Kawasaki, heat-bath algorithm).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'catcore:acceptance_criteria'} })
-    equilibration_steps: Optional[list[int]] = Field(default=[], description="""Number of MC steps used for equilibration before data collection begins.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'catcore:equilibration_steps'} })
-    sampling_interval: Optional[list[int]] = Field(default=[], description="""Interval between successive MC snapshots used for property averaging.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'catcore:sampling_interval'} })
+Kawasaki, heat-bath algorithm).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:acceptance_criteria'} })
+    equilibration_steps: Optional[list[int]] = Field(default=[], description="""Number of MC steps used for equilibration before data collection begins.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:equilibration_steps'} })
+    sampling_interval: Optional[list[int]] = Field(default=[], description="""Interval between successive MC snapshots used for property averaging.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:sampling_interval'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -19577,8 +19634,8 @@ class CalculatedProperty(QualitativeAttribute):
     Linked from Simulation via the calculated_property slot.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
-         'class_uri': 'catcore:CalculatedProperty',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/'})
+         'class_uri': 'coremeta4cat:CalculatedProperty',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -19672,24 +19729,24 @@ class ThermodynamicStability(CalculatedProperty):
     energy, convex hull distance, and competing phases. Used to screen catalyst
     stability and predict synthesis feasibility.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:ThermodynamicStability',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:ThermodynamicStability',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
     formation_energy: Optional[list[float]] = Field(default=[], description="""Formation energy per atom relative to elemental reference states.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermodynamicStability'],
-         'slot_uri': 'catcore:formation_energy',
+         'slot_uri': 'coremeta4cat:formation_energy',
          'unit': {'ucum_code': 'eV'}} })
     reference_energies: Optional[list[str]] = Field(default=[], description="""Elemental reference energies used to compute formation energies
 (e.g. DFT total energies of elemental ground-state structures).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermodynamicStability'],
-         'slot_uri': 'catcore:reference_energies'} })
+         'slot_uri': 'coremeta4cat:reference_energies'} })
     energy_above_hull: Optional[list[float]] = Field(default=[], description="""Distance above the convex hull of stable phases (thermodynamic stability
 metric). Zero for phases on the hull; positive values indicate metastability.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermodynamicStability'],
-         'slot_uri': 'catcore:energy_above_hull',
+         'slot_uri': 'coremeta4cat:energy_above_hull',
          'unit': {'ucum_code': 'eV'}} })
     phase_diagram_type: Optional[list[str]] = Field(default=[], description="""Type of phase diagram constructed (e.g. binary, ternary, quaternary).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermodynamicStability'],
-         'slot_uri': 'catcore:phase_diagram_type'} })
+         'slot_uri': 'coremeta4cat:phase_diagram_type'} })
     competing_phases: Optional[list[str]] = Field(default=[], description="""List of stable competing phases used in convex hull construction
 (e.g. \"Fe2O3, Fe3O4, FeO, Fe\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermodynamicStability'],
-         'slot_uri': 'catcore:competing_phases'} })
+         'slot_uri': 'coremeta4cat:competing_phases'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -19781,16 +19838,17 @@ class Piezoelectricity(CalculatedProperty):
     Piezoelectric response of a non-centrosymmetric material, described by the
     piezoelectric tensor. Relevant for piezocatalysis applications.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:Piezoelectricity',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:Piezoelectricity',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
     piezoelectric_tensor: Optional[list[str]] = Field(default=[], description="""Components of the piezoelectric tensor e_ij (C/m²) or d_ij (pC/N),
-describing the coupling between stress and electric polarization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Piezoelectricity'], 'slot_uri': 'catcore:piezoelectric_tensor'} })
-    crystal_symmetry: Optional[list[str]] = Field(default=[], description="""Point group or space group symmetry of the crystal structure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Piezoelectricity'], 'slot_uri': 'catcore:crystal_symmetry'} })
-    strain_applied: Optional[list[float]] = Field(default=[], description="""Magnitude of applied strain in the piezoelectric calculation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Piezoelectricity'], 'slot_uri': 'catcore:strain_applied'} })
+describing the coupling between stress and electric polarization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Piezoelectricity'],
+         'slot_uri': 'coremeta4cat:piezoelectric_tensor'} })
+    crystal_symmetry: Optional[list[str]] = Field(default=[], description="""Point group or space group symmetry of the crystal structure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Piezoelectricity'], 'slot_uri': 'coremeta4cat:crystal_symmetry'} })
+    strain_applied: Optional[list[float]] = Field(default=[], description="""Magnitude of applied strain in the piezoelectric calculation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Piezoelectricity'], 'slot_uri': 'coremeta4cat:strain_applied'} })
     ionic_electronic_contributions: Optional[list[str]] = Field(default=[], description="""Decomposition of the piezoelectric or dielectric response into ionic
 (nuclear) and electronic contributions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Piezoelectricity'],
-         'slot_uri': 'catcore:ionic_electronic_contributions'} })
+         'slot_uri': 'coremeta4cat:ionic_electronic_contributions'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -19882,20 +19940,20 @@ class ElasticConstants(CalculatedProperty):
     Elastic mechanical properties of a material derived from the elastic tensor,
     including bulk modulus, shear modulus, and Young's modulus.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:ElasticConstants',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:ElasticConstants',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
     elastic_tensor: Optional[list[str]] = Field(default=[], description="""Full Voigt-notation elastic tensor C_ij (GPa) describing the linear
-elastic response of the material.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElasticConstants'], 'slot_uri': 'catcore:elastic_tensor'} })
+elastic response of the material.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElasticConstants'], 'slot_uri': 'coremeta4cat:elastic_tensor'} })
     bulk_modulus: Optional[list[float]] = Field(default=[], description="""Bulk modulus (resistance to uniform compression).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElasticConstants', 'EquationsOfState'],
-         'slot_uri': 'catcore:bulk_modulus',
+         'slot_uri': 'coremeta4cat:bulk_modulus',
          'unit': {'ucum_code': 'GPa'}} })
     shear_modulus: Optional[list[float]] = Field(default=[], description="""Shear modulus (resistance to shear deformation).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElasticConstants'],
-         'slot_uri': 'catcore:shear_modulus',
+         'slot_uri': 'coremeta4cat:shear_modulus',
          'unit': {'ucum_code': 'GPa'}} })
-    poisson_ratio: Optional[list[float]] = Field(default=[], description="""Poisson's ratio (ratio of transverse to axial strain under uniaxial load).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElasticConstants'], 'slot_uri': 'catcore:poisson_ratio'} })
+    poisson_ratio: Optional[list[float]] = Field(default=[], description="""Poisson's ratio (ratio of transverse to axial strain under uniaxial load).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElasticConstants'], 'slot_uri': 'coremeta4cat:poisson_ratio'} })
     young_modulus: Optional[list[float]] = Field(default=[], description="""Young's modulus (stiffness under uniaxial tension or compression).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElasticConstants'],
-         'slot_uri': 'catcore:young_modulus',
+         'slot_uri': 'coremeta4cat:young_modulus',
          'unit': {'ucum_code': 'GPa'}} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -19989,23 +20047,24 @@ class Surfaces(CalculatedProperty):
     including surface energy, Miller index, slab thickness, and vacuum spacing.
     Central to heterogeneous catalysis modelling.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:Surfaces',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:Surfaces',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
     surface_energy: Optional[list[float]] = Field(default=[], description="""Cleavage energy per unit area required to create the surface from the bulk.
 A lower value indicates a more stable surface facet.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces'],
-         'slot_uri': 'catcore:surface_energy',
+         'slot_uri': 'coremeta4cat:surface_energy',
          'unit': {'ucum_code': 'J/m2'}} })
-    miller_indices: Optional[list[str]] = Field(default=[], description="""Miller indices of the modelled surface facet (e.g. \"(111)\", \"(110)\", \"(100)\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces'], 'slot_uri': 'catcore:miller_indices'} })
+    miller_indices: Optional[list[str]] = Field(default=[], description="""Miller indices of the modelled surface facet (e.g. \"(111)\", \"(110)\", \"(100)\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces'], 'slot_uri': 'coremeta4cat:miller_indices'} })
     slab_thickness: Optional[list[float]] = Field(default=[], description="""Thickness of the periodic slab model used to represent the surface.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces'],
-         'slot_uri': 'catcore:slab_thickness',
+         'slot_uri': 'coremeta4cat:slab_thickness',
          'unit': {'ucum_code': 'Ao'}} })
     vacuum_spacing: Optional[list[float]] = Field(default=[], description="""Vacuum layer thickness added above the slab to prevent spurious
 periodic interactions between slab images.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces'],
-         'slot_uri': 'catcore:vacuum_spacing',
+         'slot_uri': 'coremeta4cat:vacuum_spacing',
          'unit': {'ucum_code': 'Ao'}} })
     surface_termination_method: Optional[list[str]] = Field(default=[], description="""Method used to terminate the slab and handle dangling bonds
-(e.g. H-passivation, OH-termination, dipole correction).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces'], 'slot_uri': 'catcore:surface_termination_method'} })
+(e.g. H-passivation, OH-termination, dipole correction).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces'],
+         'slot_uri': 'coremeta4cat:surface_termination_method'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -20097,28 +20156,29 @@ class DielectricTensors(CalculatedProperty, DFTSettingsMixin, MaterialDescriptor
     Dielectric tensor computed from density functional perturbation theory (DFPT).
     Characterises the optical and static dielectric response of a material.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:DielectricTensors',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:DielectricTensors',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'mixins': ['MaterialDescriptorMixin', 'DFTSettingsMixin']})
 
     dielectric_tensor: Optional[list[str]] = Field(default=[], description="""Components of the static and/or high-frequency dielectric tensor epsilon_ij,
-computed from DFPT.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DielectricTensors'], 'slot_uri': 'catcore:dielectric_tensor'} })
+computed from DFPT.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DielectricTensors'],
+         'slot_uri': 'coremeta4cat:dielectric_tensor'} })
     born_effective_charges: Optional[list[str]] = Field(default=[], description="""Born effective charge tensors Z*_ij for each atom, describing how
 the polarization changes with atomic displacements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DielectricTensors'],
-         'slot_uri': 'catcore:born_effective_charges'} })
+         'slot_uri': 'coremeta4cat:born_effective_charges'} })
     material_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
-         'slot_uri': 'catcore:material_composition'} })
+         'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
 lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     energy_cutoff: Optional[list[float]] = Field(default=[], description="""Plane-wave kinetic energy cutoff for the basis set expansion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:energy_cutoff',
+         'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
 geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:convergence_criteria'} })
+         'slot_uri': 'coremeta4cat:convergence_criteria'} })
     k_point_mesh: Optional[list[str]] = Field(default=[], description="""Monkhorst-Pack k-point mesh used for Brillouin zone sampling
-(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'catcore:k_point_mesh'} })
+(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -20211,22 +20271,23 @@ class PhononDispersion(CalculatedProperty, MaterialDescriptorMixin):
     providing access to vibrational frequencies, thermodynamic quantities,
     and dynamical stability (imaginary modes).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:PhononDispersion',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:PhononDispersion',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'mixins': ['MaterialDescriptorMixin']})
 
     force_constant_method: Optional[list[str]] = Field(default=[], description="""Method used to compute the interatomic force constants (e.g. finite
-differences / supercell method, DFPT/linear response).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhononDispersion'], 'slot_uri': 'catcore:force_constant_method'} })
+differences / supercell method, DFPT/linear response).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhononDispersion'],
+         'slot_uri': 'coremeta4cat:force_constant_method'} })
     kq_point_mesh: Optional[list[str]] = Field(default=[], description="""k/q-point mesh for phonon Brillouin zone sampling (e.g. \"8×8×8\").
-Distinct from the electronic k-point mesh.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhononDispersion'], 'slot_uri': 'catcore:kq_point_mesh'} })
+Distinct from the electronic k-point mesh.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhononDispersion'], 'slot_uri': 'coremeta4cat:kq_point_mesh'} })
     smearing_parameter: Optional[list[float]] = Field(default=[], description="""Smearing or broadening parameter applied to the phonon density of states.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhononDispersion'],
-         'slot_uri': 'catcore:smearing_parameter',
+         'slot_uri': 'coremeta4cat:smearing_parameter',
          'unit': {'ucum_code': 'eV'}} })
     imaginary_modes: Optional[list[bool]] = Field(default=[], description="""Whether imaginary (soft) phonon modes are present in the dispersion.
-Imaginary modes indicate dynamical instability of the structure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhononDispersion'], 'slot_uri': 'catcore:imaginary_modes'} })
+Imaginary modes indicate dynamical instability of the structure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhononDispersion'], 'slot_uri': 'coremeta4cat:imaginary_modes'} })
     material_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
-         'slot_uri': 'catcore:material_composition'} })
+         'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
 lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
@@ -20321,30 +20382,31 @@ class EquationsOfState(CalculatedProperty, DFTSettingsMixin, MaterialDescriptorM
     parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium
     volume, bulk modulus, and its pressure derivative.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:EquationsOfState',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:EquationsOfState',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'mixins': ['MaterialDescriptorMixin', 'DFTSettingsMixin']})
 
     fit_method: Optional[list[str]] = Field(default=[], description="""Parametric model used to fit the energy-volume curve
-(e.g. Birch-Murnaghan 3rd order, Vinet, Murnaghan).""", json_schema_extra = { "linkml_meta": {'domain_of': ['EquationsOfState'], 'slot_uri': 'catcore:fit_method'} })
+(e.g. Birch-Murnaghan 3rd order, Vinet, Murnaghan).""", json_schema_extra = { "linkml_meta": {'domain_of': ['EquationsOfState'], 'slot_uri': 'coremeta4cat:fit_method'} })
     bulk_modulus: Optional[list[float]] = Field(default=[], description="""Bulk modulus (resistance to uniform compression).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElasticConstants', 'EquationsOfState'],
-         'slot_uri': 'catcore:bulk_modulus',
+         'slot_uri': 'coremeta4cat:bulk_modulus',
          'unit': {'ucum_code': 'GPa'}} })
-    pressure_derivative: Optional[list[float]] = Field(default=[], description="""Pressure derivative of the bulk modulus B' (dimensionless).""", json_schema_extra = { "linkml_meta": {'domain_of': ['EquationsOfState'], 'slot_uri': 'catcore:pressure_derivative'} })
-    fit_residuals: Optional[list[float]] = Field(default=[], description="""Root-mean-square residuals of the energy-volume fit.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EquationsOfState'], 'slot_uri': 'catcore:fit_residuals'} })
+    pressure_derivative: Optional[list[float]] = Field(default=[], description="""Pressure derivative of the bulk modulus B' (dimensionless).""", json_schema_extra = { "linkml_meta": {'domain_of': ['EquationsOfState'],
+         'slot_uri': 'coremeta4cat:pressure_derivative'} })
+    fit_residuals: Optional[list[float]] = Field(default=[], description="""Root-mean-square residuals of the energy-volume fit.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EquationsOfState'], 'slot_uri': 'coremeta4cat:fit_residuals'} })
     material_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
-         'slot_uri': 'catcore:material_composition'} })
+         'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
 lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     energy_cutoff: Optional[list[float]] = Field(default=[], description="""Plane-wave kinetic energy cutoff for the basis set expansion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:energy_cutoff',
+         'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
 geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:convergence_criteria'} })
+         'slot_uri': 'coremeta4cat:convergence_criteria'} })
     k_point_mesh: Optional[list[str]] = Field(default=[], description="""Monkhorst-Pack k-point mesh used for Brillouin zone sampling
-(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'catcore:k_point_mesh'} })
+(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -20437,17 +20499,17 @@ class AqueousStability(CalculatedProperty, MaterialDescriptorMixin):
     a function of pH and electrode potential. Critical for electrocatalyst
     stability screening.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:AqueousStability',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:AqueousStability',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'mixins': ['MaterialDescriptorMixin']})
 
-    ph_range: Optional[list[str]] = Field(default=[], description="""pH range covered in the Pourbaix stability diagram (e.g. \"0–14\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'], 'slot_uri': 'catcore:ph_range'} })
+    ph_range: Optional[list[str]] = Field(default=[], description="""pH range covered in the Pourbaix stability diagram (e.g. \"0–14\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'], 'slot_uri': 'coremeta4cat:ph_range'} })
     potential_range: Optional[list[str]] = Field(default=[], description="""Electrode potential range covered in the Pourbaix diagram
-(e.g. \"-2 to +2 V vs SHE\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'], 'slot_uri': 'catcore:potential_range'} })
+(e.g. \"-2 to +2 V vs SHE\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'], 'slot_uri': 'coremeta4cat:potential_range'} })
     solvation_model: Optional[list[str]] = Field(default=[], description="""Implicit solvation model used to account for aqueous environment
-(e.g. VASPsol, SCCS/Environ, COSMO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'], 'slot_uri': 'catcore:solvation_model'} })
+(e.g. VASPsol, SCCS/Environ, COSMO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'], 'slot_uri': 'coremeta4cat:solvation_model'} })
     ionic_strength: Optional[list[float]] = Field(default=[], description="""Ionic strength of the electrolyte solution modelled.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'],
-         'slot_uri': 'catcore:ionic_strength',
+         'slot_uri': 'coremeta4cat:ionic_strength',
          'unit': {'ucum_code': 'mol/L'}} })
     temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
@@ -20461,7 +20523,7 @@ class AqueousStability(CalculatedProperty, MaterialDescriptorMixin):
                        'NMRSpectroscopy',
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
-                       'HPLC_MS',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
@@ -20469,7 +20531,7 @@ class AqueousStability(CalculatedProperty, MaterialDescriptorMixin):
          'unit': {'ucum_code': 'Cel'}} })
     material_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
-         'slot_uri': 'catcore:material_composition'} })
+         'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
 lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
@@ -20564,29 +20626,32 @@ class GrainBoundaries(CalculatedProperty, MaterialDescriptorMixin):
     Relevant for understanding polycrystalline catalyst behaviour,
     sintering, and charge/defect segregation.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:GrainBoundaries',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:GrainBoundaries',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'mixins': ['MaterialDescriptorMixin']})
 
     grain_boundary_plane: Optional[list[str]] = Field(default=[], description="""Crystallographic plane of the grain boundary, expressed using
-Miller indices (e.g. \"Sigma5 (310)[001]\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'], 'slot_uri': 'catcore:grain_boundary_plane'} })
+Miller indices (e.g. \"Sigma5 (310)[001]\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'],
+         'slot_uri': 'coremeta4cat:grain_boundary_plane'} })
     misorientation_angle: Optional[list[float]] = Field(default=[], description="""Misorientation angle between adjacent grains at the boundary.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'],
-         'slot_uri': 'catcore:misorientation_angle',
+         'slot_uri': 'coremeta4cat:misorientation_angle',
          'unit': {'ucum_code': 'deg'}} })
     grain_boundary_energy: Optional[list[float]] = Field(default=[], description="""Excess energy per unit area of the grain boundary.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'],
-         'slot_uri': 'catcore:grain_boundary_energy',
+         'slot_uri': 'coremeta4cat:grain_boundary_energy',
          'unit': {'ucum_code': 'J/m2'}} })
     simulation_cell_size: Optional[list[str]] = Field(default=[], description="""Dimensions of the simulation cell used to model the grain boundary
-(e.g. \"10×10×30 nm\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'], 'slot_uri': 'catcore:simulation_cell_size'} })
-    gb_excess_volume: Optional[list[float]] = Field(default=[], description="""Excess volume per unit area associated with the grain boundary.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'], 'slot_uri': 'catcore:gb_excess_volume'} })
+(e.g. \"10×10×30 nm\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'],
+         'slot_uri': 'coremeta4cat:simulation_cell_size'} })
+    gb_excess_volume: Optional[list[float]] = Field(default=[], description="""Excess volume per unit area associated with the grain boundary.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'], 'slot_uri': 'coremeta4cat:gb_excess_volume'} })
     gb_structural_units: Optional[list[str]] = Field(default=[], description="""Description of the structural units (repeating atomic motifs) that
-constitute the grain boundary structure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'], 'slot_uri': 'catcore:gb_structural_units'} })
+constitute the grain boundary structure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'],
+         'slot_uri': 'coremeta4cat:gb_structural_units'} })
     charge_defect_segregation: Optional[list[str]] = Field(default=[], description="""Data describing charge carrier or point defect segregation behaviour
 at the grain boundary (e.g. segregation energy per defect type).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'],
-         'slot_uri': 'catcore:charge_defect_segregation'} })
+         'slot_uri': 'coremeta4cat:charge_defect_segregation'} })
     material_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
-         'slot_uri': 'catcore:material_composition'} })
+         'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
 lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
@@ -20681,32 +20746,34 @@ class ElectronicStructure(CalculatedProperty, DFTSettingsMixin, MaterialDescript
     electronic properties of a catalyst relevant to activity descriptors
     (d-band centre, band gap, Fermi energy).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:ElectronicStructure',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:ElectronicStructure',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'mixins': ['MaterialDescriptorMixin', 'DFTSettingsMixin']})
 
     smearing_method: Optional[list[str]] = Field(default=[], description="""Electronic smearing scheme and width used in the SCF calculation
-(e.g. Methfessel-Paxton order 1 with sigma=0.2 eV, Gaussian with sigma=0.05 eV).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronicStructure'], 'slot_uri': 'catcore:smearing_method'} })
+(e.g. Methfessel-Paxton order 1 with sigma=0.2 eV, Gaussian with sigma=0.05 eV).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronicStructure'],
+         'slot_uri': 'coremeta4cat:smearing_method'} })
     spin_polarized: Optional[list[bool]] = Field(default=[], description="""Whether the electronic structure calculation is spin-polarized
-(accounts for spin-up and spin-down electrons separately).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronicStructure'], 'slot_uri': 'catcore:spin_polarized'} })
+(accounts for spin-up and spin-down electrons separately).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronicStructure'],
+         'slot_uri': 'coremeta4cat:spin_polarized'} })
     band_path: Optional[list[str]] = Field(default=[], description="""High-symmetry k-path through the Brillouin zone used to plot the
-band structure (e.g. \"Gamma-X-M-Gamma-R\" for cubic, following SeeK-path convention).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronicStructure'], 'slot_uri': 'catcore:band_path'} })
+band structure (e.g. \"Gamma-X-M-Gamma-R\" for cubic, following SeeK-path convention).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronicStructure'], 'slot_uri': 'coremeta4cat:band_path'} })
     fermi_energy: Optional[list[float]] = Field(default=[], description="""Fermi energy (chemical potential of electrons) in the calculated system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronicStructure'],
-         'slot_uri': 'catcore:fermi_energy',
+         'slot_uri': 'coremeta4cat:fermi_energy',
          'unit': {'ucum_code': 'eV'}} })
     material_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
-         'slot_uri': 'catcore:material_composition'} })
+         'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
 lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     energy_cutoff: Optional[list[float]] = Field(default=[], description="""Plane-wave kinetic energy cutoff for the basis set expansion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:energy_cutoff',
+         'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
 geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:convergence_criteria'} })
+         'slot_uri': 'coremeta4cat:convergence_criteria'} })
     k_point_mesh: Optional[list[str]] = Field(default=[], description="""Monkhorst-Pack k-point mesh used for Brillouin zone sampling
-(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'catcore:k_point_mesh'} })
+(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -20799,27 +20866,30 @@ class Ferroelectrics(CalculatedProperty, MaterialDescriptorMixin):
     polarization, switching barrier, and coercive field. Relevant for
     ferroelectric-photocatalyst design.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:Ferroelectrics',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:Ferroelectrics',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'mixins': ['MaterialDescriptorMixin']})
 
     polarization_direction: Optional[list[str]] = Field(default=[], description="""Crystallographic direction of the spontaneous electric polarization
-(e.g. \"[001]\" for tetragonal BaTiO_3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Ferroelectrics'], 'slot_uri': 'catcore:polarization_direction'} })
+(e.g. \"[001]\" for tetragonal BaTiO_3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Ferroelectrics'],
+         'slot_uri': 'coremeta4cat:polarization_direction'} })
     spontaneous_polarization: Optional[list[float]] = Field(default=[], description="""Magnitude of the spontaneous electric polarization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Ferroelectrics'],
-         'slot_uri': 'catcore:spontaneous_polarization',
+         'slot_uri': 'coremeta4cat:spontaneous_polarization',
          'unit': {'ucum_code': 'uC/cm2'}} })
     reference_structure: Optional[list[str]] = Field(default=[], description="""Reference (paraelectric/centrosymmetric) structure used as the zero-
-polarization endpoint in the Berry-phase polarization calculation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Ferroelectrics'], 'slot_uri': 'catcore:reference_structure'} })
+polarization endpoint in the Berry-phase polarization calculation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Ferroelectrics'],
+         'slot_uri': 'coremeta4cat:reference_structure'} })
     switching_barrier: Optional[list[float]] = Field(default=[], description="""Energy barrier for polarization switching between equivalent states.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Ferroelectrics'],
-         'slot_uri': 'catcore:switching_barrier',
+         'slot_uri': 'coremeta4cat:switching_barrier',
          'unit': {'ucum_code': 'eV'}} })
     coercive_field: Optional[list[float]] = Field(default=[], description="""Electric field required to reverse the polarization direction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Ferroelectrics'],
-         'slot_uri': 'catcore:coercive_field',
+         'slot_uri': 'coremeta4cat:coercive_field',
          'unit': {'ucum_code': 'kV/cm'}} })
-    temperature_dependence: Optional[list[str]] = Field(default=[], description="""Description of how the ferroelectric properties vary with temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Ferroelectrics'], 'slot_uri': 'catcore:temperature_dependence'} })
+    temperature_dependence: Optional[list[str]] = Field(default=[], description="""Description of how the ferroelectric properties vary with temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Ferroelectrics'],
+         'slot_uri': 'coremeta4cat:temperature_dependence'} })
     material_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
-         'slot_uri': 'catcore:material_composition'} })
+         'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
 lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
@@ -20914,41 +20984,41 @@ class BandGap(CalculatedProperty, DFTSettingsMixin, MaterialDescriptorMixin):
     many-body (GW) or excitonic corrections. Critical for photocatalyst
     and semiconductor catalyst screening.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'catcore:BandGap',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore/simulation/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:BandGap',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'mixins': ['MaterialDescriptorMixin', 'DFTSettingsMixin']})
 
     material_sample: Optional[list[str]] = Field(default=[], description="""Reference to the material or MaterialSample being characterised by this
 calculated band gap.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'], 'slot_uri': 'VOC4CAT:0005056'} })
     structure_model: Optional[list[str]] = Field(default=[], description="""Model structure used in the band gap calculation (e.g. bulk unit cell,
-surface slab, defect supercell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'], 'slot_uri': 'catcore:structure_model'} })
+surface slab, defect supercell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'], 'slot_uri': 'coremeta4cat:structure_model'} })
     smearing_broadening: Optional[list[float]] = Field(default=[], description="""Gaussian or Lorentzian broadening applied to the simulated spectrum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'],
-         'slot_uri': 'catcore:smearing_broadening',
+         'slot_uri': 'coremeta4cat:smearing_broadening',
          'unit': {'ucum_code': 'eV'}} })
     direct_indirect: Optional[list[str]] = Field(default=[], description="""Band gap character: \"direct\" (VBM and CBM at same k-point) or
-\"indirect\" (VBM and CBM at different k-points).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'], 'slot_uri': 'catcore:direct_indirect'} })
+\"indirect\" (VBM and CBM at different k-points).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'], 'slot_uri': 'coremeta4cat:direct_indirect'} })
     experimental_reference: Optional[list[float]] = Field(default=[], description="""Experimental band gap value used for benchmarking the calculation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'],
-         'slot_uri': 'catcore:experimental_reference',
+         'slot_uri': 'coremeta4cat:experimental_reference',
          'unit': {'ucum_code': 'eV'}} })
     gw_hybrid_correction: Optional[list[bool]] = Field(default=[], description="""Whether a many-body GW correction or hybrid functional (e.g. HSE06)
-was applied to correct the DFT band gap underestimation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'], 'slot_uri': 'catcore:gw_hybrid_correction'} })
+was applied to correct the DFT band gap underestimation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'], 'slot_uri': 'coremeta4cat:gw_hybrid_correction'} })
     excitonic_correction: Optional[list[float]] = Field(default=[], description="""Excitonic correction (from Bethe-Salpeter equation) applied to the
 optical band gap.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'],
-         'slot_uri': 'catcore:excitonic_correction',
+         'slot_uri': 'coremeta4cat:excitonic_correction',
          'unit': {'ucum_code': 'eV'}} })
     material_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
-         'slot_uri': 'catcore:material_composition'} })
+         'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
 lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     energy_cutoff: Optional[list[float]] = Field(default=[], description="""Plane-wave kinetic energy cutoff for the basis set expansion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:energy_cutoff',
+         'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
 geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
-         'slot_uri': 'catcore:convergence_criteria'} })
+         'slot_uri': 'coremeta4cat:convergence_criteria'} })
     k_point_mesh: Optional[list[str]] = Field(default=[], description="""Monkhorst-Pack k-point mesh used for Brillouin zone sampling
-(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'catcore:k_point_mesh'} })
+(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Any',
@@ -21046,12 +21116,12 @@ class CatalysisDataset(Dataset):
         id: VOC4CAT:0007001
         title: \"heterogeneous catalysis\"
 
-    The four CatCore minimum information pillars are linked via the slots
+    The four CoreMeta4Cat minimum information pillars are linked via the slots
     below, each pointing to the corresponding DataGeneratingActivity or
-    EvaluatedActivity subclass defined in the CatCore subprofile modules.
+    EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'dcat:Dataset',
-         'from_schema': 'https://w3id.org/nfdi4cat/catcore',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat',
          'slot_usage': {'is_about_activity': {'description': 'The catalytic Reaction '
                                                              'that this dataset is '
                                                              'about (e.g. a dataset '
@@ -21356,10 +21426,10 @@ PhotoluminescenceLifetime.model_rebuild()
 CyclicVoltammetry.model_rebuild()
 ConductivityMeasurement.model_rebuild()
 DynamicLightScattering.model_rebuild()
-ESIMS.model_rebuild()
+ElectroSprayIonizationMassSpectrometry.model_rebuild()
 GCMS.model_rebuild()
 SizeExclusionChromatography.model_rebuild()
-HPLCMS.model_rebuild()
+HighPerformanceLiquidChromatographyMassSpectrometry.model_rebuild()
 ProductIdentificationMethod.model_rebuild()
 QualitativeAttribute.model_rebuild()
 QuantitativeAttribute.model_rebuild()

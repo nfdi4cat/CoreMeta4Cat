@@ -42,12 +42,12 @@ LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.
 
 **Cardinality:**  Mandatory, Multivalued
 
-**CURIE:** [`catcore:software_package`](https://w3id.org/nfdi4cat/catcore/software_package)
+**CURIE:** [`coremeta4cat:software_package`](https://w3id.org/nfdi4cat/coremeta4cat/software_package)
 
-**Schema Reference:** [software_package](./elements/software_package.md)
+**Schema Reference:** [software_package](./elements/slots/software_package.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20software_package target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20software_package target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -62,9 +62,9 @@ instance. Multiple properties may be computed in a single simulation run.
 
 **Cardinality:**  Mandatory, Multivalued
 
-**CURIE:** [`catcore:calculated_property`](https://w3id.org/nfdi4cat/catcore/calculated_property)
+**CURIE:** [`coremeta4cat:calculated_property`](https://w3id.org/nfdi4cat/coremeta4cat/calculated_property)
 
-**Schema Reference:** [calculated_property](./elements/calculated_property.md)
+**Schema Reference:** [calculated_property](./elements/slots/calculated_property.md)
 
 **Data Type Class Details:**
 
@@ -78,12 +78,12 @@ Simulation. Concrete subclasses carry the property-specific output
 values and the computational settings used to produce them.
 Linked from Simulation via the calculated_property slot.
 
-**CURIE:** [`catcore:CalculatedProperty`](https://w3id.org/nfdi4cat/catcore/CalculatedProperty)
+**CURIE:** [`coremeta4cat:CalculatedProperty`](https://w3id.org/nfdi4cat/coremeta4cat/CalculatedProperty)
 
-**Schema Reference:** [CalculatedProperty](./elements/CalculatedProperty.md)
+**Schema Reference:** [CalculatedProperty](./elements/classes/CalculatedProperty.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalculatedProperty target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalculatedProperty target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -97,9 +97,9 @@ Linked from Simulation via the calculated_property slot.
 energy, convex hull distance, and competing phases. Used to screen catalyst
 stability and predict synthesis feasibility.
 
-**CURIE:** [`catcore:ThermodynamicStability`](https://w3id.org/nfdi4cat/catcore/ThermodynamicStability)
+**CURIE:** [`coremeta4cat:ThermodynamicStability`](https://w3id.org/nfdi4cat/coremeta4cat/ThermodynamicStability)
 
-**Schema Reference:** [ThermodynamicStability](./elements/ThermodynamicStability.md)
+**Schema Reference:** [ThermodynamicStability](./elements/classes/ThermodynamicStability.md)
 
 **Slots**
 
@@ -112,14 +112,14 @@ stability and predict synthesis feasibility.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:formation_energy`](https://w3id.org/nfdi4cat/catcore/formation_energy)
+**CURIE:** [`coremeta4cat:formation_energy`](https://w3id.org/nfdi4cat/coremeta4cat/formation_energy)
 
-**Schema Reference:** [formation_energy](./elements/formation_energy.md)
+**Schema Reference:** [formation_energy](./elements/slots/formation_energy.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20formation_energy target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20formation_energy target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -134,12 +134,12 @@ stability and predict synthesis feasibility.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:reference_energies`](https://w3id.org/nfdi4cat/catcore/reference_energies)
+**CURIE:** [`coremeta4cat:reference_energies`](https://w3id.org/nfdi4cat/coremeta4cat/reference_energies)
 
-**Schema Reference:** [reference_energies](./elements/reference_energies.md)
+**Schema Reference:** [reference_energies](./elements/slots/reference_energies.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reference_energies target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reference_energies target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -154,14 +154,14 @@ metric). Zero for phases on the hull; positive values indicate metastability.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:energy_above_hull`](https://w3id.org/nfdi4cat/catcore/energy_above_hull)
+**CURIE:** [`coremeta4cat:energy_above_hull`](https://w3id.org/nfdi4cat/coremeta4cat/energy_above_hull)
 
-**Schema Reference:** [energy_above_hull](./elements/energy_above_hull.md)
+**Schema Reference:** [energy_above_hull](./elements/slots/energy_above_hull.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_above_hull target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_above_hull target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -175,12 +175,12 @@ metric). Zero for phases on the hull; positive values indicate metastability.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:phase_diagram_type`](https://w3id.org/nfdi4cat/catcore/phase_diagram_type)
+**CURIE:** [`coremeta4cat:phase_diagram_type`](https://w3id.org/nfdi4cat/coremeta4cat/phase_diagram_type)
 
-**Schema Reference:** [phase_diagram_type](./elements/phase_diagram_type.md)
+**Schema Reference:** [phase_diagram_type](./elements/slots/phase_diagram_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20phase_diagram_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20phase_diagram_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -195,18 +195,18 @@ metric). Zero for phases on the hull; positive values indicate metastability.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:competing_phases`](https://w3id.org/nfdi4cat/catcore/competing_phases)
+**CURIE:** [`coremeta4cat:competing_phases`](https://w3id.org/nfdi4cat/coremeta4cat/competing_phases)
 
-**Schema Reference:** [competing_phases](./elements/competing_phases.md)
+**Schema Reference:** [competing_phases](./elements/slots/competing_phases.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20competing_phases target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20competing_phases target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ThermodynamicStability target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ThermodynamicStability target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -217,9 +217,9 @@ metric). Zero for phases on the hull; positive values indicate metastability.
 **Description:** Piezoelectric response of a non-centrosymmetric material, described by the
 piezoelectric tensor. Relevant for piezocatalysis applications.
 
-**CURIE:** [`catcore:Piezoelectricity`](https://w3id.org/nfdi4cat/catcore/Piezoelectricity)
+**CURIE:** [`coremeta4cat:Piezoelectricity`](https://w3id.org/nfdi4cat/coremeta4cat/Piezoelectricity)
 
-**Schema Reference:** [Piezoelectricity](./elements/Piezoelectricity.md)
+**Schema Reference:** [Piezoelectricity](./elements/classes/Piezoelectricity.md)
 
 **Slots**
 
@@ -233,12 +233,12 @@ describing the coupling between stress and electric polarization.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:piezoelectric_tensor`](https://w3id.org/nfdi4cat/catcore/piezoelectric_tensor)
+**CURIE:** [`coremeta4cat:piezoelectric_tensor`](https://w3id.org/nfdi4cat/coremeta4cat/piezoelectric_tensor)
 
-**Schema Reference:** [piezoelectric_tensor](./elements/piezoelectric_tensor.md)
+**Schema Reference:** [piezoelectric_tensor](./elements/slots/piezoelectric_tensor.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20piezoelectric_tensor target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20piezoelectric_tensor target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -252,12 +252,12 @@ describing the coupling between stress and electric polarization.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:crystal_symmetry`](https://w3id.org/nfdi4cat/catcore/crystal_symmetry)
+**CURIE:** [`coremeta4cat:crystal_symmetry`](https://w3id.org/nfdi4cat/coremeta4cat/crystal_symmetry)
 
-**Schema Reference:** [crystal_symmetry](./elements/crystal_symmetry.md)
+**Schema Reference:** [crystal_symmetry](./elements/slots/crystal_symmetry.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_symmetry target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_symmetry target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -271,12 +271,12 @@ describing the coupling between stress and electric polarization.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:strain_applied`](https://w3id.org/nfdi4cat/catcore/strain_applied)
+**CURIE:** [`coremeta4cat:strain_applied`](https://w3id.org/nfdi4cat/coremeta4cat/strain_applied)
 
-**Schema Reference:** [strain_applied](./elements/strain_applied.md)
+**Schema Reference:** [strain_applied](./elements/slots/strain_applied.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20strain_applied target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20strain_applied target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -291,18 +291,18 @@ describing the coupling between stress and electric polarization.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:ionic_electronic_contributions`](https://w3id.org/nfdi4cat/catcore/ionic_electronic_contributions)
+**CURIE:** [`coremeta4cat:ionic_electronic_contributions`](https://w3id.org/nfdi4cat/coremeta4cat/ionic_electronic_contributions)
 
-**Schema Reference:** [ionic_electronic_contributions](./elements/ionic_electronic_contributions.md)
+**Schema Reference:** [ionic_electronic_contributions](./elements/slots/ionic_electronic_contributions.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ionic_electronic_contributions target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ionic_electronic_contributions target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Piezoelectricity target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Piezoelectricity target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -313,9 +313,9 @@ describing the coupling between stress and electric polarization.
 **Description:** Elastic mechanical properties of a material derived from the elastic tensor,
 including bulk modulus, shear modulus, and Young's modulus.
 
-**CURIE:** [`catcore:ElasticConstants`](https://w3id.org/nfdi4cat/catcore/ElasticConstants)
+**CURIE:** [`coremeta4cat:ElasticConstants`](https://w3id.org/nfdi4cat/coremeta4cat/ElasticConstants)
 
-**Schema Reference:** [ElasticConstants](./elements/ElasticConstants.md)
+**Schema Reference:** [ElasticConstants](./elements/classes/ElasticConstants.md)
 
 **Slots**
 
@@ -329,12 +329,12 @@ elastic response of the material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:elastic_tensor`](https://w3id.org/nfdi4cat/catcore/elastic_tensor)
+**CURIE:** [`coremeta4cat:elastic_tensor`](https://w3id.org/nfdi4cat/coremeta4cat/elastic_tensor)
 
-**Schema Reference:** [elastic_tensor](./elements/elastic_tensor.md)
+**Schema Reference:** [elastic_tensor](./elements/slots/elastic_tensor.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20elastic_tensor target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20elastic_tensor target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -348,14 +348,14 @@ elastic response of the material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:bulk_modulus`](https://w3id.org/nfdi4cat/catcore/bulk_modulus)
+**CURIE:** [`coremeta4cat:bulk_modulus`](https://w3id.org/nfdi4cat/coremeta4cat/bulk_modulus)
 
-**Schema Reference:** [bulk_modulus](./elements/bulk_modulus.md)
+**Schema Reference:** [bulk_modulus](./elements/slots/bulk_modulus.md)
 
 **Unit:** GPa
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bulk_modulus target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bulk_modulus target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -369,14 +369,14 @@ elastic response of the material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:shear_modulus`](https://w3id.org/nfdi4cat/catcore/shear_modulus)
+**CURIE:** [`coremeta4cat:shear_modulus`](https://w3id.org/nfdi4cat/coremeta4cat/shear_modulus)
 
-**Schema Reference:** [shear_modulus](./elements/shear_modulus.md)
+**Schema Reference:** [shear_modulus](./elements/slots/shear_modulus.md)
 
 **Unit:** GPa
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20shear_modulus target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20shear_modulus target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -390,12 +390,12 @@ elastic response of the material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:poisson_ratio`](https://w3id.org/nfdi4cat/catcore/poisson_ratio)
+**CURIE:** [`coremeta4cat:poisson_ratio`](https://w3id.org/nfdi4cat/coremeta4cat/poisson_ratio)
 
-**Schema Reference:** [poisson_ratio](./elements/poisson_ratio.md)
+**Schema Reference:** [poisson_ratio](./elements/slots/poisson_ratio.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20poisson_ratio target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20poisson_ratio target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -409,20 +409,20 @@ elastic response of the material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:young_modulus`](https://w3id.org/nfdi4cat/catcore/young_modulus)
+**CURIE:** [`coremeta4cat:young_modulus`](https://w3id.org/nfdi4cat/coremeta4cat/young_modulus)
 
-**Schema Reference:** [young_modulus](./elements/young_modulus.md)
+**Schema Reference:** [young_modulus](./elements/slots/young_modulus.md)
 
 **Unit:** GPa
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20young_modulus target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20young_modulus target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElasticConstants target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElasticConstants target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -434,9 +434,9 @@ elastic response of the material.
 including surface energy, Miller index, slab thickness, and vacuum spacing.
 Central to heterogeneous catalysis modelling.
 
-**CURIE:** [`catcore:Surfaces`](https://w3id.org/nfdi4cat/catcore/Surfaces)
+**CURIE:** [`coremeta4cat:Surfaces`](https://w3id.org/nfdi4cat/coremeta4cat/Surfaces)
 
-**Schema Reference:** [Surfaces](./elements/Surfaces.md)
+**Schema Reference:** [Surfaces](./elements/classes/Surfaces.md)
 
 **Slots**
 
@@ -450,14 +450,14 @@ A lower value indicates a more stable surface facet.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:surface_energy`](https://w3id.org/nfdi4cat/catcore/surface_energy)
+**CURIE:** [`coremeta4cat:surface_energy`](https://w3id.org/nfdi4cat/coremeta4cat/surface_energy)
 
-**Schema Reference:** [surface_energy](./elements/surface_energy.md)
+**Schema Reference:** [surface_energy](./elements/slots/surface_energy.md)
 
 **Unit:** J/m2
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20surface_energy target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20surface_energy target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -471,12 +471,12 @@ A lower value indicates a more stable surface facet.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:miller_indices`](https://w3id.org/nfdi4cat/catcore/miller_indices)
+**CURIE:** [`coremeta4cat:miller_indices`](https://w3id.org/nfdi4cat/coremeta4cat/miller_indices)
 
-**Schema Reference:** [miller_indices](./elements/miller_indices.md)
+**Schema Reference:** [miller_indices](./elements/slots/miller_indices.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20miller_indices target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20miller_indices target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -490,14 +490,14 @@ A lower value indicates a more stable surface facet.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:slab_thickness`](https://w3id.org/nfdi4cat/catcore/slab_thickness)
+**CURIE:** [`coremeta4cat:slab_thickness`](https://w3id.org/nfdi4cat/coremeta4cat/slab_thickness)
 
-**Schema Reference:** [slab_thickness](./elements/slab_thickness.md)
+**Schema Reference:** [slab_thickness](./elements/slots/slab_thickness.md)
 
 **Unit:** Ao
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20slab_thickness target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20slab_thickness target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -512,14 +512,14 @@ periodic interactions between slab images.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:vacuum_spacing`](https://w3id.org/nfdi4cat/catcore/vacuum_spacing)
+**CURIE:** [`coremeta4cat:vacuum_spacing`](https://w3id.org/nfdi4cat/coremeta4cat/vacuum_spacing)
 
-**Schema Reference:** [vacuum_spacing](./elements/vacuum_spacing.md)
+**Schema Reference:** [vacuum_spacing](./elements/slots/vacuum_spacing.md)
 
 **Unit:** Ao
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vacuum_spacing target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vacuum_spacing target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -534,18 +534,18 @@ periodic interactions between slab images.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:surface_termination_method`](https://w3id.org/nfdi4cat/catcore/surface_termination_method)
+**CURIE:** [`coremeta4cat:surface_termination_method`](https://w3id.org/nfdi4cat/coremeta4cat/surface_termination_method)
 
-**Schema Reference:** [surface_termination_method](./elements/surface_termination_method.md)
+**Schema Reference:** [surface_termination_method](./elements/slots/surface_termination_method.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20surface_termination_method target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20surface_termination_method target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Surfaces target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Surfaces target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -556,9 +556,9 @@ periodic interactions between slab images.
 **Description:** Dielectric tensor computed from density functional perturbation theory (DFPT).
 Characterises the optical and static dielectric response of a material.
 
-**CURIE:** [`catcore:DielectricTensors`](https://w3id.org/nfdi4cat/catcore/DielectricTensors)
+**CURIE:** [`coremeta4cat:DielectricTensors`](https://w3id.org/nfdi4cat/coremeta4cat/DielectricTensors)
 
-**Schema Reference:** [DielectricTensors](./elements/DielectricTensors.md)
+**Schema Reference:** [DielectricTensors](./elements/classes/DielectricTensors.md)
 
 **Slots**
 
@@ -572,12 +572,12 @@ computed from DFPT.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:dielectric_tensor`](https://w3id.org/nfdi4cat/catcore/dielectric_tensor)
+**CURIE:** [`coremeta4cat:dielectric_tensor`](https://w3id.org/nfdi4cat/coremeta4cat/dielectric_tensor)
 
-**Schema Reference:** [dielectric_tensor](./elements/dielectric_tensor.md)
+**Schema Reference:** [dielectric_tensor](./elements/slots/dielectric_tensor.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20dielectric_tensor target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20dielectric_tensor target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -592,12 +592,12 @@ the polarization changes with atomic displacements.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:born_effective_charges`](https://w3id.org/nfdi4cat/catcore/born_effective_charges)
+**CURIE:** [`coremeta4cat:born_effective_charges`](https://w3id.org/nfdi4cat/coremeta4cat/born_effective_charges)
 
-**Schema Reference:** [born_effective_charges](./elements/born_effective_charges.md)
+**Schema Reference:** [born_effective_charges](./elements/slots/born_effective_charges.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20born_effective_charges target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20born_effective_charges target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -612,12 +612,12 @@ Use empirical formula or SMILES for molecular systems.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:material_composition`](https://w3id.org/nfdi4cat/catcore/material_composition)
+**CURIE:** [`coremeta4cat:material_composition`](https://w3id.org/nfdi4cat/coremeta4cat/material_composition)
 
-**Schema Reference:** [material_composition](./elements/material_composition.md)
+**Schema Reference:** [material_composition](./elements/slots/material_composition.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -634,10 +634,10 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **CURIE:** [`SIO:001100`](http://semanticscience.org/resource/SIO_001100)
 
-**Schema Reference:** [crystal_structure](./elements/crystal_structure.md)
+**Schema Reference:** [crystal_structure](./elements/slots/crystal_structure.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -651,14 +651,14 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:energy_cutoff`](https://w3id.org/nfdi4cat/catcore/energy_cutoff)
+**CURIE:** [`coremeta4cat:energy_cutoff`](https://w3id.org/nfdi4cat/coremeta4cat/energy_cutoff)
 
-**Schema Reference:** [energy_cutoff](./elements/energy_cutoff.md)
+**Schema Reference:** [energy_cutoff](./elements/slots/energy_cutoff.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_cutoff target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_cutoff target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -673,12 +673,12 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:convergence_criteria`](https://w3id.org/nfdi4cat/catcore/convergence_criteria)
+**CURIE:** [`coremeta4cat:convergence_criteria`](https://w3id.org/nfdi4cat/coremeta4cat/convergence_criteria)
 
-**Schema Reference:** [convergence_criteria](./elements/convergence_criteria.md)
+**Schema Reference:** [convergence_criteria](./elements/slots/convergence_criteria.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20convergence_criteria target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20convergence_criteria target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -693,18 +693,18 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:k_point_mesh`](https://w3id.org/nfdi4cat/catcore/k_point_mesh)
+**CURIE:** [`coremeta4cat:k_point_mesh`](https://w3id.org/nfdi4cat/coremeta4cat/k_point_mesh)
 
-**Schema Reference:** [k_point_mesh](./elements/k_point_mesh.md)
+**Schema Reference:** [k_point_mesh](./elements/slots/k_point_mesh.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20k_point_mesh target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20k_point_mesh target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20DielectricTensors target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20DielectricTensors target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -716,9 +716,9 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 providing access to vibrational frequencies, thermodynamic quantities,
 and dynamical stability (imaginary modes).
 
-**CURIE:** [`catcore:PhononDispersion`](https://w3id.org/nfdi4cat/catcore/PhononDispersion)
+**CURIE:** [`coremeta4cat:PhononDispersion`](https://w3id.org/nfdi4cat/coremeta4cat/PhononDispersion)
 
-**Schema Reference:** [PhononDispersion](./elements/PhononDispersion.md)
+**Schema Reference:** [PhononDispersion](./elements/classes/PhononDispersion.md)
 
 **Slots**
 
@@ -732,12 +732,12 @@ differences / supercell method, DFPT/linear response).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:force_constant_method`](https://w3id.org/nfdi4cat/catcore/force_constant_method)
+**CURIE:** [`coremeta4cat:force_constant_method`](https://w3id.org/nfdi4cat/coremeta4cat/force_constant_method)
 
-**Schema Reference:** [force_constant_method](./elements/force_constant_method.md)
+**Schema Reference:** [force_constant_method](./elements/slots/force_constant_method.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20force_constant_method target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20force_constant_method target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -752,12 +752,12 @@ Distinct from the electronic k-point mesh.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:kq_point_mesh`](https://w3id.org/nfdi4cat/catcore/kq_point_mesh)
+**CURIE:** [`coremeta4cat:kq_point_mesh`](https://w3id.org/nfdi4cat/coremeta4cat/kq_point_mesh)
 
-**Schema Reference:** [kq_point_mesh](./elements/kq_point_mesh.md)
+**Schema Reference:** [kq_point_mesh](./elements/slots/kq_point_mesh.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20kq_point_mesh target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20kq_point_mesh target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -771,14 +771,14 @@ Distinct from the electronic k-point mesh.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:smearing_parameter`](https://w3id.org/nfdi4cat/catcore/smearing_parameter)
+**CURIE:** [`coremeta4cat:smearing_parameter`](https://w3id.org/nfdi4cat/coremeta4cat/smearing_parameter)
 
-**Schema Reference:** [smearing_parameter](./elements/smearing_parameter.md)
+**Schema Reference:** [smearing_parameter](./elements/slots/smearing_parameter.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20smearing_parameter target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20smearing_parameter target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -793,12 +793,12 @@ Imaginary modes indicate dynamical instability of the structure.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:imaginary_modes`](https://w3id.org/nfdi4cat/catcore/imaginary_modes)
+**CURIE:** [`coremeta4cat:imaginary_modes`](https://w3id.org/nfdi4cat/coremeta4cat/imaginary_modes)
 
-**Schema Reference:** [imaginary_modes](./elements/imaginary_modes.md)
+**Schema Reference:** [imaginary_modes](./elements/slots/imaginary_modes.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20imaginary_modes target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20imaginary_modes target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -813,12 +813,12 @@ Use empirical formula or SMILES for molecular systems.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:material_composition`](https://w3id.org/nfdi4cat/catcore/material_composition)
+**CURIE:** [`coremeta4cat:material_composition`](https://w3id.org/nfdi4cat/coremeta4cat/material_composition)
 
-**Schema Reference:** [material_composition](./elements/material_composition.md)
+**Schema Reference:** [material_composition](./elements/slots/material_composition.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -835,16 +835,16 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **CURIE:** [`SIO:001100`](http://semanticscience.org/resource/SIO_001100)
 
-**Schema Reference:** [crystal_structure](./elements/crystal_structure.md)
+**Schema Reference:** [crystal_structure](./elements/slots/crystal_structure.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PhononDispersion target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PhononDispersion target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -856,9 +856,9 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium
 volume, bulk modulus, and its pressure derivative.
 
-**CURIE:** [`catcore:EquationsOfState`](https://w3id.org/nfdi4cat/catcore/EquationsOfState)
+**CURIE:** [`coremeta4cat:EquationsOfState`](https://w3id.org/nfdi4cat/coremeta4cat/EquationsOfState)
 
-**Schema Reference:** [EquationsOfState](./elements/EquationsOfState.md)
+**Schema Reference:** [EquationsOfState](./elements/classes/EquationsOfState.md)
 
 **Slots**
 
@@ -872,12 +872,12 @@ volume, bulk modulus, and its pressure derivative.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:fit_method`](https://w3id.org/nfdi4cat/catcore/fit_method)
+**CURIE:** [`coremeta4cat:fit_method`](https://w3id.org/nfdi4cat/coremeta4cat/fit_method)
 
-**Schema Reference:** [fit_method](./elements/fit_method.md)
+**Schema Reference:** [fit_method](./elements/slots/fit_method.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fit_method target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fit_method target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -891,14 +891,14 @@ volume, bulk modulus, and its pressure derivative.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:bulk_modulus`](https://w3id.org/nfdi4cat/catcore/bulk_modulus)
+**CURIE:** [`coremeta4cat:bulk_modulus`](https://w3id.org/nfdi4cat/coremeta4cat/bulk_modulus)
 
-**Schema Reference:** [bulk_modulus](./elements/bulk_modulus.md)
+**Schema Reference:** [bulk_modulus](./elements/slots/bulk_modulus.md)
 
 **Unit:** GPa
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bulk_modulus target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bulk_modulus target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -912,12 +912,12 @@ volume, bulk modulus, and its pressure derivative.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:pressure_derivative`](https://w3id.org/nfdi4cat/catcore/pressure_derivative)
+**CURIE:** [`coremeta4cat:pressure_derivative`](https://w3id.org/nfdi4cat/coremeta4cat/pressure_derivative)
 
-**Schema Reference:** [pressure_derivative](./elements/pressure_derivative.md)
+**Schema Reference:** [pressure_derivative](./elements/slots/pressure_derivative.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20pressure_derivative target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20pressure_derivative target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -931,12 +931,12 @@ volume, bulk modulus, and its pressure derivative.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:fit_residuals`](https://w3id.org/nfdi4cat/catcore/fit_residuals)
+**CURIE:** [`coremeta4cat:fit_residuals`](https://w3id.org/nfdi4cat/coremeta4cat/fit_residuals)
 
-**Schema Reference:** [fit_residuals](./elements/fit_residuals.md)
+**Schema Reference:** [fit_residuals](./elements/slots/fit_residuals.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fit_residuals target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fit_residuals target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -951,12 +951,12 @@ Use empirical formula or SMILES for molecular systems.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:material_composition`](https://w3id.org/nfdi4cat/catcore/material_composition)
+**CURIE:** [`coremeta4cat:material_composition`](https://w3id.org/nfdi4cat/coremeta4cat/material_composition)
 
-**Schema Reference:** [material_composition](./elements/material_composition.md)
+**Schema Reference:** [material_composition](./elements/slots/material_composition.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -973,10 +973,10 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **CURIE:** [`SIO:001100`](http://semanticscience.org/resource/SIO_001100)
 
-**Schema Reference:** [crystal_structure](./elements/crystal_structure.md)
+**Schema Reference:** [crystal_structure](./elements/slots/crystal_structure.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -990,14 +990,14 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:energy_cutoff`](https://w3id.org/nfdi4cat/catcore/energy_cutoff)
+**CURIE:** [`coremeta4cat:energy_cutoff`](https://w3id.org/nfdi4cat/coremeta4cat/energy_cutoff)
 
-**Schema Reference:** [energy_cutoff](./elements/energy_cutoff.md)
+**Schema Reference:** [energy_cutoff](./elements/slots/energy_cutoff.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_cutoff target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_cutoff target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1012,12 +1012,12 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:convergence_criteria`](https://w3id.org/nfdi4cat/catcore/convergence_criteria)
+**CURIE:** [`coremeta4cat:convergence_criteria`](https://w3id.org/nfdi4cat/coremeta4cat/convergence_criteria)
 
-**Schema Reference:** [convergence_criteria](./elements/convergence_criteria.md)
+**Schema Reference:** [convergence_criteria](./elements/slots/convergence_criteria.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20convergence_criteria target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20convergence_criteria target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1032,18 +1032,18 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:k_point_mesh`](https://w3id.org/nfdi4cat/catcore/k_point_mesh)
+**CURIE:** [`coremeta4cat:k_point_mesh`](https://w3id.org/nfdi4cat/coremeta4cat/k_point_mesh)
 
-**Schema Reference:** [k_point_mesh](./elements/k_point_mesh.md)
+**Schema Reference:** [k_point_mesh](./elements/slots/k_point_mesh.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20k_point_mesh target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20k_point_mesh target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20EquationsOfState target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20EquationsOfState target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -1055,9 +1055,9 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 a function of pH and electrode potential. Critical for electrocatalyst
 stability screening.
 
-**CURIE:** [`catcore:AqueousStability`](https://w3id.org/nfdi4cat/catcore/AqueousStability)
+**CURIE:** [`coremeta4cat:AqueousStability`](https://w3id.org/nfdi4cat/coremeta4cat/AqueousStability)
 
-**Schema Reference:** [AqueousStability](./elements/AqueousStability.md)
+**Schema Reference:** [AqueousStability](./elements/classes/AqueousStability.md)
 
 **Slots**
 
@@ -1070,12 +1070,12 @@ stability screening.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:ph_range`](https://w3id.org/nfdi4cat/catcore/ph_range)
+**CURIE:** [`coremeta4cat:ph_range`](https://w3id.org/nfdi4cat/coremeta4cat/ph_range)
 
-**Schema Reference:** [ph_range](./elements/ph_range.md)
+**Schema Reference:** [ph_range](./elements/slots/ph_range.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ph_range target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ph_range target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1090,12 +1090,12 @@ stability screening.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:potential_range`](https://w3id.org/nfdi4cat/catcore/potential_range)
+**CURIE:** [`coremeta4cat:potential_range`](https://w3id.org/nfdi4cat/coremeta4cat/potential_range)
 
-**Schema Reference:** [potential_range](./elements/potential_range.md)
+**Schema Reference:** [potential_range](./elements/slots/potential_range.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20potential_range target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20potential_range target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1110,12 +1110,12 @@ stability screening.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:solvation_model`](https://w3id.org/nfdi4cat/catcore/solvation_model)
+**CURIE:** [`coremeta4cat:solvation_model`](https://w3id.org/nfdi4cat/coremeta4cat/solvation_model)
 
-**Schema Reference:** [solvation_model](./elements/solvation_model.md)
+**Schema Reference:** [solvation_model](./elements/slots/solvation_model.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20solvation_model target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20solvation_model target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1129,14 +1129,14 @@ stability screening.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:ionic_strength`](https://w3id.org/nfdi4cat/catcore/ionic_strength)
+**CURIE:** [`coremeta4cat:ionic_strength`](https://w3id.org/nfdi4cat/coremeta4cat/ionic_strength)
 
-**Schema Reference:** [ionic_strength](./elements/ionic_strength.md)
+**Schema Reference:** [ionic_strength](./elements/slots/ionic_strength.md)
 
 **Unit:** mol/L
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ionic_strength target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ionic_strength target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1152,12 +1152,12 @@ stability screening.
 
 **CURIE:** [`AFR:0001584`](http://purl.allotrope.org/ontologies/result#AFR_0001584)
 
-**Schema Reference:** [temperature](./elements/temperature.md)
+**Schema Reference:** [temperature](./elements/slots/temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1172,12 +1172,12 @@ Use empirical formula or SMILES for molecular systems.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:material_composition`](https://w3id.org/nfdi4cat/catcore/material_composition)
+**CURIE:** [`coremeta4cat:material_composition`](https://w3id.org/nfdi4cat/coremeta4cat/material_composition)
 
-**Schema Reference:** [material_composition](./elements/material_composition.md)
+**Schema Reference:** [material_composition](./elements/slots/material_composition.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1194,16 +1194,16 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **CURIE:** [`SIO:001100`](http://semanticscience.org/resource/SIO_001100)
 
-**Schema Reference:** [crystal_structure](./elements/crystal_structure.md)
+**Schema Reference:** [crystal_structure](./elements/slots/crystal_structure.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20AqueousStability target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20AqueousStability target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -1215,9 +1215,9 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 Relevant for understanding polycrystalline catalyst behaviour,
 sintering, and charge/defect segregation.
 
-**CURIE:** [`catcore:GrainBoundaries`](https://w3id.org/nfdi4cat/catcore/GrainBoundaries)
+**CURIE:** [`coremeta4cat:GrainBoundaries`](https://w3id.org/nfdi4cat/coremeta4cat/GrainBoundaries)
 
-**Schema Reference:** [GrainBoundaries](./elements/GrainBoundaries.md)
+**Schema Reference:** [GrainBoundaries](./elements/classes/GrainBoundaries.md)
 
 **Slots**
 
@@ -1231,12 +1231,12 @@ Miller indices (e.g. "Sigma5 (310)[001]").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:grain_boundary_plane`](https://w3id.org/nfdi4cat/catcore/grain_boundary_plane)
+**CURIE:** [`coremeta4cat:grain_boundary_plane`](https://w3id.org/nfdi4cat/coremeta4cat/grain_boundary_plane)
 
-**Schema Reference:** [grain_boundary_plane](./elements/grain_boundary_plane.md)
+**Schema Reference:** [grain_boundary_plane](./elements/slots/grain_boundary_plane.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20grain_boundary_plane target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20grain_boundary_plane target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1250,14 +1250,14 @@ Miller indices (e.g. "Sigma5 (310)[001]").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:misorientation_angle`](https://w3id.org/nfdi4cat/catcore/misorientation_angle)
+**CURIE:** [`coremeta4cat:misorientation_angle`](https://w3id.org/nfdi4cat/coremeta4cat/misorientation_angle)
 
-**Schema Reference:** [misorientation_angle](./elements/misorientation_angle.md)
+**Schema Reference:** [misorientation_angle](./elements/slots/misorientation_angle.md)
 
 **Unit:** deg
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20misorientation_angle target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20misorientation_angle target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1271,14 +1271,14 @@ Miller indices (e.g. "Sigma5 (310)[001]").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:grain_boundary_energy`](https://w3id.org/nfdi4cat/catcore/grain_boundary_energy)
+**CURIE:** [`coremeta4cat:grain_boundary_energy`](https://w3id.org/nfdi4cat/coremeta4cat/grain_boundary_energy)
 
-**Schema Reference:** [grain_boundary_energy](./elements/grain_boundary_energy.md)
+**Schema Reference:** [grain_boundary_energy](./elements/slots/grain_boundary_energy.md)
 
 **Unit:** J/m2
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20grain_boundary_energy target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20grain_boundary_energy target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1293,12 +1293,12 @@ Miller indices (e.g. "Sigma5 (310)[001]").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:simulation_cell_size`](https://w3id.org/nfdi4cat/catcore/simulation_cell_size)
+**CURIE:** [`coremeta4cat:simulation_cell_size`](https://w3id.org/nfdi4cat/coremeta4cat/simulation_cell_size)
 
-**Schema Reference:** [simulation_cell_size](./elements/simulation_cell_size.md)
+**Schema Reference:** [simulation_cell_size](./elements/slots/simulation_cell_size.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20simulation_cell_size target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20simulation_cell_size target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1312,12 +1312,12 @@ Miller indices (e.g. "Sigma5 (310)[001]").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:gb_excess_volume`](https://w3id.org/nfdi4cat/catcore/gb_excess_volume)
+**CURIE:** [`coremeta4cat:gb_excess_volume`](https://w3id.org/nfdi4cat/coremeta4cat/gb_excess_volume)
 
-**Schema Reference:** [gb_excess_volume](./elements/gb_excess_volume.md)
+**Schema Reference:** [gb_excess_volume](./elements/slots/gb_excess_volume.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20gb_excess_volume target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20gb_excess_volume target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1332,12 +1332,12 @@ constitute the grain boundary structure.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:gb_structural_units`](https://w3id.org/nfdi4cat/catcore/gb_structural_units)
+**CURIE:** [`coremeta4cat:gb_structural_units`](https://w3id.org/nfdi4cat/coremeta4cat/gb_structural_units)
 
-**Schema Reference:** [gb_structural_units](./elements/gb_structural_units.md)
+**Schema Reference:** [gb_structural_units](./elements/slots/gb_structural_units.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20gb_structural_units target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20gb_structural_units target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1352,12 +1352,12 @@ at the grain boundary (e.g. segregation energy per defect type).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:charge_defect_segregation`](https://w3id.org/nfdi4cat/catcore/charge_defect_segregation)
+**CURIE:** [`coremeta4cat:charge_defect_segregation`](https://w3id.org/nfdi4cat/coremeta4cat/charge_defect_segregation)
 
-**Schema Reference:** [charge_defect_segregation](./elements/charge_defect_segregation.md)
+**Schema Reference:** [charge_defect_segregation](./elements/slots/charge_defect_segregation.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20charge_defect_segregation target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20charge_defect_segregation target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1372,12 +1372,12 @@ Use empirical formula or SMILES for molecular systems.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:material_composition`](https://w3id.org/nfdi4cat/catcore/material_composition)
+**CURIE:** [`coremeta4cat:material_composition`](https://w3id.org/nfdi4cat/coremeta4cat/material_composition)
 
-**Schema Reference:** [material_composition](./elements/material_composition.md)
+**Schema Reference:** [material_composition](./elements/slots/material_composition.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1394,16 +1394,16 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **CURIE:** [`SIO:001100`](http://semanticscience.org/resource/SIO_001100)
 
-**Schema Reference:** [crystal_structure](./elements/crystal_structure.md)
+**Schema Reference:** [crystal_structure](./elements/slots/crystal_structure.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20GrainBoundaries target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20GrainBoundaries target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -1415,9 +1415,9 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 electronic properties of a catalyst relevant to activity descriptors
 (d-band centre, band gap, Fermi energy).
 
-**CURIE:** [`catcore:ElectronicStructure`](https://w3id.org/nfdi4cat/catcore/ElectronicStructure)
+**CURIE:** [`coremeta4cat:ElectronicStructure`](https://w3id.org/nfdi4cat/coremeta4cat/ElectronicStructure)
 
-**Schema Reference:** [ElectronicStructure](./elements/ElectronicStructure.md)
+**Schema Reference:** [ElectronicStructure](./elements/classes/ElectronicStructure.md)
 
 **Slots**
 
@@ -1431,12 +1431,12 @@ electronic properties of a catalyst relevant to activity descriptors
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:smearing_method`](https://w3id.org/nfdi4cat/catcore/smearing_method)
+**CURIE:** [`coremeta4cat:smearing_method`](https://w3id.org/nfdi4cat/coremeta4cat/smearing_method)
 
-**Schema Reference:** [smearing_method](./elements/smearing_method.md)
+**Schema Reference:** [smearing_method](./elements/slots/smearing_method.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20smearing_method target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20smearing_method target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1451,12 +1451,12 @@ electronic properties of a catalyst relevant to activity descriptors
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:spin_polarized`](https://w3id.org/nfdi4cat/catcore/spin_polarized)
+**CURIE:** [`coremeta4cat:spin_polarized`](https://w3id.org/nfdi4cat/coremeta4cat/spin_polarized)
 
-**Schema Reference:** [spin_polarized](./elements/spin_polarized.md)
+**Schema Reference:** [spin_polarized](./elements/slots/spin_polarized.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20spin_polarized target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20spin_polarized target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1471,12 +1471,12 @@ band structure (e.g. "Gamma-X-M-Gamma-R" for cubic, following SeeK-path conventi
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:band_path`](https://w3id.org/nfdi4cat/catcore/band_path)
+**CURIE:** [`coremeta4cat:band_path`](https://w3id.org/nfdi4cat/coremeta4cat/band_path)
 
-**Schema Reference:** [band_path](./elements/band_path.md)
+**Schema Reference:** [band_path](./elements/slots/band_path.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20band_path target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20band_path target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1490,14 +1490,14 @@ band structure (e.g. "Gamma-X-M-Gamma-R" for cubic, following SeeK-path conventi
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:fermi_energy`](https://w3id.org/nfdi4cat/catcore/fermi_energy)
+**CURIE:** [`coremeta4cat:fermi_energy`](https://w3id.org/nfdi4cat/coremeta4cat/fermi_energy)
 
-**Schema Reference:** [fermi_energy](./elements/fermi_energy.md)
+**Schema Reference:** [fermi_energy](./elements/slots/fermi_energy.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fermi_energy target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fermi_energy target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1512,12 +1512,12 @@ Use empirical formula or SMILES for molecular systems.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:material_composition`](https://w3id.org/nfdi4cat/catcore/material_composition)
+**CURIE:** [`coremeta4cat:material_composition`](https://w3id.org/nfdi4cat/coremeta4cat/material_composition)
 
-**Schema Reference:** [material_composition](./elements/material_composition.md)
+**Schema Reference:** [material_composition](./elements/slots/material_composition.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1534,10 +1534,10 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **CURIE:** [`SIO:001100`](http://semanticscience.org/resource/SIO_001100)
 
-**Schema Reference:** [crystal_structure](./elements/crystal_structure.md)
+**Schema Reference:** [crystal_structure](./elements/slots/crystal_structure.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1551,14 +1551,14 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:energy_cutoff`](https://w3id.org/nfdi4cat/catcore/energy_cutoff)
+**CURIE:** [`coremeta4cat:energy_cutoff`](https://w3id.org/nfdi4cat/coremeta4cat/energy_cutoff)
 
-**Schema Reference:** [energy_cutoff](./elements/energy_cutoff.md)
+**Schema Reference:** [energy_cutoff](./elements/slots/energy_cutoff.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_cutoff target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_cutoff target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1573,12 +1573,12 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:convergence_criteria`](https://w3id.org/nfdi4cat/catcore/convergence_criteria)
+**CURIE:** [`coremeta4cat:convergence_criteria`](https://w3id.org/nfdi4cat/coremeta4cat/convergence_criteria)
 
-**Schema Reference:** [convergence_criteria](./elements/convergence_criteria.md)
+**Schema Reference:** [convergence_criteria](./elements/slots/convergence_criteria.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20convergence_criteria target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20convergence_criteria target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1593,18 +1593,18 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:k_point_mesh`](https://w3id.org/nfdi4cat/catcore/k_point_mesh)
+**CURIE:** [`coremeta4cat:k_point_mesh`](https://w3id.org/nfdi4cat/coremeta4cat/k_point_mesh)
 
-**Schema Reference:** [k_point_mesh](./elements/k_point_mesh.md)
+**Schema Reference:** [k_point_mesh](./elements/slots/k_point_mesh.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20k_point_mesh target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20k_point_mesh target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectronicStructure target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectronicStructure target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -1616,9 +1616,9 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 polarization, switching barrier, and coercive field. Relevant for
 ferroelectric-photocatalyst design.
 
-**CURIE:** [`catcore:Ferroelectrics`](https://w3id.org/nfdi4cat/catcore/Ferroelectrics)
+**CURIE:** [`coremeta4cat:Ferroelectrics`](https://w3id.org/nfdi4cat/coremeta4cat/Ferroelectrics)
 
-**Schema Reference:** [Ferroelectrics](./elements/Ferroelectrics.md)
+**Schema Reference:** [Ferroelectrics](./elements/classes/Ferroelectrics.md)
 
 **Slots**
 
@@ -1632,12 +1632,12 @@ ferroelectric-photocatalyst design.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:polarization_direction`](https://w3id.org/nfdi4cat/catcore/polarization_direction)
+**CURIE:** [`coremeta4cat:polarization_direction`](https://w3id.org/nfdi4cat/coremeta4cat/polarization_direction)
 
-**Schema Reference:** [polarization_direction](./elements/polarization_direction.md)
+**Schema Reference:** [polarization_direction](./elements/slots/polarization_direction.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20polarization_direction target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20polarization_direction target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1651,14 +1651,14 @@ ferroelectric-photocatalyst design.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:spontaneous_polarization`](https://w3id.org/nfdi4cat/catcore/spontaneous_polarization)
+**CURIE:** [`coremeta4cat:spontaneous_polarization`](https://w3id.org/nfdi4cat/coremeta4cat/spontaneous_polarization)
 
-**Schema Reference:** [spontaneous_polarization](./elements/spontaneous_polarization.md)
+**Schema Reference:** [spontaneous_polarization](./elements/slots/spontaneous_polarization.md)
 
 **Unit:** uC/cm2
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20spontaneous_polarization target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20spontaneous_polarization target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1673,12 +1673,12 @@ polarization endpoint in the Berry-phase polarization calculation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:reference_structure`](https://w3id.org/nfdi4cat/catcore/reference_structure)
+**CURIE:** [`coremeta4cat:reference_structure`](https://w3id.org/nfdi4cat/coremeta4cat/reference_structure)
 
-**Schema Reference:** [reference_structure](./elements/reference_structure.md)
+**Schema Reference:** [reference_structure](./elements/slots/reference_structure.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reference_structure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reference_structure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1692,14 +1692,14 @@ polarization endpoint in the Berry-phase polarization calculation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:switching_barrier`](https://w3id.org/nfdi4cat/catcore/switching_barrier)
+**CURIE:** [`coremeta4cat:switching_barrier`](https://w3id.org/nfdi4cat/coremeta4cat/switching_barrier)
 
-**Schema Reference:** [switching_barrier](./elements/switching_barrier.md)
+**Schema Reference:** [switching_barrier](./elements/slots/switching_barrier.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20switching_barrier target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20switching_barrier target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1713,14 +1713,14 @@ polarization endpoint in the Berry-phase polarization calculation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:coercive_field`](https://w3id.org/nfdi4cat/catcore/coercive_field)
+**CURIE:** [`coremeta4cat:coercive_field`](https://w3id.org/nfdi4cat/coremeta4cat/coercive_field)
 
-**Schema Reference:** [coercive_field](./elements/coercive_field.md)
+**Schema Reference:** [coercive_field](./elements/slots/coercive_field.md)
 
 **Unit:** kV/cm
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20coercive_field target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20coercive_field target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1734,12 +1734,12 @@ polarization endpoint in the Berry-phase polarization calculation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:temperature_dependence`](https://w3id.org/nfdi4cat/catcore/temperature_dependence)
+**CURIE:** [`coremeta4cat:temperature_dependence`](https://w3id.org/nfdi4cat/coremeta4cat/temperature_dependence)
 
-**Schema Reference:** [temperature_dependence](./elements/temperature_dependence.md)
+**Schema Reference:** [temperature_dependence](./elements/slots/temperature_dependence.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature_dependence target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature_dependence target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1754,12 +1754,12 @@ Use empirical formula or SMILES for molecular systems.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:material_composition`](https://w3id.org/nfdi4cat/catcore/material_composition)
+**CURIE:** [`coremeta4cat:material_composition`](https://w3id.org/nfdi4cat/coremeta4cat/material_composition)
 
-**Schema Reference:** [material_composition](./elements/material_composition.md)
+**Schema Reference:** [material_composition](./elements/slots/material_composition.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1776,16 +1776,16 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **CURIE:** [`SIO:001100`](http://semanticscience.org/resource/SIO_001100)
 
-**Schema Reference:** [crystal_structure](./elements/crystal_structure.md)
+**Schema Reference:** [crystal_structure](./elements/slots/crystal_structure.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Ferroelectrics target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Ferroelectrics target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -1797,9 +1797,9 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 many-body (GW) or excitonic corrections. Critical for photocatalyst
 and semiconductor catalyst screening.
 
-**CURIE:** [`catcore:BandGap`](https://w3id.org/nfdi4cat/catcore/BandGap)
+**CURIE:** [`coremeta4cat:BandGap`](https://w3id.org/nfdi4cat/coremeta4cat/BandGap)
 
-**Schema Reference:** [BandGap](./elements/BandGap.md)
+**Schema Reference:** [BandGap](./elements/classes/BandGap.md)
 
 **Slots**
 
@@ -1815,10 +1815,10 @@ calculated band gap.
 
 **CURIE:** [`VOC4CAT:0005056`](https://w3id.org/nfdi4cat/voc4cat_0005056)
 
-**Schema Reference:** [material_sample](./elements/material_sample.md)
+**Schema Reference:** [material_sample](./elements/slots/material_sample.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_sample target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_sample target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1833,12 +1833,12 @@ surface slab, defect supercell).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:structure_model`](https://w3id.org/nfdi4cat/catcore/structure_model)
+**CURIE:** [`coremeta4cat:structure_model`](https://w3id.org/nfdi4cat/coremeta4cat/structure_model)
 
-**Schema Reference:** [structure_model](./elements/structure_model.md)
+**Schema Reference:** [structure_model](./elements/slots/structure_model.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20structure_model target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20structure_model target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1852,14 +1852,14 @@ surface slab, defect supercell).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:smearing_broadening`](https://w3id.org/nfdi4cat/catcore/smearing_broadening)
+**CURIE:** [`coremeta4cat:smearing_broadening`](https://w3id.org/nfdi4cat/coremeta4cat/smearing_broadening)
 
-**Schema Reference:** [smearing_broadening](./elements/smearing_broadening.md)
+**Schema Reference:** [smearing_broadening](./elements/slots/smearing_broadening.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20smearing_broadening target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20smearing_broadening target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1874,12 +1874,12 @@ surface slab, defect supercell).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:direct_indirect`](https://w3id.org/nfdi4cat/catcore/direct_indirect)
+**CURIE:** [`coremeta4cat:direct_indirect`](https://w3id.org/nfdi4cat/coremeta4cat/direct_indirect)
 
-**Schema Reference:** [direct_indirect](./elements/direct_indirect.md)
+**Schema Reference:** [direct_indirect](./elements/slots/direct_indirect.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20direct_indirect target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20direct_indirect target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1893,14 +1893,14 @@ surface slab, defect supercell).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:experimental_reference`](https://w3id.org/nfdi4cat/catcore/experimental_reference)
+**CURIE:** [`coremeta4cat:experimental_reference`](https://w3id.org/nfdi4cat/coremeta4cat/experimental_reference)
 
-**Schema Reference:** [experimental_reference](./elements/experimental_reference.md)
+**Schema Reference:** [experimental_reference](./elements/slots/experimental_reference.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20experimental_reference target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20experimental_reference target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1915,12 +1915,12 @@ was applied to correct the DFT band gap underestimation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:gw_hybrid_correction`](https://w3id.org/nfdi4cat/catcore/gw_hybrid_correction)
+**CURIE:** [`coremeta4cat:gw_hybrid_correction`](https://w3id.org/nfdi4cat/coremeta4cat/gw_hybrid_correction)
 
-**Schema Reference:** [gw_hybrid_correction](./elements/gw_hybrid_correction.md)
+**Schema Reference:** [gw_hybrid_correction](./elements/slots/gw_hybrid_correction.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20gw_hybrid_correction target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20gw_hybrid_correction target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1935,14 +1935,14 @@ optical band gap.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:excitonic_correction`](https://w3id.org/nfdi4cat/catcore/excitonic_correction)
+**CURIE:** [`coremeta4cat:excitonic_correction`](https://w3id.org/nfdi4cat/coremeta4cat/excitonic_correction)
 
-**Schema Reference:** [excitonic_correction](./elements/excitonic_correction.md)
+**Schema Reference:** [excitonic_correction](./elements/slots/excitonic_correction.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20excitonic_correction target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20excitonic_correction target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1957,12 +1957,12 @@ Use empirical formula or SMILES for molecular systems.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:material_composition`](https://w3id.org/nfdi4cat/catcore/material_composition)
+**CURIE:** [`coremeta4cat:material_composition`](https://w3id.org/nfdi4cat/coremeta4cat/material_composition)
 
-**Schema Reference:** [material_composition](./elements/material_composition.md)
+**Schema Reference:** [material_composition](./elements/slots/material_composition.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1979,10 +1979,10 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **CURIE:** [`SIO:001100`](http://semanticscience.org/resource/SIO_001100)
 
-**Schema Reference:** [crystal_structure](./elements/crystal_structure.md)
+**Schema Reference:** [crystal_structure](./elements/slots/crystal_structure.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20crystal_structure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1996,14 +1996,14 @@ lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:energy_cutoff`](https://w3id.org/nfdi4cat/catcore/energy_cutoff)
+**CURIE:** [`coremeta4cat:energy_cutoff`](https://w3id.org/nfdi4cat/coremeta4cat/energy_cutoff)
 
-**Schema Reference:** [energy_cutoff](./elements/energy_cutoff.md)
+**Schema Reference:** [energy_cutoff](./elements/slots/energy_cutoff.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_cutoff target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_cutoff target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2018,12 +2018,12 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:convergence_criteria`](https://w3id.org/nfdi4cat/catcore/convergence_criteria)
+**CURIE:** [`coremeta4cat:convergence_criteria`](https://w3id.org/nfdi4cat/coremeta4cat/convergence_criteria)
 
-**Schema Reference:** [convergence_criteria](./elements/convergence_criteria.md)
+**Schema Reference:** [convergence_criteria](./elements/slots/convergence_criteria.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20convergence_criteria target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20convergence_criteria target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2038,24 +2038,24 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:k_point_mesh`](https://w3id.org/nfdi4cat/catcore/k_point_mesh)
+**CURIE:** [`coremeta4cat:k_point_mesh`](https://w3id.org/nfdi4cat/coremeta4cat/k_point_mesh)
 
-**Schema Reference:** [k_point_mesh](./elements/k_point_mesh.md)
+**Schema Reference:** [k_point_mesh](./elements/slots/k_point_mesh.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20k_point_mesh target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20k_point_mesh target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20BandGap target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20BandGap target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calculated_property target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calculated_property target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2069,7 +2069,7 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 
 **Cardinality:**  Mandatory, Multivalued
 
-**Schema Reference:** [realized_plan](./elements/realized_plan.md)
+**Schema Reference:** [realized_plan](./elements/slots/realized_plan.md)
 
 **Data Type Class Details:**
 
@@ -2084,10 +2084,10 @@ Linked from Simulation via realized_plan.
 
 **CURIE:** [`OBI:0000272`](http://purl.obolibrary.org/obo/OBI_0000272)
 
-**Schema Reference:** [SimulationMethod](./elements/SimulationMethod.md)
+**Schema Reference:** [SimulationMethod](./elements/classes/SimulationMethod.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SimulationMethod target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SimulationMethod target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -2101,9 +2101,9 @@ Linked from Simulation via realized_plan.
 the electronic structure of atoms, molecules, and periodic solids.
 The most widely used ab initio method in computational catalysis.
 
-**CURIE:** [`catcore:DFT`](https://w3id.org/nfdi4cat/catcore/DFT)
+**CURIE:** [`coremeta4cat:DFT`](https://w3id.org/nfdi4cat/coremeta4cat/DFT)
 
-**Schema Reference:** [DFT](./elements/DFT.md)
+**Schema Reference:** [DFT](./elements/classes/DFT.md)
 
 **Slots**
 
@@ -2117,12 +2117,12 @@ HSE06). The choice of functional directly affects accuracy.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:exchange_correlation_functional`](https://w3id.org/nfdi4cat/catcore/exchange_correlation_functional)
+**CURIE:** [`coremeta4cat:exchange_correlation_functional`](https://w3id.org/nfdi4cat/coremeta4cat/exchange_correlation_functional)
 
-**Schema Reference:** [exchange_correlation_functional](./elements/exchange_correlation_functional.md)
+**Schema Reference:** [exchange_correlation_functional](./elements/slots/exchange_correlation_functional.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20exchange_correlation_functional target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20exchange_correlation_functional target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2136,14 +2136,14 @@ HSE06). The choice of functional directly affects accuracy.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:energy_cutoff`](https://w3id.org/nfdi4cat/catcore/energy_cutoff)
+**CURIE:** [`coremeta4cat:energy_cutoff`](https://w3id.org/nfdi4cat/coremeta4cat/energy_cutoff)
 
-**Schema Reference:** [energy_cutoff](./elements/energy_cutoff.md)
+**Schema Reference:** [energy_cutoff](./elements/slots/energy_cutoff.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_cutoff target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_cutoff target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2158,12 +2158,12 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:convergence_criteria`](https://w3id.org/nfdi4cat/catcore/convergence_criteria)
+**CURIE:** [`coremeta4cat:convergence_criteria`](https://w3id.org/nfdi4cat/coremeta4cat/convergence_criteria)
 
-**Schema Reference:** [convergence_criteria](./elements/convergence_criteria.md)
+**Schema Reference:** [convergence_criteria](./elements/slots/convergence_criteria.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20convergence_criteria target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20convergence_criteria target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2178,12 +2178,12 @@ U value (e.g. "Fe d: U=4.0 eV, J=0.0 eV").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:dft_u_parameters`](https://w3id.org/nfdi4cat/catcore/dft_u_parameters)
+**CURIE:** [`coremeta4cat:dft_u_parameters`](https://w3id.org/nfdi4cat/coremeta4cat/dft_u_parameters)
 
-**Schema Reference:** [dft_u_parameters](./elements/dft_u_parameters.md)
+**Schema Reference:** [dft_u_parameters](./elements/slots/dft_u_parameters.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20dft_u_parameters target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20dft_u_parameters target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2198,12 +2198,12 @@ calculation. Set to true for systems containing magnetic elements.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:spin_polarization`](https://w3id.org/nfdi4cat/catcore/spin_polarization)
+**CURIE:** [`coremeta4cat:spin_polarization`](https://w3id.org/nfdi4cat/coremeta4cat/spin_polarization)
 
-**Schema Reference:** [spin_polarization](./elements/spin_polarization.md)
+**Schema Reference:** [spin_polarization](./elements/slots/spin_polarization.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20spin_polarization target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20spin_polarization target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2217,20 +2217,20 @@ calculation. Set to true for systems containing magnetic elements.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:total_energy_per_atom`](https://w3id.org/nfdi4cat/catcore/total_energy_per_atom)
+**CURIE:** [`coremeta4cat:total_energy_per_atom`](https://w3id.org/nfdi4cat/coremeta4cat/total_energy_per_atom)
 
-**Schema Reference:** [total_energy_per_atom](./elements/total_energy_per_atom.md)
+**Schema Reference:** [total_energy_per_atom](./elements/slots/total_energy_per_atom.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20total_energy_per_atom target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20total_energy_per_atom target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20DFT target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20DFT target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -2244,7 +2244,7 @@ Used to study diffusion, reaction kinetics, and thermal properties.
 
 **CURIE:** [`NCIT:C18097`](http://purl.obolibrary.org/obo/NCIT_C18097)
 
-**Schema Reference:** [MolecularDynamics](./elements/MolecularDynamics.md)
+**Schema Reference:** [MolecularDynamics](./elements/classes/MolecularDynamics.md)
 
 **Slots**
 
@@ -2258,12 +2258,12 @@ EAM). Include parametrisation source or reference.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:force_field`](https://w3id.org/nfdi4cat/catcore/force_field)
+**CURIE:** [`coremeta4cat:force_field`](https://w3id.org/nfdi4cat/coremeta4cat/force_field)
 
-**Schema Reference:** [force_field](./elements/force_field.md)
+**Schema Reference:** [force_field](./elements/slots/force_field.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20force_field target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20force_field target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2279,12 +2279,12 @@ EAM). Include parametrisation source or reference.
 
 **CURIE:** [`APOLLO_SV:00000012`](http://purl.obolibrary.org/obo/APOLLO_SV_00000012)
 
-**Schema Reference:** [simulation_timestep](./elements/simulation_timestep.md)
+**Schema Reference:** [simulation_timestep](./elements/slots/simulation_timestep.md)
 
 **Unit:** fs
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20simulation_timestep target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20simulation_timestep target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2298,14 +2298,14 @@ EAM). Include parametrisation source or reference.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:simulation_time`](https://w3id.org/nfdi4cat/catcore/simulation_time)
+**CURIE:** [`coremeta4cat:simulation_time`](https://w3id.org/nfdi4cat/coremeta4cat/simulation_time)
 
-**Schema Reference:** [simulation_time](./elements/simulation_time.md)
+**Schema Reference:** [simulation_time](./elements/slots/simulation_time.md)
 
 **Unit:** ps
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20simulation_time target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20simulation_time target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2320,12 +2320,12 @@ thermodynamic quantities are conserved.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:ensemble_type`](https://w3id.org/nfdi4cat/catcore/ensemble_type)
+**CURIE:** [`coremeta4cat:ensemble_type`](https://w3id.org/nfdi4cat/coremeta4cat/ensemble_type)
 
-**Schema Reference:** [ensemble_type](./elements/ensemble_type.md)
+**Schema Reference:** [ensemble_type](./elements/slots/ensemble_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ensemble_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ensemble_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2339,18 +2339,18 @@ thermodynamic quantities are conserved.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:number_of_atoms`](https://w3id.org/nfdi4cat/catcore/number_of_atoms)
+**CURIE:** [`coremeta4cat:number_of_atoms`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_atoms)
 
-**Schema Reference:** [number_of_atoms](./elements/number_of_atoms.md)
+**Schema Reference:** [number_of_atoms](./elements/slots/number_of_atoms.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_atoms target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_atoms target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MolecularDynamics target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MolecularDynamics target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -2362,9 +2362,9 @@ thermodynamic quantities are conserved.
 elementary reaction steps and their rate constants to predict catalytic
 activity and selectivity under reaction conditions.
 
-**CURIE:** [`catcore:Microkinetics`](https://w3id.org/nfdi4cat/catcore/Microkinetics)
+**CURIE:** [`coremeta4cat:Microkinetics`](https://w3id.org/nfdi4cat/coremeta4cat/Microkinetics)
 
-**Schema Reference:** [Microkinetics](./elements/Microkinetics.md)
+**Schema Reference:** [Microkinetics](./elements/classes/Microkinetics.md)
 
 **Slots**
 
@@ -2380,10 +2380,10 @@ activation energy) for each elementary step in the reaction network.
 
 **CURIE:** [`NCIT:C94967`](http://purl.obolibrary.org/obo/NCIT_C94967)
 
-**Schema Reference:** [rate_constants](./elements/rate_constants.md)
+**Schema Reference:** [rate_constants](./elements/slots/rate_constants.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20rate_constants target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20rate_constants target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2398,12 +2398,12 @@ stiff ODE solver, steady-state Newton method).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:solver_type`](https://w3id.org/nfdi4cat/catcore/solver_type)
+**CURIE:** [`coremeta4cat:solver_type`](https://w3id.org/nfdi4cat/coremeta4cat/solver_type)
 
-**Schema Reference:** [solver_type](./elements/solver_type.md)
+**Schema Reference:** [solver_type](./elements/slots/solver_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20solver_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20solver_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2419,12 +2419,12 @@ stiff ODE solver, steady-state Newton method).
 
 **CURIE:** [`AFR:0001584`](http://purl.allotrope.org/ontologies/result#AFR_0001584)
 
-**Schema Reference:** [temperature](./elements/temperature.md)
+**Schema Reference:** [temperature](./elements/slots/temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2438,14 +2438,14 @@ stiff ODE solver, steady-state Newton method).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:pressure`](https://w3id.org/nfdi4cat/catcore/pressure)
+**CURIE:** [`coremeta4cat:pressure`](https://w3id.org/nfdi4cat/coremeta4cat/pressure)
 
-**Schema Reference:** [pressure](./elements/pressure.md)
+**Schema Reference:** [pressure](./elements/slots/pressure.md)
 
 **Unit:** bar
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20pressure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20pressure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2459,12 +2459,12 @@ stiff ODE solver, steady-state Newton method).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:surface_coverage`](https://w3id.org/nfdi4cat/catcore/surface_coverage)
+**CURIE:** [`coremeta4cat:surface_coverage`](https://w3id.org/nfdi4cat/coremeta4cat/surface_coverage)
 
-**Schema Reference:** [surface_coverage](./elements/surface_coverage.md)
+**Schema Reference:** [surface_coverage](./elements/slots/surface_coverage.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20surface_coverage target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20surface_coverage target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2478,20 +2478,20 @@ stiff ODE solver, steady-state Newton method).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:activation_energy`](https://w3id.org/nfdi4cat/catcore/activation_energy)
+**CURIE:** [`coremeta4cat:activation_energy`](https://w3id.org/nfdi4cat/coremeta4cat/activation_energy)
 
-**Schema Reference:** [activation_energy](./elements/activation_energy.md)
+**Schema Reference:** [activation_energy](./elements/slots/activation_energy.md)
 
 **Unit:** eV
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20activation_energy target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20activation_energy target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Microkinetics target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Microkinetics target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -2504,9 +2504,9 @@ space using random moves accepted or rejected according to a statistical
 criterion (e.g. Metropolis). Used for adsorption isotherms, phase diagrams,
 and lattice-based kinetics.
 
-**CURIE:** [`catcore:MonteCarlo`](https://w3id.org/nfdi4cat/catcore/MonteCarlo)
+**CURIE:** [`coremeta4cat:MonteCarlo`](https://w3id.org/nfdi4cat/coremeta4cat/MonteCarlo)
 
-**Schema Reference:** [MonteCarlo](./elements/MonteCarlo.md)
+**Schema Reference:** [MonteCarlo](./elements/classes/MonteCarlo.md)
 
 **Slots**
 
@@ -2519,12 +2519,12 @@ and lattice-based kinetics.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:interaction_potential`](https://w3id.org/nfdi4cat/catcore/interaction_potential)
+**CURIE:** [`coremeta4cat:interaction_potential`](https://w3id.org/nfdi4cat/coremeta4cat/interaction_potential)
 
-**Schema Reference:** [interaction_potential](./elements/interaction_potential.md)
+**Schema Reference:** [interaction_potential](./elements/slots/interaction_potential.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20interaction_potential target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20interaction_potential target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2538,12 +2538,12 @@ and lattice-based kinetics.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:number_of_steps`](https://w3id.org/nfdi4cat/catcore/number_of_steps)
+**CURIE:** [`coremeta4cat:number_of_steps`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_steps)
 
-**Schema Reference:** [number_of_steps](./elements/number_of_steps.md)
+**Schema Reference:** [number_of_steps](./elements/slots/number_of_steps.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_steps target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_steps target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2559,12 +2559,12 @@ and lattice-based kinetics.
 
 **CURIE:** [`AFR:0001584`](http://purl.allotrope.org/ontologies/result#AFR_0001584)
 
-**Schema Reference:** [temperature](./elements/temperature.md)
+**Schema Reference:** [temperature](./elements/slots/temperature.md)
 
 **Unit:** Cel
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2579,12 +2579,12 @@ and lattice-based kinetics.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:lattice_size_type`](https://w3id.org/nfdi4cat/catcore/lattice_size_type)
+**CURIE:** [`coremeta4cat:lattice_size_type`](https://w3id.org/nfdi4cat/coremeta4cat/lattice_size_type)
 
-**Schema Reference:** [lattice_size_type](./elements/lattice_size_type.md)
+**Schema Reference:** [lattice_size_type](./elements/slots/lattice_size_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20lattice_size_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20lattice_size_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2599,12 +2599,12 @@ Kawasaki, heat-bath algorithm).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:acceptance_criteria`](https://w3id.org/nfdi4cat/catcore/acceptance_criteria)
+**CURIE:** [`coremeta4cat:acceptance_criteria`](https://w3id.org/nfdi4cat/coremeta4cat/acceptance_criteria)
 
-**Schema Reference:** [acceptance_criteria](./elements/acceptance_criteria.md)
+**Schema Reference:** [acceptance_criteria](./elements/slots/acceptance_criteria.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20acceptance_criteria target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20acceptance_criteria target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2618,12 +2618,12 @@ Kawasaki, heat-bath algorithm).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:equilibration_steps`](https://w3id.org/nfdi4cat/catcore/equilibration_steps)
+**CURIE:** [`coremeta4cat:equilibration_steps`](https://w3id.org/nfdi4cat/coremeta4cat/equilibration_steps)
 
-**Schema Reference:** [equilibration_steps](./elements/equilibration_steps.md)
+**Schema Reference:** [equilibration_steps](./elements/slots/equilibration_steps.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equilibration_steps target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equilibration_steps target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2637,24 +2637,24 @@ Kawasaki, heat-bath algorithm).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:sampling_interval`](https://w3id.org/nfdi4cat/catcore/sampling_interval)
+**CURIE:** [`coremeta4cat:sampling_interval`](https://w3id.org/nfdi4cat/coremeta4cat/sampling_interval)
 
-**Schema Reference:** [sampling_interval](./elements/sampling_interval.md)
+**Schema Reference:** [sampling_interval](./elements/slots/sampling_interval.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20sampling_interval target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20sampling_interval target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MonteCarlo target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MonteCarlo target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20realized_plan target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20realized_plan target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>

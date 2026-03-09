@@ -41,14 +41,14 @@ Core fields include reactor design type, operational parameters, and product ide
 
 **Cardinality:**  Mandatory, Multivalued
 
-**CURIE:** [`catcore:catalyst_quantity`](https://w3id.org/nfdi4cat/catcore/catalyst_quantity)
+**CURIE:** [`coremeta4cat:catalyst_quantity`](https://w3id.org/nfdi4cat/coremeta4cat/catalyst_quantity)
 
-**Schema Reference:** [catalyst_quantity](./elements/catalyst_quantity.md)
+**Schema Reference:** [catalyst_quantity](./elements/slots/catalyst_quantity.md)
 
 **Unit:** g
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_quantity target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_quantity target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -65,10 +65,10 @@ or SMILES. For feeds, include composition and flow rate where known.
 
 **CURIE:** [`VOC4CAT:0000101`](https://w3id.org/nfdi4cat/voc4cat_0000101)
 
-**Schema Reference:** [reactant](./elements/reactant.md)
+**Schema Reference:** [reactant](./elements/slots/reactant.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactant target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactant target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -85,10 +85,10 @@ For heterogeneous catalysts, use voc4cat terms where available.
 
 **CURIE:** [`VOC4CAT:0007014`](https://w3id.org/nfdi4cat/voc4cat_0007014)
 
-**Schema Reference:** [catalyst_type](./elements/catalyst_type.md)
+**Schema Reference:** [catalyst_type](./elements/slots/catalyst_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -105,10 +105,10 @@ as a string range (e.g. "200–400 °C") or a single set-point.
 
 **CURIE:** [`VOC4CAT:0007032`](https://w3id.org/nfdi4cat/voc4cat_0007032)
 
-**Schema Reference:** [reactor_temperature_range](./elements/reactor_temperature_range.md)
+**Schema Reference:** [reactor_temperature_range](./elements/slots/reactor_temperature_range.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_temperature_range target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_temperature_range target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -122,12 +122,12 @@ as a string range (e.g. "200–400 °C") or a single set-point.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:atmosphere`](https://w3id.org/nfdi4cat/catcore/atmosphere)
+**CURIE:** [`coremeta4cat:atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/atmosphere)
 
-**Schema Reference:** [atmosphere](./elements/atmosphere.md)
+**Schema Reference:** [atmosphere](./elements/slots/atmosphere.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20atmosphere target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -143,12 +143,12 @@ as a string range (e.g. "200–400 °C") or a single set-point.
 
 **CURIE:** [`VOC4CAT:0000118`](https://w3id.org/nfdi4cat/voc4cat_0000118)
 
-**Schema Reference:** [experiment_pressure](./elements/experiment_pressure.md)
+**Schema Reference:** [experiment_pressure](./elements/slots/experiment_pressure.md)
 
 **Unit:** bar
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20experiment_pressure target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20experiment_pressure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -163,12 +163,12 @@ Record as a string; for individual component concentrations use reactant.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:feed_composition_range`](https://w3id.org/nfdi4cat/catcore/feed_composition_range)
+**CURIE:** [`coremeta4cat:feed_composition_range`](https://w3id.org/nfdi4cat/coremeta4cat/feed_composition_range)
 
-**Schema Reference:** [feed_composition_range](./elements/feed_composition_range.md)
+**Schema Reference:** [feed_composition_range](./elements/slots/feed_composition_range.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20feed_composition_range target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20feed_composition_range target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -184,12 +184,12 @@ Record as a string; for individual component concentrations use reactant.
 
 **CURIE:** [`AFR:0002455`](http://purl.allotrope.org/ontologies/result#AFR_0002455)
 
-**Schema Reference:** [experiment_duration](./elements/experiment_duration.md)
+**Schema Reference:** [experiment_duration](./elements/slots/experiment_duration.md)
 
 **Unit:** h
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20experiment_duration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20experiment_duration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -204,7 +204,7 @@ ReactorDesignType (Device) instance.
 
 **Cardinality:**  Mandatory, Multivalued
 
-**Schema Reference:** [carried_out_by](./elements/carried_out_by.md)
+**Schema Reference:** [carried_out_by](./elements/slots/carried_out_by.md)
 
 **Data Type Class Details:**
 
@@ -219,10 +219,10 @@ Linked from Reaction via carried_out_by.
 
 **CURIE:** [`VOC4CAT:0007018`](https://w3id.org/nfdi4cat/voc4cat_0007018)
 
-**Schema Reference:** [ReactorDesignType](./elements/ReactorDesignType.md)
+**Schema Reference:** [ReactorDesignType](./elements/classes/ReactorDesignType.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ReactorDesignType target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ReactorDesignType target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -237,10 +237,10 @@ H-cells, flow cells, and membrane electrode assemblies.
 
 **CURIE:** [`VOC4CAT:0000193`](https://w3id.org/nfdi4cat/voc4cat_0000193)
 
-**Schema Reference:** [ElectrochemicalReactor](./elements/ElectrochemicalReactor.md)
+**Schema Reference:** [ElectrochemicalReactor](./elements/classes/ElectrochemicalReactor.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectrochemicalReactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectrochemicalReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -253,10 +253,10 @@ reactor operating at steady state.
 
 **CURIE:** [`VOC4CAT:0007019`](https://w3id.org/nfdi4cat/voc4cat_0007019)
 
-**Schema Reference:** [CSTR](./elements/CSTR.md)
+**Schema Reference:** [CSTR](./elements/classes/CSTR.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CSTR target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CSTR target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -269,10 +269,10 @@ varies along the axis with no axial mixing.
 
 **CURIE:** [`VOC4CAT:0007102`](https://w3id.org/nfdi4cat/voc4cat_0007102)
 
-**Schema Reference:** [PlugFlowReactor](./elements/PlugFlowReactor.md)
+**Schema Reference:** [PlugFlowReactor](./elements/classes/PlugFlowReactor.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PlugFlowReactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PlugFlowReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -285,10 +285,10 @@ elevated temperature and/or pressure.
 
 **CURIE:** [`NCIT:C93052`](http://purl.obolibrary.org/obo/NCIT_C93052)
 
-**Schema Reference:** [Autoclave](./elements/Autoclave.md)
+**Schema Reference:** [Autoclave](./elements/classes/Autoclave.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Autoclave target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Autoclave target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -299,12 +299,12 @@ elevated temperature and/or pressure.
 **Description:** Slurry reactor — a three-phase reactor in which catalyst particles are
 suspended in a liquid phase through which gas is bubbled.
 
-**CURIE:** [`catcore:SlurryReactor`](https://w3id.org/nfdi4cat/catcore/SlurryReactor)
+**CURIE:** [`coremeta4cat:SlurryReactor`](https://w3id.org/nfdi4cat/coremeta4cat/SlurryReactor)
 
-**Schema Reference:** [SlurryReactor](./elements/SlurryReactor.md)
+**Schema Reference:** [SlurryReactor](./elements/classes/SlurryReactor.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SlurryReactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SlurryReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -318,10 +318,10 @@ screening.
 
 **CURIE:** [`VOC4CAT:0000234`](https://w3id.org/nfdi4cat/voc4cat_0000234)
 
-**Schema Reference:** [Microreactor](./elements/Microreactor.md)
+**Schema Reference:** [Microreactor](./elements/classes/Microreactor.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Microreactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Microreactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -332,12 +332,12 @@ screening.
 **Description:** Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.
 The most common reactor type in heterogeneous catalysis testing.
 
-**CURIE:** [`catcore:FixedBedReactor`](https://w3id.org/nfdi4cat/catcore/FixedBedReactor)
+**CURIE:** [`coremeta4cat:FixedBedReactor`](https://w3id.org/nfdi4cat/coremeta4cat/FixedBedReactor)
 
-**Schema Reference:** [FixedBedReactor](./elements/FixedBedReactor.md)
+**Schema Reference:** [FixedBedReactor](./elements/classes/FixedBedReactor.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FixedBedReactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FixedBedReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
@@ -348,9 +348,9 @@ The most common reactor type in heterogeneous catalysis testing.
 **Description:** Fluidized bed reactor — a reactor in which the catalyst particles are
 suspended in an upward-flowing gas or liquid stream.
 
-**CURIE:** [`catcore:FluidizedBedReactor`](https://w3id.org/nfdi4cat/catcore/FluidizedBedReactor)
+**CURIE:** [`coremeta4cat:FluidizedBedReactor`](https://w3id.org/nfdi4cat/coremeta4cat/FluidizedBedReactor)
 
-**Schema Reference:** [FluidizedBedReactor](./elements/FluidizedBedReactor.md)
+**Schema Reference:** [FluidizedBedReactor](./elements/classes/FluidizedBedReactor.md)
 
 **Slots**
 
@@ -363,12 +363,12 @@ suspended in an upward-flowing gas or liquid stream.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:gas_distributor_type`](https://w3id.org/nfdi4cat/catcore/gas_distributor_type)
+**CURIE:** [`coremeta4cat:gas_distributor_type`](https://w3id.org/nfdi4cat/coremeta4cat/gas_distributor_type)
 
-**Schema Reference:** [gas_distributor_type](./elements/gas_distributor_type.md)
+**Schema Reference:** [gas_distributor_type](./elements/slots/gas_distributor_type.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20gas_distributor_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20gas_distributor_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -382,14 +382,14 @@ suspended in an upward-flowing gas or liquid stream.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`catcore:bed_expansion_height`](https://w3id.org/nfdi4cat/catcore/bed_expansion_height)
+**CURIE:** [`coremeta4cat:bed_expansion_height`](https://w3id.org/nfdi4cat/coremeta4cat/bed_expansion_height)
 
-**Schema Reference:** [bed_expansion_height](./elements/bed_expansion_height.md)
+**Schema Reference:** [bed_expansion_height](./elements/slots/bed_expansion_height.md)
 
 **Unit:** cm
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bed_expansion_height target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bed_expansion_height target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -403,24 +403,24 @@ suspended in an upward-flowing gas or liquid stream.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`catcore:bubble_size_distribution`](https://w3id.org/nfdi4cat/catcore/bubble_size_distribution)
+**CURIE:** [`coremeta4cat:bubble_size_distribution`](https://w3id.org/nfdi4cat/coremeta4cat/bubble_size_distribution)
 
-**Schema Reference:** [bubble_size_distribution](./elements/bubble_size_distribution.md)
+**Schema Reference:** [bubble_size_distribution](./elements/slots/bubble_size_distribution.md)
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bubble_size_distribution target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bubble_size_distribution target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FluidizedBedReactor target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FluidizedBedReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20carried_out_by target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20carried_out_by target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -430,14 +430,14 @@ suspended in an upward-flowing gas or liquid stream.
 
 **Description:** The analytical method used to identify and/or quantify reaction products.
 Should reference a CharacterizationTechnique instance (e.g. a GCMS or
-HPLC_MS object from catcore_characterization_ap). The abstract stub
+HPLC_MS object from coremeta4cat_characterization_ap). The abstract stub
 ProductIdentificationMethod is retained for backward compatibility.
 
 **Data Type:** ProductIdentificationMethod
 
 **Cardinality:**  Mandatory, Multivalued
 
-**Schema Reference:** [product_identification_method](./elements/product_identification_method.md)
+**Schema Reference:** [product_identification_method](./elements/slots/product_identification_method.md)
 
 **Data Type Class Details:**
 
@@ -448,24 +448,24 @@ ProductIdentificationMethod is retained for backward compatibility.
 
 **Description:** Abstract Plan representing the method used to identify and quantify reaction
 products. In practice, users should reference a concrete CharacterizationTechnique
-subclass from catcore_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).
+subclass from coremeta4cat_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).
 
 This abstract class is retained for backward compatibility with the original
-CatCore monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
+CoreMeta4Cat monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
 it can participate in the realized_plan slot if needed.
 
 **CURIE:** [`OBI:0000272`](http://purl.obolibrary.org/obo/OBI_0000272)
 
-**Schema Reference:** [ProductIdentificationMethod](./elements/ProductIdentificationMethod.md)
+**Schema Reference:** [ProductIdentificationMethod](./elements/classes/ProductIdentificationMethod.md)
 
 <p>
-      <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ProductIdentificationMethod target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ProductIdentificationMethod target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
 
 <p>
-  <a href=https://github.com/HendrikBorgelt/CatCore/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20product_identification_method target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20product_identification_method target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
