@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(just test)",
+      "Bash(uv run pytest tests/ -x -q)"
+    ]
+  }
+}

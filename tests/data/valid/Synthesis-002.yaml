@@ -1,0 +1,49 @@
+---
+# Synthesis-002 -- Co-precipitation of 15 wt% NiO/CeO2 dry reforming catalyst
+# Target class: Synthesis
+#
+# Preparation method: CoPrecipitation (PrecipitationMixin + DryingMixin + CalcinationMixin).
+# realized_plan range is PreparationMethod (abstract) -- concrete subclass slots silently
+# ignored by Python loader. All method-specific parameters encoded in description.
+# See SCHEMA_REVIEW.md for the abstract-range limitation.
+#
+# Demonstrates:
+#   - Three Precursor instances (Ni salt, Ce salt, precipitant)
+#   - had_output_entity with CatalystSample
+#   - Full synthesis-level slots (support, solvent, sample_pretreatment, storage_conditions)
+#   - Rich realized_plan description encoding precipitation / drying / calcination params
+
+id: "coremeta4cat:SYNTH_002_NiO_CeO2"
+nominal_composition:
+  - "15 wt% NiO/CeO2"
+catalyst_measured_properties:
+  - "BET surface area: 42 m2/g"
+  - "NiO crystallite size: 8.4 nm (Scherrer, XRD)"
+  - "Ni loading: 14.7 wt% (ICP-AES)"
+  - "reducibility onset: 280 deg C, completion at 600 deg C (H2-TPR)"
+storage_conditions:
+  - "sealed glass vial in desiccator, ambient temperature, protected from moisture"
+solvent:
+  - "deionized water (18.2 MOhm cm, MilliQ)"
+sample_pretreatment:
+  - "in situ reduction: 5 vol% H2/N2 at 700 deg C for 1 h (10 deg C/min ramp) before DRM tests"
+had_input_entity:
+  - id: "coremeta4cat:PREC_004_Ni_NO3_6H2O"
+    title: "nickel(II) nitrate hexahydrate (Sigma-Aldrich, purity 99%)"
+    precursor_quantity:
+      - 8.72
+  - id: "coremeta4cat:PREC_005_Ce_NO3_6H2O"
+    title: "cerium(III) nitrate hexahydrate (Sigma-Aldrich, purity 99.5%)"
+    precursor_quantity:
+      - 13.03
+  - id: "coremeta4cat:PREC_006_Na2CO3"
+    title: "sodium carbonate precipitating agent (anhydrous, Sigma-Aldrich, purity 99.5%)"
+    precursor_quantity:
+      - 5.30
+had_output_entity:
+  - id: "coremeta4cat:CAT_002_NiO_CeO2"
+    title: "NiO/CeO2 dry reforming catalyst (calcined precursor)"
+    description: "15 wt% NiO on CeO2 support, co-precipitated at pH 8.5, calcined 500 deg C / 4 h, sieved to 250-500 um"
+realized_plan:
+  title: "co-precipitation"
+  description: "aqueous solutions of Ni(NO3)2 (0.5 M) and Ce(NO3)3 (0.5 M) mixed in stoichiometric ratio; precipitant: 1 M Na2CO3 solution added dropwise at 2 mL/min; target pH 8.5 maintained by feedback addition; mixing: 600 rpm mechanical stirring at 60 deg C for 2 h; aging: 12 h at 60 deg C without stirring; filtration: vacuum filtration through Whatman grade 4 filter paper; washing: 5 successive deionized water washes until conductivity < 5 uS/cm (Na+ removal); drying: 120 deg C for 12 h in static air oven; calcination: 5 deg C/min ramp to 500 deg C, isothermal hold for 4 h in static air, natural cooling"
