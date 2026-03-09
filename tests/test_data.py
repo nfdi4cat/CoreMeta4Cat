@@ -19,7 +19,7 @@ def test_valid_data_files(filepath):
     """Test loading of all valid data files."""
     target_class_name = Path(filepath).stem.split("-")[0]
     tgt_class = getattr(
-        src.catcore.datamodel.catcore,
+        src.coremeta4cat.datamodel.coremeta4cat,
         target_class_name,
     )
     obj = yaml_loader.load(filepath, target_class=tgt_class)
