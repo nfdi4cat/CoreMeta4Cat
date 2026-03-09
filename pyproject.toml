@@ -3,7 +3,7 @@ requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 
 [project]
-name = "catcore"
+name = "coremeta4cat"
 description = "A metadata collection for catalysis related research"
 authors = [
   {name = "Hendrik Borgelt", email = "hendrik.borgelt@tu-dortmund.de"},
@@ -22,7 +22,7 @@ dependencies = [
 dev = [
     "linkml>=1.9.3",
     "mkdocs-material>=8.2.8",
-    "mkdocs-mermaid2-plugin>=1.1.1",
+    "mkdocs-mermaid2-plugin>=1.2.3",
     "jupyter>=1.0.0",
     "mknotebooks>= 0.8.0",
 ]
@@ -50,8 +50,8 @@ skip = [
   "pyproject.toml",
   "uv.lock",
   "project/*",
-  "src/catcore/datamodel/catcore_pydantic.py",
-  "src/catcore/datamodel/catcore.py",
+  "src/coremeta4cat/datamodel/coremeta4cat_pydantic.py",
+  "src/coremeta4cat/datamodel/coremeta4cat.py",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
@@ -67,6 +67,6 @@ extend-exclude = [
   "uv.lock",
   "pyproject.toml",
   "project/*",
-  "src/catcore/datamodel/catcore_pydantic.py",
-  "src/catcore/datamodel/catcore.py",
+  "src/coremeta4cat/datamodel/coremeta4cat_pydantic.py",
+  "src/coremeta4cat/datamodel/coremeta4cat.py",
 ]
