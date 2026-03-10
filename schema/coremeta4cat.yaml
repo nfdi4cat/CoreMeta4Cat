@@ -715,9 +715,10 @@ slots:
     mappings:
     - VOC4CAT:0000187
     slot_uri: VOC4CAT:0000187
-    owner: ThermalSynthesisMixin
+    owner: Characterization
     domain_of:
     - ThermalSynthesisMixin
+    - Characterization
     range: string
     multivalued: true
   flow_rate:
@@ -3716,6 +3717,27 @@ slots:
     domain_of:
     - FluidizedBedReactor
     range: string
+  product_identification_method:
+    name: product_identification_method
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/product_identification_method
+    description: 'The analytical method used to identify and/or quantify reaction
+      products.
+
+      Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).
+
+      The abstract stub ProductIdentificationMethod is retained for backward compatibility.'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - coremeta4cat:product_identification_method
+    slot_uri: coremeta4cat:product_identification_method
+    owner: Reaction
+    domain_of:
+    - Reaction
+    range: ProductIdentificationMethod
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   software_package:
     name: software_package
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/software_package
@@ -6975,23 +6997,6 @@ slots:
       binds_value_of: id
       description: Restricts the allowable defined terms to the QUDT Unit vocabulary.
     recommended: true
-  product_identification_method:
-    name: product_identification_method
-    description: 'The analytical method used to identify and/or quantify reaction
-      products.
-
-      Should reference a CharacterizationTechnique instance (e.g. a GCMS or
-
-      HPLC_MS object from coremeta4cat_characterization_ap). The abstract stub
-
-      ProductIdentificationMethod is retained for backward compatibility.'
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
-    slot_uri: coremeta4cat:product_identification_method
-    range: ProductIdentificationMethod
-    required: true
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
   CatalysisDataset_rdf_type:
     name: CatalysisDataset_rdf_type
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/rdf_type
@@ -7442,6 +7447,7 @@ slots:
     inlined_as_list: true
   Reaction_product_identification_method:
     name: Reaction_product_identification_method
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/product_identification_method
     description: 'The analytical method used to identify and/or quantify reaction
       products.
 
@@ -7450,7 +7456,9 @@ slots:
       HPLC_MS object from coremeta4cat_characterization_ap). The abstract stub
 
       ProductIdentificationMethod is retained for backward compatibility.'
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - coremeta4cat:product_identification_method
     is_a: product_identification_method
     domain: Reaction
     slot_uri: coremeta4cat:product_identification_method
@@ -7511,7 +7519,6 @@ slots:
     usage_slot_name: realized_plan
     range: SimulationMethod
     required: true
-    multivalued: true
     inlined: true
     inlined_as_list: true
   Simulation_carried_out_by:
@@ -12192,12 +12199,12 @@ classes:
     - ClassifierMixin_type
     - evaluated_activity
     - occurred_in
+    - Characterization_equipment
     - sample_state
     - sample_description
     - sample_preparation
     - sample_pretreatment
     - detector_type
-    - Characterization_equipment
     - Characterization_evaluated_entity
     - Characterization_realized_plan
     - Characterization_rdf_type
@@ -12935,10 +12942,10 @@ classes:
     - experiment_pressure
     - feed_composition_range
     - experiment_duration
+    - Reaction_product_identification_method
     - Reaction_rdf_type
     - Reaction_carried_out_by
     - Reaction_had_input_entity
-    - Reaction_product_identification_method
     slot_usage:
       rdf_type:
         name: rdf_type
@@ -12972,12 +12979,9 @@ classes:
           HPLC_MS object from coremeta4cat_characterization_ap). The abstract stub
 
           ProductIdentificationMethod is retained for backward compatibility.'
-        from_schema: https://w3id.org/nfdi4cat/coremeta4cat
-        slot_uri: coremeta4cat:product_identification_method
         range: ProductIdentificationMethod
         required: true
         multivalued: true
-        inlined: true
         inlined_as_list: true
     class_uri: SIO:010345
   ProductIdentificationMethod:
@@ -13001,7 +13005,6 @@ classes:
     mappings:
     - OBI:0000272
     is_a: Plan
-    abstract: true
     slots:
     - title
     - description
@@ -13300,8 +13303,6 @@ classes:
         description: The SimulationMethod (protocol) realized in this Simulation.
         range: SimulationMethod
         required: true
-        multivalued: true
-        inlined_as_list: true
       carried_out_by:
         name: carried_out_by
         description: The simulation software used, provided as a Software agent instance.
@@ -17076,7 +17077,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-03-09T18:25:08'
+source_file_date: '2026-03-10T09:24:58'
 source_file_size: 6580
-generation_date: '2026-03-09T18:25:21'
+generation_date: '2026-03-10T09:25:13'
 

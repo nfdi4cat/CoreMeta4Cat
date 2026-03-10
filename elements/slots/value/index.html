@@ -736,27 +736,42 @@ Alias: value</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/Mass/">Mass</a></td>
-<td>The strength of a body's gravitational attraction to other bodies.</td>
+<td><a href="../../classes/Density/">Density</a></td>
+<td>A measure of the mass per unit volume of a substance.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Concentration/">Concentration</a></td>
-<td>A QuantitativeAttribute of a ChemicalSubstance that represents the amount of a constituent divided by the volume of the mixture.</td>
+<td><a href="../../classes/QualitativeAttribute/">QualitativeAttribute</a></td>
+<td>A piece of information that is attributed to an Entity, Activity or AgenticEntity.</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../../classes/MolarMass/">MolarMass</a></td>
+<td>A Mass (physical quality) that quantifies the mass of a homogeneous ChemicalSubstance containing 6.02 x 10^23 atoms or molecules.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Pressure/">Pressure</a></td>
-<td></td>
+<td><a href="../../classes/Volume/">Volume</a></td>
+<td>A measure of regions in three-dimensional space.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/MolarEquivalent/">MolarEquivalent</a></td>
-<td>A dimensionless ratio that quantifies the stoichiometric proportion of a chemical substance relative to a reference substance in a chemical reaction.</td>
+<td><a href="../../classes/AmountOfSubstance/">AmountOfSubstance</a></td>
+<td>The total amount of substance used in a ChemicalReaction.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/PHValue/">PHValue</a></td>
+<td><a href="../../classes/InChi/">InChi</a></td>
+<td>A structure descriptor which conforms to the InChI format specification.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PhononDispersion/">PhononDispersion</a></td>
+<td>Phonon dispersion relations computed from interatomic force constants,<br>providing access to vibrational frequencies, thermodynamic quantities,<br>and dynamical stability (imaginary modes).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/InChIKey/">InChIKey</a></td>
 <td></td>
 <td>no</td>
 </tr>
@@ -766,9 +781,94 @@ Alias: value</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/QualitativeAttribute/">QualitativeAttribute</a></td>
-<td>A piece of information that is attributed to an Entity, Activity or AgenticEntity.</td>
+<td><a href="../../classes/SMILES/">SMILES</a></td>
+<td>A structure descriptor that denotes a molecular structure as a graph and conforms to the SMILES format specification.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CalculatedProperty/">CalculatedProperty</a></td>
+<td>Abstract QualitativeAttribute representing a property computed by a<br>Simulation. Concrete subclasses carry the property-specific output<br>values and the computational settings used to produce them.<br>Linked from Simulation via the calculated_property slot.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/AqueousStability/">AqueousStability</a></td>
+<td>Electrochemical (Pourbaix) stability of a catalyst in aqueous solution as<br>a function of pH and electrode potential. Critical for electrocatalyst<br>stability screening.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/QuantitativeAttribute/">QuantitativeAttribute</a></td>
+<td>A quantifiable piece of information that is attributed to an Entity, Activity or AgenticEntity.</td>
 <td>yes</td>
+</tr>
+<tr>
+<td><a href="../../classes/Concentration/">Concentration</a></td>
+<td>A QuantitativeAttribute of a ChemicalSubstance that represents the amount of a constituent divided by the volume of the mixture.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/IUPACName/">IUPACName</a></td>
+<td>A systematic name which is formulated according to the rules and recommendations for chemical nomenclature set out by the International Union of Pure and Applied Chemistry (IUPAC).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ElectronicStructure/">ElectronicStructure</a></td>
+<td>Electronic band structure and density of states, characterising the<br>electronic properties of a catalyst relevant to activity descriptors<br>(d-band centre, band gap, Fermi energy).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Ferroelectrics/">Ferroelectrics</a></td>
+<td>Ferroelectric properties computed from DFT, including spontaneous<br>polarization, switching barrier, and coercive field. Relevant for<br>ferroelectric-photocatalyst design.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/BandGap/">BandGap</a></td>
+<td>Electronic band gap and its character (direct/indirect), with optional<br>many-body (GW) or excitonic corrections. Critical for photocatalyst<br>and semiconductor catalyst screening.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Surfaces/">Surfaces</a></td>
+<td>Surface properties of a catalyst computed from a periodic slab model,<br>including surface energy, Miller index, slab thickness, and vacuum spacing.<br>Central to heterogeneous catalysis modelling.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Piezoelectricity/">Piezoelectricity</a></td>
+<td>Piezoelectric response of a non-centrosymmetric material, described by the<br>piezoelectric tensor. Relevant for piezocatalysis applications.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Temperature/">Temperature</a></td>
+<td>A physical quantity that quantitatively expresses the attribute of hotness or coldness.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ThermodynamicStability/">ThermodynamicStability</a></td>
+<td>Thermodynamic stability of a material or phase, characterised by formation<br>energy, convex hull distance, and competing phases. Used to screen catalyst<br>stability and predict synthesis feasibility.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Mass/">Mass</a></td>
+<td>The strength of a body's gravitational attraction to other bodies.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Yield/">Yield</a></td>
+<td>A dimensionless physical quantity describing the fraction of a product B that is formed from a reactant A taking into account the stoichiometry. If A fully reacts to B without side-reactions, the yield of product B is 1 (or 100 %).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MolarEquivalent/">MolarEquivalent</a></td>
+<td>A dimensionless ratio that quantifies the stoichiometric proportion of a chemical substance relative to a reference substance in a chemical reaction.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/GrainBoundaries/">GrainBoundaries</a></td>
+<td>Grain boundary structure and energetics from atomistic simulation.<br>Relevant for understanding polycrystalline catalyst behaviour,<br>sintering, and charge/defect segregation.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Pressure/">Pressure</a></td>
+<td></td>
+<td>no</td>
 </tr>
 <tr>
 <td><a href="../../classes/ElasticConstants/">ElasticConstants</a></td>
@@ -781,8 +881,8 @@ Alias: value</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/AmountOfSubstance/">AmountOfSubstance</a></td>
-<td>The total amount of substance used in a ChemicalReaction.</td>
+<td><a href="../../classes/PHValue/">PHValue</a></td>
+<td></td>
 <td>no</td>
 </tr>
 <tr>
@@ -793,106 +893,6 @@ Alias: value</p>
 <tr>
 <td><a href="../../classes/EquationsOfState/">EquationsOfState</a></td>
 <td>Equation of state relating energy (or enthalpy) to volume, fitted to a<br>parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium<br>volume, bulk modulus, and its pressure derivative.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ThermodynamicStability/">ThermodynamicStability</a></td>
-<td>Thermodynamic stability of a material or phase, characterised by formation<br>energy, convex hull distance, and competing phases. Used to screen catalyst<br>stability and predict synthesis feasibility.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/AqueousStability/">AqueousStability</a></td>
-<td>Electrochemical (Pourbaix) stability of a catalyst in aqueous solution as<br>a function of pH and electrode potential. Critical for electrocatalyst<br>stability screening.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MolarMass/">MolarMass</a></td>
-<td>A Mass (physical quality) that quantifies the mass of a homogeneous ChemicalSubstance containing 6.02 x 10^23 atoms or molecules.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/SMILES/">SMILES</a></td>
-<td>A structure descriptor that denotes a molecular structure as a graph and conforms to the SMILES format specification.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/BandGap/">BandGap</a></td>
-<td>Electronic band gap and its character (direct/indirect), with optional<br>many-body (GW) or excitonic corrections. Critical for photocatalyst<br>and semiconductor catalyst screening.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/QuantitativeAttribute/">QuantitativeAttribute</a></td>
-<td>A quantifiable piece of information that is attributed to an Entity, Activity or AgenticEntity.</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../../classes/InChIKey/">InChIKey</a></td>
-<td></td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/IUPACName/">IUPACName</a></td>
-<td>A systematic name which is formulated according to the rules and recommendations for chemical nomenclature set out by the International Union of Pure and Applied Chemistry (IUPAC).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/CalculatedProperty/">CalculatedProperty</a></td>
-<td>Abstract QualitativeAttribute representing a property computed by a<br>Simulation. Concrete subclasses carry the property-specific output<br>values and the computational settings used to produce them.<br>Linked from Simulation via the calculated_property slot.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Piezoelectricity/">Piezoelectricity</a></td>
-<td>Piezoelectric response of a non-centrosymmetric material, described by the<br>piezoelectric tensor. Relevant for piezocatalysis applications.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/GrainBoundaries/">GrainBoundaries</a></td>
-<td>Grain boundary structure and energetics from atomistic simulation.<br>Relevant for understanding polycrystalline catalyst behaviour,<br>sintering, and charge/defect segregation.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Ferroelectrics/">Ferroelectrics</a></td>
-<td>Ferroelectric properties computed from DFT, including spontaneous<br>polarization, switching barrier, and coercive field. Relevant for<br>ferroelectric-photocatalyst design.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Density/">Density</a></td>
-<td>A measure of the mass per unit volume of a substance.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Volume/">Volume</a></td>
-<td>A measure of regions in three-dimensional space.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/InChi/">InChi</a></td>
-<td>A structure descriptor which conforms to the InChI format specification.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Surfaces/">Surfaces</a></td>
-<td>Surface properties of a catalyst computed from a periodic slab model,<br>including surface energy, Miller index, slab thickness, and vacuum spacing.<br>Central to heterogeneous catalysis modelling.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ElectronicStructure/">ElectronicStructure</a></td>
-<td>Electronic band structure and density of states, characterising the<br>electronic properties of a catalyst relevant to activity descriptors<br>(d-band centre, band gap, Fermi energy).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Yield/">Yield</a></td>
-<td>A dimensionless physical quantity describing the fraction of a product B that is formed from a reactant A taking into account the stoichiometry. If A fully reacts to B without side-reactions, the yield of product B is 1 (or 100 %).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Temperature/">Temperature</a></td>
-<td>A physical quantity that quantitatively expresses the attribute of hotness or coldness.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PhononDispersion/">PhononDispersion</a></td>
-<td>Phonon dispersion relations computed from interatomic force constants,<br>providing access to vibrational frequencies, thermodynamic quantities,<br>and dynamical stability (imaginary modes).</td>
 <td>no</td>
 </tr>
 </tbody>

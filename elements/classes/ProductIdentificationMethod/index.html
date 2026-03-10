@@ -324,6 +324,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#usages">
+<span class="md-ellipsis">
+      
+        Usages
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#identifier-and-mapping-information">
 <span class="md-ellipsis">
       
@@ -400,9 +409,6 @@
 <p><em>This abstract class is retained for backward compatibility with the original</em></p>
 <p><em>CoreMeta4Cat monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that</em></p>
 <p><em>it can participate in the realized_plan slot if needed.</em></p>
-<ul>
-<li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
-</ul>
 <p>URI: <a href="http://purl.obolibrary.org/obo/OBI_0000272">OBI:0000272</a></p>
 <pre class="mermaid"><code> classDiagram
     class ProductIdentificationMethod
@@ -482,6 +488,25 @@
 </tr>
 </tbody>
 </table>
+<h2 id="usages">Usages</h2>
+<table>
+<thead>
+<tr>
+<th>used by</th>
+<th>used in</th>
+<th>type</th>
+<th>used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Reaction/">Reaction</a></td>
+<td><a href="../../slots/product_identification_method/">product_identification_method</a></td>
+<td>range</td>
+<td><a href="./">ProductIdentificationMethod</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -526,7 +551,6 @@
 <span class="w">  </span><span class="s">it</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">participate</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">realized_plan</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">needed.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Plan</span>
-<span class="nt">abstract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OBI:0000272</span>
 </code></pre></div>
 </details>
@@ -548,7 +572,6 @@
 <span class="w">  </span><span class="s">it</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">participate</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">realized_plan</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">needed.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Plan</span>
-<span class="nt">abstract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>

@@ -736,13 +736,13 @@ Alias: experiment_duration</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/Reaction/">Reaction</a></td>
-<td>An EvaluatedActivity representing the catalytic reaction being studied.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via carried_out_by as a ReactorDesignType (Device).<br>Reactants are linked via had_input_entity. The type of catalytic reaction<br>(e.g. ammonia synthesis, CO oxidation) is expressed via rdf_type using a<br>voc4cat or ChemO term.</td>
+<td><a href="../../classes/PowderXRD/">PowderXRD</a></td>
+<td>Powder X-ray diffraction for phase identification and structural analysis.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/PowderXRD/">PowderXRD</a></td>
-<td>Powder X-ray diffraction for phase identification and structural analysis.</td>
+<td><a href="../../classes/Reaction/">Reaction</a></td>
+<td>An EvaluatedActivity representing the catalytic reaction being studied.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via carried_out_by as a ReactorDesignType (Device).<br>Reactants are linked via had_input_entity. The type of catalytic reaction<br>(e.g. ammonia synthesis, CO oxidation) is expressed via rdf_type using a<br>voc4cat or ChemO term.</td>
 <td>no</td>
 </tr>
 </tbody>
