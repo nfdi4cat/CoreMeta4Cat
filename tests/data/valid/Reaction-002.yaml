@@ -1,0 +1,52 @@
+---
+# Reaction-002 -- Dry methane reforming (DRM) over Ni/CeO2 in fixed-bed reactor
+# Target class: Reaction
+#
+# NOTE (carried_out_by): range is ReactorDesignType (abstract: true) -> dangling $ref.
+# Loader instantiates abstract ReactorDesignType. Each item needs an id.
+# NOTE (product_identification_method): same abstract stub limitation as Reaction-001.
+#
+# Demonstrates:
+#   - Two reactants (CH4 + CO2) with separate had_input_entity feed descriptions
+#   - experiment_duration (20 h stability test)
+#   - feed_composition_range (two entries: stoichiometric + CO2-rich conditions)
+#   - Detailed product_identification_method (online GC with two columns)
+#   - FixedBedReactor with detailed description (quartz tube, dilution, thermocouple)
+
+id: "coremeta4cat:REAC_002_DRM_NiCeO2"
+catalyst_quantity:
+  - 0.2
+catalyst_type:
+  - "heterogeneous, supported metal (Ni0 after in situ reduction of NiO/CeO2)"
+reactant:
+  - "CH4 (99.995% purity, Linde)"
+  - "CO2 (99.998% purity, Linde)"
+  - "N2 balance (99.999% purity, internal standard for GC quantification)"
+reactor_temperature_range:
+  - "600-800 deg C"
+experiment_pressure:
+  - 1.0
+atmosphere:
+  - "CH4/CO2/N2 = 45:45:10 vol%, total flow 100 mL/min (STP), GHSV = 30000 mL/(g*h)"
+feed_composition_range:
+  - "stoichiometric DRM: CH4/CO2 = 1:1 (molar)"
+  - "CO2-rich condition: CH4/CO2 = 1:1.5 to suppress carbon deposition"
+experiment_duration:
+  - 20.0
+carried_out_by:
+  - id: "coremeta4cat:REACT_003_FixedBed_DRM"
+    title: "quartz fixed-bed plug-flow reactor (DRM)"
+    description: "quartz tube reactor, 8 mm inner diameter, 30 cm length; catalyst bed: 200 mg NiO/CeO2 (250-500 um sieve fraction) diluted 1:2 (mass) with inert SiC chips (500 um); thermocouple inserted into catalyst bed centre; backpressure regulator at outlet (1 bar); reactor surrounded by ceramic-fibre furnace with PID temperature controller; mass flow controllers (Brooks SLA5850) for CH4, CO2, N2"
+had_input_entity:
+  - id: "coremeta4cat:FEED_004_CH4_DRM"
+    title: "methane feed (99.995%, Linde)"
+    description: "CH4 flow: 45 mL/min (STP); calibrated Brooks SLA5850 MFC"
+  - id: "coremeta4cat:FEED_005_CO2_DRM"
+    title: "CO2 feed (99.998%, Linde)"
+    description: "CO2 flow: 45 mL/min (STP); calibrated Brooks SLA5850 MFC"
+  - id: "coremeta4cat:FEED_006_N2_standard"
+    title: "N2 internal standard (99.999%, Linde)"
+    description: "N2 flow: 10 mL/min (STP); used as internal standard for GC molar balance"
+product_identification_method:
+  - title: "online dual-column gas chromatography (TCD)"
+    description: "Shimadzu GC-2014 with TCD detector (Ar carrier gas); column 1: HayeSep D (2 m x 1/8 in) for CO2, CH4 separation; column 2: Molecular Sieve 5A (2 m x 1/8 in) for CO, H2, N2, CH4 separation; 10-port Valco valve for column switching; oven temperature: 50 deg C isothermal; TCD temperature: 250 deg C; injection: automated gas sampling valve, 1 mL loop; analysis cycle: 10 min; calibration: certified gas standard (Air Liquide CRYSTAL mixture: H2 5%, CO 5%, CH4 5%, CO2 10%, N2 balance); CH4 conversion, CO2 conversion, H2/CO ratio, and carbon balance calculated from N2-normalised molar flows"

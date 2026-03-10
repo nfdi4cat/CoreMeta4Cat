@@ -165,6 +165,7 @@ classes:
       following DCAT-AP-PLUS Pattern 3 — exactly as NMRSpectroscopy uses
       rdf_type: CHMO:0000613.
     slots:
+      - equipment
       - sample_state
       - sample_description
       - sample_preparation

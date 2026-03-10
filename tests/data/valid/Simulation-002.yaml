@@ -1,0 +1,39 @@
+---
+# Simulation-002 -- ReaxFF molecular dynamics of Ni cluster on CeO2(111) surface
+# Target class: Simulation
+#
+# NOTE: realized_plan range is SimulationMethod (abstract).
+# Python loader always instantiates abstract SimulationMethod; MolecularDynamics
+# subclass fields (force_field, simulation_timestep, ensemble_type, etc.)
+# are silently ignored at load time. All MD parameters encoded in description.
+#
+# NOTE: calculated_property range is CalculatedProperty (abstract).
+# Each item MUST include "value" (required by QualitativeAttribute base class).
+# Concrete subclass fields are silently ignored at load time.
+#
+# Demonstrates:
+#   - MolecularDynamics SimulationMethod (contrast with DFT in Simulation-001)
+#   - Four calculated_property entries with diverse value types
+#   - Two software_package entries (LAMMPS + analysis tool)
+#   - Detailed evaluated_entity (periodic slab with adsorbed cluster)
+
+id: "coremeta4cat:SIM_002_MD_Ni_CeO2_111"
+software_package:
+  - "LAMMPS (29 Sep 2021 stable release, OpenMP build)"
+  - "OVITO 3.7.11 (structure analysis, RDF, CNA, cluster tracking)"
+evaluated_entity:
+  - id: "coremeta4cat:SLAB_002_CeO2_111_Ni13"
+    title: "CeO2(111) surface slab with supported 13-atom Ni cluster"
+    description: "6-layer CeO2(111) p(4x4) slab (256 CeO2 formula units, 768 atoms total); bottom 3 layers fixed during MD; 13-atom cuboctahedral Ni cluster adsorbed on three-fold hollow O site; 20 Ang vacuum layer; 3D periodic boundary conditions"
+realized_plan:
+  title: "ReaxFF molecular dynamics (NVT, 800 deg C)"
+  description: "force field: ReaxFF C/H/Ni/O parametrisation (van Duin et al. 2012, DOI: 10.1021/jp210484t); ensemble: NVT with Nose-Hoover thermostat (tau = 100 fs) at 800 deg C (1073 K); integration timestep: 0.5 fs; total simulation time: 1 ns (2,000,000 steps); equilibration phase: 200 ps (400,000 steps) discarded; production phase: 800 ps (1,600,000 steps) used for analysis; sampling interval: every 1000 steps (0.5 ps); bond order cutoff: C-O 0.3, Ni-O 0.3 (fix reax/c/bonds); radial distribution functions computed with OVITO using 0.05 Ang bin width; common-neighbour analysis (CNA) to track Ni cluster crystallographic ordering"
+calculated_property:
+  - value: "1.52 J/m2"
+    description: "CeO2(111) cleavage surface energy (clean slab without Ni cluster, computed from relaxed DFT-D3 reference at 0 K, used as force field validation benchmark)"
+  - value: "-1.83 eV/atom"
+    description: "time-averaged Ni-CeO2 adhesion energy per Ni atom (13-atom cluster) relative to bulk Ni cohesive energy and clean CeO2(111) slab; computed from 800 ps production trajectory"
+  - value: "3.8 Ang"
+    description: "first-shell Ni-O coordination distance at Ni cluster / CeO2 interface (peak of Ni-O radial distribution function, production trajectory average)"
+  - value: "0.42"
+    description: "fraction of Ni atoms in direct contact with CeO2 surface (Ni-O bond order > 0.3) averaged over production trajectory; measures cluster wetting / spreading"

@@ -1,0 +1,42 @@
+---
+# Reaction-001 -- CO2 hydrogenation to methanol over Cu/ZnO/Al2O3 in fixed-bed reactor
+# Target class: Reaction
+#
+# SCHEMA ERROR (product_identification_method): The slot range is abstract
+# ProductIdentificationMethod (a Plan stub with no concrete subclasses).
+# The schema description says to reference a CharacterizationTechnique, but
+# CharacterizationTechnique is NOT a subclass of ProductIdentificationMethod.
+# As a workaround, title/description are provided on the abstract stub;
+# the generated Python loader instantiates ProductIdentificationMethod directly.
+# See SCHEMA_REVIEW.md for the proposed fix.
+#
+# NOTE (carried_out_by): keyed inline list; each item needs an id.
+# The loader instantiates the abstract ReactorDesignType (not FixedBedReactor).
+
+id: "coremeta4cat:REAC_001_CO2_hydrogenation"
+catalyst_quantity:
+  - 0.5
+reactant:
+  - "CO2 (99.998% purity, 20 vol% in H2)"
+  - "H2 (99.999% purity)"
+catalyst_type:
+  - "heterogeneous, supported metal oxide"
+reactor_temperature_range:
+  - "200-300 deg C"
+experiment_pressure:
+  - 50.0
+atmosphere:
+  - "H2/CO2 = 3:1 (molar), GHSV = 10000 mL/(g*h)"
+feed_composition_range:
+  - "H2/CO2 = 3:1, CO2 concentration 20 vol%"
+carried_out_by:
+  - id: "coremeta4cat:REACT_001_FixedBed"
+    title: "stainless steel fixed-bed plug-flow reactor"
+    description: "10 mm inner diameter, 30 cm length, 0.5 g catalyst diluted with SiC"
+had_input_entity:
+  - id: "coremeta4cat:FEED_001_CO2_H2"
+    title: "CO2/H2 feed gas mixture"
+    description: "H2/CO2 molar ratio 3:1, total flow 100 mL/min"
+product_identification_method:
+  - title: "online gas chromatography"
+    description: "GC (Agilent 7890B) with TCD and FID detectors; columns: Molecular Sieve 5A and Poraplot Q; products: MeOH, CO, CH4, H2O quantified"

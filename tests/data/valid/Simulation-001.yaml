@@ -1,0 +1,33 @@
+---
+# Simulation-001 -- DFT calculation of CO adsorption on Cu(111) surface
+# Target class: Simulation
+#
+# NOTE: realized_plan range is SimulationMethod (abstract).
+# The generated Python loader always instantiates abstract SimulationMethod;
+# concrete DFT subclass fields (exchange_correlation_functional, energy_cutoff, …)
+# are silently ignored at load time.
+#
+# NOTE: calculated_property range is CalculatedProperty (abstract).
+# Each item MUST include "value" (required by QualitativeAttribute base class).
+# Concrete subclass fields are silently ignored at load time.
+#
+# Both realized_plan and calculated_property are lists (multivalued).
+
+id: "coremeta4cat:SIM_001_DFT_Cu111_CO_ads"
+software_package:
+  - "VASP 6.3.0"
+  - "VESTA 3.5.8 (structure visualization)"
+evaluated_entity:
+  - id: "coremeta4cat:SLAB_001_Cu111"
+    title: "Cu(111) surface slab model"
+    description: "4-layer Cu(111) p(3x3) slab, bottom 2 layers fixed, 15 Ang vacuum"
+realized_plan:
+  title: "periodic plane-wave DFT"
+  description: "PBE functional, PAW pseudopotentials, 400 eV cutoff, 4x4x1 Monkhorst-Pack k-mesh, D3 dispersion correction, spin-unpolarized"
+calculated_property:
+  - value: "-0.67 eV"
+    description: "CO adsorption energy on hollow fcc site of Cu(111) relative to gas-phase CO"
+  - value: "1.157 Ang"
+    description: "C-O bond length of adsorbed CO"
+  - value: "2.312 Ang"
+    description: "Cu-C bond length at hollow adsorption site"

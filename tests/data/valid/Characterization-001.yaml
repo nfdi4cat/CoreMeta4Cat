@@ -1,0 +1,19 @@
+---
+# Characterization-001 -- BET surface area measurement of Cu/ZnO/Al2O3 catalyst
+# Target class: Characterization
+#
+# NOTE: realized_plan range is CharacterizationTechnique (abstract).
+# The generated Python loader instantiates the abstract CharacterizationTechnique;
+# concrete BET subclass fields are silently ignored.
+# Technique identity is expressed via title/description on realized_plan.
+
+id: "coremeta4cat:CHAR_001_BET_CuZnO_Al2O3"
+equipment:
+  - "Micromeritics ASAP 2020 surface area and porosimetry analyzer"
+evaluated_entity:
+  - id: "coremeta4cat:CAT_001_CuZnO_Al2O3"
+    title: "Cu/ZnO/Al2O3 methanol synthesis catalyst"
+    description: "63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)"
+realized_plan:
+  title: "BET surface area measurement"
+  description: "N2 physisorption at 77 K, degassing at 300 deg C for 3 h under vacuum prior to measurement"

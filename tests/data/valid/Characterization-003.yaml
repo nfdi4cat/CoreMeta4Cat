@@ -1,0 +1,36 @@
+---
+# Characterization-003 -- XPS surface analysis of NiO/CeO2 catalyst
+# Target class: Characterization
+#
+# Technique: XPS (XRaySourceMixin + EnergyRangeMixin + technique-specific slots).
+# realized_plan range is CharacterizationTechnique (abstract) -- Python loader
+# instantiates abstract class; XPS-specific parameters encoded in description.
+#
+# Demonstrates:
+#   - Full Characterization-level slots: sample_state, sample_description,
+#     sample_preparation, sample_pretreatment, detector_type
+#   - Multiple equipment items (instrument + X-ray source specification)
+#   - Rich realized_plan description encoding survey + HR scan parameters,
+#     pass energy, spot size, charge compensation, binding energy calibration
+
+id: "coremeta4cat:CHAR_003_XPS_NiO_CeO2"
+equipment:
+  - "Thermo Scientific K-Alpha+ XPS spectrometer"
+  - "Al K-alpha monochromatic X-ray source (1486.6 eV, 72 W)"
+sample_state:
+  - "powder"
+sample_description:
+  - "NiO/CeO2 co-precipitated catalyst (SYNTH_002), calcined at 500 deg C, as-prepared (non-reduced), ca. 10 mg pressed into indium foil"
+sample_preparation:
+  - "lightly pressed into indium foil to obtain flat surface; mounted on sample stub with copper tape; no Ar+ sputtering performed"
+sample_pretreatment:
+  - "outgassed in XPS load-lock chamber at < 1e-7 mbar for 12 h before transfer to analysis chamber (< 5e-9 mbar)"
+detector_type:
+  - "128-channel 2D delay-line detector (DLD)"
+evaluated_entity:
+  - id: "coremeta4cat:CAT_002_NiO_CeO2"
+    title: "NiO/CeO2 dry reforming catalyst (calcined)"
+    description: "15 wt% NiO on CeO2 support, calcined at 500 deg C"
+realized_plan:
+  title: "X-ray photoelectron spectroscopy (XPS)"
+  description: "monochromatic Al K-alpha (1486.6 eV); base pressure 5e-9 mbar; survey scan: 0-1350 eV, 1.0 eV step, 50 ms dwell, 3 scans, pass energy 200 eV; high-resolution regions: Ni 2p3/2 (845-895 eV), Ce 3d (875-935 eV), O 1s (525-540 eV), C 1s (280-295 eV); step size 0.1 eV, 20 scans each, pass energy 50 eV; spot size 400 um; lens mode: large area XL; charge compensation: dual-beam flood gun (1 eV electrons + 10 eV Ar+); binding energy scale calibrated to C 1s adventitious carbon at 284.8 eV; Shirley background subtraction; peak fitting: Voigt profiles (CasaXPS v2.3.25); atomic concentrations from Scofield sensitivity factors corrected for transmission function"
