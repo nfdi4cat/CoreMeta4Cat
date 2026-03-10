@@ -1,0 +1,41 @@
+---
+# CatalysisDataset-002 -- NiO/CeO2 dry methane reforming catalyst study
+# Target class: CatalysisDataset
+#
+# Comprehensive dataset linking synthesis, characterization, reaction, and simulation
+# activities for the NiO/CeO2 DRM catalyst system (files -002 series).
+#
+# JSON schema notes (same as CatalysisDataset-001):
+# - title and description must be arrays (DCAT multivalued).
+# - was_generated_by items must include at least title:[] to avoid linkml_runtime
+#   JsonObj loader bug (single-field objects passed as positional arg).
+# - is_about_entity items inlined with title and description.
+
+id: "coremeta4cat:DS_002_DRM_NiO_CeO2"
+title:
+  - "NiO/CeO2 dry methane reforming catalyst: co-precipitation synthesis, multi-technique characterization, catalytic performance, and computational interface study"
+description:
+  - "Dataset covering the full lifecycle of a 15 wt% NiO/CeO2 dry reforming catalyst: (1) co-precipitation synthesis with precipitation parameters and calcination protocol; (2) XPS surface composition and oxidation state analysis; (3) H2-TPR reducibility profiling; (4) catalytic performance in CH4+CO2 dry reforming at 600-800 deg C over 20 h; (5) ReaxFF molecular dynamics of the Ni/CeO2(111) interface at 800 deg C to rationalise metal-support interaction."
+was_generated_by:
+  - id: "coremeta4cat:SYNTH_002_NiO_CeO2"
+    title:
+      - "co-precipitation synthesis of 15 wt% NiO/CeO2"
+  - id: "coremeta4cat:CHAR_003_XPS_NiO_CeO2"
+    title:
+      - "XPS surface analysis of NiO/CeO2 (Ni 2p, Ce 3d, O 1s)"
+  - id: "coremeta4cat:CHAR_004_TPR_NiO_CeO2"
+    title:
+      - "H2-TPR reducibility measurement of NiO/CeO2"
+  - id: "coremeta4cat:REAC_002_DRM_NiCeO2"
+    title:
+      - "dry methane reforming catalytic activity test (600-800 deg C, 20 h)"
+  - id: "coremeta4cat:SIM_002_MD_Ni_CeO2_111"
+    title:
+      - "ReaxFF MD simulation of Ni13 cluster on CeO2(111) at 800 deg C"
+is_about_entity:
+  - id: "coremeta4cat:CAT_002_NiO_CeO2"
+    title: "NiO/CeO2 dry reforming catalyst"
+    description: "15 wt% NiO on CeO2 support, co-precipitated at pH 8.5, calcined 500 deg C / 4 h, active phase Ni0 formed by in situ reduction"
+  - id: "coremeta4cat:SLAB_002_CeO2_111_Ni13"
+    title: "Ni13/CeO2(111) computational model"
+    description: "13-atom cuboctahedral Ni cluster on 6-layer CeO2(111) p(4x4) periodic slab; ReaxFF MD model representing Ni/CeO2 metal-support interface"

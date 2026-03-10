@@ -92,6 +92,7 @@ classes:
       - experiment_pressure
       - feed_composition_range
       - experiment_duration
+      - product_identification_method
     slot_usage:
       rdf_type:
         description: |-
@@ -129,7 +130,6 @@ classes:
   ProductIdentificationMethod:
     is_a: Plan
     class_uri: OBI:0000272
-    abstract: true
     description: |-
       Abstract Plan representing the method used to identify and quantify reaction
       products. In practice, users should reference a concrete CharacterizationTechnique
@@ -297,3 +297,14 @@ slots:
     description: Description or characterization of bubble size distribution in the fluidized bed.
     range: string
     slot_uri: coremeta4cat:bubble_size_distribution
+
+  product_identification_method:
+    description: |-
+      The analytical method used to identify and/or quantify reaction products.
+      Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).
+      The abstract stub ProductIdentificationMethod is retained for backward compatibility.
+    range: ProductIdentificationMethod
+    slot_uri: coremeta4cat:product_identification_method
+    required: true
+    multivalued: true
+    inlined_as_list: true

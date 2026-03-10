@@ -518,7 +518,8 @@ class ThermalSynthesisMixin(ConfiguredBaseModel):
     synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
+    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
+         'slot_uri': 'VOC4CAT:0000187'} })
     vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -2045,6 +2046,8 @@ class Characterization(DataGeneratingActivity):
                                           'range': 'CharacterizationTechnique',
                                           'required': True}}})
 
+    equipment: list[str] = Field(default=..., description="""Instrument or equipment used for characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
+         'slot_uri': 'VOC4CAT:0000187'} })
     sample_state: Optional[list[SampleStateEnum]] = Field(default=[], description="""Physical state of the sample during characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'], 'slot_uri': 'coremeta4cat:sample_state'} })
     sample_description: Optional[list[str]] = Field(default=[], description="""Free-text description of the sample used in this characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'],
          'slot_uri': 'coremeta4cat:sample_description'} })
@@ -5514,6 +5517,11 @@ Record as a string; for individual component concentrations use reactant.""", js
     experiment_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the experiment or measurement run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD', 'Reaction'],
          'slot_uri': 'AFR:0002455',
          'unit': {'ucum_code': 'h'}} })
+    product_identification_method: list[ProductIdentificationMethod] = Field(default=..., description="""The analytical method used to identify and/or quantify reaction products.
+Should reference a CharacterizationTechnique instance (e.g. a GCMS or
+HPLC_MS object from coremeta4cat_characterization_ap). The abstract stub
+ProductIdentificationMethod is retained for backward compatibility.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'],
+         'slot_uri': 'coremeta4cat:product_identification_method'} })
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
                        'Dataset',
@@ -6566,7 +6574,8 @@ class Solvothermal(PreparationMethod, ThermalSynthesisMixin):
     synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
+    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
+         'slot_uri': 'VOC4CAT:0000187'} })
     vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -6688,7 +6697,8 @@ class PlasmaAssisted(PreparationMethod, ThermalSynthesisMixin):
     synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
+    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
+         'slot_uri': 'VOC4CAT:0000187'} })
     vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -6809,7 +6819,8 @@ class CombustionSynthesis(PreparationMethod, ThermalSynthesisMixin):
     synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
+    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
+         'slot_uri': 'VOC4CAT:0000187'} })
     vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -7193,7 +7204,8 @@ class MicrowaveAssisted(PreparationMethod, ThermalSynthesisMixin):
     synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
+    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
+         'slot_uri': 'VOC4CAT:0000187'} })
     vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -7580,7 +7592,8 @@ class MechanochemicalSynthesis(PreparationMethod, ThermalSynthesisMixin):
     synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
+    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
+         'slot_uri': 'VOC4CAT:0000187'} })
     vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -7695,7 +7708,8 @@ class Sublimation(PreparationMethod, ThermalSynthesisMixin):
     synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'slot_uri': 'VOC4CAT:0000050',
          'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000187'} })
+    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
+         'slot_uri': 'VOC4CAT:0000187'} })
     vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
     atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
@@ -11485,8 +11499,7 @@ class ProductIdentificationMethod(Plan):
     CoreMeta4Cat monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
     it can participate in the realized_plan slot if needed.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
-         'class_uri': 'OBI:0000272',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000272',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
@@ -18918,8 +18931,6 @@ class Simulation(DataGeneratingActivity):
                         'realized_plan': {'description': 'The SimulationMethod '
                                                          '(protocol) realized in this '
                                                          'Simulation.',
-                                          'inlined_as_list': True,
-                                          'multivalued': True,
                                           'name': 'realized_plan',
                                           'range': 'SimulationMethod',
                                           'required': True}}})
@@ -18938,7 +18949,7 @@ instance. Multiple properties may be computed in a single simulation run.""", js
          'is_a': 'had_input_activity',
          'recommended': True,
          'slot_uri': 'prov:wasInformedBy'} })
-    realized_plan: list[SimulationMethod] = Field(default=..., description="""The SimulationMethod (protocol) realized in this Simulation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
+    realized_plan: SimulationMethod = Field(default=..., description="""The SimulationMethod (protocol) realized in this Simulation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
          'in_subset': ['domain_agnostic_core'],
          'slot_uri': 'prov:used'} })
     occurred_in: Optional[Surrounding] = Field(default=None, description="""The slot to specify the Surrounding in which an Activity took place.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],

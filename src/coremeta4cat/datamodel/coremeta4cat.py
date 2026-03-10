@@ -1,5 +1,5 @@
 # Auto generated from coremeta4cat.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-03-09T17:19:45
+# Generation date: 2026-03-10T09:36:20
 # Schema: coremeta4cat-metadata
 #
 # id: https://w3id.org/nfdi4cat/coremeta4cat
@@ -1572,7 +1572,7 @@ class Simulation(DataGeneratingActivity):
     id: Union[str, SimulationId] = None
     software_package: Union[str, list[str]] = None
     calculated_property: Union[Union[dict, "CalculatedProperty"], list[Union[dict, "CalculatedProperty"]]] = None
-    realized_plan: Union[Union[dict, "SimulationMethod"], list[Union[dict, "SimulationMethod"]]] = None
+    realized_plan: Union[dict, "SimulationMethod"] = None
     rdf_type: Optional[Union[dict, "DefinedTerm"]] = None
     carried_out_by: Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, AgenticEntity]], list[Union[dict, AgenticEntity]]]] = empty_dict()
     evaluated_entity: Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]] = empty_dict()
@@ -1597,9 +1597,8 @@ class Simulation(DataGeneratingActivity):
 
         if self._is_empty(self.realized_plan):
             self.MissingRequiredField("realized_plan")
-        if not isinstance(self.realized_plan, list):
-            self.realized_plan = [self.realized_plan] if self.realized_plan is not None else []
-        self.realized_plan = [v if isinstance(v, SimulationMethod) else SimulationMethod(**as_dict(v)) for v in self.realized_plan]
+        if not isinstance(self.realized_plan, SimulationMethod):
+            self.realized_plan = SimulationMethod(**as_dict(self.realized_plan))
 
         if self.rdf_type is not None and not isinstance(self.rdf_type, DefinedTerm):
             self.rdf_type = DefinedTerm(**as_dict(self.rdf_type))
@@ -2579,8 +2578,8 @@ class Reaction(EvaluatedActivity):
     id: Union[str, ReactionId] = None
     catalyst_quantity: Union[float, list[float]] = None
     reactant: Union[str, list[str]] = None
-    carried_out_by: Union[dict[Union[str, ReactorDesignTypeId], Union[dict, ReactorDesignType]], list[Union[dict, ReactorDesignType]]] = empty_dict()
     product_identification_method: Union[Union[dict, "ProductIdentificationMethod"], list[Union[dict, "ProductIdentificationMethod"]]] = None
+    carried_out_by: Union[dict[Union[str, ReactorDesignTypeId], Union[dict, ReactorDesignType]], list[Union[dict, ReactorDesignType]]] = empty_dict()
     catalyst_type: Optional[Union[str, list[str]]] = empty_list()
     reactor_temperature_range: Optional[Union[str, list[str]]] = empty_list()
     atmosphere: Optional[Union[str, list[str]]] = empty_list()
@@ -2608,15 +2607,15 @@ class Reaction(EvaluatedActivity):
             self.reactant = [self.reactant] if self.reactant is not None else []
         self.reactant = [v if isinstance(v, str) else str(v) for v in self.reactant]
 
-        if self._is_empty(self.carried_out_by):
-            self.MissingRequiredField("carried_out_by")
-        self._normalize_inlined_as_list(slot_name="carried_out_by", slot_type=ReactorDesignType, key_name="id", keyed=True)
-
         if self._is_empty(self.product_identification_method):
             self.MissingRequiredField("product_identification_method")
         if not isinstance(self.product_identification_method, list):
             self.product_identification_method = [self.product_identification_method] if self.product_identification_method is not None else []
         self.product_identification_method = [v if isinstance(v, ProductIdentificationMethod) else ProductIdentificationMethod(**as_dict(v)) for v in self.product_identification_method]
+
+        if self._is_empty(self.carried_out_by):
+            self.MissingRequiredField("carried_out_by")
+        self._normalize_inlined_as_list(slot_name="carried_out_by", slot_type=ReactorDesignType, key_name="id", keyed=True)
 
         if not isinstance(self.catalyst_type, list):
             self.catalyst_type = [self.catalyst_type] if self.catalyst_type is not None else []
@@ -9221,6 +9220,9 @@ slots.bed_expansion_height = Slot(uri=COREMETA4CAT.bed_expansion_height, name="b
 slots.bubble_size_distribution = Slot(uri=COREMETA4CAT.bubble_size_distribution, name="bubble_size_distribution", curie=COREMETA4CAT.curie('bubble_size_distribution'),
                    model_uri=COREMETA4CAT.bubble_size_distribution, domain=None, range=Optional[str])
 
+slots.product_identification_method = Slot(uri=COREMETA4CAT.product_identification_method, name="product_identification_method", curie=COREMETA4CAT.curie('product_identification_method'),
+                   model_uri=COREMETA4CAT.product_identification_method, domain=None, range=Union[Union[dict, ProductIdentificationMethod], list[Union[dict, ProductIdentificationMethod]]])
+
 slots.software_package = Slot(uri=COREMETA4CAT.software_package, name="software_package", curie=COREMETA4CAT.curie('software_package'),
                    model_uri=COREMETA4CAT.software_package, domain=None, range=Union[str, list[str]])
 
@@ -9854,9 +9856,6 @@ slots.quantitativeAttribute__has_quantity_type = Slot(uri=QUDT.hasQuantityKind, 
 slots.quantitativeAttribute__unit = Slot(uri=QUDT.unit, name="quantitativeAttribute__unit", curie=QUDT.curie('unit'),
                    model_uri=COREMETA4CAT.quantitativeAttribute__unit, domain=None, range=Optional[Union[str, DefinedTermId]])
 
-slots.product_identification_method = Slot(uri=COREMETA4CAT.product_identification_method, name="product_identification_method", curie=COREMETA4CAT.curie('product_identification_method'),
-                   model_uri=COREMETA4CAT.product_identification_method, domain=None, range=Union[Union[dict, ProductIdentificationMethod], list[Union[dict, ProductIdentificationMethod]]])
-
 slots.CatalysisDataset_rdf_type = Slot(uri=RDF.type, name="CatalysisDataset_rdf_type", curie=RDF.curie('type'),
                    model_uri=COREMETA4CAT.CatalysisDataset_rdf_type, domain=CatalysisDataset, range=Optional[Union[dict, "DefinedTerm"]])
 
@@ -9921,7 +9920,7 @@ slots.Simulation_rdf_type = Slot(uri=RDF.type, name="Simulation_rdf_type", curie
                    model_uri=COREMETA4CAT.Simulation_rdf_type, domain=Simulation, range=Optional[Union[dict, "DefinedTerm"]])
 
 slots.Simulation_realized_plan = Slot(uri=PROV.used, name="Simulation_realized_plan", curie=PROV.curie('used'),
-                   model_uri=COREMETA4CAT.Simulation_realized_plan, domain=Simulation, range=Union[Union[dict, "SimulationMethod"], list[Union[dict, "SimulationMethod"]]])
+                   model_uri=COREMETA4CAT.Simulation_realized_plan, domain=Simulation, range=Union[dict, "SimulationMethod"])
 
 slots.Simulation_carried_out_by = Slot(uri=PROV.wasAssociatedWith, name="Simulation_carried_out_by", curie=PROV.curie('wasAssociatedWith'),
                    model_uri=COREMETA4CAT.Simulation_carried_out_by, domain=Simulation, range=Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, AgenticEntity]], list[Union[dict, AgenticEntity]]]])

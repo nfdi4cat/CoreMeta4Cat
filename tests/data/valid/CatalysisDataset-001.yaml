@@ -1,0 +1,37 @@
+---
+# CatalysisDataset-001 -- Methanol synthesis over Cu/ZnO/Al2O3
+# Target class: CatalysisDataset
+#
+# This dataset covers Synthesis + Characterization + Reaction subprofiles.
+#
+# Naming note: user-preferred CatalysisDataset_Reac_Syn-001.yaml is incompatible
+# with test_data.py (stem.split("-")[0] gives invalid class name).
+# Using CatalysisDataset-001.yaml for test compatibility.
+# See SCHEMA_REVIEW.md: "File naming convention".
+#
+# JSON schema notes:
+# - title and description on CatalysisDataset must be arrays (DCAT multivalued).
+# - DataGeneratingActivity.title in JSON schema is also an array (or null).
+# - was_generated_by items must include at least title:[] to avoid a linkml_runtime
+#   loader bug where single-field JsonObj args cause DataGeneratingActivityId
+#   to receive a JsonObj instead of a string.
+
+id: "coremeta4cat:DS_001_MeOH_synthesis_CuZnO"
+title:
+  - "Methanol synthesis over Cu/ZnO/Al2O3: synthesis and catalytic performance dataset"
+description:
+  - "Dataset covering preparation of Cu/ZnO/Al2O3 methanol synthesis catalyst by incipient wetness impregnation and catalytic performance in CO2 hydrogenation at 50 bar, 200-300 deg C."
+was_generated_by:
+  - id: "coremeta4cat:SYNTH_001_Pt_Al2O3"
+    title:
+      - "incipient wetness impregnation of Cu/ZnO/Al2O3"
+  - id: "coremeta4cat:CHAR_001_BET_CuZnO_Al2O3"
+    title:
+      - "BET surface area measurement of Cu/ZnO/Al2O3"
+  - id: "coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3"
+    title:
+      - "Powder XRD measurement of Cu/ZnO/Al2O3"
+is_about_entity:
+  - id: "coremeta4cat:CAT_001_CuZnO_Al2O3"
+    title: "Cu/ZnO/Al2O3 methanol synthesis catalyst"
+    description: "63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)"

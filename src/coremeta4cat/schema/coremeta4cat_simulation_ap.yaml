@@ -116,8 +116,6 @@ classes:
           The SimulationMethod (protocol) realized in this Simulation.
         range: SimulationMethod
         required: true
-        multivalued: true
-        inlined_as_list: true
       carried_out_by:
         description: |-
           The simulation software used, provided as a Software agent instance.

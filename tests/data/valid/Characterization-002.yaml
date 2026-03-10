@@ -1,0 +1,19 @@
+---
+# Characterization-002 -- Powder XRD measurement of Cu/ZnO/Al2O3 catalyst
+# Target class: Characterization
+#
+# NOTE: realized_plan range is CharacterizationTechnique (abstract).
+# The generated Python loader instantiates the abstract CharacterizationTechnique;
+# concrete PowderXRD subclass fields are silently ignored.
+# Technique identity is expressed via title/description on realized_plan.
+
+id: "coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3"
+equipment:
+  - "Bruker D8 Advance diffractometer with Cu K-alpha radiation (1.5406 Ang)"
+evaluated_entity:
+  - id: "coremeta4cat:CAT_001_CuZnO_Al2O3"
+    title: "Cu/ZnO/Al2O3 methanol synthesis catalyst"
+    description: "63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)"
+realized_plan:
+  title: "powder X-ray diffraction"
+  description: "Cu K-alpha, 2theta range 5 to 80 deg, step size 0.02 deg, scan rate 1 deg/min, Rietveld refinement for phase quantification"
