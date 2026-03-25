@@ -43,3 +43,12 @@ repos:
     rev: 0.6.12
     hooks:
       - id: uv-lock
+
+  - repo: local
+    hooks:
+      - id: gen-python
+        name: Regenerate Python datamodels from schema
+        entry: just gen-python
+        language: system
+        pass_filenames: false
+        files: ^src/coremeta4cat/schema/.*\.yaml$

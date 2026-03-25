@@ -1,11 +1,13 @@
 # Contributing to CoreMeta4Cat
 
-:+1: First of all: Thank you for taking the time to contribute!
+👋 First of all: Thank you for taking the time to contribute!
 
-The following is a set of guidelines for contributing to
-CoreMeta4Cat. These guidelines are not strict rules.
-Use your best judgment, and feel free to propose changes to this document
-in a pull request.
+The following is a set of guidelines for contributing to CoreMeta4Cat.
+These guidelines are not strict rules — use your best judgment, and feel
+free to propose changes to this document in a pull request.
+
+For a beginner-friendly introduction to contributing (no coding required),
+see the [documentation contributing page](https://nfdi4cat.github.io/CoreMeta4Cat/contributing/).
 
 ## Table Of Contents
 
@@ -14,6 +16,7 @@ in a pull request.
   * [Reporting issues and making requests](#reporting-issues)
   * [Questions and Discussion](#questions-and-discussion)
   * [Adding new elements yourself](#adding-elements)
+* [Developer Setup](#developer-setup)
 * [Best Practices](#best-practices)
   * [How to write a great issue](#great-issues)
   * [How to create a great pull/merge request](#great-pulls)
@@ -51,6 +54,31 @@ Please use our [Discussions forum][discussions] to ask general questions or cont
 
 Please submit a [Pull Request][pulls] to submit a new term for consideration.
 
+<a id="developer-setup"></a>
+
+## Developer Setup
+
+Prerequisites: [uv](https://docs.astral.sh/uv/getting-started/installation/) and [just](https://github.com/casey/just#installation).
+
+```bash
+git clone https://github.com/nfdi4cat/CoreMeta4Cat.git
+cd CoreMeta4Cat
+uv sync --group dev    # install all dependencies
+pre-commit install     # install git hooks
+just test              # verify everything works
+```
+
+### After changing the schema
+
+If you edit any file in `src/coremeta4cat/schema/`, run:
+
+```bash
+just gen-python           # regenerate Python datamodels (also runs via pre-commit)
+just gen-schema-docs      # regenerate interactive documentation pages
+just gen-charts           # regenerate sunburst hierarchy charts
+just test                 # confirm nothing is broken
+```
+
 <a id="best-practices"></a>
 
 ## Best Practices
@@ -60,7 +88,7 @@ Please submit a [Pull Request][pulls] to submit a new term for consideration.
 ### GitHub Best Practice
 
 - Creating and curating issues
-    - Read ["About Issues"][[about-issues]]
+    - Read ["About Issues"][about-issues]
     - Issues should be focused and actionable
     - Complex issues should be broken down into simpler issues where possible
 - Pull Requests
@@ -102,7 +130,7 @@ Core developers should read the material on the [LinkML site](https://linkml.io/
 - Include examples and counter-examples (intentionally invalid examples)
     - Rationale: these serve as documentation and unit tests
     - These will be used by the automated test suite
-    - All elements of the schema must be illustrated with valid and invalid data examples in src/data. New schema elements will not be merged into the main branch until examples are provided
+    - All elements of the schema must be illustrated with valid and invalid data examples in `tests/data/`. New schema elements will not be merged into the main branch until examples are provided
     - Invalid example data files should be invalid for one single reason, which should be reflected in the filename. It should be possible to render the invalid example files valid by addressing that single fault.
 - Use enums for categorical values
     - Rationale: Open-ended string ranges encourage multiple values to represent the same entity, like “water”, “H2O” and “HOH”
@@ -115,6 +143,7 @@ Core developers should read the material on the [LinkML site](https://linkml.io/
 [about-branches]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches
 [about-issues]: https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues
 [about-pulls]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests
+[discussions]: https://github.com/nfdi4cat/CoreMeta4Cat/discussions/
 [issues]: https://github.com/nfdi4cat/CoreMeta4Cat/issues/
 [pulls]: https://github.com/nfdi4cat/CoreMeta4Cat/pulls/
 

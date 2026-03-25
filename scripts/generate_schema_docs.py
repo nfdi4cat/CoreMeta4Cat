@@ -2,6 +2,9 @@ import yaml
 from pathlib import Path
 from typing import List, Set, Optional
 
+_HERE = Path(__file__).parent
+_ROOT = _HERE.parent
+
 # coremeta4cat.yaml is loaded FIRST so its generic stubs (range: Plan, range: AgenticEntity)
 # are overwritten by the specific ranges in the subprofile modules.
 MODULE_FILES = [
@@ -374,7 +377,7 @@ def generate_markdown_for_main_class(schema: dict, main_class: str, output_file:
 
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(md)
-    print(f"  ✓ {output_file}")
+    print(f"  OK {output_file}")
 
 
 
@@ -400,12 +403,10 @@ def main(schema_dir: str, output_dir: str = "."):
     for main_class, filename in main_classes.items():
         generate_markdown_for_main_class(schema, main_class, str(output_path / filename))
 
-    print(f"\n✓ All done — {len(main_classes)} files written to '{output_dir}'.")
+    print(f"\nDone -- {len(main_classes)} files written to '{output_dir}'.")
 
 
 if __name__ == "__main__":
-    # ── Edit these two paths to match your local setup ──────────────────────
-    schema_dir = "../src/coremeta4cat/schema"
-    output_dir = "../docs"
-    # ────────────────────────────────────────────────────────────────────────
+    schema_dir = str(_ROOT / "src" / "coremeta4cat" / "schema")
+    output_dir = str(_ROOT / "docs")
     main(schema_dir, output_dir)

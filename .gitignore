@@ -142,3 +142,5 @@ dmypy.json
 .idea
 # Local vscode editor config
 .vscode
+
+.claude

@@ -2061,13 +2061,13 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>realized plan</strong> (Mandatory, Multivalued)</summary>
+<summary><strong>realized plan</strong> (Mandatory)</summary>
 
 **Description:** The SimulationMethod (protocol) realized in this Simulation.
 
 **Data Type:** SimulationMethod
 
-**Cardinality:**  Mandatory, Multivalued
+**Cardinality:**  Mandatory
 
 **Schema Reference:** [realized_plan](./elements/slots/realized_plan.md)
 

@@ -9,7 +9,7 @@ This page lists projects, data repositories, and communities that have adopted C
 
 <div style="text-align: center;">
     <a>
-    <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="CatCore logo" style="width: 40%;">
+    <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
     </a>
 </div>
 

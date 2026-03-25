@@ -49,6 +49,7 @@ nav:
     - Simulation: simulation.md
   - Schema: elements/overview.md
   - About: about.md
+  - Contributing: contributing.md
 
 exclude_docs: |
   /templates-linkml/

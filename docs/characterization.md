@@ -33,6 +33,25 @@ The class follows a hierarchical structure in which selection of a characterizat
 ## Slots
 
 <details markdown="1" open>
+<summary><strong>equipment</strong> (Mandatory, Multivalued)</summary>
+
+**Description:** Equipment or instrument used in a process.
+
+**Data Type:** string
+
+**Cardinality:**  Mandatory, Multivalued
+
+**CURIE:** [`VOC4CAT:0000187`](https://w3id.org/nfdi4cat/voc4cat_0000187)
+
+**Schema Reference:** [equipment](./elements/slots/equipment.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20equipment target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1" open>
 <summary><strong>sample state</strong> (Optional, Multivalued)</summary>
 
 **Description:** Physical state of the sample during characterization.

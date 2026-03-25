@@ -1,54 +1,94 @@
-
 [![Build and test](https://github.com/nfdi4cat/CoreMeta4Cat/actions/workflows/main.yaml/badge.svg)](https://github.com/nfdi4cat/CoreMeta4Cat/actions/workflows/main.yaml)
-[![Copier Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border-teal.json)](https://github.com/linkml/linkml-project-copier) 
-
+[![Deploy docs](https://github.com/nfdi4cat/CoreMeta4Cat/actions/workflows/deploy-docs.yaml/badge.svg)](https://nfdi4cat.github.io/CoreMeta4Cat/)
+[![Copier Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border-teal.json)](https://github.com/linkml/linkml-project-copier)
 
 # CoreMeta4Cat
 
-CoreMeta4Cat is a community-driven metadata initiative under NFDI4Cat that defines the minimum information required for reporting catalysis research data. Built on the FAIR principles — Findable, Accessible, Interoperable, and Reusable — it provides a shared language for researchers to describe, share, and discover catalysis datasets across institutions and disciplines.
+**CoreMeta4Cat** is a community-driven metadata standard for catalysis research, developed under [NFDI4Cat](https://www.nfdi4cat.de/). It defines the minimum information required to describe, share, and discover catalysis datasets in a FAIR-compliant way — Findable, Accessible, Interoperable, and Reusable.
 
-The model draws its terminology from Voc4Cat, NFDI4Cat's controlled vocabulary for catalysis, ensuring standardized semantic representation. Fields are classified as Mandatory, Recommended, or Optional, helping users meet minimum quality thresholds while leaving room for richer annotation.
+CoreMeta4Cat extends [DCAT-AP+](https://nfdi-de.github.io/dcat-ap-plus/) and [ChemDCAT-AP](https://nfdi-de.github.io/chem-dcat-ap/), adding catalysis-specific metadata fields on top of their shared data model. Terminology is drawn from [Voc4Cat](https://nfdi4cat.github.io/voc4cat/), NFDI4Cat's controlled vocabulary for catalysis. Fields are classified as Mandatory, Recommended, or Optional.
 
-CoreMeta4Cat is a living standard. Community feedback — submitted via the Submit Term Feedback button on the GitHub pages — continuously shapes the addition, revision, and removal of data fields.
+> **Documentation:** [nfdi4cat.github.io/CoreMeta4Cat](https://nfdi4cat.github.io/CoreMeta4Cat/)
 
-CoreMeta4Cat is currently developed in parallel as an Excel metadata field template as well as a LinkML schema.
+---
 
-### Excel Template
+## Schema architecture
 
-The Excel file can be found in [docs/assets](docs/assets/FF_20250627_Overview_metadata.xlsx)
+CoreMeta4Cat is implemented as a modular [LinkML](https://linkml.io/) schema:
 
-### LinkML Schema
+```
+coremeta4cat.yaml              ← top-level aggregator + CatalysisDataset
+  └── coremeta4cat_common.yaml          ← shared slots and enumerations
+        ├── coremeta4cat_synthesis_ap.yaml       ← Synthesis + preparation methods
+        ├── coremeta4cat_characterization_ap.yaml ← Characterization + techniques
+        ├── coremeta4cat_reaction_ap.yaml        ← Reaction + reactor types
+        └── coremeta4cat_simulation_ap.yaml      ← Simulation + methods
+```
 
-The LinkML Schema can be found in [src/catcore/schema/](src/catcore/schema), but we recommend to use the documentation if you are not familiar with reading native LinkML Schema, which can be found on our [GitHub pages](https://nfdi4cat.github.io/CoreMeta4Cat/):
+The schema generates Python datamodels, OWL ontology, JSON-LD, and TypeScript representations automatically. Explore the four data classes in the documentation:
+[Synthesis](https://nfdi4cat.github.io/CoreMeta4Cat/synthesis/) ·
+[Characterization](https://nfdi4cat.github.io/CoreMeta4Cat/characterization/) ·
+[Reaction](https://nfdi4cat.github.io/CoreMeta4Cat/reaction/) ·
+[Simulation](https://nfdi4cat.github.io/CoreMeta4Cat/simulation/)
 
-  * [Reaction](https://nfdi4cat.github.io/CoreMeta4Cat/reaction/)
-  * [Characterization](https://nfdi4cat.github.io/CoreMeta4Cat/characterization/)
-  * [Synthesis](https://nfdi4cat.github.io/CoreMeta4Cat/synthesis/)
-  * [Simulation](https://nfdi4cat.github.io/CoreMeta4Cat/simulation/)
+---
 
-## Documentation Website
+## Vocabulary reference workbook
 
-[nfdi4cat.github.io/CoreMeta4Cat/](nfdi4cat.github.io/CoreMeta4Cat/)
+A structured Excel overview of all metadata fields (grouped by data class, colour-coded by M/R/O) is available at [`docs/assets/coremeta4cat_vocabulary.xlsx`](docs/assets/coremeta4cat_vocabulary.xlsx). This file is generated automatically from the schema — the schema is the authoritative source.
 
-## Repository Structure
+---
 
-* [docs/](docs/) - mkdocs-managed documentation
-  * [elements/](docs/elements/) - generated schema documentation
-* [examples/](examples/) - Examples of using the schema
-* [project/](project/) - project files (these files are auto-generated, do not edit)
-* [src/](src/) - source files (edit these)
-  * [catcore](src/catcore)
-    * [schema/](src/catcore/schema) -- LinkML schema
-      (edit this)
-    * [datamodel/](src/catcore/datamodel) -- generated
-      Python datamodel
-* [tests/](tests/) - Python tests
-  * [data/](tests/data) - Example data
+## Repository structure
 
-## Developer Tools
+```
+src/coremeta4cat/
+  schema/       ← LinkML schema modules (edit these)
+  datamodel/    ← generated Python datamodels (do not edit)
+scripts/
+  generate_schema_docs.py  ← builds the interactive docs pages from schema
+  generate_charts.py       ← builds sunburst hierarchy charts from schema
+  schema_to_excel.py       ← exports schema → vocabulary workbook
+  excel_to_schema.py       ← compares workbook against schema
+docs/           ← MkDocs documentation source
+tests/
+  data/valid/   ← example YAML records used as unit tests
+project/        ← generated artifacts (OWL, JSON-LD, TypeScript) — do not edit
+```
 
-There are several pre-defined command-recipes available.
-They are written for the command runner [just](https://github.com/casey/just/). To list all pre-defined commands, run `just` or `just --list`.
+---
+
+## Developer tooling
+
+| Tool | Purpose |
+|---|---|
+| [uv](https://docs.astral.sh/uv/) | Dependency management and virtual environments |
+| [just](https://github.com/casey/just) | Command runner — run `just` to list all available recipes |
+| [LinkML](https://linkml.io/) | Schema language and code generation |
+| [pre-commit](https://pre-commit.com/) | Linting, formatting, and datamodel regeneration on commit |
+| [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) | Documentation site |
+
+Key `just` commands:
+
+```bash
+just install         # install all dependencies
+just test            # run schema validation + pytest + example tests
+just gen-schema-docs # regenerate interactive documentation pages
+just gen-charts      # regenerate sunburst hierarchy charts
+just schema-to-excel # export schema to vocabulary workbook
+just gen-doc         # regenerate MkDocs element pages
+just site            # regenerate everything locally
+```
+
+---
+
+## Contributing
+
+We welcome contributions of all kinds — from term feedback and bug reports to schema extensions and documentation improvements.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for developer guidelines, or visit the [documentation](https://nfdi4cat.github.io/CoreMeta4Cat/contributing/) for a beginner-friendly introduction.
+
+---
 
 ## Credits
 

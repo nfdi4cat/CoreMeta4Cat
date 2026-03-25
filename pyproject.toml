@@ -25,6 +25,9 @@ dev = [
     "mkdocs-mermaid2-plugin>=1.2.3",
     "jupyter>=1.0.0",
     "mknotebooks>= 0.8.0",
+    "openpyxl>=3.1",
+    "pandas>=2.0",
+    "plotly>=5.0",
 ]
 
 # See https://hatch.pypa.io/latest/config/build/#file-selection for how to
@@ -50,8 +53,7 @@ skip = [
   "pyproject.toml",
   "uv.lock",
   "project/*",
-  "src/coremeta4cat/datamodel/coremeta4cat_pydantic.py",
-  "src/coremeta4cat/datamodel/coremeta4cat.py",
+  "src/coremeta4cat/datamodel/*",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
@@ -67,6 +69,5 @@ extend-exclude = [
   "uv.lock",
   "pyproject.toml",
   "project/*",
-  "src/coremeta4cat/datamodel/coremeta4cat_pydantic.py",
-  "src/coremeta4cat/datamodel/coremeta4cat.py",
+  "src/coremeta4cat/datamodel/*",
 ]

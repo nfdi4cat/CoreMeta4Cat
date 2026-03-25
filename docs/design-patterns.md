@@ -9,7 +9,7 @@ This page explains the key structural decisions behind CoreMeta4Cat — how the 
 
 <div style="text-align: center;">
     <a>
-    <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="CatCore logo" style="width: 40%;">
+    <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
     </a>
 </div>
 ---

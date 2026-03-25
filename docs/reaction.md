@@ -195,6 +195,50 @@ Record as a string; for individual component concentrations use reactant.
 </p></details>
 
 <details markdown="1" open>
+<summary><strong>product identification method</strong> (Mandatory, Multivalued)</summary>
+
+**Description:** The analytical method used to identify and/or quantify reaction products.
+Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).
+The abstract stub ProductIdentificationMethod is retained for backward compatibility.
+
+**Data Type:** ProductIdentificationMethod
+
+**Cardinality:**  Mandatory, Multivalued
+
+**CURIE:** [`coremeta4cat:product_identification_method`](https://w3id.org/nfdi4cat/coremeta4cat/product_identification_method)
+
+**Schema Reference:** [product_identification_method](./elements/slots/product_identification_method.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" open>
+<summary><strong>ProductIdentificationMethod</strong></summary>
+
+**Description:** Abstract Plan representing the method used to identify and quantify reaction
+products. In practice, users should reference a concrete CharacterizationTechnique
+subclass from coremeta4cat_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).
+
+This abstract class is retained for backward compatibility with the original
+CoreMeta4Cat monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
+it can participate in the realized_plan slot if needed.
+
+**CURIE:** [`OBI:0000272`](http://purl.obolibrary.org/obo/OBI_0000272)
+
+**Schema Reference:** [ProductIdentificationMethod](./elements/classes/ProductIdentificationMethod.md)
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ProductIdentificationMethod target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20product_identification_method target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1" open>
 <summary><strong>carried out by</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** The reactor in which the Reaction takes place, provided as a
@@ -437,14 +481,14 @@ ProductIdentificationMethod is retained for backward compatibility.
 
 **Cardinality:**  Mandatory, Multivalued
 
+**CURIE:** [`coremeta4cat:product_identification_method`](https://w3id.org/nfdi4cat/coremeta4cat/product_identification_method)
+
 **Schema Reference:** [product_identification_method](./elements/slots/product_identification_method.md)
 
 **Data Type Class Details:**
 
 <details markdown="1" open>
 <summary><strong>ProductIdentificationMethod</strong></summary>
-
-**Abstract Class**
 
 **Description:** Abstract Plan representing the method used to identify and quantify reaction
 products. In practice, users should reference a concrete CharacterizationTechnique
