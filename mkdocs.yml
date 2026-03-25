@@ -43,9 +43,9 @@ nav:
     # - Workflow: a_heros_journey/workflow.md
     # - Collaborations and Future Work: a_heros_journey/collaboration_and_future.md
   - Documentation:
-    - Reaction: reaction.md
-    - Characterization: characterization.md
     - Synthesis: synthesis.md
+    - Characterization: characterization.md
+    - Reaction: reaction.md
     - Simulation: simulation.md
   - Schema: elements/overview.md
   - About: about.md
