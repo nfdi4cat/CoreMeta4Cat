@@ -1,0 +1,1207 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Comprehensive Metadata Guidelines for Catalysis Research Data">
+      
+      
+      
+        <link rel="canonical" href="https://HendrikBorgelt.github.io/CoreMeta4Cat/overview/">
+      
+      
+        <link rel="prev" href="../getting-started/">
+      
+      
+        <link rel="next" href="../design-patterns/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>CoreMeta4Cat - CoreMeta4Cat</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/no-details-box.css">
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#coremeta4cat-comprehensive-metadata-guidelines-for-catalysis-research-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CoreMeta4Cat" class="md-header__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
+      
+  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CoreMeta4Cat
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CoreMeta4Cat
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/HendrikBorgelt/CoreMeta4Cat" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CoreMeta4Cat" class="md-nav__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
+      
+  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
+
+    </a>
+    CoreMeta4Cat
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/HendrikBorgelt/CoreMeta4Cat" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-coremeta4cat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is CoreMeta4Cat?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-what-does-coremeta4cat-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start: What does CoreMeta4Cat add?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-layer-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two-layer architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-coremeta4cat-pillars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four CoreMeta4Cat pillars
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The four CoreMeta4Cat pillars">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synthesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characterization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characterization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reaction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source code
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-to-extend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to extend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coremeta4cat-users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intended Users
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../synthesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Synthesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../characterization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Characterization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reaction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../elements/overview.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-coremeta4cat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is CoreMeta4Cat?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-what-does-coremeta4cat-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start: What does CoreMeta4Cat add?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-layer-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two-layer architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-coremeta4cat-pillars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The four CoreMeta4Cat pillars
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The four CoreMeta4Cat pillars">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#synthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synthesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characterization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Characterization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reaction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source code
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="coremeta4cat-comprehensive-metadata-guidelines-for-catalysis-research-data">CoreMeta4Cat — Comprehensive Metadata Guidelines for Catalysis Research Data</h1>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 19a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1c0-.21-.07-.41-.18-.57L13 8.35V4h-2v4.35L5.18 18.43c-.11.16-.18.36-.18.57m1 3a3 3 0 0 1-3-3c0-.6.18-1.16.5-1.63L9 7.81V6a1 1 0 0 1-1-1V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1v1.81l5.5 9.56c.32.47.5 1.03.5 1.63a3 3 0 0 1-3 3zm7-6 1.34-1.34L16.27 18H7.73l2.66-4.61zm-.5-4a.5.5 0 0 1 .5.5.5.5 0 0 1-.5.5.5.5 0 0 1-.5-.5.5.5 0 0 1 .5-.5"/></svg></span> <strong>Synthesis</strong></p>
+<p>Twelve preparation methods with method-specific parameter sets, shared mixin classes for drying and calcination steps.</p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.46 6.28 11.05 9c-2.58.26-4.55 2.41-4.55 5a5 5 0 0 0 5 5c2.05 0 3.81-1.23 4.58-3H13.5v-2h8v2h-2.25a8.05 8.05 0 0 1-2.46 4h2.71v2h-16v-2h2.71a8 8 0 0 1-2.71-6c0-3.63 2.46-6.8 5.96-7.72m3.28-4.21.76 1.3.86-.5 3.5 6.06-3.47 2-3.5-6.06.87-.5-.76-1.3z"/></svg></span> <strong>Characterization</strong></p>
+<p>Twenty-eight analytical techniques, from Powder XRD to Cyclic Voltammetry, each with dedicated measurement slots.</p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 13V5a3 3 0 0 0-6 0v8a5 5 0 1 0 6 0m-3-9a1 1 0 0 1 1 1v3h-2V5a1 1 0 0 1 1-1"/></svg></span> <strong>Reaction</strong></p>
+<p>Eight reactor design types, flattened operation parameter slots, and product identification links.</p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.5.75V2h3V.75a.75.75 0 0 1 1.5 0V2h1.25c.966 0 1.75.784 1.75 1.75V5h1.25a.75.75 0 0 1 0 1.5H14v3h1.25a.75.75 0 0 1 0 1.5H14v1.25A1.75 1.75 0 0 1 12.25 14H11v1.25a.75.75 0 0 1-1.5 0V14h-3v1.25a.75.75 0 0 1-1.5 0V14H3.75A1.75 1.75 0 0 1 2 12.25V11H.75a.75.75 0 0 1 0-1.5H2v-3H.75a.75.75 0 0 1 0-1.5H2V3.75C2 2.784 2.784 2 3.75 2H5V.75a.75.75 0 0 1 1.5 0m5.75 11.75a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25ZM5.75 5h4.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75h-4.5a.75.75 0 0 1-.75-.75v-4.5A.75.75 0 0 1 5.75 5m.75 4.5h3v-3h-3Z"/></svg></span> <strong>Simulation</strong></p>
+<p>Four computational methods (DFT, MD, Microkinetics, Monte Carlo) with 12 calculated property classes.</p>
+</li>
+</ul>
+</div>
+<hr />
+<h2 id="what-is-coremeta4cat">What is CoreMeta4Cat?</h2>
+<p>CoreMeta4Cat is a <a href="https://linkml.io/">LinkML</a>-based metadata reference model for catalysis research data, developed within the <a href="https://nfdi4cat.org">NFDI4Cat</a> initiative. It defines the <strong>minimum information</strong> that should be reported alongside research data in the field of catalysis, following the FAIR principles (Findable, Accessible, Interoperable, Reusable).</p>
+<p>CoreMeta4Cat is built as a domain-specific application profile on top of <a href="https://nfdi-de.github.io/dcat-ap-plus/dev/">DCAT-AP-PLUS</a>, a provenance-aware extension of the DCAT Application Profile 3.0. This means every CoreMeta4Cat dataset is a valid <code>dcat:Dataset</code>, every activity is a valid <code>prov:Activity</code>, and all schema artefacts — SHACL shapes, JSON Schema, Python/Pydantic classes, HTML reference documentation — are generated automatically from the single LinkML source.</p>
+<hr />
+<h2 id="quick-start-what-does-coremeta4cat-add">Quick Start: What does CoreMeta4Cat add?</h2>
+<p>In plain DCAT-AP, a <code>Dataset</code> can describe what data exists but says little about <em>how</em> it was produced or <em>what material</em> it concerns. DCAT-AP-PLUS adds a structured provenance graph via <code>prov:wasGeneratedBy</code>. CoreMeta4Cat specialises that graph for catalysis:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># A dataset about the CO oxidation performance of a supported Pt catalyst</span>
+<span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:dataset-001</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CO</span><span class="nv"> </span><span class="s">oxidation</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">1wt%</span><span class="nv"> </span><span class="s">Pt/Al2O3</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">200–400°C&quot;</span>
+<span class="nt">rdf_type</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007001</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;heterogeneous</span><span class="nv"> </span><span class="s">catalysis&quot;</span>
+
+<span class="nt">was_generated_by</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:reaction-001</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reaction</span>
+<span class="w">    </span><span class="nt">catalyst_quantity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span><span class="w">   </span><span class="c1"># mg</span>
+<span class="w">    </span><span class="nt">reactant</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;1</span><span class="nv"> </span><span class="s">vol%</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">N2&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2</span><span class="nv"> </span><span class="s">vol%</span><span class="nv"> </span><span class="s">O2</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">N2&quot;</span>
+<span class="w">    </span><span class="nt">reactor_temperature_range</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;200–400</span><span class="nv"> </span><span class="s">°C&quot;</span>
+<span class="w">    </span><span class="nt">experiment_pressure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w">   </span><span class="c1"># bar</span>
+<span class="w">    </span><span class="nt">carried_out_by</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:reactor-001</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FixedBedReactor</span>
+
+<span class="nt">is_about_entity</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:catalyst-001</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalystSample</span>
+<span class="w">    </span><span class="nt">nominal_composition</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1wt%</span><span class="nv"> </span><span class="s">Pt/Al2O3&quot;</span>
+</code></pre></div>
+<p>This is valid CoreMeta4Cat instance data. Every class and property is mapped to a controlled ontology term (voc4cat, CHMO, OBI, …) and can be validated and converted to RDF using standard LinkML tooling.</p>
+<hr />
+<h2 id="two-layer-architecture">Two-layer architecture</h2>
+<p>CoreMeta4Cat organises metadata in two layers.</p>
+<p><strong>Layer 1 — Global classification</strong> is data-class-independent. It applies to every <code>CatalysisDataset</code> and captures the two fields needed for the coarsest-possible filtering of a repository:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Example values</th>
+<th>Obligation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Catalysis research field (<code>rdf_type</code>)</td>
+<td>heterogeneous catalysis, electrocatalysis, biocatalysis</td>
+<td>Recommended</td>
+</tr>
+<tr>
+<td>Reaction type (<code>rdf_type</code> on <code>Reaction</code>)</td>
+<td>CO oxidation, ammonia synthesis, hydrogenation</td>
+<td>Recommended</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Layer 2 — Data-class-specific metadata</strong> is structured around the four <em>pillars</em>: Synthesis, Characterization, Reaction, and Simulation. Each pillar maps to a DCAT-AP-PLUS Activity subclass and carries its own set of Mandatory, Recommended, and Optional fields.</p>
+<div class="highlight"><pre><span></span><code>CatalysisDataset (dcat:Dataset)
+ ├── rdf_type → CatalysisResearchFieldEnum   [Layer 1]
+ ├── was_generated_by → Synthesis            [Layer 2]
+ ├── was_generated_by → Characterization     [Layer 2]
+ ├── was_generated_by → Simulation           [Layer 2]
+ └── is_about_activity → Reaction            [Layer 2]
+</code></pre></div>
+<hr />
+<h2 id="the-four-coremeta4cat-pillars">The four CoreMeta4Cat pillars</h2>
+<h3 id="synthesis">Synthesis</h3>
+<p>Reproducibility of catalyst synthesis is one of the most persistent challenges in catalysis research. The <strong>Synthesis</strong> pillar defines the minimum metadata for twelve preparation methods, from common routes such as Impregnation and Co-Precipitation to more specialised techniques like Atomic Layer Deposition, Flame Spray Pyrolysis, and Exsolution Synthesis.</p>
+<p>Method-specific parameter sets are organised into concrete <code>PreparationMethod</code> subclasses. Cross-cutting slot groups (drying step, calcination step, precipitation step, thermal process) are factored out as <strong>mixin classes</strong>, so parameters shared by multiple methods are defined exactly once.</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Key mixins applied</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Impregnation</code></td>
+<td><code>DryingMixin</code>, <code>CalcinationMixin</code></td>
+</tr>
+<tr>
+<td><code>CoPrecipitation</code></td>
+<td><code>PrecipitationMixin</code>, <code>DryingMixin</code>, <code>CalcinationMixin</code></td>
+</tr>
+<tr>
+<td><code>DepositionPrecipitation</code></td>
+<td><code>PrecipitationMixin</code>, <code>DryingMixin</code>, <code>CalcinationMixin</code></td>
+</tr>
+<tr>
+<td><code>Solvothermal</code>, <code>PlasmaAssisted</code>, <code>CombustionSynthesis</code>, <code>MicrowaveAssisted</code>, <code>MechanochemicalSynthesis</code>, <code>Sublimation</code></td>
+<td><code>ThermalSynthesisMixin</code></td>
+</tr>
+<tr>
+<td><code>SonochemicalSynthesis</code>, <code>MolecularSynthesis</code></td>
+<td><code>DryingMixin</code> / <code>CalcinationMixin</code></td>
+</tr>
+<tr>
+<td><code>AtomicLayerDeposition</code>, <code>SolGel</code>, <code>FlameSprayPyrolysis</code>, <code>ExsolutionSynthesis</code></td>
+<td>method-specific slots only</td>
+</tr>
+</tbody>
+</table>
+<h3 id="characterization">Characterization</h3>
+<p>The <strong>Characterization</strong> pillar covers twenty-eight analytical techniques currently used in catalysis. Each technique is modelled as a concrete <code>CharacterizationTechnique</code> subclass (a DCAT-AP-PLUS <code>Plan</code>), with slots for instrument parameters, sample state, and measurement conditions. Cross-cutting parameter groups are again factored out as mixins:</p>
+<ul>
+<li><code>XRaySourceMixin</code> — shared by PowderXRD, SingleCrystalXRD, XPS, EDX</li>
+<li><code>ElectronMicroscopyMixin</code> — shared by TEM, SEM</li>
+<li><code>TemperatureProgramMixin</code> — shared by TPR, TPO, Thermogravimetry</li>
+<li><code>ChromatographyMixin</code>, <code>MassRangeMixin</code> — shared by GC, GC-MS, HPLC, HPLC-MS</li>
+</ul>
+<h3 id="reaction">Reaction</h3>
+<p>The <strong>Reaction</strong> pillar represents the catalytic process being studied. It is modelled as a DCAT-AP-PLUS <code>EvaluatedActivity</code> — the process the dataset is <em>about</em>, not the process that <em>generates</em> the data. This distinction matters: for operando experiments (e.g. in-situ XRD during a reaction), the dataset carries both <code>was_generated_by: Characterization</code> and <code>is_about_activity: Reaction</code>.</p>
+<p>The reactor is linked via <code>carried_out_by</code> as one of eight <code>ReactorDesignType</code> subclasses:</p>
+<div class="grid">
+<ul>
+<li><code>ElectrochemicalReactor</code></li>
+<li><code>CSTR</code></li>
+<li><code>PlugFlowReactor</code></li>
+<li><code>Autoclave</code></li>
+<li><code>SlurryReactor</code></li>
+<li><code>Microreactor</code></li>
+<li><code>FixedBedReactor</code></li>
+<li><code>FluidizedBedReactor</code></li>
+</ul>
+</div>
+<h3 id="simulation">Simulation</h3>
+<p>The <strong>Simulation</strong> pillar covers four major computational method classes, each a <code>SimulationMethod</code> subclass (DCAT-AP-PLUS <code>Plan</code>): <strong>DFT</strong>, <strong>MolecularDynamics</strong>, <strong>Microkinetics</strong>, and <strong>MonteCarlo</strong>. The simulation software is linked via <code>carried_out_by</code> as a <code>Software</code> agent. Twelve <code>CalculatedProperty</code> classes (e.g. <code>ElectronicStructure</code>, <code>BandGap</code>, <code>PhononDispersion</code>, <code>ThermodynamicStability</code>) capture the computed output type.</p>
+<hr />
+<h2 id="documentation">Documentation</h2>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>What it covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../design-patterns/">Design Patterns</a></td>
+<td>How the four pillars map to DCAT-AP-PLUS, the mixin pattern, ontology alignment</td>
+</tr>
+<tr>
+<td><a href="../how-to-extend/">How to Extend</a></td>
+<td>Rules for adding new preparation methods, techniques, reactor types, and properties</td>
+</tr>
+<tr>
+<td><a href="elements/overview.md">Schema Reference</a></td>
+<td>Auto-generated reference for all classes and slots</td>
+</tr>
+<tr>
+<td><a href="../coremeta4cat-users/">CoreMeta4Cat Users</a></td>
+<td>Projects and repositories that adopt CoreMeta4Cat</td>
+</tr>
+</tbody>
+</table>
+<h2 id="source-code">Source code</h2>
+<p>The LinkML schema, build scripts, and documentation source are on GitHub: <a href="https://github.com/nfdi4cat/CoreMeta4Cat">HendrikBorgelt/CoreMeta4Cat</a></p>
+<p>The schema is built as a domain-specific application profile on top of DCAT-AP-PLUS. The base layer is maintained by <a href="https://nfdi4cat.org">NFDI4Cat</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
