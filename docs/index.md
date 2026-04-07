@@ -104,7 +104,7 @@ The Simulation metadata group specifies the essential information for reporting 
 ## Interactive diagram
 
 <iframe
-    src="assets/metadata_collapsed_charts_all_sheets.html"
+    src="assets/metadata_coremeta4cat_overview.html"
     width="100%"
     height= "800vh"
     style="border: 2px solid #5C88DA; background-color: #F0F8FF;

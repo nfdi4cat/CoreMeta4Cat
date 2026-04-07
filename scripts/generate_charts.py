@@ -245,6 +245,88 @@ def build_sunburst_chart(schema: dict, class_name: str) -> str:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# Overview chart (all four data classes under a single CoreMeta4Cat root)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def build_overview_chart(schema: dict) -> str:
+    """
+    Return standalone HTML for a combined sunburst that shows all four
+    CoreMeta4Cat data classes (Synthesis, Characterization, Reaction,
+    Simulation) as branches under a single 'CoreMeta4Cat' root node.
+    Each branch uses the colour palette of its respective data class.
+    """
+    main_classes = ["Synthesis", "Characterization", "Reaction", "Simulation"]
+
+    ids:     list[str] = []
+    names:   list[str] = []
+    parents: list[str] = []
+    colors:  list[str] = []
+    hover:   list[str] = []
+
+    root_id = "CoreMeta4Cat"
+    _add_node(ids, names, parents, colors, hover,
+              root_id, "CoreMeta4Cat", "", "#555555",
+              "CoreMeta4Cat — catalysis metadata schema")
+
+    for cls in main_classes:
+        key = cls.lower()
+        color_map = BASE_COLORS.get(key, BASE_COLORS["coremeta4cat"])
+        cls_id = f"{root_id}|{cls}"
+
+        _add_node(ids, names, parents, colors, hover,
+                  cls_id, cls, root_id, color_map["M"],
+                  f"Data class: {cls}")
+
+        _build_tree_for_class(
+            schema, cls, cls_id,
+            ids, names, parents, colors, hover,
+            color_map, cls,
+        )
+
+    fig = px.sunburst(ids=ids, names=names, parents=parents, hover_name=hover)
+    fig.update_traces(marker=dict(colors=colors))
+    fig.update_layout(
+        title=dict(text="CoreMeta4Cat — Schema Overview", x=0.5),
+        margin=dict(t=40, l=10, r=10, b=10),
+        autosize=True,
+    )
+
+    chart_html = to_html(
+        fig,
+        full_html=False,
+        include_plotlyjs=False,
+        config={"responsive": True},
+    )
+
+    return f"""<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>CoreMeta4Cat Schema Overview</title>
+  <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+  <style>
+    html, body {{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }}
+    .chart-container {{
+        width: 100%;
+        height: 100vh;
+    }}
+  </style>
+</head>
+<body>
+<div class="chart-container">
+{chart_html}
+</div>
+</body>
+</html>
+"""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # Entry point
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -263,7 +345,12 @@ def main(schema_dir: str, output_dir: str) -> None:
         dest.write_text(html, encoding="utf-8")
         print(f"  OK {dest}")
 
-    print(f"\nDone -- {len(main_classes)} charts written to '{output_dir}'.")
+    overview_html = build_overview_chart(schema)
+    overview_dest = out / "metadata_coremeta4cat_overview.html"
+    overview_dest.write_text(overview_html, encoding="utf-8")
+    print(f"  OK {overview_dest}")
+
+    print(f"\nDone -- {len(main_classes) + 1} charts written to '{output_dir}'.")
 
 
 if __name__ == "__main__":
