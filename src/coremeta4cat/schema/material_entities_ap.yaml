@@ -1,12 +1,12 @@
 ---
-id: https://nfdi-de.github.io/chem-dcat-ap/material_entities_ap.yaml
+id: https://w3id.org/nfdi-de/dcat-ap-plus/materials/
 name: material-entity-ap
 title: Material Entities Application Profile
 description: |-
   This is an application profile for material entities to be used for extending the DCAT-AP-PLUS.
 license: CC-BY 4.0
 prefixes:
-  material_entities_ap: https://nfdi-de.github.io/chem-dcat-ap/material_entities_ap.yaml#
+  material_entities_ap: https://w3id.org/nfdi-de/dcat-ap-plus/materials/
   dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/vocab/
@@ -36,8 +36,9 @@ imports:
   - dcatapplus:latest/schema/dcat_ap_plus
 
 classes:
-  Materialistic:
+  MaterialisticMixin:
     mixin: true
+    abstract: true
     description: A LinkML mixin used to pass down properties common to all material entities. It is needed for example to have MaterialSample have the same properties as MaterialEntity, although it is defined as a subclass of EvaluatedEntity.
     slots:
       - alternative_label
@@ -53,7 +54,7 @@ classes:
     class_uri: BFO:0000040
     is_a: Entity
     mixins:
-      - Materialistic
+      - MaterialisticMixin
     description: A material is an Entity that has some portion of matter as proper part.
     slot_usage:
       has_part:
@@ -69,7 +70,7 @@ classes:
     class_uri: OBI:0000747
     description: A Sample that was derived from a previous MaterialSample or some other kind of MaterialEntity.
     mixins:
-      - Materialistic
+      - MaterialisticMixin
     slots:
       - derived_from
     slot_usage:
@@ -146,7 +147,7 @@ slots:
     is_a: has_quantitative_attribute
     slot_uri: SIO:000008
     range: Temperature
-    description: The slot to provide the Temperature of a MaterialEntity.
+    description: The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
   has_mass:
     is_a: has_quantitative_attribute
@@ -170,7 +171,7 @@ slots:
     is_a: has_quantitative_attribute
     slot_uri: SIO:000008
     range: Pressure
-    description: The slot to provide the Pressure of a MaterialEntity.
+    description: The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.
 
   derived_from:
     slot_uri: prov:wasDerivedFrom
@@ -192,12 +193,12 @@ enums:
       SOLID:
         meaning: PATO:0001736
         description: A state of matter in which molecules are closely packed and cannot move past each other.
-      CRYSTAL:
-        meaning: PATO:0002066
-        description: A solid state of matter whose constituents (such as atoms, molecules, or ions) are arranged in a highly ordered microscopic structure, forming a crystal lattice that extends in all directions.
       LIQUID:
         meaning: PATO:0001735
         description: A state of matter with a definite volume but no fixed shape. Liquids adapt to the shape of their container and are nearly incompressible, maintaining their volume even under pressure.
       GASEOUS:
         meaning: PATO:0001737
         description: A state of matter with neither fixed volume nor fixed shape.
+      PLASMA:
+        meaning: PATO:0015012
+        description: A state of matter in which a gas becomes ionized and conducts electricity, often found in high-energy environments such as stars or lightning.

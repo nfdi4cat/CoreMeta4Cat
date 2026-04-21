@@ -1,13 +1,13 @@
 ---
-id: https://nfdi-de.github.io/chem-dcat-ap/chemical_reaction_ap.yaml
+id: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
 name: chemical-reaction-ap
 title: Chemical Reaction Application Profile
 description: |-
   This is an application profile for chemical reactions that is intended to be used as an extension of DCAT-AP-PLUS.
 license: CC-BY 4.0
 prefixes:
-  chemical_reaction_ap: https://nfdi-de.github.io/chem-dcat-ap/chemical_reaction_ap.yaml#
-  chemdcatap: https://nfdi-de.github.io/chem-dcat-ap/
+  chemical_reaction_ap: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
+  chemdcatap: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
   dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/vocab/
@@ -58,9 +58,9 @@ imports:
 classes:
 
   ChemicalReaction:
-    is_a: Activity
+    is_a: EvaluatedActivity
     class_uri: SIO:010345
-    description: A process that leads to the transformation of one set of chemical substances to another.
+    description: A process that leads to the transformation of one set of chemical substances to another and that is the subject matter of a DataGeneratingActivity.
     slots:
       - used_starting_material
       - used_reactant
@@ -95,7 +95,9 @@ classes:
 
   StartingMaterial:
     class_uri: PROCO:0000029
-    is_a: ChemicalSubstance
+    is_a: MaterialEntity
+    mixins:
+      - ChemicalSubstanceMixin
     description: A ChemicalSubstance with that has a starting material role in a synthesis.
     slots:
       - has_molar_equivalent
@@ -108,8 +110,7 @@ classes:
     slots:
       - has_percentage_of_total
     mixins:
-      - ChemicalSubstance
-      - Materialistic
+      - ChemicalSubstanceMixin
     description: A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ChemicalSubstance.
     exact_mappings:
       - VOC4CAT:0007246
@@ -117,7 +118,9 @@ classes:
 
   Reagent:
     class_uri: SIO:010411
-    is_a: ChemicalSubstance
+    is_a: MaterialEntity
+    mixins:
+      - ChemicalSubstanceMixin
     description: A ChemicalSubstance that is consumed or transformed in a ChemicalReaction.
     slots:
       - has_molar_equivalent
@@ -130,7 +133,9 @@ classes:
 
   ChemicalProduct:
     class_uri: NCIT:C48810
-    is_a: ChemicalSubstance
+    is_a: MaterialEntity
+    mixins:
+      - ChemicalSubstanceMixin
     description: A chemical substance that is produced by a ChemicalReaction.
     exact_mappings:
       - VOC4CAT:0000194
@@ -141,8 +146,7 @@ classes:
     class_uri: SIO:010344
     is_a: AgenticEntity
     mixins:
-      - ChemicalSubstance
-      - Materialistic
+      - ChemicalSubstanceMixin
     description: A ChemicalSubstance or MaterialEntity that initiates or accelerates a ChemicalReaction without itself being affected.
     slots:
       - has_molar_equivalent
@@ -156,13 +160,13 @@ classes:
     is_a: Device
     class_uri: AFE:0000153
     mixins:
-      - Materialistic
+      - MaterialisticMixin
     description: A reactor is a container for controlling a biological or chemical reaction or process.
     exact_mappings:
       - VOC4CAT:0007017
 
   Yield:
-    class_uri: qudt:Quantity
+    class_uri: CHMO:0002855
     is_a: QuantitativeAttribute
     description: A dimensionless physical quantity describing the fraction of a product B that is formed from a reactant A taking into account the stoichiometry. If A fully reacts to B without side-reactions, the yield of product B is 1 (or 100 %).
     exact_mappings:
@@ -188,7 +192,7 @@ slots:
     range: StartingMaterial
     is_a: had_input_entity
     slot_uri: RO:0004009
-    description: The slot to specify the Reagent(s) of a ChemicalReaction.
+    description: The slot to specify the StartingMaterial(s) of a ChemicalReaction.
     multivalued: true
     inlined_as_list: true
     recommended: true
@@ -204,7 +208,7 @@ slots:
     range: ChemicalProduct
     is_a: had_output_entity
     slot_uri: RO:0004008
-    description: The slot to specify the Product of a ChemicalReaction.
+    description: The slot to specify the Product(s) of a ChemicalReaction.
     multivalued: true
     inlined_as_list: true
     recommended: true
@@ -254,3 +258,5 @@ slots:
     slot_uri: BFO:0000051
     description: A slot to specify a step (part) of a ChemicalReaction that is itself a ChemicalReaction.
     range: ChemicalReaction
+    multivalued: true
+    inlined_as_list: true
