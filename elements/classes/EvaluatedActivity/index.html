@@ -425,6 +425,8 @@
 
       EvaluatedActivity &lt;|-- Reaction
         click Reaction href "../../classes/Reaction/"
+      EvaluatedActivity &lt;|-- ChemicalReaction
+        click ChemicalReaction href "../../classes/ChemicalReaction/"
 
 
       EvaluatedActivity : carried_out_by
@@ -561,6 +563,7 @@
 <li><a href="../Activity/">Activity</a> [ <a href="../ClassifierMixin/">ClassifierMixin</a>]<ul>
 <li><strong>EvaluatedActivity</strong><ul>
 <li><a href="../Reaction/">Reaction</a></li>
+<li><a href="../ChemicalReaction/">ChemicalReaction</a></li>
 </ul>
 </li>
 </ul>
@@ -713,6 +716,18 @@
 <tr>
 <td><a href="../Dataset/">Dataset</a></td>
 <td><a href="../../slots/is_about_activity/">is_about_activity</a></td>
+<td>range</td>
+<td><a href="./">EvaluatedActivity</a></td>
+</tr>
+<tr>
+<td><a href="../SubstanceSampleCharacterizationDataset/">SubstanceSampleCharacterizationDataset</a></td>
+<td><a href="../../slots/is_about_activity/">is_about_activity</a></td>
+<td>range</td>
+<td><a href="./">EvaluatedActivity</a></td>
+</tr>
+<tr>
+<td><a href="../SubstanceSampleCharacterization/">SubstanceSampleCharacterization</a></td>
+<td><a href="../../slots/evaluated_activity/">evaluated_activity</a></td>
 <td>range</td>
 <td><a href="./">EvaluatedActivity</a></td>
 </tr>

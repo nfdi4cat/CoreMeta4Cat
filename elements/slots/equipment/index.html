@@ -763,13 +763,8 @@ Alias: equipment</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/MechanochemicalSynthesis/">MechanochemicalSynthesis</a></td>
-<td>Catalyst preparation by mechanical milling or grinding, optionally<br>combined with thermal treatment.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Solvothermal/">Solvothermal</a></td>
-<td>Catalyst preparation under elevated temperature and pressure in a<br>sealed vessel using a non-aqueous solvent.</td>
+<td><a href="../../classes/MicrowaveAssisted/">MicrowaveAssisted</a></td>
+<td>Catalyst preparation using microwave irradiation to rapidly and<br>uniformly heat the reaction mixture.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -778,8 +773,13 @@ Alias: equipment</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/CombustionSynthesis/">CombustionSynthesis</a></td>
-<td>Catalyst preparation by combustion of a fuel/oxidizer mixture,<br>producing metal oxide catalysts in a single rapid step.</td>
+<td><a href="../../classes/Solvothermal/">Solvothermal</a></td>
+<td>Catalyst preparation under elevated temperature and pressure in a<br>sealed vessel using a non-aqueous solvent.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MechanochemicalSynthesis/">MechanochemicalSynthesis</a></td>
+<td>Catalyst preparation by mechanical milling or grinding, optionally<br>combined with thermal treatment.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -793,14 +793,14 @@ Alias: equipment</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/MicrowaveAssisted/">MicrowaveAssisted</a></td>
-<td>Catalyst preparation using microwave irradiation to rapidly and<br>uniformly heat the reaction mixture.</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../../classes/Characterization/">Characterization</a></td>
 <td>A DataGeneratingActivity in which a catalyst sample or catalytic material<br>is characterized using an analytical technique.<br><br>The catalyst sample being characterized is linked via evaluated_entity.<br>The analytical protocol is linked via realized_plan using a<br>CharacterizationTechnique instance. The instrument used is linked via<br>carried_out_by as a Device.<br><br>The specific technique type is expressed via rdf_type using an ontology<br>term (e.g. CHMO:0000158 for powder XRD, CHMO:0000404 for XPS),<br>following DCAT-AP-PLUS Pattern 3 — exactly as NMRSpectroscopy uses<br>rdf_type: CHMO:0000613.</td>
 <td>yes</td>
+</tr>
+<tr>
+<td><a href="../../classes/CombustionSynthesis/">CombustionSynthesis</a></td>
+<td>Catalyst preparation by combustion of a fuel/oxidizer mixture,<br>producing metal oxide catalysts in a single rapid step.</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>

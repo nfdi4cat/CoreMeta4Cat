@@ -764,8 +764,13 @@ Alias: crystal_structure</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/DielectricTensors/">DielectricTensors</a></td>
-<td>Dielectric tensor computed from density functional perturbation theory (DFPT).<br>Characterises the optical and static dielectric response of a material.</td>
+<td><a href="../../classes/PhononDispersion/">PhononDispersion</a></td>
+<td>Phonon dispersion relations computed from interatomic force constants,<br>providing access to vibrational frequencies, thermodynamic quantities,<br>and dynamical stability (imaginary modes).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/BandGap/">BandGap</a></td>
+<td>Electronic band gap and its character (direct/indirect), with optional<br>many-body (GW) or excitonic corrections. Critical for photocatalyst<br>and semiconductor catalyst screening.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -774,8 +779,13 @@ Alias: crystal_structure</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/PhononDispersion/">PhononDispersion</a></td>
-<td>Phonon dispersion relations computed from interatomic force constants,<br>providing access to vibrational frequencies, thermodynamic quantities,<br>and dynamical stability (imaginary modes).</td>
+<td><a href="../../classes/MaterialDescriptorMixin/">MaterialDescriptorMixin</a></td>
+<td>Mixin providing material identity slots shared by CalculatedProperty<br>subclasses that target a specific material composition and crystal<br>structure (DielectricTensors, PhononDispersion, EquationsOfState,<br>AqueousStability, GrainBoundaries, ElectronicStructure, Ferroelectrics,<br>BandGap).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/EquationsOfState/">EquationsOfState</a></td>
+<td>Equation of state relating energy (or enthalpy) to volume, fitted to a<br>parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium<br>volume, bulk modulus, and its pressure derivative.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -789,18 +799,8 @@ Alias: crystal_structure</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/BandGap/">BandGap</a></td>
-<td>Electronic band gap and its character (direct/indirect), with optional<br>many-body (GW) or excitonic corrections. Critical for photocatalyst<br>and semiconductor catalyst screening.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MaterialDescriptorMixin/">MaterialDescriptorMixin</a></td>
-<td>Mixin providing material identity slots shared by CalculatedProperty<br>subclasses that target a specific material composition and crystal<br>structure (DielectricTensors, PhononDispersion, EquationsOfState,<br>AqueousStability, GrainBoundaries, ElectronicStructure, Ferroelectrics,<br>BandGap).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/EquationsOfState/">EquationsOfState</a></td>
-<td>Equation of state relating energy (or enthalpy) to volume, fitted to a<br>parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium<br>volume, bulk modulus, and its pressure derivative.</td>
+<td><a href="../../classes/DielectricTensors/">DielectricTensors</a></td>
+<td>Dielectric tensor computed from density functional perturbation theory (DFPT).<br>Characterises the optical and static dielectric response of a material.</td>
 <td>no</td>
 </tr>
 <tr>

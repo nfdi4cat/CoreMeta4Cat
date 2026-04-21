@@ -763,23 +763,13 @@ Alias: temperature</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/InfraredSpectroscopy/">InfraredSpectroscopy</a></td>
-<td>Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.</td>
+<td><a href="../../classes/ElectrochemistryMixin/">ElectrochemistryMixin</a></td>
+<td>Mixin providing electrochemical cell parameters shared by<br>electrochemical characterization techniques (CyclicVoltammetry,<br>ConductivityMeasurement).</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/MonteCarlo/">MonteCarlo</a></td>
-<td>Monte Carlo simulation — a stochastic method that samples configuration<br>space using random moves accepted or rejected according to a statistical<br>criterion (e.g. Metropolis). Used for adsorption isotherms, phase diagrams,<br>and lattice-based kinetics.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/NMRSpectroscopy/">NMRSpectroscopy</a></td>
-<td>Nuclear magnetic resonance spectroscopy for structure elucidation.<br>Note: for detailed liquid-state NMR minimum information, the dedicated<br>nmr_dcat_ap profile (MARGARITAS) should be used in combination with<br>this subprofile.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/SingleCrystalXRD/">SingleCrystalXRD</a></td>
-<td>Single crystal X-ray diffraction for structure determination.</td>
+<td><a href="../../classes/SizeExclusionChromatography/">SizeExclusionChromatography</a></td>
+<td>Size exclusion chromatography for molecular weight distribution determination.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -788,28 +778,28 @@ Alias: temperature</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../../classes/SonochemicalSynthesis/">SonochemicalSynthesis</a></td>
+<td>Catalyst preparation using ultrasonic irradiation to drive chemical<br>reactions via acoustic cavitation.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Microkinetics/">Microkinetics</a></td>
+<td>Microkinetic modelling — a mean-field kinetic approach that integrates<br>elementary reaction steps and their rate constants to predict catalytic<br>activity and selectivity under reaction conditions.</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../../classes/DRIFTS/">DRIFTS</a></td>
 <td>Diffuse reflectance infrared Fourier transform spectroscopy for in-situ<br>surface species identification under reactive gas conditions.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/RamanSpectroscopy/">RamanSpectroscopy</a></td>
-<td>Raman spectroscopy for vibrational and structural characterization.</td>
+<td><a href="../../classes/AqueousStability/">AqueousStability</a></td>
+<td>Electrochemical (Pourbaix) stability of a catalyst in aqueous solution as<br>a function of pH and electrode potential. Critical for electrocatalyst<br>stability screening.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/XRayAbsorptionSpectroscopy/">XRayAbsorptionSpectroscopy</a></td>
-<td>X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PowderXRD/">PowderXRD</a></td>
-<td>Powder X-ray diffraction for phase identification and structural analysis.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/SonochemicalSynthesis/">SonochemicalSynthesis</a></td>
-<td>Catalyst preparation using ultrasonic irradiation to drive chemical<br>reactions via acoustic cavitation.</td>
+<td><a href="../../classes/InfraredSpectroscopy/">InfraredSpectroscopy</a></td>
+<td>Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -818,18 +808,43 @@ Alias: temperature</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/PhotoluminescenceMixin/">PhotoluminescenceMixin</a></td>
-<td>Mixin providing optical excitation/emission parameters shared by<br>photoluminescence techniques (PhotoluminescenceSpectroscopy,<br>PhotoluminescenceLifetime).</td>
+<td><a href="../../classes/RamanSpectroscopy/">RamanSpectroscopy</a></td>
+<td>Raman spectroscopy for vibrational and structural characterization.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/ElectrochemistryMixin/">ElectrochemistryMixin</a></td>
-<td>Mixin providing electrochemical cell parameters shared by<br>electrochemical characterization techniques (CyclicVoltammetry,<br>ConductivityMeasurement).</td>
+<td><a href="../../classes/NMRSpectroscopy/">NMRSpectroscopy</a></td>
+<td>Nuclear magnetic resonance spectroscopy for structure elucidation.<br>Note: for detailed liquid-state NMR minimum information, the dedicated<br>nmr_dcat_ap profile (MARGARITAS) should be used in combination with<br>this subprofile.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PowderXRD/">PowderXRD</a></td>
+<td>Powder X-ray diffraction for phase identification and structural analysis.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CyclicVoltammetry/">CyclicVoltammetry</a></td>
+<td>Cyclic voltammetry for electrochemical activity, redox potential, and capacitance characterization.</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../../classes/ConductivityMeasurement/">ConductivityMeasurement</a></td>
 <td>Electrical conductivity measurement for ionic and electronic transport characterization.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/XRayAbsorptionSpectroscopy/">XRayAbsorptionSpectroscopy</a></td>
+<td>X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MonteCarlo/">MonteCarlo</a></td>
+<td>Monte Carlo simulation — a stochastic method that samples configuration<br>space using random moves accepted or rejected according to a statistical<br>criterion (e.g. Metropolis). Used for adsorption isotherms, phase diagrams,<br>and lattice-based kinetics.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/SingleCrystalXRD/">SingleCrystalXRD</a></td>
+<td>Single crystal X-ray diffraction for structure determination.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -843,23 +858,8 @@ Alias: temperature</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Microkinetics/">Microkinetics</a></td>
-<td>Microkinetic modelling — a mean-field kinetic approach that integrates<br>elementary reaction steps and their rate constants to predict catalytic<br>activity and selectivity under reaction conditions.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/SizeExclusionChromatography/">SizeExclusionChromatography</a></td>
-<td>Size exclusion chromatography for molecular weight distribution determination.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/CyclicVoltammetry/">CyclicVoltammetry</a></td>
-<td>Cyclic voltammetry for electrochemical activity, redox potential, and capacitance characterization.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/AqueousStability/">AqueousStability</a></td>
-<td>Electrochemical (Pourbaix) stability of a catalyst in aqueous solution as<br>a function of pH and electrode potential. Critical for electrocatalyst<br>stability screening.</td>
+<td><a href="../../classes/PhotoluminescenceMixin/">PhotoluminescenceMixin</a></td>
+<td>Mixin providing optical excitation/emission parameters shared by<br>photoluminescence techniques (PhotoluminescenceSpectroscopy,<br>PhotoluminescenceLifetime).</td>
 <td>no</td>
 </tr>
 </tbody>
