@@ -205,7 +205,7 @@ classes:
 
   Impregnation:
     is_a: PreparationMethod
-    class_uri: coremeta4cat:Impregnation
+    class_uri: VOC4CAT:0007028
     mixins:
       - DryingMixin
       - CalcinationMixin
