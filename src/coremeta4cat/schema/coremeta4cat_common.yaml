@@ -169,7 +169,7 @@ slots:
   drying_temperature:
     description: Temperature applied during drying.
     range: float
-    slot_uri: coremeta4cat:drying_temperature
+    slot_uri: VOC4CAT:0008207
     multivalued: true
     unit:
       ucum_code: Cel
@@ -177,7 +177,7 @@ slots:
   drying_time:
     description: Duration of the drying step.
     range: float
-    slot_uri: coremeta4cat:drying_time
+    slot_uri: VOC4CAT:0008206
     multivalued: true
     unit:
       ucum_code: h
@@ -185,7 +185,7 @@ slots:
   drying_atmosphere:
     description: Atmosphere maintained during drying (e.g. air, N2).
     range: string
-    slot_uri: coremeta4cat:drying_atmosphere
+    slot_uri: VOC4CAT:0008208
     multivalued: true
 
   calcination_initial_temperature:

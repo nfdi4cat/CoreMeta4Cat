@@ -907,8 +907,8 @@ slots:
     description: Temperature applied during drying.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - coremeta4cat:drying_temperature
-    slot_uri: coremeta4cat:drying_temperature
+    - VOC4CAT:0008207
+    slot_uri: VOC4CAT:0008207
     owner: DryingMixin
     domain_of:
     - DryingMixin
@@ -922,8 +922,8 @@ slots:
     description: Duration of the drying step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - coremeta4cat:drying_time
-    slot_uri: coremeta4cat:drying_time
+    - VOC4CAT:0008206
+    slot_uri: VOC4CAT:0008206
     owner: DryingMixin
     domain_of:
     - DryingMixin
@@ -937,8 +937,8 @@ slots:
     description: Atmosphere maintained during drying (e.g. air, N2).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - coremeta4cat:drying_atmosphere
-    slot_uri: coremeta4cat:drying_atmosphere
+    - VOC4CAT:0008208
+    slot_uri: VOC4CAT:0008208
     owner: DryingMixin
     domain_of:
     - DryingMixin
@@ -1296,22 +1296,22 @@ slots:
       \ 4\xB0C)."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:storage_conditions
-    slot_uri: coremeta4cat:storage_conditions
+    - VOC4CAT:0008105
+    slot_uri: VOC4CAT:0008105
     owner: Synthesis
     domain_of:
     - Synthesis
     range: string
     multivalued: true
-  support:
-    name: support
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/support
+  catalyst_support:
+    name: catalyst_support
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/catalyst_support
     description: Support material on which the active phase is deposited (e.g. Al2O3,
       SiO2).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:support
-    slot_uri: coremeta4cat:support
+    - VOC4CAT:0008104
+    slot_uri: VOC4CAT:0008104
     owner: Synthesis
     domain_of:
     - Synthesis
@@ -1381,8 +1381,8 @@ slots:
     description: Chemical agent used to induce precipitation (e.g. NaOH, NH3).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:precipitating_agent
-    slot_uri: coremeta4cat:precipitating_agent
+    - VOC4CAT:0008203
+    slot_uri: VOC4CAT:0008203
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1416,14 +1416,14 @@ slots:
     - PrecipitationMixin
     range: float
     multivalued: true
-  mixing_rate:
-    name: mixing_rate
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/mixing_rate
+  stirring_rate:
+    name: stirring_rate
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/stirring_rate
     description: Stirring rate during mixing of synthesis components.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:mixing_rate
-    slot_uri: coremeta4cat:mixing_rate
+    - VOC4CAT:0008114
+    slot_uri: VOC4CAT:0008114
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1522,8 +1522,8 @@ slots:
     description: Duration of the aging step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:aging_time
-    slot_uri: coremeta4cat:aging_time
+    - VOC4CAT:0008204
+    slot_uri: VOC4CAT:0008204
     owner: SolGel
     domain_of:
     - PrecipitationMixin
@@ -7228,10 +7228,10 @@ slots:
       \ 4\xB0C)."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:storage_conditions
+    - VOC4CAT:0008105
     is_a: storage_conditions
     domain: Synthesis
-    slot_uri: coremeta4cat:storage_conditions
+    slot_uri: VOC4CAT:0008105
     alias: storage_conditions
     owner: Synthesis
     domain_of:
@@ -11558,7 +11558,7 @@ classes:
     - precipitating_agent
     - precipitating_concentration
     - synthesis_ph
-    - mixing_rate
+    - stirring_rate
     - mixing_time
     - mixing_temperature
     - order_of_addition
@@ -11603,7 +11603,7 @@ classes:
 
       The type of synthesis is further specified via rdf_type using an ontology
 
-      term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS
+      term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS
 
       Pattern 3.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
@@ -11629,7 +11629,7 @@ classes:
     - Synthesis_nominal_composition
     - Synthesis_catalyst_measured_properties
     - Synthesis_storage_conditions
-    - support
+    - catalyst_support
     - solvent
     - sample_pretreatment
     - Synthesis_had_input_entity
@@ -11708,7 +11708,7 @@ classes:
 
       The specific type of catalyst (e.g. heterogeneous, supported metal)
 
-      is expressed via rdf_type using a voc4cat term.'
+      is expressed via rdf_type using a VOC4CAT term.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
     - OBI:0000747
@@ -11801,7 +11801,7 @@ classes:
       simultaneously precipitated from solution by a precipitating agent.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:CoPrecipitation
+    - VOC4CAT:0007795
     is_a: PreparationMethod
     mixins:
     - PrecipitationMixin
@@ -11815,7 +11815,7 @@ classes:
     - precipitating_agent
     - precipitating_concentration
     - synthesis_ph
-    - mixing_rate
+    - stirring_rate
     - mixing_time
     - mixing_temperature
     - order_of_addition
@@ -11834,7 +11834,7 @@ classes:
     - calcination_gaseous_environment
     - calcination_heating_rate
     - calcination_gas_flow_rate
-    class_uri: coremeta4cat:CoPrecipitation
+    class_uri: VOC4CAT:0007795
   SolGel:
     name: SolGel
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/SolGel
@@ -11843,7 +11843,7 @@ classes:
       of precursor molecules to form a colloidal network (gel).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:SolGel
+    - CHMO:0001313
     is_a: PreparationMethod
     mixins:
     - DryingMixin
@@ -11860,7 +11860,7 @@ classes:
     - drying_temperature
     - drying_time
     - drying_atmosphere
-    class_uri: coremeta4cat:SolGel
+    class_uri: CHMO:0001313
   Solvothermal:
     name: Solvothermal
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Solvothermal
@@ -11870,7 +11870,7 @@ classes:
       sealed vessel using a non-aqueous solvent.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:Solvothermal
+    - CHMO:0001458
     is_a: PreparationMethod
     mixins:
     - ThermalSynthesisMixin
@@ -11887,7 +11887,7 @@ classes:
     - equipment
     - vessel_type
     - atmosphere
-    class_uri: coremeta4cat:Solvothermal
+    class_uri: CHMO:0001458
   PlasmaAssisted:
     name: PlasmaAssisted
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/PlasmaAssisted
@@ -11953,7 +11953,7 @@ classes:
       of active phase onto a substrate.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:AtomicLayerDeposition
+    - CHMO:0001311
     is_a: PreparationMethod
     slots:
     - title
@@ -11966,7 +11966,7 @@ classes:
     - number_of_cycles
     - deposition_temperature
     - carrier_gas
-    class_uri: coremeta4cat:AtomicLayerDeposition
+    class_uri: CHMO:0001311
   DepositionPrecipitation:
     name: DepositionPrecipitation
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/DepositionPrecipitation
@@ -11991,7 +11991,7 @@ classes:
     - precipitating_agent
     - precipitating_concentration
     - synthesis_ph
-    - mixing_rate
+    - stirring_rate
     - mixing_time
     - mixing_temperature
     - order_of_addition
@@ -12019,7 +12019,7 @@ classes:
       uniformly heat the reaction mixture.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:MicrowaveAssisted
+    - CHMO:0002906
     is_a: PreparationMethod
     mixins:
     - ThermalSynthesisMixin
@@ -12035,7 +12035,7 @@ classes:
     - equipment
     - vessel_type
     - atmosphere
-    class_uri: coremeta4cat:MicrowaveAssisted
+    class_uri: CHMO:0002906
   SonochemicalSynthesis:
     name: SonochemicalSynthesis
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/SonochemicalSynthesis
@@ -12546,7 +12546,7 @@ classes:
       species identification.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:InfraredSpectroscopy
+    - CHMO:0000630
     is_a: CharacterizationTechnique
     slots:
     - title
@@ -12561,7 +12561,7 @@ classes:
     - background_correction
     - number_of_scans
     - atmosphere
-    class_uri: coremeta4cat:InfraredSpectroscopy
+    class_uri: CHMO:0000630
   DRIFTS:
     name: DRIFTS
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/DRIFTS
@@ -12757,7 +12757,7 @@ classes:
       size distribution.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:BET
+    - ENM:0000064
     is_a: CharacterizationTechnique
     slots:
     - title
@@ -12769,7 +12769,7 @@ classes:
     - measurement_temperature
     - pore_size_distribution_method
     - sample_mass
-    class_uri: coremeta4cat:BET
+    class_uri: ENM:0000064
   ICPAES:
     name: ICPAES
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ICPAES
@@ -12833,7 +12833,7 @@ classes:
     description: Photoluminescence spectroscopy for defect and charge carrier characterization.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:PhotoluminescenceSpectroscopy
+    - CHMO:0000773
     is_a: CharacterizationTechnique
     mixins:
     - PhotoluminescenceMixin
@@ -12850,7 +12850,7 @@ classes:
     - emission_wavelength
     - optical_filter
     - temperature
-    class_uri: coremeta4cat:PhotoluminescenceSpectroscopy
+    class_uri: CHMO:0000773
   PhotoluminescenceLifetime:
     name: PhotoluminescenceLifetime
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/PhotoluminescenceLifetime
@@ -12858,7 +12858,7 @@ classes:
       dynamics.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:PhotoluminescenceLifetime
+    - CHMO:0001917
     is_a: CharacterizationTechnique
     mixins:
     - PhotoluminescenceMixin
@@ -12873,7 +12873,7 @@ classes:
     - emission_wavelength
     - optical_filter
     - temperature
-    class_uri: coremeta4cat:PhotoluminescenceLifetime
+    class_uri: CHMO:0001917
   CyclicVoltammetry:
     name: CyclicVoltammetry
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CyclicVoltammetry
@@ -12910,7 +12910,7 @@ classes:
       characterization.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:ConductivityMeasurement
+    - CHMO:0000010
     is_a: CharacterizationTechnique
     mixins:
     - ElectrochemistryMixin
@@ -12930,7 +12930,7 @@ classes:
     - electrolyte_concentration
     - atmosphere
     - temperature
-    class_uri: coremeta4cat:ConductivityMeasurement
+    class_uri: CHMO:0000010
   DynamicLightScattering:
     name: DynamicLightScattering
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/DynamicLightScattering
@@ -13603,7 +13603,7 @@ classes:
       Linked from Simulation via the calculated_property slot.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
-    - coremeta4cat:CalculatedProperty
+    - IAO:0000109
     is_a: QualitativeAttribute
     abstract: true
     slots:
@@ -13612,7 +13612,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
-    class_uri: coremeta4cat:CalculatedProperty
+    class_uri: IAO:0000109
   ThermodynamicStability:
     name: ThermodynamicStability
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ThermodynamicStability
@@ -17420,7 +17420,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-04-20T12:55:22'
+source_file_date: '2026-04-23T21:51:58'
 source_file_size: 6739
-generation_date: '2026-04-21T16:02:04'
+generation_date: '2026-04-23T22:47:01'
 

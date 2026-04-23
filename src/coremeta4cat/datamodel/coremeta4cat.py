@@ -1,5 +1,5 @@
 # Auto generated from coremeta4cat.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-21T15:49:04
+# Generation date: 2026-04-23T23:24:49
 # Schema: coremeta4cat-metadata
 #
 # id: https://w3id.org/nfdi4cat/coremeta4cat
@@ -135,6 +135,7 @@ CHEBI = CurieNamespace('CHEBI', 'http://purl.obolibrary.org/obo/CHEBI_')
 CHEMINF = CurieNamespace('CHEMINF', 'http://semanticscience.org/resource/CHEMINF_')
 CHMO = CurieNamespace('CHMO', 'http://purl.obolibrary.org/obo/CHMO_')
 EDAM = CurieNamespace('EDAM', 'http://edamontology.org/data_')
+ENM = CurieNamespace('ENM', 'http://purl.enanomapper.org/onto/')
 ENVO = CurieNamespace('ENVO', 'http://purl.obolibrary.org/obo/ENVO_')
 IAO = CurieNamespace('IAO', 'http://purl.obolibrary.org/obo/IAO_')
 MOP = CurieNamespace('MOP', 'http://purl.obolibrary.org/obo/MOP_')
@@ -513,7 +514,7 @@ class PrecipitationMixin(YAMLRoot):
     precipitating_agent: Optional[Union[str, list[str]]] = empty_list()
     precipitating_concentration: Optional[Union[float, list[float]]] = empty_list()
     synthesis_ph: Optional[Union[float, list[float]]] = empty_list()
-    mixing_rate: Optional[Union[float, list[float]]] = empty_list()
+    stirring_rate: Optional[Union[float, list[float]]] = empty_list()
     mixing_time: Optional[Union[float, list[float]]] = empty_list()
     mixing_temperature: Optional[Union[float, list[float]]] = empty_list()
     order_of_addition: Optional[Union[str, list[str]]] = empty_list()
@@ -535,9 +536,9 @@ class PrecipitationMixin(YAMLRoot):
             self.synthesis_ph = [self.synthesis_ph] if self.synthesis_ph is not None else []
         self.synthesis_ph = [v if isinstance(v, float) else float(v) for v in self.synthesis_ph]
 
-        if not isinstance(self.mixing_rate, list):
-            self.mixing_rate = [self.mixing_rate] if self.mixing_rate is not None else []
-        self.mixing_rate = [v if isinstance(v, float) else float(v) for v in self.mixing_rate]
+        if not isinstance(self.stirring_rate, list):
+            self.stirring_rate = [self.stirring_rate] if self.stirring_rate is not None else []
+        self.stirring_rate = [v if isinstance(v, float) else float(v) for v in self.stirring_rate]
 
         if not isinstance(self.mixing_time, list):
             self.mixing_time = [self.mixing_time] if self.mixing_time is not None else []
@@ -1409,7 +1410,7 @@ class Synthesis(DataGeneratingActivity):
     had_output_entity.
 
     The type of synthesis is further specified via rdf_type using an ontology
-    term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS
+    term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS
     Pattern 3.
     """
     _inherited_slots: ClassVar[list[str]] = []
@@ -1425,7 +1426,7 @@ class Synthesis(DataGeneratingActivity):
     had_input_entity: Union[dict[Union[str, PrecursorId], Union[dict, "Precursor"]], list[Union[dict, "Precursor"]]] = empty_dict()
     realized_plan: Union[dict, "PreparationMethod"] = None
     storage_conditions: Optional[Union[str, list[str]]] = empty_list()
-    support: Optional[Union[str, list[str]]] = empty_list()
+    catalyst_support: Optional[Union[str, list[str]]] = empty_list()
     solvent: Optional[Union[str, list[str]]] = empty_list()
     sample_pretreatment: Optional[Union[str, list[str]]] = empty_list()
     had_output_entity: Optional[Union[dict[Union[str, CatalystSampleId], Union[dict, "CatalystSample"]], list[Union[dict, "CatalystSample"]]]] = empty_dict()
@@ -1461,9 +1462,9 @@ class Synthesis(DataGeneratingActivity):
             self.storage_conditions = [self.storage_conditions] if self.storage_conditions is not None else []
         self.storage_conditions = [v if isinstance(v, str) else str(v) for v in self.storage_conditions]
 
-        if not isinstance(self.support, list):
-            self.support = [self.support] if self.support is not None else []
-        self.support = [v if isinstance(v, str) else str(v) for v in self.support]
+        if not isinstance(self.catalyst_support, list):
+            self.catalyst_support = [self.catalyst_support] if self.catalyst_support is not None else []
+        self.catalyst_support = [v if isinstance(v, str) else str(v) for v in self.catalyst_support]
 
         if not isinstance(self.solvent, list):
             self.solvent = [self.solvent] if self.solvent is not None else []
@@ -3042,15 +3043,15 @@ class CoPrecipitation(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["CoPrecipitation"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:CoPrecipitation"
+    class_class_uri: ClassVar[URIRef] = VOC4CAT["0007795"]
+    class_class_curie: ClassVar[str] = "VOC4CAT:0007795"
     class_name: ClassVar[str] = "CoPrecipitation"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CoPrecipitation
 
     precipitating_agent: Optional[Union[str, list[str]]] = empty_list()
     precipitating_concentration: Optional[Union[float, list[float]]] = empty_list()
     synthesis_ph: Optional[Union[float, list[float]]] = empty_list()
-    mixing_rate: Optional[Union[float, list[float]]] = empty_list()
+    stirring_rate: Optional[Union[float, list[float]]] = empty_list()
     mixing_time: Optional[Union[float, list[float]]] = empty_list()
     mixing_temperature: Optional[Union[float, list[float]]] = empty_list()
     order_of_addition: Optional[Union[str, list[str]]] = empty_list()
@@ -3083,9 +3084,9 @@ class CoPrecipitation(PreparationMethod):
             self.synthesis_ph = [self.synthesis_ph] if self.synthesis_ph is not None else []
         self.synthesis_ph = [v if isinstance(v, float) else float(v) for v in self.synthesis_ph]
 
-        if not isinstance(self.mixing_rate, list):
-            self.mixing_rate = [self.mixing_rate] if self.mixing_rate is not None else []
-        self.mixing_rate = [v if isinstance(v, float) else float(v) for v in self.mixing_rate]
+        if not isinstance(self.stirring_rate, list):
+            self.stirring_rate = [self.stirring_rate] if self.stirring_rate is not None else []
+        self.stirring_rate = [v if isinstance(v, float) else float(v) for v in self.stirring_rate]
 
         if not isinstance(self.mixing_time, list):
             self.mixing_time = [self.mixing_time] if self.mixing_time is not None else []
@@ -3170,8 +3171,8 @@ class SolGel(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["SolGel"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:SolGel"
+    class_class_uri: ClassVar[URIRef] = CHMO["0001313"]
+    class_class_curie: ClassVar[str] = "CHMO:0001313"
     class_name: ClassVar[str] = "SolGel"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.SolGel
 
@@ -3228,8 +3229,8 @@ class Solvothermal(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Solvothermal"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:Solvothermal"
+    class_class_uri: ClassVar[URIRef] = CHMO["0001458"]
+    class_class_curie: ClassVar[str] = "CHMO:0001458"
     class_name: ClassVar[str] = "Solvothermal"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Solvothermal
 
@@ -3418,8 +3419,8 @@ class AtomicLayerDeposition(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["AtomicLayerDeposition"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:AtomicLayerDeposition"
+    class_class_uri: ClassVar[URIRef] = CHMO["0001311"]
+    class_class_curie: ClassVar[str] = "CHMO:0001311"
     class_name: ClassVar[str] = "AtomicLayerDeposition"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.AtomicLayerDeposition
 
@@ -3476,7 +3477,7 @@ class DepositionPrecipitation(PreparationMethod):
     precipitating_agent: Optional[Union[str, list[str]]] = empty_list()
     precipitating_concentration: Optional[Union[float, list[float]]] = empty_list()
     synthesis_ph: Optional[Union[float, list[float]]] = empty_list()
-    mixing_rate: Optional[Union[float, list[float]]] = empty_list()
+    stirring_rate: Optional[Union[float, list[float]]] = empty_list()
     mixing_time: Optional[Union[float, list[float]]] = empty_list()
     mixing_temperature: Optional[Union[float, list[float]]] = empty_list()
     order_of_addition: Optional[Union[str, list[str]]] = empty_list()
@@ -3517,9 +3518,9 @@ class DepositionPrecipitation(PreparationMethod):
             self.synthesis_ph = [self.synthesis_ph] if self.synthesis_ph is not None else []
         self.synthesis_ph = [v if isinstance(v, float) else float(v) for v in self.synthesis_ph]
 
-        if not isinstance(self.mixing_rate, list):
-            self.mixing_rate = [self.mixing_rate] if self.mixing_rate is not None else []
-        self.mixing_rate = [v if isinstance(v, float) else float(v) for v in self.mixing_rate]
+        if not isinstance(self.stirring_rate, list):
+            self.stirring_rate = [self.stirring_rate] if self.stirring_rate is not None else []
+        self.stirring_rate = [v if isinstance(v, float) else float(v) for v in self.stirring_rate]
 
         if not isinstance(self.mixing_time, list):
             self.mixing_time = [self.mixing_time] if self.mixing_time is not None else []
@@ -3604,8 +3605,8 @@ class MicrowaveAssisted(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["MicrowaveAssisted"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:MicrowaveAssisted"
+    class_class_uri: ClassVar[URIRef] = CHMO["0002906"]
+    class_class_curie: ClassVar[str] = "CHMO:0002906"
     class_name: ClassVar[str] = "MicrowaveAssisted"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.MicrowaveAssisted
 
@@ -4398,8 +4399,8 @@ class InfraredSpectroscopy(CharacterizationTechnique):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["InfraredSpectroscopy"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:InfraredSpectroscopy"
+    class_class_uri: ClassVar[URIRef] = CHMO["0000630"]
+    class_class_curie: ClassVar[str] = "CHMO:0000630"
     class_name: ClassVar[str] = "InfraredSpectroscopy"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.InfraredSpectroscopy
 
@@ -4865,8 +4866,8 @@ class BET(CharacterizationTechnique):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["BET"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:BET"
+    class_class_uri: ClassVar[URIRef] = ENM["0000064"]
+    class_class_curie: ClassVar[str] = "ENM:0000064"
     class_name: ClassVar[str] = "BET"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.BET
 
@@ -5018,8 +5019,8 @@ class PhotoluminescenceSpectroscopy(CharacterizationTechnique):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["PhotoluminescenceSpectroscopy"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:PhotoluminescenceSpectroscopy"
+    class_class_uri: ClassVar[URIRef] = CHMO["0000773"]
+    class_class_curie: ClassVar[str] = "CHMO:0000773"
     class_name: ClassVar[str] = "PhotoluminescenceSpectroscopy"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PhotoluminescenceSpectroscopy
 
@@ -5075,8 +5076,8 @@ class PhotoluminescenceLifetime(CharacterizationTechnique):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["PhotoluminescenceLifetime"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:PhotoluminescenceLifetime"
+    class_class_uri: ClassVar[URIRef] = CHMO["0001917"]
+    class_class_curie: ClassVar[str] = "CHMO:0001917"
     class_name: ClassVar[str] = "PhotoluminescenceLifetime"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PhotoluminescenceLifetime
 
@@ -5199,8 +5200,8 @@ class ConductivityMeasurement(CharacterizationTechnique):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ConductivityMeasurement"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:ConductivityMeasurement"
+    class_class_uri: ClassVar[URIRef] = CHMO["0000010"]
+    class_class_curie: ClassVar[str] = "CHMO:0000010"
     class_name: ClassVar[str] = "ConductivityMeasurement"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ConductivityMeasurement
 
@@ -5892,8 +5893,8 @@ class CalculatedProperty(QualitativeAttribute):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["CalculatedProperty"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:CalculatedProperty"
+    class_class_uri: ClassVar[URIRef] = IAO["0000109"]
+    class_class_curie: ClassVar[str] = "IAO:0000109"
     class_name: ClassVar[str] = "CalculatedProperty"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CalculatedProperty
 
@@ -8352,7 +8353,7 @@ class CatalystSample(MaterialSample):
     """
     A MaterialSample that is the product of a catalyst Synthesis.
     The specific type of catalyst (e.g. heterogeneous, supported metal)
-    is expressed via rdf_type using a voc4cat term.
+    is expressed via rdf_type using a VOC4CAT term.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -8878,13 +8879,13 @@ slots.dispersant = Slot(uri=COREMETA4CAT.dispersant, name="dispersant", curie=CO
 slots.drying_device = Slot(uri=COREMETA4CAT.drying_device, name="drying_device", curie=COREMETA4CAT.curie('drying_device'),
                    model_uri=COREMETA4CAT.drying_device, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.drying_temperature = Slot(uri=COREMETA4CAT.drying_temperature, name="drying_temperature", curie=COREMETA4CAT.curie('drying_temperature'),
+slots.drying_temperature = Slot(uri=VOC4CAT['0008207'], name="drying_temperature", curie=VOC4CAT.curie('0008207'),
                    model_uri=COREMETA4CAT.drying_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.drying_time = Slot(uri=COREMETA4CAT.drying_time, name="drying_time", curie=COREMETA4CAT.curie('drying_time'),
+slots.drying_time = Slot(uri=VOC4CAT['0008206'], name="drying_time", curie=VOC4CAT.curie('0008206'),
                    model_uri=COREMETA4CAT.drying_time, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.drying_atmosphere = Slot(uri=COREMETA4CAT.drying_atmosphere, name="drying_atmosphere", curie=COREMETA4CAT.curie('drying_atmosphere'),
+slots.drying_atmosphere = Slot(uri=VOC4CAT['0008208'], name="drying_atmosphere", curie=VOC4CAT.curie('0008208'),
                    model_uri=COREMETA4CAT.drying_atmosphere, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.calcination_initial_temperature = Slot(uri=VOC4CAT['0000057'], name="calcination_initial_temperature", curie=VOC4CAT.curie('0000057'),
@@ -8956,11 +8957,11 @@ slots.nominal_composition = Slot(uri=COREMETA4CAT.nominal_composition, name="nom
 slots.catalyst_measured_properties = Slot(uri=COREMETA4CAT.catalyst_measured_properties, name="catalyst_measured_properties", curie=COREMETA4CAT.curie('catalyst_measured_properties'),
                    model_uri=COREMETA4CAT.catalyst_measured_properties, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.storage_conditions = Slot(uri=COREMETA4CAT.storage_conditions, name="storage_conditions", curie=COREMETA4CAT.curie('storage_conditions'),
+slots.storage_conditions = Slot(uri=VOC4CAT['0008105'], name="storage_conditions", curie=VOC4CAT.curie('0008105'),
                    model_uri=COREMETA4CAT.storage_conditions, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.support = Slot(uri=COREMETA4CAT.support, name="support", curie=COREMETA4CAT.curie('support'),
-                   model_uri=COREMETA4CAT.support, domain=None, range=Optional[Union[str, list[str]]])
+slots.catalyst_support = Slot(uri=VOC4CAT['0008104'], name="catalyst_support", curie=VOC4CAT.curie('0008104'),
+                   model_uri=COREMETA4CAT.catalyst_support, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.precursor_quantity = Slot(uri=COREMETA4CAT.precursor_quantity, name="precursor_quantity", curie=COREMETA4CAT.curie('precursor_quantity'),
                    model_uri=COREMETA4CAT.precursor_quantity, domain=None, range=Optional[Union[float, list[float]]])
@@ -8974,7 +8975,7 @@ slots.impregnation_duration = Slot(uri=COREMETA4CAT.impregnation_duration, name=
 slots.impregnation_temperature = Slot(uri=COREMETA4CAT.impregnation_temperature, name="impregnation_temperature", curie=COREMETA4CAT.curie('impregnation_temperature'),
                    model_uri=COREMETA4CAT.impregnation_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.precipitating_agent = Slot(uri=COREMETA4CAT.precipitating_agent, name="precipitating_agent", curie=COREMETA4CAT.curie('precipitating_agent'),
+slots.precipitating_agent = Slot(uri=VOC4CAT['0008203'], name="precipitating_agent", curie=VOC4CAT.curie('0008203'),
                    model_uri=COREMETA4CAT.precipitating_agent, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.precipitating_concentration = Slot(uri=COREMETA4CAT.precipitating_concentration, name="precipitating_concentration", curie=COREMETA4CAT.curie('precipitating_concentration'),
@@ -8983,8 +8984,8 @@ slots.precipitating_concentration = Slot(uri=COREMETA4CAT.precipitating_concentr
 slots.synthesis_ph = Slot(uri=VOC4CAT['0000052'], name="synthesis_ph", curie=VOC4CAT.curie('0000052'),
                    model_uri=COREMETA4CAT.synthesis_ph, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.mixing_rate = Slot(uri=COREMETA4CAT.mixing_rate, name="mixing_rate", curie=COREMETA4CAT.curie('mixing_rate'),
-                   model_uri=COREMETA4CAT.mixing_rate, domain=None, range=Optional[Union[float, list[float]]])
+slots.stirring_rate = Slot(uri=VOC4CAT['0008114'], name="stirring_rate", curie=VOC4CAT.curie('0008114'),
+                   model_uri=COREMETA4CAT.stirring_rate, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.mixing_time = Slot(uri=COREMETA4CAT.mixing_time, name="mixing_time", curie=COREMETA4CAT.curie('mixing_time'),
                    model_uri=COREMETA4CAT.mixing_time, domain=None, range=Optional[Union[float, list[float]]])
@@ -9004,7 +9005,7 @@ slots.purification = Slot(uri=COREMETA4CAT.purification, name="purification", cu
 slots.aging_temperature = Slot(uri=COREMETA4CAT.aging_temperature, name="aging_temperature", curie=COREMETA4CAT.curie('aging_temperature'),
                    model_uri=COREMETA4CAT.aging_temperature, domain=None, range=Optional[Union[float, list[float]]])
 
-slots.aging_time = Slot(uri=COREMETA4CAT.aging_time, name="aging_time", curie=COREMETA4CAT.curie('aging_time'),
+slots.aging_time = Slot(uri=VOC4CAT['0008204'], name="aging_time", curie=VOC4CAT.curie('0008204'),
                    model_uri=COREMETA4CAT.aging_time, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.deposition_temperature = Slot(uri=COREMETA4CAT.deposition_temperature, name="deposition_temperature", curie=COREMETA4CAT.curie('deposition_temperature'),
@@ -10135,7 +10136,7 @@ slots.Synthesis_had_output_entity = Slot(uri=PROV.generated, name="Synthesis_had
 slots.Synthesis_realized_plan = Slot(uri=PROV.used, name="Synthesis_realized_plan", curie=PROV.curie('used'),
                    model_uri=COREMETA4CAT.Synthesis_realized_plan, domain=Synthesis, range=Union[dict, "PreparationMethod"])
 
-slots.Synthesis_storage_conditions = Slot(uri=COREMETA4CAT.storage_conditions, name="Synthesis_storage_conditions", curie=COREMETA4CAT.curie('storage_conditions'),
+slots.Synthesis_storage_conditions = Slot(uri=VOC4CAT['0008105'], name="Synthesis_storage_conditions", curie=VOC4CAT.curie('0008105'),
                    model_uri=COREMETA4CAT.Synthesis_storage_conditions, domain=Synthesis, range=Optional[Union[str, list[str]]])
 
 slots.Precursor_precursor_quantity = Slot(uri=COREMETA4CAT.precursor_quantity, name="Precursor_precursor_quantity", curie=COREMETA4CAT.curie('precursor_quantity'),

@@ -41,6 +41,7 @@ prefixes:
   AFP: http://purl.allotrope.org/ontologies/process#AFP_
   AFQ: http://purl.allotrope.org/ontologies/quality#AFQ_
   AFRL: http://purl.allotrope.org/ontologies/role#AFRL_
+  ENM: http://purl.enanomapper.org/onto/
 
 default_prefix: coremeta4cat
 default_range: string
@@ -279,7 +280,7 @@ classes:
 
   InfraredSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: coremeta4cat:InfraredSpectroscopy
+    class_uri: CHMO:0000630
     description: Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.
     slots:
       - operation_mode
@@ -401,7 +402,7 @@ classes:
 
   BET:
     is_a: CharacterizationTechnique
-    class_uri: coremeta4cat:BET
+    class_uri: ENM:0000064
     description: Brunauer-Emmett-Teller analysis for specific surface area and pore size distribution.
     slots:
       - adsorbate_gas
@@ -446,7 +447,7 @@ classes:
 
   PhotoluminescenceSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: coremeta4cat:PhotoluminescenceSpectroscopy
+    class_uri: CHMO:0000773
     mixins:
       - PhotoluminescenceMixin
     description: Photoluminescence spectroscopy for defect and charge carrier characterization.
@@ -458,7 +459,7 @@ classes:
 
   PhotoluminescenceLifetime:
     is_a: CharacterizationTechnique
-    class_uri: coremeta4cat:PhotoluminescenceLifetime
+    class_uri: CHMO:0001917
     mixins:
       - PhotoluminescenceMixin
     description: Time-resolved photoluminescence for charge carrier lifetime and recombination dynamics.
@@ -483,7 +484,7 @@ classes:
 
   ConductivityMeasurement:
     is_a: CharacterizationTechnique
-    class_uri: coremeta4cat:ConductivityMeasurement
+    class_uri: CHMO:0000010
     mixins:
       - ElectrochemistryMixin
     description: Electrical conductivity measurement for ionic and electronic transport characterization.

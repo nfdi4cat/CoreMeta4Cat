@@ -13,7 +13,7 @@ catalyst_measured_properties:
   - "BET surface area: 185 m2/g, Pt particle size: 2.3 nm (TEM), Pt loading: 4.8 wt% (ICP-AES)"
 storage_conditions:
   - "stored in desiccator under argon atmosphere at room temperature"
-support:
+catalyst_support:
   - "gamma-Al2O3, Sasol Puralox, 200 m2/g"
 solvent:
   - "deionized water"

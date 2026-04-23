@@ -90,7 +90,7 @@ classes:
       - precipitating_agent
       - precipitating_concentration
       - synthesis_ph
-      - mixing_rate
+      - stirring_rate
       - mixing_time
       - mixing_temperature
       - order_of_addition
@@ -127,13 +127,13 @@ classes:
       had_output_entity.
 
       The type of synthesis is further specified via rdf_type using an ontology
-      term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS
+      term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS
       Pattern 3.
     slots:
       - nominal_composition
       - catalyst_measured_properties
       - storage_conditions
-      - support
+      - catalyst_support
       - solvent
       - sample_pretreatment
     slot_usage:
@@ -178,7 +178,7 @@ classes:
     description: |-
       A MaterialSample that is the product of a catalyst Synthesis.
       The specific type of catalyst (e.g. heterogeneous, supported metal)
-      is expressed via rdf_type using a voc4cat term.
+      is expressed via rdf_type using a VOC4CAT term.
     slot_usage:
       derived_from:
         description: |-
@@ -219,7 +219,7 @@ classes:
 
   CoPrecipitation:
     is_a: PreparationMethod
-    class_uri: coremeta4cat:CoPrecipitation
+    class_uri: VOC4CAT:0007795
     mixins:
       - PrecipitationMixin
       - DryingMixin
@@ -230,7 +230,7 @@ classes:
 
   SolGel:
     is_a: PreparationMethod
-    class_uri: coremeta4cat:SolGel
+    class_uri: CHMO:0001313
     mixins:
       - DryingMixin
     description: |-
@@ -244,7 +244,7 @@ classes:
 
   Solvothermal:
     is_a: PreparationMethod
-    class_uri: coremeta4cat:Solvothermal
+    class_uri: CHMO:0001458
     mixins:
       - ThermalSynthesisMixin
     description: |-
@@ -257,7 +257,7 @@ classes:
 
   PlasmaAssisted:
     is_a: PreparationMethod
-    class_uri: coremeta4cat:PlasmaAssisted
+    class_uri: coremeta4cat:PlasmaAssisted # maybe use http://purl.obolibrary.org/obo/MS_1000400
     mixins:
       - ThermalSynthesisMixin
     description: |-
@@ -271,7 +271,7 @@ classes:
 
   CombustionSynthesis:
     is_a: PreparationMethod
-    class_uri: coremeta4cat:CombustionSynthesis
+    class_uri: coremeta4cat:CombustionSynthesis # maybe use http://purl.obolibrary.org/obo/CHMO_0001473
     mixins:
       - ThermalSynthesisMixin
     description: |-
@@ -286,7 +286,7 @@ classes:
 
   AtomicLayerDeposition:
     is_a: PreparationMethod
-    class_uri: coremeta4cat:AtomicLayerDeposition
+    class_uri: CHMO:0001311
     description: |-
       Catalyst preparation by atomic layer deposition (ALD): sequential
       self-limiting surface reactions deposit a conformal thin film
@@ -315,7 +315,7 @@ classes:
 
   MicrowaveAssisted:
     is_a: PreparationMethod
-    class_uri: coremeta4cat:MicrowaveAssisted
+    class_uri: CHMO:0002906
     mixins:
       - ThermalSynthesisMixin
     description: |-
@@ -444,13 +444,13 @@ slots:
   storage_conditions:
     description: Conditions under which the catalyst is stored (e.g. inert atmosphere, 4°C).
     range: string
-    slot_uri: coremeta4cat:storage_conditions
+    slot_uri: VOC4CAT:0008105
     multivalued: true
 
-  support:
+  catalyst_support:
     description: Support material on which the active phase is deposited (e.g. Al2O3, SiO2).
     range: string
-    slot_uri: coremeta4cat:support
+    slot_uri: VOC4CAT:0008104
     multivalued: true
 
   # ---- Precursor slots ----
@@ -492,7 +492,7 @@ slots:
   precipitating_agent:
     description: Chemical agent used to induce precipitation (e.g. NaOH, NH3).
     range: string
-    slot_uri: coremeta4cat:precipitating_agent
+    slot_uri: VOC4CAT:0008203
     multivalued: true
 
   precipitating_concentration:
@@ -509,10 +509,10 @@ slots:
     slot_uri: VOC4CAT:0000052
     multivalued: true
 
-  mixing_rate:
+  stirring_rate:
     description: Stirring rate during mixing of synthesis components.
     range: float
-    slot_uri: coremeta4cat:mixing_rate
+    slot_uri: VOC4CAT:0008114
     multivalued: true
     unit:
       ucum_code: rpm
@@ -562,7 +562,7 @@ slots:
   aging_time:
     description: Duration of the aging step.
     range: float
-    slot_uri: coremeta4cat:aging_time
+    slot_uri: VOC4CAT:0008204
     multivalued: true
     unit:
       ucum_code: h
