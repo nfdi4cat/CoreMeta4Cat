@@ -355,7 +355,7 @@ def generate_markdown_for_main_class(schema: dict, main_class: str, output_file:
     if class_uri:
         md += f"**CURIE:** [`{class_uri}`]({class_uri})\n\n"
 
-    md += (f'<iframe\n    src="/CoreMeta4Cat/assets/metadata_{main_class.lower()}_hierarchy.html"\n'
+    md += (f'<iframe\n    src="../assets/metadata_{main_class.lower()}_hierarchy.html"\n'
            f'    width="100%"\n    height= "470vh"\n'
            f'    style="border: 2px solid #5C88DA; background-color: #F0F8FF;\n    "\n'
            f'    allowfullscreen\n></iframe>')
