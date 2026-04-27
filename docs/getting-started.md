@@ -9,7 +9,7 @@ Adopting a new metadata standard does not have to mean changing how you work ove
 
 <div style="text-align: center;">
     <a>
-    <img src="/images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
+    <img src="images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
     </a>
 </div>
 
@@ -40,7 +40,7 @@ Level 4 ──► Validate records against the full CoreMeta4Cat schema
 To help you understand which terms exist and how they relate to each other, CoreMeta4Cat provides a reference Excel workbook. This workbook is **not a data entry form to fill in** — it is a structured overview of the CoreMeta4Cat vocabulary hierarchy, organised by data class, that you can use as a lookup reference when designing or annotating your own data sheets.
 
 <div style="text-align: center; margin: 1.5em 0;">
-  <a href="../assets/coremeta4cat_vocabulary.xlsx"
+  <a href="assets/coremeta4cat_vocabulary.xlsx"
      style="display: inline-block; padding: 0.7em 1.6em; background: #1976d2; color: white;
             border-radius: 4px; text-decoration: none; font-weight: bold;">
     ⬇ Download the CoreMeta4Cat vocabulary reference workbook
