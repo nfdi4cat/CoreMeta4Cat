@@ -9,7 +9,7 @@ This page explains how to add new entries to the CoreMeta4Cat schema — new pre
 
 <div style="text-align: center;">
     <a>
-    <img src="/images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
+    <img src="images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
     </a>
 </div>
 

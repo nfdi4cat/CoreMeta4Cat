@@ -12,7 +12,7 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
-  logo: /images/CoreMeta4Cat_Picture.png
+  logo: images/CoreMeta4Cat_Picture.png
 
 # for adding extra css/js see https://www.mkdocs.org/user-guide/customizing-your-theme/
 
@@ -61,8 +61,9 @@ exclude_docs: |
 extra_css:
   - stylesheets//no-details-box.css
 
-site_url: https://HendrikBorgelt.github.io/CoreMeta4Cat
-repo_url: https://github.com/HendrikBorgelt/CoreMeta4Cat
+site_url: https://nfdi4cat.github.io/CoreMeta4Cat
+repo_url: https://github.com/nfdi4cat/CoreMeta4Cat
+use_directory_urls: true
 
 # enable version selector for multi-version support
 extra:

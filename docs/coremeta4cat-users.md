@@ -9,7 +9,7 @@ This page lists projects, data repositories, and communities that have adopted C
 
 <div style="text-align: center;">
     <a>
-    <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
+    <img src="images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
     </a>
 </div>
 
@@ -19,7 +19,7 @@ This page lists projects, data repositories, and communities that have adopted C
 
 <div style="text-align: center;">
     <a>
-    <img src="/CoreMeta4Cat/images/nfdi4cat-logo.png" alt="nfdi4cat-logo" style="width: 40%;">
+    <img src="images/nfdi4cat-logo.png" alt="nfdi4cat-logo" style="width: 40%;">
     </a>
 </div>
 
