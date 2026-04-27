@@ -22,6 +22,10 @@ plugins:
       execute: false
   - mermaid2:
       version: 11.4.1
+  - mike:
+      # Multi-version support, https://github.com/jimporter/mike
+      canonical_version: "latest"
+      version_selector: true
   # TODO rebuild docs on schema change (https://github.com/dalito/linkml-project-copier/issues/39)
   # - gen-files:
   #     scripts:
@@ -59,6 +63,14 @@ extra_css:
 
 site_url: https://HendrikBorgelt.github.io/CoreMeta4Cat
 repo_url: https://github.com/HendrikBorgelt/CoreMeta4Cat
+
+# enable version selector for multi-version support
+extra:
+  version:
+    provider: mike
+    alias: true
+    default:
+      - stable
 
 # Uncomment this block to enable use of Google Analytics.
 # Replace the property value with your own ID.
