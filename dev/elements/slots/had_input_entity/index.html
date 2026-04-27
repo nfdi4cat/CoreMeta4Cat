@@ -92,7 +92,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="CoreMeta4Cat" class="md-header__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
       
-  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
+  <img src="/images/CoreMeta4Cat_Picture.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -201,7 +201,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="CoreMeta4Cat" class="md-nav__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
       
-  <img src="/CoreMeta4Cat/images/CoreMeta4Cat_Picture.png" alt="logo">
+  <img src="/images/CoreMeta4Cat_Picture.png" alt="logo">
 
     </a>
     CoreMeta4Cat
@@ -790,9 +790,9 @@ Alias: had_input_entity</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Activity/">Activity</a></td>
-<td>See <a href="https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Activity">DCAT-AP specs:Activity</a></td>
-<td>yes</td>
+<td><a href="../../classes/SubstanceSampleCharacterization/">SubstanceSampleCharacterization</a></td>
+<td>A DataGeneratingActivity that produces data about a SubstanceSample, such as a spectroscopic measurement, a physical property determination, or a combined measurement-and-analysis workflow. This is a coarse-grained convenience shape that does not distinguish between raw data acquisition and subsequent data processing or analysis. Domain-specific sub-profiles that need this distinction should define their own DataGeneratingActivity subclasses and use the DCAT-AP+ DataAnalysis chain to separate raw measurement from derived results.</td>
+<td>no</td>
 </tr>
 <tr>
 <td><a href="../../classes/DataAnalysis/">DataAnalysis</a></td>
@@ -805,16 +805,6 @@ Alias: had_input_entity</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Simulation/">Simulation</a></td>
-<td>A DataGeneratingActivity in which a catalyst, catalytic material, or<br>catalytic process is modelled computationally.<br><br>The simulation software is linked via carried_out_by as a Software agent.<br>The simulation method (protocol) is linked via realized_plan using a<br>SimulationMethod instance. The catalyst model or reaction being simulated<br>is linked via evaluated_entity or evaluated_activity.<br><br>The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,<br>NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Synthesis/">Synthesis</a></td>
-<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
-<td>yes</td>
-</tr>
-<tr>
 <td><a href="../../classes/Characterization/">Characterization</a></td>
 <td>A DataGeneratingActivity in which a catalyst sample or catalytic material<br>is characterized using an analytical technique.<br><br>The catalyst sample being characterized is linked via evaluated_entity.<br>The analytical protocol is linked via realized_plan using a<br>CharacterizationTechnique instance. The instrument used is linked via<br>carried_out_by as a Device.<br><br>The specific technique type is expressed via rdf_type using an ontology<br>term (e.g. CHMO:0000158 for powder XRD, CHMO:0000404 for XPS),<br>following DCAT-AP-PLUS Pattern 3 — exactly as NMRSpectroscopy uses<br>rdf_type: CHMO:0000613.</td>
 <td>no</td>
@@ -825,14 +815,24 @@ Alias: had_input_entity</p>
 <td>yes</td>
 </tr>
 <tr>
+<td><a href="../../classes/Synthesis/">Synthesis</a></td>
+<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
+<td>yes</td>
+</tr>
+<tr>
 <td><a href="../../classes/EvaluatedActivity/">EvaluatedActivity</a></td>
 <td>An activity or process that is being evaluated in a DataGeneratingActivity.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/SubstanceSampleCharacterization/">SubstanceSampleCharacterization</a></td>
-<td>A DataGeneratingActivity that produces data about a SubstanceSample, such as a spectroscopic measurement, a physical property determination, or a combined measurement-and-analysis workflow. This is a coarse-grained convenience shape that does not distinguish between raw data acquisition and subsequent data processing or analysis. Domain-specific sub-profiles that need this distinction should define their own DataGeneratingActivity subclasses and use the DCAT-AP+ DataAnalysis chain to separate raw measurement from derived results.</td>
+<td><a href="../../classes/Simulation/">Simulation</a></td>
+<td>A DataGeneratingActivity in which a catalyst, catalytic material, or<br>catalytic process is modelled computationally.<br><br>The simulation software is linked via carried_out_by as a Software agent.<br>The simulation method (protocol) is linked via realized_plan using a<br>SimulationMethod instance. The catalyst model or reaction being simulated<br>is linked via evaluated_entity or evaluated_activity.<br><br>The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,<br>NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.</td>
 <td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Activity/">Activity</a></td>
+<td>See <a href="https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Activity">DCAT-AP specs:Activity</a></td>
+<td>yes</td>
 </tr>
 <tr>
 <td><a href="../../classes/ChemicalReaction/">ChemicalReaction</a></td>
