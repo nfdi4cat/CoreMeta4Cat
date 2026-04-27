@@ -60,9 +60,9 @@ classes:
       SonochemicalSynthesis, MolecularSynthesis).
     slots:
       - drying_device
-      - drying_temperature
-      - drying_time
-      - drying_atmosphere
+      - has_drying_temperature
+      - has_drying_duration
+      - has_drying_atmosphere
 
   CalcinationMixin:
     mixin: true
@@ -72,13 +72,12 @@ classes:
       (Impregnation, CoPrecipitation, DepositionPrecipitation,
       SonochemicalSynthesis, ExsolutionSynthesis).
     slots:
-      - calcination_initial_temperature
-      - calcination_final_temperature
-      - calcination_dwelling_time
+      - has_calcination_temperature_range
+      - has_calcination_dwelling_time
       - number_of_cycles
-      - calcination_gaseous_environment
-      - calcination_heating_rate
-      - calcination_gas_flow_rate
+      - has_calcination_atmosphere
+      - has_calcination_heating_rate
+      - has_calcination_gas_flow_rate
 
   PrecipitationMixin:
     mixin: true
@@ -88,16 +87,24 @@ classes:
       (CoPrecipitation, DepositionPrecipitation).
     slots:
       - precipitating_agent
+<<<<<<< Updated upstream
       - precipitating_concentration
       - synthesis_ph
       - stirring_rate
       - mixing_time
       - mixing_temperature
+=======
+      - has_concentration
+      - has_ph_value
+      - has_mixing_speed
+      - has_mixing_duration
+      - has_mixing_temperature
+>>>>>>> Stashed changes
       - order_of_addition
       - filtration
       - purification
-      - aging_temperature
-      - aging_time
+      - has_aging_temperature
+      - has_aging_duration
 
   ThermalSynthesisMixin:
     mixin: true
@@ -109,9 +116,8 @@ classes:
     slots:
       - synthesis_temperature
       - synthesis_duration
-      - equipment
-      - vessel_type
-      - atmosphere
+      - has_vessel_type
+      - has_atmosphere
 
   # ==================== CORE SYNTHESIS CLASSES ====================
 
@@ -135,7 +141,7 @@ classes:
       - storage_conditions
       - catalyst_support
       - solvent
-      - sample_pretreatment
+      - has_sample_pretreatment
     slot_usage:
       nominal_composition:
         required: true
@@ -159,6 +165,13 @@ classes:
         required: true
       storage_conditions:
         recommended: true
+      carried_out_by:
+        description: |-
+          Equipment or synthesis device used to carry out this preparation step.
+          Provide a Device instance (e.g. rotary evaporator, autoclave, furnace).
+        range: Device
+        multivalued: true
+        inlined_as_list: true
 
   Precursor:
     is_a: MaterialSample
@@ -238,7 +251,7 @@ classes:
       of precursor molecules to form a colloidal network (gel).
     slots:
       - hydrolysis_ratio
-      - aging_time
+      - has_aging_duration
       - drying
       - surfactant_template
 
@@ -337,7 +350,7 @@ classes:
     slots:
       - sonication_power
       - sonication_duration
-      - temperature
+      - has_temperature
 
   FlameSprayPyrolysis:
     is_a: PreparationMethod
@@ -347,7 +360,7 @@ classes:
       solution is atomised and combusted in a flame to produce nanoparticles.
     slots:
       - flame_type
-      - flow_rate
+      - has_flow_rate
       - inlet_system
       - flame_ring
       - dispersant
@@ -395,9 +408,9 @@ classes:
     slots:
       - reaction_vessel
       - mixing_device
-      - stirring_duration
-      - stirring_speed
-      - mixing_temperature
+      - has_stirring_duration
+      - has_stirring_speed
+      - has_mixing_temperature
       - filtration_device
       - filter_type
       - crystallisation_solvents
@@ -406,7 +419,7 @@ classes:
       - purification_solvent
       - number_of_cycles
       - temperature_ramp
-      - atmosphere
+      - has_atmosphere
 
   ExsolutionSynthesis:
     is_a: PreparationMethod
@@ -419,9 +432,13 @@ classes:
 
 # ==================== SLOTS ====================
 # Only slots exclusive to this subprofile are declared here.
-# Shared slots (atmosphere, temperature, drying_*, calcination_*, equipment,
-# vessel_type, carrier_gas, stirring_*, number_of_cycles, …) are inherited
-# from coremeta4cat_common.
+# Shared has_X sub-slots (has_drying_temperature, has_drying_duration,
+# has_calcination_temperature_range, has_calcination_dwelling_time,
+# has_calcination_heating_rate, has_calcination_gas_flow_rate,
+# has_stirring_speed, has_stirring_duration, has_flow_rate, …)
+# are inherited from coremeta4cat_common.
+# Generic has_temperature, has_concentration, has_ph_value, has_pressure
+# are inherited from material_entities_ap / chemical_entities_ap.
 
 slots:
 
@@ -457,11 +474,10 @@ slots:
 
   precursor_quantity:
     description: Quantity of precursor used in synthesis.
-    range: float
+    range: Mass
     slot_uri: coremeta4cat:precursor_quantity
     multivalued: true
-    unit:
-      ucum_code: g
+    inlined_as_list: true
 
   # ---- Impregnation-specific slots ----
 
@@ -473,42 +489,42 @@ slots:
 
   impregnation_duration:
     description: Duration of the impregnation step.
-    range: float
+    range: Duration
     slot_uri: coremeta4cat:impregnation_duration
     multivalued: true
-    unit:
-      ucum_code: h
+    inlined_as_list: true
 
   impregnation_temperature:
     description: Temperature during the impregnation step.
-    range: float
+    range: Temperature
     slot_uri: coremeta4cat:impregnation_temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   # ---- Precipitation / wet-chemistry slots (PrecipitationMixin) ----
 
   precipitating_agent:
     description: Chemical agent used to induce precipitation (e.g. NaOH, NH3).
+<<<<<<< Updated upstream
     range: string
     slot_uri: VOC4CAT:0008203
+=======
+    range: ChemicalEntity
+    slot_uri: coremeta4cat:precipitating_agent
+>>>>>>> Stashed changes
     multivalued: true
+    inlined_as_list: true
 
-  precipitating_concentration:
-    description: Concentration of the precipitating agent.
-    range: float
-    slot_uri: coremeta4cat:precipitating_concentration
-    multivalued: true
-    unit:
-      ucum_code: mol/L
+  # ---- Wet-chemistry / precipitation has_X sub-slots ----
+  # (has_concentration and has_ph_value are inherited from chemical_entities_ap)
 
-  synthesis_ph:
-    description: pH value maintained or targeted during synthesis.
-    range: float
-    slot_uri: VOC4CAT:0000052
-    multivalued: true
+  has_mixing_speed:
+    is_a: has_angular_velocity
+    slot_uri: SIO:000008
+    range: AngularVelocity
+    description: Rotational speed during mixing of synthesis components.
 
+<<<<<<< Updated upstream
   stirring_rate:
     description: Stirring rate during mixing of synthesis components.
     range: float
@@ -518,20 +534,31 @@ slots:
       ucum_code: rpm
 
   mixing_time:
+=======
+  has_mixing_duration:
+    is_a: has_duration
+    slot_uri: SIO:000008
+    range: Duration
+>>>>>>> Stashed changes
     description: Duration of the mixing step.
-    range: float
-    slot_uri: coremeta4cat:mixing_time
-    multivalued: true
-    unit:
-      ucum_code: h
 
-  mixing_temperature:
-    description: Temperature during mixing.
-    range: float
-    slot_uri: coremeta4cat:mixing_temperature
-    multivalued: true
-    unit:
-      ucum_code: Cel
+  has_mixing_temperature:
+    is_a: has_temperature
+    slot_uri: SIO:000008
+    range: Temperature
+    description: Temperature maintained during mixing.
+
+  has_aging_temperature:
+    is_a: has_temperature
+    slot_uri: SIO:000008
+    range: Temperature
+    description: Temperature maintained during the aging step.
+
+  has_aging_duration:
+    is_a: has_duration
+    slot_uri: SIO:000008
+    range: Duration
+    description: Duration of the aging step.
 
   order_of_addition:
     description: Order in which reagents or components are combined.
@@ -551,6 +578,7 @@ slots:
     slot_uri: coremeta4cat:purification
     multivalued: true
 
+<<<<<<< Updated upstream
   aging_temperature:
     description: Temperature during aging of the precipitate or gel.
     range: float
@@ -567,49 +595,46 @@ slots:
     unit:
       ucum_code: h
 
+=======
+>>>>>>> Stashed changes
   # ---- DepositionPrecipitation-specific slots ----
 
   deposition_temperature:
     description: Temperature during the deposition step.
-    range: float
+    range: Temperature
     slot_uri: coremeta4cat:deposition_temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   deposition_time:
     description: Duration of the deposition step.
-    range: float
+    range: Duration
     slot_uri: coremeta4cat:deposition_time
     multivalued: true
-    unit:
-      ucum_code: h
+    inlined_as_list: true
 
   # ---- ThermalSynthesisMixin slots ----
 
   synthesis_temperature:
     description: Temperature applied during the synthesis step.
-    range: float
+    range: Temperature
     slot_uri: VOC4CAT:0000051
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   synthesis_duration:
     description: Total duration of the synthesis step.
-    range: float
+    range: Duration
     slot_uri: VOC4CAT:0000050
     multivalued: true
-    unit:
-      ucum_code: h
+    inlined_as_list: true
 
   synthesis_pressure:
     description: Pressure applied during synthesis (e.g. in autoclave or plasma reactor).
-    range: float
+    range: Pressure
     slot_uri: VOC4CAT:0000053
     multivalued: true
-    unit:
-      ucum_code: bar
+    inlined_as_list: true
 
   # ---- Sol-gel-specific slots ----
 
@@ -649,11 +674,10 @@ slots:
 
   cooling_rate:
     description: Rate at which the reactor is cooled after synthesis.
-    range: float
+    range: HeatingRate
     slot_uri: coremeta4cat:cooling_rate
     multivalued: true
-    unit:
-      ucum_code: Cel/min
+    inlined_as_list: true
 
   # ---- PlasmaAssisted-specific slots ----
 
@@ -665,19 +689,17 @@ slots:
 
   power_input:
     description: Power input to the plasma reactor or other energy source.
-    range: float
+    range: PowerQuantity
     slot_uri: coremeta4cat:power_input
     multivalued: true
-    unit:
-      ucum_code: W
+    inlined_as_list: true
 
   exposure_time:
     description: Duration of plasma or other energy exposure.
-    range: float
+    range: Duration
     slot_uri: coremeta4cat:exposure_time
     multivalued: true
-    unit:
-      ucum_code: min
+    inlined_as_list: true
 
   # ---- CombustionSynthesis-specific slots ----
 

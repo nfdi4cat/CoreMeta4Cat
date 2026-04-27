@@ -7,7 +7,7 @@ description: |-
 
   This module defines:
   - Reaction — an EvaluatedActivity representing the catalytic process being studied
-  - ReactorDesignType — Device subclass hierarchy (8 concrete reactor types)
+  - Reactor — Device subclass hierarchy (8 concrete reactor types)
   - OperationParameters — flattened as direct slots on Reaction (see note below)
   - ProductIdentificationMethod — abstract stub; users point to a
     CharacterizationTechnique instance from coremeta4cat_characterization_ap
@@ -15,7 +15,7 @@ description: |-
   Alignment to DCAT-AP-PLUS:
     Reaction          --> is_a: EvaluatedActivity  (the process being studied,
                         NOT the data-generating process)
-    ReactorDesignType --> is_a: Device             (the AgenticEntity carrying out
+    Reactor --> is_a: Device             (the AgenticEntity carrying out
                         the Reaction via carried_out_by)
 
   The Reaction is NOT a DataGeneratingActivity. It is the catalytic process
@@ -58,7 +58,7 @@ default_range: string
 
 imports:
   - linkml:types
-  - coremeta4cat_common   # shared slots (atmosphere, flow_rate, temperature, …) + enums
+  - coremeta4cat_common   # shared has_X sub-slots, atmosphere, enums
 
 # ==================== REACTION (EvaluatedActivity) ====================
 
@@ -79,7 +79,7 @@ classes:
         was_generated_by: Characterization  (the measurement producing data)
         is_about_activity: Reaction         (the catalytic process being monitored)
 
-      The reactor is linked via carried_out_by as a ReactorDesignType (Device).
+      The reactor is linked via carried_out_by as a Reactor (Device).
       Reactants are linked via had_input_entity. The type of catalytic reaction
       (e.g. ammonia synthesis, CO oxidation) is expressed via rdf_type using a
       voc4cat or ChemO term.
@@ -88,10 +88,10 @@ classes:
       - reactant
       - catalyst_type
       - reactor_temperature_range
-      - atmosphere
+      - has_atmosphere
       - experiment_pressure
       - feed_composition_range
-      - experiment_duration
+      - has_experiment_duration
       - product_identification_method
     slot_usage:
       rdf_type:
@@ -101,9 +101,10 @@ classes:
         recommended: true
       carried_out_by:
         description: |-
-          The reactor in which the Reaction takes place, provided as a
-          ReactorDesignType (Device) instance.
-        range: ReactorDesignType
+          The reactor in which the Reaction takes place.
+          Must be a Reactor instance (a Device subclass specific to catalytic
+          reaction vessels, e.g. FixedBedReactor, CSTR, Autoclave).
+        range: Reactor
         required: true
         multivalued: true
         inlined_as_list: true
@@ -140,56 +141,63 @@ classes:
       it can participate in the realized_plan slot if needed.
 
   # ==================== REACTOR DESIGN TYPES (Devices) ====================
-  # ReactorDesignType and its subclasses are Device subclasses (AgenticEntity).
+  # Reactor and its subclasses are Device subclasses (AgenticEntity).
   # They are the physical reactor carried_out_by which a Reaction takes place.
   # The reactor type is expressed both via the subclass and optionally via rdf_type.
 
-  ReactorDesignType:
+  Reactor:
     is_a: Device
     class_uri: VOC4CAT:0007018
     abstract: true
     description: |-
-      Abstract Device representing the type of reactor used in a catalytic experiment.
-      Concrete subclasses specify the reactor geometry and operating mode.
-      Linked from Reaction via carried_out_by.
+      Abstract Device subclass representing a catalytic reactor vessel.
+
+      Reactor is more specific than the general Device (AgenticEntity): it restricts
+      carried_out_by on Reaction to dedicated reactor equipment. This semantic
+      distinction separates analytical instruments (Device) from reaction vessels
+      (Reactor) in the carried_out_by relationship.
+
+      Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify
+      reactor geometry and operating mode.
+      Linked from Reaction via carried_out_by (restricted to range: Reactor).
 
   ElectrochemicalReactor:
-    is_a: ReactorDesignType
+    is_a: Reactor
     class_uri: VOC4CAT:0000193
     description: |-
       Electrochemical reactor used in electrocatalytic experiments, including
       H-cells, flow cells, and membrane electrode assemblies.
 
   CSTR:
-    is_a: ReactorDesignType
+    is_a: Reactor
     class_uri: VOC4CAT:0007019
     description: |-
       Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow
       reactor operating at steady state.
 
   PlugFlowReactor:
-    is_a: ReactorDesignType
+    is_a: Reactor
     class_uri: VOC4CAT:0007102
     description: |-
       Plug flow reactor (PFR) — a tubular reactor in which reactant composition
       varies along the axis with no axial mixing.
 
   Autoclave:
-    is_a: ReactorDesignType
+    is_a: Reactor
     class_uri: NCIT:C93052
     description: |-
       Autoclave reactor — a sealed pressure vessel for batch reactions at
       elevated temperature and/or pressure.
 
   SlurryReactor:
-    is_a: ReactorDesignType
+    is_a: Reactor
     class_uri: coremeta4cat:SlurryReactor
     description: |-
       Slurry reactor — a three-phase reactor in which catalyst particles are
       suspended in a liquid phase through which gas is bubbled.
 
   Microreactor:
-    is_a: ReactorDesignType
+    is_a: Reactor
     class_uri: VOC4CAT:0000234
     description: |-
       Microreactor — a miniaturised flow reactor with characteristic dimensions
@@ -197,14 +205,14 @@ classes:
       screening.
 
   FixedBedReactor:
-    is_a: ReactorDesignType
+    is_a: Reactor
     class_uri: coremeta4cat:FixedBedReactor
     description: |-
       Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.
       The most common reactor type in heterogeneous catalysis testing.
 
   FluidizedBedReactor:
-    is_a: ReactorDesignType
+    is_a: Reactor
     class_uri: coremeta4cat:FluidizedBedReactor
     description: |-
       Fluidized bed reactor — a reactor in which the catalyst particles are
@@ -215,7 +223,7 @@ classes:
       - bubble_size_distribution
 
 # ==================== SLOTS ====================
-# Shared slots (atmosphere, flow_rate, temperature, experiment_duration, …)
+# Shared has_X sub-slots (has_experiment_duration, …) and atmosphere
 # are inherited from coremeta4cat_common and not redeclared here.
 
 slots:
@@ -224,21 +232,22 @@ slots:
 
   catalyst_quantity:
     description: Mass of catalyst loaded into the reactor.
-    range: float
+    range: Mass
     slot_uri: coremeta4cat:catalyst_quantity
     required: true
     multivalued: true
-    unit:
-      ucum_code: g
+    inlined_as_list: true
 
   reactant:
     description: |-
-      Reactant(s) used in the reaction. Provide compound name, CAS number,
-      or SMILES. For feeds, include composition and flow rate where known.
-    range: string
+      Reactant(s) or feed chemicals used in the reaction. Provide a ChemicalEntity
+      instance with inchikey, smiles, or iupac_name. For feed mixtures, list each
+      component as a separate ChemicalEntity and record composition via has_concentration.
+    range: ChemicalEntity
     slot_uri: VOC4CAT:0000101
     required: true
     multivalued: true
+    inlined_as_list: true
 
   catalyst_type:
     description: |-
@@ -253,29 +262,30 @@ slots:
 
   reactor_temperature_range:
     description: |-
-      Temperature range used in the reactor during the reaction, expressed
-      as a string range (e.g. "200–400 °C") or a single set-point.
-    range: string
+      Temperature range in the reactor during the reaction, provided as a
+      QuantitativeRange with min_value and max_value (unit_code: "Cel").
+      For a single set-point, set min_value equal to max_value.
+    range: QuantitativeRange
     slot_uri: VOC4CAT:0007032
     multivalued: true
+    inlined_as_list: true
 
   experiment_pressure:
     description: Total pressure in the reactor during the experiment.
-    range: float
+    range: Pressure
     slot_uri: VOC4CAT:0000118
     multivalued: true
-    unit:
-      ucum_code: bar
+    inlined_as_list: true
 
   feed_composition_range:
     description: |-
-      Feed gas or liquid composition range studied (e.g. "1–10 vol% CO in N2").
-      Record as a string; for individual component concentrations use reactant.
-    range: string
+      Feed composition range studied, provided as a QuantitativeRange.
+      Express concentration bounds in an appropriate unit (e.g. "mol/L", "%" for
+      vol% or mol%). For fixed-composition experiments use reactant.has_concentration.
+    range: QuantitativeRange
     slot_uri: coremeta4cat:feed_composition_range
     multivalued: true
-
-  # experiment_duration is inherited from coremeta4cat_common (AFR:0002455, unit h)
+    inlined_as_list: true
 
   # ---- FluidizedBedReactor-specific slots ----
 

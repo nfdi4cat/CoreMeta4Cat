@@ -62,7 +62,7 @@ description: |-
                                     +-- dcat_ap_plus  (DCAT-AP-PLUS base)
       +-- coremeta4cat_synthesis_ap         (Step 3 — Synthesis, PreparationMethod, mixins)
       +-- coremeta4cat_characterization_ap  (Step 4 — Characterization, 24 techniques, mixins)
-      +-- coremeta4cat_reaction_ap          (Step 5 — Reaction, 8 ReactorDesignTypes)
+      +-- coremeta4cat_reaction_ap          (Step 5 — Reaction, 8 Reactor subclasses)
       +-- coremeta4cat_simulation_ap        (Step 6 — Simulation, 4 methods, 12 properties, mixins)
 
 license: CC-BY-4.0

@@ -7,7 +7,7 @@ description: |-
 
   This module provides:
   - Shared slots reused across two or more CoreMeta4cat subprofiles
-    (atmosphere, temperature, equipment, calcination parameters, …)
+    (atmosphere, temperature, calcination parameters, …)
   - Domain-level enumerations (CatalysisResearchFieldEnum, SampleStateEnum, …)
 
   Design note: This module intentionally does NOT define a CoreMeta4catEntity root
@@ -43,6 +43,8 @@ prefixes:
   SIO: http://semanticscience.org/resource/SIO_
   AFR: http://purl.allotrope.org/ontologies/result#AFR_
   AFP: http://purl.allotrope.org/ontologies/process#AFP_
+  qudt: http://qudt.org/schema/qudt/
+  PATO: http://purl.obolibrary.org/obo/PATO_
 
 default_prefix: coremeta4cat
 default_range: string
@@ -51,57 +53,398 @@ imports:
   - linkml:types
   - chem_dcat_ap
 
+# ==================== CLASSES ====================
+
+classes:
+
+  QuantitativeRange:
+    class_uri: qudt:Quantity
+    mixins:
+      - ClassifierMixin
+    description: |-
+      A quantitative property expressed as a range between a lower and upper bound,
+      sharing a common unit. Used where an experiment operates over a range of
+      conditions (e.g. a temperature sweep, a feed concentration window).
+
+      Aligned to qudt:Quantity (as in the DCAT-AP-PLUS QuantitativeAttribute pattern)
+      but with min_value / max_value instead of a single value to represent an
+      interval rather than a point value. Provide the shared unit as a QUDT DefinedTerm.
+    slots:
+      - title
+      - description
+    attributes:
+      min_value:
+        description: Lower bound of the range.
+        range: float
+        slot_uri: coremeta4cat:minValue
+      max_value:
+        description: Upper bound of the range.
+        range: float
+        slot_uri: coremeta4cat:maxValue
+      unit:
+        description: |-
+          Unit shared by both bounds, as a QUDT unit term
+          (e.g. id: http://qudt.org/vocab/unit/DegreeCelsius, title: "Degree Celsius").
+        range: DefinedTerm
+        slot_uri: qudt:unit
+      has_quantity_type:
+        description: |-
+          QUDT QuantityKind term for the kind of quantity this range describes
+          (e.g. id: http://qudt.org/vocab/quantitykind/Temperature, title: "Temperature").
+        range: DefinedTerm
+        slot_uri: qudt:hasQuantityKind
+
+  # ---- Domain QuantitativeAttribute subclasses ----
+  # Classes already provided by the import chain and reused directly:
+  #   Temperature, Mass, Volume, Pressure  (material_entities_ap)
+  #   Concentration, PHValue               (chemical_entities_ap)
+  # The classes below cover quantities not yet defined upstream.
+
+  Duration:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: A quantitative measure of elapsed time (duration of a process step).
+    close_mappings:
+      - PATO:0001309
+
+  VolumeFlowRate:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: Volume of fluid passing a given point per unit time.
+    close_mappings:
+      - PATO:0001574
+
+  HeatingRate:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: Rate of temperature change per unit time during a thermal ramp.
+
+  AngularVelocity:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: Rate of rotational motion, typically expressed in revolutions per minute.
+    close_mappings:
+      - PATO:0002154
+
+  EnergyQuantity:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: A quantitative measure of energy (eV, keV, kJ/mol, etc.).
+    close_mappings:
+      - PATO:0001021
+
+  ElectricPotential:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: A quantitative measure of electric potential difference or voltage.
+    close_mappings:
+      - PATO:0001464
+
+  PowerQuantity:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: Rate of energy transfer per unit time (e.g. laser power in mW).
+    close_mappings:
+      - PATO:0001230
+
+  LengthQuantity:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: A quantitative measure of length or spatial dimension (nm, mm, cm).
+    close_mappings:
+      - PATO:0001708
+
+  PlaneAngle:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: A quantitative measure of a plane angle (e.g. scattering angle in degrees).
+
+  Wavenumber:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: Reciprocal of wavelength; number of wave cycles per unit length (cm⁻¹).
+
+  MassToChargeRatio:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: Ratio of mass to electric charge (m/z) in mass spectrometry.
+
+  # ---- Domain QualitativeAttribute subclasses ----
+  # Classes already provided by the import chain (chemical_entities_ap):
+  #   InChIKey, InChi, MolecularFormula, IUPACName, SMILES
+  # The classes below cover qualitative descriptors specific to the catalysis domain.
+
+  Atmosphere:
+    is_a: QualitativeAttribute
+    class_uri: coremeta4cat:Atmosphere
+    description: |-
+      A qualitative descriptor of the gaseous environment or atmospheric
+      conditions during a process (e.g. "air", "N₂", "5% H₂/Ar").
+
+  CalcinationGaseousEnvironment:
+    is_a: Atmosphere
+    class_uri: VOC4CAT:0000055
+    description: |-
+      The specific gaseous environment maintained during a calcination step
+      (e.g. "air", "N₂", "10% O₂/N₂").
+
+  HeatingProcedure:
+    is_a: QualitativeAttribute
+    class_uri: coremeta4cat:HeatingProcedure
+    description: |-
+      A qualitative descriptor of the thermal programme or heating procedure
+      applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
+
+  SamplePretreatment:
+    is_a: QualitativeAttribute
+    class_uri: VOC4CAT:0000122
+    description: |-
+      A qualitative descriptor of the pre-treatment applied to a sample
+      before a process or measurement (e.g. "reduction at 300 °C", "outgassing").
+
+  VesselType:
+    is_a: QualitativeAttribute
+    class_uri: coremeta4cat:VesselType
+    description: |-
+      A qualitative descriptor of the type of reaction or synthesis vessel
+      used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").
+
+  OperationMode:
+    is_a: QualitativeAttribute
+    class_uri: VOC4CAT:0000108
+    description: |-
+      A qualitative descriptor of the operation mode of an instrument or
+      process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
+
+# ==================== QUANTITATIVE ATTRIBUTE SUB-SLOTS ====================
+# Sub-slots of has_quantitative_attribute (from DCAT-AP-PLUS via material_entities_ap).
+# Slots reused from the import chain (material_entities_ap, chemical_entities_ap):
+#   has_temperature, has_mass, has_volume, has_pressure, has_concentration, has_ph_value
+# The slots below cover quantities not yet defined upstream.
+
+slots:
+
+  # ---- Generic domain has_X slots ----
+
+  has_duration:
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: Duration
+    description: Duration of a process step or measurement run.
+
+  has_flow_rate:
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: VolumeFlowRate
+    description: Volumetric flow rate of a gas or liquid.
+
+  has_heating_rate:
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: HeatingRate
+    description: Temperature ramp rate during a heating or cooling step.
+
+  has_angular_velocity:
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: AngularVelocity
+    description: Rotational speed of stirring, mixing, or sample spinning.
+
+  has_energy:
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: EnergyQuantity
+    description: Energy of a particle, photon, or beam.
+
+  has_electric_potential:
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: ElectricPotential
+    description: Electric potential (voltage) applied to a beam or electrode.
+
+  has_power:
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: PowerQuantity
+    description: Power (energy per unit time) of a light source or beam.
+
+  has_length:
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: LengthQuantity
+    description: A length or spatial dimension measurement.
+
+  has_wavelength:
+    is_a: has_length
+    slot_uri: SIO:000008
+    range: LengthQuantity
+    description: Wavelength of electromagnetic radiation.
+
+  has_plane_angle:
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: PlaneAngle
+    description: A plane angle measurement (e.g. scattering angle in degrees).
+
+  has_wavenumber_quantity:
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: Wavenumber
+    description: Wavenumber of radiation in spectroscopic measurements (cm⁻¹).
+
+  has_mz_quantity:
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: MassToChargeRatio
+    description: Mass-to-charge ratio in mass spectrometric measurements.
+
+  # ---- Contextualized sub-slots for drying step ----
+  # Used in DryingMixin where both temperature and duration appear together.
+
+  has_drying_temperature:
+    is_a: has_temperature
+    slot_uri: SIO:000008
+    range: Temperature
+    description: Temperature applied during the drying step.
+
+  has_drying_duration:
+    is_a: has_duration
+    slot_uri: SIO:000008
+    range: Duration
+    description: Duration of the drying step.
+
+  # ---- Contextualized sub-slots for calcination step ----
+  # Used in CalcinationMixin; initial+final temperature collapsed into a range.
+
+  has_calcination_temperature_range:
+    slot_uri: coremeta4cat:hasCalcinationTemperatureRange
+    range: QuantitativeRange
+    description: |-
+      Temperature range of the calcination programme (initial → final temperature),
+      provided as a QuantitativeRange. Unit: Degree Celsius.
+    inlined: true
+
+  has_calcination_dwelling_time:
+    is_a: has_duration
+    slot_uri: SIO:000008
+    range: Duration
+    description: Time held at the final calcination temperature.
+
+  has_calcination_heating_rate:
+    is_a: has_heating_rate
+    slot_uri: SIO:000008
+    range: HeatingRate
+    description: Temperature ramp rate during the calcination step.
+
+  has_calcination_gas_flow_rate:
+    is_a: has_flow_rate
+    slot_uri: SIO:000008
+    range: VolumeFlowRate
+    description: Gas flow rate maintained during calcination.
+
+  # ---- Contextualized process-level sub-slots ----
+
+  has_stirring_speed:
+    is_a: has_angular_velocity
+    slot_uri: SIO:000008
+    range: AngularVelocity
+    description: Rotational speed of stirring or agitation.
+
+  has_stirring_duration:
+    is_a: has_duration
+    slot_uri: SIO:000008
+    range: Duration
+    description: Duration of stirring or agitation.
+
+  has_experiment_duration:
+    is_a: has_duration
+    slot_uri: SIO:000008
+    range: Duration
+    description: Total duration of the experiment or measurement run.
+
+  has_sample_mass:
+    is_a: has_mass
+    slot_uri: SIO:000008
+    range: Mass
+    description: Mass of the sample used in a process or measurement.
+
+  has_injection_volume:
+    is_a: has_volume
+    slot_uri: SIO:000008
+    range: Volume
+    description: Volume injected in a chromatographic or mass spectrometric analysis.
+
+  has_integration_time:
+    is_a: has_duration
+    slot_uri: SIO:000008
+    range: Duration
+    description: Integration or acquisition time per measurement step.
+
+  # ---- Generic domain has_X slots (QualitativeAttribute) ----
+
+  has_atmosphere:
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    range: Atmosphere
+    description: Gaseous environment or atmospheric conditions during a process.
+    multivalued: true
+    inlined_as_list: true
+
+  has_drying_atmosphere:
+    is_a: has_atmosphere
+    slot_uri: SIO:000008
+    range: Atmosphere
+    description: Atmosphere maintained during the drying step.
+    multivalued: true
+    inlined_as_list: true
+
+  has_calcination_atmosphere:
+    is_a: has_atmosphere
+    slot_uri: SIO:000008
+    range: CalcinationGaseousEnvironment
+    description: Gaseous environment maintained during the calcination step.
+    multivalued: true
+    inlined_as_list: true
+
+  has_heating_procedure:
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    range: HeatingProcedure
+    description: Heating procedure or thermal programme applied.
+    multivalued: true
+    inlined_as_list: true
+
+  has_sample_pretreatment:
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    range: SamplePretreatment
+    description: Pre-treatment applied to the sample before a process or measurement.
+    multivalued: true
+    inlined_as_list: true
+
+  has_vessel_type:
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    range: VesselType
+    description: Type of reaction or synthesis vessel used.
+    multivalued: true
+    inlined_as_list: true
+
+  has_operation_mode:
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    range: OperationMode
+    description: Operation mode of an instrument or process.
+    multivalued: true
+    inlined_as_list: true
+
 # ==================== SHARED SLOTS ====================
 #
 # A slot is placed here when it is referenced by two or more CoreMeta4cat subprofiles.
 # Slots exclusive to one subprofile are declared in that subprofile file.
 
-slots:
-
   # ---- Process / environment conditions ----
   # Used across: Synthesis, Characterization, Reaction
-
-  atmosphere:
-    description: Gaseous environment or atmospheric conditions during a process.
-    range: string
-    slot_uri: coremeta4cat:atmosphere
-    multivalued: true
-
-  temperature:
-    description: Temperature during a process or measurement.
-    range: float
-    slot_uri: AFR:0001584
-    multivalued: true
-    unit:
-      ucum_code: Cel
-
-  equipment:
-    description: Equipment or instrument used in a process.
-    range: string
-    slot_uri: VOC4CAT:0000187
-    multivalued: true
-
-  flow_rate:
-    description: Flow rate of a fluid or gas.
-    range: float
-    slot_uri: coremeta4cat:flow_rate
-    multivalued: true
-    unit:
-      ucum_code: mL/min
-
-  heating_rate:
-    description: Rate at which temperature is increased during a process.
-    range: float
-    slot_uri: coremeta4cat:heating_rate
-    multivalued: true
-    unit:
-      ucum_code: Cel/min
-
-  heating_procedure:
-    description: Description of the heating procedure applied.
-    range: string
-    slot_uri: coremeta4cat:heating_procedure
-    multivalued: true
 
   number_of_cycles:
     description: Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).
@@ -109,53 +452,19 @@ slots:
     slot_uri: coremeta4cat:number_of_cycles
     multivalued: true
 
-  sample_mass:
-    description: Mass of the sample used in a process or measurement.
-    range: float
-    slot_uri: coremeta4cat:sample_mass
-    multivalued: true
-    unit:
-      ucum_code: mg
-
-  sample_pretreatment:
-    description: Pre-treatment applied to the sample before a process or measurement.
-    range: string
-    slot_uri: VOC4CAT:0000122
-    multivalued: true
-
-  stirring_speed:
-    description: Rotational speed of stirring or agitation.
-    range: float
-    slot_uri: coremeta4cat:stirring_speed
-    multivalued: true
-    unit:
-      ucum_code: rpm
-
-  stirring_duration:
-    description: Duration of stirring or agitation.
-    range: float
-    slot_uri: coremeta4cat:stirring_duration
-    multivalued: true
-    unit:
-      ucum_code: h
-
-  vessel_type:
-    description: Type of reaction or synthesis vessel used.
-    range: string
-    slot_uri: coremeta4cat:vessel_type
-    multivalued: true
-
   carrier_gas:
     description: Carrier gas used in a process (e.g. in GC analysis or ALD deposition).
-    range: string
+    range: ChemicalEntity
     slot_uri: coremeta4cat:carrier_gas
     multivalued: true
+    inlined_as_list: true
 
   dispersant:
     description: Dispersant used (e.g. in DLS measurement or flame spray pyrolysis).
-    range: string
+    range: ChemicalEntity
     slot_uri: coremeta4cat:dispersant
     multivalued: true
+    inlined_as_list: true
 
   # ---- Drying and calcination parameters ----
   # Used across multiple Synthesis preparation methods
@@ -166,6 +475,7 @@ slots:
     slot_uri: coremeta4cat:drying_device
     multivalued: true
 
+<<<<<<< Updated upstream
   drying_temperature:
     description: Temperature applied during drying.
     range: float
@@ -234,6 +544,8 @@ slots:
     unit:
       ucum_code: mL/min
 
+=======
+>>>>>>> Stashed changes
   # ---- Measurement / analytical slots ----
   # Used across Characterization and Reaction
 
@@ -249,47 +561,18 @@ slots:
     slot_uri: coremeta4cat:resolution
     multivalued: true
 
-  integration_time:
-    description: Integration or acquisition time per measurement step.
-    range: float
-    slot_uri: coremeta4cat:integration_time
-    multivalued: true
-    unit:
-      ucum_code: s
-
   number_of_scans:
     description: Number of scans or accumulations recorded.
     range: integer
     slot_uri: coremeta4cat:number_of_scans
     multivalued: true
 
-  operation_mode:
-    description: Operation mode of an instrument (e.g. transmission, reflection, AC, DC).
-    range: string
-    slot_uri: VOC4CAT:0000108
-    multivalued: true
-
-  concentration:
-    description: Concentration of a substance in a sample or solution.
-    range: float
-    slot_uri: coremeta4cat:concentration
-    multivalued: true
-    unit:
-      ucum_code: mol/L
-
   solvent:
     description: Solvent used in a process or sample preparation.
-    range: string
+    range: ChemicalEntity
     slot_uri: VOC4CAT:0007246
     multivalued: true
-
-  injection_volume:
-    description: Volume injected in a chromatographic or mass spectrometric experiment.
-    range: float
-    slot_uri: coremeta4cat:injection_volume
-    multivalued: true
-    unit:
-      ucum_code: uL
+    inlined_as_list: true
 
   external_standard:
     description: External standard used for quantification or calibration.
@@ -314,14 +597,6 @@ slots:
     range: string
     slot_uri: coremeta4cat:column_type
     multivalued: true
-
-  experiment_duration:
-    description: Total duration of the experiment or measurement run.
-    range: float
-    slot_uri: AFR:0002455
-    multivalued: true
-    unit:
-      ucum_code: h
 
   filtration_device:
     description: Device used for filtration.
