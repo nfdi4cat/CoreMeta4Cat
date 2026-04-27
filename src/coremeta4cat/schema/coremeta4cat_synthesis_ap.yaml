@@ -87,19 +87,11 @@ classes:
       (CoPrecipitation, DepositionPrecipitation).
     slots:
       - precipitating_agent
-<<<<<<< Updated upstream
-      - precipitating_concentration
-      - synthesis_ph
-      - stirring_rate
-      - mixing_time
-      - mixing_temperature
-=======
       - has_concentration
       - has_ph_value
       - has_mixing_speed
       - has_mixing_duration
       - has_mixing_temperature
->>>>>>> Stashed changes
       - order_of_addition
       - filtration
       - purification
@@ -505,13 +497,8 @@ slots:
 
   precipitating_agent:
     description: Chemical agent used to induce precipitation (e.g. NaOH, NH3).
-<<<<<<< Updated upstream
-    range: string
-    slot_uri: VOC4CAT:0008203
-=======
     range: ChemicalEntity
     slot_uri: coremeta4cat:precipitating_agent
->>>>>>> Stashed changes
     multivalued: true
     inlined_as_list: true
 
@@ -524,22 +511,10 @@ slots:
     range: AngularVelocity
     description: Rotational speed during mixing of synthesis components.
 
-<<<<<<< Updated upstream
-  stirring_rate:
-    description: Stirring rate during mixing of synthesis components.
-    range: float
-    slot_uri: VOC4CAT:0008114
-    multivalued: true
-    unit:
-      ucum_code: rpm
-
-  mixing_time:
-=======
   has_mixing_duration:
     is_a: has_duration
     slot_uri: SIO:000008
     range: Duration
->>>>>>> Stashed changes
     description: Duration of the mixing step.
 
   has_mixing_temperature:
@@ -578,25 +553,6 @@ slots:
     slot_uri: coremeta4cat:purification
     multivalued: true
 
-<<<<<<< Updated upstream
-  aging_temperature:
-    description: Temperature during aging of the precipitate or gel.
-    range: float
-    slot_uri: coremeta4cat:aging_temperature
-    multivalued: true
-    unit:
-      ucum_code: Cel
-
-  aging_time:
-    description: Duration of the aging step.
-    range: float
-    slot_uri: VOC4CAT:0008204
-    multivalued: true
-    unit:
-      ucum_code: h
-
-=======
->>>>>>> Stashed changes
   # ---- DepositionPrecipitation-specific slots ----
 
   deposition_temperature:
