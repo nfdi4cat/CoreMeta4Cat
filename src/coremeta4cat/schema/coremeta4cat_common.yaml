@@ -162,7 +162,7 @@ classes:
   Wavenumber:
     is_a: QuantitativeAttribute
     class_uri: qudt:Quantity
-    description: Reciprocal of wavelength; number of wave cycles per unit length (cm⁻¹).
+    description: Reciprocal of wavelength; number of wave cycles per unit length (cm^-1).
 
   MassToChargeRatio:
     is_a: QuantitativeAttribute
@@ -179,14 +179,14 @@ classes:
     class_uri: coremeta4cat:Atmosphere
     description: |-
       A qualitative descriptor of the gaseous environment or atmospheric
-      conditions during a process (e.g. "air", "N₂", "5% H₂/Ar").
+      conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
   CalcinationGaseousEnvironment:
     is_a: Atmosphere
     class_uri: VOC4CAT:0000055
     description: |-
       The specific gaseous environment maintained during a calcination step
-      (e.g. "air", "N₂", "10% O₂/N₂").
+      (e.g. "air", "N2", "10% O2/N2").
 
   HeatingProcedure:
     is_a: QualitativeAttribute
@@ -225,12 +225,6 @@ classes:
 slots:
 
   # ---- Generic domain has_X slots ----
-
-  has_duration:
-    is_a: has_quantitative_attribute
-    slot_uri: SIO:000008
-    range: Duration
-    description: Duration of a process step or measurement run.
 
   has_flow_rate:
     is_a: has_quantitative_attribute
@@ -290,7 +284,7 @@ slots:
     is_a: has_quantitative_attribute
     slot_uri: SIO:000008
     range: Wavenumber
-    description: Wavenumber of radiation in spectroscopic measurements (cm⁻¹).
+    description: Wavenumber of radiation in spectroscopic measurements (cm^-1).
 
   has_mz_quantity:
     is_a: has_quantitative_attribute
@@ -320,7 +314,7 @@ slots:
     slot_uri: coremeta4cat:hasCalcinationTemperatureRange
     range: QuantitativeRange
     description: |-
-      Temperature range of the calcination programme (initial → final temperature),
+      Temperature range of the calcination programme (initial -> final temperature),
       provided as a QuantitativeRange. Unit: Degree Celsius.
     inlined: true
 

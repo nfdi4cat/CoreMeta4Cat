@@ -679,11 +679,10 @@ slots:
 
   set_temperature:
     description: Target temperature set for the combustion reaction.
-    range: float
+    range: Temperature
     slot_uri: coremeta4cat:set_temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   post_treatment:
     description: Post-synthesis treatment applied to the combustion product.

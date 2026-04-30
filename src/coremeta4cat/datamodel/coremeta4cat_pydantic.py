@@ -171,7 +171,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                     '    +-- coremeta4cat_characterization_ap  (Step 4 — '
                     'Characterization, 24 techniques, mixins)\n'
                     '    +-- coremeta4cat_reaction_ap          (Step 5 — Reaction, '
-                    '8 ReactorDesignTypes)\n'
+                    '8 Reactor subclasses)\n'
                     '    +-- coremeta4cat_simulation_ap        (Step 6 — '
                     'Simulation, 4 methods, 12 properties, mixins)',
      'id': 'https://w3id.org/nfdi4cat/coremeta4cat',
@@ -423,13 +423,15 @@ class DryingMixin(ConfiguredBaseModel):
          'mixin': True})
 
     drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
-    drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008207',
-         'unit': {'ucum_code': 'Cel'}} })
-    drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008206',
-         'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'VOC4CAT:0008208'} })
+    has_drying_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_drying_duration: Optional[Duration] = Field(default=None, description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'is_a': 'has_duration', 'slot_uri': 'SIO:000008'} })
+    has_drying_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Atmosphere maintained during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
 
 
 class CalcinationMixin(ConfiguredBaseModel):
@@ -442,28 +444,30 @@ class CalcinationMixin(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixin': True})
 
-    calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000057',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_final_temperature: Optional[list[float]] = Field(default=[], description="""Final (target) temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000058',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_dwelling_time: Optional[list[float]] = Field(default=[], description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000060',
-         'unit': {'ucum_code': 'h'}} })
+    has_calcination_temperature_range: Optional[QuantitativeRange] = Field(default=None, description="""Temperature range of the calcination programme (initial -> final temperature),
+provided as a QuantitativeRange. Unit: Degree Celsius.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'slot_uri': 'coremeta4cat:hasCalcinationTemperatureRange'} })
+    has_calcination_dwelling_time: Optional[Duration] = Field(default=None, description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     number_of_cycles: Optional[list[int]] = Field(default=[], description="""Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin',
                        'AtomicLayerDeposition',
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
          'slot_uri': 'coremeta4cat:number_of_cycles'} })
-    calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
-    calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000059',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    calcination_gas_flow_rate: Optional[list[float]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000056',
-         'unit': {'ucum_code': 'mL/min'}} })
+    has_calcination_atmosphere: Optional[list[CalcinationGaseousEnvironment]] = Field(default=[], description="""Gaseous environment maintained during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_heating_rate: Optional[list[HeatingRate]] = Field(default=[], description="""Temperature ramp rate during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_heating_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_gas_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_flow_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
 
 
 class PrecipitationMixin(ConfiguredBaseModel):
@@ -475,30 +479,42 @@ class PrecipitationMixin(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixin': True})
 
-    precipitating_agent: Optional[list[str]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'VOC4CAT:0008203'} })
-    precipitating_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the precipitating agent.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'coremeta4cat:precipitating_concentration',
-         'unit': {'ucum_code': 'mol/L'}} })
-    synthesis_ph: Optional[list[float]] = Field(default=[], description="""pH value maintained or targeted during synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'VOC4CAT:0000052'} })
-    stirring_rate: Optional[list[float]] = Field(default=[], description="""Stirring rate during mixing of synthesis components.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'VOC4CAT:0008114',
-         'unit': {'ucum_code': 'rpm'}} })
-    mixing_time: Optional[list[float]] = Field(default=[], description="""Duration of the mixing step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'coremeta4cat:mixing_time',
-         'unit': {'ucum_code': 'h'}} })
-    mixing_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
-         'slot_uri': 'coremeta4cat:mixing_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
+    precipitating_agent: Optional[list[ChemicalEntity]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'slot_uri': 'coremeta4cat:precipitating_agent'} })
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_mixing_speed: Optional[list[AngularVelocity]] = Field(default=[], description="""Rotational speed during mixing of synthesis components.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'is_a': 'has_angular_velocity',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_mixing_duration: Optional[Duration] = Field(default=None, description="""Duration of the mixing step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
+    has_mixing_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature maintained during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     order_of_addition: Optional[list[str]] = Field(default=[], description="""Order in which reagents or components are combined.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
          'slot_uri': 'coremeta4cat:order_of_addition'} })
     filtration: Optional[list[str]] = Field(default=[], description="""Filtration method used to separate the precipitate (e.g. vacuum filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:filtration'} })
     purification: Optional[list[str]] = Field(default=[], description="""Purification method applied after synthesis (e.g. washing, dialysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:purification'} })
-    aging_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during aging of the precipitate or gel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'coremeta4cat:aging_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    aging_time: Optional[list[float]] = Field(default=[], description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
-         'slot_uri': 'VOC4CAT:0008204',
-         'unit': {'ucum_code': 'h'}} })
+    has_aging_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature maintained during the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_aging_duration: Optional[Duration] = Field(default=None, description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
 
 
 class ThermalSynthesisMixin(ConfiguredBaseModel):
@@ -511,16 +527,13 @@ class ThermalSynthesisMixin(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixin': True})
 
-    synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000051',
-         'unit': {'ucum_code': 'Cel'}} })
-    synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000050',
-         'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
-         'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    synthesis_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000051'} })
+    synthesis_duration: Optional[list[Duration]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000050'} })
+    has_vessel_type: Optional[list[VesselType]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -530,8 +543,10 @@ class ThermalSynthesisMixin(ConfiguredBaseModel):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
 
 
 class XRaySourceMixin(ConfiguredBaseModel):
@@ -555,12 +570,8 @@ class EnergyRangeMixin(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
-    minimum_energy: Optional[list[float]] = Field(default=[], description="""Minimum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'coremeta4cat:minimum_energy',
-         'unit': {'ucum_code': 'eV'}} })
-    maximum_energy: Optional[list[float]] = Field(default=[], description="""Maximum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'coremeta4cat:maximum_energy',
-         'unit': {'ucum_code': 'eV'}} })
+    has_energy_range: Optional[QuantitativeRange] = Field(default=None, description="""Energy scan range (minimum -> maximum) as a QuantitativeRange.
+Provide unit as a QUDT term (e.g. eV, keV).""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'], 'slot_uri': 'coremeta4cat:hasEnergyRange'} })
 
 
 class ElectronMicroscopyMixin(ConfiguredBaseModel):
@@ -573,9 +584,8 @@ class ElectronMicroscopyMixin(ConfiguredBaseModel):
          'mixin': True})
 
     gun_type: Optional[list[str]] = Field(default=[], description="""Type of electron gun (e.g. FEG, thermionic LaB6).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'], 'slot_uri': 'coremeta4cat:gun_type'} })
-    acceleration_voltage: Optional[list[float]] = Field(default=[], description="""Acceleration voltage applied to the electron beam.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'],
-         'slot_uri': 'coremeta4cat:acceleration_voltage',
-         'unit': {'ucum_code': 'kV'}} })
+    acceleration_voltage: Optional[list[ElectricPotential]] = Field(default=[], description="""Acceleration voltage applied to the electron beam.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'],
+         'slot_uri': 'coremeta4cat:acceleration_voltage'} })
     magnification_setting: Optional[list[float]] = Field(default=[], description="""Magnification setting used for imaging.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin', 'RamanSpectroscopy'],
          'slot_uri': 'AFR:0002226'} })
 
@@ -589,17 +599,17 @@ class TemperatureProgramMixin(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
-    minimum_temperature: Optional[list[float]] = Field(default=[], description="""Minimum (start) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:minimum_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    maximum_temperature: Optional[list[float]] = Field(default=[], description="""Maximum (final) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:maximum_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    heating_rate: Optional[list[float]] = Field(default=[], description="""Rate at which temperature is increased during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:heating_rate',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    heating_procedure: Optional[list[str]] = Field(default=[], description="""Description of the heating procedure applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
-         'slot_uri': 'coremeta4cat:heating_procedure'} })
+    has_temperature_range: Optional[QuantitativeRange] = Field(default=None, description="""Temperature programme range (start -> final temperature) as a QuantitativeRange.
+Provide unit as a QUDT term (e.g. Degree Celsius, Kelvin).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
+         'slot_uri': 'coremeta4cat:hasTemperatureRange'} })
+    has_heating_rate: Optional[list[HeatingRate]] = Field(default=[], description="""Temperature ramp rate during a heating or cooling step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_heating_procedure: Optional[list[HeatingProcedure]] = Field(default=[], description="""Heating procedure or thermal programme applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
 
 
 class ChromatographyMixin(ConfiguredBaseModel):
@@ -611,16 +621,18 @@ class ChromatographyMixin(ConfiguredBaseModel):
          'mixin': True})
 
     column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'coremeta4cat:column_type'} })
-    eluent: Optional[list[str]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
-    flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
+    eluent: Optional[list[ChemicalEntity]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
+    has_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Volumetric flow rate of a gas or liquid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'coremeta4cat:flow_rate',
-         'unit': {'ucum_code': 'mL/min'}} })
-    injection_volume: Optional[list[float]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
-         'slot_uri': 'coremeta4cat:injection_volume',
-         'unit': {'ucum_code': 'uL'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_injection_volume: Optional[list[Volume]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric analysis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'is_a': 'has_volume',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
          'slot_uri': 'coremeta4cat:external_standard'} })
     internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
@@ -635,8 +647,8 @@ class MassRangeMixin(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
-    mz_minimum: Optional[list[float]] = Field(default=[], description="""Minimum m/z value in the mass scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'AFR:0002652'} })
-    mz_maximum: Optional[list[float]] = Field(default=[], description="""Maximum m/z value in the mass scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'AFR:0002653'} })
+    has_mz_range: Optional[QuantitativeRange] = Field(default=None, description="""Mass-to-charge ratio scan range (minimum -> maximum m/z) as a QuantitativeRange.
+The unit for m/z is dimensionless (Thomson); set unit to the appropriate QUDT term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'coremeta4cat:hasMzRange'} })
 
 
 class PhotoluminescenceMixin(ConfiguredBaseModel):
@@ -648,15 +660,11 @@ class PhotoluminescenceMixin(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixin': True})
 
-    excitation_wavelength: Optional[list[float]] = Field(default=[], description="""Excitation wavelength used in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
-         'slot_uri': 'AFR:0002479',
-         'unit': {'ucum_code': 'nm'}} })
-    emission_wavelength: Optional[list[float]] = Field(default=[], description="""Emission wavelength detected in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
-         'slot_uri': 'NCIT:C204101',
-         'unit': {'ucum_code': 'nm'}} })
+    excitation_wavelength: Optional[list[LengthQuantity]] = Field(default=[], description="""Excitation wavelength used in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'], 'slot_uri': 'AFR:0002479'} })
+    emission_wavelength: Optional[list[LengthQuantity]] = Field(default=[], description="""Emission wavelength detected in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'], 'slot_uri': 'NCIT:C204101'} })
     optical_filter: Optional[list[str]] = Field(default=[], description="""Optical filter used in the emission or excitation path.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
          'slot_uri': 'coremeta4cat:optical_filter'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -669,11 +677,14 @@ class PhotoluminescenceMixin(ConfiguredBaseModel):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
 
 
 class ElectrochemistryMixin(ConfiguredBaseModel):
@@ -690,10 +701,9 @@ class ElectrochemistryMixin(ConfiguredBaseModel):
     counter_electrode: Optional[list[str]] = Field(default=[], description="""Counter electrode used in electrochemical cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007203'} })
     electrolyte_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the electrolyte solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
          'slot_uri': 'coremeta4cat:electrolyte_composition'} })
-    electrolyte_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the electrolyte.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
-         'slot_uri': 'coremeta4cat:electrolyte_concentration',
-         'unit': {'ucum_code': 'mol/L'}} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    electrolyte_concentration: Optional[list[Concentration]] = Field(default=[], description="""Concentration of the electrolyte.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
+         'slot_uri': 'coremeta4cat:electrolyte_concentration'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -703,9 +713,11 @@ class ElectrochemistryMixin(ConfiguredBaseModel):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -718,11 +730,14 @@ class ElectrochemistryMixin(ConfiguredBaseModel):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
 
 
 class Agent(ConfiguredBaseModel):
@@ -935,7 +950,8 @@ class Catalogue(ConfiguredBaseModel):
          'slot_uri': 'dcatap:applicableLegislation'} })
     catalogue: Optional[list[Catalogue]] = Field(default=[], description="""A catalogue whose contents are of interest in the context of this catalogue.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue'], 'slot_uri': 'dcat:catalog'} })
     creator: Optional[Agent] = Field(default=None, description="""An entity responsible for the creation of the catalogue.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue', 'Dataset'], 'slot_uri': 'dcterms:creator'} })
-    description: list[str] = Field(default=..., description="""A free-text account of the Catalogue.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: list[str] = Field(default=..., description="""A free-text account of the Catalogue.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1003,7 +1019,8 @@ class Catalogue(ConfiguredBaseModel):
     themes: Optional[list[ConceptScheme]] = Field(default=[], description="""A knowledge organization system used to classify the Resources that are in the Catalogue.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue'],
          'recommended': True,
          'slot_uri': 'dcat:themeTaxonomy'} })
-    title: list[str] = Field(default=..., description="""A name given to the Catalogue.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: list[str] = Field(default=..., description="""A name given to the Catalogue.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1151,7 +1168,8 @@ class CatalogueRecord(ConfiguredBaseModel):
     change_type: Optional[Concept] = Field(default=None, description="""The status of the catalogue record in the context of editorial flow of the dataset and data service descriptions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalogueRecord'],
          'recommended': True,
          'slot_uri': 'adms:status'} })
-    description: Optional[list[str]] = Field(default=[], description="""A free-text account of the record. This property can be repeated for parallel language versions of the description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""A free-text account of the record. This property can be repeated for parallel language versions of the description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1206,7 +1224,8 @@ class CatalogueRecord(ConfiguredBaseModel):
          'domain_of': ['CatalogueRecord'],
          'slot_uri': 'foaf:primaryTopic'} })
     source_metadata: Optional[CatalogueRecord] = Field(default=None, description="""The original metadata that was used in creating metadata for the Dataset, Data Service or Dataset Series.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalogueRecord'], 'slot_uri': 'dcterms:source'} })
-    title: Optional[list[str]] = Field(default=[], description="""A name given to the Catalogue Record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""A name given to the Catalogue Record.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1295,6 +1314,113 @@ class ClassifierMixin(ConfiguredBaseModel):
          'slot_uri': 'rdf:type'} })
 
 
+class QuantitativeRange(ClassifierMixin):
+    """
+    A quantitative property expressed as a range between a lower and upper bound,
+    sharing a common unit. Used where an experiment operates over a range of
+    conditions (e.g. a temperature sweep, a feed concentration window).
+
+    Aligned to qudt:Quantity (as in the DCAT-AP-PLUS QuantitativeAttribute pattern)
+    but with min_value / max_value instead of a single value to represent an
+    interval rather than a point value. Provide the shared unit as a QUDT DefinedTerm.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/',
+         'mixins': ['ClassifierMixin']})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    min_value: Optional[float] = Field(default=None, description="""Lower bound of the range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange'], 'slot_uri': 'coremeta4cat:minValue'} })
+    max_value: Optional[float] = Field(default=None, description="""Upper bound of the range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange'], 'slot_uri': 'coremeta4cat:maxValue'} })
+    unit: Optional[str] = Field(default=None, description="""Unit shared by both bounds, as a QUDT unit term
+(e.g. id: http://qudt.org/vocab/unit/DegreeCelsius, title: \"Degree Celsius\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:unit'} })
+    has_quantity_type: Optional[str] = Field(default=None, description="""QUDT QuantityKind term for the kind of quantity this range describes
+(e.g. id: http://qudt.org/vocab/quantitykind/Temperature, title: \"Temperature\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
 class Activity(ClassifierMixin):
     """
     See [DCAT-AP specs:Activity](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Activity)
@@ -1362,7 +1488,8 @@ class Activity(ClassifierMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1401,7 +1528,8 @@ class Activity(ClassifierMixin):
                        'TimeInstant'],
          'notes': ['not in DCAT-AP'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1531,7 +1659,8 @@ class AgenticEntity(ClassifierMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1569,7 +1698,8 @@ class AgenticEntity(ClassifierMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1665,7 +1795,8 @@ class DataGeneratingActivity(Activity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1704,7 +1835,8 @@ class DataGeneratingActivity(Activity):
                        'TimeInstant'],
          'notes': ['not in DCAT-AP'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1806,7 +1938,17 @@ class Synthesis(DataGeneratingActivity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000070',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
-         'slot_usage': {'catalyst_measured_properties': {'name': 'catalyst_measured_properties',
+         'slot_usage': {'carried_out_by': {'description': 'Equipment or synthesis '
+                                                          'device used to carry out '
+                                                          'this preparation step.\n'
+                                                          'Provide a Device instance '
+                                                          '(e.g. rotary evaporator, '
+                                                          'autoclave, furnace).',
+                                           'inlined_as_list': True,
+                                           'multivalued': True,
+                                           'name': 'carried_out_by',
+                                           'range': 'Device'},
+                        'catalyst_measured_properties': {'name': 'catalyst_measured_properties',
                                                          'required': True},
                         'had_input_entity': {'description': 'The Precursor(s) consumed '
                                                             'during this Synthesis.',
@@ -1840,12 +1982,15 @@ class Synthesis(DataGeneratingActivity):
          'slot_uri': 'coremeta4cat:catalyst_measured_properties'} })
     storage_conditions: Optional[list[str]] = Field(default=[], description="""Conditions under which the catalyst is stored (e.g. inert atmosphere, 4°C).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'], 'recommended': True, 'slot_uri': 'VOC4CAT:0008105'} })
     catalyst_support: Optional[list[str]] = Field(default=[], description="""Support material on which the active phase is deposited (e.g. Al2O3, SiO2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'], 'slot_uri': 'VOC4CAT:0008104'} })
-    solvent: Optional[list[str]] = Field(default=[], description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
+    solvent: Optional[list[ChemicalEntity]] = Field(default=[], description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
                        'NMRSpectroscopy',
                        'UVVisSpectroscopy',
                        'DynamicLightScattering'],
          'slot_uri': 'VOC4CAT:0007246'} })
-    sample_pretreatment: Optional[list[str]] = Field(default=[], description="""Pre-treatment applied to the sample before a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis', 'Characterization'], 'slot_uri': 'VOC4CAT:0000122'} })
+    has_sample_pretreatment: Optional[list[SamplePretreatment]] = Field(default=[], description="""Pre-treatment applied to the sample before a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis', 'Characterization'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     evaluated_entity: Optional[list[EvaluatedEntity]] = Field(default=[], description="""The slot to specify the Entity about which the DataGeneratingActivity produced information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
          'in_subset': ['domain_agnostic_core'],
          'is_a': 'had_input_entity',
@@ -1872,7 +2017,8 @@ class Synthesis(DataGeneratingActivity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1911,7 +2057,8 @@ class Synthesis(DataGeneratingActivity):
                        'TimeInstant'],
          'notes': ['not in DCAT-AP'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -1970,7 +2117,8 @@ class Synthesis(DataGeneratingActivity):
          'notes': ['not in DCAT-AP'],
          'recommended': True,
          'slot_uri': 'prov:wasInformedBy'} })
-    carried_out_by: Optional[list[AgenticEntity]] = Field(default=[], description="""The slot to specify the AgenticEntity that played a certain part in carrying out the Activity, either via having a specific role, function or disposition that was realized in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity'],
+    carried_out_by: Optional[list[Device]] = Field(default=[], description="""Equipment or synthesis device used to carry out this preparation step.
+Provide a Device instance (e.g. rotary evaporator, autoclave, furnace).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity'],
          'in_subset': ['domain_agnostic_core'],
          'notes': ['not in DCAT-AP'],
          'recommended': True,
@@ -2015,10 +2163,17 @@ class Characterization(DataGeneratingActivity):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000070',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
-         'slot_usage': {'equipment': {'description': 'Instrument or equipment used for '
-                                                     'characterization.',
-                                      'name': 'equipment',
-                                      'required': True},
+         'slot_usage': {'carried_out_by': {'description': 'The analytical instrument '
+                                                          'used to carry out this '
+                                                          'characterization.\n'
+                                                          'Provide a Device instance '
+                                                          '(e.g. XRD diffractometer, '
+                                                          'TEM, NMR spectrometer).',
+                                           'inlined_as_list': True,
+                                           'multivalued': True,
+                                           'name': 'carried_out_by',
+                                           'range': 'Device',
+                                           'required': True},
                         'evaluated_entity': {'description': 'The catalyst sample or '
                                                             'material being '
                                                             'characterized.',
@@ -2043,13 +2198,14 @@ class Characterization(DataGeneratingActivity):
                                           'range': 'CharacterizationTechnique',
                                           'required': True}}})
 
-    equipment: list[str] = Field(default=..., description="""Instrument or equipment used for characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
-         'slot_uri': 'VOC4CAT:0000187'} })
     sample_state: Optional[list[SampleStateEnum]] = Field(default=[], description="""Physical state of the sample during characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'], 'slot_uri': 'coremeta4cat:sample_state'} })
     sample_description: Optional[list[str]] = Field(default=[], description="""Free-text description of the sample used in this characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'],
          'slot_uri': 'coremeta4cat:sample_description'} })
     sample_preparation: Optional[list[str]] = Field(default=[], description="""Sample preparation steps applied immediately before measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'], 'slot_uri': 'AFP:0001159'} })
-    sample_pretreatment: Optional[list[str]] = Field(default=[], description="""Pre-treatment applied to the sample before a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis', 'Characterization'], 'slot_uri': 'VOC4CAT:0000122'} })
+    has_sample_pretreatment: Optional[list[SamplePretreatment]] = Field(default=[], description="""Pre-treatment applied to the sample before a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis', 'Characterization'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     detector_type: Optional[list[str]] = Field(default=[], description="""Type of detector used in the measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Characterization'], 'slot_uri': 'AFR:0000317'} })
     evaluated_entity: Optional[list[EvaluatedEntity]] = Field(default=[], description="""The catalyst sample or material being characterized.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
          'in_subset': ['domain_agnostic_core'],
@@ -2077,7 +2233,8 @@ class Characterization(DataGeneratingActivity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -2116,7 +2273,8 @@ class Characterization(DataGeneratingActivity):
                        'TimeInstant'],
          'notes': ['not in DCAT-AP'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -2175,7 +2333,8 @@ class Characterization(DataGeneratingActivity):
          'notes': ['not in DCAT-AP'],
          'recommended': True,
          'slot_uri': 'prov:wasInformedBy'} })
-    carried_out_by: Optional[list[AgenticEntity]] = Field(default=[], description="""The slot to specify the AgenticEntity that played a certain part in carrying out the Activity, either via having a specific role, function or disposition that was realized in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity'],
+    carried_out_by: list[Device] = Field(default=..., description="""The analytical instrument used to carry out this characterization.
+Provide a Device instance (e.g. XRD diffractometer, TEM, NMR spectrometer).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity'],
          'in_subset': ['domain_agnostic_core'],
          'notes': ['not in DCAT-AP'],
          'recommended': True,
@@ -2247,7 +2406,8 @@ class DataAnalysis(DataGeneratingActivity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -2286,7 +2446,8 @@ class DataAnalysis(DataGeneratingActivity):
                        'TimeInstant'],
          'notes': ['not in DCAT-AP'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -2541,7 +2702,8 @@ class DataService(ConfiguredBaseModel):
     contact_point: Optional[list[Kind]] = Field(default=[], description="""Contact information that can be used for sending comments about the Data Service.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataService', 'Dataset', 'DatasetSeries'],
          'recommended': True,
          'slot_uri': 'dcat:contactPoint'} })
-    description: Optional[list[str]] = Field(default=[], description="""A free-text account of the Data Service.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""A free-text account of the Data Service.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -2597,7 +2759,8 @@ class DataService(ConfiguredBaseModel):
     theme: Optional[list[Concept]] = Field(default=[], description="""A category of the Data Service.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataService', 'Dataset'],
          'recommended': True,
          'slot_uri': 'dcat:theme'} })
-    title: list[str] = Field(default=..., description="""A name given to the Data Service.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: list[str] = Field(default=..., description="""A name given to the Data Service.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -2977,7 +3140,8 @@ class Dataset(ConfiguredBaseModel):
          'slot_uri': 'dcat:contactPoint'} })
     creator: Optional[list[Agent]] = Field(default=[], description="""An entity responsible for producing the dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue', 'Dataset'], 'slot_uri': 'dcterms:creator'} })
     dataset_distribution: Optional[list[Distribution]] = Field(default=[], description="""An available Distribution for the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset'], 'slot_uri': 'dcat:distribution'} })
-    description: list[str] = Field(default=..., description="""A free-text account of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: list[str] = Field(default=..., description="""A free-text account of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3057,7 +3221,8 @@ class Dataset(ConfiguredBaseModel):
     theme: Optional[list[Concept]] = Field(default=[], description="""A category of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataService', 'Dataset'],
          'recommended': True,
          'slot_uri': 'dcat:theme'} })
-    title: list[str] = Field(default=..., description="""A name given to the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: list[str] = Field(default=..., description="""A name given to the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3149,7 +3314,8 @@ class AnalysisDataset(Dataset):
          'slot_uri': 'dcat:contactPoint'} })
     creator: Optional[list[Agent]] = Field(default=[], description="""An entity responsible for producing the dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue', 'Dataset'], 'slot_uri': 'dcterms:creator'} })
     dataset_distribution: Optional[list[Distribution]] = Field(default=[], description="""An available Distribution for the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset'], 'slot_uri': 'dcat:distribution'} })
-    description: list[str] = Field(default=..., description="""A free-text account of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: list[str] = Field(default=..., description="""A free-text account of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3229,7 +3395,8 @@ class AnalysisDataset(Dataset):
     theme: Optional[list[Concept]] = Field(default=[], description="""A category of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataService', 'Dataset'],
          'recommended': True,
          'slot_uri': 'dcat:theme'} })
-    title: list[str] = Field(default=..., description="""A name given to the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: list[str] = Field(default=..., description="""A name given to the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3399,7 +3566,8 @@ class DatasetSeries(ConfiguredBaseModel):
          'slot_uri': 'dcatap:applicableLegislation'} })
     contact_point: Optional[list[Kind]] = Field(default=[], description="""Contact information that can be used for sending comments about the Dataset Series.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataService', 'Dataset', 'DatasetSeries'],
          'slot_uri': 'dcat:contactPoint'} })
-    description: list[str] = Field(default=..., description="""A free-text account of the Dataset Series.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: list[str] = Field(default=..., description="""A free-text account of the Dataset Series.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3452,7 +3620,8 @@ class DatasetSeries(ConfiguredBaseModel):
          'slot_uri': 'dcterms:issued'} })
     temporal_coverage: Optional[list[PeriodOfTime]] = Field(default=[], description="""A temporal period that the Dataset Series covers.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue', 'Dataset', 'DatasetSeries'],
          'slot_uri': 'dcterms:temporal'} })
-    title: list[str] = Field(default=..., description="""A name given to the Dataset Series.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: list[str] = Field(default=..., description="""A name given to the Dataset Series.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3511,7 +3680,8 @@ class DefinedTerm(ConfiguredBaseModel):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3592,7 +3762,8 @@ class Device(AgenticEntity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3630,7 +3801,8 @@ class Device(AgenticEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3692,11 +3864,18 @@ class Device(AgenticEntity):
          'slot_uri': 'rdf:type'} })
 
 
-class ReactorDesignType(Device):
+class ChemicalReactor(Device):
     """
-    Abstract Device representing the type of reactor used in a catalytic experiment.
-    Concrete subclasses specify the reactor geometry and operating mode.
-    Linked from Reaction via carried_out_by.
+    Abstract Device subclass representing a catalytic reactor vessel.
+
+    Reactor is more specific than the general Device (AgenticEntity): it restricts
+    carried_out_by on Reaction to dedicated reactor equipment. This semantic
+    distinction separates analytical instruments (Device) from reaction vessels
+    (Reactor) in the carried_out_by relationship.
+
+    Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify
+    reactor geometry and operating mode.
+    Linked from Reaction via carried_out_by (restricted to range: Reactor).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'class_uri': 'VOC4CAT:0007018',
@@ -3712,7 +3891,8 @@ class ReactorDesignType(Device):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3750,7 +3930,8 @@ class ReactorDesignType(Device):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3812,7 +3993,7 @@ class ReactorDesignType(Device):
          'slot_uri': 'rdf:type'} })
 
 
-class ElectrochemicalReactor(ReactorDesignType):
+class ElectrochemicalReactor(ChemicalReactor):
     """
     Electrochemical reactor used in electrocatalytic experiments, including
     H-cells, flow cells, and membrane electrode assemblies.
@@ -3830,7 +4011,8 @@ class ElectrochemicalReactor(ReactorDesignType):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3868,7 +4050,8 @@ class ElectrochemicalReactor(ReactorDesignType):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3930,7 +4113,7 @@ class ElectrochemicalReactor(ReactorDesignType):
          'slot_uri': 'rdf:type'} })
 
 
-class CSTR(ReactorDesignType):
+class CSTR(ChemicalReactor):
     """
     Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow
     reactor operating at steady state.
@@ -3948,7 +4131,8 @@ class CSTR(ReactorDesignType):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -3986,7 +4170,8 @@ class CSTR(ReactorDesignType):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4048,7 +4233,7 @@ class CSTR(ReactorDesignType):
          'slot_uri': 'rdf:type'} })
 
 
-class PlugFlowReactor(ReactorDesignType):
+class PlugFlowReactor(ChemicalReactor):
     """
     Plug flow reactor (PFR) — a tubular reactor in which reactant composition
     varies along the axis with no axial mixing.
@@ -4066,7 +4251,8 @@ class PlugFlowReactor(ReactorDesignType):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4104,7 +4290,8 @@ class PlugFlowReactor(ReactorDesignType):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4166,7 +4353,7 @@ class PlugFlowReactor(ReactorDesignType):
          'slot_uri': 'rdf:type'} })
 
 
-class Autoclave(ReactorDesignType):
+class Autoclave(ChemicalReactor):
     """
     Autoclave reactor — a sealed pressure vessel for batch reactions at
     elevated temperature and/or pressure.
@@ -4184,7 +4371,8 @@ class Autoclave(ReactorDesignType):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4222,7 +4410,8 @@ class Autoclave(ReactorDesignType):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4284,7 +4473,7 @@ class Autoclave(ReactorDesignType):
          'slot_uri': 'rdf:type'} })
 
 
-class SlurryReactor(ReactorDesignType):
+class SlurryReactor(ChemicalReactor):
     """
     Slurry reactor — a three-phase reactor in which catalyst particles are
     suspended in a liquid phase through which gas is bubbled.
@@ -4302,7 +4491,8 @@ class SlurryReactor(ReactorDesignType):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4340,7 +4530,8 @@ class SlurryReactor(ReactorDesignType):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4402,7 +4593,7 @@ class SlurryReactor(ReactorDesignType):
          'slot_uri': 'rdf:type'} })
 
 
-class Microreactor(ReactorDesignType):
+class Microreactor(ChemicalReactor):
     """
     Microreactor — a miniaturised flow reactor with characteristic dimensions
     in the sub-millimetre range, enabling precise thermal control and rapid
@@ -4421,7 +4612,8 @@ class Microreactor(ReactorDesignType):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4459,7 +4651,8 @@ class Microreactor(ReactorDesignType):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4521,7 +4714,7 @@ class Microreactor(ReactorDesignType):
          'slot_uri': 'rdf:type'} })
 
 
-class FixedBedReactor(ReactorDesignType):
+class FixedBedReactor(ChemicalReactor):
     """
     Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.
     The most common reactor type in heterogeneous catalysis testing.
@@ -4539,7 +4732,8 @@ class FixedBedReactor(ReactorDesignType):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4577,7 +4771,8 @@ class FixedBedReactor(ReactorDesignType):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4639,7 +4834,7 @@ class FixedBedReactor(ReactorDesignType):
          'slot_uri': 'rdf:type'} })
 
 
-class FluidizedBedReactor(ReactorDesignType):
+class FluidizedBedReactor(ChemicalReactor):
     """
     Fluidized bed reactor — a reactor in which the catalyst particles are
     suspended in an upward-flowing gas or liquid stream.
@@ -4664,7 +4859,8 @@ class FluidizedBedReactor(ReactorDesignType):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -4702,7 +4898,8 @@ class FluidizedBedReactor(ReactorDesignType):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5007,7 +5204,8 @@ class Distribution(ConfiguredBaseModel):
     byte_size: Optional[int] = Field(default=None, description="""The size of a Distribution in bytes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Distribution'], 'slot_uri': 'dcat:byteSize'} })
     checksum: Optional[Checksum] = Field(default=None, description="""A mechanism that can be used to verify that the contents of a distribution have not changed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Distribution'], 'slot_uri': 'spdx:checksum'} })
     compression_format: Optional[MediaType] = Field(default=None, description="""The format of the file in which the data is contained in a compressed form, e.g. to reduce the size of the downloadable file.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Distribution'], 'slot_uri': 'dcat:compressFormat'} })
-    description: Optional[list[str]] = Field(default=[], description="""A free-text account of the Distribution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""A free-text account of the Distribution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5073,7 +5271,8 @@ class Distribution(ConfiguredBaseModel):
     status: Optional[Concept] = Field(default=None, description="""The status of the distribution in the context of maturity lifecycle.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Distribution'], 'slot_uri': 'adms:status'} })
     temporal_resolution: Optional[str] = Field(default=None, description="""The minimum time period resolvable in the dataset distribution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset', 'Distribution'],
          'slot_uri': 'dcat:temporalResolution'} })
-    title: Optional[list[str]] = Field(default=[], description="""A name given to the Distribution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""A name given to the Distribution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5149,7 +5348,8 @@ class Entity(ClassifierMixin):
                                                  'Entity.',
                                   'name': 'title'}}})
 
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5187,7 +5387,8 @@ class Entity(ClassifierMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5285,7 +5486,8 @@ class EvaluatedActivity(Activity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5324,7 +5526,8 @@ class EvaluatedActivity(Activity):
                        'TimeInstant'],
          'notes': ['not in DCAT-AP'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5411,7 +5614,7 @@ class EvaluatedActivity(Activity):
          'slot_uri': 'rdf:type'} })
 
 
-class Reaction(EvaluatedActivity):
+class CatalyticReaction(EvaluatedActivity):
     """
     An EvaluatedActivity representing the catalytic reaction being studied.
 
@@ -5424,7 +5627,7 @@ class Reaction(EvaluatedActivity):
       was_generated_by: Characterization  (the measurement producing data)
       is_about_activity: Reaction         (the catalytic process being monitored)
 
-    The reactor is linked via carried_out_by as a ReactorDesignType (Device).
+    The reactor is linked via carried_out_by as a Reactor (Device).
     Reactants are linked via had_input_entity. The type of catalytic reaction
     (e.g. ammonia synthesis, CO oxidation) is expressed via rdf_type using a
     voc4cat or ChemO term.
@@ -5432,14 +5635,17 @@ class Reaction(EvaluatedActivity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'SIO:010345',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/',
          'slot_usage': {'carried_out_by': {'description': 'The reactor in which the '
-                                                          'Reaction takes place, '
-                                                          'provided as a\n'
-                                                          'ReactorDesignType (Device) '
-                                                          'instance.',
+                                                          'Reaction takes place.\n'
+                                                          'Must be a Reactor instance '
+                                                          '(a Device subclass specific '
+                                                          'to catalytic\n'
+                                                          'reaction vessels, e.g. '
+                                                          'FixedBedReactor, CSTR, '
+                                                          'Autoclave).',
                                            'inlined_as_list': True,
                                            'multivalued': True,
                                            'name': 'carried_out_by',
-                                           'range': 'ReactorDesignType',
+                                           'range': 'ChemicalReactor',
                                            'required': True},
                         'had_input_entity': {'description': 'The reactant chemicals or '
                                                             'feeds entering the '
@@ -5485,16 +5691,19 @@ class Reaction(EvaluatedActivity):
                                      'name': 'rdf_type',
                                      'recommended': True}}})
 
-    catalyst_quantity: list[float] = Field(default=..., description="""Mass of catalyst loaded into the reactor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'],
-         'slot_uri': 'coremeta4cat:catalyst_quantity',
-         'unit': {'ucum_code': 'g'}} })
-    reactant: list[str] = Field(default=..., description="""Reactant(s) used in the reaction. Provide compound name, CAS number,
-or SMILES. For feeds, include composition and flow rate where known.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'], 'slot_uri': 'VOC4CAT:0000101'} })
+    catalyst_quantity: list[Mass] = Field(default=..., description="""Mass of catalyst loaded into the reactor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'],
+         'slot_uri': 'coremeta4cat:catalyst_quantity'} })
+    reactant: list[ChemicalEntity] = Field(default=..., description="""Reactant(s) or feed chemicals used in the reaction. Provide a ChemicalEntity
+instance with inchikey, smiles, or iupac_name. For feed mixtures, list each
+component as a separate ChemicalEntity and record composition via has_concentration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'], 'slot_uri': 'VOC4CAT:0000101'} })
     catalyst_type: Optional[list[str]] = Field(default=[], description="""Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).
-For heterogeneous catalysts, use voc4cat terms where available.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'], 'recommended': True, 'slot_uri': 'VOC4CAT:0007014'} })
-    reactor_temperature_range: Optional[list[str]] = Field(default=[], description="""Temperature range used in the reactor during the reaction, expressed
-as a string range (e.g. \"200–400 °C\") or a single set-point.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'], 'slot_uri': 'VOC4CAT:0007032'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+For heterogeneous catalysts, use voc4cat terms where available.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'],
+         'recommended': True,
+         'slot_uri': 'VOC4CAT:0007014'} })
+    reactor_temperature_range: Optional[list[QuantitativeRange]] = Field(default=[], description="""Temperature range in the reactor during the reaction, provided as a
+QuantitativeRange with min_value and max_value (unit_code: \"Cel\").
+For a single set-point, set min_value equal to max_value.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'], 'slot_uri': 'VOC4CAT:0007032'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -5504,20 +5713,22 @@ as a string range (e.g. \"200–400 °C\") or a single set-point.""", json_schema_e
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    experiment_pressure: Optional[list[float]] = Field(default=[], description="""Total pressure in the reactor during the experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'],
-         'slot_uri': 'VOC4CAT:0000118',
-         'unit': {'ucum_code': 'bar'}} })
-    feed_composition_range: Optional[list[str]] = Field(default=[], description="""Feed gas or liquid composition range studied (e.g. \"1–10 vol% CO in N2\").
-Record as a string; for individual component concentrations use reactant.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'], 'slot_uri': 'coremeta4cat:feed_composition_range'} })
-    experiment_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the experiment or measurement run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD', 'Reaction'],
-         'slot_uri': 'AFR:0002455',
-         'unit': {'ucum_code': 'h'}} })
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    experiment_pressure: Optional[list[Pressure]] = Field(default=[], description="""Total pressure in the reactor during the experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'], 'slot_uri': 'VOC4CAT:0000118'} })
+    feed_composition_range: Optional[list[QuantitativeRange]] = Field(default=[], description="""Feed composition range studied, provided as a QuantitativeRange.
+Express concentration bounds in an appropriate unit (e.g. \"mol/L\", \"%\" for
+vol% or mol%). For fixed-composition experiments use reactant.has_concentration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'],
+         'slot_uri': 'coremeta4cat:feed_composition_range'} })
+    has_experiment_duration: Optional[Duration] = Field(default=None, description="""Total duration of the experiment or measurement run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD', 'CatalyticReaction'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     product_identification_method: list[ProductIdentificationMethod] = Field(default=..., description="""The analytical method used to identify and/or quantify reaction products.
 Should reference a CharacterizationTechnique instance (e.g. a GCMS or
 HPLC_MS object from coremeta4cat_characterization_ap). The abstract stub
-ProductIdentificationMethod is retained for backward compatibility.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Reaction'],
+ProductIdentificationMethod is retained for backward compatibility.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'],
          'slot_uri': 'coremeta4cat:product_identification_method'} })
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
                        'AgenticEntity',
@@ -5529,7 +5740,8 @@ ProductIdentificationMethod is retained for backward compatibility.""", json_sch
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5568,7 +5780,8 @@ ProductIdentificationMethod is retained for backward compatibility.""", json_sch
                        'TimeInstant'],
          'notes': ['not in DCAT-AP'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5627,8 +5840,9 @@ ProductIdentificationMethod is retained for backward compatibility.""", json_sch
          'notes': ['not in DCAT-AP'],
          'recommended': True,
          'slot_uri': 'prov:wasInformedBy'} })
-    carried_out_by: list[ReactorDesignType] = Field(default=..., description="""The reactor in which the Reaction takes place, provided as a
-ReactorDesignType (Device) instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity'],
+    carried_out_by: list[ChemicalReactor] = Field(default=..., description="""The reactor in which the Reaction takes place.
+Must be a Reactor instance (a Device subclass specific to catalytic
+reaction vessels, e.g. FixedBedReactor, CSTR, Autoclave).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity'],
          'in_subset': ['domain_agnostic_core'],
          'notes': ['not in DCAT-AP'],
          'recommended': True,
@@ -5688,7 +5902,8 @@ class EvaluatedEntity(Entity):
                                              'range': 'Activity'}}})
 
     was_generated_by: Optional[list[Activity]] = Field(default=[], description="""A slot to provide the Activity which created the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset', 'EvaluatedEntity'], 'slot_uri': 'prov:wasGeneratedBy'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5726,7 +5941,8 @@ class EvaluatedEntity(Entity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5814,7 +6030,8 @@ class AnalysisSourceData(EvaluatedEntity):
                                              'range': 'DataGeneratingActivity'}}})
 
     was_generated_by: Optional[list[DataGeneratingActivity]] = Field(default=[], description="""A slot to provide the Activity which created the AnalysisSourceData.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset', 'EvaluatedEntity'], 'slot_uri': 'prov:wasGeneratedBy'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5852,7 +6069,8 @@ class AnalysisSourceData(EvaluatedEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -5987,7 +6205,8 @@ class Plan(ClassifierMixin):
          'in_subset': ['domain_agnostic_core'],
          'mixins': ['ClassifierMixin']})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6025,7 +6244,8 @@ class Plan(ClassifierMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6084,7 +6304,8 @@ class PreparationMethod(Plan):
          'class_uri': 'OBI:0000272',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6122,7 +6343,8 @@ class PreparationMethod(Plan):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6177,43 +6399,46 @@ class Impregnation(PreparationMethod, CalcinationMixin, DryingMixin):
          'mixins': ['DryingMixin', 'CalcinationMixin']})
 
     impregnation_type: Optional[list[ImpregnationTypeEnum]] = Field(default=[], description="""Type of impregnation used (wet, dry, incipient wetness).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Impregnation'], 'slot_uri': 'coremeta4cat:impregnation_type'} })
-    impregnation_duration: Optional[list[float]] = Field(default=[], description="""Duration of the impregnation step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Impregnation'],
-         'slot_uri': 'coremeta4cat:impregnation_duration',
-         'unit': {'ucum_code': 'h'}} })
-    impregnation_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during the impregnation step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Impregnation'],
-         'slot_uri': 'coremeta4cat:impregnation_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
+    impregnation_duration: Optional[list[Duration]] = Field(default=[], description="""Duration of the impregnation step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Impregnation'],
+         'slot_uri': 'coremeta4cat:impregnation_duration'} })
+    impregnation_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature during the impregnation step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Impregnation'],
+         'slot_uri': 'coremeta4cat:impregnation_temperature'} })
     drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
-    drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008207',
-         'unit': {'ucum_code': 'Cel'}} })
-    drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008206',
-         'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'VOC4CAT:0008208'} })
-    calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000057',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_final_temperature: Optional[list[float]] = Field(default=[], description="""Final (target) temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000058',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_dwelling_time: Optional[list[float]] = Field(default=[], description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000060',
-         'unit': {'ucum_code': 'h'}} })
+    has_drying_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_drying_duration: Optional[Duration] = Field(default=None, description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'is_a': 'has_duration', 'slot_uri': 'SIO:000008'} })
+    has_drying_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Atmosphere maintained during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_temperature_range: Optional[QuantitativeRange] = Field(default=None, description="""Temperature range of the calcination programme (initial -> final temperature),
+provided as a QuantitativeRange. Unit: Degree Celsius.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'slot_uri': 'coremeta4cat:hasCalcinationTemperatureRange'} })
+    has_calcination_dwelling_time: Optional[Duration] = Field(default=None, description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     number_of_cycles: Optional[list[int]] = Field(default=[], description="""Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin',
                        'AtomicLayerDeposition',
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
          'slot_uri': 'coremeta4cat:number_of_cycles'} })
-    calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
-    calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000059',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    calcination_gas_flow_rate: Optional[list[float]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000056',
-         'unit': {'ucum_code': 'mL/min'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_calcination_atmosphere: Optional[list[CalcinationGaseousEnvironment]] = Field(default=[], description="""Gaseous environment maintained during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_heating_rate: Optional[list[HeatingRate]] = Field(default=[], description="""Temperature ramp rate during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_heating_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_gas_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_flow_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6251,7 +6476,8 @@ class Impregnation(PreparationMethod, CalcinationMixin, DryingMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6305,61 +6531,78 @@ class CoPrecipitation(PreparationMethod, PrecipitationMixin, CalcinationMixin, D
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['PrecipitationMixin', 'DryingMixin', 'CalcinationMixin']})
 
-    precipitating_agent: Optional[list[str]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'VOC4CAT:0008203'} })
-    precipitating_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the precipitating agent.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'coremeta4cat:precipitating_concentration',
-         'unit': {'ucum_code': 'mol/L'}} })
-    synthesis_ph: Optional[list[float]] = Field(default=[], description="""pH value maintained or targeted during synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'VOC4CAT:0000052'} })
-    stirring_rate: Optional[list[float]] = Field(default=[], description="""Stirring rate during mixing of synthesis components.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'VOC4CAT:0008114',
-         'unit': {'ucum_code': 'rpm'}} })
-    mixing_time: Optional[list[float]] = Field(default=[], description="""Duration of the mixing step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'coremeta4cat:mixing_time',
-         'unit': {'ucum_code': 'h'}} })
-    mixing_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
-         'slot_uri': 'coremeta4cat:mixing_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
+    precipitating_agent: Optional[list[ChemicalEntity]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'slot_uri': 'coremeta4cat:precipitating_agent'} })
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_mixing_speed: Optional[list[AngularVelocity]] = Field(default=[], description="""Rotational speed during mixing of synthesis components.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'is_a': 'has_angular_velocity',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_mixing_duration: Optional[Duration] = Field(default=None, description="""Duration of the mixing step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
+    has_mixing_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature maintained during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     order_of_addition: Optional[list[str]] = Field(default=[], description="""Order in which reagents or components are combined.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
          'slot_uri': 'coremeta4cat:order_of_addition'} })
     filtration: Optional[list[str]] = Field(default=[], description="""Filtration method used to separate the precipitate (e.g. vacuum filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:filtration'} })
     purification: Optional[list[str]] = Field(default=[], description="""Purification method applied after synthesis (e.g. washing, dialysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:purification'} })
-    aging_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during aging of the precipitate or gel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'coremeta4cat:aging_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    aging_time: Optional[list[float]] = Field(default=[], description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
-         'slot_uri': 'VOC4CAT:0008204',
-         'unit': {'ucum_code': 'h'}} })
+    has_aging_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature maintained during the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_aging_duration: Optional[Duration] = Field(default=None, description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
-    drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008207',
-         'unit': {'ucum_code': 'Cel'}} })
-    drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008206',
-         'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'VOC4CAT:0008208'} })
-    calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000057',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_final_temperature: Optional[list[float]] = Field(default=[], description="""Final (target) temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000058',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_dwelling_time: Optional[list[float]] = Field(default=[], description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000060',
-         'unit': {'ucum_code': 'h'}} })
+    has_drying_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_drying_duration: Optional[Duration] = Field(default=None, description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'is_a': 'has_duration', 'slot_uri': 'SIO:000008'} })
+    has_drying_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Atmosphere maintained during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_temperature_range: Optional[QuantitativeRange] = Field(default=None, description="""Temperature range of the calcination programme (initial -> final temperature),
+provided as a QuantitativeRange. Unit: Degree Celsius.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'slot_uri': 'coremeta4cat:hasCalcinationTemperatureRange'} })
+    has_calcination_dwelling_time: Optional[Duration] = Field(default=None, description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     number_of_cycles: Optional[list[int]] = Field(default=[], description="""Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin',
                        'AtomicLayerDeposition',
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
          'slot_uri': 'coremeta4cat:number_of_cycles'} })
-    calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
-    calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000059',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    calcination_gas_flow_rate: Optional[list[float]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000056',
-         'unit': {'ucum_code': 'mL/min'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_calcination_atmosphere: Optional[list[CalcinationGaseousEnvironment]] = Field(default=[], description="""Gaseous environment maintained during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_heating_rate: Optional[list[HeatingRate]] = Field(default=[], description="""Temperature ramp rate during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_heating_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_gas_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_flow_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6397,7 +6640,8 @@ class CoPrecipitation(PreparationMethod, PrecipitationMixin, CalcinationMixin, D
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6452,20 +6696,23 @@ class SolGel(PreparationMethod, DryingMixin):
          'mixins': ['DryingMixin']})
 
     hydrolysis_ratio: Optional[list[float]] = Field(default=[], description="""Molar ratio of water to alkoxide precursor used in hydrolysis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolGel'], 'slot_uri': 'coremeta4cat:hydrolysis_ratio'} })
-    aging_time: Optional[list[float]] = Field(default=[], description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
-         'slot_uri': 'VOC4CAT:0008204',
-         'unit': {'ucum_code': 'h'}} })
+    has_aging_duration: Optional[Duration] = Field(default=None, description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     drying: Optional[list[str]] = Field(default=[], description="""Drying method used for the gel (e.g. supercritical drying, freeze drying).""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolGel'], 'slot_uri': 'coremeta4cat:drying'} })
     surfactant_template: Optional[list[str]] = Field(default=[], description="""Surfactant or structure-directing agent used as a template.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolGel'], 'slot_uri': 'coremeta4cat:surfactant_template'} })
     drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
-    drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008207',
-         'unit': {'ucum_code': 'Cel'}} })
-    drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008206',
-         'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'VOC4CAT:0008208'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_drying_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_drying_duration: Optional[Duration] = Field(default=None, description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'is_a': 'has_duration', 'slot_uri': 'SIO:000008'} })
+    has_drying_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Atmosphere maintained during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6503,7 +6750,8 @@ class SolGel(PreparationMethod, DryingMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6561,19 +6809,14 @@ class Solvothermal(PreparationMethod, ThermalSynthesisMixin):
          'slot_uri': 'coremeta4cat:filling_volume',
          'unit': {'ucum_code': 'mL'}} })
     stirrer_type: Optional[list[str]] = Field(default=[], description="""Type of stirrer used (e.g. magnetic, mechanical, none).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Solvothermal'], 'slot_uri': 'coremeta4cat:stirrer_type'} })
-    cooling_rate: Optional[list[float]] = Field(default=[], description="""Rate at which the reactor is cooled after synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Solvothermal'],
-         'slot_uri': 'coremeta4cat:cooling_rate',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000051',
-         'unit': {'ucum_code': 'Cel'}} })
-    synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000050',
-         'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
-         'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    cooling_rate: Optional[list[HeatingRate]] = Field(default=[], description="""Rate at which the reactor is cooled after synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Solvothermal'], 'slot_uri': 'coremeta4cat:cooling_rate'} })
+    synthesis_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000051'} })
+    synthesis_duration: Optional[list[Duration]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000050'} })
+    has_vessel_type: Optional[list[VesselType]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -6583,9 +6826,12 @@ class Solvothermal(PreparationMethod, ThermalSynthesisMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6623,7 +6869,8 @@ class Solvothermal(PreparationMethod, ThermalSynthesisMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6678,25 +6925,16 @@ class PlasmaAssisted(PreparationMethod, ThermalSynthesisMixin):
          'mixins': ['ThermalSynthesisMixin']})
 
     plasma_type: Optional[list[str]] = Field(default=[], description="""Type of plasma used (e.g. DBD, microwave, RF plasma).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'], 'slot_uri': 'coremeta4cat:plasma_type'} })
-    power_input: Optional[list[float]] = Field(default=[], description="""Power input to the plasma reactor or other energy source.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'],
-         'slot_uri': 'coremeta4cat:power_input',
-         'unit': {'ucum_code': 'W'}} })
-    exposure_time: Optional[list[float]] = Field(default=[], description="""Duration of plasma or other energy exposure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'],
-         'slot_uri': 'coremeta4cat:exposure_time',
-         'unit': {'ucum_code': 'min'}} })
-    synthesis_pressure: Optional[list[float]] = Field(default=[], description="""Pressure applied during synthesis (e.g. in autoclave or plasma reactor).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted', 'Sublimation'],
-         'slot_uri': 'VOC4CAT:0000053',
-         'unit': {'ucum_code': 'bar'}} })
-    synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000051',
-         'unit': {'ucum_code': 'Cel'}} })
-    synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000050',
-         'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
-         'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    power_input: Optional[list[PowerQuantity]] = Field(default=[], description="""Power input to the plasma reactor or other energy source.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'], 'slot_uri': 'coremeta4cat:power_input'} })
+    exposure_time: Optional[list[Duration]] = Field(default=[], description="""Duration of plasma or other energy exposure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'], 'slot_uri': 'coremeta4cat:exposure_time'} })
+    synthesis_pressure: Optional[list[Pressure]] = Field(default=[], description="""Pressure applied during synthesis (e.g. in autoclave or plasma reactor).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted', 'Sublimation'], 'slot_uri': 'VOC4CAT:0000053'} })
+    synthesis_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000051'} })
+    synthesis_duration: Optional[list[Duration]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000050'} })
+    has_vessel_type: Optional[list[VesselType]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -6706,9 +6944,12 @@ class PlasmaAssisted(PreparationMethod, ThermalSynthesisMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6746,7 +6987,8 @@ class PlasmaAssisted(PreparationMethod, ThermalSynthesisMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6804,21 +7046,17 @@ class CombustionSynthesis(PreparationMethod, ThermalSynthesisMixin):
     oxidizer: Optional[list[str]] = Field(default=[], description="""Oxidizer used in combustion synthesis (e.g. metal nitrates).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'], 'slot_uri': 'coremeta4cat:oxidizer'} })
     fuel_to_oxidizer_ratio: Optional[list[float]] = Field(default=[], description="""Molar ratio of fuel to oxidizer.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'],
          'slot_uri': 'coremeta4cat:fuel_to_oxidizer_ratio'} })
-    set_temperature: Optional[list[float]] = Field(default=[], description="""Target temperature set for the combustion reaction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'],
-         'slot_uri': 'coremeta4cat:set_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
+    set_temperature: Optional[list[Temperature]] = Field(default=[], description="""Target temperature set for the combustion reaction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'],
+         'slot_uri': 'coremeta4cat:set_temperature'} })
     post_treatment: Optional[list[str]] = Field(default=[], description="""Post-synthesis treatment applied to the combustion product.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CombustionSynthesis'],
          'slot_uri': 'coremeta4cat:post_treatment'} })
-    synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000051',
-         'unit': {'ucum_code': 'Cel'}} })
-    synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000050',
-         'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
-         'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    synthesis_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000051'} })
+    synthesis_duration: Optional[list[Duration]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000050'} })
+    has_vessel_type: Optional[list[VesselType]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -6828,9 +7066,12 @@ class CombustionSynthesis(PreparationMethod, ThermalSynthesisMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6868,7 +7109,8 @@ class CombustionSynthesis(PreparationMethod, ThermalSynthesisMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6935,15 +7177,15 @@ class AtomicLayerDeposition(PreparationMethod):
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
          'slot_uri': 'coremeta4cat:number_of_cycles'} })
-    deposition_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during the deposition step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition', 'DepositionPrecipitation'],
-         'slot_uri': 'coremeta4cat:deposition_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
+    deposition_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature during the deposition step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition', 'DepositionPrecipitation'],
+         'slot_uri': 'coremeta4cat:deposition_temperature'} })
+    carrier_gas: Optional[list[ChemicalEntity]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
                        'ElementalAnalysis',
                        'ElectroSprayIonizationMassSpectrometry',
                        'GCMS'],
          'slot_uri': 'coremeta4cat:carrier_gas'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -6981,7 +7223,8 @@ class AtomicLayerDeposition(PreparationMethod):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7035,67 +7278,82 @@ class DepositionPrecipitation(PreparationMethod, PrecipitationMixin, Calcination
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['PrecipitationMixin', 'DryingMixin', 'CalcinationMixin']})
 
-    deposition_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during the deposition step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition', 'DepositionPrecipitation'],
-         'slot_uri': 'coremeta4cat:deposition_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    deposition_time: Optional[list[float]] = Field(default=[], description="""Duration of the deposition step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DepositionPrecipitation'],
-         'slot_uri': 'coremeta4cat:deposition_time',
-         'unit': {'ucum_code': 'h'}} })
-    precipitating_agent: Optional[list[str]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'VOC4CAT:0008203'} })
-    precipitating_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the precipitating agent.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'coremeta4cat:precipitating_concentration',
-         'unit': {'ucum_code': 'mol/L'}} })
-    synthesis_ph: Optional[list[float]] = Field(default=[], description="""pH value maintained or targeted during synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'VOC4CAT:0000052'} })
-    stirring_rate: Optional[list[float]] = Field(default=[], description="""Stirring rate during mixing of synthesis components.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'VOC4CAT:0008114',
-         'unit': {'ucum_code': 'rpm'}} })
-    mixing_time: Optional[list[float]] = Field(default=[], description="""Duration of the mixing step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'coremeta4cat:mixing_time',
-         'unit': {'ucum_code': 'h'}} })
-    mixing_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
-         'slot_uri': 'coremeta4cat:mixing_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
+    deposition_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature during the deposition step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition', 'DepositionPrecipitation'],
+         'slot_uri': 'coremeta4cat:deposition_temperature'} })
+    deposition_time: Optional[list[Duration]] = Field(default=[], description="""Duration of the deposition step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DepositionPrecipitation'],
+         'slot_uri': 'coremeta4cat:deposition_time'} })
+    precipitating_agent: Optional[list[ChemicalEntity]] = Field(default=[], description="""Chemical agent used to induce precipitation (e.g. NaOH, NH3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'slot_uri': 'coremeta4cat:precipitating_agent'} })
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_mixing_speed: Optional[list[AngularVelocity]] = Field(default=[], description="""Rotational speed during mixing of synthesis components.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'is_a': 'has_angular_velocity',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_mixing_duration: Optional[Duration] = Field(default=None, description="""Duration of the mixing step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
+    has_mixing_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature maintained during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     order_of_addition: Optional[list[str]] = Field(default=[], description="""Order in which reagents or components are combined.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
          'slot_uri': 'coremeta4cat:order_of_addition'} })
     filtration: Optional[list[str]] = Field(default=[], description="""Filtration method used to separate the precipitate (e.g. vacuum filtration).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:filtration'} })
     purification: Optional[list[str]] = Field(default=[], description="""Purification method applied after synthesis (e.g. washing, dialysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'], 'slot_uri': 'coremeta4cat:purification'} })
-    aging_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during aging of the precipitate or gel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
-         'slot_uri': 'coremeta4cat:aging_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    aging_time: Optional[list[float]] = Field(default=[], description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
-         'slot_uri': 'VOC4CAT:0008204',
-         'unit': {'ucum_code': 'h'}} })
+    has_aging_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature maintained during the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_aging_duration: Optional[Duration] = Field(default=None, description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
-    drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008207',
-         'unit': {'ucum_code': 'Cel'}} })
-    drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008206',
-         'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'VOC4CAT:0008208'} })
-    calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000057',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_final_temperature: Optional[list[float]] = Field(default=[], description="""Final (target) temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000058',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_dwelling_time: Optional[list[float]] = Field(default=[], description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000060',
-         'unit': {'ucum_code': 'h'}} })
+    has_drying_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_drying_duration: Optional[Duration] = Field(default=None, description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'is_a': 'has_duration', 'slot_uri': 'SIO:000008'} })
+    has_drying_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Atmosphere maintained during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_temperature_range: Optional[QuantitativeRange] = Field(default=None, description="""Temperature range of the calcination programme (initial -> final temperature),
+provided as a QuantitativeRange. Unit: Degree Celsius.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'slot_uri': 'coremeta4cat:hasCalcinationTemperatureRange'} })
+    has_calcination_dwelling_time: Optional[Duration] = Field(default=None, description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     number_of_cycles: Optional[list[int]] = Field(default=[], description="""Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin',
                        'AtomicLayerDeposition',
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
          'slot_uri': 'coremeta4cat:number_of_cycles'} })
-    calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
-    calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000059',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    calcination_gas_flow_rate: Optional[list[float]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000056',
-         'unit': {'ucum_code': 'mL/min'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_calcination_atmosphere: Optional[list[CalcinationGaseousEnvironment]] = Field(default=[], description="""Gaseous environment maintained during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_heating_rate: Optional[list[HeatingRate]] = Field(default=[], description="""Temperature ramp rate during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_heating_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_gas_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_flow_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7133,7 +7391,8 @@ class DepositionPrecipitation(PreparationMethod, PrecipitationMixin, Calcination
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7193,16 +7452,13 @@ class MicrowaveAssisted(PreparationMethod, ThermalSynthesisMixin):
     microwave_frequency: Optional[list[float]] = Field(default=[], description="""Frequency of microwave irradiation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MicrowaveAssisted'],
          'slot_uri': 'coremeta4cat:microwave_frequency',
          'unit': {'ucum_code': 'GHz'}} })
-    synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000051',
-         'unit': {'ucum_code': 'Cel'}} })
-    synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000050',
-         'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
-         'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    synthesis_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000051'} })
+    synthesis_duration: Optional[list[Duration]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000050'} })
+    has_vessel_type: Optional[list[VesselType]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -7212,9 +7468,12 @@ class MicrowaveAssisted(PreparationMethod, ThermalSynthesisMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7252,7 +7511,8 @@ class MicrowaveAssisted(PreparationMethod, ThermalSynthesisMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7312,7 +7572,7 @@ class SonochemicalSynthesis(PreparationMethod, CalcinationMixin, DryingMixin):
     sonication_duration: Optional[list[float]] = Field(default=[], description="""Duration of ultrasonic irradiation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis'],
          'slot_uri': 'coremeta4cat:sonication_duration',
          'unit': {'ucum_code': 'min'}} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -7325,42 +7585,50 @@ class SonochemicalSynthesis(PreparationMethod, CalcinationMixin, DryingMixin):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
-    drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008207',
-         'unit': {'ucum_code': 'Cel'}} })
-    drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008206',
-         'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'VOC4CAT:0008208'} })
-    calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000057',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_final_temperature: Optional[list[float]] = Field(default=[], description="""Final (target) temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000058',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_dwelling_time: Optional[list[float]] = Field(default=[], description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000060',
-         'unit': {'ucum_code': 'h'}} })
+    has_drying_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_drying_duration: Optional[Duration] = Field(default=None, description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'is_a': 'has_duration', 'slot_uri': 'SIO:000008'} })
+    has_drying_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Atmosphere maintained during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_temperature_range: Optional[QuantitativeRange] = Field(default=None, description="""Temperature range of the calcination programme (initial -> final temperature),
+provided as a QuantitativeRange. Unit: Degree Celsius.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'slot_uri': 'coremeta4cat:hasCalcinationTemperatureRange'} })
+    has_calcination_dwelling_time: Optional[Duration] = Field(default=None, description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     number_of_cycles: Optional[list[int]] = Field(default=[], description="""Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin',
                        'AtomicLayerDeposition',
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
          'slot_uri': 'coremeta4cat:number_of_cycles'} })
-    calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
-    calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000059',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    calcination_gas_flow_rate: Optional[list[float]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000056',
-         'unit': {'ucum_code': 'mL/min'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_calcination_atmosphere: Optional[list[CalcinationGaseousEnvironment]] = Field(default=[], description="""Gaseous environment maintained during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_heating_rate: Optional[list[HeatingRate]] = Field(default=[], description="""Temperature ramp rate during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_heating_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_gas_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_flow_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7398,7 +7666,8 @@ class SonochemicalSynthesis(PreparationMethod, CalcinationMixin, DryingMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7452,15 +7721,16 @@ class FlameSprayPyrolysis(PreparationMethod):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/'})
 
     flame_type: Optional[list[str]] = Field(default=[], description="""Type of flame used in FSP (e.g. methane/oxygen, H2/O2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'], 'slot_uri': 'coremeta4cat:flame_type'} })
-    flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
+    has_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Volumetric flow rate of a gas or liquid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'coremeta4cat:flow_rate',
-         'unit': {'ucum_code': 'mL/min'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     inlet_system: Optional[list[str]] = Field(default=[], description="""Configuration of the precursor inlet system.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'], 'slot_uri': 'coremeta4cat:inlet_system'} })
     flame_ring: Optional[list[str]] = Field(default=[], description="""Configuration of the supporting flame ring.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'], 'slot_uri': 'coremeta4cat:flame_ring'} })
-    dispersant: Optional[list[str]] = Field(default=[], description="""Dispersant used (e.g. in DLS measurement or flame spray pyrolysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'DynamicLightScattering'],
+    dispersant: Optional[list[ChemicalEntity]] = Field(default=[], description="""Dispersant used (e.g. in DLS measurement or flame spray pyrolysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'DynamicLightScattering'],
          'slot_uri': 'coremeta4cat:dispersant'} })
     capillary_pressure: Optional[list[float]] = Field(default=[], description="""Pressure applied at the capillary nozzle during FSP.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis'],
          'slot_uri': 'coremeta4cat:capillary_pressure',
@@ -7471,7 +7741,8 @@ class FlameSprayPyrolysis(PreparationMethod):
          'slot_uri': 'coremeta4cat:filtration_device'} })
     filter_type: Optional[list[str]] = Field(default=[], description="""Type of filter membrane or medium used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'MolecularSynthesis'],
          'slot_uri': 'coremeta4cat:filter_type'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7509,7 +7780,8 @@ class FlameSprayPyrolysis(PreparationMethod):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7581,16 +7853,13 @@ class MechanochemicalSynthesis(PreparationMethod, ThermalSynthesisMixin):
          'unit': {'ucum_code': 'mm'}} })
     ball_to_powder_ratio: Optional[list[float]] = Field(default=[], description="""Mass ratio of milling balls to powder charge.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MechanochemicalSynthesis'],
          'slot_uri': 'coremeta4cat:ball_to_powder_ratio'} })
-    synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000051',
-         'unit': {'ucum_code': 'Cel'}} })
-    synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000050',
-         'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
-         'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    synthesis_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000051'} })
+    synthesis_duration: Optional[list[Duration]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000050'} })
+    has_vessel_type: Optional[list[VesselType]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -7600,9 +7869,12 @@ class MechanochemicalSynthesis(PreparationMethod, ThermalSynthesisMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7640,7 +7912,8 @@ class MechanochemicalSynthesis(PreparationMethod, ThermalSynthesisMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7694,19 +7967,14 @@ class Sublimation(PreparationMethod, ThermalSynthesisMixin):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['ThermalSynthesisMixin']})
 
-    synthesis_pressure: Optional[list[float]] = Field(default=[], description="""Pressure applied during synthesis (e.g. in autoclave or plasma reactor).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted', 'Sublimation'],
-         'slot_uri': 'VOC4CAT:0000053',
-         'unit': {'ucum_code': 'bar'}} })
-    synthesis_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000051',
-         'unit': {'ucum_code': 'Cel'}} })
-    synthesis_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
-         'slot_uri': 'VOC4CAT:0000050',
-         'unit': {'ucum_code': 'h'}} })
-    equipment: Optional[list[str]] = Field(default=[], description="""Equipment or instrument used in a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin', 'Characterization'],
-         'slot_uri': 'VOC4CAT:0000187'} })
-    vessel_type: Optional[list[str]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'coremeta4cat:vessel_type'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    synthesis_pressure: Optional[list[Pressure]] = Field(default=[], description="""Pressure applied during synthesis (e.g. in autoclave or plasma reactor).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted', 'Sublimation'], 'slot_uri': 'VOC4CAT:0000053'} })
+    synthesis_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000051'} })
+    synthesis_duration: Optional[list[Duration]] = Field(default=[], description="""Total duration of the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'], 'slot_uri': 'VOC4CAT:0000050'} })
+    has_vessel_type: Optional[list[VesselType]] = Field(default=[], description="""Type of reaction or synthesis vessel used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -7716,9 +7984,12 @@ class Sublimation(PreparationMethod, ThermalSynthesisMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7756,7 +8027,8 @@ class Sublimation(PreparationMethod, ThermalSynthesisMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7813,15 +8085,17 @@ class MolecularSynthesis(PreparationMethod, DryingMixin):
     reaction_vessel: Optional[list[str]] = Field(default=[], description="""Type of reaction vessel used (e.g. Schlenk flask, round-bottom flask).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
          'slot_uri': 'coremeta4cat:reaction_vessel'} })
     mixing_device: Optional[list[str]] = Field(default=[], description="""Device used for mixing (e.g. magnetic stirrer, vortex mixer).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'], 'slot_uri': 'coremeta4cat:mixing_device'} })
-    stirring_duration: Optional[list[float]] = Field(default=[], description="""Duration of stirring or agitation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
-         'slot_uri': 'coremeta4cat:stirring_duration',
-         'unit': {'ucum_code': 'h'}} })
-    stirring_speed: Optional[list[float]] = Field(default=[], description="""Rotational speed of stirring or agitation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
-         'slot_uri': 'coremeta4cat:stirring_speed',
-         'unit': {'ucum_code': 'rpm'}} })
-    mixing_temperature: Optional[list[float]] = Field(default=[], description="""Temperature during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
-         'slot_uri': 'coremeta4cat:mixing_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
+    has_stirring_duration: Optional[Duration] = Field(default=None, description="""Duration of stirring or agitation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
+    has_stirring_speed: Optional[list[AngularVelocity]] = Field(default=[], description="""Rotational speed of stirring or agitation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
+         'is_a': 'has_angular_velocity',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_mixing_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature maintained during mixing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'MolecularSynthesis'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     filtration_device: Optional[list[str]] = Field(default=[], description="""Device used for filtration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'MolecularSynthesis'],
          'slot_uri': 'coremeta4cat:filtration_device'} })
     filter_type: Optional[list[str]] = Field(default=[], description="""Type of filter membrane or medium used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'MolecularSynthesis'],
@@ -7844,7 +8118,7 @@ class MolecularSynthesis(PreparationMethod, DryingMixin):
     temperature_ramp: Optional[list[float]] = Field(default=[], description="""Temperature ramp rate applied during drying or activation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularSynthesis'],
          'slot_uri': 'coremeta4cat:temperature_ramp',
          'unit': {'ucum_code': 'Cel/min'}} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -7854,17 +8128,22 @@ class MolecularSynthesis(PreparationMethod, DryingMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     drying_device: Optional[list[str]] = Field(default=[], description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'coremeta4cat:drying_device'} })
-    drying_temperature: Optional[list[float]] = Field(default=[], description="""Temperature applied during drying.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008207',
-         'unit': {'ucum_code': 'Cel'}} })
-    drying_time: Optional[list[float]] = Field(default=[], description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
-         'slot_uri': 'VOC4CAT:0008206',
-         'unit': {'ucum_code': 'h'}} })
-    drying_atmosphere: Optional[list[str]] = Field(default=[], description="""Atmosphere maintained during drying (e.g. air, N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'slot_uri': 'VOC4CAT:0008208'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_drying_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature applied during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_temperature',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_drying_duration: Optional[Duration] = Field(default=None, description="""Duration of the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'], 'is_a': 'has_duration', 'slot_uri': 'SIO:000008'} })
+    has_drying_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Atmosphere maintained during the drying step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7902,7 +8181,8 @@ class MolecularSynthesis(PreparationMethod, DryingMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -7956,29 +8236,32 @@ class ExsolutionSynthesis(PreparationMethod, CalcinationMixin):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['CalcinationMixin']})
 
-    calcination_initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000057',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_final_temperature: Optional[list[float]] = Field(default=[], description="""Final (target) temperature for calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000058',
-         'unit': {'ucum_code': 'Cel'}} })
-    calcination_dwelling_time: Optional[list[float]] = Field(default=[], description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000060',
-         'unit': {'ucum_code': 'h'}} })
+    has_calcination_temperature_range: Optional[QuantitativeRange] = Field(default=None, description="""Temperature range of the calcination programme (initial -> final temperature),
+provided as a QuantitativeRange. Unit: Degree Celsius.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'slot_uri': 'coremeta4cat:hasCalcinationTemperatureRange'} })
+    has_calcination_dwelling_time: Optional[Duration] = Field(default=None, description="""Time held at the final calcination temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     number_of_cycles: Optional[list[int]] = Field(default=[], description="""Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin',
                        'AtomicLayerDeposition',
                        'MolecularSynthesis',
                        'XRayAbsorptionSpectroscopy',
                        'CyclicVoltammetry'],
          'slot_uri': 'coremeta4cat:number_of_cycles'} })
-    calcination_gaseous_environment: Optional[list[str]] = Field(default=[], description="""Gaseous environment maintained during calcination (e.g. air, H2/N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'], 'slot_uri': 'VOC4CAT:0000055'} })
-    calcination_heating_rate: Optional[list[float]] = Field(default=[], description="""Heating rate during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000059',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    calcination_gas_flow_rate: Optional[list[float]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
-         'slot_uri': 'VOC4CAT:0000056',
-         'unit': {'ucum_code': 'mL/min'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_calcination_atmosphere: Optional[list[CalcinationGaseousEnvironment]] = Field(default=[], description="""Gaseous environment maintained during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_atmosphere',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_heating_rate: Optional[list[HeatingRate]] = Field(default=[], description="""Temperature ramp rate during the calcination step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_heating_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_calcination_gas_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Gas flow rate maintained during calcination.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CalcinationMixin'],
+         'is_a': 'has_flow_rate',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8016,7 +8299,8 @@ class ExsolutionSynthesis(PreparationMethod, CalcinationMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8071,7 +8355,8 @@ class CharacterizationTechnique(Plan):
          'class_uri': 'OBI:0000272',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8109,7 +8394,8 @@ class CharacterizationTechnique(Plan):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8162,26 +8448,24 @@ class PowderXRD(CharacterizationTechnique, XRaySourceMixin):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin']})
 
-    minimum_2theta: Optional[list[float]] = Field(default=[], description="""Minimum 2theta angle in the diffraction scan.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD'],
-         'slot_uri': 'coremeta4cat:minimum_2theta',
-         'unit': {'ucum_code': 'deg'}} })
-    maximum_2theta: Optional[list[float]] = Field(default=[], description="""Maximum 2theta angle in the diffraction scan.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD'],
-         'slot_uri': 'coremeta4cat:maximum_2theta',
-         'unit': {'ucum_code': 'deg'}} })
+    has_two_theta_range: Optional[QuantitativeRange] = Field(default=None, description="""2theta diffraction scan range (minimum -> maximum 2theta angle) as a QuantitativeRange.
+Provide unit as a QUDT term (e.g. Degree).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD'], 'slot_uri': 'coremeta4cat:hasTwoThetaRange'} })
     step_size: Optional[list[float]] = Field(default=[], description="""Step size for a scan (angle, wavelength, energy, or potential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XPS',
                        'InfraredSpectroscopy',
                        'DRIFTS',
                        'PhotoluminescenceSpectroscopy'],
          'slot_uri': 'AFR:0000950'} })
-    operation_mode: Optional[list[str]] = Field(default=[], description="""Operation mode of an instrument (e.g. transmission, reflection, AC, DC).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
+    has_operation_mode: Optional[list[OperationMode]] = Field(default=[], description="""Operation mode of an instrument or process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XRayAbsorptionSpectroscopy',
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'VOC4CAT:0000108'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -8191,9 +8475,11 @@ class PowderXRD(CharacterizationTechnique, XRaySourceMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -8206,20 +8492,22 @@ class PowderXRD(CharacterizationTechnique, XRaySourceMixin):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
-    sample_spinning_speed: Optional[list[float]] = Field(default=[], description="""Sample spinning speed during XRD measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD'],
-         'slot_uri': 'coremeta4cat:sample_spinning_speed',
-         'unit': {'ucum_code': 'rpm'}} })
-    experiment_duration: Optional[list[float]] = Field(default=[], description="""Total duration of the experiment or measurement run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD', 'Reaction'],
-         'slot_uri': 'AFR:0002455',
-         'unit': {'ucum_code': 'h'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    sample_spinning_speed: Optional[list[AngularVelocity]] = Field(default=[], description="""Sample spinning speed during XRD measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD'], 'slot_uri': 'coremeta4cat:sample_spinning_speed'} })
+    has_experiment_duration: Optional[Duration] = Field(default=None, description="""Total duration of the experiment or measurement run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD', 'CatalyticReaction'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     xray_source: Optional[list[str]] = Field(default=[], description="""X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'OBI:0001138'} })
     monochromator: Optional[list[str]] = Field(default=[], description="""Monochromator type or configuration used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'CHMO:0002120'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8257,7 +8545,8 @@ class PowderXRD(CharacterizationTechnique, XRaySourceMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8310,7 +8599,7 @@ class SingleCrystalXRD(CharacterizationTechnique, XRaySourceMixin):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin']})
 
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -8323,14 +8612,18 @@ class SingleCrystalXRD(CharacterizationTechnique, XRaySourceMixin):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     xray_source: Optional[list[str]] = Field(default=[], description="""X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'OBI:0001138'} })
     monochromator: Optional[list[str]] = Field(default=[], description="""Monochromator type or configuration used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'CHMO:0002120'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8368,7 +8661,8 @@ class SingleCrystalXRD(CharacterizationTechnique, XRaySourceMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8421,21 +8715,21 @@ class XRayAbsorptionSpectroscopy(CharacterizationTechnique, EnergyRangeMixin, XR
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin', 'EnergyRangeMixin']})
 
-    operation_mode: Optional[list[str]] = Field(default=[], description="""Operation mode of an instrument (e.g. transmission, reflection, AC, DC).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
+    has_operation_mode: Optional[list[OperationMode]] = Field(default=[], description="""Operation mode of an instrument or process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XRayAbsorptionSpectroscopy',
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'VOC4CAT:0000108'} })
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     element_analyzed: Optional[list[str]] = Field(default=[], description="""Chemical element analysed (e.g. Fe, Cu, Pt).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy', 'ICPAES'],
          'slot_uri': 'coremeta4cat:element_analyzed'} })
     absorption_edge: Optional[list[str]] = Field(default=[], description="""X-ray absorption edge measured (e.g. K-edge, L3-edge).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy'],
          'slot_uri': 'coremeta4cat:absorption_edge'} })
-    energy_resolution: Optional[list[float]] = Field(default=[], description="""Energy resolution of the spectrometer or monochromator.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy'],
-         'slot_uri': 'AFR:0000950',
-         'unit': {'ucum_code': 'eV'}} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    energy_resolution: Optional[list[EnergyQuantity]] = Field(default=[], description="""Energy resolution of the spectrometer or monochromator.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy'], 'slot_uri': 'AFR:0000950'} })
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -8448,11 +8742,14 @@ class XRayAbsorptionSpectroscopy(CharacterizationTechnique, EnergyRangeMixin, XR
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     beamline_source: Optional[list[str]] = Field(default=[], description="""Synchrotron beamline or X-ray source identifier.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy'],
          'slot_uri': 'coremeta4cat:beamline_source'} })
     noise_of_measurement: Optional[list[float]] = Field(default=[], description="""Noise level of the XAS measurement (signal-to-noise ratio).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRayAbsorptionSpectroscopy'],
@@ -8465,13 +8762,10 @@ class XRayAbsorptionSpectroscopy(CharacterizationTechnique, EnergyRangeMixin, XR
          'slot_uri': 'coremeta4cat:number_of_cycles'} })
     xray_source: Optional[list[str]] = Field(default=[], description="""X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'OBI:0001138'} })
     monochromator: Optional[list[str]] = Field(default=[], description="""Monochromator type or configuration used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'CHMO:0002120'} })
-    minimum_energy: Optional[list[float]] = Field(default=[], description="""Minimum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'coremeta4cat:minimum_energy',
-         'unit': {'ucum_code': 'eV'}} })
-    maximum_energy: Optional[list[float]] = Field(default=[], description="""Maximum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'coremeta4cat:maximum_energy',
-         'unit': {'ucum_code': 'eV'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_energy_range: Optional[QuantitativeRange] = Field(default=None, description="""Energy scan range (minimum -> maximum) as a QuantitativeRange.
+Provide unit as a QUDT term (e.g. eV, keV).""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'], 'slot_uri': 'coremeta4cat:hasEnergyRange'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8509,7 +8803,8 @@ class XRayAbsorptionSpectroscopy(CharacterizationTechnique, EnergyRangeMixin, XR
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8562,9 +8857,7 @@ class XPS(CharacterizationTechnique, EnergyRangeMixin, XRaySourceMixin):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin', 'EnergyRangeMixin']})
 
-    total_acquisition_time: Optional[list[float]] = Field(default=[], description="""Total time for XPS spectrum acquisition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'],
-         'slot_uri': 'coremeta4cat:total_acquisition_time',
-         'unit': {'ucum_code': 's'}} })
+    total_acquisition_time: Optional[list[Duration]] = Field(default=[], description="""Total time for XPS spectrum acquisition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'], 'slot_uri': 'coremeta4cat:total_acquisition_time'} })
     number_of_scans: Optional[list[int]] = Field(default=[], description="""Number of scans or accumulations recorded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS',
                        'InfraredSpectroscopy',
                        'DRIFTS',
@@ -8577,15 +8870,11 @@ class XPS(CharacterizationTechnique, EnergyRangeMixin, XRaySourceMixin):
                        'DRIFTS',
                        'PhotoluminescenceSpectroscopy'],
          'slot_uri': 'AFR:0000950'} })
-    pass_energy: Optional[list[float]] = Field(default=[], description="""Analyser pass energy setting in XPS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'],
-         'slot_uri': 'coremeta4cat:pass_energy',
-         'unit': {'ucum_code': 'eV'}} })
-    spot_size: Optional[list[float]] = Field(default=[], description="""X-ray spot size on the sample surface.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'],
-         'slot_uri': 'coremeta4cat:spot_size',
-         'unit': {'ucum_code': 'mm'}} })
+    pass_energy: Optional[list[EnergyQuantity]] = Field(default=[], description="""Analyser pass energy setting in XPS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'], 'slot_uri': 'coremeta4cat:pass_energy'} })
+    spot_size: Optional[list[LengthQuantity]] = Field(default=[], description="""X-ray spot size on the sample surface.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'], 'slot_uri': 'coremeta4cat:spot_size'} })
     lense_mode: Optional[list[str]] = Field(default=[], description="""Electron lens mode setting in XPS analyser.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'], 'slot_uri': 'VOC4CAT:0000108'} })
     charge_compensation: Optional[list[str]] = Field(default=[], description="""Charge compensation method applied during XPS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS'], 'slot_uri': 'coremeta4cat:charge_compensation'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -8595,17 +8884,16 @@ class XPS(CharacterizationTechnique, EnergyRangeMixin, XRaySourceMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     xray_source: Optional[list[str]] = Field(default=[], description="""X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'OBI:0001138'} })
     monochromator: Optional[list[str]] = Field(default=[], description="""Monochromator type or configuration used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'], 'slot_uri': 'CHMO:0002120'} })
-    minimum_energy: Optional[list[float]] = Field(default=[], description="""Minimum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'coremeta4cat:minimum_energy',
-         'unit': {'ucum_code': 'eV'}} })
-    maximum_energy: Optional[list[float]] = Field(default=[], description="""Maximum energy of the scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'],
-         'slot_uri': 'coremeta4cat:maximum_energy',
-         'unit': {'ucum_code': 'eV'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_energy_range: Optional[QuantitativeRange] = Field(default=None, description="""Energy scan range (minimum -> maximum) as a QuantitativeRange.
+Provide unit as a QUDT term (e.g. eV, keV).""", json_schema_extra = { "linkml_meta": {'domain_of': ['EnergyRangeMixin'], 'slot_uri': 'coremeta4cat:hasEnergyRange'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8643,7 +8931,8 @@ class XPS(CharacterizationTechnique, EnergyRangeMixin, XRaySourceMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8695,15 +8984,12 @@ class EDX(CharacterizationTechnique):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000309',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    primary_energy: Optional[list[float]] = Field(default=[], description="""Primary electron beam energy for EDX excitation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX'],
-         'slot_uri': 'coremeta4cat:primary_energy',
-         'unit': {'ucum_code': 'keV'}} })
-    counting_time: Optional[list[float]] = Field(default=[], description="""X-ray counting time per point or spectrum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX'],
-         'slot_uri': 'coremeta4cat:counting_time',
-         'unit': {'ucum_code': 's'}} })
+    primary_energy: Optional[list[EnergyQuantity]] = Field(default=[], description="""Primary electron beam energy for EDX excitation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX'], 'slot_uri': 'coremeta4cat:primary_energy'} })
+    counting_time: Optional[list[Duration]] = Field(default=[], description="""X-ray counting time per point or spectrum.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX'], 'slot_uri': 'coremeta4cat:counting_time'} })
     resolution: Optional[list[float]] = Field(default=[], description="""Resolution of a measurement or detector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'DRIFTS'], 'slot_uri': 'coremeta4cat:resolution'} })
     calibration_method: Optional[list[str]] = Field(default=[], description="""Calibration method applied during a measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'ICPAES'], 'slot_uri': 'coremeta4cat:calibration_method'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8741,7 +9027,8 @@ class EDX(CharacterizationTechnique):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8793,26 +9080,25 @@ class InfraredSpectroscopy(CharacterizationTechnique):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000630',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    operation_mode: Optional[list[str]] = Field(default=[], description="""Operation mode of an instrument (e.g. transmission, reflection, AC, DC).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
+    has_operation_mode: Optional[list[OperationMode]] = Field(default=[], description="""Operation mode of an instrument or process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XRayAbsorptionSpectroscopy',
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'VOC4CAT:0000108'} })
-    minimum_wavenumber: Optional[list[float]] = Field(default=[], description="""Minimum wavenumber of the IR scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InfraredSpectroscopy'],
-         'slot_uri': 'coremeta4cat:minimum_wavenumber',
-         'unit': {'ucum_code': 'cm-1'}} })
-    maximum_wavenumber: Optional[list[float]] = Field(default=[], description="""Maximum wavenumber of the IR scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InfraredSpectroscopy'],
-         'slot_uri': 'coremeta4cat:maximum_wavenumber',
-         'unit': {'ucum_code': 'cm-1'}} })
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_wavenumber_range: Optional[QuantitativeRange] = Field(default=None, description="""Infrared wavenumber scan range (minimum -> maximum cm^-1) as a QuantitativeRange.
+Provide unit as a QUDT term (e.g. ReciprocalCentimetre).""", json_schema_extra = { "linkml_meta": {'domain_of': ['InfraredSpectroscopy', 'DRIFTS'],
+         'slot_uri': 'coremeta4cat:hasWavenumberRange'} })
     step_size: Optional[list[float]] = Field(default=[], description="""Step size for a scan (angle, wavelength, energy, or potential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XPS',
                        'InfraredSpectroscopy',
                        'DRIFTS',
                        'PhotoluminescenceSpectroscopy'],
          'slot_uri': 'AFR:0000950'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -8825,11 +9111,14 @@ class InfraredSpectroscopy(CharacterizationTechnique):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     background_correction: Optional[list[str]] = Field(default=[], description="""Background correction method applied to IR spectra.""", json_schema_extra = { "linkml_meta": {'domain_of': ['InfraredSpectroscopy'], 'slot_uri': 'AFP:0003721'} })
     number_of_scans: Optional[list[int]] = Field(default=[], description="""Number of scans or accumulations recorded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS',
                        'InfraredSpectroscopy',
@@ -8837,7 +9126,7 @@ class InfraredSpectroscopy(CharacterizationTechnique):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy'],
          'slot_uri': 'coremeta4cat:number_of_scans'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -8847,9 +9136,12 @@ class InfraredSpectroscopy(CharacterizationTechnique):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8887,7 +9179,8 @@ class InfraredSpectroscopy(CharacterizationTechnique):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -8940,8 +9233,8 @@ class DRIFTS(CharacterizationTechnique):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000645',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    adsorption_gas: Optional[list[str]] = Field(default=[], description="""Probe gas adsorbed during in-situ DRIFTS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'], 'slot_uri': 'coremeta4cat:adsorption_gas'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    adsorption_gas: Optional[list[ChemicalEntity]] = Field(default=[], description="""Probe gas adsorbed during in-situ DRIFTS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'], 'slot_uri': 'coremeta4cat:adsorption_gas'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -8951,14 +9244,20 @@ class DRIFTS(CharacterizationTechnique):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Volumetric flow rate of a gas or liquid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'coremeta4cat:flow_rate',
-         'unit': {'ucum_code': 'mL/min'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_wavenumber_range: Optional[QuantitativeRange] = Field(default=None, description="""Infrared wavenumber scan range (minimum -> maximum cm^-1) as a QuantitativeRange.
+Provide unit as a QUDT term (e.g. ReciprocalCentimetre).""", json_schema_extra = { "linkml_meta": {'domain_of': ['InfraredSpectroscopy', 'DRIFTS'],
+         'slot_uri': 'coremeta4cat:hasWavenumberRange'} })
     diluting_reference: Optional[list[str]] = Field(default=[], description="""Reference material used to dilute the DRIFTS sample (e.g. KBr).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'], 'slot_uri': 'coremeta4cat:diluting_reference'} })
     ratio_reference_sample: Optional[list[float]] = Field(default=[], description="""Mass ratio of reference material to catalyst sample in DRIFTS cup.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'], 'slot_uri': 'coremeta4cat:ratio_reference_sample'} })
     step_size: Optional[list[float]] = Field(default=[], description="""Step size for a scan (angle, wavelength, energy, or potential).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
@@ -8970,7 +9269,7 @@ class DRIFTS(CharacterizationTechnique):
     resolution: Optional[list[float]] = Field(default=[], description="""Resolution of a measurement or detector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'DRIFTS'], 'slot_uri': 'coremeta4cat:resolution'} })
     background_correction_method: Optional[list[str]] = Field(default=[], description="""Specific background correction method used in DRIFTS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'],
          'slot_uri': 'coremeta4cat:background_correction_method'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -8983,18 +9282,22 @@ class DRIFTS(CharacterizationTechnique):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     number_of_scans: Optional[list[int]] = Field(default=[], description="""Number of scans or accumulations recorded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS',
                        'InfraredSpectroscopy',
                        'DRIFTS',
                        'RamanSpectroscopy',
                        'NMRSpectroscopy'],
          'slot_uri': 'coremeta4cat:number_of_scans'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9032,7 +9335,8 @@ class DRIFTS(CharacterizationTechnique):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9084,24 +9388,20 @@ class RamanSpectroscopy(CharacterizationTechnique):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000069',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    excitation_laser_wavelength: Optional[list[float]] = Field(default=[], description="""Wavelength of excitation laser used in Raman spectroscopy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy'],
-         'slot_uri': 'AFR:0001594',
-         'unit': {'ucum_code': 'nm'}} })
-    excitation_laser_power: Optional[list[float]] = Field(default=[], description="""Power of the excitation laser at the sample.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy'],
-         'slot_uri': 'AFR:0001595',
-         'unit': {'ucum_code': 'mW'}} })
+    excitation_laser_wavelength: Optional[list[LengthQuantity]] = Field(default=[], description="""Wavelength of excitation laser used in Raman spectroscopy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy'], 'slot_uri': 'AFR:0001594'} })
+    excitation_laser_power: Optional[list[PowerQuantity]] = Field(default=[], description="""Power of the excitation laser at the sample.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy'], 'slot_uri': 'AFR:0001595'} })
     magnification_setting: Optional[list[float]] = Field(default=[], description="""Magnification setting used for imaging.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin', 'RamanSpectroscopy'],
          'slot_uri': 'AFR:0002226'} })
-    integration_time: Optional[list[float]] = Field(default=[], description="""Integration or acquisition time per measurement step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy', 'PhotoluminescenceSpectroscopy'],
-         'slot_uri': 'coremeta4cat:integration_time',
-         'unit': {'ucum_code': 's'}} })
+    has_integration_time: Optional[Duration] = Field(default=None, description="""Integration or acquisition time per measurement step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy', 'PhotoluminescenceSpectroscopy'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
     number_of_scans: Optional[list[int]] = Field(default=[], description="""Number of scans or accumulations recorded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS',
                        'InfraredSpectroscopy',
                        'DRIFTS',
                        'RamanSpectroscopy',
                        'NMRSpectroscopy'],
          'slot_uri': 'coremeta4cat:number_of_scans'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -9111,9 +9411,11 @@ class RamanSpectroscopy(CharacterizationTechnique):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -9126,14 +9428,18 @@ class RamanSpectroscopy(CharacterizationTechnique):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     filter_or_grating: Optional[list[str]] = Field(default=[], description="""Optical filter or grating used in Raman spectrometer.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy'],
          'slot_uri': 'coremeta4cat:filter_or_grating'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9171,7 +9477,8 @@ class RamanSpectroscopy(CharacterizationTechnique):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9227,7 +9534,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     nucleus: Optional[list[str]] = Field(default=[], description="""NMR-active nucleus observed (e.g. 1H, 13C, 31P).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'], 'slot_uri': 'coremeta4cat:nucleus'} })
-    solvent: Optional[list[str]] = Field(default=[], description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
+    solvent: Optional[list[ChemicalEntity]] = Field(default=[], description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
                        'NMRSpectroscopy',
                        'UVVisSpectroscopy',
                        'DynamicLightScattering'],
@@ -9235,7 +9542,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
     irradiation_frequency: Optional[list[float]] = Field(default=[], description="""Irradiation frequency of the NMR spectrometer.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
          'slot_uri': 'coremeta4cat:irradiation_frequency',
          'unit': {'ucum_code': 'MHz'}} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -9248,11 +9555,14 @@ class NMRSpectroscopy(CharacterizationTechnique):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     nmr_pulse_sequence: Optional[list[str]] = Field(default=[], description="""NMR pulse sequence used (e.g. zgpg30, dept).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
          'slot_uri': 'coremeta4cat:nmr_pulse_sequence'} })
     nmr_sample_tube: Optional[list[str]] = Field(default=[], description="""NMR sample tube type (e.g. 5mm standard, Shigemi tube).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'], 'slot_uri': 'coremeta4cat:nmr_sample_tube'} })
@@ -9262,7 +9572,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy'],
          'slot_uri': 'coremeta4cat:number_of_scans'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -9272,9 +9582,12 @@ class NMRSpectroscopy(CharacterizationTechnique):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9312,7 +9625,8 @@ class NMRSpectroscopy(CharacterizationTechnique):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9365,20 +9679,22 @@ class TransmissionElectronMicroscopy(CharacterizationTechnique, ElectronMicrosco
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ElectronMicroscopyMixin']})
 
-    operation_mode: Optional[list[str]] = Field(default=[], description="""Operation mode of an instrument (e.g. transmission, reflection, AC, DC).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
+    has_operation_mode: Optional[list[OperationMode]] = Field(default=[], description="""Operation mode of an instrument or process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XRayAbsorptionSpectroscopy',
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'VOC4CAT:0000108'} })
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     gun_type: Optional[list[str]] = Field(default=[], description="""Type of electron gun (e.g. FEG, thermionic LaB6).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'], 'slot_uri': 'coremeta4cat:gun_type'} })
-    acceleration_voltage: Optional[list[float]] = Field(default=[], description="""Acceleration voltage applied to the electron beam.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'],
-         'slot_uri': 'coremeta4cat:acceleration_voltage',
-         'unit': {'ucum_code': 'kV'}} })
+    acceleration_voltage: Optional[list[ElectricPotential]] = Field(default=[], description="""Acceleration voltage applied to the electron beam.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'],
+         'slot_uri': 'coremeta4cat:acceleration_voltage'} })
     magnification_setting: Optional[list[float]] = Field(default=[], description="""Magnification setting used for imaging.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin', 'RamanSpectroscopy'],
          'slot_uri': 'AFR:0002226'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9416,7 +9732,8 @@ class TransmissionElectronMicroscopy(CharacterizationTechnique, ElectronMicrosco
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9475,12 +9792,12 @@ class ScanningElectronMicroscopy(CharacterizationTechnique, ElectronMicroscopyMi
     field_emitter: Optional[list[str]] = Field(default=[], description="""Type of field emitter used in FE-SEM instrument.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ScanningElectronMicroscopy'],
          'slot_uri': 'coremeta4cat:field_emitter'} })
     gun_type: Optional[list[str]] = Field(default=[], description="""Type of electron gun (e.g. FEG, thermionic LaB6).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'], 'slot_uri': 'coremeta4cat:gun_type'} })
-    acceleration_voltage: Optional[list[float]] = Field(default=[], description="""Acceleration voltage applied to the electron beam.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'],
-         'slot_uri': 'coremeta4cat:acceleration_voltage',
-         'unit': {'ucum_code': 'kV'}} })
+    acceleration_voltage: Optional[list[ElectricPotential]] = Field(default=[], description="""Acceleration voltage applied to the electron beam.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin'],
+         'slot_uri': 'coremeta4cat:acceleration_voltage'} })
     magnification_setting: Optional[list[float]] = Field(default=[], description="""Magnification setting used for imaging.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectronMicroscopyMixin', 'RamanSpectroscopy'],
          'slot_uri': 'AFR:0002226'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9518,7 +9835,8 @@ class ScanningElectronMicroscopy(CharacterizationTechnique, ElectronMicroscopyMi
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9571,14 +9889,16 @@ class Thermogravimetry(CharacterizationTechnique, TemperatureProgramMixin):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['TemperatureProgramMixin']})
 
-    operation_mode: Optional[list[str]] = Field(default=[], description="""Operation mode of an instrument (e.g. transmission, reflection, AC, DC).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
+    has_operation_mode: Optional[list[OperationMode]] = Field(default=[], description="""Operation mode of an instrument or process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XRayAbsorptionSpectroscopy',
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'VOC4CAT:0000108'} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -9588,29 +9908,29 @@ class Thermogravimetry(CharacterizationTechnique, TemperatureProgramMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    initial_temperature: Optional[list[float]] = Field(default=[], description="""Initial temperature at the start of a thermal analysis run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Thermogravimetry'],
-         'slot_uri': 'NCIT:C164644',
-         'unit': {'ucum_code': 'Cel'}} })
-    final_temperature: Optional[list[float]] = Field(default=[], description="""Final temperature at the end of a thermal analysis run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Thermogravimetry'],
-         'slot_uri': 'NCIT:C164644',
-         'unit': {'ucum_code': 'Cel'}} })
-    sample_mass: Optional[list[float]] = Field(default=[], description="""Mass of the sample used in a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Thermogravimetry', 'BET'],
-         'slot_uri': 'coremeta4cat:sample_mass',
-         'unit': {'ucum_code': 'mg'}} })
-    minimum_temperature: Optional[list[float]] = Field(default=[], description="""Minimum (start) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:minimum_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    maximum_temperature: Optional[list[float]] = Field(default=[], description="""Maximum (final) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:maximum_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    heating_rate: Optional[list[float]] = Field(default=[], description="""Rate at which temperature is increased during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:heating_rate',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    heating_procedure: Optional[list[str]] = Field(default=[], description="""Description of the heating procedure applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
-         'slot_uri': 'coremeta4cat:heating_procedure'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    initial_temperature: Optional[list[Temperature]] = Field(default=[], description="""Initial temperature at the start of a thermal analysis run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Thermogravimetry'], 'slot_uri': 'NCIT:C164644'} })
+    final_temperature: Optional[list[Temperature]] = Field(default=[], description="""Final temperature at the end of a thermal analysis run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Thermogravimetry'], 'slot_uri': 'NCIT:C164644'} })
+    has_sample_mass: Optional[list[Mass]] = Field(default=[], description="""Mass of the sample used in a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Thermogravimetry', 'BET'],
+         'is_a': 'has_mass',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_temperature_range: Optional[QuantitativeRange] = Field(default=None, description="""Temperature programme range (start -> final temperature) as a QuantitativeRange.
+Provide unit as a QUDT term (e.g. Degree Celsius, Kelvin).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
+         'slot_uri': 'coremeta4cat:hasTemperatureRange'} })
+    has_heating_rate: Optional[list[HeatingRate]] = Field(default=[], description="""Temperature ramp rate during a heating or cooling step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_heating_procedure: Optional[list[HeatingProcedure]] = Field(default=[], description="""Heating procedure or thermal programme applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9648,7 +9968,8 @@ class Thermogravimetry(CharacterizationTechnique, TemperatureProgramMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9702,18 +10023,19 @@ class TPR(CharacterizationTechnique, TemperatureProgramMixin):
          'mixins': ['TemperatureProgramMixin']})
 
     reducing_gas_composition: Optional[list[str]] = Field(default=[], description="""Composition of reducing gas used in TPR (e.g. 5% H2/Ar).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TPR'], 'slot_uri': 'coremeta4cat:reducing_gas_composition'} })
-    minimum_temperature: Optional[list[float]] = Field(default=[], description="""Minimum (start) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:minimum_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    maximum_temperature: Optional[list[float]] = Field(default=[], description="""Maximum (final) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:maximum_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    heating_rate: Optional[list[float]] = Field(default=[], description="""Rate at which temperature is increased during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:heating_rate',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    heating_procedure: Optional[list[str]] = Field(default=[], description="""Description of the heating procedure applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
-         'slot_uri': 'coremeta4cat:heating_procedure'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_temperature_range: Optional[QuantitativeRange] = Field(default=None, description="""Temperature programme range (start -> final temperature) as a QuantitativeRange.
+Provide unit as a QUDT term (e.g. Degree Celsius, Kelvin).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
+         'slot_uri': 'coremeta4cat:hasTemperatureRange'} })
+    has_heating_rate: Optional[list[HeatingRate]] = Field(default=[], description="""Temperature ramp rate during a heating or cooling step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_heating_procedure: Optional[list[HeatingProcedure]] = Field(default=[], description="""Heating procedure or thermal programme applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9751,7 +10073,8 @@ class TPR(CharacterizationTechnique, TemperatureProgramMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9805,18 +10128,19 @@ class TPO(CharacterizationTechnique, TemperatureProgramMixin):
          'mixins': ['TemperatureProgramMixin']})
 
     oxidizing_gas_composition: Optional[list[str]] = Field(default=[], description="""Composition of oxidising gas used in TPO (e.g. 5% O2/Ar).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TPO'], 'slot_uri': 'coremeta4cat:oxidizing_gas_composition'} })
-    minimum_temperature: Optional[list[float]] = Field(default=[], description="""Minimum (start) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:minimum_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    maximum_temperature: Optional[list[float]] = Field(default=[], description="""Maximum (final) temperature in a temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:maximum_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    heating_rate: Optional[list[float]] = Field(default=[], description="""Rate at which temperature is increased during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
-         'slot_uri': 'coremeta4cat:heating_rate',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    heating_procedure: Optional[list[str]] = Field(default=[], description="""Description of the heating procedure applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
-         'slot_uri': 'coremeta4cat:heating_procedure'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_temperature_range: Optional[QuantitativeRange] = Field(default=None, description="""Temperature programme range (start -> final temperature) as a QuantitativeRange.
+Provide unit as a QUDT term (e.g. Degree Celsius, Kelvin).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
+         'slot_uri': 'coremeta4cat:hasTemperatureRange'} })
+    has_heating_rate: Optional[list[HeatingRate]] = Field(default=[], description="""Temperature ramp rate during a heating or cooling step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_heating_procedure: Optional[list[HeatingProcedure]] = Field(default=[], description="""Heating procedure or thermal programme applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9854,7 +10178,8 @@ class TPO(CharacterizationTechnique, TemperatureProgramMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9907,17 +10232,15 @@ class BET(CharacterizationTechnique):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     adsorbate_gas: Optional[list[str]] = Field(default=[], description="""Adsorbate gas used in BET surface area measurement (e.g. N2, Ar).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'], 'slot_uri': 'coremeta4cat:adsorbate_gas'} })
-    degassing_temperature: Optional[list[float]] = Field(default=[], description="""Temperature at which sample is degassed before BET measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'],
-         'slot_uri': 'coremeta4cat:degassing_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    measurement_temperature: Optional[list[float]] = Field(default=[], description="""Temperature at which BET adsorption isotherm is measured (e.g. 77 K for N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'],
-         'slot_uri': 'coremeta4cat:measurement_temperature',
-         'unit': {'ucum_code': 'K'}} })
+    degassing_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature at which sample is degassed before BET measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'], 'slot_uri': 'coremeta4cat:degassing_temperature'} })
+    measurement_temperature: Optional[list[Temperature]] = Field(default=[], description="""Temperature at which BET adsorption isotherm is measured (e.g. 77 K for N2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'], 'slot_uri': 'coremeta4cat:measurement_temperature'} })
     pore_size_distribution_method: Optional[list[str]] = Field(default=[], description="""Method used for pore size distribution calculation (e.g. BJH, DFT, HK).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BET'], 'slot_uri': 'coremeta4cat:pore_size_distribution_method'} })
-    sample_mass: Optional[list[float]] = Field(default=[], description="""Mass of the sample used in a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Thermogravimetry', 'BET'],
-         'slot_uri': 'coremeta4cat:sample_mass',
-         'unit': {'ucum_code': 'mg'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_sample_mass: Optional[list[Mass]] = Field(default=[], description="""Mass of the sample used in a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Thermogravimetry', 'BET'],
+         'is_a': 'has_mass',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -9955,7 +10278,8 @@ class BET(CharacterizationTechnique):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10012,7 +10336,8 @@ class ICPAES(CharacterizationTechnique):
     calibration_method: Optional[list[str]] = Field(default=[], description="""Calibration method applied during a measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['EDX', 'ICPAES'], 'slot_uri': 'coremeta4cat:calibration_method'} })
     detection_limit: Optional[list[float]] = Field(default=[], description="""Detection limit of the analytical method.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ICPAES'], 'slot_uri': 'NCIT:C105701'} })
     matrix_effect_correction: Optional[list[str]] = Field(default=[], description="""Method used to correct for matrix effects in ICP-AES.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ICPAES'], 'slot_uri': 'coremeta4cat:matrix_effect_correction'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10050,7 +10375,8 @@ class ICPAES(CharacterizationTechnique):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10104,15 +10430,15 @@ class ElementalAnalysis(CharacterizationTechnique):
 
     elements_analyzed: Optional[list[str]] = Field(default=[], description="""List of elements analysed by combustion elemental analysis (e.g. C, H, N, S).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElementalAnalysis'],
          'slot_uri': 'coremeta4cat:elements_analyzed'} })
-    combustion_temperature: Optional[list[float]] = Field(default=[], description="""Combustion furnace temperature for elemental analysis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElementalAnalysis'],
-         'slot_uri': 'coremeta4cat:combustion_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
+    combustion_temperature: Optional[list[Temperature]] = Field(default=[], description="""Combustion furnace temperature for elemental analysis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElementalAnalysis'],
+         'slot_uri': 'coremeta4cat:combustion_temperature'} })
+    carrier_gas: Optional[list[ChemicalEntity]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
                        'ElementalAnalysis',
                        'ElectroSprayIonizationMassSpectrometry',
                        'GCMS'],
          'slot_uri': 'coremeta4cat:carrier_gas'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10150,7 +10476,8 @@ class ElementalAnalysis(CharacterizationTechnique):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10211,17 +10538,21 @@ class UVVisSpectroscopy(CharacterizationTechnique):
     path_length: Optional[list[float]] = Field(default=[], description="""Optical path length of the measurement cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy'],
          'slot_uri': 'AFQ:0000268',
          'unit': {'ucum_code': 'cm'}} })
-    solvent: Optional[list[str]] = Field(default=[], description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
+    solvent: Optional[list[ChemicalEntity]] = Field(default=[], description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
                        'NMRSpectroscopy',
                        'UVVisSpectroscopy',
                        'DynamicLightScattering'],
          'slot_uri': 'VOC4CAT:0007246'} })
-    concentration: Optional[list[float]] = Field(default=[], description="""Concentration of a substance in a sample or solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy',
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
                        'DynamicLightScattering',
-                       'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'coremeta4cat:concentration',
-         'unit': {'ucum_code': 'mol/L'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10259,7 +10590,8 @@ class UVVisSpectroscopy(CharacterizationTechnique):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10323,18 +10655,14 @@ class PhotoluminescenceSpectroscopy(CharacterizationTechnique, Photoluminescence
                        'DRIFTS',
                        'PhotoluminescenceSpectroscopy'],
          'slot_uri': 'AFR:0000950'} })
-    integration_time: Optional[list[float]] = Field(default=[], description="""Integration or acquisition time per measurement step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy', 'PhotoluminescenceSpectroscopy'],
-         'slot_uri': 'coremeta4cat:integration_time',
-         'unit': {'ucum_code': 's'}} })
-    excitation_wavelength: Optional[list[float]] = Field(default=[], description="""Excitation wavelength used in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
-         'slot_uri': 'AFR:0002479',
-         'unit': {'ucum_code': 'nm'}} })
-    emission_wavelength: Optional[list[float]] = Field(default=[], description="""Emission wavelength detected in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
-         'slot_uri': 'NCIT:C204101',
-         'unit': {'ucum_code': 'nm'}} })
+    has_integration_time: Optional[Duration] = Field(default=None, description="""Integration or acquisition time per measurement step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy', 'PhotoluminescenceSpectroscopy'],
+         'is_a': 'has_duration',
+         'slot_uri': 'SIO:000008'} })
+    excitation_wavelength: Optional[list[LengthQuantity]] = Field(default=[], description="""Excitation wavelength used in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'], 'slot_uri': 'AFR:0002479'} })
+    emission_wavelength: Optional[list[LengthQuantity]] = Field(default=[], description="""Emission wavelength detected in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'], 'slot_uri': 'NCIT:C204101'} })
     optical_filter: Optional[list[str]] = Field(default=[], description="""Optical filter used in the emission or excitation path.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
          'slot_uri': 'coremeta4cat:optical_filter'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -10347,12 +10675,16 @@ class PhotoluminescenceSpectroscopy(CharacterizationTechnique, Photoluminescence
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10390,7 +10722,8 @@ class PhotoluminescenceSpectroscopy(CharacterizationTechnique, Photoluminescence
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10447,15 +10780,11 @@ class PhotoluminescenceLifetime(CharacterizationTechnique, PhotoluminescenceMixi
          'slot_uri': 'coremeta4cat:lifetime_fitting_model'} })
     number_of_shots: Optional[list[int]] = Field(default=[], description="""Number of laser shots accumulated per measurement point.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceLifetime'],
          'slot_uri': 'coremeta4cat:number_of_shots'} })
-    excitation_wavelength: Optional[list[float]] = Field(default=[], description="""Excitation wavelength used in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
-         'slot_uri': 'AFR:0002479',
-         'unit': {'ucum_code': 'nm'}} })
-    emission_wavelength: Optional[list[float]] = Field(default=[], description="""Emission wavelength detected in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
-         'slot_uri': 'NCIT:C204101',
-         'unit': {'ucum_code': 'nm'}} })
+    excitation_wavelength: Optional[list[LengthQuantity]] = Field(default=[], description="""Excitation wavelength used in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'], 'slot_uri': 'AFR:0002479'} })
+    emission_wavelength: Optional[list[LengthQuantity]] = Field(default=[], description="""Emission wavelength detected in photoluminescence measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'], 'slot_uri': 'NCIT:C204101'} })
     optical_filter: Optional[list[str]] = Field(default=[], description="""Optical filter used in the emission or excitation path.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhotoluminescenceMixin'],
          'slot_uri': 'coremeta4cat:optical_filter'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -10468,12 +10797,16 @@ class PhotoluminescenceLifetime(CharacterizationTechnique, PhotoluminescenceMixi
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10511,7 +10844,8 @@ class PhotoluminescenceLifetime(CharacterizationTechnique, PhotoluminescenceMixi
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10587,10 +10921,9 @@ class CyclicVoltammetry(CharacterizationTechnique, ElectrochemistryMixin):
     counter_electrode: Optional[list[str]] = Field(default=[], description="""Counter electrode used in electrochemical cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007203'} })
     electrolyte_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the electrolyte solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
          'slot_uri': 'coremeta4cat:electrolyte_composition'} })
-    electrolyte_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the electrolyte.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
-         'slot_uri': 'coremeta4cat:electrolyte_concentration',
-         'unit': {'ucum_code': 'mol/L'}} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    electrolyte_concentration: Optional[list[Concentration]] = Field(default=[], description="""Concentration of the electrolyte.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
+         'slot_uri': 'coremeta4cat:electrolyte_concentration'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -10600,9 +10933,11 @@ class CyclicVoltammetry(CharacterizationTechnique, ElectrochemistryMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -10615,12 +10950,16 @@ class CyclicVoltammetry(CharacterizationTechnique, ElectrochemistryMixin):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10658,7 +10997,8 @@ class CyclicVoltammetry(CharacterizationTechnique, ElectrochemistryMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10725,10 +11065,9 @@ class ConductivityMeasurement(CharacterizationTechnique, ElectrochemistryMixin):
     counter_electrode: Optional[list[str]] = Field(default=[], description="""Counter electrode used in electrochemical cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'], 'slot_uri': 'VOC4CAT:0007203'} })
     electrolyte_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the electrolyte solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
          'slot_uri': 'coremeta4cat:electrolyte_composition'} })
-    electrolyte_concentration: Optional[list[float]] = Field(default=[], description="""Concentration of the electrolyte.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
-         'slot_uri': 'coremeta4cat:electrolyte_concentration',
-         'unit': {'ucum_code': 'mol/L'}} })
-    atmosphere: Optional[list[str]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
+    electrolyte_concentration: Optional[list[Concentration]] = Field(default=[], description="""Concentration of the electrolyte.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemistryMixin'],
+         'slot_uri': 'coremeta4cat:electrolyte_concentration'} })
+    has_atmosphere: Optional[list[Atmosphere]] = Field(default=[], description="""Gaseous environment or atmospheric conditions during a process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin',
                        'MolecularSynthesis',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -10738,9 +11077,11 @@ class ConductivityMeasurement(CharacterizationTechnique, ElectrochemistryMixin):
                        'RamanSpectroscopy',
                        'NMRSpectroscopy',
                        'Thermogravimetry',
-                       'Reaction'],
-         'slot_uri': 'coremeta4cat:atmosphere'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'CatalyticReaction'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -10753,12 +11094,16 @@ class ConductivityMeasurement(CharacterizationTechnique, ElectrochemistryMixin):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10796,7 +11141,8 @@ class ConductivityMeasurement(CharacterizationTechnique, ElectrochemistryMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10848,25 +11194,25 @@ class DynamicLightScattering(CharacterizationTechnique):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000167',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    solvent: Optional[list[str]] = Field(default=[], description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
+    solvent: Optional[list[ChemicalEntity]] = Field(default=[], description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
                        'NMRSpectroscopy',
                        'UVVisSpectroscopy',
                        'DynamicLightScattering'],
          'slot_uri': 'VOC4CAT:0007246'} })
-    concentration: Optional[list[float]] = Field(default=[], description="""Concentration of a substance in a sample or solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy',
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
                        'DynamicLightScattering',
-                       'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'coremeta4cat:concentration',
-         'unit': {'ucum_code': 'mol/L'}} })
-    light_wavelength: Optional[list[float]] = Field(default=[], description="""Wavelength of the laser used in DLS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DynamicLightScattering'],
-         'slot_uri': 'VOC4CAT:0000176',
-         'unit': {'ucum_code': 'nm'}} })
-    scattering_angle: Optional[list[float]] = Field(default=[], description="""Scattering angle at which intensity is detected in DLS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DynamicLightScattering'],
-         'slot_uri': 'coremeta4cat:scattering_angle',
-         'unit': {'ucum_code': 'deg'}} })
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    light_wavelength: Optional[list[LengthQuantity]] = Field(default=[], description="""Wavelength of the laser used in DLS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DynamicLightScattering'], 'slot_uri': 'VOC4CAT:0000176'} })
+    scattering_angle: Optional[list[PlaneAngle]] = Field(default=[], description="""Scattering angle at which intensity is detected in DLS.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DynamicLightScattering'],
+         'slot_uri': 'coremeta4cat:scattering_angle'} })
     refractive_index: Optional[list[float]] = Field(default=[], description="""Refractive index of the solvent used in DLS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DynamicLightScattering'],
          'slot_uri': 'coremeta4cat:refractive_index'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -10879,17 +11225,20 @@ class DynamicLightScattering(CharacterizationTechnique):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
-    dispersant: Optional[list[str]] = Field(default=[], description="""Dispersant used (e.g. in DLS measurement or flame spray pyrolysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'DynamicLightScattering'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    dispersant: Optional[list[ChemicalEntity]] = Field(default=[], description="""Dispersant used (e.g. in DLS measurement or flame spray pyrolysis).""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis', 'DynamicLightScattering'],
          'slot_uri': 'coremeta4cat:dispersant'} })
-    measurement_duration: Optional[list[float]] = Field(default=[], description="""Duration of a single DLS acquisition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DynamicLightScattering'],
-         'slot_uri': 'coremeta4cat:measurement_duration',
-         'unit': {'ucum_code': 's'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    measurement_duration: Optional[list[Duration]] = Field(default=[], description="""Duration of a single DLS acquisition.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DynamicLightScattering'],
+         'slot_uri': 'coremeta4cat:measurement_duration'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10927,7 +11276,8 @@ class DynamicLightScattering(CharacterizationTechnique):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -10980,40 +11330,45 @@ class ElectroSprayIonizationMassSpectrometry(CharacterizationTechnique, MassRang
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['MassRangeMixin']})
 
-    operation_mode: Optional[list[str]] = Field(default=[], description="""Operation mode of an instrument (e.g. transmission, reflection, AC, DC).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
+    has_operation_mode: Optional[list[OperationMode]] = Field(default=[], description="""Operation mode of an instrument or process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
                        'XRayAbsorptionSpectroscopy',
                        'InfraredSpectroscopy',
                        'TransmissionElectronMicroscopy',
                        'Thermogravimetry',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'VOC4CAT:0000108'} })
-    spray_voltage: Optional[list[float]] = Field(default=[], description="""Spray voltage applied in electrospray ionisation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'CHMO:0002792',
-         'unit': {'ucum_code': 'kV'}} })
-    capillary_temperature: Optional[list[float]] = Field(default=[], description="""Capillary or desolvation temperature in ESI source.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'coremeta4cat:capillary_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    spray_voltage: Optional[list[ElectricPotential]] = Field(default=[], description="""Spray voltage applied in electrospray ionisation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'CHMO:0002792'} })
+    capillary_temperature: Optional[list[Temperature]] = Field(default=[], description="""Capillary or desolvation temperature in ESI source.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectroSprayIonizationMassSpectrometry'],
+         'slot_uri': 'coremeta4cat:capillary_temperature'} })
     solvent_composition: Optional[list[str]] = Field(default=[], description="""Solvent composition used for ESI spray solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectroSprayIonizationMassSpectrometry'],
          'slot_uri': 'VOC4CAT:0007246'} })
-    flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
+    has_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Volumetric flow rate of a gas or liquid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'coremeta4cat:flow_rate',
-         'unit': {'ucum_code': 'mL/min'}} })
-    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    carrier_gas: Optional[list[ChemicalEntity]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
                        'ElementalAnalysis',
                        'ElectroSprayIonizationMassSpectrometry',
                        'GCMS'],
          'slot_uri': 'coremeta4cat:carrier_gas'} })
-    concentration: Optional[list[float]] = Field(default=[], description="""Concentration of a substance in a sample or solution.""", json_schema_extra = { "linkml_meta": {'domain_of': ['UVVisSpectroscopy',
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
                        'DynamicLightScattering',
-                       'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'coremeta4cat:concentration',
-         'unit': {'ucum_code': 'mol/L'}} })
-    mz_minimum: Optional[list[float]] = Field(default=[], description="""Minimum m/z value in the mass scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'AFR:0002652'} })
-    mz_maximum: Optional[list[float]] = Field(default=[], description="""Maximum m/z value in the mass scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'AFR:0002653'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_mz_range: Optional[QuantitativeRange] = Field(default=None, description="""Mass-to-charge ratio scan range (minimum -> maximum m/z) as a QuantitativeRange.
+The unit for m/z is dimensionless (Thomson); set unit to the appropriate QUDT term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'coremeta4cat:hasMzRange'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11051,7 +11406,8 @@ class ElectroSprayIonizationMassSpectrometry(CharacterizationTechnique, MassRang
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11104,26 +11460,20 @@ class GCMS(CharacterizationTechnique, MassRangeMixin, ChromatographyMixin):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ChromatographyMixin', 'MassRangeMixin']})
 
-    carrier_gas: Optional[list[str]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
+    carrier_gas: Optional[list[ChemicalEntity]] = Field(default=[], description="""Carrier gas used in a process (e.g. in GC analysis or ALD deposition).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AtomicLayerDeposition',
                        'ElementalAnalysis',
                        'ElectroSprayIonizationMassSpectrometry',
                        'GCMS'],
          'slot_uri': 'coremeta4cat:carrier_gas'} })
     carrier_gas_purity: Optional[list[str]] = Field(default=[], description="""Purity grade of the carrier gas used in GC.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:carrier_gas_purity'} })
-    inlet_temperature: Optional[list[float]] = Field(default=[], description="""GC inlet temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'],
-         'slot_uri': 'coremeta4cat:inlet_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    minimum_oven_temperature: Optional[list[float]] = Field(default=[], description="""Minimum oven temperature in GC temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'],
-         'slot_uri': 'coremeta4cat:minimum_oven_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    maximum_oven_temperature: Optional[list[float]] = Field(default=[], description="""Maximum oven temperature in GC temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'],
-         'slot_uri': 'coremeta4cat:maximum_oven_temperature',
-         'unit': {'ucum_code': 'Cel'}} })
-    heating_ramp: Optional[list[float]] = Field(default=[], description="""Temperature ramp rate in GC oven programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'],
-         'slot_uri': 'coremeta4cat:heating_ramp',
-         'unit': {'ucum_code': 'Cel/min'}} })
-    heating_procedure: Optional[list[str]] = Field(default=[], description="""Description of the heating procedure applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
-         'slot_uri': 'coremeta4cat:heating_procedure'} })
+    inlet_temperature: Optional[list[Temperature]] = Field(default=[], description="""GC inlet temperature.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:inlet_temperature'} })
+    minimum_oven_temperature: Optional[list[Temperature]] = Field(default=[], description="""Minimum oven temperature in GC temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:minimum_oven_temperature'} })
+    maximum_oven_temperature: Optional[list[Temperature]] = Field(default=[], description="""Maximum oven temperature in GC temperature programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:maximum_oven_temperature'} })
+    heating_ramp: Optional[list[HeatingRate]] = Field(default=[], description="""Temperature ramp rate in GC oven programme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:heating_ramp'} })
+    has_heating_procedure: Optional[list[HeatingProcedure]] = Field(default=[], description="""Heating procedure or thermal programme applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TemperatureProgramMixin', 'GCMS'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     acquisition_mode: Optional[list[str]] = Field(default=[], description="""Mass spectrometer acquisition mode (e.g. full scan, SIM, SRM).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:acquisition_mode'} })
     solvent_delay: Optional[list[float]] = Field(default=[], description="""Solvent delay time before MS acquisition begins.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'],
          'slot_uri': 'coremeta4cat:solvent_delay',
@@ -11131,23 +11481,26 @@ class GCMS(CharacterizationTechnique, MassRangeMixin, ChromatographyMixin):
     trace_ion_detection: Optional[list[str]] = Field(default=[], description="""Trace ion detection setting or threshold.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:trace_ion_detection'} })
     split_ratio: Optional[list[float]] = Field(default=[], description="""Split ratio at the GC injector.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GCMS'], 'slot_uri': 'coremeta4cat:split_ratio'} })
     column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'coremeta4cat:column_type'} })
-    eluent: Optional[list[str]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
-    flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
+    eluent: Optional[list[ChemicalEntity]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
+    has_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Volumetric flow rate of a gas or liquid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'coremeta4cat:flow_rate',
-         'unit': {'ucum_code': 'mL/min'}} })
-    injection_volume: Optional[list[float]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
-         'slot_uri': 'coremeta4cat:injection_volume',
-         'unit': {'ucum_code': 'uL'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_injection_volume: Optional[list[Volume]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric analysis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'is_a': 'has_volume',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
          'slot_uri': 'coremeta4cat:external_standard'} })
     internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
          'slot_uri': 'coremeta4cat:internal_standard'} })
-    mz_minimum: Optional[list[float]] = Field(default=[], description="""Minimum m/z value in the mass scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'AFR:0002652'} })
-    mz_maximum: Optional[list[float]] = Field(default=[], description="""Maximum m/z value in the mass scan range.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'AFR:0002653'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    has_mz_range: Optional[QuantitativeRange] = Field(default=None, description="""Mass-to-charge ratio scan range (minimum -> maximum m/z) as a QuantitativeRange.
+The unit for m/z is dimensionless (Thomson); set unit to the appropriate QUDT term.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MassRangeMixin'], 'slot_uri': 'coremeta4cat:hasMzRange'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11185,7 +11538,8 @@ class GCMS(CharacterizationTechnique, MassRangeMixin, ChromatographyMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11238,7 +11592,7 @@ class SizeExclusionChromatography(CharacterizationTechnique, ChromatographyMixin
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ChromatographyMixin']})
 
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -11251,29 +11605,35 @@ class SizeExclusionChromatography(CharacterizationTechnique, ChromatographyMixin
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     calibration_standard: Optional[list[str]] = Field(default=[], description="""Calibration standard used for molecular weight or retention time calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SizeExclusionChromatography'],
          'slot_uri': 'coremeta4cat:calibration_standard'} })
     column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'coremeta4cat:column_type'} })
-    eluent: Optional[list[str]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
-    flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
+    eluent: Optional[list[ChemicalEntity]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
+    has_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Volumetric flow rate of a gas or liquid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'coremeta4cat:flow_rate',
-         'unit': {'ucum_code': 'mL/min'}} })
-    injection_volume: Optional[list[float]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
-         'slot_uri': 'coremeta4cat:injection_volume',
-         'unit': {'ucum_code': 'uL'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_injection_volume: Optional[list[Volume]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric analysis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'is_a': 'has_volume',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
          'slot_uri': 'coremeta4cat:external_standard'} })
     internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
          'slot_uri': 'coremeta4cat:internal_standard'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11311,7 +11671,8 @@ class SizeExclusionChromatography(CharacterizationTechnique, ChromatographyMixin
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11368,7 +11729,7 @@ class HighPerformanceLiquidChromatographyMassSpectrometry(CharacterizationTechni
          'slot_uri': 'coremeta4cat:gradient_program'} })
     ionization_mode: Optional[list[str]] = Field(default=[], description="""Ionisation mode used in HPLC-MS (e.g. positive, negative, APCI, ESI).""", json_schema_extra = { "linkml_meta": {'domain_of': ['HighPerformanceLiquidChromatographyMassSpectrometry'],
          'slot_uri': 'coremeta4cat:ionization_mode'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -11381,27 +11742,33 @@ class HighPerformanceLiquidChromatographyMassSpectrometry(CharacterizationTechni
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     column_type: Optional[list[str]] = Field(default=[], description="""Type of chromatographic column used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'coremeta4cat:column_type'} })
-    eluent: Optional[list[str]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
-    flow_rate: Optional[list[float]] = Field(default=[], description="""Flow rate of a fluid or gas.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
+    eluent: Optional[list[ChemicalEntity]] = Field(default=[], description="""Eluent or mobile phase used in chromatography.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'], 'slot_uri': 'AFRL:0000011'} })
+    has_flow_rate: Optional[list[VolumeFlowRate]] = Field(default=[], description="""Volumetric flow rate of a gas or liquid.""", json_schema_extra = { "linkml_meta": {'domain_of': ['FlameSprayPyrolysis',
                        'ChromatographyMixin',
                        'DRIFTS',
                        'ElectroSprayIonizationMassSpectrometry'],
-         'slot_uri': 'coremeta4cat:flow_rate',
-         'unit': {'ucum_code': 'mL/min'}} })
-    injection_volume: Optional[list[float]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric experiment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
-         'slot_uri': 'coremeta4cat:injection_volume',
-         'unit': {'ucum_code': 'uL'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_injection_volume: Optional[list[Volume]] = Field(default=[], description="""Volume injected in a chromatographic or mass spectrometric analysis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
+         'is_a': 'has_volume',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     external_standard: Optional[list[str]] = Field(default=[], description="""External standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
          'slot_uri': 'coremeta4cat:external_standard'} })
     internal_standard: Optional[list[str]] = Field(default=[], description="""Internal standard used for quantification or calibration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChromatographyMixin'],
          'slot_uri': 'coremeta4cat:internal_standard'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11439,7 +11806,8 @@ class HighPerformanceLiquidChromatographyMassSpectrometry(CharacterizationTechni
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11497,7 +11865,8 @@ class ProductIdentificationMethod(Plan):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000272',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11535,7 +11904,8 @@ class ProductIdentificationMethod(Plan):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11593,7 +11963,8 @@ class QualitativeAttribute(ClassifierMixin):
                                   'name': 'value',
                                   'required': True}}})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11631,7 +12002,584 @@ class QualitativeAttribute(ClassifierMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: str = Field(default=..., description="""The slot to provide the literal value of the QualitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class Atmosphere(QualitativeAttribute):
+    """
+    A qualitative descriptor of the gaseous environment or atmospheric
+    conditions during a process (e.g. \"air\", \"N2\", \"5% H2/Ar\").
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:Atmosphere',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: str = Field(default=..., description="""The slot to provide the literal value of the QualitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class CalcinationGaseousEnvironment(Atmosphere):
+    """
+    The specific gaseous environment maintained during a calcination step
+    (e.g. \"air\", \"N2\", \"10% O2/N2\").
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000055',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: str = Field(default=..., description="""The slot to provide the literal value of the QualitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class HeatingProcedure(QualitativeAttribute):
+    """
+    A qualitative descriptor of the thermal programme or heating procedure
+    applied (e.g. \"isothermal\", \"ramp 5 °C/min to 500 °C, dwell 2 h\").
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:HeatingProcedure',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: str = Field(default=..., description="""The slot to provide the literal value of the QualitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class SamplePretreatment(QualitativeAttribute):
+    """
+    A qualitative descriptor of the pre-treatment applied to a sample
+    before a process or measurement (e.g. \"reduction at 300 °C\", \"outgassing\").
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000122',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: str = Field(default=..., description="""The slot to provide the literal value of the QualitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class VesselType(QualitativeAttribute):
+    """
+    A qualitative descriptor of the type of reaction or synthesis vessel
+    used (e.g. \"autoclave\", \"round-bottom flask\", \"Schlenk tube\").
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:VesselType',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: str = Field(default=..., description="""The slot to provide the literal value of the QualitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class OperationMode(QualitativeAttribute):
+    """
+    A qualitative descriptor of the operation mode of an instrument or
+    process (e.g. \"transmission\", \"reflection\", \"AC\", \"DC\", \"full-scan\").
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'VOC4CAT:0000108',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11693,7 +12641,8 @@ class QuantitativeAttribute(ClassifierMixin):
                                   'range': 'float',
                                   'required': True}}})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11731,7 +12680,8 @@ class QuantitativeAttribute(ClassifierMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11777,14 +12727,1242 @@ class QuantitativeAttribute(ClassifierMixin):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'recommended': True,
+         'slot_uri': 'qudt:unit'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class Duration(QuantitativeAttribute):
+    """
+    A quantitative measure of elapsed time (duration of a process step).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'close_mappings': ['PATO:0001309'],
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: float = Field(default=..., description="""The slot to provide the literal value of the QuantitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    has_quantity_type: str = Field(default=..., description="""The type of quality that is quantifiable according to the QUDT ontology.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Binds the type of a quantifiable attribute to a '
+                                      'QUDT Quantity Kind instance from the QUDT '
+                                      'Quantity Kind vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTQuantityKindEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Restricts the allowable defined terms to the '
+                                      'QUDT Unit vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTUnitEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'recommended': True,
+         'slot_uri': 'qudt:unit'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class VolumeFlowRate(QuantitativeAttribute):
+    """
+    Volume of fluid passing a given point per unit time.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'close_mappings': ['PATO:0001574'],
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: float = Field(default=..., description="""The slot to provide the literal value of the QuantitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    has_quantity_type: str = Field(default=..., description="""The type of quality that is quantifiable according to the QUDT ontology.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Binds the type of a quantifiable attribute to a '
+                                      'QUDT Quantity Kind instance from the QUDT '
+                                      'Quantity Kind vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTQuantityKindEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Restricts the allowable defined terms to the '
+                                      'QUDT Unit vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTUnitEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'recommended': True,
+         'slot_uri': 'qudt:unit'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class HeatingRate(QuantitativeAttribute):
+    """
+    Rate of temperature change per unit time during a thermal ramp.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: float = Field(default=..., description="""The slot to provide the literal value of the QuantitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    has_quantity_type: str = Field(default=..., description="""The type of quality that is quantifiable according to the QUDT ontology.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Binds the type of a quantifiable attribute to a '
+                                      'QUDT Quantity Kind instance from the QUDT '
+                                      'Quantity Kind vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTQuantityKindEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Restricts the allowable defined terms to the '
+                                      'QUDT Unit vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTUnitEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'recommended': True,
+         'slot_uri': 'qudt:unit'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class AngularVelocity(QuantitativeAttribute):
+    """
+    Rate of rotational motion, typically expressed in revolutions per minute.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'close_mappings': ['PATO:0002154'],
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: float = Field(default=..., description="""The slot to provide the literal value of the QuantitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    has_quantity_type: str = Field(default=..., description="""The type of quality that is quantifiable according to the QUDT ontology.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Binds the type of a quantifiable attribute to a '
+                                      'QUDT Quantity Kind instance from the QUDT '
+                                      'Quantity Kind vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTQuantityKindEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Restricts the allowable defined terms to the '
+                                      'QUDT Unit vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTUnitEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'recommended': True,
+         'slot_uri': 'qudt:unit'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class EnergyQuantity(QuantitativeAttribute):
+    """
+    A quantitative measure of energy (eV, keV, kJ/mol, etc.).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'close_mappings': ['PATO:0001021'],
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: float = Field(default=..., description="""The slot to provide the literal value of the QuantitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    has_quantity_type: str = Field(default=..., description="""The type of quality that is quantifiable according to the QUDT ontology.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Binds the type of a quantifiable attribute to a '
+                                      'QUDT Quantity Kind instance from the QUDT '
+                                      'Quantity Kind vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTQuantityKindEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Restricts the allowable defined terms to the '
+                                      'QUDT Unit vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTUnitEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'recommended': True,
+         'slot_uri': 'qudt:unit'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class ElectricPotential(QuantitativeAttribute):
+    """
+    A quantitative measure of electric potential difference or voltage.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'close_mappings': ['PATO:0001464'],
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: float = Field(default=..., description="""The slot to provide the literal value of the QuantitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    has_quantity_type: str = Field(default=..., description="""The type of quality that is quantifiable according to the QUDT ontology.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Binds the type of a quantifiable attribute to a '
+                                      'QUDT Quantity Kind instance from the QUDT '
+                                      'Quantity Kind vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTQuantityKindEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Restricts the allowable defined terms to the '
+                                      'QUDT Unit vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTUnitEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'recommended': True,
+         'slot_uri': 'qudt:unit'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class PowerQuantity(QuantitativeAttribute):
+    """
+    Rate of energy transfer per unit time (e.g. laser power in mW).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'close_mappings': ['PATO:0001230'],
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: float = Field(default=..., description="""The slot to provide the literal value of the QuantitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    has_quantity_type: str = Field(default=..., description="""The type of quality that is quantifiable according to the QUDT ontology.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Binds the type of a quantifiable attribute to a '
+                                      'QUDT Quantity Kind instance from the QUDT '
+                                      'Quantity Kind vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTQuantityKindEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Restricts the allowable defined terms to the '
+                                      'QUDT Unit vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTUnitEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'recommended': True,
+         'slot_uri': 'qudt:unit'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class LengthQuantity(QuantitativeAttribute):
+    """
+    A quantitative measure of length or spatial dimension (nm, mm, cm).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'close_mappings': ['PATO:0001708'],
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: float = Field(default=..., description="""The slot to provide the literal value of the QuantitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    has_quantity_type: str = Field(default=..., description="""The type of quality that is quantifiable according to the QUDT ontology.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Binds the type of a quantifiable attribute to a '
+                                      'QUDT Quantity Kind instance from the QUDT '
+                                      'Quantity Kind vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTQuantityKindEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Restricts the allowable defined terms to the '
+                                      'QUDT Unit vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTUnitEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'recommended': True,
+         'slot_uri': 'qudt:unit'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class PlaneAngle(QuantitativeAttribute):
+    """
+    A quantitative measure of a plane angle (e.g. scattering angle in degrees).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: float = Field(default=..., description="""The slot to provide the literal value of the QuantitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    has_quantity_type: str = Field(default=..., description="""The type of quality that is quantifiable according to the QUDT ontology.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Binds the type of a quantifiable attribute to a '
+                                      'QUDT Quantity Kind instance from the QUDT '
+                                      'Quantity Kind vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTQuantityKindEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Restricts the allowable defined terms to the '
+                                      'QUDT Unit vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTUnitEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'recommended': True,
+         'slot_uri': 'qudt:unit'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class Wavenumber(QuantitativeAttribute):
+    """
+    Reciprocal of wavelength; number of wave cycles per unit length (cm^-1).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: float = Field(default=..., description="""The slot to provide the literal value of the QuantitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    has_quantity_type: str = Field(default=..., description="""The type of quality that is quantifiable according to the QUDT ontology.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Binds the type of a quantifiable attribute to a '
+                                      'QUDT Quantity Kind instance from the QUDT '
+                                      'Quantity Kind vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTQuantityKindEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Restricts the allowable defined terms to the '
+                                      'QUDT Unit vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTUnitEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'recommended': True,
+         'slot_uri': 'qudt:unit'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class MassToChargeRatio(QuantitativeAttribute):
+    """
+    Ratio of mass to electric charge (m/z) in mass spectrometry.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
+
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: float = Field(default=..., description="""The slot to provide the literal value of the QuantitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    has_quantity_type: str = Field(default=..., description="""The type of quality that is quantifiable according to the QUDT ontology.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Binds the type of a quantifiable attribute to a '
+                                      'QUDT Quantity Kind instance from the QUDT '
+                                      'Quantity Kind vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTQuantityKindEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
+         'slot_uri': 'qudt:hasQuantityKind'} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Restricts the allowable defined terms to the '
+                                      'QUDT Unit vocabulary.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'QUDTUnitEnum'}],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -11858,7 +14036,8 @@ class Software(AgenticEntity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11896,7 +14075,8 @@ class Software(AgenticEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -11964,7 +14144,8 @@ class SupportiveEntity(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12002,7 +14183,8 @@ class SupportiveEntity(ConfiguredBaseModel):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12048,7 +14230,8 @@ class Attribution(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'prov:Attribution',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12086,7 +14269,8 @@ class Attribution(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12132,7 +14316,8 @@ class ChecksumAlgorithm(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'spdx:ChecksumAlgorithm',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12170,7 +14355,8 @@ class ChecksumAlgorithm(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12225,7 +14411,8 @@ class Concept(SupportiveEntity):
                                             'slot_uri': 'skos:prefLabel'}}})
 
     preferred_label: list[str] = Field(default=..., description="""A preferred label of the concept.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Concept'], 'slot_uri': 'skos:prefLabel'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12263,7 +14450,8 @@ class Concept(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12316,7 +14504,8 @@ class ConceptScheme(SupportiveEntity):
                                   'required': True,
                                   'slot_uri': 'dcterms:title'}}})
 
-    title: list[str] = Field(default=..., description="""A name of the concept scheme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: list[str] = Field(default=..., description="""A name of the concept scheme.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12354,7 +14543,8 @@ class ConceptScheme(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12410,7 +14600,8 @@ class Document(SupportiveEntity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12448,7 +14639,8 @@ class Document(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12494,7 +14686,8 @@ class Frequency(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'dcterms:Frequency',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12532,7 +14725,8 @@ class Frequency(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12578,7 +14772,8 @@ class Geometry(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'locn:Geometry',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12616,7 +14811,8 @@ class Geometry(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12673,7 +14869,8 @@ class Identifier(SupportiveEntity):
                                      'slot_uri': 'skos:notation'}}})
 
     notation: str = Field(default=..., description="""A string that is an identifier in the context of the identifier scheme referenced by its datatype.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Identifier'], 'slot_uri': 'skos:notation'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12711,7 +14908,8 @@ class Identifier(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12767,7 +14965,8 @@ class LegalResource(SupportiveEntity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12805,7 +15004,8 @@ class LegalResource(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12874,7 +15074,8 @@ class LicenseDocument(SupportiveEntity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12912,7 +15113,8 @@ class LicenseDocument(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12958,7 +15160,8 @@ class LinguisticSystem(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'dcterms:LinguisticSystem',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -12996,7 +15199,8 @@ class LinguisticSystem(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13042,7 +15246,8 @@ class MediaType(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'dcterms:MediaType',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13080,7 +15285,8 @@ class MediaType(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13126,7 +15332,8 @@ class MediaTypeOrExtent(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'dcterms:MediaTypeOrExtent',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13164,7 +15371,8 @@ class MediaTypeOrExtent(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13247,7 +15455,8 @@ class PeriodOfTime(SupportiveEntity):
     start_date: Optional[date] = Field(default=None, description="""The start of the period.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PeriodOfTime'],
          'recommended': True,
          'slot_uri': 'dcat:startDate'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13285,7 +15494,8 @@ class PeriodOfTime(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13331,7 +15541,8 @@ class Policy(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'odrl:Policy',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13369,7 +15580,8 @@ class Policy(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13415,7 +15627,8 @@ class ProvenanceStatement(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'dcterms:ProvenanceStatement',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13453,7 +15666,8 @@ class ProvenanceStatement(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13509,7 +15723,8 @@ class Resource(SupportiveEntity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13547,7 +15762,8 @@ class Resource(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13593,7 +15809,8 @@ class RightsStatement(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'dcterms:RightsStatement',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13631,7 +15848,8 @@ class RightsStatement(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13677,7 +15895,8 @@ class Role(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'dcat:Role',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13715,7 +15934,8 @@ class Role(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13761,7 +15981,8 @@ class Standard(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'dcterms:Standard',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13799,7 +16020,8 @@ class Standard(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13847,7 +16069,8 @@ class Surrounding(ClassifierMixin):
          'in_subset': ['domain_agnostic_core'],
          'mixins': ['ClassifierMixin']})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13885,7 +16108,8 @@ class Surrounding(ClassifierMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13937,7 +16161,8 @@ class TimeInstant(SupportiveEntity):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'time:Instant',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -13975,7 +16200,8 @@ class TimeInstant(SupportiveEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14054,7 +16280,8 @@ class ChemicalEntity(Entity):
          'is_a': 'has_mass',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14092,7 +16319,8 @@ class ChemicalEntity(Entity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14176,7 +16404,8 @@ class Atom(Entity):
                                      'name': 'rdf_type',
                                      'required': True}}})
 
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14214,7 +16443,8 @@ class Atom(Entity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14299,7 +16529,8 @@ class Concentration(QuantitativeAttribute):
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/',
          'narrow_mappings': ['CHMO:0002822']})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14337,7 +16568,8 @@ class Concentration(QuantitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14383,14 +16615,14 @@ class Concentration(QuantitativeAttribute):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -14410,7 +16642,8 @@ class AmountOfSubstance(QuantitativeAttribute):
          'close_mappings': ['PATO:0000070'],
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14448,7 +16681,8 @@ class AmountOfSubstance(QuantitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14494,14 +16728,14 @@ class AmountOfSubstance(QuantitativeAttribute):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -14518,7 +16752,8 @@ class PHValue(QuantitativeAttribute):
          'exact_mappings': ['NCIT:C45997', 'AFR:0001142'],
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14556,7 +16791,8 @@ class PHValue(QuantitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14602,14 +16838,14 @@ class PHValue(QuantitativeAttribute):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -14624,7 +16860,8 @@ class InChIKey(QualitativeAttribute):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHEMINF:000059',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14662,7 +16899,8 @@ class InChIKey(QualitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14717,7 +16955,8 @@ class InChi(QualitativeAttribute):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHEMINF:000113',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14755,7 +16994,8 @@ class InChi(QualitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14810,7 +17050,8 @@ class MolecularFormula(QualitativeAttribute):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHEMINF:000042',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14848,7 +17089,8 @@ class MolecularFormula(QualitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14903,7 +17145,8 @@ class IUPACName(QualitativeAttribute):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHEMINF:000107',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14941,7 +17184,8 @@ class IUPACName(QualitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -14996,7 +17240,8 @@ class SMILES(QualitativeAttribute):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHEMINF:000018',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -15034,7 +17279,8 @@ class SMILES(QualitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -15100,7 +17346,24 @@ class MaterialisticMixin(ConfiguredBaseModel):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15116,7 +17379,7 @@ class MaterialisticMixin(ConfiguredBaseModel):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15130,11 +17393,15 @@ class ChemicalSubstanceMixin(MaterialisticMixin):
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/',
          'mixin': True})
 
-    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15157,7 +17424,24 @@ class ChemicalSubstanceMixin(MaterialisticMixin):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15173,7 +17457,7 @@ class ChemicalSubstanceMixin(MaterialisticMixin):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15187,11 +17471,15 @@ class PolymerMixin(ChemicalSubstanceMixin):
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/',
          'mixin': True})
 
-    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15214,7 +17502,24 @@ class PolymerMixin(ChemicalSubstanceMixin):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15230,7 +17535,7 @@ class PolymerMixin(ChemicalSubstanceMixin):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15262,7 +17567,24 @@ class MaterialEntity(MaterialisticMixin, Entity):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15278,11 +17600,12 @@ class MaterialEntity(MaterialisticMixin, Entity):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -15320,7 +17643,8 @@ class MaterialEntity(MaterialisticMixin, Entity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -15421,7 +17745,24 @@ class MaterialSample(MaterialisticMixin, EvaluatedEntity):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15437,12 +17778,13 @@ class MaterialSample(MaterialisticMixin, EvaluatedEntity):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
     was_generated_by: Optional[list[Activity]] = Field(default=[], description="""A slot to provide the Activity which created the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset', 'EvaluatedEntity'], 'slot_uri': 'prov:wasGeneratedBy'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -15480,7 +17822,8 @@ class MaterialSample(MaterialisticMixin, EvaluatedEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -15562,9 +17905,7 @@ class Precursor(MaterialSample):
          'slot_usage': {'precursor_quantity': {'name': 'precursor_quantity',
                                                'required': True}}})
 
-    precursor_quantity: list[float] = Field(default=..., description="""Quantity of precursor used in synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Precursor'],
-         'slot_uri': 'coremeta4cat:precursor_quantity',
-         'unit': {'ucum_code': 'g'}} })
+    precursor_quantity: list[Mass] = Field(default=..., description="""Quantity of precursor used in synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Precursor'], 'slot_uri': 'coremeta4cat:precursor_quantity'} })
     derived_from: Optional[Entity] = Field(default=None, description="""The slot to specify the MaterialEntity or MaterialSample from which the MaterialSample was created.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['BFO:0000050', 'dcterms:partOf'],
          'domain_of': ['MaterialSample'],
          'exact_mappings': ['SIO:000244'],
@@ -15579,7 +17920,24 @@ class Precursor(MaterialSample):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15595,12 +17953,13 @@ class Precursor(MaterialSample):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
     was_generated_by: Optional[list[Activity]] = Field(default=[], description="""A slot to provide the Activity which created the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset', 'EvaluatedEntity'], 'slot_uri': 'prov:wasGeneratedBy'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -15638,7 +17997,8 @@ class Precursor(MaterialSample):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -15740,7 +18100,24 @@ CatalystSample was produced.""", json_schema_extra = { "linkml_meta": {'close_ma
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15756,12 +18133,13 @@ CatalystSample was produced.""", json_schema_extra = { "linkml_meta": {'close_ma
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
     was_generated_by: Optional[list[Activity]] = Field(default=[], description="""A slot to provide the Activity which created the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset', 'EvaluatedEntity'], 'slot_uri': 'prov:wasGeneratedBy'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -15799,7 +18177,8 @@ CatalystSample was produced.""", json_schema_extra = { "linkml_meta": {'close_ma
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -15880,11 +18259,15 @@ class SubstanceSample(MaterialSample, ChemicalSubstanceMixin):
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/',
          'mixins': ['ChemicalSubstanceMixin']})
 
-    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15911,7 +18294,24 @@ class SubstanceSample(MaterialSample, ChemicalSubstanceMixin):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -15927,12 +18327,13 @@ class SubstanceSample(MaterialSample, ChemicalSubstanceMixin):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
     was_generated_by: Optional[list[Activity]] = Field(default=[], description="""A slot to provide the Activity which created the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset', 'EvaluatedEntity'], 'slot_uri': 'prov:wasGeneratedBy'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -15970,7 +18371,8 @@ class SubstanceSample(MaterialSample, ChemicalSubstanceMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16052,11 +18454,15 @@ class PolymerSample(SubstanceSample, PolymerMixin):
          'todos': ['Find a better mapping, as it is currently mapped to same ontology '
                    'class as its parent.']})
 
-    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -16083,7 +18489,24 @@ class PolymerSample(SubstanceSample, PolymerMixin):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -16099,12 +18522,13 @@ class PolymerSample(SubstanceSample, PolymerMixin):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
     was_generated_by: Optional[list[Activity]] = Field(default=[], description="""A slot to provide the Activity which created the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset', 'EvaluatedEntity'], 'slot_uri': 'prov:wasGeneratedBy'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16142,7 +18566,8 @@ class PolymerSample(SubstanceSample, PolymerMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the EvaluatedEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16222,7 +18647,8 @@ class Temperature(QuantitativeAttribute):
          'close_mappings': ['PATO:0000146'],
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/materials/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16260,7 +18686,8 @@ class Temperature(QuantitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16306,14 +18733,14 @@ class Temperature(QuantitativeAttribute):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -16332,7 +18759,8 @@ class Mass(QuantitativeAttribute):
          'close_mappings': ['PATO:0000125'],
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/materials/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16370,7 +18798,8 @@ class Mass(QuantitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16416,14 +18845,14 @@ class Mass(QuantitativeAttribute):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -16442,7 +18871,8 @@ class MolarMass(Mass):
          'close_mappings': ['PATO:0001681'],
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16480,7 +18910,8 @@ class MolarMass(Mass):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16526,14 +18957,14 @@ class MolarMass(Mass):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -16552,7 +18983,8 @@ class Volume(QuantitativeAttribute):
          'close_mappings': ['PATO:0000918'],
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/materials/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16590,7 +19022,8 @@ class Volume(QuantitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16636,14 +19069,14 @@ class Volume(QuantitativeAttribute):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -16662,7 +19095,8 @@ class Density(QuantitativeAttribute):
          'close_mappings': ['PATO:0001019'],
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/materials/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16700,7 +19134,8 @@ class Density(QuantitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16746,14 +19181,14 @@ class Density(QuantitativeAttribute):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -16769,7 +19204,8 @@ class Pressure(QuantitativeAttribute):
          'close_mappings': ['PATO:0001025'],
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/materials/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16807,7 +19243,8 @@ class Pressure(QuantitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16853,14 +19290,14 @@ class Pressure(QuantitativeAttribute):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -16923,11 +19360,28 @@ class ChemicalReaction(EvaluatedActivity):
          'is_a': 'carried_out_by',
          'recommended': True,
          'slot_uri': 'prov:wasAssociatedWith'} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to specify the Temperature at which a ChemicalReaction takes place.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to specify the Temperature at which a ChemicalReaction takes place.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to specify the Pressure at which a ChemicalReaction takes place.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to specify the Pressure at which a ChemicalReaction takes place.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -16949,7 +19403,8 @@ class ChemicalReaction(EvaluatedActivity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -16988,7 +19443,8 @@ class ChemicalReaction(EvaluatedActivity):
                        'TimeInstant'],
          'notes': ['not in DCAT-AP'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -17087,11 +19543,15 @@ class StartingMaterial(MaterialEntity, ChemicalSubstanceMixin):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17114,7 +19574,24 @@ class StartingMaterial(MaterialEntity, ChemicalSubstanceMixin):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17130,11 +19607,12 @@ class StartingMaterial(MaterialEntity, ChemicalSubstanceMixin):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -17172,7 +19650,8 @@ class StartingMaterial(MaterialEntity, ChemicalSubstanceMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -17259,11 +19738,15 @@ class DissolvingSubstance(ChemicalSubstanceMixin, AgenticEntity):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17286,7 +19769,8 @@ class DissolvingSubstance(ChemicalSubstanceMixin, AgenticEntity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -17324,7 +19808,8 @@ class DissolvingSubstance(ChemicalSubstanceMixin, AgenticEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -17394,7 +19879,24 @@ class DissolvingSubstance(ChemicalSubstanceMixin, AgenticEntity):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17410,7 +19912,7 @@ class DissolvingSubstance(ChemicalSubstanceMixin, AgenticEntity):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17430,11 +19932,15 @@ class Reagent(MaterialEntity, ChemicalSubstanceMixin):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17457,7 +19963,24 @@ class Reagent(MaterialEntity, ChemicalSubstanceMixin):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17473,11 +19996,12 @@ class Reagent(MaterialEntity, ChemicalSubstanceMixin):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -17515,7 +20039,8 @@ class Reagent(MaterialEntity, ChemicalSubstanceMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -17598,11 +20123,15 @@ class ChemicalProduct(MaterialEntity, ChemicalSubstanceMixin):
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/',
          'mixins': ['ChemicalSubstanceMixin']})
 
-    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17625,7 +20154,24 @@ class ChemicalProduct(MaterialEntity, ChemicalSubstanceMixin):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17641,11 +20187,12 @@ class ChemicalProduct(MaterialEntity, ChemicalSubstanceMixin):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""The slot to provide a title for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -17683,7 +20230,8 @@ class ChemicalProduct(MaterialEntity, ChemicalSubstanceMixin):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""The slot to provide a description for the Entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -17770,11 +20318,15 @@ class Catalyst(ChemicalSubstanceMixin, AgenticEntity):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_concentration: Optional[list[Concentration]] = Field(default=[], description="""The slot to provide the Concentration of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin',
+                       'UVVisSpectroscopy',
+                       'DynamicLightScattering',
+                       'ElectroSprayIonizationMassSpectrometry',
+                       'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalSubstanceMixin'],
+    has_ph_value: Optional[list[PHValue]] = Field(default=[], description="""The slot to provide the PHValue of a ChemicalSubstance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'ChemicalSubstanceMixin'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17797,7 +20349,8 @@ class Catalyst(ChemicalSubstanceMixin, AgenticEntity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -17835,7 +20388,8 @@ class Catalyst(ChemicalSubstanceMixin, AgenticEntity):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -17905,7 +20459,24 @@ class Catalyst(ChemicalSubstanceMixin, AgenticEntity):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17921,7 +20492,7 @@ class Catalyst(ChemicalSubstanceMixin, AgenticEntity):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17946,7 +20517,24 @@ class Reactor(MaterialisticMixin, Device):
                    'has_qualitative_attribute, as it currently throws the error '
                    "'physical_state enumerations cannot be inlined' due to the fact "
                    'that we are using an enum here.']} })
-    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+                       'PhotoluminescenceMixin',
+                       'ElectrochemistryMixin',
+                       'PowderXRD',
+                       'SingleCrystalXRD',
+                       'XRayAbsorptionSpectroscopy',
+                       'InfraredSpectroscopy',
+                       'DRIFTS',
+                       'RamanSpectroscopy',
+                       'NMRSpectroscopy',
+                       'DynamicLightScattering',
+                       'SizeExclusionChromatography',
+                       'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
+                       'Microkinetics',
+                       'MonteCarlo',
+                       'AqueousStability'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17962,7 +20550,7 @@ class Reactor(MaterialisticMixin, Device):
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction'],
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
@@ -17976,7 +20564,8 @@ class Reactor(MaterialisticMixin, Device):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18014,7 +20603,8 @@ class Reactor(MaterialisticMixin, Device):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18084,7 +20674,8 @@ class Yield(QuantitativeAttribute):
          'exact_mappings': ['VOC4CAT:0005005'],
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18122,7 +20713,8 @@ class Yield(QuantitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18168,14 +20760,14 @@ class Yield(QuantitativeAttribute):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -18193,7 +20785,8 @@ class MolarEquivalent(QuantitativeAttribute):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18231,7 +20824,8 @@ class MolarEquivalent(QuantitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18277,14 +20871,14 @@ class MolarEquivalent(QuantitativeAttribute):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -18302,7 +20896,8 @@ class PercentageOfTotal(QuantitativeAttribute):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'qudt:Quantity',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18340,7 +20935,8 @@ class PercentageOfTotal(QuantitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18386,14 +20982,14 @@ class PercentageOfTotal(QuantitativeAttribute):
                                       'Quantity Kind vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTQuantityKindEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'slot_uri': 'qudt:hasQuantityKind'} })
     unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Restricts the allowable defined terms to the '
                                       'QUDT Unit vocabulary.',
                        'obligation_level': 'RECOMMENDED',
                        'range': 'QUDTUnitEnum'}],
-         'domain_of': ['QuantitativeAttribute'],
+         'domain_of': ['QuantitativeRange', 'QuantitativeAttribute'],
          'recommended': True,
          'slot_uri': 'qudt:unit'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
@@ -18439,7 +21035,8 @@ class SubstanceSampleCharacterizationDataset(Dataset):
          'slot_uri': 'dcat:contactPoint'} })
     creator: Optional[list[Agent]] = Field(default=[], description="""An entity responsible for producing the dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue', 'Dataset'], 'slot_uri': 'dcterms:creator'} })
     dataset_distribution: Optional[list[Distribution]] = Field(default=[], description="""An available Distribution for the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset'], 'slot_uri': 'dcat:distribution'} })
-    description: list[str] = Field(default=..., description="""A free-text account of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: list[str] = Field(default=..., description="""A free-text account of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18519,7 +21116,8 @@ class SubstanceSampleCharacterizationDataset(Dataset):
     theme: Optional[list[Concept]] = Field(default=[], description="""A category of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataService', 'Dataset'],
          'recommended': True,
          'slot_uri': 'dcat:theme'} })
-    title: list[str] = Field(default=..., description="""A name given to the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: list[str] = Field(default=..., description="""A name given to the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18619,7 +21217,8 @@ class ReactionMonitoringDataset(Dataset):
          'slot_uri': 'dcat:contactPoint'} })
     creator: Optional[list[Agent]] = Field(default=[], description="""An entity responsible for producing the dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue', 'Dataset'], 'slot_uri': 'dcterms:creator'} })
     dataset_distribution: Optional[list[Distribution]] = Field(default=[], description="""An available Distribution for the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset'], 'slot_uri': 'dcat:distribution'} })
-    description: list[str] = Field(default=..., description="""A free-text account of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: list[str] = Field(default=..., description="""A free-text account of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18699,7 +21298,8 @@ class ReactionMonitoringDataset(Dataset):
     theme: Optional[list[Concept]] = Field(default=[], description="""A category of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataService', 'Dataset'],
          'recommended': True,
          'slot_uri': 'dcat:theme'} })
-    title: list[str] = Field(default=..., description="""A name given to the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: list[str] = Field(default=..., description="""A name given to the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18807,7 +21407,8 @@ class SubstanceSampleCharacterization(DataGeneratingActivity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18846,7 +21447,8 @@ class SubstanceSampleCharacterization(DataGeneratingActivity):
                        'TimeInstant'],
          'notes': ['not in DCAT-AP'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -18973,7 +21575,8 @@ class ReactionMonitoring(DataGeneratingActivity):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19012,7 +21615,8 @@ class ReactionMonitoring(DataGeneratingActivity):
                        'TimeInstant'],
          'notes': ['not in DCAT-AP'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19106,7 +21710,8 @@ class Laboratory(Surrounding):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'ENVO:01001405',
          'from_schema': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19144,7 +21749,8 @@ class Laboratory(Surrounding):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19204,7 +21810,7 @@ class MaterialDescriptorMixin(ConfiguredBaseModel):
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
          'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
-lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
+lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
 
 
 class DFTSettingsMixin(ConfiguredBaseModel):
@@ -19220,10 +21826,10 @@ class DFTSettingsMixin(ConfiguredBaseModel):
          'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
-geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
+geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
          'slot_uri': 'coremeta4cat:convergence_criteria'} })
     k_point_mesh: Optional[list[str]] = Field(default=[], description="""Monkhorst-Pack k-point mesh used for Brillouin zone sampling
-(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
+(e.g. \"4x4x1\" for a surface slab, \"8x8x8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
 
 
 class Simulation(DataGeneratingActivity):
@@ -19304,7 +21910,8 @@ instance. Multiple properties may be computed in a single simulation run.""", js
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[list[str]] = Field(default=[], description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19343,7 +21950,8 @@ instance. Multiple properties may be computed in a single simulation run.""", js
                        'TimeInstant'],
          'notes': ['not in DCAT-AP'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[list[str]] = Field(default=[], description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19442,7 +22050,8 @@ class SimulationMethod(Plan):
          'class_uri': 'OBI:0000272',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19480,7 +22089,8 @@ class SimulationMethod(Plan):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19541,7 +22151,7 @@ HSE06). The choice of functional directly affects accuracy.""", json_schema_extr
          'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
-geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
+geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
          'slot_uri': 'coremeta4cat:convergence_criteria'} })
     dft_u_parameters: Optional[list[str]] = Field(default=[], description="""Hubbard U correction parameters (DFT+U). Specify element, orbital, and
 U value (e.g. \"Fe d: U=4.0 eV, J=0.0 eV\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFT'], 'slot_uri': 'coremeta4cat:dft_u_parameters'} })
@@ -19550,7 +22160,8 @@ calculation. Set to true for systems containing magnetic elements.""", json_sche
     total_energy_per_atom: Optional[list[float]] = Field(default=[], description="""Total DFT ground-state energy divided by number of atoms in the unit cell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFT'],
          'slot_uri': 'coremeta4cat:total_energy_per_atom',
          'unit': {'ucum_code': 'eV'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19588,7 +22199,8 @@ calculation. Set to true for systems containing magnetic elements.""", json_sche
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19653,7 +22265,8 @@ EAM). Include parametrisation source or reference.""", json_schema_extra = { "li
     ensemble_type: Optional[list[str]] = Field(default=[], description="""Statistical ensemble used in MD (e.g. NVE, NVT, NPT). Determines which
 thermodynamic quantities are conserved.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularDynamics'], 'slot_uri': 'coremeta4cat:ensemble_type'} })
     number_of_atoms: Optional[list[int]] = Field(default=[], description="""Number of atoms in the simulation cell or supercell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MolecularDynamics'], 'slot_uri': 'coremeta4cat:number_of_atoms'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19691,7 +22304,8 @@ thermodynamic quantities are conserved.""", json_schema_extra = { "linkml_meta":
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19749,7 +22363,7 @@ class Microkinetics(SimulationMethod):
 activation energy) for each elementary step in the reaction network.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'], 'slot_uri': 'NCIT:C94967'} })
     solver_type: Optional[list[str]] = Field(default=[], description="""Numerical solver used for the microkinetic rate equations (e.g. LSODA,
 stiff ODE solver, steady-state Newton method).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'], 'slot_uri': 'coremeta4cat:solver_type'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -19762,19 +22376,24 @@ stiff ODE solver, steady-state Newton method).""", json_schema_extra = { "linkml
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
-    pressure: Optional[list[float]] = Field(default=[], description="""Total pressure used in microkinetic or Monte Carlo simulation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'],
-         'slot_uri': 'coremeta4cat:pressure',
-         'unit': {'ucum_code': 'bar'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
+    has_pressure: Optional[list[Pressure]] = Field(default=[], description="""The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin', 'ChemicalReaction', 'Microkinetics'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     surface_coverage: Optional[list[float]] = Field(default=[], description="""Surface coverage of adsorbed species (fraction of surface sites occupied).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'], 'slot_uri': 'coremeta4cat:surface_coverage'} })
     activation_energy: Optional[list[float]] = Field(default=[], description="""Activation energy for each elementary step in the reaction mechanism.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'],
          'slot_uri': 'coremeta4cat:activation_energy',
          'unit': {'ucum_code': 'eV'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19812,7 +22431,8 @@ stiff ODE solver, steady-state Newton method).""", json_schema_extra = { "linkml
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19869,7 +22489,7 @@ class MonteCarlo(SimulationMethod):
 
     interaction_potential: Optional[list[str]] = Field(default=[], description="""Interaction potential or Hamiltonian used to compute energies in MC moves.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:interaction_potential'} })
     number_of_steps: Optional[list[int]] = Field(default=[], description="""Total number of Monte Carlo moves or trial configurations generated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:number_of_steps'} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -19882,18 +22502,22 @@ class MonteCarlo(SimulationMethod):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     lattice_size_type: Optional[list[str]] = Field(default=[], description="""Lattice geometry and dimensions used in lattice-based MC (e.g.
-\"100×100 square lattice\", \"hexagonal 50×50\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:lattice_size_type'} })
+\"100x100 square lattice\", \"hexagonal 50x50\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:lattice_size_type'} })
     acceptance_criteria: Optional[list[str]] = Field(default=[], description="""Criterion for accepting or rejecting MC moves (e.g. Metropolis,
 Kawasaki, heat-bath algorithm).""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:acceptance_criteria'} })
     equilibration_steps: Optional[list[int]] = Field(default=[], description="""Number of MC steps used for equilibration before data collection begins.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:equilibration_steps'} })
     sampling_interval: Optional[list[int]] = Field(default=[], description="""Interval between successive MC snapshots used for property averaging.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MonteCarlo'], 'slot_uri': 'coremeta4cat:sampling_interval'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19931,7 +22555,8 @@ Kawasaki, heat-bath algorithm).""", json_schema_extra = { "linkml_meta": {'domai
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -19987,7 +22612,8 @@ class CalculatedProperty(QualitativeAttribute):
          'class_uri': 'IAO:0000109',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20025,7 +22651,8 @@ class CalculatedProperty(QualitativeAttribute):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20097,7 +22724,8 @@ metric). Zero for phases on the hull; positive values indicate metastability."""
     competing_phases: Optional[list[str]] = Field(default=[], description="""List of stable competing phases used in convex hull construction
 (e.g. \"Fe2O3, Fe3O4, FeO, Fe\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermodynamicStability'],
          'slot_uri': 'coremeta4cat:competing_phases'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20135,7 +22763,8 @@ metric). Zero for phases on the hull; positive values indicate metastability."""
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20191,7 +22820,7 @@ class Piezoelectricity(CalculatedProperty):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:Piezoelectricity',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
-    piezoelectric_tensor: Optional[list[str]] = Field(default=[], description="""Components of the piezoelectric tensor e_ij (C/m²) or d_ij (pC/N),
+    piezoelectric_tensor: Optional[list[str]] = Field(default=[], description="""Components of the piezoelectric tensor e_ij (C/m2) or d_ij (pC/N),
 describing the coupling between stress and electric polarization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Piezoelectricity'],
          'slot_uri': 'coremeta4cat:piezoelectric_tensor'} })
     crystal_symmetry: Optional[list[str]] = Field(default=[], description="""Point group or space group symmetry of the crystal structure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Piezoelectricity'], 'slot_uri': 'coremeta4cat:crystal_symmetry'} })
@@ -20199,7 +22828,8 @@ describing the coupling between stress and electric polarization.""", json_schem
     ionic_electronic_contributions: Optional[list[str]] = Field(default=[], description="""Decomposition of the piezoelectric or dielectric response into ionic
 (nuclear) and electronic contributions.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Piezoelectricity'],
          'slot_uri': 'coremeta4cat:ionic_electronic_contributions'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20237,7 +22867,8 @@ describing the coupling between stress and electric polarization.""", json_schem
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20305,7 +22936,8 @@ elastic response of the material.""", json_schema_extra = { "linkml_meta": {'dom
     young_modulus: Optional[list[float]] = Field(default=[], description="""Young's modulus (stiffness under uniaxial tension or compression).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElasticConstants'],
          'slot_uri': 'coremeta4cat:young_modulus',
          'unit': {'ucum_code': 'GPa'}} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20343,7 +22975,8 @@ elastic response of the material.""", json_schema_extra = { "linkml_meta": {'dom
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20415,7 +23048,8 @@ periodic interactions between slab images.""", json_schema_extra = { "linkml_met
     surface_termination_method: Optional[list[str]] = Field(default=[], description="""Method used to terminate the slab and handle dangling bonds
 (e.g. H-passivation, OH-termination, dipole correction).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces'],
          'slot_uri': 'coremeta4cat:surface_termination_method'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20453,7 +23087,8 @@ periodic interactions between slab images.""", json_schema_extra = { "linkml_met
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20520,16 +23155,17 @@ the polarization changes with atomic displacements.""", json_schema_extra = { "l
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
          'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
-lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
+lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     energy_cutoff: Optional[list[float]] = Field(default=[], description="""Plane-wave kinetic energy cutoff for the basis set expansion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
          'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
-geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
+geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
          'slot_uri': 'coremeta4cat:convergence_criteria'} })
     k_point_mesh: Optional[list[str]] = Field(default=[], description="""Monkhorst-Pack k-point mesh used for Brillouin zone sampling
-(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+(e.g. \"4x4x1\" for a surface slab, \"8x8x8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20567,7 +23203,8 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_sche
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20628,7 +23265,7 @@ class PhononDispersion(CalculatedProperty, MaterialDescriptorMixin):
     force_constant_method: Optional[list[str]] = Field(default=[], description="""Method used to compute the interatomic force constants (e.g. finite
 differences / supercell method, DFPT/linear response).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhononDispersion'],
          'slot_uri': 'coremeta4cat:force_constant_method'} })
-    kq_point_mesh: Optional[list[str]] = Field(default=[], description="""k/q-point mesh for phonon Brillouin zone sampling (e.g. \"8×8×8\").
+    kq_point_mesh: Optional[list[str]] = Field(default=[], description="""k/q-point mesh for phonon Brillouin zone sampling (e.g. \"8x8x8\").
 Distinct from the electronic k-point mesh.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhononDispersion'], 'slot_uri': 'coremeta4cat:kq_point_mesh'} })
     smearing_parameter: Optional[list[float]] = Field(default=[], description="""Smearing or broadening parameter applied to the phonon density of states.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PhononDispersion'],
          'slot_uri': 'coremeta4cat:smearing_parameter',
@@ -20639,8 +23276,9 @@ Imaginary modes indicate dynamical instability of the structure.""", json_schema
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
          'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
-lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20678,7 +23316,8 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { 
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20748,16 +23387,17 @@ class EquationsOfState(CalculatedProperty, DFTSettingsMixin, MaterialDescriptorM
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
          'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
-lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
+lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     energy_cutoff: Optional[list[float]] = Field(default=[], description="""Plane-wave kinetic energy cutoff for the basis set expansion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
          'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
-geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
+geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
          'slot_uri': 'coremeta4cat:convergence_criteria'} })
     k_point_mesh: Optional[list[str]] = Field(default=[], description="""Monkhorst-Pack k-point mesh used for Brillouin zone sampling
-(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+(e.g. \"4x4x1\" for a surface slab, \"8x8x8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20795,7 +23435,8 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_sche
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20853,7 +23494,7 @@ class AqueousStability(CalculatedProperty, MaterialDescriptorMixin):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'mixins': ['MaterialDescriptorMixin']})
 
-    ph_range: Optional[list[str]] = Field(default=[], description="""pH range covered in the Pourbaix stability diagram (e.g. \"0–14\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'], 'slot_uri': 'coremeta4cat:ph_range'} })
+    ph_range: Optional[list[str]] = Field(default=[], description="""pH range covered in the Pourbaix stability diagram (e.g. \"0-14\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'], 'slot_uri': 'coremeta4cat:ph_range'} })
     potential_range: Optional[list[str]] = Field(default=[], description="""Electrode potential range covered in the Pourbaix diagram
 (e.g. \"-2 to +2 V vs SHE\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'], 'slot_uri': 'coremeta4cat:potential_range'} })
     solvation_model: Optional[list[str]] = Field(default=[], description="""Implicit solvation model used to account for aqueous environment
@@ -20861,7 +23502,7 @@ class AqueousStability(CalculatedProperty, MaterialDescriptorMixin):
     ionic_strength: Optional[list[float]] = Field(default=[], description="""Ionic strength of the electrolyte solution modelled.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'],
          'slot_uri': 'coremeta4cat:ionic_strength',
          'unit': {'ucum_code': 'mol/L'}} })
-    temperature: Optional[list[float]] = Field(default=[], description="""Temperature during a process or measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
+    has_temperature: Optional[list[Temperature]] = Field(default=[], description="""The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SonochemicalSynthesis',
                        'PhotoluminescenceMixin',
                        'ElectrochemistryMixin',
                        'PowderXRD',
@@ -20874,17 +23515,21 @@ class AqueousStability(CalculatedProperty, MaterialDescriptorMixin):
                        'DynamicLightScattering',
                        'SizeExclusionChromatography',
                        'HighPerformanceLiquidChromatographyMassSpectrometry',
+                       'MaterialisticMixin',
+                       'ChemicalReaction',
                        'Microkinetics',
                        'MonteCarlo',
                        'AqueousStability'],
-         'slot_uri': 'AFR:0001584',
-         'unit': {'ucum_code': 'Cel'}} })
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'SIO:000008'} })
     material_composition: Optional[list[str]] = Field(default=[], description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
          'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
-lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20922,7 +23567,8 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { 
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -20990,7 +23636,7 @@ Miller indices (e.g. \"Sigma5 (310)[001]\").""", json_schema_extra = { "linkml_m
          'slot_uri': 'coremeta4cat:grain_boundary_energy',
          'unit': {'ucum_code': 'J/m2'}} })
     simulation_cell_size: Optional[list[str]] = Field(default=[], description="""Dimensions of the simulation cell used to model the grain boundary
-(e.g. \"10×10×30 nm\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'],
+(e.g. \"10x10x30 nm\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'],
          'slot_uri': 'coremeta4cat:simulation_cell_size'} })
     gb_excess_volume: Optional[list[float]] = Field(default=[], description="""Excess volume per unit area associated with the grain boundary.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GrainBoundaries'], 'slot_uri': 'coremeta4cat:gb_excess_volume'} })
     gb_structural_units: Optional[list[str]] = Field(default=[], description="""Description of the structural units (repeating atomic motifs) that
@@ -21003,8 +23649,9 @@ at the grain boundary (e.g. segregation energy per defect type).""", json_schema
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
          'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
-lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -21042,7 +23689,8 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { 
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -21115,16 +23763,17 @@ band structure (e.g. \"Gamma-X-M-Gamma-R\" for cubic, following SeeK-path conven
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
          'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
-lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
+lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     energy_cutoff: Optional[list[float]] = Field(default=[], description="""Plane-wave kinetic energy cutoff for the basis set expansion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
          'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
-geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
+geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
          'slot_uri': 'coremeta4cat:convergence_criteria'} })
     k_point_mesh: Optional[list[str]] = Field(default=[], description="""Monkhorst-Pack k-point mesh used for Brillouin zone sampling
-(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+(e.g. \"4x4x1\" for a surface slab, \"8x8x8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -21162,7 +23811,8 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_sche
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -21241,8 +23891,9 @@ polarization endpoint in the Berry-phase polarization calculation.""", json_sche
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
          'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
-lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -21280,7 +23931,8 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { 
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -21360,16 +24012,17 @@ optical band gap.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandG
 Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
          'slot_uri': 'coremeta4cat:material_composition'} })
     crystal_structure: Optional[list[str]] = Field(default=[], description="""Crystal structure of the simulated material, including space group and
-lattice parameters (e.g. \"Fm-3m, a=3.92 Å for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
+lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'], 'slot_uri': 'SIO:001100'} })
     energy_cutoff: Optional[list[float]] = Field(default=[], description="""Plane-wave kinetic energy cutoff for the basis set expansion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
          'slot_uri': 'coremeta4cat:energy_cutoff',
          'unit': {'ucum_code': 'eV'}} })
     convergence_criteria: Optional[list[str]] = Field(default=[], description="""Convergence thresholds applied during self-consistent field (SCF) and/or
-geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
+geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin', 'DFT'],
          'slot_uri': 'coremeta4cat:convergence_criteria'} })
     k_point_mesh: Optional[list[str]] = Field(default=[], description="""Monkhorst-Pack k-point mesh used for Brillouin zone sampling
-(e.g. \"4×4×1\" for a surface slab, \"8×8×8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
-    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+(e.g. \"4x4x1\" for a surface slab, \"8x8x8\" for a bulk cell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DFTSettingsMixin'], 'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -21407,7 +24060,8 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_sche
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -21455,7 +24109,7 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).""", json_sche
          'slot_uri': 'rdf:type'} })
 
 
-class CatalysisDataset(Dataset):
+class CatalysisDataset(Dataset, ClassifierMixin):
     """
     A dcat:Dataset that contains research data in the field of catalysis.
 
@@ -21472,6 +24126,7 @@ class CatalysisDataset(Dataset):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'dcat:Dataset',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat',
+         'mixins': ['ClassifierMixin'],
          'slot_usage': {'is_about_activity': {'description': 'The catalytic Reaction '
                                                              'that this dataset is '
                                                              'about (e.g. a dataset '
@@ -21524,6 +24179,19 @@ class CatalysisDataset(Dataset):
                                              'range': 'DataGeneratingActivity',
                                              'recommended': True}}})
 
+    type: Optional[list[DefinedTerm]] = Field(default=[], description="""A type of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The catalysis research field, provided as a voc4cat term from
+CatalysisResearchFieldEnum. This is the primary machine-actionable
+classification of the dataset's domain.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+                       'description': 'Classify the dataset by catalysis research '
+                                      'field using voc4cat.',
+                       'obligation_level': 'RECOMMENDED',
+                       'range': 'CatalysisResearchFieldEnum'}],
+         'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
     access_rights: Optional[RightsStatement] = Field(default=None, description="""Information that indicates whether the Dataset is publicly accessible, has access restrictions or is not public.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataService', 'Dataset'], 'slot_uri': 'dcterms:accessRights'} })
     applicable_legislation: Optional[list[LegalResource]] = Field(default=[], description="""The legislation that mandates the creation or management of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue',
                        'DataService',
@@ -21537,7 +24205,8 @@ class CatalysisDataset(Dataset):
          'slot_uri': 'dcat:contactPoint'} })
     creator: Optional[list[Agent]] = Field(default=[], description="""An entity responsible for producing the dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Catalogue', 'Dataset'], 'slot_uri': 'dcterms:creator'} })
     dataset_distribution: Optional[list[Distribution]] = Field(default=[], description="""An available Distribution for the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset'], 'slot_uri': 'dcat:distribution'} })
-    description: list[str] = Field(default=..., description="""A free-text account of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    description: list[str] = Field(default=..., description="""A free-text account of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -21617,7 +24286,8 @@ class CatalysisDataset(Dataset):
     theme: Optional[list[Concept]] = Field(default=[], description="""A category of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataService', 'Dataset'],
          'recommended': True,
          'slot_uri': 'dcat:theme'} })
-    title: list[str] = Field(default=..., description="""A name given to the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity',
+    title: list[str] = Field(default=..., description="""A name given to the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
                        'AgenticEntity',
                        'Any',
                        'Attribution',
@@ -21655,8 +24325,6 @@ class CatalysisDataset(Dataset):
                        'Surrounding',
                        'TimeInstant'],
          'slot_uri': 'dcterms:title'} })
-    type: Optional[list[Concept]] = Field(default=[], description="""A type of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
-         'slot_uri': 'dcterms:type'} })
     version: Optional[str] = Field(default=None, description="""The version indicator (name or identifier) of a resource.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset'], 'slot_uri': 'dcat:version'} })
     version_notes: Optional[list[str]] = Field(default=[], description="""A description of the differences between this version and a previous version of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset'], 'slot_uri': 'adms:versionNotes'} })
     was_generated_by: list[DataGeneratingActivity] = Field(default=..., description="""The DataGeneratingActivity (Synthesis, Characterization, or Simulation)
@@ -21706,6 +24374,7 @@ Catalogue.model_rebuild()
 CatalogueRecord.model_rebuild()
 Checksum.model_rebuild()
 ClassifierMixin.model_rebuild()
+QuantitativeRange.model_rebuild()
 Activity.model_rebuild()
 AgenticEntity.model_rebuild()
 DataGeneratingActivity.model_rebuild()
@@ -21718,7 +24387,7 @@ AnalysisDataset.model_rebuild()
 DatasetSeries.model_rebuild()
 DefinedTerm.model_rebuild()
 Device.model_rebuild()
-ReactorDesignType.model_rebuild()
+ChemicalReactor.model_rebuild()
 ElectrochemicalReactor.model_rebuild()
 CSTR.model_rebuild()
 PlugFlowReactor.model_rebuild()
@@ -21730,7 +24399,7 @@ FluidizedBedReactor.model_rebuild()
 Distribution.model_rebuild()
 Entity.model_rebuild()
 EvaluatedActivity.model_rebuild()
-Reaction.model_rebuild()
+CatalyticReaction.model_rebuild()
 EvaluatedEntity.model_rebuild()
 AnalysisSourceData.model_rebuild()
 Kind.model_rebuild()
@@ -21782,7 +24451,24 @@ SizeExclusionChromatography.model_rebuild()
 HighPerformanceLiquidChromatographyMassSpectrometry.model_rebuild()
 ProductIdentificationMethod.model_rebuild()
 QualitativeAttribute.model_rebuild()
+Atmosphere.model_rebuild()
+CalcinationGaseousEnvironment.model_rebuild()
+HeatingProcedure.model_rebuild()
+SamplePretreatment.model_rebuild()
+VesselType.model_rebuild()
+OperationMode.model_rebuild()
 QuantitativeAttribute.model_rebuild()
+Duration.model_rebuild()
+VolumeFlowRate.model_rebuild()
+HeatingRate.model_rebuild()
+AngularVelocity.model_rebuild()
+EnergyQuantity.model_rebuild()
+ElectricPotential.model_rebuild()
+PowerQuantity.model_rebuild()
+LengthQuantity.model_rebuild()
+PlaneAngle.model_rebuild()
+Wavenumber.model_rebuild()
+MassToChargeRatio.model_rebuild()
 Relationship.model_rebuild()
 Software.model_rebuild()
 SupportiveEntity.model_rebuild()

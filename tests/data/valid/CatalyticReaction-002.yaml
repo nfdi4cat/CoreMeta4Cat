@@ -15,24 +15,36 @@
 
 id: "coremeta4cat:REAC_002_DRM_NiCeO2"
 catalyst_quantity:
-  - 0.2
+  - value: 0.2
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+    unit: g
 catalyst_type:
   - "heterogeneous, supported metal (Ni0 after in situ reduction of NiO/CeO2)"
 reactant:
-  - "CH4 (99.995% purity, Linde)"
-  - "CO2 (99.998% purity, Linde)"
-  - "N2 balance (99.999% purity, internal standard for GC quantification)"
+  - id: "https://pubchem.ncbi.nlm.nih.gov/compound/297"
+    title: "CH4 (99.995% purity, Linde)"
+  - id: "https://pubchem.ncbi.nlm.nih.gov/compound/280"
+    title: "CO2 (99.998% purity, Linde)"
+  - id: "https://pubchem.ncbi.nlm.nih.gov/compound/947"
+    title: "N2 balance (99.999% purity, internal standard for GC quantification)"
 reactor_temperature_range:
-  - "600-800 deg C"
+  - min_value: 600
+    max_value: 800
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/DEG_C
 experiment_pressure:
-  - 1.0
-atmosphere:
-  - "CH4/CO2/N2 = 45:45:10 vol%, total flow 100 mL/min (STP), GHSV = 30000 mL/(g*h)"
+  - value: 1.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/ATM
+has_atmosphere:
+  - value: "CH4/CO2/N2 = 45:45:10 vol%, total flow 100 mL/min (STP), GHSV = 30000 mL/(g*h)"
 feed_composition_range:
-  - "stoichiometric DRM: CH4/CO2 = 1:1 (molar)"
-  - "CO2-rich condition: CH4/CO2 = 1:1.5 to suppress carbon deposition"
-experiment_duration:
-  - 20.0
+  - description: "stoichiometric DRM: CH4/CO2 = 1:1 (molar)"
+  - description: "CO2-rich condition: CH4/CO2 = 1:1.5 to suppress carbon deposition"
+has_experiment_duration:
+  value: 20.0
+  has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+  unit: https://qudt.org/vocab/unit/HR
 carried_out_by:
   - id: "coremeta4cat:REACT_003_FixedBed_DRM"
     title: "quartz fixed-bed plug-flow reactor (DRM)"

@@ -101,6 +101,8 @@ classes:
   CatalysisDataset:
     is_a: Dataset
     class_uri: dcat:Dataset
+    mixins:
+      - ClassifierMixin
     description: |-
       A dcat:Dataset that contains research data in the field of catalysis.
 

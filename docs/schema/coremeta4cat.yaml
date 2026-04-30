@@ -38,7 +38,7 @@ description: "The CoreMeta4Cat describes the minimum information which must be r
   \ base)\n    +-- coremeta4cat_synthesis_ap         (Step 3 \u2014 Synthesis, PreparationMethod,\
   \ mixins)\n    +-- coremeta4cat_characterization_ap  (Step 4 \u2014 Characterization,\
   \ 24 techniques, mixins)\n    +-- coremeta4cat_reaction_ap          (Step 5 \u2014\
-  \ Reaction, 8 ReactorDesignTypes)\n    +-- coremeta4cat_simulation_ap        (Step\
+  \ Reaction, 8 Reactor subclasses)\n    +-- coremeta4cat_simulation_ap        (Step\
   \ 6 \u2014 Simulation, 4 methods, 12 properties, mixins)"
 title: CoreMeta4cat Metadata Reference Model
 id: https://w3id.org/nfdi4cat/coremeta4cat
@@ -653,15 +653,376 @@ enums:
           electricity, often found in high-energy environments such as stars or lightning.
         meaning: PATO:0015012
 slots:
-  atmosphere:
-    name: atmosphere
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/atmosphere
+  has_flow_rate:
+    name: has_flow_rate
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_flow_rate
+    description: Volumetric flow rate of a gas or liquid.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    owner: ElectroSprayIonizationMassSpectrometry
+    domain_of:
+    - FlameSprayPyrolysis
+    - ChromatographyMixin
+    - DRIFTS
+    - ElectroSprayIonizationMassSpectrometry
+    range: VolumeFlowRate
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_heating_rate:
+    name: has_heating_rate
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_heating_rate
+    description: Temperature ramp rate during a heating or cooling step.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    owner: TemperatureProgramMixin
+    domain_of:
+    - TemperatureProgramMixin
+    range: HeatingRate
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_angular_velocity:
+    name: has_angular_velocity
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_angular_velocity
+    description: Rotational speed of stirring, mixing, or sample spinning.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: AngularVelocity
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_energy:
+    name: has_energy
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_energy
+    description: Energy of a particle, photon, or beam.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: EnergyQuantity
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_electric_potential:
+    name: has_electric_potential
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_electric_potential
+    description: Electric potential (voltage) applied to a beam or electrode.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: ElectricPotential
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_power:
+    name: has_power
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_power
+    description: Power (energy per unit time) of a light source or beam.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: PowerQuantity
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_length:
+    name: has_length
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_length
+    description: A length or spatial dimension measurement.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: LengthQuantity
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_wavelength:
+    name: has_wavelength
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_wavelength
+    description: Wavelength of electromagnetic radiation.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_length
+    slot_uri: SIO:000008
+    range: LengthQuantity
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_plane_angle:
+    name: has_plane_angle
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_plane_angle
+    description: A plane angle measurement (e.g. scattering angle in degrees).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: PlaneAngle
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_wavenumber_quantity:
+    name: has_wavenumber_quantity
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_wavenumber_quantity
+    description: Wavenumber of radiation in spectroscopic measurements (cm^-1).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: Wavenumber
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_mz_quantity:
+    name: has_mz_quantity
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_mz_quantity
+    description: Mass-to-charge ratio in mass spectrometric measurements.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    range: MassToChargeRatio
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_drying_temperature:
+    name: has_drying_temperature
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_drying_temperature
+    description: Temperature applied during the drying step.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_temperature
+    slot_uri: SIO:000008
+    owner: DryingMixin
+    domain_of:
+    - DryingMixin
+    range: Temperature
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_drying_duration:
+    name: has_drying_duration
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_drying_duration
+    description: Duration of the drying step.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_duration
+    slot_uri: SIO:000008
+    owner: DryingMixin
+    domain_of:
+    - DryingMixin
+    range: Duration
+    inlined: true
+    inlined_as_list: true
+  has_calcination_temperature_range:
+    name: has_calcination_temperature_range
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_calcination_temperature_range
+    description: 'Temperature range of the calcination programme (initial -> final
+      temperature),
+
+      provided as a QuantitativeRange. Unit: Degree Celsius.'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - coremeta4cat:hasCalcinationTemperatureRange
+    slot_uri: coremeta4cat:hasCalcinationTemperatureRange
+    owner: CalcinationMixin
+    domain_of:
+    - CalcinationMixin
+    range: QuantitativeRange
+    inlined: true
+    inlined_as_list: true
+  has_calcination_dwelling_time:
+    name: has_calcination_dwelling_time
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_calcination_dwelling_time
+    description: Time held at the final calcination temperature.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_duration
+    slot_uri: SIO:000008
+    owner: CalcinationMixin
+    domain_of:
+    - CalcinationMixin
+    range: Duration
+    inlined: true
+    inlined_as_list: true
+  has_calcination_heating_rate:
+    name: has_calcination_heating_rate
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_calcination_heating_rate
+    description: Temperature ramp rate during the calcination step.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_heating_rate
+    slot_uri: SIO:000008
+    owner: CalcinationMixin
+    domain_of:
+    - CalcinationMixin
+    range: HeatingRate
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_calcination_gas_flow_rate:
+    name: has_calcination_gas_flow_rate
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_calcination_gas_flow_rate
+    description: Gas flow rate maintained during calcination.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_flow_rate
+    slot_uri: SIO:000008
+    owner: CalcinationMixin
+    domain_of:
+    - CalcinationMixin
+    range: VolumeFlowRate
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_stirring_speed:
+    name: has_stirring_speed
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_stirring_speed
+    description: Rotational speed of stirring or agitation.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_angular_velocity
+    slot_uri: SIO:000008
+    owner: MolecularSynthesis
+    domain_of:
+    - MolecularSynthesis
+    range: AngularVelocity
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_stirring_duration:
+    name: has_stirring_duration
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_stirring_duration
+    description: Duration of stirring or agitation.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_duration
+    slot_uri: SIO:000008
+    owner: MolecularSynthesis
+    domain_of:
+    - MolecularSynthesis
+    range: Duration
+    inlined: true
+    inlined_as_list: true
+  has_experiment_duration:
+    name: has_experiment_duration
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_experiment_duration
+    description: Total duration of the experiment or measurement run.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_duration
+    slot_uri: SIO:000008
+    owner: CatalyticReaction
+    domain_of:
+    - PowderXRD
+    - CatalyticReaction
+    range: Duration
+    inlined: true
+    inlined_as_list: true
+  has_sample_mass:
+    name: has_sample_mass
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_sample_mass
+    description: Mass of the sample used in a process or measurement.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_mass
+    slot_uri: SIO:000008
+    owner: BET
+    domain_of:
+    - Thermogravimetry
+    - BET
+    range: Mass
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_injection_volume:
+    name: has_injection_volume
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_injection_volume
+    description: Volume injected in a chromatographic or mass spectrometric analysis.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_volume
+    slot_uri: SIO:000008
+    owner: ChromatographyMixin
+    domain_of:
+    - ChromatographyMixin
+    range: Volume
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_integration_time:
+    name: has_integration_time
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_integration_time
+    description: Integration or acquisition time per measurement step.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_duration
+    slot_uri: SIO:000008
+    owner: PhotoluminescenceSpectroscopy
+    domain_of:
+    - RamanSpectroscopy
+    - PhotoluminescenceSpectroscopy
+    range: Duration
+    inlined: true
+    inlined_as_list: true
+  has_atmosphere:
+    name: has_atmosphere
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_atmosphere
     description: Gaseous environment or atmospheric conditions during a process.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - coremeta4cat:atmosphere
-    slot_uri: coremeta4cat:atmosphere
-    owner: Reaction
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: CatalyticReaction
     domain_of:
     - ThermalSynthesisMixin
     - MolecularSynthesis
@@ -673,100 +1034,121 @@ slots:
     - RamanSpectroscopy
     - NMRSpectroscopy
     - Thermogravimetry
-    - Reaction
-    range: string
+    - CatalyticReaction
+    range: Atmosphere
+    recommended: true
     multivalued: true
-  temperature:
-    name: temperature
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/temperature
-    description: Temperature during a process or measurement.
+    inlined: true
+    inlined_as_list: true
+  has_drying_atmosphere:
+    name: has_drying_atmosphere
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_drying_atmosphere
+    description: Atmosphere maintained during the drying step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - AFR:0001584
-    slot_uri: AFR:0001584
-    owner: AqueousStability
+    - SIO:000008
+    is_a: has_atmosphere
+    slot_uri: SIO:000008
+    owner: DryingMixin
     domain_of:
-    - SonochemicalSynthesis
-    - PhotoluminescenceMixin
-    - ElectrochemistryMixin
-    - PowderXRD
-    - SingleCrystalXRD
-    - XRayAbsorptionSpectroscopy
-    - InfraredSpectroscopy
-    - DRIFTS
-    - RamanSpectroscopy
-    - NMRSpectroscopy
-    - DynamicLightScattering
-    - SizeExclusionChromatography
-    - HighPerformanceLiquidChromatographyMassSpectrometry
-    - Microkinetics
-    - MonteCarlo
-    - AqueousStability
-    range: float
+    - DryingMixin
+    range: Atmosphere
+    recommended: true
     multivalued: true
-    unit:
-      ucum_code: Cel
-  equipment:
-    name: equipment
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/equipment
-    description: Equipment or instrument used in a process.
+    inlined: true
+    inlined_as_list: true
+  has_calcination_atmosphere:
+    name: has_calcination_atmosphere
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_calcination_atmosphere
+    description: Gaseous environment maintained during the calcination step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0000187
-    slot_uri: VOC4CAT:0000187
-    owner: Characterization
+    - SIO:000008
+    is_a: has_atmosphere
+    slot_uri: SIO:000008
+    owner: CalcinationMixin
     domain_of:
-    - ThermalSynthesisMixin
-    - Characterization
-    range: string
+    - CalcinationMixin
+    range: CalcinationGaseousEnvironment
+    recommended: true
     multivalued: true
-  flow_rate:
-    name: flow_rate
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/flow_rate
-    description: Flow rate of a fluid or gas.
+    inlined: true
+    inlined_as_list: true
+  has_heating_procedure:
+    name: has_heating_procedure
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_heating_procedure
+    description: Heating procedure or thermal programme applied.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - coremeta4cat:flow_rate
-    slot_uri: coremeta4cat:flow_rate
-    owner: ElectroSprayIonizationMassSpectrometry
-    domain_of:
-    - FlameSprayPyrolysis
-    - ChromatographyMixin
-    - DRIFTS
-    - ElectroSprayIonizationMassSpectrometry
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: mL/min
-  heating_rate:
-    name: heating_rate
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/heating_rate
-    description: Rate at which temperature is increased during a process.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - coremeta4cat:heating_rate
-    slot_uri: coremeta4cat:heating_rate
-    owner: TemperatureProgramMixin
-    domain_of:
-    - TemperatureProgramMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: Cel/min
-  heating_procedure:
-    name: heating_procedure
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/heating_procedure
-    description: Description of the heating procedure applied.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - coremeta4cat:heating_procedure
-    slot_uri: coremeta4cat:heating_procedure
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
     owner: GCMS
     domain_of:
     - TemperatureProgramMixin
     - GCMS
-    range: string
+    range: HeatingProcedure
+    recommended: true
     multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_sample_pretreatment:
+    name: has_sample_pretreatment
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_sample_pretreatment
+    description: Pre-treatment applied to the sample before a process or measurement.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: Characterization
+    domain_of:
+    - Synthesis
+    - Characterization
+    range: SamplePretreatment
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_vessel_type:
+    name: has_vessel_type
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_vessel_type
+    description: Type of reaction or synthesis vessel used.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: ThermalSynthesisMixin
+    domain_of:
+    - ThermalSynthesisMixin
+    range: VesselType
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_operation_mode:
+    name: has_operation_mode
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_operation_mode
+    description: Operation mode of an instrument or process.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: ElectroSprayIonizationMassSpectrometry
+    domain_of:
+    - PowderXRD
+    - XRayAbsorptionSpectroscopy
+    - InfraredSpectroscopy
+    - TransmissionElectronMicroscopy
+    - Thermogravimetry
+    - ElectroSprayIonizationMassSpectrometry
+    range: OperationMode
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   number_of_cycles:
     name: number_of_cycles
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/number_of_cycles
@@ -785,79 +1167,6 @@ slots:
     - CyclicVoltammetry
     range: integer
     multivalued: true
-  sample_mass:
-    name: sample_mass
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/sample_mass
-    description: Mass of the sample used in a process or measurement.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - coremeta4cat:sample_mass
-    slot_uri: coremeta4cat:sample_mass
-    owner: BET
-    domain_of:
-    - Thermogravimetry
-    - BET
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: mg
-  sample_pretreatment:
-    name: sample_pretreatment
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/sample_pretreatment
-    description: Pre-treatment applied to the sample before a process or measurement.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0000122
-    slot_uri: VOC4CAT:0000122
-    owner: Characterization
-    domain_of:
-    - Synthesis
-    - Characterization
-    range: string
-    multivalued: true
-  stirring_speed:
-    name: stirring_speed
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/stirring_speed
-    description: Rotational speed of stirring or agitation.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - coremeta4cat:stirring_speed
-    slot_uri: coremeta4cat:stirring_speed
-    owner: MolecularSynthesis
-    domain_of:
-    - MolecularSynthesis
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: rpm
-  stirring_duration:
-    name: stirring_duration
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/stirring_duration
-    description: Duration of stirring or agitation.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - coremeta4cat:stirring_duration
-    slot_uri: coremeta4cat:stirring_duration
-    owner: MolecularSynthesis
-    domain_of:
-    - MolecularSynthesis
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: h
-  vessel_type:
-    name: vessel_type
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/vessel_type
-    description: Type of reaction or synthesis vessel used.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - coremeta4cat:vessel_type
-    slot_uri: coremeta4cat:vessel_type
-    owner: ThermalSynthesisMixin
-    domain_of:
-    - ThermalSynthesisMixin
-    range: string
-    multivalued: true
   carrier_gas:
     name: carrier_gas
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/carrier_gas
@@ -872,8 +1181,10 @@ slots:
     - ElementalAnalysis
     - ElectroSprayIonizationMassSpectrometry
     - GCMS
-    range: string
+    range: ChemicalEntity
     multivalued: true
+    inlined: true
+    inlined_as_list: true
   dispersant:
     name: dispersant
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/dispersant
@@ -886,8 +1197,10 @@ slots:
     domain_of:
     - FlameSprayPyrolysis
     - DynamicLightScattering
-    range: string
+    range: ChemicalEntity
     multivalued: true
+    inlined: true
+    inlined_as_list: true
   drying_device:
     name: drying_device
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/drying_device
@@ -901,137 +1214,6 @@ slots:
     - DryingMixin
     range: string
     multivalued: true
-  drying_temperature:
-    name: drying_temperature
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/drying_temperature
-    description: Temperature applied during drying.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0008207
-    slot_uri: VOC4CAT:0008207
-    owner: DryingMixin
-    domain_of:
-    - DryingMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: Cel
-  drying_time:
-    name: drying_time
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/drying_time
-    description: Duration of the drying step.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0008206
-    slot_uri: VOC4CAT:0008206
-    owner: DryingMixin
-    domain_of:
-    - DryingMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: h
-  drying_atmosphere:
-    name: drying_atmosphere
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/drying_atmosphere
-    description: Atmosphere maintained during drying (e.g. air, N2).
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0008208
-    slot_uri: VOC4CAT:0008208
-    owner: DryingMixin
-    domain_of:
-    - DryingMixin
-    range: string
-    multivalued: true
-  calcination_initial_temperature:
-    name: calcination_initial_temperature
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/calcination_initial_temperature
-    description: Initial temperature for calcination.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0000057
-    slot_uri: VOC4CAT:0000057
-    owner: CalcinationMixin
-    domain_of:
-    - CalcinationMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: Cel
-  calcination_final_temperature:
-    name: calcination_final_temperature
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/calcination_final_temperature
-    description: Final (target) temperature for calcination.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0000058
-    slot_uri: VOC4CAT:0000058
-    owner: CalcinationMixin
-    domain_of:
-    - CalcinationMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: Cel
-  calcination_dwelling_time:
-    name: calcination_dwelling_time
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/calcination_dwelling_time
-    description: Time held at the final calcination temperature.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0000060
-    slot_uri: VOC4CAT:0000060
-    owner: CalcinationMixin
-    domain_of:
-    - CalcinationMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: h
-  calcination_gaseous_environment:
-    name: calcination_gaseous_environment
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/calcination_gaseous_environment
-    description: Gaseous environment maintained during calcination (e.g. air, H2/N2).
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0000055
-    slot_uri: VOC4CAT:0000055
-    owner: CalcinationMixin
-    domain_of:
-    - CalcinationMixin
-    range: string
-    multivalued: true
-  calcination_heating_rate:
-    name: calcination_heating_rate
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/calcination_heating_rate
-    description: Heating rate during calcination.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0000059
-    slot_uri: VOC4CAT:0000059
-    owner: CalcinationMixin
-    domain_of:
-    - CalcinationMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: Cel/min
-  calcination_gas_flow_rate:
-    name: calcination_gas_flow_rate
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/calcination_gas_flow_rate
-    description: Gas flow rate maintained during calcination.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0000056
-    slot_uri: VOC4CAT:0000056
-    owner: CalcinationMixin
-    domain_of:
-    - CalcinationMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: mL/min
   step_size:
     name: step_size
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/step_size
@@ -1063,22 +1245,6 @@ slots:
     - DRIFTS
     range: float
     multivalued: true
-  integration_time:
-    name: integration_time
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/integration_time
-    description: Integration or acquisition time per measurement step.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - coremeta4cat:integration_time
-    slot_uri: coremeta4cat:integration_time
-    owner: PhotoluminescenceSpectroscopy
-    domain_of:
-    - RamanSpectroscopy
-    - PhotoluminescenceSpectroscopy
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: s
   number_of_scans:
     name: number_of_scans
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/number_of_scans
@@ -1096,42 +1262,6 @@ slots:
     - NMRSpectroscopy
     range: integer
     multivalued: true
-  operation_mode:
-    name: operation_mode
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/operation_mode
-    description: Operation mode of an instrument (e.g. transmission, reflection, AC,
-      DC).
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0000108
-    slot_uri: VOC4CAT:0000108
-    owner: ElectroSprayIonizationMassSpectrometry
-    domain_of:
-    - PowderXRD
-    - XRayAbsorptionSpectroscopy
-    - InfraredSpectroscopy
-    - TransmissionElectronMicroscopy
-    - Thermogravimetry
-    - ElectroSprayIonizationMassSpectrometry
-    range: string
-    multivalued: true
-  concentration:
-    name: concentration
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/concentration
-    description: Concentration of a substance in a sample or solution.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - coremeta4cat:concentration
-    slot_uri: coremeta4cat:concentration
-    owner: ElectroSprayIonizationMassSpectrometry
-    domain_of:
-    - UVVisSpectroscopy
-    - DynamicLightScattering
-    - ElectroSprayIonizationMassSpectrometry
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: mol/L
   solvent:
     name: solvent
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/solvent
@@ -1146,23 +1276,10 @@ slots:
     - NMRSpectroscopy
     - UVVisSpectroscopy
     - DynamicLightScattering
-    range: string
+    range: ChemicalEntity
     multivalued: true
-  injection_volume:
-    name: injection_volume
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/injection_volume
-    description: Volume injected in a chromatographic or mass spectrometric experiment.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - coremeta4cat:injection_volume
-    slot_uri: coremeta4cat:injection_volume
-    owner: ChromatographyMixin
-    domain_of:
-    - ChromatographyMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: uL
+    inlined: true
+    inlined_as_list: true
   external_standard:
     name: external_standard
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/external_standard
@@ -1216,22 +1333,6 @@ slots:
     - ChromatographyMixin
     range: string
     multivalued: true
-  experiment_duration:
-    name: experiment_duration
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/experiment_duration
-    description: Total duration of the experiment or measurement run.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - AFR:0002455
-    slot_uri: AFR:0002455
-    owner: Reaction
-    domain_of:
-    - PowderXRD
-    - Reaction
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: h
   filtration_device:
     name: filtration_device
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/filtration_device
@@ -1328,10 +1429,10 @@ slots:
     owner: Precursor
     domain_of:
     - Precursor
-    range: float
+    range: Mass
     multivalued: true
-    unit:
-      ucum_code: g
+    inlined: true
+    inlined_as_list: true
   impregnation_type:
     name: impregnation_type
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/impregnation_type
@@ -1356,10 +1457,10 @@ slots:
     owner: Impregnation
     domain_of:
     - Impregnation
-    range: float
+    range: Duration
     multivalued: true
-    unit:
-      ucum_code: h
+    inlined: true
+    inlined_as_list: true
   impregnation_temperature:
     name: impregnation_temperature
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/impregnation_temperature
@@ -1371,97 +1472,108 @@ slots:
     owner: Impregnation
     domain_of:
     - Impregnation
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
   precipitating_agent:
     name: precipitating_agent
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/precipitating_agent
     description: Chemical agent used to induce precipitation (e.g. NaOH, NH3).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008203
-    slot_uri: VOC4CAT:0008203
+    - coremeta4cat:precipitating_agent
+    slot_uri: coremeta4cat:precipitating_agent
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
-    range: string
+    range: ChemicalEntity
     multivalued: true
-  precipitating_concentration:
-    name: precipitating_concentration
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/precipitating_concentration
-    description: Concentration of the precipitating agent.
+    inlined: true
+    inlined_as_list: true
+  has_mixing_speed:
+    name: has_mixing_speed
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_mixing_speed
+    description: Rotational speed during mixing of synthesis components.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:precipitating_concentration
-    slot_uri: coremeta4cat:precipitating_concentration
+    - SIO:000008
+    is_a: has_angular_velocity
+    slot_uri: SIO:000008
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
-    range: float
+    range: AngularVelocity
+    recommended: true
     multivalued: true
-    unit:
-      ucum_code: mol/L
-  synthesis_ph:
-    name: synthesis_ph
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/synthesis_ph
-    description: pH value maintained or targeted during synthesis.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
-    - VOC4CAT:0000052
-    slot_uri: VOC4CAT:0000052
-    owner: PrecipitationMixin
-    domain_of:
-    - PrecipitationMixin
-    range: float
-    multivalued: true
-  stirring_rate:
-    name: stirring_rate
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/stirring_rate
-    description: Stirring rate during mixing of synthesis components.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
-    - VOC4CAT:0008114
-    slot_uri: VOC4CAT:0008114
-    owner: PrecipitationMixin
-    domain_of:
-    - PrecipitationMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: rpm
-  mixing_time:
-    name: mixing_time
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/mixing_time
+    inlined: true
+    inlined_as_list: true
+  has_mixing_duration:
+    name: has_mixing_duration
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_mixing_duration
     description: Duration of the mixing step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:mixing_time
-    slot_uri: coremeta4cat:mixing_time
+    - SIO:000008
+    is_a: has_duration
+    slot_uri: SIO:000008
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: h
-  mixing_temperature:
-    name: mixing_temperature
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/mixing_temperature
-    description: Temperature during mixing.
+    range: Duration
+    inlined: true
+    inlined_as_list: true
+  has_mixing_temperature:
+    name: has_mixing_temperature
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_mixing_temperature
+    description: Temperature maintained during mixing.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:mixing_temperature
-    slot_uri: coremeta4cat:mixing_temperature
+    - SIO:000008
+    is_a: has_temperature
+    slot_uri: SIO:000008
     owner: MolecularSynthesis
     domain_of:
     - PrecipitationMixin
     - MolecularSynthesis
-    range: float
+    range: Temperature
+    recommended: true
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
+  has_aging_temperature:
+    name: has_aging_temperature
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_aging_temperature
+    description: Temperature maintained during the aging step.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
+    mappings:
+    - SIO:000008
+    is_a: has_temperature
+    slot_uri: SIO:000008
+    owner: PrecipitationMixin
+    domain_of:
+    - PrecipitationMixin
+    range: Temperature
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_aging_duration:
+    name: has_aging_duration
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_aging_duration
+    description: Duration of the aging step.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
+    mappings:
+    - SIO:000008
+    is_a: has_duration
+    slot_uri: SIO:000008
+    owner: SolGel
+    domain_of:
+    - PrecipitationMixin
+    - SolGel
+    range: Duration
+    inlined: true
+    inlined_as_list: true
   order_of_addition:
     name: order_of_addition
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/order_of_addition
@@ -1501,37 +1613,6 @@ slots:
     - PrecipitationMixin
     range: string
     multivalued: true
-  aging_temperature:
-    name: aging_temperature
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/aging_temperature
-    description: Temperature during aging of the precipitate or gel.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
-    - coremeta4cat:aging_temperature
-    slot_uri: coremeta4cat:aging_temperature
-    owner: PrecipitationMixin
-    domain_of:
-    - PrecipitationMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: Cel
-  aging_time:
-    name: aging_time
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/aging_time
-    description: Duration of the aging step.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
-    - VOC4CAT:0008204
-    slot_uri: VOC4CAT:0008204
-    owner: SolGel
-    domain_of:
-    - PrecipitationMixin
-    - SolGel
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: h
   deposition_temperature:
     name: deposition_temperature
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/deposition_temperature
@@ -1544,10 +1625,10 @@ slots:
     domain_of:
     - AtomicLayerDeposition
     - DepositionPrecipitation
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
   deposition_time:
     name: deposition_time
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/deposition_time
@@ -1559,10 +1640,10 @@ slots:
     owner: DepositionPrecipitation
     domain_of:
     - DepositionPrecipitation
-    range: float
+    range: Duration
     multivalued: true
-    unit:
-      ucum_code: h
+    inlined: true
+    inlined_as_list: true
   synthesis_temperature:
     name: synthesis_temperature
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/synthesis_temperature
@@ -1574,10 +1655,10 @@ slots:
     owner: ThermalSynthesisMixin
     domain_of:
     - ThermalSynthesisMixin
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
   synthesis_duration:
     name: synthesis_duration
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/synthesis_duration
@@ -1589,10 +1670,10 @@ slots:
     owner: ThermalSynthesisMixin
     domain_of:
     - ThermalSynthesisMixin
-    range: float
+    range: Duration
     multivalued: true
-    unit:
-      ucum_code: h
+    inlined: true
+    inlined_as_list: true
   synthesis_pressure:
     name: synthesis_pressure
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/synthesis_pressure
@@ -1605,10 +1686,10 @@ slots:
     domain_of:
     - PlasmaAssisted
     - Sublimation
-    range: float
+    range: Pressure
     multivalued: true
-    unit:
-      ucum_code: bar
+    inlined: true
+    inlined_as_list: true
   hydrolysis_ratio:
     name: hydrolysis_ratio
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/hydrolysis_ratio
@@ -1688,10 +1769,10 @@ slots:
     owner: Solvothermal
     domain_of:
     - Solvothermal
-    range: float
+    range: HeatingRate
     multivalued: true
-    unit:
-      ucum_code: Cel/min
+    inlined: true
+    inlined_as_list: true
   plasma_type:
     name: plasma_type
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/plasma_type
@@ -1716,10 +1797,10 @@ slots:
     owner: PlasmaAssisted
     domain_of:
     - PlasmaAssisted
-    range: float
+    range: PowerQuantity
     multivalued: true
-    unit:
-      ucum_code: W
+    inlined: true
+    inlined_as_list: true
   exposure_time:
     name: exposure_time
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/exposure_time
@@ -1731,10 +1812,10 @@ slots:
     owner: PlasmaAssisted
     domain_of:
     - PlasmaAssisted
-    range: float
+    range: Duration
     multivalued: true
-    unit:
-      ucum_code: min
+    inlined: true
+    inlined_as_list: true
   fuel:
     name: fuel
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/fuel
@@ -1785,10 +1866,10 @@ slots:
     owner: CombustionSynthesis
     domain_of:
     - CombustionSynthesis
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
   post_treatment:
     name: post_treatment
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/post_treatment
@@ -2244,36 +2325,22 @@ slots:
     - XRaySourceMixin
     range: string
     multivalued: true
-  minimum_energy:
-    name: minimum_energy
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/minimum_energy
-    description: Minimum energy of the scan range.
+  has_energy_range:
+    name: has_energy_range
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_energy_range
+    description: 'Energy scan range (minimum -> maximum) as a QuantitativeRange.
+
+      Provide unit as a QUDT term (e.g. eV, keV).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:minimum_energy
-    slot_uri: coremeta4cat:minimum_energy
+    - coremeta4cat:hasEnergyRange
+    slot_uri: coremeta4cat:hasEnergyRange
     owner: EnergyRangeMixin
     domain_of:
     - EnergyRangeMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: eV
-  maximum_energy:
-    name: maximum_energy
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/maximum_energy
-    description: Maximum energy of the scan range.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - coremeta4cat:maximum_energy
-    slot_uri: coremeta4cat:maximum_energy
-    owner: EnergyRangeMixin
-    domain_of:
-    - EnergyRangeMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: eV
+    range: QuantitativeRange
+    inlined: true
+    inlined_as_list: true
   gun_type:
     name: gun_type
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/gun_type
@@ -2298,10 +2365,10 @@ slots:
     owner: ElectronMicroscopyMixin
     domain_of:
     - ElectronMicroscopyMixin
-    range: float
+    range: ElectricPotential
     multivalued: true
-    unit:
-      ucum_code: kV
+    inlined: true
+    inlined_as_list: true
   magnification_setting:
     name: magnification_setting
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/magnification_setting
@@ -2316,36 +2383,22 @@ slots:
     - RamanSpectroscopy
     range: float
     multivalued: true
-  minimum_temperature:
-    name: minimum_temperature
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/minimum_temperature
-    description: Minimum (start) temperature in a temperature programme.
+  has_temperature_range:
+    name: has_temperature_range
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_temperature_range
+    description: 'Temperature programme range (start -> final temperature) as a QuantitativeRange.
+
+      Provide unit as a QUDT term (e.g. Degree Celsius, Kelvin).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:minimum_temperature
-    slot_uri: coremeta4cat:minimum_temperature
+    - coremeta4cat:hasTemperatureRange
+    slot_uri: coremeta4cat:hasTemperatureRange
     owner: TemperatureProgramMixin
     domain_of:
     - TemperatureProgramMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: Cel
-  maximum_temperature:
-    name: maximum_temperature
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/maximum_temperature
-    description: Maximum (final) temperature in a temperature programme.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - coremeta4cat:maximum_temperature
-    slot_uri: coremeta4cat:maximum_temperature
-    owner: TemperatureProgramMixin
-    domain_of:
-    - TemperatureProgramMixin
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: Cel
+    range: QuantitativeRange
+    inlined: true
+    inlined_as_list: true
   initial_temperature:
     name: initial_temperature
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/initial_temperature
@@ -2357,10 +2410,10 @@ slots:
     owner: Thermogravimetry
     domain_of:
     - Thermogravimetry
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
   final_temperature:
     name: final_temperature
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/final_temperature
@@ -2372,36 +2425,27 @@ slots:
     owner: Thermogravimetry
     domain_of:
     - Thermogravimetry
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
-  mz_minimum:
-    name: mz_minimum
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/mz_minimum
-    description: Minimum m/z value in the mass scan range.
+    inlined: true
+    inlined_as_list: true
+  has_mz_range:
+    name: has_mz_range
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_mz_range
+    description: 'Mass-to-charge ratio scan range (minimum -> maximum m/z) as a QuantitativeRange.
+
+      The unit for m/z is dimensionless (Thomson); set unit to the appropriate QUDT
+      term.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - AFR:0002652
-    slot_uri: AFR:0002652
+    - coremeta4cat:hasMzRange
+    slot_uri: coremeta4cat:hasMzRange
     owner: MassRangeMixin
     domain_of:
     - MassRangeMixin
-    range: float
-    multivalued: true
-  mz_maximum:
-    name: mz_maximum
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/mz_maximum
-    description: Maximum m/z value in the mass scan range.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - AFR:0002653
-    slot_uri: AFR:0002653
-    owner: MassRangeMixin
-    domain_of:
-    - MassRangeMixin
-    range: float
-    multivalued: true
+    range: QuantitativeRange
+    inlined: true
+    inlined_as_list: true
   excitation_wavelength:
     name: excitation_wavelength
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/excitation_wavelength
@@ -2413,10 +2457,10 @@ slots:
     owner: PhotoluminescenceMixin
     domain_of:
     - PhotoluminescenceMixin
-    range: float
+    range: LengthQuantity
     multivalued: true
-    unit:
-      ucum_code: nm
+    inlined: true
+    inlined_as_list: true
   emission_wavelength:
     name: emission_wavelength
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/emission_wavelength
@@ -2428,10 +2472,10 @@ slots:
     owner: PhotoluminescenceMixin
     domain_of:
     - PhotoluminescenceMixin
-    range: float
+    range: LengthQuantity
     multivalued: true
-    unit:
-      ucum_code: nm
+    inlined: true
+    inlined_as_list: true
   optical_filter:
     name: optical_filter
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/optical_filter
@@ -2508,40 +2552,27 @@ slots:
     owner: ElectrochemistryMixin
     domain_of:
     - ElectrochemistryMixin
-    range: float
+    range: Concentration
     multivalued: true
-    unit:
-      ucum_code: mol/L
-  minimum_2theta:
-    name: minimum_2theta
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/minimum_2theta
-    description: Minimum 2theta angle in the diffraction scan.
+    inlined: true
+    inlined_as_list: true
+  has_two_theta_range:
+    name: has_two_theta_range
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_two_theta_range
+    description: '2theta diffraction scan range (minimum -> maximum 2theta angle)
+      as a QuantitativeRange.
+
+      Provide unit as a QUDT term (e.g. Degree).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:minimum_2theta
-    slot_uri: coremeta4cat:minimum_2theta
+    - coremeta4cat:hasTwoThetaRange
+    slot_uri: coremeta4cat:hasTwoThetaRange
     owner: PowderXRD
     domain_of:
     - PowderXRD
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: deg
-  maximum_2theta:
-    name: maximum_2theta
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/maximum_2theta
-    description: Maximum 2theta angle in the diffraction scan.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - coremeta4cat:maximum_2theta
-    slot_uri: coremeta4cat:maximum_2theta
-    owner: PowderXRD
-    domain_of:
-    - PowderXRD
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: deg
+    range: QuantitativeRange
+    inlined: true
+    inlined_as_list: true
   sample_spinning_speed:
     name: sample_spinning_speed
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/sample_spinning_speed
@@ -2553,10 +2584,10 @@ slots:
     owner: PowderXRD
     domain_of:
     - PowderXRD
-    range: float
+    range: AngularVelocity
     multivalued: true
-    unit:
-      ucum_code: rpm
+    inlined: true
+    inlined_as_list: true
   absorption_edge:
     name: absorption_edge
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/absorption_edge
@@ -2621,10 +2652,10 @@ slots:
     owner: XRayAbsorptionSpectroscopy
     domain_of:
     - XRayAbsorptionSpectroscopy
-    range: float
+    range: EnergyQuantity
     multivalued: true
-    unit:
-      ucum_code: eV
+    inlined: true
+    inlined_as_list: true
   total_acquisition_time:
     name: total_acquisition_time
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/total_acquisition_time
@@ -2636,10 +2667,10 @@ slots:
     owner: XPS
     domain_of:
     - XPS
-    range: float
+    range: Duration
     multivalued: true
-    unit:
-      ucum_code: s
+    inlined: true
+    inlined_as_list: true
   pass_energy:
     name: pass_energy
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/pass_energy
@@ -2651,10 +2682,10 @@ slots:
     owner: XPS
     domain_of:
     - XPS
-    range: float
+    range: EnergyQuantity
     multivalued: true
-    unit:
-      ucum_code: eV
+    inlined: true
+    inlined_as_list: true
   spot_size:
     name: spot_size
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/spot_size
@@ -2666,10 +2697,10 @@ slots:
     owner: XPS
     domain_of:
     - XPS
-    range: float
+    range: LengthQuantity
     multivalued: true
-    unit:
-      ucum_code: mm
+    inlined: true
+    inlined_as_list: true
   lense_mode:
     name: lense_mode
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/lense_mode
@@ -2707,10 +2738,10 @@ slots:
     owner: EDX
     domain_of:
     - EDX
-    range: float
+    range: EnergyQuantity
     multivalued: true
-    unit:
-      ucum_code: keV
+    inlined: true
+    inlined_as_list: true
   counting_time:
     name: counting_time
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/counting_time
@@ -2722,40 +2753,27 @@ slots:
     owner: EDX
     domain_of:
     - EDX
-    range: float
+    range: Duration
     multivalued: true
-    unit:
-      ucum_code: s
-  minimum_wavenumber:
-    name: minimum_wavenumber
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/minimum_wavenumber
-    description: Minimum wavenumber of the IR scan range.
+    inlined: true
+    inlined_as_list: true
+  has_wavenumber_range:
+    name: has_wavenumber_range
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_wavenumber_range
+    description: 'Infrared wavenumber scan range (minimum -> maximum cm^-1) as a QuantitativeRange.
+
+      Provide unit as a QUDT term (e.g. ReciprocalCentimetre).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:minimum_wavenumber
-    slot_uri: coremeta4cat:minimum_wavenumber
-    owner: InfraredSpectroscopy
+    - coremeta4cat:hasWavenumberRange
+    slot_uri: coremeta4cat:hasWavenumberRange
+    owner: DRIFTS
     domain_of:
     - InfraredSpectroscopy
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: cm-1
-  maximum_wavenumber:
-    name: maximum_wavenumber
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/maximum_wavenumber
-    description: Maximum wavenumber of the IR scan range.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - coremeta4cat:maximum_wavenumber
-    slot_uri: coremeta4cat:maximum_wavenumber
-    owner: InfraredSpectroscopy
-    domain_of:
-    - InfraredSpectroscopy
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: cm-1
+    - DRIFTS
+    range: QuantitativeRange
+    inlined: true
+    inlined_as_list: true
   background_correction:
     name: background_correction
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/background_correction
@@ -2780,8 +2798,10 @@ slots:
     owner: DRIFTS
     domain_of:
     - DRIFTS
-    range: string
+    range: ChemicalEntity
     multivalued: true
+    inlined: true
+    inlined_as_list: true
   diluting_reference:
     name: diluting_reference
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/diluting_reference
@@ -2832,10 +2852,10 @@ slots:
     owner: RamanSpectroscopy
     domain_of:
     - RamanSpectroscopy
-    range: float
+    range: LengthQuantity
     multivalued: true
-    unit:
-      ucum_code: nm
+    inlined: true
+    inlined_as_list: true
   excitation_laser_power:
     name: excitation_laser_power
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/excitation_laser_power
@@ -2847,10 +2867,10 @@ slots:
     owner: RamanSpectroscopy
     domain_of:
     - RamanSpectroscopy
-    range: float
+    range: PowerQuantity
     multivalued: true
-    unit:
-      ucum_code: mW
+    inlined: true
+    inlined_as_list: true
   filter_or_grating:
     name: filter_or_grating
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/filter_or_grating
@@ -2996,10 +3016,10 @@ slots:
     owner: BET
     domain_of:
     - BET
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
   measurement_temperature:
     name: measurement_temperature
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/measurement_temperature
@@ -3012,10 +3032,10 @@ slots:
     owner: BET
     domain_of:
     - BET
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: K
+    inlined: true
+    inlined_as_list: true
   pore_size_distribution_method:
     name: pore_size_distribution_method
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/pore_size_distribution_method
@@ -3055,10 +3075,10 @@ slots:
     owner: ElementalAnalysis
     domain_of:
     - ElementalAnalysis
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
   detection_limit:
     name: detection_limit
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/detection_limit
@@ -3312,10 +3332,10 @@ slots:
     owner: DynamicLightScattering
     domain_of:
     - DynamicLightScattering
-    range: float
+    range: LengthQuantity
     multivalued: true
-    unit:
-      ucum_code: nm
+    inlined: true
+    inlined_as_list: true
   scattering_angle:
     name: scattering_angle
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/scattering_angle
@@ -3327,10 +3347,10 @@ slots:
     owner: DynamicLightScattering
     domain_of:
     - DynamicLightScattering
-    range: float
+    range: PlaneAngle
     multivalued: true
-    unit:
-      ucum_code: deg
+    inlined: true
+    inlined_as_list: true
   refractive_index:
     name: refractive_index
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/refractive_index
@@ -3355,10 +3375,10 @@ slots:
     owner: DynamicLightScattering
     domain_of:
     - DynamicLightScattering
-    range: float
+    range: Duration
     multivalued: true
-    unit:
-      ucum_code: s
+    inlined: true
+    inlined_as_list: true
   spray_voltage:
     name: spray_voltage
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/spray_voltage
@@ -3370,10 +3390,10 @@ slots:
     owner: ElectroSprayIonizationMassSpectrometry
     domain_of:
     - ElectroSprayIonizationMassSpectrometry
-    range: float
+    range: ElectricPotential
     multivalued: true
-    unit:
-      ucum_code: kV
+    inlined: true
+    inlined_as_list: true
   capillary_temperature:
     name: capillary_temperature
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/capillary_temperature
@@ -3385,10 +3405,10 @@ slots:
     owner: ElectroSprayIonizationMassSpectrometry
     domain_of:
     - ElectroSprayIonizationMassSpectrometry
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
   solvent_composition:
     name: solvent_composition
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/solvent_composition
@@ -3426,10 +3446,10 @@ slots:
     owner: GCMS
     domain_of:
     - GCMS
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
   minimum_oven_temperature:
     name: minimum_oven_temperature
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/minimum_oven_temperature
@@ -3441,10 +3461,10 @@ slots:
     owner: GCMS
     domain_of:
     - GCMS
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
   maximum_oven_temperature:
     name: maximum_oven_temperature
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/maximum_oven_temperature
@@ -3456,10 +3476,10 @@ slots:
     owner: GCMS
     domain_of:
     - GCMS
-    range: float
+    range: Temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined: true
+    inlined_as_list: true
   heating_ramp:
     name: heating_ramp
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/heating_ramp
@@ -3471,10 +3491,10 @@ slots:
     owner: GCMS
     domain_of:
     - GCMS
-    range: float
+    range: HeatingRate
     multivalued: true
-    unit:
-      ucum_code: Cel/min
+    inlined: true
+    inlined_as_list: true
   acquisition_mode:
     name: acquisition_mode
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/acquisition_mode
@@ -3540,8 +3560,10 @@ slots:
     owner: ChromatographyMixin
     domain_of:
     - ChromatographyMixin
-    range: string
+    range: ChemicalEntity
     multivalued: true
+    inlined: true
+    inlined_as_list: true
   calibration_standard:
     name: calibration_standard
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/calibration_standard
@@ -3590,30 +3612,34 @@ slots:
     mappings:
     - coremeta4cat:catalyst_quantity
     slot_uri: coremeta4cat:catalyst_quantity
-    owner: Reaction
+    owner: CatalyticReaction
     domain_of:
-    - Reaction
-    range: float
+    - CatalyticReaction
+    range: Mass
     required: true
     multivalued: true
-    unit:
-      ucum_code: g
+    inlined: true
+    inlined_as_list: true
   reactant:
     name: reactant
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/reactant
-    description: 'Reactant(s) used in the reaction. Provide compound name, CAS number,
+    description: 'Reactant(s) or feed chemicals used in the reaction. Provide a ChemicalEntity
 
-      or SMILES. For feeds, include composition and flow rate where known.'
+      instance with inchikey, smiles, or iupac_name. For feed mixtures, list each
+
+      component as a separate ChemicalEntity and record composition via has_concentration.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - VOC4CAT:0000101
     slot_uri: VOC4CAT:0000101
-    owner: Reaction
+    owner: CatalyticReaction
     domain_of:
-    - Reaction
-    range: string
+    - CatalyticReaction
+    range: ChemicalEntity
     required: true
     multivalued: true
+    inlined: true
+    inlined_as_list: true
   catalyst_type:
     name: catalyst_type
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/catalyst_type
@@ -3624,26 +3650,32 @@ slots:
     mappings:
     - VOC4CAT:0007014
     slot_uri: VOC4CAT:0007014
-    owner: Reaction
+    owner: CatalyticReaction
     domain_of:
-    - Reaction
+    - CatalyticReaction
     range: string
     recommended: true
     multivalued: true
   reactor_temperature_range:
     name: reactor_temperature_range
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/reactor_temperature_range
-    description: "Temperature range used in the reactor during the reaction, expressed\n\
-      as a string range (e.g. \"200\u2013400 \xB0C\") or a single set-point."
+    description: 'Temperature range in the reactor during the reaction, provided as
+      a
+
+      QuantitativeRange with min_value and max_value (unit_code: "Cel").
+
+      For a single set-point, set min_value equal to max_value.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - VOC4CAT:0007032
     slot_uri: VOC4CAT:0007032
-    owner: Reaction
+    owner: CatalyticReaction
     domain_of:
-    - Reaction
-    range: string
+    - CatalyticReaction
+    range: QuantitativeRange
     multivalued: true
+    inlined: true
+    inlined_as_list: true
   experiment_pressure:
     name: experiment_pressure
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/experiment_pressure
@@ -3652,28 +3684,32 @@ slots:
     mappings:
     - VOC4CAT:0000118
     slot_uri: VOC4CAT:0000118
-    owner: Reaction
+    owner: CatalyticReaction
     domain_of:
-    - Reaction
-    range: float
+    - CatalyticReaction
+    range: Pressure
     multivalued: true
-    unit:
-      ucum_code: bar
+    inlined: true
+    inlined_as_list: true
   feed_composition_range:
     name: feed_composition_range
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/feed_composition_range
-    description: "Feed gas or liquid composition range studied (e.g. \"1\u201310 vol%\
-      \ CO in N2\").\nRecord as a string; for individual component concentrations\
-      \ use reactant."
+    description: 'Feed composition range studied, provided as a QuantitativeRange.
+
+      Express concentration bounds in an appropriate unit (e.g. "mol/L", "%" for
+
+      vol% or mol%). For fixed-composition experiments use reactant.has_concentration.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - coremeta4cat:feed_composition_range
     slot_uri: coremeta4cat:feed_composition_range
-    owner: Reaction
+    owner: CatalyticReaction
     domain_of:
-    - Reaction
-    range: string
+    - CatalyticReaction
+    range: QuantitativeRange
     multivalued: true
+    inlined: true
+    inlined_as_list: true
   gas_distributor_type:
     name: gas_distributor_type
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/gas_distributor_type
@@ -3729,9 +3765,9 @@ slots:
     mappings:
     - coremeta4cat:product_identification_method
     slot_uri: coremeta4cat:product_identification_method
-    owner: Reaction
+    owner: CatalyticReaction
     domain_of:
-    - Reaction
+    - CatalyticReaction
     range: ProductIdentificationMethod
     required: true
     multivalued: true
@@ -3806,9 +3842,10 @@ slots:
   convergence_criteria:
     name: convergence_criteria
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/convergence_criteria
-    description: "Convergence thresholds applied during self-consistent field (SCF)\
-      \ and/or\ngeometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/\xC5\
-      )."
+    description: 'Convergence thresholds applied during self-consistent field (SCF)
+      and/or
+
+      geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
     - coremeta4cat:convergence_criteria
@@ -3973,21 +4010,6 @@ slots:
     - Microkinetics
     range: string
     multivalued: true
-  pressure:
-    name: pressure
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/pressure
-    description: Total pressure used in microkinetic or Monte Carlo simulation.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
-    - coremeta4cat:pressure
-    slot_uri: coremeta4cat:pressure
-    owner: Microkinetics
-    domain_of:
-    - Microkinetics
-    range: float
-    multivalued: true
-    unit:
-      ucum_code: bar
   surface_coverage:
     name: surface_coverage
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/surface_coverage
@@ -4046,8 +4068,9 @@ slots:
   lattice_size_type:
     name: lattice_size_type
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/lattice_size_type
-    description: "Lattice geometry and dimensions used in lattice-based MC (e.g.\n\
-      \"100\xD7100 square lattice\", \"hexagonal 50\xD750\")."
+    description: 'Lattice geometry and dimensions used in lattice-based MC (e.g.
+
+      "100x100 square lattice", "hexagonal 50x50").'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
     - coremeta4cat:lattice_size_type
@@ -4117,8 +4140,10 @@ slots:
   crystal_structure:
     name: crystal_structure
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/crystal_structure
-    description: "Crystal structure of the simulated material, including space group\
-      \ and\nlattice parameters (e.g. \"Fm-3m, a=3.92 \xC5 for Pt\")."
+    description: 'Crystal structure of the simulated material, including space group
+      and
+
+      lattice parameters (e.g. "Fm-3m, a=3.92 A for Pt").'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
     - SIO:001100
@@ -4131,8 +4156,9 @@ slots:
   k_point_mesh:
     name: k_point_mesh
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/k_point_mesh
-    description: "Monkhorst-Pack k-point mesh used for Brillouin zone sampling\n(e.g.\
-      \ \"4\xD74\xD71\" for a surface slab, \"8\xD78\xD78\" for a bulk cell)."
+    description: 'Monkhorst-Pack k-point mesh used for Brillouin zone sampling
+
+      (e.g. "4x4x1" for a surface slab, "8x8x8" for a bulk cell).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
     - coremeta4cat:k_point_mesh
@@ -4220,8 +4246,9 @@ slots:
   piezoelectric_tensor:
     name: piezoelectric_tensor
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/piezoelectric_tensor
-    description: "Components of the piezoelectric tensor e_ij (C/m\xB2) or d_ij (pC/N),\n\
-      describing the coupling between stress and electric polarization."
+    description: 'Components of the piezoelectric tensor e_ij (C/m2) or d_ij (pC/N),
+
+      describing the coupling between stress and electric polarization.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
     - coremeta4cat:piezoelectric_tensor
@@ -4475,8 +4502,9 @@ slots:
   kq_point_mesh:
     name: kq_point_mesh
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/kq_point_mesh
-    description: "k/q-point mesh for phonon Brillouin zone sampling (e.g. \"8\xD7\
-      8\xD78\").\nDistinct from the electronic k-point mesh."
+    description: 'k/q-point mesh for phonon Brillouin zone sampling (e.g. "8x8x8").
+
+      Distinct from the electronic k-point mesh.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
     - coremeta4cat:kq_point_mesh
@@ -4561,8 +4589,7 @@ slots:
   ph_range:
     name: ph_range
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ph_range
-    description: "pH range covered in the Pourbaix stability diagram (e.g. \"0\u2013\
-      14\")."
+    description: pH range covered in the Pourbaix stability diagram (e.g. "0-14").
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
     - coremeta4cat:ph_range
@@ -4665,8 +4692,9 @@ slots:
   simulation_cell_size:
     name: simulation_cell_size
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/simulation_cell_size
-    description: "Dimensions of the simulation cell used to model the grain boundary\n\
-      (e.g. \"10\xD710\xD730 nm\")."
+    description: 'Dimensions of the simulation cell used to model the grain boundary
+
+      (e.g. "10x10x30 nm").'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
     - coremeta4cat:simulation_cell_size
@@ -5278,6 +5306,7 @@ slots:
     slot_uri: dcterms:description
     owner: TimeInstant
     domain_of:
+    - QuantitativeRange
     - Activity
     - AgenticEntity
     - Any
@@ -6335,6 +6364,7 @@ slots:
     slot_uri: dcterms:title
     owner: TimeInstant
     domain_of:
+    - QuantitativeRange
     - Activity
     - AgenticEntity
     - Any
@@ -6475,6 +6505,10 @@ slots:
     slot_uri: SIO:000008
     owner: ChemicalSubstanceMixin
     domain_of:
+    - PrecipitationMixin
+    - UVVisSpectroscopy
+    - DynamicLightScattering
+    - ElectroSprayIonizationMassSpectrometry
     - ChemicalSubstanceMixin
     range: Concentration
     recommended: true
@@ -6509,6 +6543,7 @@ slots:
     slot_uri: SIO:000008
     owner: ChemicalSubstanceMixin
     domain_of:
+    - PrecipitationMixin
     - ChemicalSubstanceMixin
     range: PHValue
     recommended: true
@@ -6852,6 +6887,22 @@ slots:
     slot_uri: SIO:000008
     owner: MaterialisticMixin
     domain_of:
+    - SonochemicalSynthesis
+    - PhotoluminescenceMixin
+    - ElectrochemistryMixin
+    - PowderXRD
+    - SingleCrystalXRD
+    - XRayAbsorptionSpectroscopy
+    - InfraredSpectroscopy
+    - DRIFTS
+    - RamanSpectroscopy
+    - NMRSpectroscopy
+    - DynamicLightScattering
+    - SizeExclusionChromatography
+    - HighPerformanceLiquidChromatographyMassSpectrometry
+    - Microkinetics
+    - MonteCarlo
+    - AqueousStability
     - ChemicalReaction
     - MaterialisticMixin
     range: Temperature
@@ -6923,6 +6974,7 @@ slots:
     slot_uri: SIO:000008
     owner: MaterialisticMixin
     domain_of:
+    - Microkinetics
     - ChemicalReaction
     - MaterialisticMixin
     range: Pressure
@@ -6949,6 +7001,58 @@ slots:
     range: Entity
     inlined: true
     inlined_as_list: false
+  quantitativeRange__min_value:
+    name: quantitativeRange__min_value
+    description: Lower bound of the range.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - coremeta4cat:minValue
+    slot_uri: coremeta4cat:minValue
+    alias: min_value
+    owner: QuantitativeRange
+    domain_of:
+    - QuantitativeRange
+    range: float
+  quantitativeRange__max_value:
+    name: quantitativeRange__max_value
+    description: Upper bound of the range.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - coremeta4cat:maxValue
+    slot_uri: coremeta4cat:maxValue
+    alias: max_value
+    owner: QuantitativeRange
+    domain_of:
+    - QuantitativeRange
+    range: float
+  quantitativeRange__unit:
+    name: quantitativeRange__unit
+    description: 'Unit shared by both bounds, as a QUDT unit term
+
+      (e.g. id: http://qudt.org/vocab/unit/DegreeCelsius, title: "Degree Celsius").'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:unit
+    slot_uri: qudt:unit
+    alias: unit
+    owner: QuantitativeRange
+    domain_of:
+    - QuantitativeRange
+    range: DefinedTerm
+  quantitativeRange__has_quantity_type:
+    name: quantitativeRange__has_quantity_type
+    description: 'QUDT QuantityKind term for the kind of quantity this range describes
+
+      (e.g. id: http://qudt.org/vocab/quantitykind/Temperature, title: "Temperature").'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:hasQuantityKind
+    slot_uri: qudt:hasQuantityKind
+    alias: has_quantity_type
+    owner: QuantitativeRange
+    domain_of:
+    - QuantitativeRange
+    range: DefinedTerm
   definedTerm__from_CV:
     name: definedTerm__from_CV
     description: The URL of the controlled vocabulary.
@@ -7241,6 +7345,32 @@ slots:
     range: string
     recommended: true
     multivalued: true
+  Synthesis_carried_out_by:
+    name: Synthesis_carried_out_by
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/carried_out_by
+    description: 'Equipment or synthesis device used to carry out this preparation
+      step.
+
+      Provide a Device instance (e.g. rotary evaporator, autoclave, furnace).'
+    in_subset:
+    - domain_agnostic_core
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    mappings:
+    - prov:wasAssociatedWith
+    is_a: carried_out_by
+    domain: Synthesis
+    slot_uri: prov:wasAssociatedWith
+    alias: carried_out_by
+    owner: Synthesis
+    domain_of:
+    - Synthesis
+    is_usage_slot: true
+    usage_slot_name: carried_out_by
+    range: Device
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   Precursor_precursor_quantity:
     name: Precursor_precursor_quantity
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/precursor_quantity
@@ -7257,11 +7387,11 @@ slots:
     - Precursor
     is_usage_slot: true
     usage_slot_name: precursor_quantity
-    range: float
+    range: Mass
     required: true
     multivalued: true
-    unit:
-      ucum_code: g
+    inlined: true
+    inlined_as_list: true
   CatalystSample_derived_from:
     name: CatalystSample_derived_from
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/materials/derived_from
@@ -7288,25 +7418,32 @@ slots:
     range: MaterialSample
     inlined: true
     inlined_as_list: false
-  Characterization_equipment:
-    name: Characterization_equipment
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/equipment
-    description: Instrument or equipment used for characterization.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+  Characterization_carried_out_by:
+    name: Characterization_carried_out_by
+    definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/carried_out_by
+    description: 'The analytical instrument used to carry out this characterization.
+
+      Provide a Device instance (e.g. XRD diffractometer, TEM, NMR spectrometer).'
+    in_subset:
+    - domain_agnostic_core
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
     mappings:
-    - VOC4CAT:0000187
-    is_a: equipment
+    - prov:wasAssociatedWith
+    is_a: carried_out_by
     domain: Characterization
-    slot_uri: VOC4CAT:0000187
-    alias: equipment
+    slot_uri: prov:wasAssociatedWith
+    alias: carried_out_by
     owner: Characterization
     domain_of:
     - Characterization
     is_usage_slot: true
-    usage_slot_name: equipment
-    range: string
+    usage_slot_name: carried_out_by
+    range: Device
     required: true
+    recommended: true
     multivalued: true
+    inlined: true
+    inlined_as_list: true
   Characterization_evaluated_entity:
     name: Characterization_evaluated_entity
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/evaluated_entity
@@ -7376,8 +7513,8 @@ slots:
     recommended: true
     inlined: true
     inlined_as_list: false
-  Reaction_rdf_type:
-    name: Reaction_rdf_type
+  CatalyticReaction_rdf_type:
+    name: CatalyticReaction_rdf_type
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/rdf_type
     description: 'The type of catalytic reaction as an ontology term (e.g. VOC4CAT:0007010
 
@@ -7388,46 +7525,48 @@ slots:
     mappings:
     - rdf:type
     is_a: rdf_type
-    domain: Reaction
+    domain: CatalyticReaction
     slot_uri: rdf:type
     alias: rdf_type
-    owner: Reaction
+    owner: CatalyticReaction
     domain_of:
-    - Reaction
+    - CatalyticReaction
     is_usage_slot: true
     usage_slot_name: rdf_type
     range: DefinedTerm
     recommended: true
     inlined: true
     inlined_as_list: false
-  Reaction_carried_out_by:
-    name: Reaction_carried_out_by
+  CatalyticReaction_carried_out_by:
+    name: CatalyticReaction_carried_out_by
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/carried_out_by
-    description: 'The reactor in which the Reaction takes place, provided as a
+    description: 'The reactor in which the Reaction takes place.
 
-      ReactorDesignType (Device) instance.'
+      Must be a Reactor instance (a Device subclass specific to catalytic
+
+      reaction vessels, e.g. FixedBedReactor, CSTR, Autoclave).'
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
     mappings:
     - prov:wasAssociatedWith
     is_a: carried_out_by
-    domain: Reaction
+    domain: CatalyticReaction
     slot_uri: prov:wasAssociatedWith
     alias: carried_out_by
-    owner: Reaction
+    owner: CatalyticReaction
     domain_of:
-    - Reaction
+    - CatalyticReaction
     is_usage_slot: true
     usage_slot_name: carried_out_by
-    range: ReactorDesignType
+    range: ChemicalReactor
     required: true
     recommended: true
     multivalued: true
     inlined: true
     inlined_as_list: true
-  Reaction_had_input_entity:
-    name: Reaction_had_input_entity
+  CatalyticReaction_had_input_entity:
+    name: CatalyticReaction_had_input_entity
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/had_input_entity
     description: The reactant chemicals or feeds entering the reactor.
     in_subset:
@@ -7436,12 +7575,12 @@ slots:
     mappings:
     - prov:used
     is_a: had_input_entity
-    domain: Reaction
+    domain: CatalyticReaction
     slot_uri: prov:used
     alias: had_input_entity
-    owner: Reaction
+    owner: CatalyticReaction
     domain_of:
-    - Reaction
+    - CatalyticReaction
     is_usage_slot: true
     usage_slot_name: had_input_entity
     range: EvaluatedEntity
@@ -7449,8 +7588,8 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
-  Reaction_product_identification_method:
-    name: Reaction_product_identification_method
+  CatalyticReaction_product_identification_method:
+    name: CatalyticReaction_product_identification_method
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/product_identification_method
     description: 'The analytical method used to identify and/or quantify reaction
       products.
@@ -7464,12 +7603,12 @@ slots:
     mappings:
     - coremeta4cat:product_identification_method
     is_a: product_identification_method
-    domain: Reaction
+    domain: CatalyticReaction
     slot_uri: coremeta4cat:product_identification_method
     alias: product_identification_method
-    owner: Reaction
+    owner: CatalyticReaction
     domain_of:
-    - Reaction
+    - CatalyticReaction
     is_usage_slot: true
     usage_slot_name: product_identification_method
     range: ProductIdentificationMethod
@@ -11415,6 +11554,8 @@ classes:
     mappings:
     - dcat:Dataset
     is_a: Dataset
+    mixins:
+    - ClassifierMixin
     slots:
     - Dataset_access_rights
     - Dataset_applicable_legislation
@@ -11502,6 +11643,368 @@ classes:
         multivalued: true
         inlined_as_list: true
     class_uri: dcat:Dataset
+  QuantitativeRange:
+    name: QuantitativeRange
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/QuantitativeRange
+    description: 'A quantitative property expressed as a range between a lower and
+      upper bound,
+
+      sharing a common unit. Used where an experiment operates over a range of
+
+      conditions (e.g. a temperature sweep, a feed concentration window).
+
+
+      Aligned to qudt:Quantity (as in the DCAT-AP-PLUS QuantitativeAttribute pattern)
+
+      but with min_value / max_value instead of a single value to represent an
+
+      interval rather than a point value. Provide the shared unit as a QUDT DefinedTerm.'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    mixins:
+    - ClassifierMixin
+    slots:
+    - title
+    - description
+    - quantitativeRange__min_value
+    - quantitativeRange__max_value
+    - quantitativeRange__unit
+    - quantitativeRange__has_quantity_type
+    - ClassifierMixin_type
+    - rdf_type
+    attributes:
+      min_value:
+        name: min_value
+        description: Lower bound of the range.
+        slot_uri: coremeta4cat:minValue
+        range: float
+      max_value:
+        name: max_value
+        description: Upper bound of the range.
+        slot_uri: coremeta4cat:maxValue
+        range: float
+      unit:
+        name: unit
+        description: 'Unit shared by both bounds, as a QUDT unit term
+
+          (e.g. id: http://qudt.org/vocab/unit/DegreeCelsius, title: "Degree Celsius").'
+        slot_uri: qudt:unit
+        range: DefinedTerm
+      has_quantity_type:
+        name: has_quantity_type
+        description: 'QUDT QuantityKind term for the kind of quantity this range describes
+
+          (e.g. id: http://qudt.org/vocab/quantitykind/Temperature, title: "Temperature").'
+        slot_uri: qudt:hasQuantityKind
+        range: DefinedTerm
+    class_uri: qudt:Quantity
+  Duration:
+    name: Duration
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Duration
+    description: A quantitative measure of elapsed time (duration of a process step).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    close_mappings:
+    - PATO:0001309
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: qudt:Quantity
+  VolumeFlowRate:
+    name: VolumeFlowRate
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/VolumeFlowRate
+    description: Volume of fluid passing a given point per unit time.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    close_mappings:
+    - PATO:0001574
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: qudt:Quantity
+  HeatingRate:
+    name: HeatingRate
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/HeatingRate
+    description: Rate of temperature change per unit time during a thermal ramp.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: qudt:Quantity
+  AngularVelocity:
+    name: AngularVelocity
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/AngularVelocity
+    description: Rate of rotational motion, typically expressed in revolutions per
+      minute.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    close_mappings:
+    - PATO:0002154
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: qudt:Quantity
+  EnergyQuantity:
+    name: EnergyQuantity
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/EnergyQuantity
+    description: A quantitative measure of energy (eV, keV, kJ/mol, etc.).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    close_mappings:
+    - PATO:0001021
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: qudt:Quantity
+  ElectricPotential:
+    name: ElectricPotential
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ElectricPotential
+    description: A quantitative measure of electric potential difference or voltage.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    close_mappings:
+    - PATO:0001464
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: qudt:Quantity
+  PowerQuantity:
+    name: PowerQuantity
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/PowerQuantity
+    description: Rate of energy transfer per unit time (e.g. laser power in mW).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    close_mappings:
+    - PATO:0001230
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: qudt:Quantity
+  LengthQuantity:
+    name: LengthQuantity
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/LengthQuantity
+    description: A quantitative measure of length or spatial dimension (nm, mm, cm).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    close_mappings:
+    - PATO:0001708
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: qudt:Quantity
+  PlaneAngle:
+    name: PlaneAngle
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/PlaneAngle
+    description: A quantitative measure of a plane angle (e.g. scattering angle in
+      degrees).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: qudt:Quantity
+  Wavenumber:
+    name: Wavenumber
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Wavenumber
+    description: Reciprocal of wavelength; number of wave cycles per unit length (cm^-1).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: qudt:Quantity
+  MassToChargeRatio:
+    name: MassToChargeRatio
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/MassToChargeRatio
+    description: Ratio of mass to electric charge (m/z) in mass spectrometry.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - qudt:Quantity
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: qudt:Quantity
+  Atmosphere:
+    name: Atmosphere
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Atmosphere
+    description: 'A qualitative descriptor of the gaseous environment or atmospheric
+
+      conditions during a process (e.g. "air", "N2", "5% H2/Ar").'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - coremeta4cat:Atmosphere
+    is_a: QualitativeAttribute
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: coremeta4cat:Atmosphere
+  CalcinationGaseousEnvironment:
+    name: CalcinationGaseousEnvironment
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CalcinationGaseousEnvironment
+    description: 'The specific gaseous environment maintained during a calcination
+      step
+
+      (e.g. "air", "N2", "10% O2/N2").'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - VOC4CAT:0000055
+    is_a: Atmosphere
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000055
+  HeatingProcedure:
+    name: HeatingProcedure
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/HeatingProcedure
+    description: "A qualitative descriptor of the thermal programme or heating procedure\n\
+      applied (e.g. \"isothermal\", \"ramp 5 \xB0C/min to 500 \xB0C, dwell 2 h\")."
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - coremeta4cat:HeatingProcedure
+    is_a: QualitativeAttribute
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: coremeta4cat:HeatingProcedure
+  SamplePretreatment:
+    name: SamplePretreatment
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/SamplePretreatment
+    description: "A qualitative descriptor of the pre-treatment applied to a sample\n\
+      before a process or measurement (e.g. \"reduction at 300 \xB0C\", \"outgassing\"\
+      )."
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - VOC4CAT:0000122
+    is_a: QualitativeAttribute
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000122
+  VesselType:
+    name: VesselType
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/VesselType
+    description: 'A qualitative descriptor of the type of reaction or synthesis vessel
+
+      used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - coremeta4cat:VesselType
+    is_a: QualitativeAttribute
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: coremeta4cat:VesselType
+  OperationMode:
+    name: OperationMode
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/OperationMode
+    description: 'A qualitative descriptor of the operation mode of an instrument
+      or
+
+      process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - VOC4CAT:0000108
+    is_a: QualitativeAttribute
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000108
   DryingMixin:
     name: DryingMixin
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/DryingMixin
@@ -11517,9 +12020,9 @@ classes:
     mixin: true
     slots:
     - drying_device
-    - drying_temperature
-    - drying_time
-    - drying_atmosphere
+    - has_drying_temperature
+    - has_drying_duration
+    - has_drying_atmosphere
     class_uri: coremeta4cat:DryingMixin
   CalcinationMixin:
     name: CalcinationMixin
@@ -11535,13 +12038,12 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mixin: true
     slots:
-    - calcination_initial_temperature
-    - calcination_final_temperature
-    - calcination_dwelling_time
+    - has_calcination_temperature_range
+    - has_calcination_dwelling_time
     - number_of_cycles
-    - calcination_gaseous_environment
-    - calcination_heating_rate
-    - calcination_gas_flow_rate
+    - has_calcination_atmosphere
+    - has_calcination_heating_rate
+    - has_calcination_gas_flow_rate
     class_uri: coremeta4cat:CalcinationMixin
   PrecipitationMixin:
     name: PrecipitationMixin
@@ -11556,16 +12058,16 @@ classes:
     mixin: true
     slots:
     - precipitating_agent
-    - precipitating_concentration
-    - synthesis_ph
-    - stirring_rate
-    - mixing_time
-    - mixing_temperature
+    - has_concentration
+    - has_ph_value
+    - has_mixing_speed
+    - has_mixing_duration
+    - has_mixing_temperature
     - order_of_addition
     - filtration
     - purification
-    - aging_temperature
-    - aging_time
+    - has_aging_temperature
+    - has_aging_duration
     class_uri: coremeta4cat:PrecipitationMixin
   ThermalSynthesisMixin:
     name: ThermalSynthesisMixin
@@ -11582,9 +12084,8 @@ classes:
     slots:
     - synthesis_temperature
     - synthesis_duration
-    - equipment
-    - vessel_type
-    - atmosphere
+    - has_vessel_type
+    - has_atmosphere
     class_uri: coremeta4cat:ThermalSynthesisMixin
   Synthesis:
     name: Synthesis
@@ -11617,7 +12118,6 @@ classes:
     - Activity_other_identifier
     - Activity_has_part
     - Activity_had_input_activity
-    - Activity_carried_out_by
     - Activity_has_qualitative_attribute
     - Activity_has_quantitative_attribute
     - Activity_part_of
@@ -11631,10 +12131,11 @@ classes:
     - Synthesis_storage_conditions
     - catalyst_support
     - solvent
-    - sample_pretreatment
+    - has_sample_pretreatment
     - Synthesis_had_input_entity
     - Synthesis_had_output_entity
     - Synthesis_realized_plan
+    - Synthesis_carried_out_by
     slot_usage:
       nominal_composition:
         name: nominal_composition
@@ -11664,6 +12165,15 @@ classes:
       storage_conditions:
         name: storage_conditions
         recommended: true
+      carried_out_by:
+        name: carried_out_by
+        description: 'Equipment or synthesis device used to carry out this preparation
+          step.
+
+          Provide a Device instance (e.g. rotary evaporator, autoclave, furnace).'
+        range: Device
+        multivalued: true
+        inlined_as_list: true
     class_uri: OBI:0000070
   Precursor:
     name: Precursor
@@ -11782,16 +12292,15 @@ classes:
     - impregnation_duration
     - impregnation_temperature
     - drying_device
-    - drying_temperature
-    - drying_time
-    - drying_atmosphere
-    - calcination_initial_temperature
-    - calcination_final_temperature
-    - calcination_dwelling_time
+    - has_drying_temperature
+    - has_drying_duration
+    - has_drying_atmosphere
+    - has_calcination_temperature_range
+    - has_calcination_dwelling_time
     - number_of_cycles
-    - calcination_gaseous_environment
-    - calcination_heating_rate
-    - calcination_gas_flow_rate
+    - has_calcination_atmosphere
+    - has_calcination_heating_rate
+    - has_calcination_gas_flow_rate
     class_uri: VOC4CAT:0007028
   CoPrecipitation:
     name: CoPrecipitation
@@ -11813,27 +12322,26 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - precipitating_agent
-    - precipitating_concentration
-    - synthesis_ph
-    - stirring_rate
-    - mixing_time
-    - mixing_temperature
+    - has_concentration
+    - has_ph_value
+    - has_mixing_speed
+    - has_mixing_duration
+    - has_mixing_temperature
     - order_of_addition
     - filtration
     - purification
-    - aging_temperature
-    - aging_time
+    - has_aging_temperature
+    - has_aging_duration
     - drying_device
-    - drying_temperature
-    - drying_time
-    - drying_atmosphere
-    - calcination_initial_temperature
-    - calcination_final_temperature
-    - calcination_dwelling_time
+    - has_drying_temperature
+    - has_drying_duration
+    - has_drying_atmosphere
+    - has_calcination_temperature_range
+    - has_calcination_dwelling_time
     - number_of_cycles
-    - calcination_gaseous_environment
-    - calcination_heating_rate
-    - calcination_gas_flow_rate
+    - has_calcination_atmosphere
+    - has_calcination_heating_rate
+    - has_calcination_gas_flow_rate
     class_uri: VOC4CAT:0007795
   SolGel:
     name: SolGel
@@ -11853,13 +12361,13 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - hydrolysis_ratio
-    - aging_time
+    - has_aging_duration
     - drying
     - surfactant_template
     - drying_device
-    - drying_temperature
-    - drying_time
-    - drying_atmosphere
+    - has_drying_temperature
+    - has_drying_duration
+    - has_drying_atmosphere
     class_uri: CHMO:0001313
   Solvothermal:
     name: Solvothermal
@@ -11884,9 +12392,8 @@ classes:
     - cooling_rate
     - synthesis_temperature
     - synthesis_duration
-    - equipment
-    - vessel_type
-    - atmosphere
+    - has_vessel_type
+    - has_atmosphere
     class_uri: CHMO:0001458
   PlasmaAssisted:
     name: PlasmaAssisted
@@ -11911,9 +12418,8 @@ classes:
     - synthesis_pressure
     - synthesis_temperature
     - synthesis_duration
-    - equipment
-    - vessel_type
-    - atmosphere
+    - has_vessel_type
+    - has_atmosphere
     class_uri: coremeta4cat:PlasmaAssisted
   CombustionSynthesis:
     name: CombustionSynthesis
@@ -11939,9 +12445,8 @@ classes:
     - post_treatment
     - synthesis_temperature
     - synthesis_duration
-    - equipment
-    - vessel_type
-    - atmosphere
+    - has_vessel_type
+    - has_atmosphere
     class_uri: coremeta4cat:CombustionSynthesis
   AtomicLayerDeposition:
     name: AtomicLayerDeposition
@@ -11989,27 +12494,26 @@ classes:
     - deposition_temperature
     - deposition_time
     - precipitating_agent
-    - precipitating_concentration
-    - synthesis_ph
-    - stirring_rate
-    - mixing_time
-    - mixing_temperature
+    - has_concentration
+    - has_ph_value
+    - has_mixing_speed
+    - has_mixing_duration
+    - has_mixing_temperature
     - order_of_addition
     - filtration
     - purification
-    - aging_temperature
-    - aging_time
+    - has_aging_temperature
+    - has_aging_duration
     - drying_device
-    - drying_temperature
-    - drying_time
-    - drying_atmosphere
-    - calcination_initial_temperature
-    - calcination_final_temperature
-    - calcination_dwelling_time
+    - has_drying_temperature
+    - has_drying_duration
+    - has_drying_atmosphere
+    - has_calcination_temperature_range
+    - has_calcination_dwelling_time
     - number_of_cycles
-    - calcination_gaseous_environment
-    - calcination_heating_rate
-    - calcination_gas_flow_rate
+    - has_calcination_atmosphere
+    - has_calcination_heating_rate
+    - has_calcination_gas_flow_rate
     class_uri: coremeta4cat:DepositionPrecipitation
   MicrowaveAssisted:
     name: MicrowaveAssisted
@@ -12032,9 +12536,8 @@ classes:
     - microwave_frequency
     - synthesis_temperature
     - synthesis_duration
-    - equipment
-    - vessel_type
-    - atmosphere
+    - has_vessel_type
+    - has_atmosphere
     class_uri: CHMO:0002906
   SonochemicalSynthesis:
     name: SonochemicalSynthesis
@@ -12056,18 +12559,17 @@ classes:
     - rdf_type
     - sonication_power
     - sonication_duration
-    - temperature
+    - has_temperature
     - drying_device
-    - drying_temperature
-    - drying_time
-    - drying_atmosphere
-    - calcination_initial_temperature
-    - calcination_final_temperature
-    - calcination_dwelling_time
+    - has_drying_temperature
+    - has_drying_duration
+    - has_drying_atmosphere
+    - has_calcination_temperature_range
+    - has_calcination_dwelling_time
     - number_of_cycles
-    - calcination_gaseous_environment
-    - calcination_heating_rate
-    - calcination_gas_flow_rate
+    - has_calcination_atmosphere
+    - has_calcination_heating_rate
+    - has_calcination_gas_flow_rate
     class_uri: coremeta4cat:SonochemicalSynthesis
   FlameSprayPyrolysis:
     name: FlameSprayPyrolysis
@@ -12085,7 +12587,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - flame_type
-    - flow_rate
+    - has_flow_rate
     - inlet_system
     - flame_ring
     - dispersant
@@ -12120,9 +12622,8 @@ classes:
     - ball_to_powder_ratio
     - synthesis_temperature
     - synthesis_duration
-    - equipment
-    - vessel_type
-    - atmosphere
+    - has_vessel_type
+    - has_atmosphere
     class_uri: coremeta4cat:MechanochemicalSynthesis
   Sublimation:
     name: Sublimation
@@ -12144,9 +12645,8 @@ classes:
     - synthesis_pressure
     - synthesis_temperature
     - synthesis_duration
-    - equipment
-    - vessel_type
-    - atmosphere
+    - has_vessel_type
+    - has_atmosphere
     class_uri: coremeta4cat:Sublimation
   MolecularSynthesis:
     name: MolecularSynthesis
@@ -12167,9 +12667,9 @@ classes:
     - rdf_type
     - reaction_vessel
     - mixing_device
-    - stirring_duration
-    - stirring_speed
-    - mixing_temperature
+    - has_stirring_duration
+    - has_stirring_speed
+    - has_mixing_temperature
     - filtration_device
     - filter_type
     - crystallisation_solvents
@@ -12178,11 +12678,11 @@ classes:
     - purification_solvent
     - number_of_cycles
     - temperature_ramp
-    - atmosphere
+    - has_atmosphere
     - drying_device
-    - drying_temperature
-    - drying_time
-    - drying_atmosphere
+    - has_drying_temperature
+    - has_drying_duration
+    - has_drying_atmosphere
     class_uri: coremeta4cat:MolecularSynthesis
   ExsolutionSynthesis:
     name: ExsolutionSynthesis
@@ -12202,13 +12702,12 @@ classes:
     - description
     - ClassifierMixin_type
     - rdf_type
-    - calcination_initial_temperature
-    - calcination_final_temperature
-    - calcination_dwelling_time
+    - has_calcination_temperature_range
+    - has_calcination_dwelling_time
     - number_of_cycles
-    - calcination_gaseous_environment
-    - calcination_heating_rate
-    - calcination_gas_flow_rate
+    - has_calcination_atmosphere
+    - has_calcination_heating_rate
+    - has_calcination_gas_flow_rate
     class_uri: coremeta4cat:ExsolutionSynthesis
   XRaySourceMixin:
     name: XRaySourceMixin
@@ -12234,8 +12733,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mixin: true
     slots:
-    - minimum_energy
-    - maximum_energy
+    - has_energy_range
     class_uri: coremeta4cat:EnergyRangeMixin
   ElectronMicroscopyMixin:
     name: ElectronMicroscopyMixin
@@ -12263,10 +12761,9 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mixin: true
     slots:
-    - minimum_temperature
-    - maximum_temperature
-    - heating_rate
-    - heating_procedure
+    - has_temperature_range
+    - has_heating_rate
+    - has_heating_procedure
     class_uri: coremeta4cat:TemperatureProgramMixin
   ChromatographyMixin:
     name: ChromatographyMixin
@@ -12279,8 +12776,8 @@ classes:
     slots:
     - column_type
     - eluent
-    - flow_rate
-    - injection_volume
+    - has_flow_rate
+    - has_injection_volume
     - external_standard
     - internal_standard
     class_uri: coremeta4cat:ChromatographyMixin
@@ -12293,8 +12790,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mixin: true
     slots:
-    - mz_minimum
-    - mz_maximum
+    - has_mz_range
     class_uri: coremeta4cat:MassRangeMixin
   PhotoluminescenceMixin:
     name: PhotoluminescenceMixin
@@ -12310,7 +12806,7 @@ classes:
     - excitation_wavelength
     - emission_wavelength
     - optical_filter
-    - temperature
+    - has_temperature
     class_uri: coremeta4cat:PhotoluminescenceMixin
   ElectrochemistryMixin:
     name: ElectrochemistryMixin
@@ -12328,8 +12824,8 @@ classes:
     - counter_electrode
     - electrolyte_composition
     - electrolyte_concentration
-    - atmosphere
-    - temperature
+    - has_atmosphere
+    - has_temperature
     class_uri: coremeta4cat:ElectrochemistryMixin
   Characterization:
     name: Characterization
@@ -12355,27 +12851,31 @@ classes:
     - Activity_had_input_entity
     - Activity_had_output_entity
     - Activity_had_input_activity
-    - Activity_carried_out_by
     - Activity_has_qualitative_attribute
     - Activity_has_quantitative_attribute
     - Activity_part_of
     - ClassifierMixin_type
     - evaluated_activity
     - occurred_in
-    - Characterization_equipment
     - sample_state
     - sample_description
     - sample_preparation
-    - sample_pretreatment
+    - has_sample_pretreatment
     - detector_type
+    - Characterization_carried_out_by
     - Characterization_evaluated_entity
     - Characterization_realized_plan
     - Characterization_rdf_type
     slot_usage:
-      equipment:
-        name: equipment
-        description: Instrument or equipment used for characterization.
+      carried_out_by:
+        name: carried_out_by
+        description: 'The analytical instrument used to carry out this characterization.
+
+          Provide a Device instance (e.g. XRD diffractometer, TEM, NMR spectrometer).'
+        range: Device
         required: true
+        multivalued: true
+        inlined_as_list: true
       evaluated_entity:
         name: evaluated_entity
         description: The catalyst sample or material being characterized.
@@ -12431,14 +12931,13 @@ classes:
     - description
     - ClassifierMixin_type
     - rdf_type
-    - minimum_2theta
-    - maximum_2theta
+    - has_two_theta_range
     - step_size
-    - operation_mode
-    - atmosphere
-    - temperature
+    - has_operation_mode
+    - has_atmosphere
+    - has_temperature
     - sample_spinning_speed
-    - experiment_duration
+    - has_experiment_duration
     - xray_source
     - monochromator
     class_uri: CHMO:0000158
@@ -12457,7 +12956,7 @@ classes:
     - description
     - ClassifierMixin_type
     - rdf_type
-    - temperature
+    - has_temperature
     - xray_source
     - monochromator
     class_uri: CHMO:0000852
@@ -12478,18 +12977,17 @@ classes:
     - description
     - ClassifierMixin_type
     - rdf_type
-    - operation_mode
+    - has_operation_mode
     - element_analyzed
     - absorption_edge
     - energy_resolution
-    - temperature
+    - has_temperature
     - beamline_source
     - noise_of_measurement
     - number_of_cycles
     - xray_source
     - monochromator
-    - minimum_energy
-    - maximum_energy
+    - has_energy_range
     class_uri: VOC4CAT:0000286
   XPS:
     name: XPS
@@ -12515,11 +13013,10 @@ classes:
     - spot_size
     - lense_mode
     - charge_compensation
-    - atmosphere
+    - has_atmosphere
     - xray_source
     - monochromator
-    - minimum_energy
-    - maximum_energy
+    - has_energy_range
     class_uri: CHMO:0000404
   EDX:
     name: EDX
@@ -12553,14 +13050,13 @@ classes:
     - description
     - ClassifierMixin_type
     - rdf_type
-    - operation_mode
-    - minimum_wavenumber
-    - maximum_wavenumber
+    - has_operation_mode
+    - has_wavenumber_range
     - step_size
-    - temperature
+    - has_temperature
     - background_correction
     - number_of_scans
-    - atmosphere
+    - has_atmosphere
     class_uri: CHMO:0000630
   DRIFTS:
     name: DRIFTS
@@ -12579,14 +13075,15 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - adsorption_gas
-    - atmosphere
-    - flow_rate
+    - has_atmosphere
+    - has_flow_rate
+    - has_wavenumber_range
     - diluting_reference
     - ratio_reference_sample
     - step_size
     - resolution
     - background_correction_method
-    - temperature
+    - has_temperature
     - number_of_scans
     class_uri: CHMO:0000645
   RamanSpectroscopy:
@@ -12605,10 +13102,10 @@ classes:
     - excitation_laser_wavelength
     - excitation_laser_power
     - magnification_setting
-    - integration_time
+    - has_integration_time
     - number_of_scans
-    - atmosphere
-    - temperature
+    - has_atmosphere
+    - has_temperature
     - filter_or_grating
     class_uri: VOC4CAT:0000069
   NMRSpectroscopy:
@@ -12633,11 +13130,11 @@ classes:
     - nucleus
     - solvent
     - irradiation_frequency
-    - temperature
+    - has_temperature
     - nmr_pulse_sequence
     - nmr_sample_tube
     - number_of_scans
-    - atmosphere
+    - has_atmosphere
     class_uri: VOC4CAT:0000073
   TransmissionElectronMicroscopy:
     name: TransmissionElectronMicroscopy
@@ -12654,7 +13151,7 @@ classes:
     - description
     - ClassifierMixin_type
     - rdf_type
-    - operation_mode
+    - has_operation_mode
     - gun_type
     - acceleration_voltage
     - magnification_setting
@@ -12696,15 +13193,14 @@ classes:
     - description
     - ClassifierMixin_type
     - rdf_type
-    - operation_mode
-    - atmosphere
+    - has_operation_mode
+    - has_atmosphere
     - initial_temperature
     - final_temperature
-    - sample_mass
-    - minimum_temperature
-    - maximum_temperature
-    - heating_rate
-    - heating_procedure
+    - has_sample_mass
+    - has_temperature_range
+    - has_heating_rate
+    - has_heating_procedure
     class_uri: CHMO:0000690
   TPR:
     name: TPR
@@ -12723,10 +13219,9 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - reducing_gas_composition
-    - minimum_temperature
-    - maximum_temperature
-    - heating_rate
-    - heating_procedure
+    - has_temperature_range
+    - has_heating_rate
+    - has_heating_procedure
     class_uri: CHMO:0002908
   TPO:
     name: TPO
@@ -12745,10 +13240,9 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - oxidizing_gas_composition
-    - minimum_temperature
-    - maximum_temperature
-    - heating_rate
-    - heating_procedure
+    - has_temperature_range
+    - has_heating_rate
+    - has_heating_procedure
     class_uri: CHMO:0002907
   BET:
     name: BET
@@ -12768,7 +13262,7 @@ classes:
     - degassing_temperature
     - measurement_temperature
     - pore_size_distribution_method
-    - sample_mass
+    - has_sample_mass
     class_uri: ENM:0000064
   ICPAES:
     name: ICPAES
@@ -12825,7 +13319,7 @@ classes:
     - maximum_wavelength
     - path_length
     - solvent
-    - concentration
+    - has_concentration
     class_uri: VOC4CAT:0000079
   PhotoluminescenceSpectroscopy:
     name: PhotoluminescenceSpectroscopy
@@ -12845,11 +13339,11 @@ classes:
     - emission_range
     - slit_width
     - step_size
-    - integration_time
+    - has_integration_time
     - excitation_wavelength
     - emission_wavelength
     - optical_filter
-    - temperature
+    - has_temperature
     class_uri: CHMO:0000773
   PhotoluminescenceLifetime:
     name: PhotoluminescenceLifetime
@@ -12872,7 +13366,7 @@ classes:
     - excitation_wavelength
     - emission_wavelength
     - optical_filter
-    - temperature
+    - has_temperature
     class_uri: CHMO:0001917
   CyclicVoltammetry:
     name: CyclicVoltammetry
@@ -12900,8 +13394,8 @@ classes:
     - counter_electrode
     - electrolyte_composition
     - electrolyte_concentration
-    - atmosphere
-    - temperature
+    - has_atmosphere
+    - has_temperature
     class_uri: CHMO:0000025
   ConductivityMeasurement:
     name: ConductivityMeasurement
@@ -12928,8 +13422,8 @@ classes:
     - counter_electrode
     - electrolyte_composition
     - electrolyte_concentration
-    - atmosphere
-    - temperature
+    - has_atmosphere
+    - has_temperature
     class_uri: CHMO:0000010
   DynamicLightScattering:
     name: DynamicLightScattering
@@ -12946,11 +13440,11 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - solvent
-    - concentration
+    - has_concentration
     - light_wavelength
     - scattering_angle
     - refractive_index
-    - temperature
+    - has_temperature
     - dispersant
     - measurement_duration
     class_uri: CHMO:0000167
@@ -12970,15 +13464,14 @@ classes:
     - description
     - ClassifierMixin_type
     - rdf_type
-    - operation_mode
+    - has_operation_mode
     - spray_voltage
     - capillary_temperature
     - solvent_composition
-    - flow_rate
+    - has_flow_rate
     - carrier_gas
-    - concentration
-    - mz_minimum
-    - mz_maximum
+    - has_concentration
+    - has_mz_range
     class_uri: CHMO:0000482
   GCMS:
     name: GCMS
@@ -13003,19 +13496,18 @@ classes:
     - minimum_oven_temperature
     - maximum_oven_temperature
     - heating_ramp
-    - heating_procedure
+    - has_heating_procedure
     - acquisition_mode
     - solvent_delay
     - trace_ion_detection
     - split_ratio
     - column_type
     - eluent
-    - flow_rate
-    - injection_volume
+    - has_flow_rate
+    - has_injection_volume
     - external_standard
     - internal_standard
-    - mz_minimum
-    - mz_maximum
+    - has_mz_range
     class_uri: CHMO:0000497
   SizeExclusionChromatography:
     name: SizeExclusionChromatography
@@ -13032,12 +13524,12 @@ classes:
     - description
     - ClassifierMixin_type
     - rdf_type
-    - temperature
+    - has_temperature
     - calibration_standard
     - column_type
     - eluent
-    - flow_rate
-    - injection_volume
+    - has_flow_rate
+    - has_injection_volume
     - external_standard
     - internal_standard
     class_uri: AFP:0000843
@@ -13059,17 +13551,17 @@ classes:
     - rdf_type
     - gradient_program
     - ionization_mode
-    - temperature
+    - has_temperature
     - column_type
     - eluent
-    - flow_rate
-    - injection_volume
+    - has_flow_rate
+    - has_injection_volume
     - external_standard
     - internal_standard
     class_uri: CHMO:0000796
-  Reaction:
-    name: Reaction
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Reaction
+  CatalyticReaction:
+    name: CatalyticReaction
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CatalyticReaction
     description: "An EvaluatedActivity representing the catalytic reaction being studied.\n\
       \nReaction is NOT a DataGeneratingActivity \u2014 it is the catalytic process\n\
       being observed, not the process that generates the dataset. A CatalysisDataset\n\
@@ -13077,10 +13569,9 @@ classes:
       \ experiments (e.g. in-situ XRD during a reaction), the dataset\ncarries both:\n\
       \  was_generated_by: Characterization  (the measurement producing data)\n  is_about_activity:\
       \ Reaction         (the catalytic process being monitored)\n\nThe reactor is\
-      \ linked via carried_out_by as a ReactorDesignType (Device).\nReactants are\
-      \ linked via had_input_entity. The type of catalytic reaction\n(e.g. ammonia\
-      \ synthesis, CO oxidation) is expressed via rdf_type using a\nvoc4cat or ChemO\
-      \ term."
+      \ linked via carried_out_by as a Reactor (Device).\nReactants are linked via\
+      \ had_input_entity. The type of catalytic reaction\n(e.g. ammonia synthesis,\
+      \ CO oxidation) is expressed via rdf_type using a\nvoc4cat or ChemO term."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - SIO:010345
@@ -13101,14 +13592,14 @@ classes:
     - reactant
     - catalyst_type
     - reactor_temperature_range
-    - atmosphere
+    - has_atmosphere
     - experiment_pressure
     - feed_composition_range
-    - experiment_duration
-    - Reaction_product_identification_method
-    - Reaction_rdf_type
-    - Reaction_carried_out_by
-    - Reaction_had_input_entity
+    - has_experiment_duration
+    - CatalyticReaction_product_identification_method
+    - CatalyticReaction_rdf_type
+    - CatalyticReaction_carried_out_by
+    - CatalyticReaction_had_input_entity
     slot_usage:
       rdf_type:
         name: rdf_type
@@ -13118,10 +13609,12 @@ classes:
         recommended: true
       carried_out_by:
         name: carried_out_by
-        description: 'The reactor in which the Reaction takes place, provided as a
+        description: 'The reactor in which the Reaction takes place.
 
-          ReactorDesignType (Device) instance.'
-        range: ReactorDesignType
+          Must be a Reactor instance (a Device subclass specific to catalytic
+
+          reaction vessels, e.g. FixedBedReactor, CSTR, Autoclave).'
+        range: ChemicalReactor
         required: true
         multivalued: true
         inlined_as_list: true
@@ -13174,15 +13667,16 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     class_uri: OBI:0000272
-  ReactorDesignType:
-    name: ReactorDesignType
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ReactorDesignType
-    description: 'Abstract Device representing the type of reactor used in a catalytic
-      experiment.
-
-      Concrete subclasses specify the reactor geometry and operating mode.
-
-      Linked from Reaction via carried_out_by.'
+  ChemicalReactor:
+    name: ChemicalReactor
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ChemicalReactor
+    description: "Abstract Device subclass representing a catalytic reactor vessel.\n\
+      \nReactor is more specific than the general Device (AgenticEntity): it restricts\n\
+      carried_out_by on Reaction to dedicated reactor equipment. This semantic\ndistinction\
+      \ separates analytical instruments (Device) from reaction vessels\n(Reactor)\
+      \ in the carried_out_by relationship.\n\nConcrete subclasses (FixedBedReactor,\
+      \ CSTR, PlugFlowReactor, \u2026) specify\nreactor geometry and operating mode.\n\
+      Linked from Reaction via carried_out_by (restricted to range: Reactor)."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - VOC4CAT:0007018
@@ -13209,7 +13703,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - VOC4CAT:0000193
-    is_a: ReactorDesignType
+    is_a: ChemicalReactor
     slots:
     - id
     - title
@@ -13230,7 +13724,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - VOC4CAT:0007019
-    is_a: ReactorDesignType
+    is_a: ChemicalReactor
     slots:
     - id
     - title
@@ -13251,7 +13745,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - VOC4CAT:0007102
-    is_a: ReactorDesignType
+    is_a: ChemicalReactor
     slots:
     - id
     - title
@@ -13272,7 +13766,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - NCIT:C93052
-    is_a: ReactorDesignType
+    is_a: ChemicalReactor
     slots:
     - id
     - title
@@ -13293,7 +13787,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - coremeta4cat:SlurryReactor
-    is_a: ReactorDesignType
+    is_a: ChemicalReactor
     slots:
     - id
     - title
@@ -13315,7 +13809,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - VOC4CAT:0000234
-    is_a: ReactorDesignType
+    is_a: ChemicalReactor
     slots:
     - id
     - title
@@ -13336,7 +13830,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - coremeta4cat:FixedBedReactor
-    is_a: ReactorDesignType
+    is_a: ChemicalReactor
     slots:
     - id
     - title
@@ -13357,7 +13851,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - coremeta4cat:FluidizedBedReactor
-    is_a: ReactorDesignType
+    is_a: ChemicalReactor
     slots:
     - id
     - title
@@ -13561,8 +14055,8 @@ classes:
     - rdf_type
     - rate_constants
     - solver_type
-    - temperature
-    - pressure
+    - has_temperature
+    - has_pressure
     - surface_coverage
     - activation_energy
     class_uri: coremeta4cat:Microkinetics
@@ -13584,7 +14078,7 @@ classes:
     - rdf_type
     - interaction_potential
     - number_of_steps
-    - temperature
+    - has_temperature
     - lattice_size_type
     - acceptance_criteria
     - equilibration_steps
@@ -13819,7 +14313,7 @@ classes:
     - potential_range
     - solvation_model
     - ionic_strength
-    - temperature
+    - has_temperature
     - material_composition
     - crystal_structure
     class_uri: coremeta4cat:AqueousStability
@@ -17420,7 +17914,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-04-23T21:51:58'
-source_file_size: 6739
-generation_date: '2026-04-23T22:47:01'
+source_file_date: '2026-04-29T13:55:43'
+source_file_size: 6777
+generation_date: '2026-04-29T17:53:45'
 

@@ -631,7 +631,7 @@ slots:
     slot_uri: coremeta4cat:hasEnergyRange
     range: QuantitativeRange
     description: |-
-      Energy scan range (minimum → maximum) as a QuantitativeRange.
+      Energy scan range (minimum -> maximum) as a QuantitativeRange.
       Provide unit as a QUDT term (e.g. eV, keV).
     inlined: true
 
@@ -662,7 +662,7 @@ slots:
     slot_uri: coremeta4cat:hasTemperatureRange
     range: QuantitativeRange
     description: |-
-      Temperature programme range (start → final temperature) as a QuantitativeRange.
+      Temperature programme range (start -> final temperature) as a QuantitativeRange.
       Provide unit as a QUDT term (e.g. Degree Celsius, Kelvin).
     inlined: true
 
@@ -686,7 +686,7 @@ slots:
     slot_uri: coremeta4cat:hasMzRange
     range: QuantitativeRange
     description: |-
-      Mass-to-charge ratio scan range (minimum → maximum m/z) as a QuantitativeRange.
+      Mass-to-charge ratio scan range (minimum -> maximum m/z) as a QuantitativeRange.
       The unit for m/z is dimensionless (Thomson); set unit to the appropriate QUDT term.
     inlined: true
 
@@ -751,7 +751,7 @@ slots:
     slot_uri: coremeta4cat:hasTwoThetaRange
     range: QuantitativeRange
     description: |-
-      2theta diffraction scan range (minimum → maximum 2θ angle) as a QuantitativeRange.
+      2theta diffraction scan range (minimum -> maximum 2theta angle) as a QuantitativeRange.
       Provide unit as a QUDT term (e.g. Degree).
     inlined: true
 
@@ -852,7 +852,7 @@ slots:
     slot_uri: coremeta4cat:hasWavenumberRange
     range: QuantitativeRange
     description: |-
-      Infrared wavenumber scan range (minimum → maximum cm⁻¹) as a QuantitativeRange.
+      Infrared wavenumber scan range (minimum -> maximum cm^-1) as a QuantitativeRange.
       Provide unit as a QUDT term (e.g. ReciprocalCentimetre).
     inlined: true
 

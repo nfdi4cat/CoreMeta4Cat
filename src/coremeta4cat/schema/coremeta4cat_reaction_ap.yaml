@@ -64,7 +64,7 @@ imports:
 
 classes:
 
-  Reaction:
+  CatalyticReaction:
     is_a: EvaluatedActivity
     class_uri: SIO:010345   # chemical reaction
     description: |-
@@ -104,7 +104,7 @@ classes:
           The reactor in which the Reaction takes place.
           Must be a Reactor instance (a Device subclass specific to catalytic
           reaction vessels, e.g. FixedBedReactor, CSTR, Autoclave).
-        range: Reactor
+        range: ChemicalReactor
         required: true
         multivalued: true
         inlined_as_list: true
@@ -145,7 +145,7 @@ classes:
   # They are the physical reactor carried_out_by which a Reaction takes place.
   # The reactor type is expressed both via the subclass and optionally via rdf_type.
 
-  Reactor:
+  ChemicalReactor:
     is_a: Device
     class_uri: VOC4CAT:0007018
     abstract: true
@@ -162,42 +162,42 @@ classes:
       Linked from Reaction via carried_out_by (restricted to range: Reactor).
 
   ElectrochemicalReactor:
-    is_a: Reactor
+    is_a: ChemicalReactor
     class_uri: VOC4CAT:0000193
     description: |-
       Electrochemical reactor used in electrocatalytic experiments, including
       H-cells, flow cells, and membrane electrode assemblies.
 
   CSTR:
-    is_a: Reactor
+    is_a: ChemicalReactor
     class_uri: VOC4CAT:0007019
     description: |-
       Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow
       reactor operating at steady state.
 
   PlugFlowReactor:
-    is_a: Reactor
+    is_a: ChemicalReactor
     class_uri: VOC4CAT:0007102
     description: |-
       Plug flow reactor (PFR) — a tubular reactor in which reactant composition
       varies along the axis with no axial mixing.
 
   Autoclave:
-    is_a: Reactor
+    is_a: ChemicalReactor
     class_uri: NCIT:C93052
     description: |-
       Autoclave reactor — a sealed pressure vessel for batch reactions at
       elevated temperature and/or pressure.
 
   SlurryReactor:
-    is_a: Reactor
+    is_a: ChemicalReactor
     class_uri: coremeta4cat:SlurryReactor
     description: |-
       Slurry reactor — a three-phase reactor in which catalyst particles are
       suspended in a liquid phase through which gas is bubbled.
 
   Microreactor:
-    is_a: Reactor
+    is_a: ChemicalReactor
     class_uri: VOC4CAT:0000234
     description: |-
       Microreactor — a miniaturised flow reactor with characteristic dimensions
@@ -205,14 +205,14 @@ classes:
       screening.
 
   FixedBedReactor:
-    is_a: Reactor
+    is_a: ChemicalReactor
     class_uri: coremeta4cat:FixedBedReactor
     description: |-
       Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.
       The most common reactor type in heterogeneous catalysis testing.
 
   FluidizedBedReactor:
-    is_a: Reactor
+    is_a: ChemicalReactor
     class_uri: coremeta4cat:FluidizedBedReactor
     description: |-
       Fluidized bed reactor — a reactor in which the catalyst particles are

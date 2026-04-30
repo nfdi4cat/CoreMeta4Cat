@@ -15,20 +15,29 @@
 
 id: "coremeta4cat:REAC_001_CO2_hydrogenation"
 catalyst_quantity:
-  - 0.5
+  - value: 0.5
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+    unit: https://qudt.org/vocab/unit/GM
 reactant:
-  - "CO2 (99.998% purity, 20 vol% in H2)"
-  - "H2 (99.999% purity)"
+  - id: "https://pubchem.ncbi.nlm.nih.gov/compound/280"
+    title: "CO2 (99.998% purity, 20 vol% in H2)"
+  - id: "https://pubchem.ncbi.nlm.nih.gov/compound/783"
+    title: "H2 (99.999% purity)"
 catalyst_type:
   - "heterogeneous, supported metal oxide"
 reactor_temperature_range:
-  - "200-300 deg C"
+  - min_value: 200
+    max_value: 300
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/DEG_C
 experiment_pressure:
-  - 50.0
-atmosphere:
-  - "H2/CO2 = 3:1 (molar), GHSV = 10000 mL/(g*h)"
+  - value: 50.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+has_atmosphere:
+  - value: "H2/CO2 = 3:1 (molar), GHSV = 10000 mL/(g*h)"
 feed_composition_range:
-  - "H2/CO2 = 3:1, CO2 concentration 20 vol%"
+  - description: "H2/CO2 = 3:1, CO2 concentration 20 vol%"
 carried_out_by:
   - id: "coremeta4cat:REACT_001_FixedBed"
     title: "stainless steel fixed-bed plug-flow reactor"

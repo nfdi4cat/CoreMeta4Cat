@@ -14,17 +14,19 @@
 #     pass energy, spot size, charge compensation, binding energy calibration
 
 id: "coremeta4cat:CHAR_003_XPS_NiO_CeO2"
-equipment:
-  - "Thermo Scientific K-Alpha+ XPS spectrometer"
-  - "Al K-alpha monochromatic X-ray source (1486.6 eV, 72 W)"
+carried_out_by:
+  - id: "coremeta4cat:DEV_003_Thermo_KAlpha_XPS"
+    title: "Thermo Scientific K-Alpha+ XPS spectrometer"
+  - id: "coremeta4cat:DEV_004_AlKalpha_source"
+    title: "Al K-alpha monochromatic X-ray source (1486.6 eV, 72 W)"
 sample_state:
   - "powder"
 sample_description:
   - "NiO/CeO2 co-precipitated catalyst (SYNTH_002), calcined at 500 deg C, as-prepared (non-reduced), ca. 10 mg pressed into indium foil"
 sample_preparation:
   - "lightly pressed into indium foil to obtain flat surface; mounted on sample stub with copper tape; no Ar+ sputtering performed"
-sample_pretreatment:
-  - "outgassed in XPS load-lock chamber at < 1e-7 mbar for 12 h before transfer to analysis chamber (< 5e-9 mbar)"
+has_sample_pretreatment:
+  - value: "outgassed in XPS load-lock chamber at < 1e-7 mbar for 12 h before transfer to analysis chamber (< 5e-9 mbar)"
 detector_type:
   - "128-channel 2D delay-line detector (DLD)"
 evaluated_entity:

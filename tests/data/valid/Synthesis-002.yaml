@@ -24,22 +24,29 @@ catalyst_measured_properties:
 storage_conditions:
   - "sealed glass vial in desiccator, ambient temperature, protected from moisture"
 solvent:
-  - "deionized water (18.2 MOhm cm, MilliQ)"
-sample_pretreatment:
-  - "in situ reduction: 5 vol% H2/N2 at 700 deg C for 1 h (10 deg C/min ramp) before DRM tests"
+  - id: "https://pubchem.ncbi.nlm.nih.gov/compound/962"
+    title: "deionized water (18.2 MOhm cm, MilliQ)"
+has_sample_pretreatment:
+  - value: "in situ reduction: 5 vol% H2/N2 at 700 deg C for 1 h (10 deg C/min ramp) before DRM tests"
 had_input_entity:
   - id: "coremeta4cat:PREC_004_Ni_NO3_6H2O"
     title: "nickel(II) nitrate hexahydrate (Sigma-Aldrich, purity 99%)"
     precursor_quantity:
-      - 8.72
+      - value: 8.72
+        has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+        unit: https://qudt.org/vocab/unit/GM
   - id: "coremeta4cat:PREC_005_Ce_NO3_6H2O"
     title: "cerium(III) nitrate hexahydrate (Sigma-Aldrich, purity 99.5%)"
     precursor_quantity:
-      - 13.03
+      - value: 13.03
+        has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+        unit: https://qudt.org/vocab/unit/GM
   - id: "coremeta4cat:PREC_006_Na2CO3"
     title: "sodium carbonate precipitating agent (anhydrous, Sigma-Aldrich, purity 99.5%)"
     precursor_quantity:
-      - 5.30
+      - value: 5.30
+        has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+        unit: https://qudt.org/vocab/unit/GM
 had_output_entity:
   - id: "coremeta4cat:CAT_002_NiO_CeO2"
     title: "NiO/CeO2 dry reforming catalyst (calcined precursor)"

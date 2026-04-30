@@ -182,8 +182,8 @@ classes:
     slots:
       - rate_constants
       - solver_type
-      - temperature
-      - pressure
+      - has_temperature
+      - has_pressure
       - surface_coverage
       - activation_energy
 
@@ -198,7 +198,7 @@ classes:
     slots:
       - interaction_potential
       - number_of_steps
-      - temperature
+      - has_temperature
       - lattice_size_type
       - acceptance_criteria
       - equilibration_steps
@@ -327,7 +327,7 @@ classes:
       - potential_range
       - solvation_model
       - ionic_strength
-      - temperature
+      - has_temperature
 
   GrainBoundaries:
     is_a: CalculatedProperty
@@ -446,7 +446,7 @@ slots:
   convergence_criteria:
     description: |-
       Convergence thresholds applied during self-consistent field (SCF) and/or
-      geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/Å).
+      geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).
     range: string
     slot_uri: coremeta4cat:convergence_criteria
     multivalued: true
@@ -533,14 +533,6 @@ slots:
     slot_uri: coremeta4cat:solver_type
     multivalued: true
 
-  pressure:
-    description: Total pressure used in microkinetic or Monte Carlo simulation.
-    range: float
-    slot_uri: coremeta4cat:pressure
-    multivalued: true
-    unit:
-      ucum_code: bar
-
   surface_coverage:
     description: Surface coverage of adsorbed species (fraction of surface sites occupied).
     range: float
@@ -572,7 +564,7 @@ slots:
   lattice_size_type:
     description: |-
       Lattice geometry and dimensions used in lattice-based MC (e.g.
-      "100×100 square lattice", "hexagonal 50×50").
+      "100x100 square lattice", "hexagonal 50x50").
     range: string
     slot_uri: coremeta4cat:lattice_size_type
     multivalued: true
@@ -610,7 +602,7 @@ slots:
   crystal_structure:
     description: |-
       Crystal structure of the simulated material, including space group and
-      lattice parameters (e.g. "Fm-3m, a=3.92 Å for Pt").
+      lattice parameters (e.g. "Fm-3m, a=3.92 A for Pt").
     range: string
     slot_uri: SIO:001100
     multivalued: true
@@ -620,7 +612,7 @@ slots:
   k_point_mesh:
     description: |-
       Monkhorst-Pack k-point mesh used for Brillouin zone sampling
-      (e.g. "4×4×1" for a surface slab, "8×8×8" for a bulk cell).
+      (e.g. "4x4x1" for a surface slab, "8x8x8" for a bulk cell).
     range: string
     slot_uri: coremeta4cat:k_point_mesh
     multivalued: true
@@ -671,7 +663,7 @@ slots:
 
   piezoelectric_tensor:
     description: |-
-      Components of the piezoelectric tensor e_ij (C/m²) or d_ij (pC/N),
+      Components of the piezoelectric tensor e_ij (C/m2) or d_ij (pC/N),
       describing the coupling between stress and electric polarization.
     range: string
     slot_uri: coremeta4cat:piezoelectric_tensor
@@ -812,7 +804,7 @@ slots:
 
   kq_point_mesh:
     description: |-
-      k/q-point mesh for phonon Brillouin zone sampling (e.g. "8×8×8").
+      k/q-point mesh for phonon Brillouin zone sampling (e.g. "8x8x8").
       Distinct from the electronic k-point mesh.
     range: string
     slot_uri: coremeta4cat:kq_point_mesh
@@ -859,7 +851,7 @@ slots:
   # ---- AqueousStability slots ----
 
   ph_range:
-    description: pH range covered in the Pourbaix stability diagram (e.g. "0–14").
+    description: pH range covered in the Pourbaix stability diagram (e.g. "0-14").
     range: string
     slot_uri: coremeta4cat:ph_range
     multivalued: true
@@ -917,7 +909,7 @@ slots:
   simulation_cell_size:
     description: |-
       Dimensions of the simulation cell used to model the grain boundary
-      (e.g. "10×10×30 nm").
+      (e.g. "10x10x30 nm").
     range: string
     slot_uri: coremeta4cat:simulation_cell_size
     multivalued: true
