@@ -8,10 +8,8 @@
       
       
       
-        <link rel="canonical" href="https://nfdi4cat.github.io/CoreMeta4Cat/contributing/">
+        <link rel="canonical" href="https://nfdi4cat.github.io/CoreMeta4Cat/schema_alignment_fixes_2026-04-29/">
       
-      
-        <link rel="prev" href="../about/">
       
       
       
@@ -23,7 +21,7 @@
     
     
       
-        <title>Contributing - CoreMeta4Cat</title>
+        <title>CoreMeta4Cat Schema Alignment Fixes — 2026-04-29 - CoreMeta4Cat</title>
       
     
     
@@ -72,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to-contribute" class="md-skip">
+        <a href="#coremeta4cat-schema-alignment-fixes-2026-04-29" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Contributing
+              CoreMeta4Cat Schema Alignment Fixes — 2026-04-29
             
           </span>
         </div>
@@ -611,37 +609,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Contributing
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
         
   
   
@@ -657,81 +628,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#give-feedback-on-a-specific-term" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Give feedback on a specific term
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#report-a-problem-or-suggest-a-new-field" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Report a problem or suggest a new field
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ask-a-question" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ask a question
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#understanding-the-vocabulary-workbook" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Understanding the vocabulary workbook
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contribute-code-or-schema-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contribute code or schema changes
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -763,10 +659,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#give-feedback-on-a-specific-term" class="md-nav__link">
+  <a href="#what-was-done" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Give feedback on a specific term
+        What was done
       
     </span>
   </a>
@@ -774,10 +670,93 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#report-a-problem-or-suggest-a-new-field" class="md-nav__link">
+  <a href="#fixes-applied" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Report a problem or suggest a new field
+        Fixes applied
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fixes applied">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-critical-undefined-temperature-slots-in-simulation-ap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Critical: undefined temperature slots in simulation AP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pressure-alignment-in-simulation-ap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. pressure alignment in simulation AP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-set_temperature-range-in-synthesis-ap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. set_temperature range in synthesis AP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-rdf_type-not-available-on-catalysisdataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. rdf_type not available on CatalysisDataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-unicode-characters-causing-windows-encoding-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Unicode characters causing Windows encoding failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-shacl-generator-excluded-from-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. SHACL generator excluded from config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-results-after-all-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation results after all fixes
       
     </span>
   </a>
@@ -785,32 +764,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ask-a-question" class="md-nav__link">
+  <a href="#remaining-known-issues-out-of-scope-for-this-session" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ask a question
+        Remaining known issues (out of scope for this session)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Remaining known issues (out of scope for this session)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-existing-justfile-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-existing justfile bug
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#understanding-the-vocabulary-workbook" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#remaining-raw-float-slots-group-d" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Understanding the vocabulary workbook
+        Remaining raw float slots (Group D)
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#contribute-code-or-schema-changes" class="md-nav__link">
+  <a href="#files-changed-in-this-session" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Contribute code or schema changes
+        Files changed in this session
       
     </span>
   </a>
@@ -837,30 +833,237 @@
   
 
 
-<h1 id="how-to-contribute">How to contribute</h1>
-<p>CoreMeta4Cat is a community-driven standard — your feedback and knowledge directly shape what gets included. Here are the most common ways to get involved, no coding required.</p>
+<h1 id="coremeta4cat-schema-alignment-fixes-2026-04-29">CoreMeta4Cat Schema Alignment Fixes — 2026-04-29</h1>
+<h2 id="what-was-done">What was done</h2>
+<p>This session identified and fixed schema alignment issues between CoreMeta4Cat and ChemDCAT-AP that accumulated during the previous alignment session (2026-04-27). The previous session updated the synthesis, characterisation, and reaction APs but <strong>left the simulation AP untouched</strong>, causing the schema to fail to load entirely.</p>
 <hr />
-<h2 id="give-feedback-on-a-specific-term">Give feedback on a specific term</h2>
-<p>Every field on the schema documentation pages has a <strong>Submit Term Feedback</strong> button. Click it to open a pre-filled GitHub issue where you can suggest a change, report an error, or ask a question about that specific field. You will need a free GitHub account.</p>
+<h2 id="fixes-applied">Fixes applied</h2>
+<h3 id="1-critical-undefined-temperature-slots-in-simulation-ap">1. Critical: undefined <code>temperature</code> slots in simulation AP</h3>
+<p><strong>File:</strong> <code>src/coremeta4cat/schema/coremeta4cat_simulation_ap.yaml</code></p>
+<p>Three classes referenced a <code>temperature</code> slot that does not exist anywhere in the schema. The correct slot is <code>has_temperature</code> (defined in <code>material_entities_ap.yaml</code>, range: <code>Temperature</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Microkinetics</code></td>
+<td><code>- temperature</code></td>
+<td><code>- has_temperature</code></td>
+</tr>
+<tr>
+<td><code>MonteCarlo</code></td>
+<td><code>- temperature</code></td>
+<td><code>- has_temperature</code></td>
+</tr>
+<tr>
+<td><code>AqueousStability</code></td>
+<td><code>- temperature</code></td>
+<td><code>- has_temperature</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Effect:</strong> The schema failed to load at all before this fix (<code>ValueError: unknown slot: "temperature"</code>).</p>
 <hr />
-<h2 id="report-a-problem-or-suggest-a-new-field">Report a problem or suggest a new field</h2>
-<p>Use the <a href="https://github.com/nfdi4cat/CoreMeta4Cat/issues">GitHub Issue Tracker</a>. When opening an issue, try to include:</p>
+<h3 id="2-pressure-alignment-in-simulation-ap">2. <code>pressure</code> alignment in simulation AP</h3>
+<p><strong>File:</strong> <code>src/coremeta4cat/schema/coremeta4cat_simulation_ap.yaml</code></p>
+<p>The <code>Microkinetics</code> class used a locally-defined <code>pressure</code> slot with <code>range: float</code> and a unit annotation. This breaks the ChemDCAT-AP pattern where pressure is represented as <code>has_pressure → Pressure</code> (a <code>QuantitativeAttribute</code> instance, not a float).</p>
 <ul>
-<li>Which data class the field belongs to (Synthesis, Characterization, Reaction, Simulation)</li>
-<li>What the field should be called and what it means</li>
-<li>Why it is needed — a concrete example from your research helps a lot</li>
-<li>Whether it should be Mandatory, Recommended, or Optional, and why</li>
+<li><strong><code>Microkinetics</code> slots:</strong> <code>- pressure</code> → <code>- has_pressure</code></li>
+<li><strong>Removed slot definition:</strong>
+  <div class="highlight"><pre><span></span><code><span class="nt">pressure</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">  </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="nv">bar</span><span class="p p-Indicator">}</span>
+</code></pre></div></li>
 </ul>
 <hr />
-<h2 id="ask-a-question">Ask a question</h2>
-<p>Not sure whether a field exists, or how to annotate something? Use the <a href="https://github.com/nfdi4cat/CoreMeta4Cat/discussions">GitHub Discussions forum</a> — no issue required.</p>
+<h3 id="3-set_temperature-range-in-synthesis-ap">3. <code>set_temperature</code> range in synthesis AP</h3>
+<p><strong>File:</strong> <code>src/coremeta4cat/schema/coremeta4cat_synthesis_ap.yaml</code></p>
+<p>The <code>set_temperature</code> slot (used by <code>CombustionSynthesis</code>) still used <code>range: float</code> with an inline <code>unit:</code> annotation, inconsistent with all other temperature slots in the schema.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Before</span>
+<span class="nt">set_temperature</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="w">  </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="nv">Cel</span><span class="p p-Indicator">}</span>
+
+<span class="c1"># After</span>
+<span class="nt">set_temperature</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature</span>
+<span class="w">  </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
 <hr />
-<h2 id="understanding-the-vocabulary-workbook">Understanding the vocabulary workbook</h2>
-<p>Download the <a href="../assets/coremeta4cat_vocabulary.xlsx">vocabulary reference workbook</a> for a structured overview of all fields, organised by data class and colour-coded by importance (Mandatory / Recommended / Optional). The workbook opens with an <strong>Introduction</strong> sheet and a <strong>Legend</strong> sheet explaining the colour coding and column meanings.</p>
-<p>The schema is the authoritative source — the workbook is generated from it automatically.</p>
+<h3 id="4-rdf_type-not-available-on-catalysisdataset">4. <code>rdf_type</code> not available on <code>CatalysisDataset</code></h3>
+<p><strong>File:</strong> <code>src/coremeta4cat/schema/coremeta4cat.yaml</code></p>
+<p><code>CatalysisDataset</code> uses <code>rdf_type</code> in <code>slot_usage</code> to classify the catalysis research field. The <code>rdf_type</code> slot comes from <code>ClassifierMixin</code> (DCAT-AP-PLUS). However, the parent class <code>Dataset</code> does not include <code>ClassifierMixin</code> in its inheritance chain (unlike <code>DataGeneratingActivity</code> and <code>EvaluatedActivity</code> which do). The linter reported this as an error.</p>
+<p><strong>Fix:</strong> Added <code>ClassifierMixin</code> explicitly to <code>CatalysisDataset</code>:
+<div class="highlight"><pre><span></span><code><span class="nt">CatalysisDataset</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcat:Dataset</span>
+<span class="w">  </span><span class="nt">mixins</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClassifierMixin</span>
+</code></pre></div></p>
 <hr />
-<h2 id="contribute-code-or-schema-changes">Contribute code or schema changes</h2>
-<p>If you want to contribute a schema change yourself (add a class, slot, or enumeration), please first open an issue to discuss the change. Then follow the developer guidelines in <a href="https://github.com/nfdi4cat/CoreMeta4Cat/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> on GitHub.</p>
+<h3 id="5-unicode-characters-causing-windows-encoding-failure">5. Unicode characters causing Windows encoding failure</h3>
+<p><strong>Files:</strong> <code>coremeta4cat_common.yaml</code>, <code>coremeta4cat_characterization_ap.yaml</code></p>
+<p>The Windows shell redirect (<code>&gt;</code>) uses <code>cp1252</code> encoding. Characters outside cp1252 cause <code>UnicodeEncodeError</code> when <code>gen-pydantic</code> writes output. Two rounds of fixes were applied.</p>
+<p><strong>Round 1:</strong> Six occurrences of <code>→</code> (U+2192, right arrow) — replaced with <code>-&gt;</code>:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Slot</th>
+<th>Description excerpt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>coremeta4cat_common.yaml</code></td>
+<td><code>has_calcination_temperature_range</code></td>
+<td><code>initial -&gt; final temperature</code></td>
+</tr>
+<tr>
+<td><code>coremeta4cat_characterization_ap.yaml</code></td>
+<td><code>has_energy_range</code></td>
+<td><code>minimum -&gt; maximum</code></td>
+</tr>
+<tr>
+<td><code>coremeta4cat_characterization_ap.yaml</code></td>
+<td><code>has_temperature_range</code></td>
+<td><code>start -&gt; final temperature</code></td>
+</tr>
+<tr>
+<td><code>coremeta4cat_characterization_ap.yaml</code></td>
+<td><code>has_mz_range</code></td>
+<td><code>minimum -&gt; maximum m/z</code></td>
+</tr>
+<tr>
+<td><code>coremeta4cat_characterization_ap.yaml</code></td>
+<td><code>has_two_theta_range</code></td>
+<td><code>minimum -&gt; maximum 2theta</code></td>
+</tr>
+<tr>
+<td><code>coremeta4cat_characterization_ap.yaml</code></td>
+<td><code>has_wavenumber_range</code></td>
+<td><code>minimum -&gt; maximum cm-1</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Round 2:</strong> Full scan of all schema YAML files for non-ASCII characters (69 total). Only three Unicode code points lie outside cp1252: U+2082 <code>₂</code> (subscript 2), U+03B8 <code>θ</code> (theta), and U+207B <code>⁻</code> (superscript minus). Theta and superscript-minus were already eliminated in Round 1. Subscript-2 remained in two <code>Atmosphere</code> class descriptions:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Class/Field</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>coremeta4cat_common.yaml</code></td>
+<td><code>Atmosphere.description</code></td>
+<td><code>"air", "N₂", "5% H₂/Ar"</code></td>
+<td><code>"air", "N2", "5% H2/Ar"</code></td>
+</tr>
+<tr>
+<td><code>coremeta4cat_common.yaml</code></td>
+<td><code>CalcinationGaseousEnvironment.description</code></td>
+<td><code>"N₂", "10% O₂/N₂"</code></td>
+<td><code>"N2", "10% O2/N2"</code></td>
+</tr>
+</tbody>
+</table>
+<p>All remaining non-ASCII characters in the schema files (em dashes <code>—</code>, ellipses <code>…</code>, degree symbol <code>°</code>) are within cp1252 and are safe.</p>
+<hr />
+<h3 id="6-shacl-generator-excluded-from-config">6. SHACL generator excluded from config</h3>
+<p><strong>File:</strong> <code>config.yaml</code></p>
+<p><code>gen-project</code> crashed in the SHACL generator with <code>KeyError: 'dcat-ap-plus'</code>. Root cause: LinkML's <code>SchemaView.schema_map</code> keys schemas by import identifier string (e.g. <code>dcatapplus:latest/schema/dcat_ap_plus</code>) but <code>in_schema()</code> returns the schema's <code>name:</code> field (e.g. <code>dcat-ap-plus</code>). This mismatch causes a lookup failure for any slot inherited from the external DCAT-AP-PLUS schema. This is a <strong>LinkML 1.9.6 bug</strong> — not a CoreMeta4Cat schema issue.</p>
+<p><strong>Fix:</strong> Added <code>shacl</code> to the <code>excludes</code> list in <code>config.yaml</code>.</p>
+<hr />
+<h2 id="validation-results-after-all-fixes">Validation results after all fixes</h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>just _test-schema</code></td>
+<td><strong>PASS</strong></td>
+<td>Only pre-existing upstream warnings from DCAT-AP-PLUS</td>
+</tr>
+<tr>
+<td><code>linkml-lint</code></td>
+<td><strong>PASS</strong> (no errors)</td>
+<td>5 warnings remain — all from upstream DCAT-AP-PLUS (SIO prefix namespace, URL slot naming)</td>
+</tr>
+<tr>
+<td><code>gen-pydantic</code></td>
+<td><strong>PASS</strong></td>
+<td>Unicode fix resolved the Windows encoding error</td>
+</tr>
+<tr>
+<td><code>gen-project</code> (overall)</td>
+<td><strong>FAIL</strong> at <code>mv project/*.py</code></td>
+<td>Pre-existing justfile issue: LinkML 1.9.6 <code>gen-project</code> does not output Python files to <code>project/</code> root; the <code>mv</code> step is a dead line that has never worked in this setup</td>
+</tr>
+<tr>
+<td><code>just site</code></td>
+<td>Blocked by above</td>
+<td><code>gen-doc</code> step itself would pass if <code>gen-project</code> succeeded</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="remaining-known-issues-out-of-scope-for-this-session">Remaining known issues (out of scope for this session)</h2>
+<h3 id="pre-existing-justfile-bug">Pre-existing justfile bug</h3>
+<p><code>gen-project</code> fails at <code>mv project/*.py src/coremeta4cat/datamodel</code> because LinkML 1.9.6's <code>gen-project</code> doesn't write Python files to the output root directory. This predates all changes in this session. The Python model is generated correctly by the separate <code>gen-pydantic</code> step.</p>
+<h3 id="remaining-raw-float-slots-group-d">Remaining raw <code>float</code> slots (Group D)</h3>
+<p>Several slots in the synthesis and simulation APs still use <code>range: float</code> with inline <code>unit:</code> annotations instead of a proper <code>QuantitativeAttribute</code> subclass. These are not schema errors but are misaligned with the ChemDCAT-AP QUDT pattern. They are deferred to a follow-up session.</p>
+<p><strong>synthesis AP:</strong> <code>pulse_time</code>, <code>purging_duration</code>, <code>power</code>, <code>sonication_power</code>, <code>sonication_duration</code>, <code>filling_volume</code>, <code>vessel_volume</code>, <code>milling_speed</code>, <code>milling_duration</code>, <code>ball_size</code>, <code>capillary_pressure</code>, <code>crystallisation_duration</code>, <code>temperature_ramp</code></p>
+<p><strong>simulation AP:</strong> <code>simulation_timestep</code>, <code>simulation_time</code>, <code>activation_energy</code>, <code>ionic_strength</code></p>
+<hr />
+<h2 id="files-changed-in-this-session">Files changed in this session</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src/coremeta4cat/schema/coremeta4cat_simulation_ap.yaml</code></td>
+<td><code>temperature</code> → <code>has_temperature</code> (×3); <code>pressure</code> → <code>has_pressure</code> in Microkinetics; removed local <code>pressure: float</code> slot</td>
+</tr>
+<tr>
+<td><code>src/coremeta4cat/schema/coremeta4cat_synthesis_ap.yaml</code></td>
+<td><code>set_temperature: range: float</code> → <code>range: Temperature</code></td>
+</tr>
+<tr>
+<td><code>src/coremeta4cat/schema/coremeta4cat.yaml</code></td>
+<td>Added <code>mixins: [ClassifierMixin]</code> to <code>CatalysisDataset</code></td>
+</tr>
+<tr>
+<td><code>src/coremeta4cat/schema/coremeta4cat_common.yaml</code></td>
+<td><code>→</code> → <code>-&gt;</code> in 1 description; <code>₂</code> → <code>2</code> in 2 class descriptions</td>
+</tr>
+<tr>
+<td><code>src/coremeta4cat/schema/coremeta4cat_characterization_ap.yaml</code></td>
+<td><code>→</code> → <code>-&gt;</code> in 5 descriptions; <code>θ</code> → <code>theta</code>, <code>⁻¹</code> → <code>-1</code></td>
+</tr>
+<tr>
+<td><code>config.yaml</code></td>
+<td>Added <code>shacl</code> to <code>excludes</code></td>
+</tr>
+</tbody>
+</table>
 
 
 
