@@ -8,8 +8,9 @@
 # Technique identity is expressed via title/description on realized_plan.
 
 id: "coremeta4cat:CHAR_001_BET_CuZnO_Al2O3"
-equipment:
-  - "Micromeritics ASAP 2020 surface area and porosimetry analyzer"
+carried_out_by:
+  - id: "coremeta4cat:DEV_001_Micromeritics_ASAP2020"
+    title: "Micromeritics ASAP 2020 surface area and porosimetry analyzer"
 evaluated_entity:
   - id: "coremeta4cat:CAT_001_CuZnO_Al2O3"
     title: "Cu/ZnO/Al2O3 methanol synthesis catalyst"

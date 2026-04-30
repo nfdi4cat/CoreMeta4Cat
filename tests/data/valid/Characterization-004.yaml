@@ -13,12 +13,13 @@
 #   - Two evaluated_entity items (fresh catalyst + spent catalyst comparison)
 
 id: "coremeta4cat:CHAR_004_TPR_NiO_CeO2"
-equipment:
-  - "Micromeritics AutoChem II 2920 chemisorption analyzer"
+carried_out_by:
+  - id: "coremeta4cat:DEV_005_Micromeritics_AutoChem"
+    title: "Micromeritics AutoChem II 2920 chemisorption analyzer"
 sample_description:
   - "NiO/CeO2 calcined at 500 deg C; 50 mg packed in quartz U-tube reactor (4 mm ID); quartz wool plugs above and below bed"
-sample_pretreatment:
-  - "oxidative pretreatment: 10 vol% O2/Ar (50 mL/min) at 300 deg C for 30 min; cool to 50 deg C under Ar purge"
+has_sample_pretreatment:
+  - value: "oxidative pretreatment: 10 vol% O2/Ar (50 mL/min) at 300 deg C for 30 min; cool to 50 deg C under Ar purge"
 detector_type:
   - "thermal conductivity detector (TCD), Ar carrier gas reference channel"
 evaluated_entity:

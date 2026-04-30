@@ -8,8 +8,9 @@
 # Technique identity is expressed via title/description on realized_plan.
 
 id: "coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3"
-equipment:
-  - "Bruker D8 Advance diffractometer with Cu K-alpha radiation (1.5406 Ang)"
+carried_out_by:
+  - id: "coremeta4cat:DEV_002_Bruker_D8_Advance"
+    title: "Bruker D8 Advance diffractometer with Cu K-alpha radiation (1.5406 Ang)"
 evaluated_entity:
   - id: "coremeta4cat:CAT_001_CuZnO_Al2O3"
     title: "Cu/ZnO/Al2O3 methanol synthesis catalyst"

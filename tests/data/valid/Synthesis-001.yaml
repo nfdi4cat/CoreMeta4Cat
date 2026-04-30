@@ -16,14 +16,17 @@ storage_conditions:
 catalyst_support:
   - "gamma-Al2O3, Sasol Puralox, 200 m2/g"
 solvent:
-  - "deionized water"
-sample_pretreatment:
-  - "reduction in H2 at 400 deg C for 2 hours prior to catalytic testing"
+  - id: "https://pubchem.ncbi.nlm.nih.gov/compound/962"
+    title: "deionized water"
+has_sample_pretreatment:
+  - value: "reduction in H2 at 400 deg C for 2 hours prior to catalytic testing"
 had_input_entity:
   - id: "coremeta4cat:PREC_001_H2PtCl6"
     title: "chloroplatinic acid hexahydrate"
     precursor_quantity:
-      - 0.0485
+      - value: 0.0485
+        has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+        unit: https://qudt.org/vocab/unit/GM
 
 realized_plan:
   title: "incipient wetness impregnation"

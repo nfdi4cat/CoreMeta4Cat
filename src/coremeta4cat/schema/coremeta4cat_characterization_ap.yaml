@@ -48,7 +48,7 @@ default_range: string
 
 imports:
   - linkml:types
-  - coremeta4cat_common   # shared slots (atmosphere, temperature, equipment, sample_mass, …) + enums
+  - coremeta4cat_common   # shared has_X sub-slots, atmosphere, enums
 
 # ==================== MIXINS ====================
 # Pure slot containers. Each targets a slot group shared by >=2 techniques.
@@ -72,8 +72,7 @@ classes:
       Mixin providing energy scan range slots, shared by X-ray spectroscopy
       techniques that scan over an energy range (XRayAbsorptionSpectroscopy, XPS).
     slots:
-      - minimum_energy
-      - maximum_energy
+      - has_energy_range
 
   ElectronMicroscopyMixin:
     mixin: true
@@ -93,10 +92,9 @@ classes:
       analysis and temperature-programmed reaction techniques
       (Thermogravimetry, TPO, TPR).
     slots:
-      - minimum_temperature
-      - maximum_temperature
-      - heating_rate
-      - heating_procedure
+      - has_temperature_range
+      - has_heating_rate
+      - has_heating_procedure
 
   ChromatographyMixin:
     mixin: true
@@ -106,8 +104,8 @@ classes:
     slots:
       - column_type
       - eluent
-      - flow_rate
-      - injection_volume
+      - has_flow_rate
+      - has_injection_volume
       - external_standard
       - internal_standard
 
@@ -117,8 +115,7 @@ classes:
       Mixin providing mass-to-charge scan range slots shared by mass
       spectrometry techniques (GCMS, ESI_MS).
     slots:
-      - mz_minimum
-      - mz_maximum
+      - has_mz_range
 
   PhotoluminescenceMixin:
     mixin: true
@@ -130,7 +127,7 @@ classes:
       - excitation_wavelength
       - emission_wavelength
       - optical_filter
-      - temperature
+      - has_temperature
 
   ElectrochemistryMixin:
     mixin: true
@@ -144,8 +141,8 @@ classes:
       - counter_electrode
       - electrolyte_composition
       - electrolyte_concentration
-      - atmosphere
-      - temperature
+      - has_atmosphere
+      - has_temperature
 
   # ==================== CHARACTERIZATION ACTIVITY ====================
 
@@ -166,16 +163,20 @@ classes:
       following DCAT-AP-PLUS Pattern 3 — exactly as NMRSpectroscopy uses
       rdf_type: CHMO:0000613.
     slots:
-      - equipment
       - sample_state
       - sample_description
       - sample_preparation
-      - sample_pretreatment
+      - has_sample_pretreatment
       - detector_type
     slot_usage:
-      equipment:
-        description: Instrument or equipment used for characterization.
+      carried_out_by:
+        description: |-
+          The analytical instrument used to carry out this characterization.
+          Provide a Device instance (e.g. XRD diffractometer, TEM, NMR spectrometer).
+        range: Device
         required: true
+        multivalued: true
+        inlined_as_list: true
       evaluated_entity:
         description: The catalyst sample or material being characterized.
         range: EvaluatedEntity
@@ -212,14 +213,13 @@ classes:
       - XRaySourceMixin
     description: Powder X-ray diffraction for phase identification and structural analysis.
     slots:
-      - minimum_2theta
-      - maximum_2theta
+      - has_two_theta_range
       - step_size
-      - operation_mode
-      - atmosphere
-      - temperature
+      - has_operation_mode
+      - has_atmosphere
+      - has_temperature
       - sample_spinning_speed
-      - experiment_duration
+      - has_experiment_duration
 
   SingleCrystalXRD:
     is_a: CharacterizationTechnique
@@ -228,7 +228,7 @@ classes:
       - XRaySourceMixin
     description: Single crystal X-ray diffraction for structure determination.
     slots:
-      - temperature
+      - has_temperature
 
   # ==================== X-RAY SPECTROSCOPY ====================
 
@@ -240,11 +240,11 @@ classes:
       - EnergyRangeMixin
     description: X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.
     slots:
-      - operation_mode
+      - has_operation_mode
       - element_analyzed
       - absorption_edge
       - energy_resolution
-      - temperature
+      - has_temperature
       - beamline_source
       - noise_of_measurement
       - number_of_cycles
@@ -264,7 +264,7 @@ classes:
       - spot_size
       - lense_mode
       - charge_compensation
-      - atmosphere
+      - has_atmosphere
 
   EDX:
     is_a: CharacterizationTechnique
@@ -283,14 +283,13 @@ classes:
     class_uri: CHMO:0000630
     description: Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.
     slots:
-      - operation_mode
-      - minimum_wavenumber
-      - maximum_wavenumber
+      - has_operation_mode
+      - has_wavenumber_range
       - step_size
-      - temperature
+      - has_temperature
       - background_correction
       - number_of_scans
-      - atmosphere
+      - has_atmosphere
 
   DRIFTS:
     is_a: CharacterizationTechnique
@@ -300,14 +299,15 @@ classes:
       surface species identification under reactive gas conditions.
     slots:
       - adsorption_gas
-      - atmosphere
-      - flow_rate
+      - has_atmosphere
+      - has_flow_rate
+      - has_wavenumber_range
       - diluting_reference
       - ratio_reference_sample
       - step_size
       - resolution
       - background_correction_method
-      - temperature
+      - has_temperature
       - number_of_scans
 
   RamanSpectroscopy:
@@ -318,10 +318,10 @@ classes:
       - excitation_laser_wavelength
       - excitation_laser_power
       - magnification_setting
-      - integration_time
+      - has_integration_time
       - number_of_scans
-      - atmosphere
-      - temperature
+      - has_atmosphere
+      - has_temperature
       - filter_or_grating
 
   # ==================== NMR SPECTROSCOPY ====================
@@ -338,11 +338,11 @@ classes:
       - nucleus
       - solvent
       - irradiation_frequency
-      - temperature
+      - has_temperature
       - nmr_pulse_sequence
       - nmr_sample_tube
       - number_of_scans
-      - atmosphere
+      - has_atmosphere
 
   # ==================== ELECTRON MICROSCOPY ====================
 
@@ -353,7 +353,7 @@ classes:
       - ElectronMicroscopyMixin
     description: TEM for atomic-resolution imaging and diffraction of catalyst particles.
     slots:
-      - operation_mode
+      - has_operation_mode
 
   ScanningElectronMicroscopy:
     is_a: CharacterizationTechnique
@@ -374,11 +374,11 @@ classes:
       - TemperatureProgramMixin
     description: Thermogravimetric analysis (TGA/DTG) for mass loss, decomposition, and oxidation state characterization.
     slots:
-      - operation_mode
-      - atmosphere
+      - has_operation_mode
+      - has_atmosphere
       - initial_temperature
       - final_temperature
-      - sample_mass
+      - has_sample_mass
 
   TPR:
     is_a: CharacterizationTechnique
@@ -409,7 +409,7 @@ classes:
       - degassing_temperature
       - measurement_temperature
       - pore_size_distribution_method
-      - sample_mass
+      - has_sample_mass
 
   # ==================== ELEMENTAL ANALYSIS ====================
 
@@ -443,7 +443,7 @@ classes:
       - maximum_wavelength
       - path_length
       - solvent
-      - concentration
+      - has_concentration
 
   PhotoluminescenceSpectroscopy:
     is_a: CharacterizationTechnique
@@ -455,7 +455,7 @@ classes:
       - emission_range
       - slit_width
       - step_size
-      - integration_time
+      - has_integration_time
 
   PhotoluminescenceLifetime:
     is_a: CharacterizationTechnique
@@ -502,11 +502,11 @@ classes:
     description: Dynamic light scattering for hydrodynamic particle size distribution in suspension.
     slots:
       - solvent
-      - concentration
+      - has_concentration
       - light_wavelength
       - scattering_angle
       - refractive_index
-      - temperature
+      - has_temperature
       - dispersant
       - measurement_duration
 
@@ -519,13 +519,13 @@ classes:
       - MassRangeMixin
     description: Electrospray ionisation mass spectrometry for molecular mass and identity determination.
     slots:
-      - operation_mode
+      - has_operation_mode
       - spray_voltage
       - capillary_temperature
       - solvent_composition
-      - flow_rate
+      - has_flow_rate
       - carrier_gas
-      - concentration
+      - has_concentration
 
   # ==================== CHROMATOGRAPHY ====================
 
@@ -543,7 +543,7 @@ classes:
       - minimum_oven_temperature
       - maximum_oven_temperature
       - heating_ramp
-      - heating_procedure
+      - has_heating_procedure
       - acquisition_mode
       - solvent_delay
       - trace_ion_detection
@@ -556,7 +556,7 @@ classes:
       - ChromatographyMixin
     description: Size exclusion chromatography for molecular weight distribution determination.
     slots:
-      - temperature
+      - has_temperature
       - calibration_standard
 
   HighPerformanceLiquidChromatographyMassSpectrometry:
@@ -568,16 +568,20 @@ classes:
     slots:
       - gradient_program
       - ionization_mode
-      - temperature
+      - has_temperature
 
 # ==================== SLOTS ====================
 # Only slots exclusive to this subprofile are declared here.
-# Shared slots (atmosphere, temperature, equipment, sample_mass, sample_pretreatment,
-# step_size, resolution, number_of_scans, integration_time, operation_mode,
-# concentration, solvent, injection_volume, external_standard, internal_standard,
-# calibration_method, column_type, experiment_duration, flow_rate,
-# filtration_device, filter_type, heating_rate, heating_procedure, dispersant, …)
-# are inherited from coremeta4cat_common.
+# Shared has_X sub-slots (has_temperature, has_flow_rate, has_injection_volume,
+# has_heating_rate, has_sample_mass, has_integration_time, has_experiment_duration,
+# has_concentration) and shared string slots (atmosphere, step_size, resolution,
+# number_of_scans, operation_mode, solvent, external_standard, internal_standard,
+# calibration_method, column_type, heating_procedure, dispersant, …)
+# are inherited from coremeta4cat_common / material_entities_ap / chemical_entities_ap.
+#
+# QuantitativeRange collapse slots defined here:
+#   has_energy_range, has_temperature_range, has_mz_range,
+#   has_two_theta_range, has_wavenumber_range
 
 slots:
 
@@ -623,21 +627,13 @@ slots:
 
   # ---- Energy range (EnergyRangeMixin) ----
 
-  minimum_energy:
-    description: Minimum energy of the scan range.
-    range: float
-    slot_uri: coremeta4cat:minimum_energy
-    multivalued: true
-    unit:
-      ucum_code: eV
-
-  maximum_energy:
-    description: Maximum energy of the scan range.
-    range: float
-    slot_uri: coremeta4cat:maximum_energy
-    multivalued: true
-    unit:
-      ucum_code: eV
+  has_energy_range:
+    slot_uri: coremeta4cat:hasEnergyRange
+    range: QuantitativeRange
+    description: |-
+      Energy scan range (minimum -> maximum) as a QuantitativeRange.
+      Provide unit as a QUDT term (e.g. eV, keV).
+    inlined: true
 
   # ---- Electron microscopy (ElectronMicroscopyMixin) ----
 
@@ -649,11 +645,10 @@ slots:
 
   acceleration_voltage:
     description: Acceleration voltage applied to the electron beam.
-    range: float
+    range: ElectricPotential
     slot_uri: coremeta4cat:acceleration_voltage
     multivalued: true
-    unit:
-      ucum_code: kV
+    inlined_as_list: true
 
   magnification_setting:
     description: Magnification setting used for imaging.
@@ -663,69 +658,53 @@ slots:
 
   # ---- Temperature programme (TemperatureProgramMixin) ----
 
-  minimum_temperature:
-    description: Minimum (start) temperature in a temperature programme.
-    range: float
-    slot_uri: coremeta4cat:minimum_temperature
-    multivalued: true
-    unit:
-      ucum_code: Cel
-
-  maximum_temperature:
-    description: Maximum (final) temperature in a temperature programme.
-    range: float
-    slot_uri: coremeta4cat:maximum_temperature
-    multivalued: true
-    unit:
-      ucum_code: Cel
+  has_temperature_range:
+    slot_uri: coremeta4cat:hasTemperatureRange
+    range: QuantitativeRange
+    description: |-
+      Temperature programme range (start -> final temperature) as a QuantitativeRange.
+      Provide unit as a QUDT term (e.g. Degree Celsius, Kelvin).
+    inlined: true
 
   initial_temperature:
     description: Initial temperature at the start of a thermal analysis run.
-    range: float
+    range: Temperature
     slot_uri: NCIT:C164644
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   final_temperature:
     description: Final temperature at the end of a thermal analysis run.
-    range: float
+    range: Temperature
     slot_uri: NCIT:C164644
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   # ---- Mass spectrometry range (MassRangeMixin) ----
 
-  mz_minimum:
-    description: Minimum m/z value in the mass scan range.
-    range: float
-    slot_uri: AFR:0002652
-    multivalued: true
-
-  mz_maximum:
-    description: Maximum m/z value in the mass scan range.
-    range: float
-    slot_uri: AFR:0002653
-    multivalued: true
+  has_mz_range:
+    slot_uri: coremeta4cat:hasMzRange
+    range: QuantitativeRange
+    description: |-
+      Mass-to-charge ratio scan range (minimum -> maximum m/z) as a QuantitativeRange.
+      The unit for m/z is dimensionless (Thomson); set unit to the appropriate QUDT term.
+    inlined: true
 
   # ---- Photoluminescence (PhotoluminescenceMixin) ----
 
   excitation_wavelength:
     description: Excitation wavelength used in photoluminescence measurement.
-    range: float
+    range: LengthQuantity
     slot_uri: AFR:0002479
     multivalued: true
-    unit:
-      ucum_code: nm
+    inlined_as_list: true
 
   emission_wavelength:
     description: Emission wavelength detected in photoluminescence measurement.
-    range: float
+    range: LengthQuantity
     slot_uri: NCIT:C204101
     multivalued: true
-    unit:
-      ucum_code: nm
+    inlined_as_list: true
 
   optical_filter:
     description: Optical filter used in the emission or excitation path.
@@ -761,37 +740,27 @@ slots:
 
   electrolyte_concentration:
     description: Concentration of the electrolyte.
-    range: float
+    range: Concentration
     slot_uri: coremeta4cat:electrolyte_concentration
     multivalued: true
-    unit:
-      ucum_code: mol/L
+    inlined_as_list: true
 
   # ---- PowderXRD-specific ----
 
-  minimum_2theta:
-    description: Minimum 2theta angle in the diffraction scan.
-    range: float
-    slot_uri: coremeta4cat:minimum_2theta
-    multivalued: true
-    unit:
-      ucum_code: deg
-
-  maximum_2theta:
-    description: Maximum 2theta angle in the diffraction scan.
-    range: float
-    slot_uri: coremeta4cat:maximum_2theta
-    multivalued: true
-    unit:
-      ucum_code: deg
+  has_two_theta_range:
+    slot_uri: coremeta4cat:hasTwoThetaRange
+    range: QuantitativeRange
+    description: |-
+      2theta diffraction scan range (minimum -> maximum 2theta angle) as a QuantitativeRange.
+      Provide unit as a QUDT term (e.g. Degree).
+    inlined: true
 
   sample_spinning_speed:
     description: Sample spinning speed during XRD measurement.
-    range: float
+    range: AngularVelocity
     slot_uri: coremeta4cat:sample_spinning_speed
     multivalued: true
-    unit:
-      ucum_code: rpm
+    inlined_as_list: true
 
   # ---- XAS-specific ----
 
@@ -821,37 +790,33 @@ slots:
 
   energy_resolution:
     description: Energy resolution of the spectrometer or monochromator.
-    range: float
+    range: EnergyQuantity
     slot_uri: AFR:0000950
     multivalued: true
-    unit:
-      ucum_code: eV
+    inlined_as_list: true
 
   # ---- XPS-specific ----
 
   total_acquisition_time:
     description: Total time for XPS spectrum acquisition.
-    range: float
+    range: Duration
     slot_uri: coremeta4cat:total_acquisition_time
     multivalued: true
-    unit:
-      ucum_code: s
+    inlined_as_list: true
 
   pass_energy:
     description: Analyser pass energy setting in XPS.
-    range: float
+    range: EnergyQuantity
     slot_uri: coremeta4cat:pass_energy
     multivalued: true
-    unit:
-      ucum_code: eV
+    inlined_as_list: true
 
   spot_size:
     description: X-ray spot size on the sample surface.
-    range: float
+    range: LengthQuantity
     slot_uri: coremeta4cat:spot_size
     multivalued: true
-    unit:
-      ucum_code: mm
+    inlined_as_list: true
 
   lense_mode:
     description: Electron lens mode setting in XPS analyser.
@@ -869,37 +834,27 @@ slots:
 
   primary_energy:
     description: Primary electron beam energy for EDX excitation.
-    range: float
+    range: EnergyQuantity
     slot_uri: coremeta4cat:primary_energy
     multivalued: true
-    unit:
-      ucum_code: keV
+    inlined_as_list: true
 
   counting_time:
     description: X-ray counting time per point or spectrum.
-    range: float
+    range: Duration
     slot_uri: coremeta4cat:counting_time
     multivalued: true
-    unit:
-      ucum_code: s
+    inlined_as_list: true
 
   # ---- IR/DRIFTS-specific ----
 
-  minimum_wavenumber:
-    description: Minimum wavenumber of the IR scan range.
-    range: float
-    slot_uri: coremeta4cat:minimum_wavenumber
-    multivalued: true
-    unit:
-      ucum_code: cm-1
-
-  maximum_wavenumber:
-    description: Maximum wavenumber of the IR scan range.
-    range: float
-    slot_uri: coremeta4cat:maximum_wavenumber
-    multivalued: true
-    unit:
-      ucum_code: cm-1
+  has_wavenumber_range:
+    slot_uri: coremeta4cat:hasWavenumberRange
+    range: QuantitativeRange
+    description: |-
+      Infrared wavenumber scan range (minimum -> maximum cm^-1) as a QuantitativeRange.
+      Provide unit as a QUDT term (e.g. ReciprocalCentimetre).
+    inlined: true
 
   background_correction:
     description: Background correction method applied to IR spectra.
@@ -909,9 +864,10 @@ slots:
 
   adsorption_gas:
     description: Probe gas adsorbed during in-situ DRIFTS measurement.
-    range: string
+    range: ChemicalEntity
     slot_uri: coremeta4cat:adsorption_gas
     multivalued: true
+    inlined_as_list: true
 
   diluting_reference:
     description: Reference material used to dilute the DRIFTS sample (e.g. KBr).
@@ -935,19 +891,17 @@ slots:
 
   excitation_laser_wavelength:
     description: Wavelength of excitation laser used in Raman spectroscopy.
-    range: float
+    range: LengthQuantity
     slot_uri: AFR:0001594
     multivalued: true
-    unit:
-      ucum_code: nm
+    inlined_as_list: true
 
   excitation_laser_power:
     description: Power of the excitation laser at the sample.
-    range: float
+    range: PowerQuantity
     slot_uri: AFR:0001595
     multivalued: true
-    unit:
-      ucum_code: mW
+    inlined_as_list: true
 
   filter_or_grating:
     description: Optical filter or grating used in Raman spectrometer.
@@ -1023,19 +977,17 @@ slots:
 
   degassing_temperature:
     description: Temperature at which sample is degassed before BET measurement.
-    range: float
+    range: Temperature
     slot_uri: coremeta4cat:degassing_temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   measurement_temperature:
     description: Temperature at which BET adsorption isotherm is measured (e.g. 77 K for N2).
-    range: float
+    range: Temperature
     slot_uri: coremeta4cat:measurement_temperature
     multivalued: true
-    unit:
-      ucum_code: K
+    inlined_as_list: true
 
   pore_size_distribution_method:
     description: Method used for pore size distribution calculation (e.g. BJH, DFT, HK).
@@ -1053,11 +1005,10 @@ slots:
 
   combustion_temperature:
     description: Combustion furnace temperature for elemental analysis.
-    range: float
+    range: Temperature
     slot_uri: coremeta4cat:combustion_temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   # ---- ICPAES-specific ----
 
@@ -1193,19 +1144,17 @@ slots:
 
   light_wavelength:
     description: Wavelength of the laser used in DLS measurement.
-    range: float
+    range: LengthQuantity
     slot_uri: VOC4CAT:0000176
     multivalued: true
-    unit:
-      ucum_code: nm
+    inlined_as_list: true
 
   scattering_angle:
     description: Scattering angle at which intensity is detected in DLS.
-    range: float
+    range: PlaneAngle
     slot_uri: coremeta4cat:scattering_angle
     multivalued: true
-    unit:
-      ucum_code: deg
+    inlined_as_list: true
 
   refractive_index:
     description: Refractive index of the solvent used in DLS measurement.
@@ -1215,29 +1164,26 @@ slots:
 
   measurement_duration:
     description: Duration of a single DLS acquisition.
-    range: float
+    range: Duration
     slot_uri: coremeta4cat:measurement_duration
     multivalued: true
-    unit:
-      ucum_code: s
+    inlined_as_list: true
 
   # ---- ESI-MS-specific ----
 
   spray_voltage:
     description: Spray voltage applied in electrospray ionisation.
-    range: float
+    range: ElectricPotential
     slot_uri: CHMO:0002792
     multivalued: true
-    unit:
-      ucum_code: kV
+    inlined_as_list: true
 
   capillary_temperature:
     description: Capillary or desolvation temperature in ESI source.
-    range: float
+    range: Temperature
     slot_uri: coremeta4cat:capillary_temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   solvent_composition:
     description: Solvent composition used for ESI spray solution.
@@ -1255,35 +1201,31 @@ slots:
 
   inlet_temperature:
     description: GC inlet temperature.
-    range: float
+    range: Temperature
     slot_uri: coremeta4cat:inlet_temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   minimum_oven_temperature:
     description: Minimum oven temperature in GC temperature programme.
-    range: float
+    range: Temperature
     slot_uri: coremeta4cat:minimum_oven_temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   maximum_oven_temperature:
     description: Maximum oven temperature in GC temperature programme.
-    range: float
+    range: Temperature
     slot_uri: coremeta4cat:maximum_oven_temperature
     multivalued: true
-    unit:
-      ucum_code: Cel
+    inlined_as_list: true
 
   heating_ramp:
     description: Temperature ramp rate in GC oven programme.
-    range: float
+    range: HeatingRate
     slot_uri: coremeta4cat:heating_ramp
     multivalued: true
-    unit:
-      ucum_code: Cel/min
+    inlined_as_list: true
 
   acquisition_mode:
     description: Mass spectrometer acquisition mode (e.g. full scan, SIM, SRM).
@@ -1315,9 +1257,10 @@ slots:
 
   eluent:
     description: Eluent or mobile phase used in chromatography.
-    range: string
+    range: ChemicalEntity
     slot_uri: AFRL:0000011
     multivalued: true
+    inlined_as_list: true
 
   calibration_standard:
     description: Calibration standard used for molecular weight or retention time calibration.
