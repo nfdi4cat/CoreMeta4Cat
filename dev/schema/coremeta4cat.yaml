@@ -1156,8 +1156,8 @@ slots:
       cycles).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - coremeta4cat:number_of_cycles
-    slot_uri: coremeta4cat:number_of_cycles
+    - VOC4CAT:0008123
+    slot_uri: VOC4CAT:0008123
     owner: CyclicVoltammetry
     domain_of:
     - CalcinationMixin
@@ -1439,8 +1439,8 @@ slots:
     description: Type of impregnation used (wet, dry, incipient wetness).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:impregnation_type
-    slot_uri: coremeta4cat:impregnation_type
+    - VOC4CAT:0008119
+    slot_uri: VOC4CAT:0008119
     owner: Impregnation
     domain_of:
     - Impregnation
@@ -1452,8 +1452,8 @@ slots:
     description: Duration of the impregnation step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:impregnation_duration
-    slot_uri: coremeta4cat:impregnation_duration
+    - VOC4CAT:0008120
+    slot_uri: VOC4CAT:0008120
     owner: Impregnation
     domain_of:
     - Impregnation
@@ -1467,8 +1467,8 @@ slots:
     description: Temperature during the impregnation step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:impregnation_temperature
-    slot_uri: coremeta4cat:impregnation_temperature
+    - VOC4CAT:0008121
+    slot_uri: VOC4CAT:0008121
     owner: Impregnation
     domain_of:
     - Impregnation
@@ -1514,9 +1514,9 @@ slots:
     description: Duration of the mixing step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0008126
     is_a: has_duration
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0008126
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1529,9 +1529,9 @@ slots:
     description: Temperature maintained during mixing.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0008127
     is_a: has_temperature
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0008127
     owner: MolecularSynthesis
     domain_of:
     - PrecipitationMixin
@@ -1547,9 +1547,9 @@ slots:
     description: Temperature maintained during the aging step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0008131
     is_a: has_temperature
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0008131
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1580,8 +1580,8 @@ slots:
     description: Order in which reagents or components are combined.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:order_of_addition
-    slot_uri: coremeta4cat:order_of_addition
+    - VOC4CAT:0008128
+    slot_uri: VOC4CAT:0008128
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1593,8 +1593,8 @@ slots:
     description: Filtration method used to separate the precipitate (e.g. vacuum filtration).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:filtration
-    slot_uri: coremeta4cat:filtration
+    - VOC4CAT:0008129
+    slot_uri: VOC4CAT:0008129
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1606,8 +1606,8 @@ slots:
     description: Purification method applied after synthesis (e.g. washing, dialysis).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:purification
-    slot_uri: coremeta4cat:purification
+    - VOC4CAT:0008130
+    slot_uri: VOC4CAT:0008130
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -17914,7 +17914,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-05-05T08:05:03'
+source_file_date: '2026-06-02T11:35:22'
 source_file_size: 6625
-generation_date: '2026-05-05T08:05:19'
+generation_date: '2026-06-02T11:35:36'
 
