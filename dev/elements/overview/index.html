@@ -911,7 +911,7 @@ Reusable).</p>
 <p>This file is the top-level aggregator. It imports coremeta4cat_common (shared
 slots and enums) and the four subprofile modules.</p>
 <p>Full import hierarchy:
-  coremeta4cat.yaml  (this file — aggregator + CatalysisDataset entry point)
+<div class="highlight"><pre><span></span><code>  coremeta4cat.yaml  (this file — aggregator + CatalysisDataset entry point)
     +-- coremeta4cat_common.yaml         (shared slots, enums)
           +-- chem_dcat_ap          (SubstanceSample, ChemicalSubstance, …)
                 +-- chemical_reaction_ap
@@ -921,8 +921,9 @@ slots and enums) and the four subprofile modules.</p>
     +-- coremeta4cat_synthesis_ap         (Step 3 — Synthesis, PreparationMethod, mixins)
     +-- coremeta4cat_characterization_ap  (Step 4 — Characterization, 24 techniques, mixins)
     +-- coremeta4cat_reaction_ap          (Step 5 — Reaction, 8 Reactor subclasses)
-    +-- coremeta4cat_simulation_ap        (Step 6 — Simulation, 4 methods, 12 properties, mixins)</p>
-<p>URI: https://w3id.org/nfdi4cat/coremeta4cat</p>
+    +-- coremeta4cat_simulation_ap        (Step 6 — Simulation, 4 methods, 12 properties, mixins)
+</code></pre></div></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat">https://w3id.org/nfdi4cat/coremeta4cat</a></p>
 <p>Name: coremeta4cat-metadata</p>
 <h2 id="classes">Classes</h2>
 <table>
@@ -2530,7 +2531,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td><a href="../slots/has_quantity_type/">has_quantity_type</a></td>
-<td>QUDT QuantityKind term for the kind of quantity this range describes<br>(e.g. id: http://qudt.org/vocab/quantitykind/Temperature, title: "Temperature").</td>
+<td>QUDT QuantityKind term for the kind of quantity this range describes<br>(e.g. id: <a href="http://qudt.org/vocab/quantitykind/Temperature">http://qudt.org/vocab/quantitykind/Temperature</a>, title: "Temperature").</td>
 </tr>
 <tr>
 <td><a href="../slots/has_reaction_step/">has_reaction_step</a></td>
@@ -3382,7 +3383,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td><a href="../slots/unit/">unit</a></td>
-<td>Unit shared by both bounds, as a QUDT unit term<br>(e.g. id: http://qudt.org/vocab/unit/DegreeCelsius, title: "Degree Celsius").</td>
+<td>Unit shared by both bounds, as a QUDT unit term<br>(e.g. id: <a href="http://qudt.org/vocab/unit/DegreeCelsius">http://qudt.org/vocab/unit/DegreeCelsius</a>, title: "Degree Celsius").</td>
 </tr>
 <tr>
 <td><a href="../slots/used_catalyst/">used_catalyst</a></td>
