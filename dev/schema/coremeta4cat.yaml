@@ -679,9 +679,9 @@ slots:
     description: Temperature ramp rate during a heating or cooling step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0008116
     is_a: has_quantitative_attribute
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0008116
     owner: TemperatureProgramMixin
     domain_of:
     - TemperatureProgramMixin
@@ -886,9 +886,9 @@ slots:
     description: Temperature ramp rate during the calcination step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0008116
     is_a: has_heating_rate
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0008116
     owner: CalcinationMixin
     domain_of:
     - CalcinationMixin
@@ -3486,8 +3486,8 @@ slots:
     description: Temperature ramp rate in GC oven programme.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:heating_ramp
-    slot_uri: coremeta4cat:heating_ramp
+    - VOC4CAT:0008116
+    slot_uri: VOC4CAT:0008116
     owner: GCMS
     domain_of:
     - GCMS
@@ -17910,7 +17910,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-06-07T13:36:30'
+source_file_date: '2026-06-07T14:45:17'
 source_file_size: 6625
-generation_date: '2026-06-07T13:36:44'
+generation_date: '2026-06-07T14:45:31'
 
