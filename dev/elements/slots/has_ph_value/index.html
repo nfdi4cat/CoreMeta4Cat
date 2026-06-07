@@ -783,18 +783,18 @@ Alias: has_ph_value</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/DissolvingSubstance/">DissolvingSubstance</a></td>
-<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ChemicalSubstance.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PolymerMixin/">PolymerMixin</a></td>
-<td>A LinkML mixin used to pass down properties common to all chemical substances that are composed of macromolecules of different kinds and which may be differentiated by composition, length, degree of branching etc..</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../../classes/PrecipitationMixin/">PrecipitationMixin</a></td>
 <td>Mixin providing precipitation and wet-chemistry step parameters. Used by<br>preparation methods based on precipitation from solution<br>(CoPrecipitation, DepositionPrecipitation).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a></td>
+<td>A LinkML mixin used to pass down properties common to all material entities that are described in a chemical context via being composed of chemical entities (e.g. atom, molecule, ion, ion pair, radical, complex, conformer etc., ) of the same type or of different types.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/DissolvingSubstance/">DissolvingSubstance</a></td>
+<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ChemicalSubstance.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -803,13 +803,13 @@ Alias: has_ph_value</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/ChemicalProduct/">ChemicalProduct</a></td>
-<td>A chemical substance that is produced by a ChemicalReaction.</td>
+<td><a href="../../classes/PolymerMixin/">PolymerMixin</a></td>
+<td>A LinkML mixin used to pass down properties common to all chemical substances that are composed of macromolecules of different kinds and which may be differentiated by composition, length, degree of branching etc..</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/DepositionPrecipitation/">DepositionPrecipitation</a></td>
-<td>Catalyst preparation by deposition-precipitation: the active phase<br>is precipitated directly onto the support surface.</td>
+<td><a href="../../classes/PolymerSample/">PolymerSample</a></td>
+<td>A SubstanceSample derived from a Polymer.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -823,23 +823,23 @@ Alias: has_ph_value</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/PolymerSample/">PolymerSample</a></td>
-<td>A SubstanceSample derived from a Polymer.</td>
+<td><a href="../../classes/CoPrecipitation/">CoPrecipitation</a></td>
+<td>Catalyst preparation by co-precipitation: precursor salts are<br>simultaneously precipitated from solution by a precipitating agent.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a></td>
-<td>A LinkML mixin used to pass down properties common to all material entities that are described in a chemical context via being composed of chemical entities (e.g. atom, molecule, ion, ion pair, radical, complex, conformer etc., ) of the same type or of different types.</td>
+<td><a href="../../classes/ChemicalProduct/">ChemicalProduct</a></td>
+<td>A chemical substance that is produced by a ChemicalReaction.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/DepositionPrecipitation/">DepositionPrecipitation</a></td>
+<td>Catalyst preparation by deposition-precipitation: the active phase<br>is precipitated directly onto the support surface.</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../../classes/StartingMaterial/">StartingMaterial</a></td>
 <td>A ChemicalSubstance with that has a starting material role in a synthesis.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/CoPrecipitation/">CoPrecipitation</a></td>
-<td>Catalyst preparation by co-precipitation: precursor salts are<br>simultaneously precipitated from solution by a precipitating agent.</td>
 <td>no</td>
 </tr>
 </tbody>
