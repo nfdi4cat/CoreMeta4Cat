@@ -720,7 +720,7 @@
 <tr>
 <td><a href="../../slots/product_identification_method/">product_identification_method</a></td>
 <td>1..* <br> <a href="../ProductIdentificationMethod/">ProductIdentificationMethod</a></br></td>
-<td>The analytical method used to identify and/or quantify reaction products.<br/>Should reference a CharacterizationTechnique instance (e.g. a GCMS or<br/>HPLC_MS object from coremeta4cat_characterization_ap). The abstract stub<br/>ProductIdentificationMethod is retained for backward compatibility.</td>
+<td>The analytical method used to identify and/or quantify reaction products.<br/>Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).<br/>The abstract stub ProductIdentificationMethod is retained for backward compatibility.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -737,7 +737,7 @@
 </tr>
 <tr>
 <td><a href="../../slots/description/">description</a></td>
-<td>* <br> <a href="../../types/String/">String</a></br></td>
+<td>* <br/> <a href="../../types/String/">String</a></td>
 <td>The slot to provide a description for the Activity.</td>
 <td><a href="../Activity/">Activity</a></td>
 </tr>
@@ -890,11 +890,9 @@
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">analytical</span><span class="nv"> </span><span class="s">method</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">identify</span><span class="nv"> </span><span class="s">and/or</span><span class="nv"> </span><span class="s">quantify</span><span class="nv"> </span><span class="s">reaction</span>
 <span class="w">      </span><span class="s">products.</span>
 
-<span class="w">      </span><span class="s">Should</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CharacterizationTechnique</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">GCMS</span><span class="nv"> </span><span class="s">or</span>
+<span class="w">      </span><span class="s">Should</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CharacterizationTechnique</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">GCMS,</span><span class="nv"> </span><span class="s">HPLC_MS).</span>
 
-<span class="w">      </span><span class="s">HPLC_MS</span><span class="nv"> </span><span class="s">object</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">coremeta4cat_characterization_ap).</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">abstract</span><span class="nv"> </span><span class="s">stub</span>
-
-<span class="w">      </span><span class="s">ProductIdentificationMethod</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">retained</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">backward</span><span class="nv"> </span><span class="s">compatibility.'</span>
+<span class="w">      </span><span class="s">The</span><span class="nv"> </span><span class="s">abstract</span><span class="nv"> </span><span class="s">stub</span><span class="nv"> </span><span class="s">ProductIdentificationMethod</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">retained</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">backward</span><span class="nv"> </span><span class="s">compatibility.'</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProductIdentificationMethod</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -947,11 +945,9 @@
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">analytical</span><span class="nv"> </span><span class="s">method</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">identify</span><span class="nv"> </span><span class="s">and/or</span><span class="nv"> </span><span class="s">quantify</span><span class="nv"> </span><span class="s">reaction</span>
 <span class="w">      </span><span class="s">products.</span>
 
-<span class="w">      </span><span class="s">Should</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CharacterizationTechnique</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">GCMS</span><span class="nv"> </span><span class="s">or</span>
+<span class="w">      </span><span class="s">Should</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CharacterizationTechnique</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">GCMS,</span><span class="nv"> </span><span class="s">HPLC_MS).</span>
 
-<span class="w">      </span><span class="s">HPLC_MS</span><span class="nv"> </span><span class="s">object</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">coremeta4cat_characterization_ap).</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">abstract</span><span class="nv"> </span><span class="s">stub</span>
-
-<span class="w">      </span><span class="s">ProductIdentificationMethod</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">retained</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">backward</span><span class="nv"> </span><span class="s">compatibility.'</span>
+<span class="w">      </span><span class="s">The</span><span class="nv"> </span><span class="s">abstract</span><span class="nv"> </span><span class="s">stub</span><span class="nv"> </span><span class="s">ProductIdentificationMethod</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">retained</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">backward</span><span class="nv"> </span><span class="s">compatibility.'</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProductIdentificationMethod</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -1101,11 +1097,9 @@
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">analytical</span><span class="nv"> </span><span class="s">method</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">identify</span><span class="nv"> </span><span class="s">and/or</span><span class="nv"> </span><span class="s">quantify</span><span class="nv"> </span><span class="s">reaction</span>
 <span class="w">      </span><span class="s">products.</span>
 
-<span class="w">      </span><span class="s">Should</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CharacterizationTechnique</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">GCMS</span><span class="nv"> </span><span class="s">or</span>
+<span class="w">      </span><span class="s">Should</span><span class="nv"> </span><span class="s">reference</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CharacterizationTechnique</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">GCMS,</span><span class="nv"> </span><span class="s">HPLC_MS).</span>
 
-<span class="w">      </span><span class="s">HPLC_MS</span><span class="nv"> </span><span class="s">object</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">coremeta4cat_characterization_ap).</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">abstract</span><span class="nv"> </span><span class="s">stub</span>
-
-<span class="w">      </span><span class="s">ProductIdentificationMethod</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">retained</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">backward</span><span class="nv"> </span><span class="s">compatibility.'</span>
+<span class="w">      </span><span class="s">The</span><span class="nv"> </span><span class="s">abstract</span><span class="nv"> </span><span class="s">stub</span><span class="nv"> </span><span class="s">ProductIdentificationMethod</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">retained</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">backward</span><span class="nv"> </span><span class="s">compatibility.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:product_identification_method</span>

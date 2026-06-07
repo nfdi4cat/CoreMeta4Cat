@@ -787,13 +787,13 @@ Alias: has_atmosphere</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/NMRSpectroscopy/">NMRSpectroscopy</a></td>
-<td>Nuclear magnetic resonance spectroscopy for structure elucidation.<br>Note: for detailed liquid-state NMR minimum information, the dedicated<br>nmr_dcat_ap profile (MARGARITAS) should be used in combination with<br>this subprofile.</td>
+<td><a href="../../classes/MicrowaveAssisted/">MicrowaveAssisted</a></td>
+<td>Catalyst preparation using microwave irradiation to rapidly and<br>uniformly heat the reaction mixture.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/XPS/">XPS</a></td>
-<td>X-ray photoelectron spectroscopy for surface elemental and chemical state analysis.</td>
+<td><a href="../../classes/ElectrochemistryMixin/">ElectrochemistryMixin</a></td>
+<td>Mixin providing electrochemical cell parameters shared by<br>electrochemical characterization techniques (CyclicVoltammetry,<br>ConductivityMeasurement).</td>
 <td>no</td>
 </tr>
 <tr>
@@ -802,38 +802,8 @@ Alias: has_atmosphere</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/CombustionSynthesis/">CombustionSynthesis</a></td>
-<td>Catalyst preparation by combustion of a fuel/oxidizer mixture,<br>producing metal oxide catalysts in a single rapid step.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Thermogravimetry/">Thermogravimetry</a></td>
-<td>Thermogravimetric analysis (TGA/DTG) for mass loss, decomposition, and oxidation state characterization.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/RamanSpectroscopy/">RamanSpectroscopy</a></td>
-<td>Raman spectroscopy for vibrational and structural characterization.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/DRIFTS/">DRIFTS</a></td>
-<td>Diffuse reflectance infrared Fourier transform spectroscopy for in-situ<br>surface species identification under reactive gas conditions.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/InfraredSpectroscopy/">InfraredSpectroscopy</a></td>
-<td>Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MechanochemicalSynthesis/">MechanochemicalSynthesis</a></td>
-<td>Catalyst preparation by mechanical milling or grinding, optionally<br>combined with thermal treatment.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Solvothermal/">Solvothermal</a></td>
-<td>Catalyst preparation under elevated temperature and pressure in a<br>sealed vessel using a non-aqueous solvent.</td>
+<td><a href="../../classes/NMRSpectroscopy/">NMRSpectroscopy</a></td>
+<td>Nuclear magnetic resonance spectroscopy for structure elucidation.<br>Note: for detailed liquid-state NMR minimum information, the dedicated<br>nmr_dcat_ap profile (MARGARITAS) should be used in combination with<br>this subprofile.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -842,8 +812,8 @@ Alias: has_atmosphere</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/MolecularSynthesis/">MolecularSynthesis</a></td>
-<td>Catalyst preparation by molecular (organometallic or coordination)<br>chemistry routes, including crystallisation and purification steps.</td>
+<td><a href="../../classes/ConductivityMeasurement/">ConductivityMeasurement</a></td>
+<td>Electrical conductivity measurement for ionic and electronic transport characterization.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -852,13 +822,18 @@ Alias: has_atmosphere</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/ThermalSynthesisMixin/">ThermalSynthesisMixin</a></td>
-<td>Mixin providing thermal process parameters common to synthesis methods<br>carried out at elevated temperature in a closed vessel or reactor<br>(Solvothermal, PlasmaAssisted, CombustionSynthesis,<br>MicrowaveAssisted, MechanochemicalSynthesis, Sublimation).</td>
+<td><a href="../../classes/DRIFTS/">DRIFTS</a></td>
+<td>Diffuse reflectance infrared Fourier transform spectroscopy for in-situ<br>surface species identification under reactive gas conditions.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/CyclicVoltammetry/">CyclicVoltammetry</a></td>
-<td>Cyclic voltammetry for electrochemical activity, redox potential, and capacitance characterization.</td>
+<td><a href="../../classes/MolecularSynthesis/">MolecularSynthesis</a></td>
+<td>Catalyst preparation by molecular (organometallic or coordination)<br>chemistry routes, including crystallisation and purification steps.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/InfraredSpectroscopy/">InfraredSpectroscopy</a></td>
+<td>Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -867,18 +842,43 @@ Alias: has_atmosphere</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/MicrowaveAssisted/">MicrowaveAssisted</a></td>
-<td>Catalyst preparation using microwave irradiation to rapidly and<br>uniformly heat the reaction mixture.</td>
+<td><a href="../../classes/ThermalSynthesisMixin/">ThermalSynthesisMixin</a></td>
+<td>Mixin providing thermal process parameters common to synthesis methods<br>carried out at elevated temperature in a closed vessel or reactor<br>(Solvothermal, PlasmaAssisted, CombustionSynthesis,<br>MicrowaveAssisted, MechanochemicalSynthesis, Sublimation).</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/ConductivityMeasurement/">ConductivityMeasurement</a></td>
-<td>Electrical conductivity measurement for ionic and electronic transport characterization.</td>
+<td><a href="../../classes/RamanSpectroscopy/">RamanSpectroscopy</a></td>
+<td>Raman spectroscopy for vibrational and structural characterization.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/ElectrochemistryMixin/">ElectrochemistryMixin</a></td>
-<td>Mixin providing electrochemical cell parameters shared by<br>electrochemical characterization techniques (CyclicVoltammetry,<br>ConductivityMeasurement).</td>
+<td><a href="../../classes/CyclicVoltammetry/">CyclicVoltammetry</a></td>
+<td>Cyclic voltammetry for electrochemical activity, redox potential, and capacitance characterization.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/XPS/">XPS</a></td>
+<td>X-ray photoelectron spectroscopy for surface elemental and chemical state analysis.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CombustionSynthesis/">CombustionSynthesis</a></td>
+<td>Catalyst preparation by combustion of a fuel/oxidizer mixture,<br>producing metal oxide catalysts in a single rapid step.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Solvothermal/">Solvothermal</a></td>
+<td>Catalyst preparation under elevated temperature and pressure in a<br>sealed vessel using a non-aqueous solvent.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MechanochemicalSynthesis/">MechanochemicalSynthesis</a></td>
+<td>Catalyst preparation by mechanical milling or grinding, optionally<br>combined with thermal treatment.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Thermogravimetry/">Thermogravimetry</a></td>
+<td>Thermogravimetric analysis (TGA/DTG) for mass loss, decomposition, and oxidation state characterization.</td>
 <td>no</td>
 </tr>
 </tbody>

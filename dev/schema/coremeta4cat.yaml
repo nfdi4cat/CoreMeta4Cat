@@ -1482,8 +1482,8 @@ slots:
     description: Chemical agent used to induce precipitation (e.g. NaOH, NH3).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:precipitating_agent
-    slot_uri: coremeta4cat:precipitating_agent
+    - VOC4CAT:0008203
+    slot_uri: VOC4CAT:0008203
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -7594,11 +7594,9 @@ slots:
     description: 'The analytical method used to identify and/or quantify reaction
       products.
 
-      Should reference a CharacterizationTechnique instance (e.g. a GCMS or
+      Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).
 
-      HPLC_MS object from coremeta4cat_characterization_ap). The abstract stub
-
-      ProductIdentificationMethod is retained for backward compatibility.'
+      The abstract stub ProductIdentificationMethod is retained for backward compatibility.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
     - coremeta4cat:product_identification_method
@@ -13630,11 +13628,9 @@ classes:
         description: 'The analytical method used to identify and/or quantify reaction
           products.
 
-          Should reference a CharacterizationTechnique instance (e.g. a GCMS or
+          Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).
 
-          HPLC_MS object from coremeta4cat_characterization_ap). The abstract stub
-
-          ProductIdentificationMethod is retained for backward compatibility.'
+          The abstract stub ProductIdentificationMethod is retained for backward compatibility.'
         range: ProductIdentificationMethod
         required: true
         multivalued: true
@@ -17914,7 +17910,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-06-07T00:03:43'
+source_file_date: '2026-06-07T00:14:08'
 source_file_size: 6625
-generation_date: '2026-06-07T00:03:56'
+generation_date: '2026-06-07T00:14:23'
 
