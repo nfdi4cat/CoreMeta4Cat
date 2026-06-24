@@ -3773,6 +3773,36 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
+  anode:
+    name: anode
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/anode
+    description: The electrode where oxidation occurs in an electrochemical cell.
+      It is the positive electrode in an electrolytic cell, while it is the negative
+      electrode in a galvanic cell.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0007254
+    slot_uri: VOC4CAT:0007254
+    owner: ElectrochemicalReactor
+    domain_of:
+    - ElectrochemicalReactor
+    range: string
+    required: true
+  cathode:
+    name: cathode
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/cathode
+    description: The electrode where reduction occurs in an electrochemical cell.
+      It is the negative electrode in an electrolytic cell, while it is the positive
+      electrode in a galvanic cell.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0007255
+    slot_uri: VOC4CAT:0007255
+    owner: ElectrochemicalReactor
+    domain_of:
+    - ElectrochemicalReactor
+    range: string
+    required: true
   software_package:
     name: software_package
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/software_package
@@ -13711,6 +13741,8 @@ classes:
     - rdf_type
     - Device_has_part
     - Device_other_identifier
+    - anode
+    - cathode
     class_uri: VOC4CAT:0000193
   CSTR:
     name: CSTR
@@ -17910,7 +17942,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-06-23T11:35:11'
+source_file_date: '2026-06-24T11:20:43'
 source_file_size: 6637
-generation_date: '2026-06-23T11:35:26'
+generation_date: '2026-06-24T11:20:57'
 

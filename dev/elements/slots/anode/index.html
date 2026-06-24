@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/solvent/">
+        <link rel="canonical" href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/anode/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: solvent - CoreMeta4Cat</title>
+        <title>Slot: anode - CoreMeta4Cat</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-solvent" class="md-skip">
+        <a href="#slot-anode" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: solvent
+              Slot: anode
             
           </span>
         </div>
@@ -750,10 +750,10 @@
   
 
 
-<h1 id="slot-solvent">Slot: solvent</h1>
-<p><em>Solvent used in a process or sample preparation.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/voc4cat_0007246">VOC4CAT:0007246</a>
-Alias: solvent</p>
+<h1 id="slot-anode">Slot: anode</h1>
+<p><em>The electrode where oxidation occurs in an electrochemical cell. It is the positive electrode in an electrolytic cell, while it is the negative electrode in a galvanic cell.</em></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/voc4cat_0007254">VOC4CAT:0007254</a>
+Alias: anode</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -767,23 +767,8 @@ Alias: solvent</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/NMRSpectroscopy/">NMRSpectroscopy</a></td>
-<td>Nuclear magnetic resonance spectroscopy for structure elucidation.<br>Note: for detailed liquid-state NMR minimum information, the dedicated<br>nmr_dcat_ap profile (MARGARITAS) should be used in combination with<br>this subprofile.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/DynamicLightScattering/">DynamicLightScattering</a></td>
-<td>Dynamic light scattering for hydrodynamic particle size distribution in suspension.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Synthesis/">Synthesis</a></td>
-<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/UVVisSpectroscopy/">UVVisSpectroscopy</a></td>
-<td>UV-Vis spectroscopy for electronic transitions, band gap, and concentration determination.</td>
+<td><a href="../../classes/ElectrochemicalReactor/">ElectrochemicalReactor</a></td>
+<td>Electrochemical reactor used in electrocatalytic experiments, including<br>H-cells, flow cells, and membrane electrode assemblies.</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -791,10 +776,10 @@ Alias: solvent</p>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../../classes/ChemicalEntity/">ChemicalEntity</a></p>
+<p>Range: <a href="../../types/String/">String</a></p>
 </li>
 <li>
-<p>Multivalued: True</p>
+<p>Required: True</p>
 </li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -813,31 +798,28 @@ Alias: solvent</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>VOC4CAT:0007246</td>
+<td>VOC4CAT:0007254</td>
 </tr>
 <tr>
 <td>native</td>
-<td>coremeta4cat:solvent</td>
+<td>coremeta4cat:anode</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">solvent</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Solvent used in a process or sample preparation.</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anode</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The electrode where oxidation occurs in an electrochemical cell. It is</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">the positive electrode in an electrolytic cell, while it is the negative electrode</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">in a galvanic cell.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007246</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">solvent</span>
+<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007254</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anode</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Synthesis</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NMRSpectroscopy</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UVVisSpectroscopy</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DynamicLightScattering</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalEntity</span>
-<span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ElectrochemicalReactor</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 

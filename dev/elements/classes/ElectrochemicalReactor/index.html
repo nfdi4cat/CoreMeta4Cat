@@ -416,6 +416,10 @@
       ChemicalReactor &lt;|-- ElectrochemicalReactor
         click ChemicalReactor href "../../classes/ChemicalReactor/"
 
+      ElectrochemicalReactor : anode
+
+      ElectrochemicalReactor : cathode
+
       ElectrochemicalReactor : description
 
       ElectrochemicalReactor : has_part
@@ -525,6 +529,18 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../../slots/anode/">anode</a></td>
+<td>1 <br/> <a href="../../types/String/">String</a></td>
+<td>The electrode where oxidation occurs in an electrochemical cell. It is the positive electrode in an electrolytic cell, while it is the negative electrode in a galvanic cell.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../../slots/cathode/">cathode</a></td>
+<td>1 <br/> <a href="../../types/String/">String</a></td>
+<td>The electrode where reduction occurs in an electrochemical cell. It is the negative electrode in an electrolytic cell, while it is the positive electrode in a galvanic cell.</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../../slots/id/">id</a></td>
 <td>1 <br/> <a href="../../types/Uriorcurie/">Uriorcurie</a></td>
 <td>A slot to provide an URI for an entity within this schema.</td>
@@ -620,6 +636,9 @@
 <span class="w">  </span><span class="s">H-cells,</span><span class="nv"> </span><span class="s">flow</span><span class="nv"> </span><span class="s">cells,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">membrane</span><span class="nv"> </span><span class="s">electrode</span><span class="nv"> </span><span class="s">assemblies.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
+<span class="nt">slots</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anode</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cathode</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0000193</span>
 </code></pre></div>
 </details>
@@ -632,6 +651,34 @@
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
 <span class="nt">attributes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">anode</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anode</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The electrode where oxidation occurs in an electrochemical cell.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">It is the positive electrode in an electrolytic cell, while it is the negative</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">electrode in a galvanic cell.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007254</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">anode</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ElectrochemicalReactor</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ElectrochemicalReactor</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">cathode</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cathode</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The electrode where reduction occurs in an electrochemical cell.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">It is the negative electrode in an electrolytic cell, while it is the positive</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">electrode in a galvanic cell.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007255</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cathode</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ElectrochemicalReactor</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ElectrochemicalReactor</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A slot to provide an URI for an entity within this schema.</span>
