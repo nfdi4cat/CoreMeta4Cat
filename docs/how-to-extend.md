@@ -1,20 +1,14 @@
----
-title: How to Extend
-description: Rules and patterns for extending CoreMeta4Cat with new methods, techniques, and properties
----
-
 # How to Extend CoreMeta4Cat
 
-This page explains how to add new entries to the CoreMeta4Cat schema — new preparation methods, characterisation techniques, reactor types, simulation methods, or shared slots. Each section follows the same general pattern, adapted to the specific pillar.
+This page explains how to add new entries to the CoreMeta4Cat schema — new preparation methods, characterisation techniques, reactor types, simulation methods, or shared slots. Each section follows the same general pattern, adapted to the specific data class.
 
-<div style="text-align: center;">
-    <a>
-    <img src="../images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
-    </a>
-</div>
+![CoreMeta4Cat logo](images/CoreMeta4Cat_Picture.png)
 
-!!! tip "Before you start"
-    Read the [Design Patterns](design-patterns.md) page first if you are new to the schema. Understanding the Activity/Plan split and the mixin pattern will make the extension rules below straightforward.
+!!! note "Not what you were looking for?"
+    This page is for developers who want to contribute new terms to the CoreMeta4Cat schema. If you are a researcher who wants to check or annotate your dataset, start with the [Getting Started](https://nfdi4cat.github.io/CoreMeta4Cat/latest/getting-started/) page instead.
+
+!!! tip "Read Design Patterns first"
+    If you are new to the schema, read the [Design Patterns](https://nfdi4cat.github.io/CoreMeta4Cat/latest/design-patterns/) page first. Understanding the Activity/Plan split and the mixin pattern will make the extension rules below straightforward.
 
 ---
 
@@ -22,11 +16,9 @@ This page explains how to add new entries to the CoreMeta4Cat schema — new pre
 
 These rules apply when extending any part of CoreMeta4Cat.
 
-**Rule 1 — Extend, don't modify.**
-Add new subclasses and slots. Do not rename or remove existing classes, slots, or enum values — this would break backward compatibility for any dataset already using them.
+**Rule 1 — Extend, don't modify.** Add new subclasses and slots. Do not rename or remove existing classes, slots, or enum values — this would break backward compatibility for any dataset already using them.
 
-**Rule 2 — Inherit from the right parent.**
-Each extension type has a designated parent class (see the table below). Always use `is_a:` with that parent, not with a sibling class.
+**Rule 2 — Inherit from the right parent.** Each extension type has a designated parent class (see the table below). Always use `is_a:` with that parent, not with a sibling class.
 
 | What you are adding | Parent class | File |
 |---|---|---|
@@ -38,17 +30,13 @@ Each extension type has a designated parent class (see the table below). Always 
 | New mixin (slot group) | *(no parent — mixin: true)* | Appropriate subprofile |
 | New shared slot | *(no class — top-level slot)* | `catcore_common.yaml` |
 
-**Rule 3 — Register an ontology term.**
-Every new class should have a `class_uri:` pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, …). If no suitable term exists yet, use a provisional catcore-prefixed URI (`catcore:MyNewClass`) and open a Voc4Cat issue to request a proper term.
+**Rule 3 — Register an ontology term.** Every new class should have a `class_uri:` pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, …). If no suitable term exists yet, use a provisional catcore-prefixed URI (`catcore:MyNewClass`) and open a Voc4Cat issue to request a proper term.
 
-**Rule 4 — Declare slots in the right file.**
-Slots used by exactly one class go in that class's subprofile file. Slots shared by two or more classes go in `catcore_common.yaml`.
+**Rule 4 — Declare slots in the right file.** Slots used by exactly one class go in that class's subprofile file. Slots shared by two or more classes go in `catcore_common.yaml`.
 
-**Rule 5 — Apply existing mixins before adding new slots.**
-If your new class needs drying, calcination, precipitation, or thermal process parameters, apply the appropriate mixin rather than redeclaring those slots. Only add method-specific slots beyond what the mixin provides.
+**Rule 5 — Apply existing mixins before adding new slots.** If your new class needs drying, calcination, precipitation, or thermal process parameters, apply the appropriate mixin rather than redeclaring those slots. Only add method-specific slots beyond what the mixin provides.
 
-**Rule 6 — Mark obligation levels.**
-Every slot in a new class should have either `required: true` (Mandatory), `recommended: true` (Recommended), or neither (Optional). Do not leave obligations implicit.
+**Rule 6 — Mark obligation levels.** Every slot in a new class should have either `required: true` (Mandatory), `recommended: true` (Recommended), or neither (Optional). Do not leave obligations implicit.
 
 ---
 
@@ -78,9 +66,9 @@ MyNewMethod:
 Slots already provided by mixins must not be redeclared. Only list slots that are unique to this method:
 
 ```yaml
-  slots:
-    - my_specific_parameter_a
-    - my_specific_parameter_b
+slots:
+  - my_specific_parameter_a
+  - my_specific_parameter_b
 ```
 
 **3. Declare the new slots in the slots section.**
@@ -217,7 +205,7 @@ slots:
     slot_uri: catcore:neutron_wavelength
     multivalued: true
     unit:
-      ucum_code: Ao   # Angstrom
+      ucum_code: Ao
 
   moderator_type:
     description: Type of neutron moderator (e.g. cold, thermal, hot source).
@@ -426,15 +414,15 @@ SomeConcreteClass:
     - MyNewMixin
 ```
 
-!!! warning "Mixin scope"
+!!! tip "Mixin scope"
     A mixin should cover a coherent, reusable process step — not an arbitrary collection of slots. If a set of slots is only needed by one class, declare the slots directly on that class rather than creating a mixin.
 
 ---
 
 ## 🔬 Deep dive: Extending the import hierarchy
 
-!!! warning "Technical section"
-    This section is for schema developers who need to introduce a new chemistry-layer or intermediate module between CoreMeta4Cat and DCAT-AP-PLUS. Most users extending the four pillars do not need this.
+??? warning "Technical section"
+    This section is for schema developers who need to introduce a new chemistry-layer or intermediate module between CoreMeta4Cat and DCAT-AP-PLUS. Most users extending the four data classes do not need this.
 
 CoreMeta4Cat sits at the top of a layered import chain:
 
@@ -442,9 +430,9 @@ CoreMeta4Cat sits at the top of a layered import chain:
 catcore.yaml  →  catcore_common.yaml  →  chem_dcat_ap  →  …  →  dcat_ap_plus
 ```
 
-If you need to introduce a new intermediate chemistry layer (e.g. a `polymer_catalysis_ap` that adds polymer-specific base classes used across multiple pillars), add it between `catcore_common` and the first pillar that needs it. Import it in `catcore_common.yaml` via the `imports:` key, and document the new layer in the import hierarchy diagram in `catcore.yaml`.
+If you need to introduce a new intermediate chemistry layer (e.g. a `polymer_catalysis_ap` that adds polymer-specific base classes used across multiple data classes), add it between `catcore_common` and the first data class module that needs it. Import it in `catcore_common.yaml` via the `imports:` key, and document the new layer in the import hierarchy diagram in `catcore.yaml`.
 
-Do not import new intermediate layers directly in individual pillar files — this would create hidden import order dependencies and make the schema harder to reason about.
+Do not import new intermediate layers directly in individual data class files — this would create hidden import order dependencies and make the schema harder to reason about.
 
 ---
 
