@@ -763,7 +763,7 @@
 
 <h1 id="slot-has_atmosphere">Slot: has_atmosphere</h1>
 <p><em>Gaseous environment or atmospheric conditions during a process.</em></p>
-<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a>
+<p>URI: <a href="https://w3id.org/nfdi4cat/voc4cat_0007809">VOC4CAT:0007809</a>
 Alias: has_atmosphere</p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
@@ -787,38 +787,8 @@ Alias: has_atmosphere</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/PowderXRD/">PowderXRD</a></td>
-<td>Powder X-ray diffraction for phase identification and structural analysis.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/RamanSpectroscopy/">RamanSpectroscopy</a></td>
-<td>Raman spectroscopy for vibrational and structural characterization.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/InfraredSpectroscopy/">InfraredSpectroscopy</a></td>
-<td>Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/DRIFTS/">DRIFTS</a></td>
-<td>Diffuse reflectance infrared Fourier transform spectroscopy for in-situ<br>surface species identification under reactive gas conditions.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ConductivityMeasurement/">ConductivityMeasurement</a></td>
-<td>Electrical conductivity measurement for ionic and electronic transport characterization.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/XPS/">XPS</a></td>
-<td>X-ray photoelectron spectroscopy for surface elemental and chemical state analysis.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/CyclicVoltammetry/">CyclicVoltammetry</a></td>
-<td>Cyclic voltammetry for electrochemical activity, redox potential, and capacitance characterization.</td>
+<td><a href="../../classes/PlasmaAssisted/">PlasmaAssisted</a></td>
+<td>Catalyst preparation using plasma treatment to modify surface<br>properties or deposit active components.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -832,8 +802,28 @@ Alias: has_atmosphere</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/CombustionSynthesis/">CombustionSynthesis</a></td>
-<td>Catalyst preparation by combustion of a fuel/oxidizer mixture,<br>producing metal oxide catalysts in a single rapid step.</td>
+<td><a href="../../classes/MolecularSynthesis/">MolecularSynthesis</a></td>
+<td>Catalyst preparation by molecular (organometallic or coordination)<br>chemistry routes, including crystallisation and purification steps.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/RamanSpectroscopy/">RamanSpectroscopy</a></td>
+<td>Raman spectroscopy for vibrational and structural characterization.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PowderXRD/">PowderXRD</a></td>
+<td>Powder X-ray diffraction for phase identification and structural analysis.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CatalyticReaction/">CatalyticReaction</a></td>
+<td>An EvaluatedActivity representing the catalytic reaction being studied.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via carried_out_by as a Reactor (Device).<br>Reactants are linked via had_input_entity. The type of catalytic reaction<br>(e.g. ammonia synthesis, CO oxidation) is expressed via rdf_type using a<br>voc4cat or ChemO term.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/XPS/">XPS</a></td>
+<td>X-ray photoelectron spectroscopy for surface elemental and chemical state analysis.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -842,13 +832,13 @@ Alias: has_atmosphere</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/MolecularSynthesis/">MolecularSynthesis</a></td>
-<td>Catalyst preparation by molecular (organometallic or coordination)<br>chemistry routes, including crystallisation and purification steps.</td>
+<td><a href="../../classes/InfraredSpectroscopy/">InfraredSpectroscopy</a></td>
+<td>Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/CatalyticReaction/">CatalyticReaction</a></td>
-<td>An EvaluatedActivity representing the catalytic reaction being studied.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via carried_out_by as a Reactor (Device).<br>Reactants are linked via had_input_entity. The type of catalytic reaction<br>(e.g. ammonia synthesis, CO oxidation) is expressed via rdf_type using a<br>voc4cat or ChemO term.</td>
+<td><a href="../../classes/MechanochemicalSynthesis/">MechanochemicalSynthesis</a></td>
+<td>Catalyst preparation by mechanical milling or grinding, optionally<br>combined with thermal treatment.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -862,23 +852,33 @@ Alias: has_atmosphere</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/ThermalSynthesisMixin/">ThermalSynthesisMixin</a></td>
-<td>Mixin providing thermal process parameters common to synthesis methods<br>carried out at elevated temperature in a closed vessel or reactor<br>(Solvothermal, PlasmaAssisted, CombustionSynthesis,<br>MicrowaveAssisted, MechanochemicalSynthesis, Sublimation).</td>
+<td><a href="../../classes/ConductivityMeasurement/">ConductivityMeasurement</a></td>
+<td>Electrical conductivity measurement for ionic and electronic transport characterization.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/PlasmaAssisted/">PlasmaAssisted</a></td>
-<td>Catalyst preparation using plasma treatment to modify surface<br>properties or deposit active components.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MechanochemicalSynthesis/">MechanochemicalSynthesis</a></td>
-<td>Catalyst preparation by mechanical milling or grinding, optionally<br>combined with thermal treatment.</td>
+<td><a href="../../classes/CyclicVoltammetry/">CyclicVoltammetry</a></td>
+<td>Cyclic voltammetry for electrochemical activity, redox potential, and capacitance characterization.</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../../classes/Sublimation/">Sublimation</a></td>
 <td>Catalyst preparation by sublimation: a solid precursor is vaporised<br>and deposited onto a substrate without passing through a liquid phase.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CombustionSynthesis/">CombustionSynthesis</a></td>
+<td>Catalyst preparation by combustion of a fuel/oxidizer mixture,<br>producing metal oxide catalysts in a single rapid step.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/DRIFTS/">DRIFTS</a></td>
+<td>Diffuse reflectance infrared Fourier transform spectroscopy for in-situ<br>surface species identification under reactive gas conditions.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ThermalSynthesisMixin/">ThermalSynthesisMixin</a></td>
+<td>Mixin providing thermal process parameters common to synthesis methods<br>carried out at elevated temperature in a closed vessel or reactor<br>(Solvothermal, PlasmaAssisted, CombustionSynthesis,<br>MicrowaveAssisted, MechanochemicalSynthesis, Sublimation).</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -911,7 +911,7 @@ Alias: has_atmosphere</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>SIO:000008</td>
+<td>VOC4CAT:0007809</td>
 </tr>
 <tr>
 <td>native</td>
@@ -926,7 +926,7 @@ Alias: has_atmosphere</p>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
-<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007809</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_atmosphere</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ThermalSynthesisMixin</span>

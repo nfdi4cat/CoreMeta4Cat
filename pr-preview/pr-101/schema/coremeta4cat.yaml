@@ -822,9 +822,9 @@ slots:
     description: Temperature applied during the drying step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0008207
     is_a: has_temperature
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0008207
     owner: DryingMixin
     domain_of:
     - DryingMixin
@@ -839,9 +839,9 @@ slots:
     description: Duration of the drying step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0008206
     is_a: has_duration
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0008206
     owner: DryingMixin
     domain_of:
     - DryingMixin
@@ -871,9 +871,9 @@ slots:
     description: Time held at the final calcination temperature.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0000060
     is_a: has_duration
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0000060
     owner: CalcinationMixin
     domain_of:
     - CalcinationMixin
@@ -903,9 +903,9 @@ slots:
     description: Gas flow rate maintained during calcination.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0000056
     is_a: has_flow_rate
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0000056
     owner: CalcinationMixin
     domain_of:
     - CalcinationMixin
@@ -1019,9 +1019,9 @@ slots:
     description: Gaseous environment or atmospheric conditions during a process.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0007809
     is_a: has_qualitative_attribute
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0007809
     owner: CatalyticReaction
     domain_of:
     - ThermalSynthesisMixin
@@ -1046,9 +1046,9 @@ slots:
     description: Atmosphere maintained during the drying step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0008208
     is_a: has_atmosphere
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0008208
     owner: DryingMixin
     domain_of:
     - DryingMixin
@@ -1207,8 +1207,8 @@ slots:
     description: Device used for drying (e.g. oven, rotary evaporator).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - coremeta4cat:drying_device
-    slot_uri: coremeta4cat:drying_device
+    - VOC4CAT:0008122
+    slot_uri: VOC4CAT:0008122
     owner: DryingMixin
     domain_of:
     - DryingMixin
@@ -1564,9 +1564,9 @@ slots:
     description: Duration of the aging step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - SIO:000008
+    - VOC4CAT:0008204
     is_a: has_duration
-    slot_uri: SIO:000008
+    slot_uri: VOC4CAT:0008204
     owner: SolGel
     domain_of:
     - PrecipitationMixin
@@ -1751,8 +1751,8 @@ slots:
     description: Type of stirrer used (e.g. magnetic, mechanical, none).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:stirrer_type
-    slot_uri: coremeta4cat:stirrer_type
+    - VOC4CAT:0008113
+    slot_uri: VOC4CAT:0008113
     owner: Solvothermal
     domain_of:
     - Solvothermal
@@ -2197,8 +2197,8 @@ slots:
     description: Agent used to induce precipitation in molecular synthesis.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:precipitation_agent
-    slot_uri: coremeta4cat:precipitation_agent
+    - VOC4CAT:0008203
+    slot_uri: VOC4CAT:0008203
     owner: MolecularSynthesis
     domain_of:
     - MolecularSynthesis
@@ -7377,10 +7377,10 @@ slots:
     description: Quantity of precursor used in synthesis.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:precursor_quantity
+    - VOC4CAT:0008118
     is_a: precursor_quantity
     domain: Precursor
-    slot_uri: coremeta4cat:precursor_quantity
+    slot_uri: VOC4CAT:0008118
     alias: precursor_quantity
     owner: Precursor
     domain_of:
@@ -11703,7 +11703,7 @@ classes:
     description: A quantitative measure of elapsed time (duration of a process step).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - qudt:Quantity
+    - VOC4CAT:0008120
     close_mappings:
     - PATO:0001309
     is_a: QuantitativeAttribute
@@ -11715,7 +11715,7 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: qudt:Quantity
+    class_uri: VOC4CAT:0008120
   VolumeFlowRate:
     name: VolumeFlowRate
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/VolumeFlowRate
@@ -11741,7 +11741,7 @@ classes:
     description: Rate of temperature change per unit time during a thermal ramp.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - qudt:Quantity
+    - VOC4CAT:0008116
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -11751,7 +11751,7 @@ classes:
     - quantitativeAttribute__unit
     - ClassifierMixin_type
     - rdf_type
-    class_uri: qudt:Quantity
+    class_uri: VOC4CAT:0008116
   AngularVelocity:
     name: AngularVelocity
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/AngularVelocity
@@ -12181,7 +12181,7 @@ classes:
       Precursors are consumed or transformed during the preparation process.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - CHEBI:52717
+    - VOC4CAT:0007794
     is_a: MaterialSample
     slots:
     - id
@@ -12207,8 +12207,9 @@ classes:
     slot_usage:
       precursor_quantity:
         name: precursor_quantity
+        slot_uri: VOC4CAT:0008118
         required: true
-    class_uri: CHEBI:52717
+    class_uri: VOC4CAT:0007794
   CatalystSample:
     name: CatalystSample
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CatalystSample
@@ -12259,7 +12260,7 @@ classes:
       \ activity using a voc4cat term\n(e.g. VOC4CAT:0007016 for preparation method)."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - OBI:0000272
+    - VOC4CAT:0007016
     is_a: Plan
     abstract: true
     slots:
@@ -12267,7 +12268,7 @@ classes:
     - description
     - ClassifierMixin_type
     - rdf_type
-    class_uri: OBI:0000272
+    class_uri: VOC4CAT:0007016
   Impregnation:
     name: Impregnation
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Impregnation
@@ -17910,7 +17911,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-06-26T12:51:29'
+source_file_date: '2026-07-10T09:00:46'
 source_file_size: 6637
-generation_date: '2026-06-26T12:51:44'
+generation_date: '2026-07-10T09:01:00'
 
