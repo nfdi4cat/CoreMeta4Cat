@@ -1,72 +1,16 @@
----
-title: CoreMeta4Cat
-description: Comprehensive Metadata Guidelines for Catalysis Research Data
----
+# CoreMeta4Cat — Overview
 
-# CoreMeta4Cat — Comprehensive Metadata Guidelines for Catalysis Research Data
-
-<div class="grid cards" markdown>
-
--   :material-flask-outline: **Synthesis**
-
-    Twelve preparation methods with method-specific parameter sets, shared mixin classes for drying and calcination steps.
-
--   :material-microscope: **Characterization**
-
-    Twenty-eight analytical techniques, from Powder XRD to Cyclic Voltammetry, each with dedicated measurement slots.
-
--   :material-thermometer: **Reaction**
-
-    Eight reactor design types, flattened operation parameter slots, and product identification links.
-
--   :octicons-cpu-16: **Simulation**
-
-    Four computational methods (DFT, MD, Microkinetics, Monte Carlo) with 12 calculated property classes.
-
-</div>
+CoreMeta4Cat defines the minimum information that should be reported alongside catalysis research data, across four domains: Synthesis, Characterization, Reaction, and Simulation. This page gives you a structured overview of what the standard covers, how it is organized, and how the different parts connect.
 
 ---
 
 ## What is CoreMeta4Cat?
 
-CoreMeta4Cat is a [LinkML](https://linkml.io/)-based metadata reference model for catalysis research data, developed within the [NFDI4Cat](https://nfdi4cat.org) initiative. It defines the **minimum information** that should be reported alongside research data in the field of catalysis, following the FAIR principles (Findable, Accessible, Interoperable, Reusable).
+CoreMeta4Cat is a metadata standard for catalysis research data, developed within the [NFDI4Cat](https://nfdi4cat.org) initiative. It is implemented as a [LinkML](https://linkml.io/) schema — a format that allows the standard to automatically generate multiple useful outputs from a single source: an Excel reference workbook, a JSON Schema for validation, Python data classes, and a full RDF/OWL representation for semantic querying.
 
-CoreMeta4Cat is built as a domain-specific application profile on top of [DCAT-AP-PLUS](https://nfdi-de.github.io/dcat-ap-plus/dev/), a provenance-aware extension of the DCAT Application Profile 3.0. This means every CoreMeta4Cat dataset is a valid `dcat:Dataset`, every activity is a valid `prov:Activity`, and all schema artefacts — SHACL shapes, JSON Schema, Python/Pydantic classes, HTML reference documentation — are generated automatically from the single LinkML source.
+CoreMeta4Cat is built as a domain-specific application profile on top of [DCAT-AP-PLUS](https://nfdi-de.github.io/dcat-ap-plus/dev/), a provenance-aware extension of the DCAT Application Profile 3.0. This means every CoreMeta4Cat dataset is a valid `dcat:Dataset`, every activity is a valid `prov:Activity`, and all schema artefacts are generated automatically from the single LinkML source.
 
----
-
-## Quick Start: What does CoreMeta4Cat add?
-
-In plain DCAT-AP, a `Dataset` can describe what data exists but says little about *how* it was produced or *what material* it concerns. DCAT-AP-PLUS adds a structured provenance graph via `prov:wasGeneratedBy`. CoreMeta4Cat specialises that graph for catalysis:
-
-```yaml
-# A dataset about the CO oxidation performance of a supported Pt catalyst
-id: ex:dataset-001
-title: "CO oxidation activity of 1wt% Pt/Al2O3 at 200–400°C"
-rdf_type:
-  id: voc4cat:0007001
-  title: "heterogeneous catalysis"
-
-was_generated_by:
-  - id: ex:reaction-001
-    type: Reaction
-    catalyst_quantity: 100.0   # mg
-    reactant:
-      - "1 vol% CO in N2"
-      - "2 vol% O2 in N2"
-    reactor_temperature_range: "200–400 °C"
-    experiment_pressure: 1.0   # bar
-    carried_out_by:
-      id: ex:reactor-001
-      type: FixedBedReactor
-
-is_about_entity:
-  - id: ex:catalyst-001
-    type: CatalystSample
-    nominal_composition: "1wt% Pt/Al2O3"
-```
-
-This is valid CoreMeta4Cat instance data. Every class and property is mapped to a controlled ontology term (voc4cat, CHMO, OBI, …) and can be validated and converted to RDF using standard LinkML tooling.
+In practical terms: a dataset described with CoreMeta4Cat is not just a well-labelled spreadsheet. It is a structured, machine-readable record that can be validated, searched, and connected to other datasets across repositories — because every field links back to a shared scientific vocabulary.
 
 ---
 
@@ -74,88 +18,107 @@ This is valid CoreMeta4Cat instance data. Every class and property is mapped to 
 
 CoreMeta4Cat organises metadata in two layers.
 
-**Layer 1 — Global classification** is data-class-independent. It applies to every `CatalysisDataset` and captures the two fields needed for the coarsest-possible filtering of a repository:
+**Layer 1 — Global classification** applies to every catalysis dataset, regardless of data class. It captures the two fields needed for the coarsest-possible filtering across a repository:
 
 | Field | Example values | Obligation |
 |---|---|---|
-| Catalysis research field (`rdf_type`) | heterogeneous catalysis, electrocatalysis, biocatalysis | Recommended |
-| Reaction type (`rdf_type` on `Reaction`) | CO oxidation, ammonia synthesis, hydrogenation | Recommended |
+| Catalysis research field | heterogeneous catalysis, electrocatalysis, biocatalysis | Recommended |
+| Reaction type | CO oxidation, ammonia synthesis, hydrogenation | Recommended |
 
-**Layer 2 — Data-class-specific metadata** is structured around the four *pillars*: Synthesis, Characterization, Reaction, and Simulation. Each pillar maps to a DCAT-AP-PLUS Activity subclass and carries its own set of Mandatory, Recommended, and Optional fields.
+**Layer 2 — Data-class-specific metadata** is structured around the four data classes: Synthesis, Characterization, Reaction, and Simulation. Each data class carries its own set of Mandatory, Recommended, and Optional fields.
 
 ```
-CatalysisDataset (dcat:Dataset)
- ├── rdf_type → CatalysisResearchFieldEnum   [Layer 1]
- ├── was_generated_by → Synthesis            [Layer 2]
- ├── was_generated_by → Characterization     [Layer 2]
- ├── was_generated_by → Simulation           [Layer 2]
- └── is_about_activity → Reaction            [Layer 2]
+CatalysisDataset
+ ├── catalysis research field          [Layer 1 — applies to all]
+ ├── reaction type                     [Layer 1 — applies to all]
+ ├── was_generated_by → Synthesis      [Layer 2 — data-class specific]
+ ├── was_generated_by → Characterization
+ ├── was_generated_by → Simulation
+ └── is_about_activity → Reaction
 ```
 
 ---
 
-## The four CoreMeta4Cat pillars
+## The four data classes
 
 ### Synthesis
 
-Reproducibility of catalyst synthesis is one of the most persistent challenges in catalysis research. The **Synthesis** pillar defines the minimum metadata for twelve preparation methods, from common routes such as Impregnation and Co-Precipitation to more specialised techniques like Atomic Layer Deposition, Flame Spray Pyrolysis, and Exsolution Synthesis.
+Reproducibility of catalyst synthesis is one of the most persistent challenges in catalysis research. The Synthesis data class defines the minimum metadata for twelve preparation methods — from common routes such as Impregnation and Co-Precipitation to more specialised techniques like Atomic Layer Deposition, Flame Spray Pyrolysis, and Exsolution Synthesis.
 
-Method-specific parameter sets are organised into concrete `PreparationMethod` subclasses. Cross-cutting slot groups (drying step, calcination step, precipitation step, thermal process) are factored out as **mixin classes**, so parameters shared by multiple methods are defined exactly once.
+Method-specific parameter sets are organized into concrete preparation method types. Cross-cutting steps shared across methods (drying, calcination, precipitation) are defined once and reused, so the same parameter is never described differently depending on which method it appears in.
 
-| Class | Key mixins applied |
+| Preparation method | Key shared steps |
 |---|---|
-| `Impregnation` | `DryingMixin`, `CalcinationMixin` |
-| `CoPrecipitation` | `PrecipitationMixin`, `DryingMixin`, `CalcinationMixin` |
-| `DepositionPrecipitation` | `PrecipitationMixin`, `DryingMixin`, `CalcinationMixin` |
-| `Solvothermal`, `PlasmaAssisted`, `CombustionSynthesis`, `MicrowaveAssisted`, `MechanochemicalSynthesis`, `Sublimation` | `ThermalSynthesisMixin` |
-| `SonochemicalSynthesis`, `MolecularSynthesis` | `DryingMixin` / `CalcinationMixin` |
-| `AtomicLayerDeposition`, `SolGel`, `FlameSprayPyrolysis`, `ExsolutionSynthesis` | method-specific slots only |
+| Impregnation | Drying, Calcination |
+| Co-Precipitation | Precipitation, Drying, Calcination |
+| Deposition-Precipitation | Precipitation, Drying, Calcination |
+| Solvothermal, Plasma-Assisted, Combustion, Microwave-Assisted, Mechanochemical, Sublimation | Thermal process |
+| Sol-Gel, Flame Spray Pyrolysis, Atomic Layer Deposition, Exsolution | Method-specific only |
 
 ### Characterization
 
-The **Characterization** pillar covers twenty-eight analytical techniques currently used in catalysis. Each technique is modelled as a concrete `CharacterizationTechnique` subclass (a DCAT-AP-PLUS `Plan`), with slots for instrument parameters, sample state, and measurement conditions. Cross-cutting parameter groups are again factored out as mixins:
+The Characterization data class covers twenty-eight analytical techniques currently used in catalysis. Each technique is modelled with slots for instrument parameters, sample state, and measurement conditions. Cross-cutting parameter groups are shared across related techniques:
 
-- `XRaySourceMixin` — shared by PowderXRD, SingleCrystalXRD, XPS, EDX
-- `ElectronMicroscopyMixin` — shared by TEM, SEM
-- `TemperatureProgramMixin` — shared by TPR, TPO, Thermogravimetry
-- `ChromatographyMixin`, `MassRangeMixin` — shared by GC, GC-MS, HPLC, HPLC-MS
+- X-ray source parameters — shared by Powder XRD, Single Crystal XRD, XPS, EDX
+- Electron microscopy parameters — shared by TEM, SEM
+- Temperature program parameters — shared by TPR, TPO, Thermogravimetry
+- Chromatography and mass range parameters — shared by GC, GC-MS, HPLC, HPLC-MS
 
 ### Reaction
 
-The **Reaction** pillar represents the catalytic process being studied. It is modelled as a DCAT-AP-PLUS `EvaluatedActivity` — the process the dataset is *about*, not the process that *generates* the data. This distinction matters: for operando experiments (e.g. in-situ XRD during a reaction), the dataset carries both `was_generated_by: Characterization` and `is_about_activity: Reaction`.
+The Reaction data class represents the catalytic process being studied. An important design detail: for operando experiments — for example, in-situ XRD carried out while a reaction is running — the dataset carries both a Characterization record (the process that generated the data) and a Reaction record (the process the data is about). CoreMeta4Cat models both links explicitly.
 
-The reactor is linked via `carried_out_by` as one of eight `ReactorDesignType` subclasses:
+Eight reactor design types are currently defined:
 
-<div class="grid" markdown>
-
-- `ElectrochemicalReactor`
-- `CSTR`
-- `PlugFlowReactor`
-- `Autoclave`
-- `SlurryReactor`
-- `Microreactor`
-- `FixedBedReactor`
-- `FluidizedBedReactor`
-
-</div>
+- Electrochemical Reactor
+- CSTR (Continuous Stirred Tank Reactor)
+- Plug Flow Reactor
+- Autoclave
+- Slurry Reactor
+- Microreactor
+- Fixed Bed Reactor
+- Fluidized Bed Reactor
 
 ### Simulation
 
-The **Simulation** pillar covers four major computational method classes, each a `SimulationMethod` subclass (DCAT-AP-PLUS `Plan`): **DFT**, **MolecularDynamics**, **Microkinetics**, and **MonteCarlo**. The simulation software is linked via `carried_out_by` as a `Software` agent. Twelve `CalculatedProperty` classes (e.g. `ElectronicStructure`, `BandGap`, `PhononDispersion`, `ThermodynamicStability`) capture the computed output type.
+The Simulation data class covers four major computational method classes: DFT, Molecular Dynamics, Microkinetics, and Monte Carlo. The simulation software used is recorded alongside the method. Twelve calculated property types — such as electronic structure, band gap, phonon dispersion, and thermodynamic stability — capture the computed output.
 
 ---
 
-## Documentation
+## What does a CoreMeta4Cat record look like?
+
+Here is a minimal example showing how a reaction dataset is described. Every class and property links to a controlled vocabulary term and can be validated and converted to RDF using standard tooling:
+
+```yaml
+id: ex:dataset-001
+title: "CO oxidation activity of 1wt% Pt/Al2O3 at 200–400°C"
+catalysis_research_field: heterogeneous catalysis
+
+was_generated_by:
+  - type: Reaction
+    catalyst_quantity: 100.0    # mg
+    reactant:
+      - "1 vol% CO in N2"
+      - "2 vol% O2 in N2"
+    reactor_temperature_range: "200–400 °C"
+    experiment_pressure: 1.0    # bar
+    carried_out_by:
+      type: FixedBedReactor
+
+is_about_entity:
+  - type: CatalystSample
+    nominal_composition: "1wt% Pt/Al2O3"
+```
+
+---
+
+## Further reading
 
 | Page | What it covers |
 |---|---|
-| [Design Patterns](design-patterns.md) | How the four pillars map to DCAT-AP-PLUS, the mixin pattern, ontology alignment |
-| [How to Extend](how-to-extend.md) | Rules for adding new preparation methods, techniques, reactor types, and properties |
-| [Schema Reference](elements/overview.md) | Auto-generated reference for all classes and slots |
-| [CoreMeta4Cat Users](coremeta4cat-users.md) | Projects and repositories that adopt CoreMeta4Cat |
+| [Design Patterns](https://nfdi4cat.github.io/CoreMeta4Cat/latest/design-patterns/) | How the four data classes map to DCAT-AP-PLUS, the mixin pattern, ontology alignment |
+| [How to Extend](https://nfdi4cat.github.io/CoreMeta4Cat/latest/how-to-extend/) | Rules for adding new preparation methods, techniques, reactor types, and properties |
+| [Schema Reference](https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/overview/) | Auto-generated reference for all classes and slots |
+| [Intended Users](https://nfdi4cat.github.io/CoreMeta4Cat/latest/coremeta4cat-users/) | Projects and repositories that adopt CoreMeta4Cat |
 
-## Source code
-
-The LinkML schema, build scripts, and documentation source are on GitHub: [HendrikBorgelt/CoreMeta4Cat](https://github.com/nfdi4cat/CoreMeta4Cat)
-
-The schema is built as a domain-specific application profile on top of DCAT-AP-PLUS. The base layer is maintained by [NFDI4Cat](https://nfdi4cat.org).
+The LinkML schema, build scripts, and documentation source are on GitHub: [nfdi4cat/CoreMeta4Cat](https://github.com/nfdi4cat/CoreMeta4Cat)
