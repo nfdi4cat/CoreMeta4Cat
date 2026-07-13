@@ -1051,6 +1051,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Mixin providing calcination step parameters. Used by preparation methods<br>that include a thermal calcination step<br>(Impregnation, CoPrecipitation, DepositionPrecipitation,<br>SonochemicalSynthesis, ExsolutionSynthesis).</td>
 </tr>
 <tr>
+<td><a href="../classes/Carbonylation/">Carbonylation</a></td>
+<td>A chemical reaction in which a carbonyl group (C=O) is introduced into a molecule, typically through the addition of carbon monoxide (CO) to a substrate.</td>
+</tr>
+<tr>
 <td><a href="../classes/Catalogue/">Catalogue</a></td>
 <td>See <a href="https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Catalogue">DCAT-AP specs:Catalogue</a></td>
 </tr>
@@ -1399,6 +1403,14 @@ slots and enums) and the four subprofile modules.</p>
 <td>Abstract Plan representing the method used to identify and quantify reaction<br>products. In practice, users should reference a concrete CharacterizationTechnique<br>subclass from coremeta4cat_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).<br><br>This abstract class is retained for backward compatibility with the original<br>CoreMeta4Cat monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that<br>it can participate in the realized_plan slot if needed.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/GasPhaseAnalysis/">GasPhaseAnalysis</a></td>
+<td>Analysis of the liquid sample from a catalytic test.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/LiquidPhaseAnalysis/">LiquidPhaseAnalysis</a></td>
+<td>Analysis of the liquid sample from a catalytic test.</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SimulationMethod/">SimulationMethod</a></td>
 <td>Abstract Plan describing the computational method (protocol) used in a<br>Simulation. Concrete subclasses carry method-specific parameter slots.<br>Linked from Simulation via realized_plan.</td>
 </tr>
@@ -1487,6 +1499,50 @@ slots and enums) and the four subprofile modules.</p>
 <td>Thermodynamic stability of a material or phase, characterised by formation<br>energy, convex hull distance, and competing phases. Used to screen catalyst<br>stability and predict synthesis feasibility.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalystType/">CatalystType</a></td>
+<td>Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).<br>For heterogeneous catalysts, use voc4cat terms where available.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/BioCatalyst/">BioCatalyst</a></td>
+<td>An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of Catalyst (AgenticEntity). The physical form in which it is applied is described by an associated BiocatalystPreparation.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/BulkCatalyst/">BulkCatalyst</a></td>
+<td>A catalyst that consists mainly of the active ingredient or phase.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DepositedSampleCatalyst/">DepositedSampleCatalyst</a></td>
+<td>A thin film of the catalyst deposited on an appropriate for the application substrate.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElectroCatalyst/">ElectroCatalyst</a></td>
+<td>The characteristics of a material or substance that determine how it interacts or responds to a magnetic field.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/HeterogeneousCatalyst/">HeterogeneousCatalyst</a></td>
+<td>A substance that increases the rate of a chemical reaction that is in a different phase than the reagents.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/HomogeneousCatalyst/">HomogeneousCatalyst</a></td>
+<td>A substance that increses the rate of a chemical reaction that is in the same phase as the reagents.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PhotoCatalyst/">PhotoCatalyst</a></td>
+<td>A material that absorbs photons (light) of appropriate energy and initiates or accelerates a photochemical reaction, while it regenerates itself after each reaction cycle.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PowerderedCatalyst/">PowerderedCatalyst</a></td>
+<td>A catalyst introduced to the reaction chamber in the form of a powder.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SupportedCatalsyt/">SupportedCatalsyt</a></td>
+<td>A catalyst where the active material is usually the minority phase and fixed on a high surface area, relatively inert solid.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ThinFilmCatalyst/">ThinFilmCatalyst</a></td>
+<td>A catalyst introduced to the reaction chamber in the form of a thin film. To form a thin film, a (powdered) catalyst is deposited on a substrate (e.g., glass or metal) using an appropriate deposition technique.</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/HeatingProcedure/">HeatingProcedure</a></td>
 <td>A qualitative descriptor of the thermal programme or heating procedure<br>applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").</td>
 </tr>
@@ -1509,6 +1565,54 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/OperationMode/">OperationMode</a></td>
 <td>A qualitative descriptor of the operation mode of an instrument or<br>process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ReactionType/">ReactionType</a></td>
+<td>A group of chemical reactions with common conditions or reactants, e.g. Oxidation, Hydrogenation, Reduction, Cracking.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CarbonCouplingReaction/">CarbonCouplingReaction</a></td>
+<td>A chemical reaction where a carbon-carbon bond is formed from two carbon-containing fragments.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Dehydrogenation/">Dehydrogenation</a></td>
+<td>A chemical reaction that involves the removal of two or more hydrogen atoms from a molecule.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/FischerTropschSynthesis/">FischerTropschSynthesis</a></td>
+<td>A catalytic chemical reaction in which a mixture of carbon monoxide (CO) and hydrogen (H2), is converted via a chain-growth mechanism into long-chain hydrocarbons (e.g., alkanes, alkenes or alcohols)—typically using iron or cobalt catalysts under moderate to high pressures and temperatures.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Hydrodeoxygenation/">Hydrodeoxygenation</a></td>
+<td>A catalytic process in which oxygen is removed from oxygenated organic compounds using hydrogen.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Hydrogenation/">Hydrogenation</a></td>
+<td>A chemical reaction of molecular hydrogen (H2) and another chemical species, typically facilitated by a catalyst.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CarbonDioxideHydrogenation/">CarbonDioxideHydrogenation</a></td>
+<td>The reaction of carbon dioxide (CO2) with molecular hydrogen (H2) to produce value-added hydrocarbons or alcohols.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Hydroxylation/">Hydroxylation</a></td>
+<td>The addition of a hydroxyl group (-OH) to a molecule, typically by replacing a hydrogen atom.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Oxidation/">Oxidation</a></td>
+<td>The loss of electrons or an increase in the oxidation state of a species.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CarbonMonoxideOxidation/">CarbonMonoxideOxidation</a></td>
+<td>The reaction in which carbon monoxide (CO) is converted to carbon dioxide (CO2) through interaction with an oxidizing agent, typically oxygen (O2).</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SelectiveOxidation/">SelectiveOxidation</a></td>
+<td>The targeted oxidation of a specific bond or functional group in a molecule leaving other sites unaffected, often directed by a catalyst.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/OxygenEvolutionReaction/">OxygenEvolutionReaction</a></td>
+<td>A chemical reaction of generating molecular oxygen in electrochemistry.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SamplePretreatment/">SamplePretreatment</a></td>
@@ -1537,6 +1641,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Concentration/">Concentration</a></td>
 <td>A QuantitativeAttribute of a ChemicalSubstance that represents the amount of a constituent divided by the volume of the mixture.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Conversion/">Conversion</a></td>
+<td>A dimensionless physical quantity describing the fraction of a reactant that reacts in a chemical conversion. If a reactant is consumed completely its conversion is 1 (or 100 %).</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Density/">Density</a></td>
@@ -1597,6 +1705,18 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Pressure/">Pressure</a></td>
 <td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ReactorPerformanceMeasures/">ReactorPerformanceMeasures</a></td>
+<td>A measure to quantify how fast and selective a chemical converison occurs in a reactor. A chemical conversion may include multiples reactions.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Selectivity/">Selectivity</a></td>
+<td>A dimensionless physical quantity describing how effective a reactant is converted to the desired product in a chemical conversion. It is calculated as the ratio between the amount of the desired product and the amount of the desired product that could have been formed if all reactants were converted to the desired product. The selectivity is 1 (or 100 %) if no other than the desired product is formed.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SpaceTimeYield/">SpaceTimeYield</a></td>
+<td>A physical quantity that describes the amount of product produced per unit of time and unit of producing entity. The producing entity is for example the volume of a chemical reactor or in catalysis the mass or volume or moles of catalyst. Example unit: kg{product} / (hour * cubicmeter{catalyst})</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Temperature/">Temperature</a></td>
@@ -1916,10 +2036,6 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/catalyst_support/">catalyst_support</a></td>
 <td>Support material on which the active phase is deposited (e.g. Al2O3, SiO2).</td>
-</tr>
-<tr>
-<td><a href="../slots/catalyst_type/">catalyst_type</a></td>
-<td>Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).<br>For heterogeneous catalysts, use voc4cat terms where available.</td>
 </tr>
 <tr>
 <td><a href="../slots/centroid/">centroid</a></td>
@@ -2346,6 +2462,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
 <tr>
+<td><a href="../slots/has_active_area/">has_active_area</a></td>
+<td>In contrast to substrate area, the actual area of a sample or electrode which is active.</td>
+</tr>
+<tr>
 <td><a href="../slots/has_aging_duration/">has_aging_duration</a></td>
 <td>Duration of the aging step.</td>
 </tr>
@@ -2360,6 +2480,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/has_angular_velocity/">has_angular_velocity</a></td>
 <td>Rotational speed of stirring, mixing, or sample spinning.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_anode/">has_anode</a></td>
+<td>The electrode where oxidation occurs in an electrochemical cell. It is the positive electrode in an electrolytic cell, while it is the negative electrode in a galvanic cell.</td>
 </tr>
 <tr>
 <td><a href="../slots/has_atmosphere/">has_atmosphere</a></td>
@@ -2386,8 +2510,40 @@ slots and enums) and the four subprofile modules.</p>
 <td>Temperature range of the calcination programme (initial -&gt; final temperature),<br>provided as a QuantitativeRange. Unit: Degree Celsius.</td>
 </tr>
 <tr>
+<td><a href="../slots/has_catalyst_bed_height/">has_catalyst_bed_height</a></td>
+<td>The axial length of the packed catalyst section in a reactor, measured along the direction of flow between the defined bed boundaries.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_catalyst_bed_volume/">has_catalyst_bed_volume</a></td>
+<td>The bulk volume taken up by the catalyst and potential diluent in a fixed bed reactor.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_catalyst_dilution_material/">has_catalyst_dilution_material</a></td>
+<td>An inert solid mixed with catalyst particles in a fixed bed to modify bed properties (e.g., improve heat transfer, hydrodynamics or isothermicity) without participating in the reaction.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_catalyst_particle_size/">has_catalyst_particle_size</a></td>
+<td>A measure of the characteristic linear dimension of a particle in a sample, typically reported as diameter, equivalent diameter, or another size metric determined by an appropriate measurement method.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_catalyst_type/">has_catalyst_type</a></td>
+<td>Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).<br>For heterogeneous catalysts, use voc4cat terms where available.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_cathode/">has_cathode</a></td>
+<td>The electrode where reduction occurs in an electrochemical cell. It is the negative electrode in an electrolytic cell, while it is the positive electrode in a galvanic cell.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_cell_operating_mode/">has_cell_operating_mode</a></td>
+<td>The functional mode of an electrochemical cell based on the direction of energy conversion, specifiying wheter the system generates electrical energy from spontaneous reactions or consumes energy to drive non-spontaneous reactions.</td>
+</tr>
+<tr>
 <td><a href="../slots/has_concentration/">has_concentration</a></td>
 <td>The slot to provide the Concentration of a ChemicalSubstance.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_conversion/">has_conversion</a></td>
+<td>A dimensionless physical quantity describing the fraction of a reactant that reacts in a chemical conversion. If a reactant is consumed completely its conversion is 1 (or 100 %).</td>
 </tr>
 <tr>
 <td><a href="../slots/has_dataset/">has_dataset</a></td>
@@ -2428,6 +2584,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/has_experiment_duration/">has_experiment_duration</a></td>
 <td>Total duration of the experiment or measurement run.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_faradaic_current/">has_faradaic_current</a></td>
+<td>The current that is flowing through an electrochemical cell and is causing (or is caused by) chemical reactions (charge transfer) occurring at the electrode surfaces.</td>
 </tr>
 <tr>
 <td><a href="../slots/has_flow_rate/">has_flow_rate</a></td>
@@ -2538,12 +2698,32 @@ slots and enums) and the four subprofile modules.</p>
 <td>A slot to specify a step (part) of a ChemicalReaction that is itself a ChemicalReaction.</td>
 </tr>
 <tr>
+<td><a href="../slots/has_reaction_type/">has_reaction_type</a></td>
+<td>A group of chemical reactions with common conditions or reactants, e.g. Oxidation, Hydrogenation, Reduction, Cracking.</td>
+</tr>
+<tr>
 <td><a href="../slots/has_sample_mass/">has_sample_mass</a></td>
 <td>Mass of the sample used in a process or measurement.</td>
 </tr>
 <tr>
 <td><a href="../slots/has_sample_pretreatment/">has_sample_pretreatment</a></td>
 <td>Pre-treatment applied to the sample before a process or measurement.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_selectivity/">has_selectivity</a></td>
+<td>A dimensionless physical quantity describing how effective a reactant is converted to the desired product in a chemical conversion. It is calculated as the ratio between the amount of the desired product and the amount of the desired product that could have been formed if all reactants were converted to the desired product. The selectivity is 1 (or 100 %) if no other than the desired product is formed.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_space_time_yield/">has_space_time_yield</a></td>
+<td>A physical quantity that describes the amount of product produced per unit of time and unit of producing entity. The producing entity is for example the volume of a chemical reactor or in catalysis the mass or volume or moles of catalyst. Example unit: kg{product} / (hour * cubicmeter{catalyst})</td>
+</tr>
+<tr>
+<td><a href="../slots/has_stirrer_diameter/">has_stirrer_diameter</a></td>
+<td>The effective diameter of the stirrer. Typically expressed as the distance across the rotating blade or mixing head from one tip to the opposite tip.</td>
+</tr>
+<tr>
+<td><a href="../slots/has_stirrer_type/">has_stirrer_type</a></td>
+<td>The category of mechanical or magnetic agitation device used to ensure homogeneous mixing within a reaction system or mixing vessel, such as a magnetic stirrer or an overhead mechanical (steel shaft) stirrer.</td>
 </tr>
 <tr>
 <td><a href="../slots/has_stirring_duration/">has_stirring_duration</a></td>

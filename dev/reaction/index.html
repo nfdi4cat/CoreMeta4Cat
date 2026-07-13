@@ -823,15 +823,286 @@ component as a separate ChemicalEntity and record composition via has_concentrat
 </p>
 </details>
 <details open="open">
-<summary><strong>catalyst type</strong> (Recommended, Multivalued)</summary>
+<summary><strong>has catalyst type</strong> (Recommended, Multivalued)</summary>
 <p><strong>Description:</strong> Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).
 For heterogeneous catalysts, use voc4cat terms where available.</p>
-<p><strong>Data Type:</strong> string</p>
+<p><strong>Data Type:</strong> CatalystType</p>
 <p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007014"><code>VOC4CAT:0007014</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_type/">catalyst_type</a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_catalyst_type/">has_catalyst_type</a></p>
+<p><strong>Data Type Class Details:</strong></p>
+<details open="open">
+<summary><strong>CatalystType</strong></summary>
+<p><strong>Description:</strong> Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).
+For heterogeneous catalysts, use voc4cat terms where available.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007014"><code>VOC4CAT:0007014</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/CatalystType/">CatalystType</a></p>
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_type target="_blank" class="md-button md-button--primary">
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CatalystType target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<p><strong>Possible Subclasses / Enumerations of CatalystType:</strong></p>
+<details>
+<summary><strong>HeterogeneousCatalyst</strong></summary>
+<p><strong>Description:</strong> A substance that increases the rate of a chemical reaction that is in a different phase than the reagents.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007003"><code>VOC4CAT:0007003</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/HeterogeneousCatalyst/">HeterogeneousCatalyst</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20HeterogeneousCatalyst target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>HomogeneousCatalyst</strong></summary>
+<p><strong>Description:</strong> A substance that increses the rate of a chemical reaction that is in the same phase as the reagents.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/HomogeneousCatalyst"><code>coremeta4cat:HomogeneousCatalyst</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/HomogeneousCatalyst/">HomogeneousCatalyst</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20HomogeneousCatalyst target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>BioCatalyst</strong></summary>
+<p><strong>Description:</strong> An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of Catalyst (AgenticEntity). The physical form in which it is applied is described by an associated BiocatalystPreparation.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/BioCatalyst"><code>coremeta4cat:BioCatalyst</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/BioCatalyst/">BioCatalyst</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20BioCatalyst target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>ElectroCatalyst</strong></summary>
+<p><strong>Description:</strong> The characteristics of a material or substance that determine how it interacts or responds to a magnetic field.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000255"><code>VOC4CAT:0000255</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/ElectroCatalyst/">ElectroCatalyst</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectroCatalyst target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>ThinFilmCatalyst</strong></summary>
+<p><strong>Description:</strong> A catalyst introduced to the reaction chamber in the form of a thin film. To form a thin film, a (powdered) catalyst is deposited on a substrate (e.g., glass or metal) using an appropriate deposition technique.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000019"><code>VOC4CAT:0000019</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/ThinFilmCatalyst/">ThinFilmCatalyst</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ThinFilmCatalyst target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>BulkCatalyst</strong></summary>
+<p><strong>Description:</strong> A catalyst that consists mainly of the active ingredient or phase.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007015"><code>VOC4CAT:0007015</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/BulkCatalyst/">BulkCatalyst</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20BulkCatalyst target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>PowerderedCatalyst</strong></summary>
+<p><strong>Description:</strong> A catalyst introduced to the reaction chamber in the form of a powder.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000017"><code>VOC4CAT:0000017</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/PowerderedCatalyst/">PowerderedCatalyst</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PowerderedCatalyst target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>DepositedSampleCatalyst</strong></summary>
+<p><strong>Description:</strong> A thin film of the catalyst deposited on an appropriate for the application substrate.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000038"><code>VOC4CAT:0000038</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/DepositedSampleCatalyst/">DepositedSampleCatalyst</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20DepositedSampleCatalyst target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>PhotoCatalyst</strong></summary>
+<p><strong>Description:</strong> A material that absorbs photons (light) of appropriate energy and initiates or accelerates a photochemical reaction, while it regenerates itself after each reaction cycle.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000002"><code>VOC4CAT:0000002</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/PhotoCatalyst/">PhotoCatalyst</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20PhotoCatalyst target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>SupportedCatalsyt</strong></summary>
+<p><strong>Description:</strong> A catalyst where the active material is usually the minority phase and fixed on a high surface area, relatively inert solid.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007034"><code>VOC4CAT:0007034</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/SupportedCatalsyt/">SupportedCatalsyt</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SupportedCatalsyt target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_catalyst_type target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details open="open">
+<summary><strong>has reaction type</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> A group of chemical reactions with common conditions or reactants, e.g. Oxidation, Hydrogenation, Reduction, Cracking.</p>
+<p><strong>Data Type:</strong> ReactionType</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007010"><code>VOC4CAT:0007010</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_reaction_type/">has_reaction_type</a></p>
+<p><strong>Data Type Class Details:</strong></p>
+<details open="open">
+<summary><strong>ReactionType</strong></summary>
+<p><strong>Description:</strong> A group of chemical reactions with common conditions or reactants, e.g. Oxidation, Hydrogenation, Reduction, Cracking.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007010"><code>VOC4CAT:0007010</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/ReactionType/">ReactionType</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ReactionType target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<p><strong>Possible Subclasses / Enumerations of ReactionType:</strong></p>
+<details>
+<summary><strong>Hydrogenation</strong></summary>
+<p><strong>Description:</strong> A chemical reaction of molecular hydrogen (H2) and another chemical species, typically facilitated by a catalyst.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000260"><code>VOC4CAT:0000260</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/Hydrogenation/">Hydrogenation</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Hydrogenation target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>CarbonDioxideHydrogenation</strong></summary>
+<p><strong>Description:</strong> The reaction of carbon dioxide (CO2) with molecular hydrogen (H2) to produce value-added hydrocarbons or alcohols.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000259"><code>VOC4CAT:0000259</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/CarbonDioxideHydrogenation/">CarbonDioxideHydrogenation</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CarbonDioxideHydrogenation target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>Oxidation</strong></summary>
+<p><strong>Description:</strong> The loss of electrons or an increase in the oxidation state of a species.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000097"><code>VOC4CAT:0000097</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/Oxidation/">Oxidation</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Oxidation target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>SelectiveOxidation</strong></summary>
+<p><strong>Description:</strong> The targeted oxidation of a specific bond or functional group in a molecule leaving other sites unaffected, often directed by a catalyst.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000261"><code>VOC4CAT:0000261</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/SelectiveOxidation/">SelectiveOxidation</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SelectiveOxidation target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>CarbonMonoxideOxidation</strong></summary>
+<p><strong>Description:</strong> The reaction in which carbon monoxide (CO) is converted to carbon dioxide (CO2) through interaction with an oxidizing agent, typically oxygen (O2).</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000289"><code>VOC4CAT:0000289</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/CarbonMonoxideOxidation/">CarbonMonoxideOxidation</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CarbonMonoxideOxidation target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>Dehydrogenation</strong></summary>
+<p><strong>Description:</strong> A chemical reaction that involves the removal of two or more hydrogen atoms from a molecule.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000297"><code>VOC4CAT:0000297</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/Dehydrogenation/">Dehydrogenation</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Dehydrogenation target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>CarbonCouplingReaction</strong></summary>
+<p><strong>Description:</strong> A chemical reaction where a carbon-carbon bond is formed from two carbon-containing fragments.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000223"><code>VOC4CAT:0000223</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/CarbonCouplingReaction/">CarbonCouplingReaction</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CarbonCouplingReaction target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>Hydrodeoxygenation</strong></summary>
+<p><strong>Description:</strong> A catalytic process in which oxygen is removed from oxygenated organic compounds using hydrogen.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000226"><code>VOC4CAT:0000226</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/Hydrodeoxygenation/">Hydrodeoxygenation</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Hydrodeoxygenation target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>OxygenEvolutionReaction</strong></summary>
+<p><strong>Description:</strong> A chemical reaction of generating molecular oxygen in electrochemistry.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000236"><code>VOC4CAT:0000236</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/OxygenEvolutionReaction/">OxygenEvolutionReaction</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20OxygenEvolutionReaction target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>Hydroxylation</strong></summary>
+<p><strong>Description:</strong> The addition of a hydroxyl group (-OH) to a molecule, typically by replacing a hydrogen atom.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000258"><code>VOC4CAT:0000258</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/Hydroxylation/">Hydroxylation</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Hydroxylation target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>FischerTropschSynthesis</strong></summary>
+<p><strong>Description:</strong> A catalytic chemical reaction in which a mixture of carbon monoxide (CO) and hydrogen (H2), is converted via a chain-growth mechanism into long-chain hydrocarbons (e.g., alkanes, alkenes or alcohols)—typically using iron or cobalt catalysts under moderate to high pressures and temperatures.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000280"><code>VOC4CAT:0000280</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/FischerTropschSynthesis/">FischerTropschSynthesis</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FischerTropschSynthesis target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_reaction_type target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -1053,6 +1324,29 @@ it can participate in the realized_plan slot if needed.</p>
       </a>
     </p>
 </details>
+<p><strong>Possible Subclasses / Enumerations of ProductIdentificationMethod:</strong></p>
+<details>
+<summary><strong>LiquidPhaseAnalysis</strong></summary>
+<p><strong>Description:</strong> Analysis of the liquid sample from a catalytic test.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007813"><code>VOC4CAT:0007813</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/LiquidPhaseAnalysis/">LiquidPhaseAnalysis</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20LiquidPhaseAnalysis target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>GasPhaseAnalysis</strong></summary>
+<p><strong>Description:</strong> Analysis of the liquid sample from a catalytic test.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007814"><code>VOC4CAT:0007814</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/GasPhaseAnalysis/">GasPhaseAnalysis</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20GasPhaseAnalysis target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20product_identification_method target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -1094,6 +1388,72 @@ Linked from Reaction via carried_out_by (restricted to range: Reactor).</p>
 H-cells, flow cells, and membrane electrode assemblies.</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000193"><code>VOC4CAT:0000193</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/ElectrochemicalReactor/">ElectrochemicalReactor</a></p>
+<p><strong>Slots</strong></p>
+<details>
+<summary><strong>has cathode</strong> (Optional)</summary>
+<p><strong>Description:</strong> The electrode where reduction occurs in an electrochemical cell. It is the negative electrode in an electrolytic cell, while it is the positive electrode in a galvanic cell.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007254"><code>VOC4CAT:0007254</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_cathode/">has_cathode</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_cathode target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>has anode</strong> (Optional)</summary>
+<p><strong>Description:</strong> The electrode where oxidation occurs in an electrochemical cell. It is the positive electrode in an electrolytic cell, while it is the negative electrode in a galvanic cell.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007255"><code>VOC4CAT:0007255</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_anode/">has_anode</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_anode target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>has cell operating mode</strong> (Optional)</summary>
+<p><strong>Description:</strong> The functional mode of an electrochemical cell based on the direction of energy conversion, specifiying wheter the system generates electrical energy from spontaneous reactions or consumes energy to drive non-spontaneous reactions.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://semanticscience.org/resource/SIO_000008"><code>SIO:000008</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_cell_operating_mode/">has_cell_operating_mode</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_cell_operating_mode target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>has active area</strong> (Optional)</summary>
+<p><strong>Description:</strong> In contrast to substrate area, the actual area of a sample or electrode which is active.</p>
+<p><strong>Data Type:</strong> QuantitativeAttribute</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://semanticscience.org/resource/SIO_000008"><code>SIO:000008</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_active_area/">has_active_area</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_active_area target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>has faradaic current</strong> (Optional)</summary>
+<p><strong>Description:</strong> The current that is flowing through an electrochemical cell and is causing (or is caused by) chemical reactions (charge transfer) occurring at the electrode surfaces.</p>
+<p><strong>Data Type:</strong> QuantitativeAttribute</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://semanticscience.org/resource/SIO_000008"><code>SIO:000008</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_faradaic_current/">has_faradaic_current</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_faradaic_current target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectrochemicalReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -1106,6 +1466,70 @@ H-cells, flow cells, and membrane electrode assemblies.</p>
 reactor operating at steady state.</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007019"><code>VOC4CAT:0007019</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/CSTR/">CSTR</a></p>
+<p><strong>Slots</strong></p>
+<details>
+<summary><strong>has stirring speed</strong> (Optional)</summary>
+<p><strong>Description:</strong> Rotational speed of stirring or agitation.</p>
+<p><strong>Data Type:</strong> AngularVelocity</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://semanticscience.org/resource/SIO_000008"><code>SIO:000008</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_stirring_speed/">has_stirring_speed</a></p>
+<p><strong>Data Type Class Details:</strong></p>
+<details>
+<summary><strong>AngularVelocity</strong></summary>
+<p><strong>Description:</strong> Rate of rotational motion, typically expressed in revolutions per minute.</p>
+<p><strong>CURIE:</strong> <a href="http://qudt.org/schema/qudt/Quantity"><code>qudt:Quantity</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/AngularVelocity/">AngularVelocity</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20AngularVelocity target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_stirring_speed target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>has volume</strong> (Optional)</summary>
+<p><strong>Description:</strong> No description available</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_volume/">has_volume</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_volume target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>has stirrer type</strong> (Optional)</summary>
+<p><strong>Description:</strong> The category of mechanical or magnetic agitation device used to ensure homogeneous mixing within a reaction system or mixing vessel, such as a magnetic stirrer or an overhead mechanical (steel shaft) stirrer.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008113"><code>VOC4CAT:0008113</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_stirrer_type/">has_stirrer_type</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_stirrer_type target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>has stirrer diameter</strong> (Optional)</summary>
+<p><strong>Description:</strong> The effective diameter of the stirrer. Typically expressed as the distance across the rotating blade or mixing head from one tip to the opposite tip.</p>
+<p><strong>Data Type:</strong> QuantitativeAttribute</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008115"><code>VOC4CAT:0008115</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_stirrer_diameter/">has_stirrer_diameter</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_stirrer_diameter target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CSTR target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -1167,6 +1591,59 @@ screening.</p>
 The most common reactor type in heterogeneous catalysis testing.</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/FixedBedReactor"><code>coremeta4cat:FixedBedReactor</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/FixedBedReactor/">FixedBedReactor</a></p>
+<p><strong>Slots</strong></p>
+<details>
+<summary><strong>has catalyst particle size</strong> (Optional)</summary>
+<p><strong>Description:</strong> A measure of the characteristic linear dimension of a particle in a sample, typically reported as diameter, equivalent diameter, or another size metric determined by an appropriate measurement method.</p>
+<p><strong>Data Type:</strong> QuantitativeAttribute</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008212"><code>VOC4CAT:0008212</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_catalyst_particle_size/">has_catalyst_particle_size</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_catalyst_particle_size target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>has catalyst bed volume</strong> (Optional)</summary>
+<p><strong>Description:</strong> The bulk volume taken up by the catalyst and potential diluent in a fixed bed reactor.</p>
+<p><strong>Data Type:</strong> QuantitativeAttribute</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007021"><code>VOC4CAT:0007021</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_catalyst_bed_volume/">has_catalyst_bed_volume</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_catalyst_bed_volume target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>has catalyst dilution material</strong> (Optional)</summary>
+<p><strong>Description:</strong> An inert solid mixed with catalyst particles in a fixed bed to modify bed properties (e.g., improve heat transfer, hydrodynamics or isothermicity) without participating in the reaction.</p>
+<p><strong>Data Type:</strong> QualitativeAttribute</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008218"><code>VOC4CAT:0008218</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_catalyst_dilution_material/">has_catalyst_dilution_material</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_catalyst_dilution_material target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>has catalyst bed height</strong> (Optional)</summary>
+<p><strong>Description:</strong> The axial length of the packed catalyst section in a reactor, measured along the direction of flow between the defined bed boundaries.</p>
+<p><strong>Data Type:</strong> QuantitativeAttribute</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008217"><code>VOC4CAT:0008217</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/has_catalyst_bed_height/">has_catalyst_bed_height</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_catalyst_bed_height target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20FixedBedReactor target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -1254,6 +1731,29 @@ it can participate in the realized_plan slot if needed.</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/ProductIdentificationMethod/">ProductIdentificationMethod</a></p>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ProductIdentificationMethod target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<p><strong>Possible Subclasses / Enumerations of ProductIdentificationMethod:</strong></p>
+<details>
+<summary><strong>LiquidPhaseAnalysis</strong></summary>
+<p><strong>Description:</strong> Analysis of the liquid sample from a catalytic test.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007813"><code>VOC4CAT:0007813</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/LiquidPhaseAnalysis/">LiquidPhaseAnalysis</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20LiquidPhaseAnalysis target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details>
+<summary><strong>GasPhaseAnalysis</strong></summary>
+<p><strong>Description:</strong> Analysis of the liquid sample from a catalytic test.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007814"><code>VOC4CAT:0007814</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/GasPhaseAnalysis/">GasPhaseAnalysis</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20GasPhaseAnalysis target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>

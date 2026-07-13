@@ -816,6 +816,67 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
+  has_conversion:
+    name: has_conversion
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_conversion
+    description: A dimensionless physical quantity describing the fraction of a reactant
+      that reacts in a chemical conversion. If a reactant is consumed completely its
+      conversion is 1 (or 100 %).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    owner: ReactorPerformanceMeasures
+    domain_of:
+    - ReactorPerformanceMeasures
+    range: Conversion
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_space_time_yield:
+    name: has_space_time_yield
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_space_time_yield
+    description: 'A physical quantity that describes the amount of product produced
+      per unit of time and unit of producing entity. The producing entity is for example
+      the volume of a chemical reactor or in catalysis the mass or volume or moles
+      of catalyst. Example unit: kg{product} / (hour * cubicmeter{catalyst})'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    owner: ReactorPerformanceMeasures
+    domain_of:
+    - ReactorPerformanceMeasures
+    range: SpaceTimeYield
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_selectivity:
+    name: has_selectivity
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_selectivity
+    description: A dimensionless physical quantity describing how effective a reactant
+      is converted to the desired product in a chemical conversion. It is calculated
+      as the ratio between the amount of the desired product and the amount of the
+      desired product that could have been formed if all reactants were converted
+      to the desired product. The selectivity is 1 (or 100 %) if no other than the
+      desired product is formed.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    owner: ReactorPerformanceMeasures
+    domain_of:
+    - ReactorPerformanceMeasures
+    range: Selectivity
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   has_drying_temperature:
     name: has_drying_temperature
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_drying_temperature
@@ -923,9 +984,10 @@ slots:
     - SIO:000008
     is_a: has_angular_velocity
     slot_uri: SIO:000008
-    owner: MolecularSynthesis
+    owner: CSTR
     domain_of:
     - MolecularSynthesis
+    - CSTR
     range: AngularVelocity
     recommended: true
     multivalued: true
@@ -1011,6 +1073,209 @@ slots:
     - RamanSpectroscopy
     - PhotoluminescenceSpectroscopy
     range: Duration
+    inlined: true
+    inlined_as_list: true
+  has_cathode:
+    name: has_cathode
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_cathode
+    description: The electrode where reduction occurs in an electrochemical cell.
+      It is the negative electrode in an electrolytic cell, while it is the positive
+      electrode in a galvanic cell.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - VOC4CAT:0007254
+    is_a: carried_out_by
+    slot_uri: VOC4CAT:0007254
+    owner: ElectrochemicalReactor
+    domain_of:
+    - ElectrochemicalReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_anode:
+    name: has_anode
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_anode
+    description: The electrode where oxidation occurs in an electrochemical cell.
+      It is the positive electrode in an electrolytic cell, while it is the negative
+      electrode in a galvanic cell.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - VOC4CAT:0007255
+    is_a: carried_out_by
+    slot_uri: VOC4CAT:0007255
+    owner: ElectrochemicalReactor
+    domain_of:
+    - ElectrochemicalReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_cell_operating_mode:
+    name: has_cell_operating_mode
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_cell_operating_mode
+    description: The functional mode of an electrochemical cell based on the direction
+      of energy conversion, specifiying wheter the system generates electrical energy
+      from spontaneous reactions or consumes energy to drive non-spontaneous reactions.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_qualitative_attribute
+    slot_uri: SIO:000008
+    owner: ElectrochemicalReactor
+    domain_of:
+    - ElectrochemicalReactor
+    range: string
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+  has_active_area:
+    name: has_active_area
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_active_area
+    description: In contrast to substrate area, the actual area of a sample or electrode
+      which is active.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    owner: ElectrochemicalReactor
+    domain_of:
+    - ElectrochemicalReactor
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_faradaic_current:
+    name: has_faradaic_current
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_faradaic_current
+    description: The current that is flowing through an electrochemical cell and is
+      causing (or is caused by) chemical reactions (charge transfer) occurring at
+      the electrode surfaces.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - SIO:000008
+    is_a: has_quantitative_attribute
+    slot_uri: SIO:000008
+    owner: ElectrochemicalReactor
+    domain_of:
+    - ElectrochemicalReactor
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_stirrer_type:
+    name: has_stirrer_type
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_stirrer_type
+    description: The category of mechanical or magnetic agitation device used to ensure
+      homogeneous mixing within a reaction system or mixing vessel, such as a magnetic
+      stirrer or an overhead mechanical (steel shaft) stirrer.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - VOC4CAT:0008113
+    is_a: has_qualitative_attribute
+    slot_uri: VOC4CAT:0008113
+    owner: CSTR
+    domain_of:
+    - CSTR
+    range: string
+    recommended: true
+    multivalued: true
+    inlined: false
+    inlined_as_list: false
+  has_stirrer_diameter:
+    name: has_stirrer_diameter
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_stirrer_diameter
+    description: The effective diameter of the stirrer. Typically expressed as the
+      distance across the rotating blade or mixing head from one tip to the opposite
+      tip.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - VOC4CAT:0008115
+    is_a: has_quantitative_attribute
+    slot_uri: VOC4CAT:0008115
+    owner: CSTR
+    domain_of:
+    - CSTR
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_catalyst_particle_size:
+    name: has_catalyst_particle_size
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_catalyst_particle_size
+    description: A measure of the characteristic linear dimension of a particle in
+      a sample, typically reported as diameter, equivalent diameter, or another size
+      metric determined by an appropriate measurement method.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - VOC4CAT:0008212
+    is_a: has_quantitative_attribute
+    slot_uri: VOC4CAT:0008212
+    owner: FixedBedReactor
+    domain_of:
+    - FixedBedReactor
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_catalyst_bed_volume:
+    name: has_catalyst_bed_volume
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_catalyst_bed_volume
+    description: The bulk volume taken up by the catalyst and potential diluent in
+      a fixed bed reactor.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - VOC4CAT:0007021
+    is_a: has_quantitative_attribute
+    slot_uri: VOC4CAT:0007021
+    owner: FixedBedReactor
+    domain_of:
+    - FixedBedReactor
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_catalyst_dilution_material:
+    name: has_catalyst_dilution_material
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_catalyst_dilution_material
+    description: An inert solid mixed with catalyst particles in a fixed bed to modify
+      bed properties (e.g., improve heat transfer, hydrodynamics or isothermicity)
+      without participating in the reaction.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - VOC4CAT:0008218
+    is_a: has_qualitative_attribute
+    slot_uri: VOC4CAT:0008218
+    owner: FixedBedReactor
+    domain_of:
+    - FixedBedReactor
+    range: QualitativeAttribute
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: false
+  has_catalyst_bed_height:
+    name: has_catalyst_bed_height
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_catalyst_bed_height
+    description: The axial length of the packed catalyst section in a reactor, measured
+      along the direction of flow between the defined bed boundaries.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - VOC4CAT:0008217
+    is_a: has_quantitative_attribute
+    slot_uri: VOC4CAT:0008217
+    owner: FixedBedReactor
+    domain_of:
+    - FixedBedReactor
+    range: QuantitativeAttribute
+    recommended: true
+    multivalued: true
     inlined: true
     inlined_as_list: true
   has_atmosphere:
@@ -3640,9 +3905,9 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
-  catalyst_type:
-    name: catalyst_type
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/catalyst_type
+  has_catalyst_type:
+    name: has_catalyst_type
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_catalyst_type
     description: 'Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).
 
       For heterogeneous catalysts, use voc4cat terms where available.'
@@ -3653,9 +3918,28 @@ slots:
     owner: CatalyticReaction
     domain_of:
     - CatalyticReaction
-    range: string
+    range: CatalystType
     recommended: true
     multivalued: true
+    inlined: true
+    inlined_as_list: true
+  has_reaction_type:
+    name: has_reaction_type
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_reaction_type
+    description: A group of chemical reactions with common conditions or reactants,
+      e.g. Oxidation, Hydrogenation, Reduction, Cracking.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0007010
+    slot_uri: VOC4CAT:0007010
+    owner: CatalyticReaction
+    domain_of:
+    - CatalyticReaction
+    range: ReactionType
+    recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   reactor_temperature_range:
     name: reactor_temperature_range
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/reactor_temperature_range
@@ -6779,6 +7063,7 @@ slots:
     slot_uri: SIO:000008
     owner: ChemicalReaction
     domain_of:
+    - ReactorPerformanceMeasures
     - ChemicalReaction
     range: Yield
     recommended: true
@@ -6938,6 +7223,7 @@ slots:
     slot_uri: SIO:000008
     owner: MaterialisticMixin
     domain_of:
+    - CSTR
     - MaterialisticMixin
     range: Volume
     recommended: true
@@ -13589,7 +13875,8 @@ classes:
     - EvaluatedActivity_other_identifier
     - catalyst_quantity
     - reactant
-    - catalyst_type
+    - has_catalyst_type
+    - has_reaction_type
     - reactor_temperature_range
     - has_atmosphere
     - experiment_pressure
@@ -13712,6 +13999,11 @@ classes:
     - rdf_type
     - Device_has_part
     - Device_other_identifier
+    - has_cathode
+    - has_anode
+    - has_cell_operating_mode
+    - has_active_area
+    - has_faradaic_current
     class_uri: VOC4CAT:0000193
   CSTR:
     name: CSTR
@@ -13733,6 +14025,10 @@ classes:
     - rdf_type
     - Device_has_part
     - Device_other_identifier
+    - has_stirring_speed
+    - has_volume
+    - has_stirrer_type
+    - has_stirrer_diameter
     class_uri: VOC4CAT:0007019
   PlugFlowReactor:
     name: PlugFlowReactor
@@ -13839,6 +14135,10 @@ classes:
     - rdf_type
     - Device_has_part
     - Device_other_identifier
+    - has_catalyst_particle_size
+    - has_catalyst_bed_volume
+    - has_catalyst_dilution_material
+    - has_catalyst_bed_height
     class_uri: coremeta4cat:FixedBedReactor
   FluidizedBedReactor:
     name: FluidizedBedReactor
@@ -13864,6 +14164,499 @@ classes:
     - bed_expansion_height
     - bubble_size_distribution
     class_uri: coremeta4cat:FluidizedBedReactor
+  CatalystType:
+    name: CatalystType
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CatalystType
+    description: 'Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).
+
+      For heterogeneous catalysts, use voc4cat terms where available.'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0007014
+    is_a: QualitativeAttribute
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0007014
+  HeterogeneousCatalyst:
+    name: HeterogeneousCatalyst
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/HeterogeneousCatalyst
+    description: A substance that increases the rate of a chemical reaction that is
+      in a different phase than the reagents.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0007003
+    is_a: CatalystType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0007003
+  HomogeneousCatalyst:
+    name: HomogeneousCatalyst
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/HomogeneousCatalyst
+    description: A substance that increses the rate of a chemical reaction that is
+      in the same phase as the reagents.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - coremeta4cat:HomogeneousCatalyst
+    is_a: CatalystType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: coremeta4cat:HomogeneousCatalyst
+  BioCatalyst:
+    name: BioCatalyst
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/BioCatalyst
+    description: An enzyme or cell that catalyzes a biocatalytic reaction. Subclass
+      of Catalyst (AgenticEntity). The physical form in which it is applied is described
+      by an associated BiocatalystPreparation.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - coremeta4cat:BioCatalyst
+    is_a: CatalystType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: coremeta4cat:BioCatalyst
+  ElectroCatalyst:
+    name: ElectroCatalyst
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ElectroCatalyst
+    description: The characteristics of a material or substance that determine how
+      it interacts or responds to a magnetic field.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000255
+    is_a: CatalystType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000255
+  ThinFilmCatalyst:
+    name: ThinFilmCatalyst
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ThinFilmCatalyst
+    description: A catalyst introduced to the reaction chamber in the form of a thin
+      film. To form a thin film, a (powdered) catalyst is deposited on a substrate
+      (e.g., glass or metal) using an appropriate deposition technique.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000019
+    is_a: CatalystType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000019
+  BulkCatalyst:
+    name: BulkCatalyst
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/BulkCatalyst
+    description: A catalyst that consists mainly of the active ingredient or phase.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0007015
+    is_a: CatalystType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0007015
+  PowerderedCatalyst:
+    name: PowerderedCatalyst
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/PowerderedCatalyst
+    description: A catalyst introduced to the reaction chamber in the form of a powder.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000017
+    is_a: CatalystType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000017
+  DepositedSampleCatalyst:
+    name: DepositedSampleCatalyst
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/DepositedSampleCatalyst
+    description: A thin film of the catalyst deposited on an appropriate for the application
+      substrate.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000038
+    is_a: CatalystType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000038
+  PhotoCatalyst:
+    name: PhotoCatalyst
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/PhotoCatalyst
+    description: A material that absorbs photons (light) of appropriate energy and
+      initiates or accelerates a photochemical reaction, while it regenerates itself
+      after each reaction cycle.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000002
+    is_a: CatalystType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000002
+  SupportedCatalsyt:
+    name: SupportedCatalsyt
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/SupportedCatalsyt
+    description: A catalyst where the active material is usually the minority phase
+      and fixed on a high surface area, relatively inert solid.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0007034
+    is_a: CatalystType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0007034
+  ReactorPerformanceMeasures:
+    name: ReactorPerformanceMeasures
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ReactorPerformanceMeasures
+    description: A measure to quantify how fast and selective a chemical converison
+      occurs in a reactor. A chemical conversion may include multiples reactions.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:005001
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    - has_yield
+    - has_conversion
+    - has_space_time_yield
+    - has_selectivity
+    class_uri: VOC4CAT:005001
+  Conversion:
+    name: Conversion
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Conversion
+    description: A dimensionless physical quantity describing the fraction of a reactant
+      that reacts in a chemical conversion. If a reactant is consumed completely its
+      conversion is 1 (or 100 %).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0005004
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0005004
+  SpaceTimeYield:
+    name: SpaceTimeYield
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/SpaceTimeYield
+    description: 'A physical quantity that describes the amount of product produced
+      per unit of time and unit of producing entity. The producing entity is for example
+      the volume of a chemical reactor or in catalysis the mass or volume or moles
+      of catalyst. Example unit: kg{product} / (hour * cubicmeter{catalyst})'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0005006
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0005006
+  Selectivity:
+    name: Selectivity
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Selectivity
+    description: A dimensionless physical quantity describing how effective a reactant
+      is converted to the desired product in a chemical conversion. It is calculated
+      as the ratio between the amount of the desired product and the amount of the
+      desired product that could have been formed if all reactants were converted
+      to the desired product. The selectivity is 1 (or 100 %) if no other than the
+      desired product is formed.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000125
+    is_a: QuantitativeAttribute
+    slots:
+    - title
+    - description
+    - QuantitativeAttribute_value
+    - quantitativeAttribute__has_quantity_type
+    - quantitativeAttribute__unit
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000125
+  ReactionType:
+    name: ReactionType
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ReactionType
+    description: A group of chemical reactions with common conditions or reactants,
+      e.g. Oxidation, Hydrogenation, Reduction, Cracking.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0007010
+    is_a: QualitativeAttribute
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0007010
+  Hydrogenation:
+    name: Hydrogenation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Hydrogenation
+    description: A chemical reaction of molecular hydrogen (H2) and another chemical
+      species, typically facilitated by a catalyst.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000260
+    is_a: ReactionType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000260
+  Oxidation:
+    name: Oxidation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Oxidation
+    description: The loss of electrons or an increase in the oxidation state of a
+      species.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000097
+    is_a: ReactionType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000097
+  Dehydrogenation:
+    name: Dehydrogenation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Dehydrogenation
+    description: A chemical reaction that involves the removal of two or more hydrogen
+      atoms from a molecule.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000297
+    is_a: ReactionType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000297
+  CarbonCouplingReaction:
+    name: CarbonCouplingReaction
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CarbonCouplingReaction
+    description: A chemical reaction where a carbon-carbon bond is formed from two
+      carbon-containing fragments.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000223
+    is_a: ReactionType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000223
+  Hydrodeoxygenation:
+    name: Hydrodeoxygenation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Hydrodeoxygenation
+    description: A catalytic process in which oxygen is removed from oxygenated organic
+      compounds using hydrogen.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000226
+    is_a: ReactionType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000226
+  OxygenEvolutionReaction:
+    name: OxygenEvolutionReaction
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/OxygenEvolutionReaction
+    description: A chemical reaction of generating molecular oxygen in electrochemistry.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000236
+    is_a: ReactionType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000236
+  Carbonylation:
+    name: Carbonylation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Carbonylation
+    description: A chemical reaction in which a carbonyl group (C=O) is introduced
+      into a molecule, typically through the addition of carbon monoxide (CO) to a
+      substrate.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000247
+    class_uri: VOC4CAT:0000247
+  Hydroxylation:
+    name: Hydroxylation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Hydroxylation
+    description: The addition of a hydroxyl group (-OH) to a molecule, typically by
+      replacing a hydrogen atom.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000258
+    is_a: ReactionType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000258
+  FischerTropschSynthesis:
+    name: FischerTropschSynthesis
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/FischerTropschSynthesis
+    description: "A catalytic chemical reaction in which a mixture of carbon monoxide\
+      \ (CO) and hydrogen (H2), is converted via a chain-growth mechanism into long-chain\
+      \ hydrocarbons (e.g., alkanes, alkenes or alcohols)\u2014typically using iron\
+      \ or cobalt catalysts under moderate to high pressures and temperatures."
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000280
+    is_a: ReactionType
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000280
+  CarbonDioxideHydrogenation:
+    name: CarbonDioxideHydrogenation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CarbonDioxideHydrogenation
+    description: The reaction of carbon dioxide (CO2) with molecular hydrogen (H2)
+      to produce value-added hydrocarbons or alcohols.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000259
+    is_a: Hydrogenation
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000259
+  SelectiveOxidation:
+    name: SelectiveOxidation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/SelectiveOxidation
+    description: The targeted oxidation of a specific bond or functional group in
+      a molecule leaving other sites unaffected, often directed by a catalyst.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000261
+    is_a: Oxidation
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000261
+  CarbonMonoxideOxidation:
+    name: CarbonMonoxideOxidation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CarbonMonoxideOxidation
+    description: The reaction in which carbon monoxide (CO) is converted to carbon
+      dioxide (CO2) through interaction with an oxidizing agent, typically oxygen
+      (O2).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0000289
+    is_a: Oxidation
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0000289
+  LiquidPhaseAnalysis:
+    name: LiquidPhaseAnalysis
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/LiquidPhaseAnalysis
+    description: Analysis of the liquid sample from a catalytic test.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0007813
+    is_a: ProductIdentificationMethod
+    slots:
+    - title
+    - description
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0007813
+  GasPhaseAnalysis:
+    name: GasPhaseAnalysis
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/GasPhaseAnalysis
+    description: Analysis of the liquid sample from a catalytic test.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - VOC4CAT:0007814
+    is_a: ProductIdentificationMethod
+    slots:
+    - title
+    - description
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: VOC4CAT:0007814
   MaterialDescriptorMixin:
     name: MaterialDescriptorMixin
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/MaterialDescriptorMixin
@@ -17911,7 +18704,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-07-08T12:13:19'
+source_file_date: '2026-07-13T13:48:24'
 source_file_size: 6637
-generation_date: '2026-07-08T12:13:35'
+generation_date: '2026-07-13T13:48:38'
 

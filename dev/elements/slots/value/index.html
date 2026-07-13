@@ -767,238 +767,8 @@ Alias: value</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/AqueousStability/">AqueousStability</a></td>
-<td>Electrochemical (Pourbaix) stability of a catalyst in aqueous solution as<br>a function of pH and electrode potential. Critical for electrocatalyst<br>stability screening.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/VesselType/">VesselType</a></td>
-<td>A qualitative descriptor of the type of reaction or synthesis vessel<br>used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Yield/">Yield</a></td>
-<td>A dimensionless physical quantity describing the fraction of a product B that is formed from a reactant A taking into account the stoichiometry. If A fully reacts to B without side-reactions, the yield of product B is 1 (or 100 %).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/QualitativeAttribute/">QualitativeAttribute</a></td>
-<td>A piece of information that is attributed to an Entity, Activity or AgenticEntity.</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../../classes/InChi/">InChi</a></td>
-<td>A structure descriptor which conforms to the InChI format specification.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/InChIKey/">InChIKey</a></td>
-<td></td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Atmosphere/">Atmosphere</a></td>
-<td>A qualitative descriptor of the gaseous environment or atmospheric<br>conditions during a process (e.g. "air", "N2", "5% H2/Ar").</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Density/">Density</a></td>
-<td>A measure of the mass per unit volume of a substance.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/HeatingRate/">HeatingRate</a></td>
-<td>Rate of temperature change per unit time during a thermal ramp.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/IUPACName/">IUPACName</a></td>
-<td>A systematic name which is formulated according to the rules and recommendations for chemical nomenclature set out by the International Union of Pure and Applied Chemistry (IUPAC).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MassToChargeRatio/">MassToChargeRatio</a></td>
-<td>Ratio of mass to electric charge (m/z) in mass spectrometry.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Temperature/">Temperature</a></td>
-<td>A physical quantity that quantitatively expresses the attribute of hotness or coldness.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/SamplePretreatment/">SamplePretreatment</a></td>
-<td>A qualitative descriptor of the pre-treatment applied to a sample<br>before a process or measurement (e.g. "reduction at 300 °C", "outgassing").</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Ferroelectrics/">Ferroelectrics</a></td>
-<td>Ferroelectric properties computed from DFT, including spontaneous<br>polarization, switching barrier, and coercive field. Relevant for<br>ferroelectric-photocatalyst design.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/HeatingProcedure/">HeatingProcedure</a></td>
-<td>A qualitative descriptor of the thermal programme or heating procedure<br>applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/VolumeFlowRate/">VolumeFlowRate</a></td>
-<td>Volume of fluid passing a given point per unit time.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MolarEquivalent/">MolarEquivalent</a></td>
-<td>A dimensionless ratio that quantifies the stoichiometric proportion of a chemical substance relative to a reference substance in a chemical reaction.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PHValue/">PHValue</a></td>
-<td></td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Volume/">Volume</a></td>
-<td>A measure of regions in three-dimensional space.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ThermodynamicStability/">ThermodynamicStability</a></td>
-<td>Thermodynamic stability of a material or phase, characterised by formation<br>energy, convex hull distance, and competing phases. Used to screen catalyst<br>stability and predict synthesis feasibility.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Duration/">Duration</a></td>
-<td>A quantitative measure of elapsed time (duration of a process step).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/AngularVelocity/">AngularVelocity</a></td>
-<td>Rate of rotational motion, typically expressed in revolutions per minute.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MolecularFormula/">MolecularFormula</a></td>
-<td>A structure descriptor which identifies each constituent element by its chemical symbol and indicates the number of atoms of each element found in each discrete molecule of that compound.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/GrainBoundaries/">GrainBoundaries</a></td>
-<td>Grain boundary structure and energetics from atomistic simulation.<br>Relevant for understanding polycrystalline catalyst behaviour,<br>sintering, and charge/defect segregation.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Mass/">Mass</a></td>
-<td>The strength of a body's gravitational attraction to other bodies.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/CalculatedProperty/">CalculatedProperty</a></td>
-<td>Abstract QualitativeAttribute representing a property computed by a<br>Simulation. Concrete subclasses carry the property-specific output<br>values and the computational settings used to produce them.<br>Linked from Simulation via the calculated_property slot.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Piezoelectricity/">Piezoelectricity</a></td>
-<td>Piezoelectric response of a non-centrosymmetric material, described by the<br>piezoelectric tensor. Relevant for piezocatalysis applications.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ElectronicStructure/">ElectronicStructure</a></td>
-<td>Electronic band structure and density of states, characterising the<br>electronic properties of a catalyst relevant to activity descriptors<br>(d-band centre, band gap, Fermi energy).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Pressure/">Pressure</a></td>
-<td></td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/DielectricTensors/">DielectricTensors</a></td>
-<td>Dielectric tensor computed from density functional perturbation theory (DFPT).<br>Characterises the optical and static dielectric response of a material.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ElectricPotential/">ElectricPotential</a></td>
-<td>A quantitative measure of electric potential difference or voltage.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/SMILES/">SMILES</a></td>
-<td>A structure descriptor that denotes a molecular structure as a graph and conforms to the SMILES format specification.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Surfaces/">Surfaces</a></td>
-<td>Surface properties of a catalyst computed from a periodic slab model,<br>including surface energy, Miller index, slab thickness, and vacuum spacing.<br>Central to heterogeneous catalysis modelling.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PlaneAngle/">PlaneAngle</a></td>
-<td>A quantitative measure of a plane angle (e.g. scattering angle in degrees).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/QuantitativeAttribute/">QuantitativeAttribute</a></td>
-<td>A quantifiable piece of information that is attributed to an Entity, Activity or AgenticEntity.</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../../classes/OperationMode/">OperationMode</a></td>
-<td>A qualitative descriptor of the operation mode of an instrument or<br>process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/AmountOfSubstance/">AmountOfSubstance</a></td>
-<td>The total amount of substance used in a ChemicalReaction.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/BandGap/">BandGap</a></td>
-<td>Electronic band gap and its character (direct/indirect), with optional<br>many-body (GW) or excitonic corrections. Critical for photocatalyst<br>and semiconductor catalyst screening.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/LengthQuantity/">LengthQuantity</a></td>
-<td>A quantitative measure of length or spatial dimension (nm, mm, cm).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MolarMass/">MolarMass</a></td>
-<td>A Mass (physical quality) that quantifies the mass of a homogeneous ChemicalSubstance containing 6.02 x 10^23 atoms or molecules.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PhononDispersion/">PhononDispersion</a></td>
-<td>Phonon dispersion relations computed from interatomic force constants,<br>providing access to vibrational frequencies, thermodynamic quantities,<br>and dynamical stability (imaginary modes).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/EnergyQuantity/">EnergyQuantity</a></td>
-<td>A quantitative measure of energy (eV, keV, kJ/mol, etc.).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Wavenumber/">Wavenumber</a></td>
-<td>Reciprocal of wavelength; number of wave cycles per unit length (cm^-1).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/CalcinationGaseousEnvironment/">CalcinationGaseousEnvironment</a></td>
-<td>The specific gaseous environment maintained during a calcination step<br>(e.g. "air", "N2", "10% O2/N2").</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PowerQuantity/">PowerQuantity</a></td>
-<td>Rate of energy transfer per unit time (e.g. laser power in mW).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PercentageOfTotal/">PercentageOfTotal</a></td>
-<td>A dimensionless ratio that quantifies the stoichiometric proportion of a chemical substance relative to a reference substance in a chemical reaction.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ElasticConstants/">ElasticConstants</a></td>
-<td>Elastic mechanical properties of a material derived from the elastic tensor,<br>including bulk modulus, shear modulus, and Young's modulus.</td>
+<td><a href="../../classes/BioCatalyst/">BioCatalyst</a></td>
+<td>An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of Catalyst (AgenticEntity). The physical form in which it is applied is described by an associated BiocatalystPreparation.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -1007,8 +777,373 @@ Alias: value</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../../classes/LengthQuantity/">LengthQuantity</a></td>
+<td>A quantitative measure of length or spatial dimension (nm, mm, cm).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Density/">Density</a></td>
+<td>A measure of the mass per unit volume of a substance.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Pressure/">Pressure</a></td>
+<td></td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/AngularVelocity/">AngularVelocity</a></td>
+<td>Rate of rotational motion, typically expressed in revolutions per minute.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Hydrogenation/">Hydrogenation</a></td>
+<td>A chemical reaction of molecular hydrogen (H2) and another chemical species, typically facilitated by a catalyst.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PercentageOfTotal/">PercentageOfTotal</a></td>
+<td>A dimensionless ratio that quantifies the stoichiometric proportion of a chemical substance relative to a reference substance in a chemical reaction.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CarbonCouplingReaction/">CarbonCouplingReaction</a></td>
+<td>A chemical reaction where a carbon-carbon bond is formed from two carbon-containing fragments.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/IUPACName/">IUPACName</a></td>
+<td>A systematic name which is formulated according to the rules and recommendations for chemical nomenclature set out by the International Union of Pure and Applied Chemistry (IUPAC).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MolarEquivalent/">MolarEquivalent</a></td>
+<td>A dimensionless ratio that quantifies the stoichiometric proportion of a chemical substance relative to a reference substance in a chemical reaction.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/VolumeFlowRate/">VolumeFlowRate</a></td>
+<td>Volume of fluid passing a given point per unit time.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CalcinationGaseousEnvironment/">CalcinationGaseousEnvironment</a></td>
+<td>The specific gaseous environment maintained during a calcination step<br>(e.g. "air", "N2", "10% O2/N2").</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ReactorPerformanceMeasures/">ReactorPerformanceMeasures</a></td>
+<td>A measure to quantify how fast and selective a chemical converison occurs in a reactor. A chemical conversion may include multiples reactions.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ThermodynamicStability/">ThermodynamicStability</a></td>
+<td>Thermodynamic stability of a material or phase, characterised by formation<br>energy, convex hull distance, and competing phases. Used to screen catalyst<br>stability and predict synthesis feasibility.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Mass/">Mass</a></td>
+<td>The strength of a body's gravitational attraction to other bodies.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/DepositedSampleCatalyst/">DepositedSampleCatalyst</a></td>
+<td>A thin film of the catalyst deposited on an appropriate for the application substrate.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Oxidation/">Oxidation</a></td>
+<td>The loss of electrons or an increase in the oxidation state of a species.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ElectroCatalyst/">ElectroCatalyst</a></td>
+<td>The characteristics of a material or substance that determine how it interacts or responds to a magnetic field.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ThinFilmCatalyst/">ThinFilmCatalyst</a></td>
+<td>A catalyst introduced to the reaction chamber in the form of a thin film. To form a thin film, a (powdered) catalyst is deposited on a substrate (e.g., glass or metal) using an appropriate deposition technique.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PhononDispersion/">PhononDispersion</a></td>
+<td>Phonon dispersion relations computed from interatomic force constants,<br>providing access to vibrational frequencies, thermodynamic quantities,<br>and dynamical stability (imaginary modes).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Ferroelectrics/">Ferroelectrics</a></td>
+<td>Ferroelectric properties computed from DFT, including spontaneous<br>polarization, switching barrier, and coercive field. Relevant for<br>ferroelectric-photocatalyst design.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CatalystType/">CatalystType</a></td>
+<td>Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).<br>For heterogeneous catalysts, use voc4cat terms where available.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/HeterogeneousCatalyst/">HeterogeneousCatalyst</a></td>
+<td>A substance that increases the rate of a chemical reaction that is in a different phase than the reagents.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Duration/">Duration</a></td>
+<td>A quantitative measure of elapsed time (duration of a process step).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PowerQuantity/">PowerQuantity</a></td>
+<td>Rate of energy transfer per unit time (e.g. laser power in mW).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/InChIKey/">InChIKey</a></td>
+<td></td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ElasticConstants/">ElasticConstants</a></td>
+<td>Elastic mechanical properties of a material derived from the elastic tensor,<br>including bulk modulus, shear modulus, and Young's modulus.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/VesselType/">VesselType</a></td>
+<td>A qualitative descriptor of the type of reaction or synthesis vessel<br>used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/HomogeneousCatalyst/">HomogeneousCatalyst</a></td>
+<td>A substance that increses the rate of a chemical reaction that is in the same phase as the reagents.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ReactionType/">ReactionType</a></td>
+<td>A group of chemical reactions with common conditions or reactants, e.g. Oxidation, Hydrogenation, Reduction, Cracking.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PlaneAngle/">PlaneAngle</a></td>
+<td>A quantitative measure of a plane angle (e.g. scattering angle in degrees).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/SpaceTimeYield/">SpaceTimeYield</a></td>
+<td>A physical quantity that describes the amount of product produced per unit of time and unit of producing entity. The producing entity is for example the volume of a chemical reactor or in catalysis the mass or volume or moles of catalyst. Example unit: kg{product} / (hour * cubicmeter{catalyst})</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Piezoelectricity/">Piezoelectricity</a></td>
+<td>Piezoelectric response of a non-centrosymmetric material, described by the<br>piezoelectric tensor. Relevant for piezocatalysis applications.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/SamplePretreatment/">SamplePretreatment</a></td>
+<td>A qualitative descriptor of the pre-treatment applied to a sample<br>before a process or measurement (e.g. "reduction at 300 °C", "outgassing").</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ElectronicStructure/">ElectronicStructure</a></td>
+<td>Electronic band structure and density of states, characterising the<br>electronic properties of a catalyst relevant to activity descriptors<br>(d-band centre, band gap, Fermi energy).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MassToChargeRatio/">MassToChargeRatio</a></td>
+<td>Ratio of mass to electric charge (m/z) in mass spectrometry.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/AmountOfSubstance/">AmountOfSubstance</a></td>
+<td>The total amount of substance used in a ChemicalReaction.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Yield/">Yield</a></td>
+<td>A dimensionless physical quantity describing the fraction of a product B that is formed from a reactant A taking into account the stoichiometry. If A fully reacts to B without side-reactions, the yield of product B is 1 (or 100 %).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Volume/">Volume</a></td>
+<td>A measure of regions in three-dimensional space.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/BandGap/">BandGap</a></td>
+<td>Electronic band gap and its character (direct/indirect), with optional<br>many-body (GW) or excitonic corrections. Critical for photocatalyst<br>and semiconductor catalyst screening.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CarbonMonoxideOxidation/">CarbonMonoxideOxidation</a></td>
+<td>The reaction in which carbon monoxide (CO) is converted to carbon dioxide (CO2) through interaction with an oxidizing agent, typically oxygen (O2).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/InChi/">InChi</a></td>
+<td>A structure descriptor which conforms to the InChI format specification.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/SMILES/">SMILES</a></td>
+<td>A structure descriptor that denotes a molecular structure as a graph and conforms to the SMILES format specification.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PhotoCatalyst/">PhotoCatalyst</a></td>
+<td>A material that absorbs photons (light) of appropriate energy and initiates or accelerates a photochemical reaction, while it regenerates itself after each reaction cycle.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Conversion/">Conversion</a></td>
+<td>A dimensionless physical quantity describing the fraction of a reactant that reacts in a chemical conversion. If a reactant is consumed completely its conversion is 1 (or 100 %).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Dehydrogenation/">Dehydrogenation</a></td>
+<td>A chemical reaction that involves the removal of two or more hydrogen atoms from a molecule.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/QuantitativeAttribute/">QuantitativeAttribute</a></td>
+<td>A quantifiable piece of information that is attributed to an Entity, Activity or AgenticEntity.</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../../classes/SelectiveOxidation/">SelectiveOxidation</a></td>
+<td>The targeted oxidation of a specific bond or functional group in a molecule leaving other sites unaffected, often directed by a catalyst.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MolarMass/">MolarMass</a></td>
+<td>A Mass (physical quality) that quantifies the mass of a homogeneous ChemicalSubstance containing 6.02 x 10^23 atoms or molecules.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/BulkCatalyst/">BulkCatalyst</a></td>
+<td>A catalyst that consists mainly of the active ingredient or phase.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Hydroxylation/">Hydroxylation</a></td>
+<td>The addition of a hydroxyl group (-OH) to a molecule, typically by replacing a hydrogen atom.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MolecularFormula/">MolecularFormula</a></td>
+<td>A structure descriptor which identifies each constituent element by its chemical symbol and indicates the number of atoms of each element found in each discrete molecule of that compound.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/FischerTropschSynthesis/">FischerTropschSynthesis</a></td>
+<td>A catalytic chemical reaction in which a mixture of carbon monoxide (CO) and hydrogen (H2), is converted via a chain-growth mechanism into long-chain hydrocarbons (e.g., alkanes, alkenes or alcohols)—typically using iron or cobalt catalysts under moderate to high pressures and temperatures.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/SupportedCatalsyt/">SupportedCatalsyt</a></td>
+<td>A catalyst where the active material is usually the minority phase and fixed on a high surface area, relatively inert solid.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/AqueousStability/">AqueousStability</a></td>
+<td>Electrochemical (Pourbaix) stability of a catalyst in aqueous solution as<br>a function of pH and electrode potential. Critical for electrocatalyst<br>stability screening.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Selectivity/">Selectivity</a></td>
+<td>A dimensionless physical quantity describing how effective a reactant is converted to the desired product in a chemical conversion. It is calculated as the ratio between the amount of the desired product and the amount of the desired product that could have been formed if all reactants were converted to the desired product. The selectivity is 1 (or 100 %) if no other than the desired product is formed.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ElectricPotential/">ElectricPotential</a></td>
+<td>A quantitative measure of electric potential difference or voltage.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CalculatedProperty/">CalculatedProperty</a></td>
+<td>Abstract QualitativeAttribute representing a property computed by a<br>Simulation. Concrete subclasses carry the property-specific output<br>values and the computational settings used to produce them.<br>Linked from Simulation via the calculated_property slot.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/EnergyQuantity/">EnergyQuantity</a></td>
+<td>A quantitative measure of energy (eV, keV, kJ/mol, etc.).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/HeatingRate/">HeatingRate</a></td>
+<td>Rate of temperature change per unit time during a thermal ramp.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Temperature/">Temperature</a></td>
+<td>A physical quantity that quantitatively expresses the attribute of hotness or coldness.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/OperationMode/">OperationMode</a></td>
+<td>A qualitative descriptor of the operation mode of an instrument or<br>process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/DielectricTensors/">DielectricTensors</a></td>
+<td>Dielectric tensor computed from density functional perturbation theory (DFPT).<br>Characterises the optical and static dielectric response of a material.</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../../classes/EquationsOfState/">EquationsOfState</a></td>
 <td>Equation of state relating energy (or enthalpy) to volume, fitted to a<br>parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium<br>volume, bulk modulus, and its pressure derivative.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/OxygenEvolutionReaction/">OxygenEvolutionReaction</a></td>
+<td>A chemical reaction of generating molecular oxygen in electrochemistry.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/GrainBoundaries/">GrainBoundaries</a></td>
+<td>Grain boundary structure and energetics from atomistic simulation.<br>Relevant for understanding polycrystalline catalyst behaviour,<br>sintering, and charge/defect segregation.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/QualitativeAttribute/">QualitativeAttribute</a></td>
+<td>A piece of information that is attributed to an Entity, Activity or AgenticEntity.</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../../classes/Atmosphere/">Atmosphere</a></td>
+<td>A qualitative descriptor of the gaseous environment or atmospheric<br>conditions during a process (e.g. "air", "N2", "5% H2/Ar").</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Wavenumber/">Wavenumber</a></td>
+<td>Reciprocal of wavelength; number of wave cycles per unit length (cm^-1).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CarbonDioxideHydrogenation/">CarbonDioxideHydrogenation</a></td>
+<td>The reaction of carbon dioxide (CO2) with molecular hydrogen (H2) to produce value-added hydrocarbons or alcohols.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Hydrodeoxygenation/">Hydrodeoxygenation</a></td>
+<td>A catalytic process in which oxygen is removed from oxygenated organic compounds using hydrogen.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PowerderedCatalyst/">PowerderedCatalyst</a></td>
+<td>A catalyst introduced to the reaction chamber in the form of a powder.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/HeatingProcedure/">HeatingProcedure</a></td>
+<td>A qualitative descriptor of the thermal programme or heating procedure<br>applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Surfaces/">Surfaces</a></td>
+<td>Surface properties of a catalyst computed from a periodic slab model,<br>including surface energy, Miller index, slab thickness, and vacuum spacing.<br>Central to heterogeneous catalysis modelling.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PHValue/">PHValue</a></td>
+<td></td>
 <td>no</td>
 </tr>
 </tbody>

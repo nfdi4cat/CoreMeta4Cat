@@ -451,8 +451,6 @@
 
 
 
-      CatalyticReaction : catalyst_type
-
       CatalyticReaction : description
 
       CatalyticReaction : experiment_pressure
@@ -521,6 +519,17 @@
 
 
 
+      CatalyticReaction : has_catalyst_type
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" CatalystType : has_catalyst_type
+        click CatalystType href "../../classes/CatalystType/"
+
+
+
       CatalyticReaction : has_experiment_duration
 
 
@@ -562,6 +571,17 @@
 
         CatalyticReaction --&gt; "* _recommended_" QuantitativeAttribute : has_quantitative_attribute
         click QuantitativeAttribute href "../../classes/QuantitativeAttribute/"
+
+
+
+      CatalyticReaction : has_reaction_type
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" ReactionType : has_reaction_type
+        click ReactionType href "../../classes/ReactionType/"
 
 
 
@@ -681,9 +701,15 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../../slots/catalyst_type/">catalyst_type</a></td>
-<td>* <em>recommended</em> <br> <a href="../../types/String/">String</a></br></td>
+<td><a href="../../slots/has_catalyst_type/">has_catalyst_type</a></td>
+<td>* <em>recommended</em> <br> <a href="../CatalystType/">CatalystType</a></br></td>
 <td>Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).<br/>For heterogeneous catalysts, use voc4cat terms where available.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../../slots/has_reaction_type/">has_reaction_type</a></td>
+<td>* <em>recommended</em> <br> <a href="../ReactionType/">ReactionType</a></br></td>
+<td>A group of chemical reactions with common conditions or reactants, e.g. Oxidation, Hydrogenation, Reduction, Cracking.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -706,7 +732,7 @@
 </tr>
 <tr>
 <td><a href="../../slots/feed_composition_range/">feed_composition_range</a></td>
-<td>* <br> <a href="../QuantitativeRange/">QuantitativeRange</a></br></td>
+<td>* <br/> <a href="../QuantitativeRange/">QuantitativeRange</a></td>
 <td>Feed composition range studied, provided as a QuantitativeRange.<br/>Express concentration bounds in an appropriate unit (e.g. "mol/L", "%" for<br/>vol% or mol%). For fixed-composition experiments use reactant.has_concentration.</td>
 <td>direct</td>
 </tr>
@@ -852,7 +878,8 @@
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_quantity</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactant</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_type</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_catalyst_type</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_reaction_type</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactor_temperature_range</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_atmosphere</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experiment_pressure</span>
@@ -986,19 +1013,35 @@
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">catalyst_type</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_type</span>
+<span class="w">  </span><span class="nt">has_catalyst_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_catalyst_type</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Type</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">catalyst</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">heterogeneous,</span><span class="nv"> </span><span class="s">homogeneous,</span><span class="nv"> </span><span class="s">biocatalyst).</span>
 
 <span class="w">      </span><span class="s">For</span><span class="nv"> </span><span class="s">heterogeneous</span><span class="nv"> </span><span class="s">catalysts,</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">terms</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">available.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007014</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_type</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_catalyst_type</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalystType</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_reaction_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_reaction_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A group of chemical reactions with common conditions or reactants,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">e.g. Oxidation, Hydrogenation, Reduction, Cracking.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007010</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_reaction_type</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReactionType</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">reactor_temperature_range</span><span class="p">:</span>

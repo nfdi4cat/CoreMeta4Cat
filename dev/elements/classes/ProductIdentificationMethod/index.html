@@ -430,6 +430,13 @@
       Plan &lt;|-- ProductIdentificationMethod
         click Plan href "../../classes/Plan/"
 
+
+      ProductIdentificationMethod &lt;|-- LiquidPhaseAnalysis
+        click LiquidPhaseAnalysis href "../../classes/LiquidPhaseAnalysis/"
+      ProductIdentificationMethod &lt;|-- GasPhaseAnalysis
+        click GasPhaseAnalysis href "../../classes/GasPhaseAnalysis/"
+
+
       ProductIdentificationMethod : description
 
       ProductIdentificationMethod : rdf_type
@@ -460,7 +467,11 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Plan/">Plan</a> [ <a href="../ClassifierMixin/">ClassifierMixin</a>]<ul>
-<li><strong>ProductIdentificationMethod</strong></li>
+<li><strong>ProductIdentificationMethod</strong><ul>
+<li><a href="../LiquidPhaseAnalysis/">LiquidPhaseAnalysis</a></li>
+<li><a href="../GasPhaseAnalysis/">GasPhaseAnalysis</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

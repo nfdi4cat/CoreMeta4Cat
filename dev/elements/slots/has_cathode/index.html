@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_type/">
+        <link rel="canonical" href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_cathode/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: catalyst_type - CoreMeta4Cat</title>
+        <title>Slot: has_cathode - CoreMeta4Cat</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-catalyst_type" class="md-skip">
+        <a href="#slot-has_cathode" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: catalyst_type
+              Slot: has_cathode
             
           </span>
         </div>
@@ -659,6 +659,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -750,13 +761,17 @@
   
 
 
-<h1 id="slot-catalyst_type">Slot: catalyst_type</h1>
-<p><em>Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).</em></p>
-<p><em>For heterogeneous catalysts, use voc4cat terms where available.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/voc4cat_0007014">VOC4CAT:0007014</a>
-Alias: catalyst_type</p>
-<!-- no inheritance hierarchy -->
-
+<h1 id="slot-has_cathode">Slot: has_cathode</h1>
+<p><em>The electrode where reduction occurs in an electrochemical cell. It is the negative electrode in an electrolytic cell, while it is the positive electrode in a galvanic cell.</em></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/voc4cat_0007254">VOC4CAT:0007254</a>
+Alias: has_cathode</p>
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../carried_out_by/">carried_out_by</a><ul>
+<li><strong>has_cathode</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -768,8 +783,8 @@ Alias: catalyst_type</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/CatalyticReaction/">CatalyticReaction</a></td>
-<td>An EvaluatedActivity representing the catalytic reaction being studied.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via carried_out_by as a Reactor (Device).<br>Reactants are linked via had_input_entity. The type of catalytic reaction<br>(e.g. ammonia synthesis, CO oxidation) is expressed via rdf_type using a<br>voc4cat or ChemO term.</td>
+<td><a href="../../classes/ElectrochemicalReactor/">ElectrochemicalReactor</a></td>
+<td>Electrochemical reactor used in electrocatalytic experiments, including<br>H-cells, flow cells, and membrane electrode assemblies.</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -802,29 +817,32 @@ Alias: catalyst_type</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>VOC4CAT:0007014</td>
+<td>VOC4CAT:0007254</td>
 </tr>
 <tr>
 <td>native</td>
-<td>coremeta4cat:catalyst_type</td>
+<td>coremeta4cat:has_cathode</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_type</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Type</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">catalyst</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">heterogeneous,</span><span class="nv"> </span><span class="s">homogeneous,</span><span class="nv"> </span><span class="s">biocatalyst).</span>
-
-<span class="w">  </span><span class="s">For</span><span class="nv"> </span><span class="s">heterogeneous</span><span class="nv"> </span><span class="s">catalysts,</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">terms</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">available.&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_cathode</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The electrode where reduction occurs in an electrochemical cell. It is</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">the negative electrode in an electrolytic cell, while it is the positive electrode</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">in a galvanic cell.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007014</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_type</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">carried_out_by</span>
+<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007254</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_cathode</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ElectrochemicalReactor</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 
