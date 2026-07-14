@@ -29,7 +29,7 @@ Not sure whether a field exists, or how to annotate something? Use the [GitHub D
 
 ## Understanding the vocabulary workbook
 
-Download the [vocabulary reference workbook](assets/coremeta4cat_vocabulary.xlsx) for a structured overview of all fields, organised by data class and colour-coded by importance (Mandatory / Recommended / Optional). The workbook opens with an **Introduction** sheet and a **Legend** sheet explaining the colour coding and column meanings.
+Download the [vocabulary reference workbook](https://nfdi4cat.github.io/CoreMeta4Cat/latest/assets/coremeta4cat_vocabulary.xlsx) for a structured overview of all fields, organised by data class and colour-coded by importance (Mandatory / Recommended / Optional). The workbook opens with an **Introduction** sheet and a **Legend** sheet explaining the colour coding and column meanings.
 
 The schema is the authoritative source — the workbook is generated from it automatically.
 
@@ -37,4 +37,12 @@ The schema is the authoritative source — the workbook is generated from it aut
 
 ## Contribute code or schema changes
 
-If you want to contribute a schema change yourself (add a class, slot, or enumeration), please first open an issue to discuss the change. Then follow the developer guidelines in [CONTRIBUTING.md](https://github.com/nfdi4cat/CoreMeta4Cat/blob/main/CONTRIBUTING.md) on GitHub.
+If you want to contribute a schema change yourself — add a class, slot, or enumeration — please first open an issue to discuss the change. Then follow the developer guidelines in [CONTRIBUTING.md](https://github.com/nfdi4cat/CoreMeta4Cat/blob/main/CONTRIBUTING.md) on GitHub.
+
+For detailed instructions on how to structure a new preparation method, characterisation technique, reactor type, or simulation method, see the [How to Extend](https://nfdi4cat.github.io/CoreMeta4Cat/latest/how-to-extend/) page.
+
+---
+
+## Not sure where to start?
+
+If you are new to CoreMeta4Cat and just want to check whether your dataset covers the right metadata fields, the [Getting Started](https://nfdi4cat.github.io/CoreMeta4Cat/latest/getting-started/) page is the right place to begin — no GitHub account or coding knowledge needed.
