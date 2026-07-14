@@ -358,13 +358,13 @@
             {
               "value": 5.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Pd loading (Overview Reaction Description-2.txt)"
             },
             {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst mass used per batch test"
             }
           ]
@@ -456,13 +456,13 @@
             {
               "value": 5.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Pd loading (Overview Reaction Description-2.txt)"
             },
             {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst mass used per batch test"
             }
           ]
@@ -476,13 +476,13 @@
             {
               "value": 5.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Pd loading (Overview Reaction Description-2.txt)"
             },
             {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst mass used per batch test"
             }
           ]
@@ -581,13 +581,13 @@
             {
               "value": 5.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Pd loading (Overview Reaction Description-2.txt)"
             },
             {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst mass used per batch test"
             }
           ]

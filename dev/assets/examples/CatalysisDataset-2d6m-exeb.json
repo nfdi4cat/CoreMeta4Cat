@@ -139,25 +139,25 @@
             {
               "value": 20.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp2_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 630.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp2_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 14.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp2_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.5,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp2_metadata.json: catalyst.mass)"
             }
           ]
@@ -170,25 +170,25 @@
             {
               "value": 20.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp3_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 375.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp3_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 3.56,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp3_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.2,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp3_metadata.json: catalyst.mass)"
             }
           ]
@@ -201,25 +201,25 @@
             {
               "value": 10.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp4_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 265.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp4_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 2.81,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp4_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.05,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp4_metadata.json: catalyst.mass)"
             }
           ]
@@ -232,25 +232,25 @@
             {
               "value": 10.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp12_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 265.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp12_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 3.06,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp12_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.05,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp12_metadata.json: catalyst.mass)"
             }
           ]
@@ -268,7 +268,7 @@
             {
               "value": 1.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MoleFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Feed CO mole fraction ranges 1-25% across the 4 runs (Exp2, Exp3, Exp4, Exp12 inlet.mole_fractions.CO)"
             }
           ]
@@ -284,7 +284,7 @@
             {
               "value": 50.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MoleFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Feed H2 mole fraction ranges 50-75% across the 4 runs"
             }
           ]
@@ -358,25 +358,25 @@
             {
               "value": 10.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp7_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 335.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp7_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 4.55,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp7_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 1.2,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp7_metadata.json: catalyst.mass)"
             }
           ]
@@ -389,25 +389,25 @@
             {
               "value": 20.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp8_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 375.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp8_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 3.56,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp8_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.2,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp8_metadata.json: catalyst.mass)"
             }
           ]
@@ -421,25 +421,25 @@
             {
               "value": 40.8,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp9_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 175.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp9_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 8.28,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp9_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.025,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp9_metadata.json: catalyst.mass)"
             }
           ]
@@ -452,25 +452,25 @@
             {
               "value": 10.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp13_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 265.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp13_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 3.06,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp13_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.05,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp13_metadata.json: catalyst.mass)"
             }
           ]
@@ -483,25 +483,25 @@
             {
               "value": 10.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp14_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 265.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp14_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 2.81,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp14_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.05,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp14_metadata.json: catalyst.mass)"
             }
           ]
@@ -514,19 +514,19 @@
             {
               "value": 20.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp15_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 750.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp15_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 1.76,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp15_metadata.json: catalyst.mass)"
             }
           ]
@@ -539,25 +539,25 @@
             {
               "value": 15.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp16_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 630.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp16_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 8.72,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp16_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.3,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp16_metadata.json: catalyst.mass)"
             }
           ]
@@ -570,25 +570,25 @@
             {
               "value": 10.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp17_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 335.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp17_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 3.84,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp17_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 1.2,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp17_metadata.json: catalyst.mass)"
             }
           ]
@@ -606,7 +606,7 @@
             {
               "value": 1.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MoleFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Feed CO2 mole fraction ranges 1-22.2% across the 8 runs (inlet.mole_fractions.CO2)"
             }
           ]
@@ -622,7 +622,7 @@
             {
               "value": 5.1,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MoleFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Feed H2 mole fraction ranges 5.1-77.8% across the 8 runs"
             }
           ]
@@ -696,25 +696,25 @@
             {
               "value": 5.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp11_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 220.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp11_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 1.826,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp11_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.15,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp11_metadata.json: catalyst.mass)"
             }
           ]
@@ -727,25 +727,25 @@
             {
               "value": 5.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp18_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 3000.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp18_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 1.1,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp18_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.18,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp18_metadata.json: catalyst.mass)"
             }
           ]
@@ -758,25 +758,25 @@
             {
               "value": 5.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp19_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 630.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp19_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 14.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp19_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.15,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp19_metadata.json: catalyst.mass)"
             }
           ]
@@ -789,25 +789,25 @@
             {
               "value": 5.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Ni loading (Exp20_metadata.json: catalyst.metal_loading)"
             },
             {
               "value": 220.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
-              "unit": "MicroM",
+              "unit": "https://qudt.org/vocab/unit/MicroM",
               "description": "Particle diameter (Exp20_metadata.json: catalyst.particles_mean_diameter)"
             },
             {
               "value": 0.897,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (Exp20_metadata.json: catalyst.specific_surface_area)"
             },
             {
               "value": 0.15,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
-              "unit": "GM",
+              "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp20_metadata.json: catalyst.mass)"
             }
           ]
@@ -825,7 +825,7 @@
             {
               "value": 0.6,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MoleFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Feed CO mole fraction; 0.6% in 3 of 4 runs, 6% in Exp18"
             }
           ]
@@ -841,7 +841,7 @@
             {
               "value": 6.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MoleFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Feed CO2 mole fraction ranges 6-17% across the 4 runs"
             }
           ]
@@ -857,7 +857,7 @@
             {
               "value": 57.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MoleFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "Feed H2 mole fraction ranges 57-88% across the 4 runs"
             }
           ]

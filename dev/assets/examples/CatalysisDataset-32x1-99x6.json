@@ -474,7 +474,7 @@
             {
               "value": 119.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -488,19 +488,19 @@
             {
               "value": 1.8,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 0.8,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 118.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -514,19 +514,19 @@
             {
               "value": 2.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 2.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 116.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -540,19 +540,19 @@
             {
               "value": 1.8,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 2.5,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 105.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -566,19 +566,19 @@
             {
               "value": 2.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 3.7,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 112.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -592,19 +592,19 @@
             {
               "value": 1.9,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 4.6,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 108.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -702,7 +702,7 @@
             {
               "value": 126.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -716,19 +716,19 @@
             {
               "value": 2.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 1.1,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 118.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -742,19 +742,19 @@
             {
               "value": 1.8,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 2.6,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 98.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -768,19 +768,19 @@
             {
               "value": 2.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 4.8,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 72.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -878,19 +878,19 @@
             {
               "value": 1.8,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 0.8,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 118.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -904,19 +904,19 @@
             {
               "value": 1.8,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 2.5,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 105.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -930,19 +930,19 @@
             {
               "value": 1.9,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 4.6,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 108.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -1040,19 +1040,19 @@
             {
               "value": 2.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 1.1,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 118.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -1066,19 +1066,19 @@
             {
               "value": 1.8,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 2.6,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 98.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]
@@ -1092,19 +1092,19 @@
             {
               "value": 2.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured Pd loading (icp_results.txt)"
             },
             {
               "value": 4.8,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "PERCENT",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
               "description": "ICP-AES measured P loading (icp_results.txt)"
             },
             {
               "value": 72.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
-              "unit": "M2-PER-GM",
+              "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
             }
           ]

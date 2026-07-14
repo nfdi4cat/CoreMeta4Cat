@@ -314,7 +314,7 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 119.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
     title: Pd/1P/Al2O3 (nominal 1 wt% P)
@@ -323,15 +323,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 1.8
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 0.8
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 118.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
     title: Pd/2P/Al2O3 (nominal 2 wt% P)
@@ -340,15 +340,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 2.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 2.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 116.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
     title: Pd/3P/Al2O3 (nominal 3 wt% P)
@@ -357,15 +357,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 1.8
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 2.5
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 105.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
     title: Pd/4P/Al2O3 (nominal 4 wt% P)
@@ -374,15 +374,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 2.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 3.7
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 112.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
     title: Pd/5P/Al2O3 (nominal 5 wt% P)
@@ -391,15 +391,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 1.9
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 4.6
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 108.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_substrate
@@ -467,7 +467,7 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 126.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
     title: Pd/1P/SiO2 (nominal 1 wt% P)
@@ -476,15 +476,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 2.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 1.1
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 118.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
     title: Pd/3P/SiO2 (nominal 3 wt% P)
@@ -493,15 +493,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 1.8
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 2.6
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 98.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
     title: Pd/5P/SiO2 (nominal 5 wt% P)
@@ -510,15 +510,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 2.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 4.8
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 72.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_CAL_SiO2_substrate
@@ -584,15 +584,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 1.8
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 0.8
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 118.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
     title: Pd/3P/Al2O3 (nominal 3 wt% P)
@@ -601,15 +601,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 1.8
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 2.5
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 105.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
     title: Pd/5P/Al2O3 (nominal 5 wt% P)
@@ -618,15 +618,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 1.9
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 4.6
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 108.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_substrate
@@ -692,15 +692,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 2.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 1.1
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 118.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
     title: Pd/3P/SiO2 (nominal 3 wt% P)
@@ -709,15 +709,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 1.8
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 2.6
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 98.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
     title: Pd/5P/SiO2 (nominal 5 wt% P)
@@ -726,15 +726,15 @@ is_about_activity:
     has_quantitative_attribute:
     - value: 2.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured Pd loading (icp_results.txt)
     - value: 4.8
       has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: PERCENT
+      unit: https://qudt.org/vocab/unit/PERCENT
       description: ICP-AES measured P loading (icp_results.txt)
     - value: 72.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
-      unit: M2-PER-GM
+      unit: https://qudt.org/vocab/unit/M2-PER-GM
       description: BET specific surface area (bet_results.txt)
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_Citral_SiO2_substrate
