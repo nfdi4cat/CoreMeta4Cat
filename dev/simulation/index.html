@@ -286,6 +286,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../working-with-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../overview/" class="md-nav__link">
         
   
@@ -404,10 +431,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -425,8 +452,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -435,6 +462,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -813,7 +868,7 @@ instance. Multiple properties may be computed in a single simulation run.</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/calculated_property"><code>coremeta4cat:calculated_property</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/calculated_property/">calculated_property</a></p>
 <p><strong>Data Type Class Details:</strong></p>
-<details open="open">
+<details id="schema-class-CalculatedProperty" open="open">
 <summary><strong>CalculatedProperty</strong></summary>
 <p><strong>Abstract Class</strong></p>
 <p><strong>Description:</strong> Abstract QualitativeAttribute representing a property computed by a
@@ -829,7 +884,7 @@ Linked from Simulation via the calculated_property slot.</p>
     </p>
 </details>
 <p><strong>Possible Subclasses / Enumerations of CalculatedProperty:</strong></p>
-<details>
+<details id="schema-class-ThermodynamicStability">
 <summary><strong>ThermodynamicStability</strong></summary>
 <p><strong>Description:</strong> Thermodynamic stability of a material or phase, characterised by formation
 energy, convex hull distance, and competing phases. Used to screen catalyst
@@ -913,7 +968,7 @@ metric). Zero for phases on the hull; positive values indicate metastability.</p
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-Piezoelectricity">
 <summary><strong>Piezoelectricity</strong></summary>
 <p><strong>Description:</strong> Piezoelectric response of a non-centrosymmetric material, described by the
 piezoelectric tensor. Relevant for piezocatalysis applications.</p>
@@ -980,7 +1035,7 @@ describing the coupling between stress and electric polarization.</p>
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-ElasticConstants">
 <summary><strong>ElasticConstants</strong></summary>
 <p><strong>Description:</strong> Elastic mechanical properties of a material derived from the elastic tensor,
 including bulk modulus, shear modulus, and Young's modulus.</p>
@@ -1062,7 +1117,7 @@ elastic response of the material.</p>
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-Surfaces">
 <summary><strong>Surfaces</strong></summary>
 <p><strong>Description:</strong> Surface properties of a catalyst computed from a periodic slab model,
 including surface energy, Miller index, slab thickness, and vacuum spacing.
@@ -1147,7 +1202,7 @@ periodic interactions between slab images.</p>
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-DielectricTensors">
 <summary><strong>DielectricTensors</strong></summary>
 <p><strong>Description:</strong> Dielectric tensor computed from density functional perturbation theory (DFPT).
 Characterises the optical and static dielectric response of a material.</p>
@@ -1258,7 +1313,7 @@ geometry optimisation (e.g. energy &lt; 1e-5 eV, forces &lt; 0.02 eV/A).</p>
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-PhononDispersion">
 <summary><strong>PhononDispersion</strong></summary>
 <p><strong>Description:</strong> Phonon dispersion relations computed from interatomic force constants,
 providing access to vibrational frequencies, thermodynamic quantities,
@@ -1309,11 +1364,11 @@ Distinct from the electronic k-point mesh.</p>
 </p>
 </details>
 <details>
-<summary><strong>imaginary modes</strong> (Optional, Multivalued)</summary>
+<summary><strong>imaginary modes</strong> (Optional)</summary>
 <p><strong>Description:</strong> Whether imaginary (soft) phonon modes are present in the dispersion.
 Imaginary modes indicate dynamical instability of the structure.</p>
 <p><strong>Data Type:</strong> boolean</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>Cardinality:</strong>  Optional</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/imaginary_modes"><code>coremeta4cat:imaginary_modes</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/imaginary_modes/">imaginary_modes</a></p>
 <p>
@@ -1356,7 +1411,7 @@ lattice parameters (e.g. "Fm-3m, a=3.92 A for Pt").</p>
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-EquationsOfState">
 <summary><strong>EquationsOfState</strong></summary>
 <p><strong>Description:</strong> Equation of state relating energy (or enthalpy) to volume, fitted to a
 parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium
@@ -1494,7 +1549,7 @@ geometry optimisation (e.g. energy &lt; 1e-5 eV, forces &lt; 0.02 eV/A).</p>
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-AqueousStability">
 <summary><strong>AqueousStability</strong></summary>
 <p><strong>Description:</strong> Electrochemical (Pourbaix) stability of a catalyst in aqueous solution as
 a function of pH and electrode potential. Critical for electrocatalyst
@@ -1559,10 +1614,23 @@ stability screening.</p>
 </details>
 <details>
 <summary><strong>has temperature</strong> (Optional)</summary>
-<p><strong>Description:</strong> No description available</p>
-<p><strong>Data Type:</strong> string</p>
+<p><strong>Description:</strong> The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.</p>
+<p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://semanticscience.org/resource/SIO_000008"><code>SIO:000008</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_temperature/">has_temperature</a></p>
+<p><strong>Data Type Class Details:</strong></p>
+<details id="schema-class-Temperature">
+<summary><strong>Temperature</strong></summary>
+<p><strong>Description:</strong> A physical quantity that quantitatively expresses the attribute of hotness or coldness.</p>
+<p><strong>CURIE:</strong> <a href="http://qudt.org/schema/qudt/Quantity"><code>qudt:Quantity</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/Temperature/">Temperature</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Temperature target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -1603,7 +1671,7 @@ lattice parameters (e.g. "Fm-3m, a=3.92 A for Pt").</p>
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-GrainBoundaries">
 <summary><strong>GrainBoundaries</strong></summary>
 <p><strong>Description:</strong> Grain boundary structure and energetics from atomistic simulation.
 Relevant for understanding polycrystalline catalyst behaviour,
@@ -1742,7 +1810,7 @@ lattice parameters (e.g. "Fm-3m, a=3.92 A for Pt").</p>
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-ElectronicStructure">
 <summary><strong>ElectronicStructure</strong></summary>
 <p><strong>Description:</strong> Electronic band structure and density of states, characterising the
 electronic properties of a catalyst relevant to activity descriptors
@@ -1765,11 +1833,11 @@ electronic properties of a catalyst relevant to activity descriptors
 </p>
 </details>
 <details>
-<summary><strong>spin polarized</strong> (Optional, Multivalued)</summary>
+<summary><strong>spin polarized</strong> (Optional)</summary>
 <p><strong>Description:</strong> Whether the electronic structure calculation is spin-polarized
 (accounts for spin-up and spin-down electrons separately).</p>
 <p><strong>Data Type:</strong> boolean</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>Cardinality:</strong>  Optional</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/spin_polarized"><code>coremeta4cat:spin_polarized</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/spin_polarized/">spin_polarized</a></p>
 <p>
@@ -1882,7 +1950,7 @@ geometry optimisation (e.g. energy &lt; 1e-5 eV, forces &lt; 0.02 eV/A).</p>
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-Ferroelectrics">
 <summary><strong>Ferroelectrics</strong></summary>
 <p><strong>Description:</strong> Ferroelectric properties computed from DFT, including spontaneous
 polarization, switching barrier, and coercive field. Relevant for
@@ -2007,7 +2075,7 @@ lattice parameters (e.g. "Fm-3m, a=3.92 A for Pt").</p>
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-BandGap">
 <summary><strong>BandGap</strong></summary>
 <p><strong>Description:</strong> Electronic band gap and its character (direct/indirect), with optional
 many-body (GW) or excitonic corrections. Critical for photocatalyst
@@ -2086,11 +2154,11 @@ surface slab, defect supercell).</p>
 </p>
 </details>
 <details>
-<summary><strong>gw hybrid correction</strong> (Optional, Multivalued)</summary>
+<summary><strong>gw hybrid correction</strong> (Optional)</summary>
 <p><strong>Description:</strong> Whether a many-body GW correction or hybrid functional (e.g. HSE06)
 was applied to correct the DFT band gap underestimation.</p>
 <p><strong>Data Type:</strong> boolean</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>Cardinality:</strong>  Optional</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/gw_hybrid_correction"><code>coremeta4cat:gw_hybrid_correction</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/gw_hybrid_correction/">gw_hybrid_correction</a></p>
 <p>
@@ -2197,13 +2265,30 @@ geometry optimisation (e.g. energy &lt; 1e-5 eV, forces &lt; 0.02 eV/A).</p>
 </p>
 </details>
 <details open="open">
+<summary><strong>activity designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Internal type designator for CatalysisDataGeneratingActivity subclasses
+(Synthesis, Characterization, Simulation). Only needs to be set by hand
+when nesting one of these inside another object's was_generated_by list
+(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
+automatically when a class is instantiated directly.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/activity_designator/">activity_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20activity_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details open="open">
 <summary><strong>realized plan</strong> (Mandatory)</summary>
 <p><strong>Description:</strong> The SimulationMethod (protocol) realized in this Simulation.</p>
 <p><strong>Data Type:</strong> SimulationMethod</p>
 <p><strong>Cardinality:</strong>  Mandatory</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/realized_plan/">realized_plan</a></p>
 <p><strong>Data Type Class Details:</strong></p>
-<details open="open">
+<details id="schema-class-SimulationMethod" open="open">
 <summary><strong>SimulationMethod</strong></summary>
 <p><strong>Abstract Class</strong></p>
 <p><strong>Description:</strong> Abstract Plan describing the computational method (protocol) used in a
@@ -2211,6 +2296,19 @@ Simulation. Concrete subclasses carry method-specific parameter slots.
 Linked from Simulation via realized_plan.</p>
 <p><strong>CURIE:</strong> <a href="http://purl.obolibrary.org/obo/OBI_0000272"><code>OBI:0000272</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/SimulationMethod/">SimulationMethod</a></p>
+<p><strong>Slots</strong></p>
+<details>
+<summary><strong>id</strong> (Optional)</summary>
+<p><strong>Description:</strong> No description available</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/id/">id</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SimulationMethod target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -2218,7 +2316,7 @@ Linked from Simulation via realized_plan.</p>
     </p>
 </details>
 <p><strong>Possible Subclasses / Enumerations of SimulationMethod:</strong></p>
-<details>
+<details id="schema-class-DFT">
 <summary><strong>DFT</strong></summary>
 <p><strong>Description:</strong> Density functional theory — a quantum mechanical method for calculating
 the electronic structure of atoms, molecules, and periodic solids.
@@ -2283,11 +2381,11 @@ U value (e.g. "Fe d: U=4.0 eV, J=0.0 eV").</p>
 </p>
 </details>
 <details>
-<summary><strong>spin polarization</strong> (Optional, Multivalued)</summary>
+<summary><strong>spin polarization</strong> (Optional)</summary>
 <p><strong>Description:</strong> Whether spin polarization (collinear magnetism) is included in the DFT
 calculation. Set to true for systems containing magnetic elements.</p>
 <p><strong>Data Type:</strong> boolean</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>Cardinality:</strong>  Optional</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/spin_polarization"><code>coremeta4cat:spin_polarization</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/spin_polarization/">spin_polarization</a></p>
 <p>
@@ -2310,13 +2408,25 @@ calculation. Set to true for systems containing magnetic elements.</p>
   </a>
 </p>
 </details>
+<details>
+<summary><strong>id</strong> (Optional)</summary>
+<p><strong>Description:</strong> No description available</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/id/">id</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20DFT target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-MolecularDynamics">
 <summary><strong>MolecularDynamics</strong></summary>
 <p><strong>Description:</strong> Molecular dynamics simulation — a method for computing the time evolution
 of a system of interacting particles by integrating the equations of motion.
@@ -2381,14 +2491,26 @@ thermodynamic quantities are conserved.</p>
 </p>
 </details>
 <details>
-<summary><strong>number of atoms</strong> (Optional, Multivalued)</summary>
+<summary><strong>number of atoms</strong> (Optional)</summary>
 <p><strong>Description:</strong> Number of atoms in the simulation cell or supercell.</p>
 <p><strong>Data Type:</strong> integer</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>Cardinality:</strong>  Optional</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/number_of_atoms"><code>coremeta4cat:number_of_atoms</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_atoms/">number_of_atoms</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_atoms target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>id</strong> (Optional)</summary>
+<p><strong>Description:</strong> No description available</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/id/">id</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -2399,7 +2521,7 @@ thermodynamic quantities are conserved.</p>
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-Microkinetics">
 <summary><strong>Microkinetics</strong></summary>
 <p><strong>Description:</strong> Microkinetic modelling — a mean-field kinetic approach that integrates
 elementary reaction steps and their rate constants to predict catalytic
@@ -2437,10 +2559,18 @@ stiff ODE solver, steady-state Newton method).</p>
 </details>
 <details>
 <summary><strong>has temperature</strong> (Optional)</summary>
-<p><strong>Description:</strong> No description available</p>
-<p><strong>Data Type:</strong> string</p>
+<p><strong>Description:</strong> The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.</p>
+<p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://semanticscience.org/resource/SIO_000008"><code>SIO:000008</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_temperature/">has_temperature</a></p>
+<p><strong>Data Type Class Details:</strong></p>
+<details>
+<summary><strong>Temperature</strong></summary>
+<p><strong>Description:</strong> A physical quantity that quantitatively expresses the attribute of hotness or coldness.</p>
+<p><strong>CURIE:</strong> <a href="http://qudt.org/schema/qudt/Quantity"><code>qudt:Quantity</code></a></p>
+<p><em>Full field list already shown <a href="#schema-class-Temperature">earlier on this page</a> -- this class is reached from multiple fields.</em></p>
+</details>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -2449,10 +2579,23 @@ stiff ODE solver, steady-state Newton method).</p>
 </details>
 <details>
 <summary><strong>has pressure</strong> (Optional)</summary>
-<p><strong>Description:</strong> No description available</p>
-<p><strong>Data Type:</strong> string</p>
+<p><strong>Description:</strong> The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.</p>
+<p><strong>Data Type:</strong> Pressure</p>
 <p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://semanticscience.org/resource/SIO_000008"><code>SIO:000008</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_pressure/">has_pressure</a></p>
+<p><strong>Data Type Class Details:</strong></p>
+<details id="schema-class-Pressure">
+<summary><strong>Pressure</strong></summary>
+<p><strong>Description:</strong> No description available</p>
+<p><strong>CURIE:</strong> <a href="http://qudt.org/schema/qudt/Quantity"><code>qudt:Quantity</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/Pressure/">Pressure</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Pressure target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_pressure target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -2486,13 +2629,25 @@ stiff ODE solver, steady-state Newton method).</p>
   </a>
 </p>
 </details>
+<details>
+<summary><strong>id</strong> (Optional)</summary>
+<p><strong>Description:</strong> No description available</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/id/">id</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Microkinetics target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
 </details>
-<details>
+<details id="schema-class-MonteCarlo">
 <summary><strong>MonteCarlo</strong></summary>
 <p><strong>Description:</strong> Monte Carlo simulation — a stochastic method that samples configuration
 space using random moves accepted or rejected according to a statistical
@@ -2515,10 +2670,10 @@ and lattice-based kinetics.</p>
 </p>
 </details>
 <details>
-<summary><strong>number of steps</strong> (Optional, Multivalued)</summary>
+<summary><strong>number of steps</strong> (Optional)</summary>
 <p><strong>Description:</strong> Total number of Monte Carlo moves or trial configurations generated.</p>
 <p><strong>Data Type:</strong> integer</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>Cardinality:</strong>  Optional</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/number_of_steps"><code>coremeta4cat:number_of_steps</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_steps/">number_of_steps</a></p>
 <p>
@@ -2529,10 +2684,18 @@ and lattice-based kinetics.</p>
 </details>
 <details>
 <summary><strong>has temperature</strong> (Optional)</summary>
-<p><strong>Description:</strong> No description available</p>
-<p><strong>Data Type:</strong> string</p>
+<p><strong>Description:</strong> The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.</p>
+<p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://semanticscience.org/resource/SIO_000008"><code>SIO:000008</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_temperature/">has_temperature</a></p>
+<p><strong>Data Type Class Details:</strong></p>
+<details>
+<summary><strong>Temperature</strong></summary>
+<p><strong>Description:</strong> A physical quantity that quantitatively expresses the attribute of hotness or coldness.</p>
+<p><strong>CURIE:</strong> <a href="http://qudt.org/schema/qudt/Quantity"><code>qudt:Quantity</code></a></p>
+<p><em>Full field list already shown <a href="#schema-class-Temperature">earlier on this page</a> -- this class is reached from multiple fields.</em></p>
+</details>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -2568,10 +2731,10 @@ Kawasaki, heat-bath algorithm).</p>
 </p>
 </details>
 <details>
-<summary><strong>equilibration steps</strong> (Optional, Multivalued)</summary>
+<summary><strong>equilibration steps</strong> (Optional)</summary>
 <p><strong>Description:</strong> Number of MC steps used for equilibration before data collection begins.</p>
 <p><strong>Data Type:</strong> integer</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>Cardinality:</strong>  Optional</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/equilibration_steps"><code>coremeta4cat:equilibration_steps</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/equilibration_steps/">equilibration_steps</a></p>
 <p>
@@ -2581,14 +2744,26 @@ Kawasaki, heat-bath algorithm).</p>
 </p>
 </details>
 <details>
-<summary><strong>sampling interval</strong> (Optional, Multivalued)</summary>
+<summary><strong>sampling interval</strong> (Optional)</summary>
 <p><strong>Description:</strong> Interval between successive MC snapshots used for property averaging.</p>
 <p><strong>Data Type:</strong> integer</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>Cardinality:</strong>  Optional</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/sampling_interval"><code>coremeta4cat:sampling_interval</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/sampling_interval/">sampling_interval</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20sampling_interval target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>id</strong> (Optional)</summary>
+<p><strong>Description:</strong> No description available</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/id/">id</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>

@@ -1,0 +1,439 @@
+---
+id: hdl:21.11165/4cat/arp5-s69r
+title:
+- Carbonylation catalysis of aryl halides through active-site engineering
+description:
+- 'Catalyst characterization (PXRD, DRIFT, CO chemisorption, XPS, STEM) and catalytic testing data for
+  Pd3P/SiO2 (a phosphorus-modified palladium phosphide catalyst, internal code ARNE01) compared against
+  an unmodified Pd/SiO2 reference (ARNE02), for Pd-catalyzed carbonylation reactions of aryl iodides.
+  31 batch reactor runs span three reaction types: alkoxycarbonylation (27 runs; mainly iodobenzene +
+  ethanol -> ethyl benzoate, exploring reaction time, base, temperature, and substrate/nucleophile scope),
+  phenoxycarbonylation (1 run, phenol nucleophile), and aminocarbonylation (3 runs, aniline nucleophile,
+  100-140 C). PXRD additionally covers two further Pd3P/SiO2 loading variants (1 wt% and 10 wt% Pd), and
+  STEM additionally covers a recycled/spent Pd3P/SiO2 sample recovered after catalytic testing; STEM method
+  details are documented but no STEM image/data files are included in the deposited dataset.'
+rdf_type:
+  id: VOC4CAT:0007001
+  title: heterogeneous catalysis
+keyword:
+- Chemistry
+- Catalysis
+- Heterogeneous catalysis
+- Palladium catalyst
+- Palladium phosphide
+- Carbonylation
+- Active-site engineering
+creator:
+- name:
+  - Neyyathala, Arjun
+- name:
+  - Jung, Felix
+- name:
+  - Barth, Simon
+- name:
+  - Feldmann, Claus
+- name:
+  - Grunwaldt, Jan-Dierk
+- name:
+  - Jevtovik, Ivana
+- name:
+  - Schunk, Stephan A.
+- name:
+  - Dolcet, Paolo
+- name:
+  - Gross, Silvia
+- name:
+  - Hanf, Schirin
+publisher:
+  name:
+  - NFDI4Cat Central Data Repository
+dataset_distribution:
+- access_URL:
+  - id: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+    title: Repository landing page
+  description:
+  - Repository landing page providing access to the characterization and catalytic testing data files.
+  licence:
+    id: https://creativecommons.org/licenses/by/4.0/
+    title: CC BY 4.0
+other_identifier:
+- notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+was_generated_by:
+- id: coremeta4cat:CHAR_arp5-s69r_COChemisorption
+  title:
+  - CO chemisorption analysis (2 catalysts)
+  description:
+  - Pulse CO chemisorption at room temperature (25 C) for Pd3P/SiO2 and Pd/SiO2 (2 replicate runs each),
+    used to determine active surface Pd site density / dispersion by comparing CO uptake between the phosphide
+    and the unmodified reference catalyst.
+  carried_out_by:
+  - id: coremeta4cat:DEV_arp5-s69r_COChemisorption
+    title: Pulse chemisorption analyser
+    description: Instrument model not specified in the source dataset files.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+    description: See CatalyticReaction files for full detail.
+  - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+    description: See CatalyticReaction files for full detail.
+  realized_plan:
+    id: coremeta4cat:CHAR_arp5-s69r_COChemisorption_method
+    title: Pulse CO chemisorption method
+    description: CO pulses at room temperature; peak areas integrated to determine total CO uptake.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  activity_designator: Characterization
+- id: coremeta4cat:CHAR_arp5-s69r_DRIFT
+  title:
+  - DRIFT CO-adsorption spectroscopy (2 catalysts, 2 temperatures)
+  description:
+  - 'Diffuse reflectance infrared Fourier transform spectroscopy of CO adsorbed on Pd3P/SiO2 and Pd/SiO2,
+    at 30 C and 100 C (4 spectra total). Atmosphere: 4000 ppm CO, balance Ar, 50 mL/min flow; Ar flush
+    between measurements. Sample: 50 mg, 100-200 micron sieve fraction, in a Harrick in-situ cell with
+    CaF2 windows.'
+  carried_out_by:
+  - id: coremeta4cat:DEV_arp5-s69r_DRIFT
+    title: VERTEX 70 FTIR spectrometer (Bruker)
+    description: VERTEX 70 FTIR spectrometer (Bruker) equipped with Praying Mantis diffuse reflection
+      optics (Harrick) and a liquid-nitrogen-cooled mercury cadmium telluride (MCT) detector.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+    description: See CatalyticReaction files for full detail.
+  - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+    description: See CatalyticReaction files for full detail.
+  realized_plan:
+    id: coremeta4cat:CHAR_arp5-s69r_DRIFT_method
+    title: CO-adsorption DRIFT method
+    description: Reflectance mode; scanner velocity 20 kHz; aperture 6 mm; MIR source, KBr beamsplitter.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  rdf_type:
+    id: CHMO:0000645
+    title: diffuse reflectance infrared Fourier transform spectroscopy
+  activity_designator: Characterization
+- id: coremeta4cat:CHAR_arp5-s69r_PXRD
+  title:
+  - Powder XRD phase analysis (4 catalysts)
+  description:
+  - Powder X-ray diffraction for phase identification of Pd/SiO2 (5 wt%, ARNE01/ICSD 85525=Pd3P phase
+    reference, ARNE02/ICSD 52251=Pd phase reference) and two further Pd3P/SiO2 loading variants (1 wt%
+    and 10 wt%), transmission geometry, 2theta 2-90 degrees, ~80 min total measurement per sample.
+  carried_out_by:
+  - id: coremeta4cat:DEV_arp5-s69r_PXRD
+    title: Stoe STADI-MP diffractometer
+    description: Stoe STADI-MP powder diffractometer, Cu X-ray source (lambda=1.54178 A), Ge monochromator.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+    description: See CatalyticReaction files for full detail.
+  - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+    description: See CatalyticReaction files for full detail.
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_1wt
+    title: Pd3P/SiO2 (1 wt% Pd)
+    description: Lower-loading Pd3P/SiO2 variant, PXRD-only sample.
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_10wt
+    title: Pd3P/SiO2 (10 wt% Pd)
+    description: Higher-loading Pd3P/SiO2 variant, PXRD-only sample.
+  realized_plan:
+    id: coremeta4cat:CHAR_arp5-s69r_PXRD_method
+    title: Powder XRD measurement method
+    description: Transmission geometry, air atmosphere, ambient temperature; software INSTPAR.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  rdf_type:
+    id: CHMO:0000158
+    title: powder X-ray diffraction
+  activity_designator: Characterization
+- id: coremeta4cat:CHAR_arp5-s69r_STEM
+  title:
+  - STEM/TEM imaging and EDX mapping (3 catalyst samples)
+  description:
+  - 'Transmission electron microscopy (HRTEM), scanning TEM (HAADF-STEM), and STEM-EDX elemental mapping
+    of Pd3P/SiO2 (ARNE01), Pd/SiO2 (ARNE02), and a recycled/spent Pd3P/SiO2 sample recovered after catalytic
+    testing (ARNE03), for particle size distribution, chemical composition, and crystal structure. Note:
+    STEM-Meta-2.txt documents the method in detail but no image/data files for this technique are included
+    in the deposited dataset.'
+  carried_out_by:
+  - id: coremeta4cat:DEV_arp5-s69r_STEM
+    title: FEI Osiris ChemiSTEM
+    description: FEI/Thermo Fisher Osiris ChemiSTEM, combined TEM and STEM with ChemiSTEM EDX detector,
+      Schottky field emission gun, 200 kV high tension, magnification 160-800 kx.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+    description: See CatalyticReaction files for full detail.
+  - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+    description: See CatalyticReaction files for full detail.
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_recycled
+    title: Pd3P/SiO2 (5 wt% Pd, recycled, ARNE03)
+    description: Spent Pd3P/SiO2 catalyst recovered after catalytic testing, examined by STEM for post-reaction
+      stability.
+  realized_plan:
+    id: coremeta4cat:CHAR_arp5-s69r_STEM_method
+    title: STEM/TEM imaging and EDX mapping method
+    description: HRTEM (Digital Micrograph/Gatan) and HAADF-STEM/STEM-EDXS (TEM Imaging and Microscopy/FEI,
+      Esprit/Bruker); Cliff-Lorimer quantification for EDXS.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  rdf_type:
+    id: VOC4CAT:0000078
+    title: transmission electron microscopy
+  activity_designator: Characterization
+- id: coremeta4cat:CHAR_arp5-s69r_XPS
+  title:
+  - X-ray photoelectron spectroscopy (2 catalysts, Pd 3d and P 2p)
+  description:
+  - XPS binding energy scans of the Pd 3d core level for Pd/SiO2 and Pd3P/SiO2, and the P 2p core level
+    for Pd3P/SiO2, to compare Pd electronic structure/oxidation state between the phosphide and the unmodified
+    reference catalyst.
+  carried_out_by:
+  - id: coremeta4cat:DEV_arp5-s69r_XPS
+    title: XPS spectrometer
+    description: Instrument model not specified in the source dataset files.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+    description: See CatalyticReaction files for full detail.
+  - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+    description: See CatalyticReaction files for full detail.
+  realized_plan:
+    id: coremeta4cat:CHAR_arp5-s69r_XPS_method
+    title: XPS core-level measurement method
+    description: Pd 3d scans for both catalysts; P 2p scan additionally for Pd3P/SiO2.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  rdf_type:
+    id: CHMO:0000404
+    title: X-ray photoelectron spectroscopy
+  activity_designator: Characterization
+is_about_activity:
+- id: coremeta4cat:REAC_arp5-s69r_Aminocarbonylation
+  reaction_name:
+  - Pd-catalyzed aminocarbonylation of iodobenzene
+  title:
+  - Aminocarbonylation of iodobenzene over Pd3P/SiO2 (3 runs)
+  description:
+  - Pd-catalyzed aminocarbonylation of iodobenzene with aniline as the nucleophile (in toluene, triethylamine
+    base) to form benzanilide, over Pd3P/SiO2. 3 runs at 100, 120, and 140 C (5 h, CO 10 bar); yield/conversion
+    increased with temperature from 10% to 78%.
+  rdf_type:
+    id: VOC4CAT:0000247
+    title: carbonylation
+  catalyst_type:
+  - heterogeneous_catalysis
+  catalyst_form:
+  - supported
+  used_catalyst:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, internal code ARNE01)
+    description: Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt% Pd, 0.5 mol% metal
+      loading.
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 5.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: Pd loading (Overview Reaction Description-2.txt)
+    - value: 0.01
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: Catalyst mass used per batch test
+  used_reactant:
+  - id: coremeta4cat:REAC_arp5-s69r_CO
+    title: carbon monoxide
+    rdf_type:
+      id: CHEBI:17245
+      title: carbon monoxide
+  - id: coremeta4cat:REAC_arp5-s69r_Amino_iodobenzene
+    title: iodobenzene
+  - id: coremeta4cat:REAC_arp5-s69r_Amino_aniline
+    title: aniline
+  used_reactor:
+  - id: coremeta4cat:REAC_arp5-s69r_reactor
+    title: Parr 5500 series compact reactor
+    description: Batch autoclave, cylindrical stainless steel reaction chamber (25 mL, 25.4 x 50.8 mm
+      ID), overhead stirrer at 1000 rpm, electric heating.
+  reactor_temperature_range:
+  - min_value: 373.15
+    max_value: 413.15
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: 100-140 C across the 3 runs
+  experiment_pressure:
+  - value: 10.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    description: Initial CO pressure, constant across the 3 runs
+  product_identification_method:
+  - id: coremeta4cat:REAC_arp5-s69r_Amino_product_id
+    title: GC-MS product quantification
+    description: Gas chromatography-mass spectrometry with n-decane internal standard.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+- id: coremeta4cat:REAC_arp5-s69r_Carbonylation
+  reaction_name:
+  - Pd-catalyzed alkoxycarbonylation of aryl iodides
+  title:
+  - Alkoxycarbonylation of aryl iodides over Pd3P/SiO2 and Pd/SiO2 (27 runs)
+  description:
+  - Pd-catalyzed alkoxycarbonylation (CO insertion + alcohol trapping) of aryl iodides to form aryl esters,
+    mainly iodobenzene + ethanol -> ethyl benzoate. 24 runs used Pd3P/SiO2 (ARNE01), exploring reaction
+    time (5 min - 3 h, series A), base screening (triethylamine, sodium acetate, potassium hydroxide,
+    potassium carbonate, or no base, series B), temperature-time kinetics grid (60-80 C x 0.5-1 h, series
+    k), and substrate/nucleophile scope (methanol, isopropanol, and aryl iodide substrates bromoiodobenzene/iodotoluene/iodoanisole,
+    series S1-S5). 3 further runs (series C) repeated the time-course on Pd/SiO2 (ARNE02, P-free reference)
+    for comparison. Conversion/yield ranged 7-100% across all 27 runs. Batch reactor, CO 6 bar, ethanol
+    solvent (except S1 methanol, S2 isopropanol).
+  rdf_type:
+    id: VOC4CAT:0000247
+    title: carbonylation
+  catalyst_type:
+  - heterogeneous_catalysis
+  catalyst_form:
+  - supported
+  used_catalyst:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, internal code ARNE01)
+    description: Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt% Pd, 0.5 mol% metal
+      loading.
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 5.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: Pd loading (Overview Reaction Description-2.txt)
+    - value: 0.01
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: Catalyst mass used per batch test
+  - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, internal code ARNE02)
+    description: Unmodified (phosphorus-free) palladium nanoparticles supported on silica, 5 wt% Pd, 0.5
+      mol% metal loading -- reference catalyst for comparison against the Pd3P phosphide.
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 5.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: Pd loading (Overview Reaction Description-2.txt)
+    - value: 0.01
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: Catalyst mass used per batch test
+  used_reactant:
+  - id: coremeta4cat:REAC_arp5-s69r_CO
+    title: carbon monoxide
+    rdf_type:
+      id: CHEBI:17245
+      title: carbon monoxide
+  - id: coremeta4cat:REAC_arp5-s69r_Carbonylation_substrate
+    title: aryl iodide substrate
+    description: Iodobenzene in most runs; bromoiodobenzene (S3), iodotoluene (S4), and iodoanisole (S5)
+      in the substrate-scope runs.
+  - id: coremeta4cat:REAC_arp5-s69r_Carbonylation_alcohol
+    title: alcohol nucleophile
+    description: Ethanol in most runs (also the reaction solvent); methanol (S1) and isopropanol (S2)
+      in the nucleophile-scope runs.
+  - id: coremeta4cat:REAC_arp5-s69r_Carbonylation_base
+    title: base
+    description: Triethylamine in most runs; sodium acetate, potassium hydroxide, potassium carbonate,
+      or no base in the base-screening runs (series B).
+  used_reactor:
+  - id: coremeta4cat:REAC_arp5-s69r_reactor
+    title: Parr 5500 series compact reactor
+    description: Batch autoclave, cylindrical stainless steel reaction chamber (25 mL, 25.4 x 50.8 mm
+      ID), overhead stirrer at 1000 rpm, electric heating.
+  reactor_temperature_range:
+  - min_value: 333.15
+    max_value: 373.15
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: 60-100 C across the 27 runs
+  experiment_pressure:
+  - value: 6.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    description: Initial CO pressure, constant across all 27 runs
+  product_identification_method:
+  - id: coremeta4cat:REAC_arp5-s69r_Carbonylation_product_id
+    title: GC-MS product quantification
+    description: Gas chromatography-mass spectrometry with n-decane internal standard; conversion/yield/selectivity
+      computed from GC-MS peak areas.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+- id: coremeta4cat:REAC_arp5-s69r_Phenoxycarbonylation
+  reaction_name:
+  - Pd-catalyzed phenoxycarbonylation of iodobenzene
+  title:
+  - Phenoxycarbonylation of iodobenzene over Pd3P/SiO2 (1 run)
+  description:
+  - 'Pd-catalyzed phenoxycarbonylation of iodobenzene with phenol as the nucleophile (in toluene, triethylamine
+    base) to form phenyl benzoate, over Pd3P/SiO2. Single run: 100 C, 7 h, CO 6 bar, yield/conversion
+    30%.'
+  rdf_type:
+    id: VOC4CAT:0000247
+    title: carbonylation
+  catalyst_type:
+  - heterogeneous_catalysis
+  catalyst_form:
+  - supported
+  used_catalyst:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, internal code ARNE01)
+    description: Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt% Pd, 0.5 mol% metal
+      loading.
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 5.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: Pd loading (Overview Reaction Description-2.txt)
+    - value: 0.01
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: Catalyst mass used per batch test
+  used_reactant:
+  - id: coremeta4cat:REAC_arp5-s69r_CO
+    title: carbon monoxide
+    rdf_type:
+      id: CHEBI:17245
+      title: carbon monoxide
+  - id: coremeta4cat:REAC_arp5-s69r_Phenoxy_iodobenzene
+    title: iodobenzene
+  - id: coremeta4cat:REAC_arp5-s69r_Phenoxy_phenol
+    title: phenol
+  used_reactor:
+  - id: coremeta4cat:REAC_arp5-s69r_reactor
+    title: Parr 5500 series compact reactor
+    description: Batch autoclave, cylindrical stainless steel reaction chamber (25 mL, 25.4 x 50.8 mm
+      ID), overhead stirrer at 1000 rpm, electric heating.
+  reactor_temperature_range:
+  - min_value: 373.15
+    max_value: 373.15
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: 100 C, single run
+  experiment_pressure:
+  - value: 6.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    description: Initial CO pressure
+  product_identification_method:
+  - id: coremeta4cat:REAC_arp5-s69r_Phenoxy_product_id
+    title: GC-MS product quantification
+    description: Gas chromatography-mass spectrometry with n-decane internal standard.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+is_about_entity:
+- id: coremeta4cat:CAT_arp5-s69r_all
+  title: Pd3P/SiO2 and Pd/SiO2 catalyst samples
+  description: Palladium phosphide (Pd3P) and unmodified palladium catalysts supported on silica (5 wt%
+    Pd, plus 1 and 10 wt% Pd3P loading variants characterized by PXRD only, and a recycled/spent Pd3P/SiO2
+    sample characterized by STEM only). See used_catalyst under is_about_activity and evaluated_entity
+    under was_generated_by above for per-sample detail.

@@ -286,6 +286,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../working-with-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../overview/" class="md-nav__link">
         
   
@@ -404,10 +431,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -425,8 +452,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -435,6 +462,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -877,20 +932,27 @@ Reusable).</p>
 </li>
 <li>
 <p>The four CoreMeta4Cat pillars are modelled as DCAT-AP-PLUS Activity subclasses,
-  following the same pattern as NMRSpectroscopy (is_a: DataGeneratingActivity):</p>
-<p>Synthesis      --&gt; is_a: DataGeneratingActivity
+  following the same pattern as NMRSpectroscopy (is_a: DataGeneratingActivity).
+  Synthesis, Characterization, and Simulation specialize CatalysisDataGeneratingActivity
+  (is_a: DataGeneratingActivity) rather than DataGeneratingActivity directly -- this
+  coremeta4cat-owned intermediate adds a type designator (activity_designator) so that
+  was_generated_by (typed CatalysisDataGeneratingActivity) can hold any of the three and
+  still resolve to the right concrete Python class when loaded. Likewise, is_about_activity
+  is typed CatalyticReaction directly (not the wider EvaluatedActivity) so it needs no
+  designator at all:</p>
+<p>Synthesis      --&gt; is_a: CatalysisDataGeneratingActivity
                  Produces a catalyst (MaterialSample) as had_output_entity.
                  The PreparationMethod (protocol) is linked via realized_plan.</p>
-<p>Characterization --&gt; is_a: DataGeneratingActivity
+<p>Characterization --&gt; is_a: CatalysisDataGeneratingActivity
                    Produces measurement data about a catalyst or reaction.
                    The catalyst/sample is the evaluated_entity.
                    The CharacterizationTechnique is linked via realized_plan.</p>
-<p>Reaction       --&gt; is_a: EvaluatedActivity
+<p>Reaction       --&gt; is_a: CatalyticReaction (via ChemicalReaction, EvaluatedActivity)
                  The catalytic process being studied, NOT a data-generating
                  activity itself. Characterization datasets are about this.
                  Analogous to the reaction being observed in a reaction
                  monitoring dataset.</p>
-<p>Simulation     --&gt; is_a: DataGeneratingActivity
+<p>Simulation     --&gt; is_a: CatalysisDataGeneratingActivity
                  Generates computational data about a catalyst or reaction.
                  The SimulationMethod (protocol) is linked via realized_plan.
                  The simulation software is carried_out_by: Software.</p>
@@ -943,8 +1005,20 @@ slots and enums) and the four subprofile modules.</p>
 <td>An Activity (process) that has the objective to produce information (in form of a dataset) about another Activity or Entity.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Characterization/">Characterization</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalysisDataGeneratingActivity/">CatalysisDataGeneratingActivity</a></td>
+<td>A CoreMeta4Cat specialization of DCAT-AP-PLUS's DataGeneratingActivity<br>that adds a type designator (activity_designator). Synthesis,<br>Characterization, and Simulation all specialize this class instead of<br>DataGeneratingActivity directly, so that when one of them is nested<br>inside CatalysisDataset.was_generated_by, the LinkML Python loader can<br>tell which concrete subclass a given entry is meant to be and keep its<br>subclass-specific fields (e.g. Characterization.realized_plan) rather<br>than falling back to DataGeneratingActivity's own generic slot<br>definitions.<br><br>activity_designator is filled in automatically by LinkML when a class<br>is instantiated directly (e.g. loading a standalone Synthesis-NNN.yaml<br>file) -- it does not need to be set by hand there. It only needs to be<br>set explicitly in the source data when a Synthesis/Characterization/<br>Simulation instance is nested inside another object's was_generated_by<br>list (e.g. in a combined CatalysisDataset file), so the loader knows<br>which of the three to construct.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Characterization/">Characterization</a></td>
 <td>A DataGeneratingActivity in which a catalyst sample or catalytic material<br>is characterized using an analytical technique.<br><br>The catalyst sample being characterized is linked via evaluated_entity.<br>The analytical protocol is linked via realized_plan using a<br>CharacterizationTechnique instance. The instrument used is linked via<br>carried_out_by as a Device.<br><br>The specific technique type is expressed via rdf_type using an ontology<br>term (e.g. CHMO:0000158 for powder XRD, CHMO:0000404 for XPS),<br>following DCAT-AP-PLUS Pattern 3 — exactly as NMRSpectroscopy uses<br>rdf_type: CHMO:0000613.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Simulation/">Simulation</a></td>
+<td>A DataGeneratingActivity in which a catalyst, catalytic material, or<br>catalytic process is modelled computationally.<br><br>The simulation software is linked via carried_out_by as a Software agent.<br>The simulation method (protocol) is linked via realized_plan using a<br>SimulationMethod instance. The catalyst model or reaction being simulated<br>is linked via evaluated_entity or evaluated_activity.<br><br>The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,<br>NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Synthesis/">Synthesis</a></td>
+<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DataAnalysis/">DataAnalysis</a></td>
@@ -955,28 +1029,20 @@ slots and enums) and the four subprofile modules.</p>
 <td>A DataGeneratingActivity that produces data about a ChemicalReaction, such as reaction monitoring, experimental documentation, or a combined recording-and-evaluation workflow. This is a coarse-grained convenience shape that does not distinguish between raw experimental recording and subsequent data evaluation. Domain-specific sub-profiles that need this distinction should define their own DataGeneratingActivity subclasses and use the DCAT-AP+ DataAnalysis chain to separate raw data from derived results.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Simulation/">Simulation</a></td>
-<td>A DataGeneratingActivity in which a catalyst, catalytic material, or<br>catalytic process is modelled computationally.<br><br>The simulation software is linked via carried_out_by as a Software agent.<br>The simulation method (protocol) is linked via realized_plan using a<br>SimulationMethod instance. The catalyst model or reaction being simulated<br>is linked via evaluated_entity or evaluated_activity.<br><br>The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,<br>NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.</td>
-</tr>
-<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SubstanceSampleCharacterization/">SubstanceSampleCharacterization</a></td>
 <td>A DataGeneratingActivity that produces data about a SubstanceSample, such as a spectroscopic measurement, a physical property determination, or a combined measurement-and-analysis workflow. This is a coarse-grained convenience shape that does not distinguish between raw data acquisition and subsequent data processing or analysis. Domain-specific sub-profiles that need this distinction should define their own DataGeneratingActivity subclasses and use the DCAT-AP+ DataAnalysis chain to separate raw measurement from derived results.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Synthesis/">Synthesis</a></td>
-<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/EvaluatedActivity/">EvaluatedActivity</a></td>
 <td>An activity or process that is being evaluated in a DataGeneratingActivity.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalyticReaction/">CatalyticReaction</a></td>
-<td>An EvaluatedActivity representing the catalytic reaction being studied.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via carried_out_by as a Reactor (Device).<br>Reactants are linked via had_input_entity. The type of catalytic reaction<br>(e.g. ammonia synthesis, CO oxidation) is expressed via rdf_type using a<br>voc4cat or ChemO term.</td>
-</tr>
-<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ChemicalReaction/">ChemicalReaction</a></td>
 <td>A process that leads to the transformation of one set of chemical substances to another and that is the subject matter of a DataGeneratingActivity.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalyticReaction/">CatalyticReaction</a></td>
+<td>A ChemicalReaction (chemdcat-ap) specialization representing the<br>catalytic reaction being studied. Inherits the generic reaction slots<br>(starting materials, reactants, products, catalyst, solvent, reactor,<br>temperature, pressure, yield, reaction steps) from ChemicalReaction and<br>adds catalysis-specific operating-condition slots.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via the inherited used_reactor slot (is_a:<br>carried_out_by), narrowed here to require a ChemicalReactor instance<br>rather than touching the generic carried_out_by relation directly.<br>Reactants are linked via the inherited used_reactant slot (range:<br>Reagent) -- CatalyticReaction does not declare its own reactant slot.<br>The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)<br>is expressed via rdf_type using a voc4cat or ChemO term.</td>
 </tr>
 <tr>
 <td><a href="../classes/Agent/">Agent</a></td>
@@ -995,44 +1061,44 @@ slots and enums) and the four subprofile modules.</p>
 <td>A material instrument that is designed to perform a function primarily by means of its mechanical or electrical nature.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ChemicalReactor/">ChemicalReactor</a></td>
-<td>Abstract Device subclass representing a catalytic reactor vessel.<br><br>Reactor is more specific than the general Device (AgenticEntity): it restricts<br>carried_out_by on Reaction to dedicated reactor equipment. This semantic<br>distinction separates analytical instruments (Device) from reaction vessels<br>(Reactor) in the carried_out_by relationship.<br><br>Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify<br>reactor geometry and operating mode.<br>Linked from Reaction via carried_out_by (restricted to range: Reactor).</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Reactor/">Reactor</a></td>
+<td>A reactor is a container for controlling a biological or chemical reaction or process.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Autoclave/">Autoclave</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ChemicalReactor/">ChemicalReactor</a></td>
+<td>Abstract Reactor (chemdcat-ap) subclass representing a catalytic reactor<br>vessel.<br><br>Reactor is more specific than the general Device (AgenticEntity): it restricts<br>the used_reactor relation (is_a: carried_out_by) on Reaction to dedicated<br>reactor equipment. This semantic distinction separates analytical<br>instruments (Device) from reaction vessels (Reactor). ChemicalReactor<br>further specializes chemdcat-ap's generic Reactor for catalysis use cases.<br><br>Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify<br>reactor geometry and operating mode.<br>Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Autoclave/">Autoclave</a></td>
 <td>Autoclave reactor — a sealed pressure vessel for batch reactions at<br>elevated temperature and/or pressure.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CSTR/">CSTR</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CSTR/">CSTR</a></td>
 <td>Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow<br>reactor operating at steady state.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElectrochemicalReactor/">ElectrochemicalReactor</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElectrochemicalReactor/">ElectrochemicalReactor</a></td>
 <td>Electrochemical reactor used in electrocatalytic experiments, including<br>H-cells, flow cells, and membrane electrode assemblies.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/FixedBedReactor/">FixedBedReactor</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/FixedBedReactor/">FixedBedReactor</a></td>
 <td>Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.<br>The most common reactor type in heterogeneous catalysis testing.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/FluidizedBedReactor/">FluidizedBedReactor</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/FluidizedBedReactor/">FluidizedBedReactor</a></td>
 <td>Fluidized bed reactor — a reactor in which the catalyst particles are<br>suspended in an upward-flowing gas or liquid stream.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Microreactor/">Microreactor</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Microreactor/">Microreactor</a></td>
 <td>Microreactor — a miniaturised flow reactor with characteristic dimensions<br>in the sub-millimetre range, enabling precise thermal control and rapid<br>screening.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PlugFlowReactor/">PlugFlowReactor</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PlugFlowReactor/">PlugFlowReactor</a></td>
 <td>Plug flow reactor (PFR) — a tubular reactor in which reactant composition<br>varies along the axis with no axial mixing.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SlurryReactor/">SlurryReactor</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SlurryReactor/">SlurryReactor</a></td>
 <td>Slurry reactor — a three-phase reactor in which catalyst particles are<br>suspended in a liquid phase through which gas is bubbled.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Reactor/">Reactor</a></td>
-<td>A reactor is a container for controlling a biological or chemical reaction or process.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DissolvingSubstance/">DissolvingSubstance</a></td>
@@ -1049,10 +1115,6 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../classes/CalcinationMixin/">CalcinationMixin</a></td>
 <td>Mixin providing calcination step parameters. Used by preparation methods<br>that include a thermal calcination step<br>(Impregnation, CoPrecipitation, DepositionPrecipitation,<br>SonochemicalSynthesis, ExsolutionSynthesis).</td>
-</tr>
-<tr>
-<td><a href="../classes/Carbonylation/">Carbonylation</a></td>
-<td>A chemical reaction in which a carbonyl group (C=O) is introduced into a molecule, typically through the addition of carbon monoxide (CO) to a substrate.</td>
 </tr>
 <tr>
 <td><a href="../classes/Catalogue/">Catalogue</a></td>
@@ -1223,211 +1285,207 @@ slots and enums) and the four subprofile modules.</p>
 <td>A piece of information that specifies how an activity has to be carried out by its agents including what kind of steps have to be taken and what kind of parameters have to be met/set.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CharacterizationTechnique/">CharacterizationTechnique</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalysisPlan/">CatalysisPlan</a></td>
+<td>A CoreMeta4Cat specialization of DCAT-AP-PLUS's Plan that adds a<br>persistent identifier (id). Plan itself (external, dcat-ap-plus) only<br>lists title/description -- every CoreMeta4Cat protocol, technique, and<br>method class needs to be independently citable and cross-referenceable<br>(e.g. linked to from multiple Reaction/Characterization instances that<br>reuse the same protocol), so id is added once here rather than<br>repeated on each of PreparationMethod, CharacterizationTechnique,<br>SimulationMethod, and ProductIdentificationMethod individually.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CharacterizationTechnique/">CharacterizationTechnique</a></td>
 <td>An abstract Plan describing the analytical protocol used to characterize<br>a catalyst. Concrete subclasses specify technique-specific parameters.<br>Linked from Characterization via realized_plan.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/BET/">BET</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/BET/">BET</a></td>
 <td>Brunauer-Emmett-Teller analysis for specific surface area and pore size distribution.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ConductivityMeasurement/">ConductivityMeasurement</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ConductivityMeasurement/">ConductivityMeasurement</a></td>
 <td>Electrical conductivity measurement for ionic and electronic transport characterization.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CyclicVoltammetry/">CyclicVoltammetry</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CyclicVoltammetry/">CyclicVoltammetry</a></td>
 <td>Cyclic voltammetry for electrochemical activity, redox potential, and capacitance characterization.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DRIFTS/">DRIFTS</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DRIFTS/">DRIFTS</a></td>
 <td>Diffuse reflectance infrared Fourier transform spectroscopy for in-situ<br>surface species identification under reactive gas conditions.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DynamicLightScattering/">DynamicLightScattering</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DynamicLightScattering/">DynamicLightScattering</a></td>
 <td>Dynamic light scattering for hydrodynamic particle size distribution in suspension.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/EDX/">EDX</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/EDX/">EDX</a></td>
 <td>Energy-dispersive X-ray spectroscopy for elemental mapping and quantification.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElectroSprayIonizationMassSpectrometry/">ElectroSprayIonizationMassSpectrometry</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElectroSprayIonizationMassSpectrometry/">ElectroSprayIonizationMassSpectrometry</a></td>
 <td>Electrospray ionisation mass spectrometry for molecular mass and identity determination.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElementalAnalysis/">ElementalAnalysis</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElementalAnalysis/">ElementalAnalysis</a></td>
 <td>Combustion elemental analysis (CHNS/O) for carbon, hydrogen, nitrogen, sulfur content.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/GCMS/">GCMS</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/GCMS/">GCMS</a></td>
 <td>Gas chromatography-mass spectrometry for volatile compound identification and quantification.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/HighPerformanceLiquidChromatographyMassSpectrometry/">HighPerformanceLiquidChromatographyMassSpectrometry</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/HighPerformanceLiquidChromatographyMassSpectrometry/">HighPerformanceLiquidChromatographyMassSpectrometry</a></td>
 <td>High-performance liquid chromatography-mass spectrometry for compound identification and quantification.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ICPAES/">ICPAES</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ICPAES/">ICPAES</a></td>
 <td>Inductively coupled plasma atomic emission spectroscopy for bulk elemental composition.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/InfraredSpectroscopy/">InfraredSpectroscopy</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/InfraredSpectroscopy/">InfraredSpectroscopy</a></td>
 <td>Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/NMRSpectroscopy/">NMRSpectroscopy</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/NMRSpectroscopy/">NMRSpectroscopy</a></td>
 <td>Nuclear magnetic resonance spectroscopy for structure elucidation.<br>Note: for detailed liquid-state NMR minimum information, the dedicated<br>nmr_dcat_ap profile (MARGARITAS) should be used in combination with<br>this subprofile.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PhotoluminescenceLifetime/">PhotoluminescenceLifetime</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PhotoluminescenceLifetime/">PhotoluminescenceLifetime</a></td>
 <td>Time-resolved photoluminescence for charge carrier lifetime and recombination dynamics.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PhotoluminescenceSpectroscopy/">PhotoluminescenceSpectroscopy</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PhotoluminescenceSpectroscopy/">PhotoluminescenceSpectroscopy</a></td>
 <td>Photoluminescence spectroscopy for defect and charge carrier characterization.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PowderXRD/">PowderXRD</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PowderXRD/">PowderXRD</a></td>
 <td>Powder X-ray diffraction for phase identification and structural analysis.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/RamanSpectroscopy/">RamanSpectroscopy</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/RamanSpectroscopy/">RamanSpectroscopy</a></td>
 <td>Raman spectroscopy for vibrational and structural characterization.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ScanningElectronMicroscopy/">ScanningElectronMicroscopy</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ScanningElectronMicroscopy/">ScanningElectronMicroscopy</a></td>
 <td>SEM for surface morphology and particle size/shape imaging.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SingleCrystalXRD/">SingleCrystalXRD</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SingleCrystalXRD/">SingleCrystalXRD</a></td>
 <td>Single crystal X-ray diffraction for structure determination.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SizeExclusionChromatography/">SizeExclusionChromatography</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SizeExclusionChromatography/">SizeExclusionChromatography</a></td>
 <td>Size exclusion chromatography for molecular weight distribution determination.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Thermogravimetry/">Thermogravimetry</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Thermogravimetry/">Thermogravimetry</a></td>
 <td>Thermogravimetric analysis (TGA/DTG) for mass loss, decomposition, and oxidation state characterization.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/TPO/">TPO</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/TPO/">TPO</a></td>
 <td>Temperature-programmed oxidation for coke quantification and reoxidation characterization.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/TPR/">TPR</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/TPR/">TPR</a></td>
 <td>Temperature-programmed reduction for reducibility and metal-support interaction characterization.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/TransmissionElectronMicroscopy/">TransmissionElectronMicroscopy</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/TransmissionElectronMicroscopy/">TransmissionElectronMicroscopy</a></td>
 <td>TEM for atomic-resolution imaging and diffraction of catalyst particles.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/UVVisSpectroscopy/">UVVisSpectroscopy</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/UVVisSpectroscopy/">UVVisSpectroscopy</a></td>
 <td>UV-Vis spectroscopy for electronic transitions, band gap, and concentration determination.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/XPS/">XPS</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/XPS/">XPS</a></td>
 <td>X-ray photoelectron spectroscopy for surface elemental and chemical state analysis.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/XRayAbsorptionSpectroscopy/">XRayAbsorptionSpectroscopy</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/XRayAbsorptionSpectroscopy/">XRayAbsorptionSpectroscopy</a></td>
 <td>X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PreparationMethod/">PreparationMethod</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PreparationMethod/">PreparationMethod</a></td>
 <td>An abstract Plan describing the protocol used to prepare a catalyst.<br>Concrete subclasses (Impregnation, CoPrecipitation, …) specify the<br>method-specific parameters. Linked from Synthesis via realized_plan.<br><br>The specific preparation method type should additionally be expressed<br>via rdf_type on the Synthesis activity using a voc4cat term<br>(e.g. VOC4CAT:0007016 for preparation method).</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/AtomicLayerDeposition/">AtomicLayerDeposition</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/AtomicLayerDeposition/">AtomicLayerDeposition</a></td>
 <td>Catalyst preparation by atomic layer deposition (ALD): sequential<br>self-limiting surface reactions deposit a conformal thin film<br>of active phase onto a substrate.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CombustionSynthesis/">CombustionSynthesis</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CombustionSynthesis/">CombustionSynthesis</a></td>
 <td>Catalyst preparation by combustion of a fuel/oxidizer mixture,<br>producing metal oxide catalysts in a single rapid step.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CoPrecipitation/">CoPrecipitation</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CoPrecipitation/">CoPrecipitation</a></td>
 <td>Catalyst preparation by co-precipitation: precursor salts are<br>simultaneously precipitated from solution by a precipitating agent.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DepositionPrecipitation/">DepositionPrecipitation</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DepositionPrecipitation/">DepositionPrecipitation</a></td>
 <td>Catalyst preparation by deposition-precipitation: the active phase<br>is precipitated directly onto the support surface.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ExsolutionSynthesis/">ExsolutionSynthesis</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ExsolutionSynthesis/">ExsolutionSynthesis</a></td>
 <td>Catalyst preparation by exsolution: metal nanoparticles are grown on<br>a perovskite oxide surface by reduction/oxidation cycling.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/FlameSprayPyrolysis/">FlameSprayPyrolysis</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/FlameSprayPyrolysis/">FlameSprayPyrolysis</a></td>
 <td>Catalyst preparation by flame spray pyrolysis (FSP): a liquid precursor<br>solution is atomised and combusted in a flame to produce nanoparticles.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Impregnation/">Impregnation</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Impregnation/">Impregnation</a></td>
 <td>Catalyst preparation by impregnation: a solution of the active phase<br>precursor is brought into contact with the support material.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/MechanochemicalSynthesis/">MechanochemicalSynthesis</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/MechanochemicalSynthesis/">MechanochemicalSynthesis</a></td>
 <td>Catalyst preparation by mechanical milling or grinding, optionally<br>combined with thermal treatment.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/MicrowaveAssisted/">MicrowaveAssisted</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/MicrowaveAssisted/">MicrowaveAssisted</a></td>
 <td>Catalyst preparation using microwave irradiation to rapidly and<br>uniformly heat the reaction mixture.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/MolecularSynthesis/">MolecularSynthesis</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/MolecularSynthesis/">MolecularSynthesis</a></td>
 <td>Catalyst preparation by molecular (organometallic or coordination)<br>chemistry routes, including crystallisation and purification steps.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PlasmaAssisted/">PlasmaAssisted</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PlasmaAssisted/">PlasmaAssisted</a></td>
 <td>Catalyst preparation using plasma treatment to modify surface<br>properties or deposit active components.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SolGel/">SolGel</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SolGel/">SolGel</a></td>
 <td>Catalyst preparation by the sol-gel process: hydrolysis and condensation<br>of precursor molecules to form a colloidal network (gel).</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Solvothermal/">Solvothermal</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Solvothermal/">Solvothermal</a></td>
 <td>Catalyst preparation under elevated temperature and pressure in a<br>sealed vessel using a non-aqueous solvent.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SonochemicalSynthesis/">SonochemicalSynthesis</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SonochemicalSynthesis/">SonochemicalSynthesis</a></td>
 <td>Catalyst preparation using ultrasonic irradiation to drive chemical<br>reactions via acoustic cavitation.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Sublimation/">Sublimation</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Sublimation/">Sublimation</a></td>
 <td>Catalyst preparation by sublimation: a solid precursor is vaporised<br>and deposited onto a substrate without passing through a liquid phase.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ProductIdentificationMethod/">ProductIdentificationMethod</a></td>
-<td>Abstract Plan representing the method used to identify and quantify reaction<br>products. In practice, users should reference a concrete CharacterizationTechnique<br>subclass from coremeta4cat_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).<br><br>This abstract class is retained for backward compatibility with the original<br>CoreMeta4Cat monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that<br>it can participate in the realized_plan slot if needed.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ProductIdentificationMethod/">ProductIdentificationMethod</a></td>
+<td>Abstract Plan representing the method used to identify and quantify reaction<br>products. In practice, users should reference a concrete CharacterizationTechnique<br>subclass from coremeta4cat_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).<br><br>This abstract class is retained for backward compatibility with the original<br>CoreMeta4Cat monolith. It is a subclass of CatalysisPlan (which is itself a Plan,<br>prov:Plan / OBI:0000272) so that it can participate in the realized_plan slot,<br>and so it (and every other CoreMeta4Cat protocol/technique class) can carry a<br>persistent id.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/GasPhaseAnalysis/">GasPhaseAnalysis</a></td>
-<td>Analysis of the liquid sample from a catalytic test.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/LiquidPhaseAnalysis/">LiquidPhaseAnalysis</a></td>
-<td>Analysis of the liquid sample from a catalytic test.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SimulationMethod/">SimulationMethod</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SimulationMethod/">SimulationMethod</a></td>
 <td>Abstract Plan describing the computational method (protocol) used in a<br>Simulation. Concrete subclasses carry method-specific parameter slots.<br>Linked from Simulation via realized_plan.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DFT/">DFT</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DFT/">DFT</a></td>
 <td>Density functional theory — a quantum mechanical method for calculating<br>the electronic structure of atoms, molecules, and periodic solids.<br>The most widely used ab initio method in computational catalysis.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Microkinetics/">Microkinetics</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Microkinetics/">Microkinetics</a></td>
 <td>Microkinetic modelling — a mean-field kinetic approach that integrates<br>elementary reaction steps and their rate constants to predict catalytic<br>activity and selectivity under reaction conditions.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/MolecularDynamics/">MolecularDynamics</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/MolecularDynamics/">MolecularDynamics</a></td>
 <td>Molecular dynamics simulation — a method for computing the time evolution<br>of a system of interacting particles by integrating the equations of motion.<br>Used to study diffusion, reaction kinetics, and thermal properties.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/MonteCarlo/">MonteCarlo</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/MonteCarlo/">MonteCarlo</a></td>
 <td>Monte Carlo simulation — a stochastic method that samples configuration<br>space using random moves accepted or rejected according to a statistical<br>criterion (e.g. Metropolis). Used for adsorption isotherms, phase diagrams,<br>and lattice-based kinetics.</td>
 </tr>
 <tr>
@@ -1499,50 +1557,6 @@ slots and enums) and the four subprofile modules.</p>
 <td>Thermodynamic stability of a material or phase, characterised by formation<br>energy, convex hull distance, and competing phases. Used to screen catalyst<br>stability and predict synthesis feasibility.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalystType/">CatalystType</a></td>
-<td>Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).<br>For heterogeneous catalysts, use voc4cat terms where available.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/BioCatalyst/">BioCatalyst</a></td>
-<td>An enzyme or cell that catalyzes a biocatalytic reaction. Subclass of Catalyst (AgenticEntity). The physical form in which it is applied is described by an associated BiocatalystPreparation.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/BulkCatalyst/">BulkCatalyst</a></td>
-<td>A catalyst that consists mainly of the active ingredient or phase.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DepositedSampleCatalyst/">DepositedSampleCatalyst</a></td>
-<td>A thin film of the catalyst deposited on an appropriate for the application substrate.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElectroCatalyst/">ElectroCatalyst</a></td>
-<td>The characteristics of a material or substance that determine how it interacts or responds to a magnetic field.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/HeterogeneousCatalyst/">HeterogeneousCatalyst</a></td>
-<td>A substance that increases the rate of a chemical reaction that is in a different phase than the reagents.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/HomogeneousCatalyst/">HomogeneousCatalyst</a></td>
-<td>A substance that increses the rate of a chemical reaction that is in the same phase as the reagents.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PhotoCatalyst/">PhotoCatalyst</a></td>
-<td>A material that absorbs photons (light) of appropriate energy and initiates or accelerates a photochemical reaction, while it regenerates itself after each reaction cycle.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PowerderedCatalyst/">PowerderedCatalyst</a></td>
-<td>A catalyst introduced to the reaction chamber in the form of a powder.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SupportedCatalsyt/">SupportedCatalsyt</a></td>
-<td>A catalyst where the active material is usually the minority phase and fixed on a high surface area, relatively inert solid.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ThinFilmCatalyst/">ThinFilmCatalyst</a></td>
-<td>A catalyst introduced to the reaction chamber in the form of a thin film. To form a thin film, a (powdered) catalyst is deposited on a substrate (e.g., glass or metal) using an appropriate deposition technique.</td>
-</tr>
-<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/HeatingProcedure/">HeatingProcedure</a></td>
 <td>A qualitative descriptor of the thermal programme or heating procedure<br>applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").</td>
 </tr>
@@ -1565,54 +1579,6 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/OperationMode/">OperationMode</a></td>
 <td>A qualitative descriptor of the operation mode of an instrument or<br>process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ReactionType/">ReactionType</a></td>
-<td>A group of chemical reactions with common conditions or reactants, e.g. Oxidation, Hydrogenation, Reduction, Cracking.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CarbonCouplingReaction/">CarbonCouplingReaction</a></td>
-<td>A chemical reaction where a carbon-carbon bond is formed from two carbon-containing fragments.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Dehydrogenation/">Dehydrogenation</a></td>
-<td>A chemical reaction that involves the removal of two or more hydrogen atoms from a molecule.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/FischerTropschSynthesis/">FischerTropschSynthesis</a></td>
-<td>A catalytic chemical reaction in which a mixture of carbon monoxide (CO) and hydrogen (H2), is converted via a chain-growth mechanism into long-chain hydrocarbons (e.g., alkanes, alkenes or alcohols)—typically using iron or cobalt catalysts under moderate to high pressures and temperatures.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Hydrodeoxygenation/">Hydrodeoxygenation</a></td>
-<td>A catalytic process in which oxygen is removed from oxygenated organic compounds using hydrogen.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Hydrogenation/">Hydrogenation</a></td>
-<td>A chemical reaction of molecular hydrogen (H2) and another chemical species, typically facilitated by a catalyst.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CarbonDioxideHydrogenation/">CarbonDioxideHydrogenation</a></td>
-<td>The reaction of carbon dioxide (CO2) with molecular hydrogen (H2) to produce value-added hydrocarbons or alcohols.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Hydroxylation/">Hydroxylation</a></td>
-<td>The addition of a hydroxyl group (-OH) to a molecule, typically by replacing a hydrogen atom.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Oxidation/">Oxidation</a></td>
-<td>The loss of electrons or an increase in the oxidation state of a species.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CarbonMonoxideOxidation/">CarbonMonoxideOxidation</a></td>
-<td>The reaction in which carbon monoxide (CO) is converted to carbon dioxide (CO2) through interaction with an oxidizing agent, typically oxygen (O2).</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SelectiveOxidation/">SelectiveOxidation</a></td>
-<td>The targeted oxidation of a specific bond or functional group in a molecule leaving other sites unaffected, often directed by a catalyst.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/OxygenEvolutionReaction/">OxygenEvolutionReaction</a></td>
-<td>A chemical reaction of generating molecular oxygen in electrochemistry.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SamplePretreatment/">SamplePretreatment</a></td>
@@ -1639,12 +1605,12 @@ slots and enums) and the four subprofile modules.</p>
 <td>Rate of rotational motion, typically expressed in revolutions per minute.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Concentration/">Concentration</a></td>
-<td>A QuantitativeAttribute of a ChemicalSubstance that represents the amount of a constituent divided by the volume of the mixture.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Area/">Area</a></td>
+<td>A quantitative measure of surface area (e.g. active electrode area).</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Conversion/">Conversion</a></td>
-<td>A dimensionless physical quantity describing the fraction of a reactant that reacts in a chemical conversion. If a reactant is consumed completely its conversion is 1 (or 100 %).</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Concentration/">Concentration</a></td>
+<td>A QuantitativeAttribute of a ChemicalSubstance that represents the amount of a constituent divided by the volume of the mixture.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Density/">Density</a></td>
@@ -1653,6 +1619,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Duration/">Duration</a></td>
 <td>A quantitative measure of elapsed time (duration of a process step).</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElectricCurrent/">ElectricCurrent</a></td>
+<td>A quantitative measure of electric current (e.g. faradaic current in an electrochemical cell).</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElectricPotential/">ElectricPotential</a></td>
@@ -1705,18 +1675,6 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Pressure/">Pressure</a></td>
 <td></td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ReactorPerformanceMeasures/">ReactorPerformanceMeasures</a></td>
-<td>A measure to quantify how fast and selective a chemical converison occurs in a reactor. A chemical conversion may include multiples reactions.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Selectivity/">Selectivity</a></td>
-<td>A dimensionless physical quantity describing how effective a reactant is converted to the desired product in a chemical conversion. It is calculated as the ratio between the amount of the desired product and the amount of the desired product that could have been formed if all reactants were converted to the desired product. The selectivity is 1 (or 100 %) if no other than the desired product is formed.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SpaceTimeYield/">SpaceTimeYield</a></td>
-<td>A physical quantity that describes the amount of product produced per unit of time and unit of producing entity. The producing entity is for example the volume of a chemical reactor or in catalysis the mass or volume or moles of catalyst. Example unit: kg{product} / (hour * cubicmeter{catalyst})</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Temperature/">Temperature</a></td>
@@ -1906,12 +1864,28 @@ slots and enums) and the four subprofile modules.</p>
 <td>Activation energy for each elementary step in the reaction mechanism.</td>
 </tr>
 <tr>
+<td><a href="../slots/activity_designator/">activity_designator</a></td>
+<td>Internal type designator for CatalysisDataGeneratingActivity subclasses<br>(Synthesis, Characterization, Simulation). Only needs to be set by hand<br>when nesting one of these inside another object's was_generated_by list<br>(e.g. in a combined CatalysisDataset file) -- LinkML fills it in<br>automatically when a class is instantiated directly.</td>
+</tr>
+<tr>
 <td><a href="../slots/adsorbate_gas/">adsorbate_gas</a></td>
 <td>Adsorbate gas used in BET surface area measurement (e.g. N2, Ar).</td>
 </tr>
 <tr>
 <td><a href="../slots/adsorption_gas/">adsorption_gas</a></td>
 <td>Probe gas adsorbed during in-situ DRIFTS measurement.</td>
+</tr>
+<tr>
+<td><a href="../slots/agitation_sparging_rate/">agitation_sparging_rate</a></td>
+<td>The volumetric flow rate at which gas is sparged/bubbled through the<br>liquid phase, or the rate of mechanical agitation used to maintain<br>the slurry suspension.</td>
+</tr>
+<tr>
+<td><a href="../slots/agitation_speed/">agitation_speed</a></td>
+<td>The rotational speed of the agitator/impeller, typically expressed<br>in revolutions per unit time.</td>
+</tr>
+<tr>
+<td><a href="../slots/agitation_type/">agitation_type</a></td>
+<td>The category of agitation used inside the autoclave (e.g. magnetic<br>stirring, mechanical overhead stirring, rocking, none).</td>
 </tr>
 <tr>
 <td><a href="../slots/algorithm/">algorithm</a></td>
@@ -1956,6 +1930,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/band_path/">band_path</a></td>
 <td>High-symmetry k-path through the Brillouin zone used to plot the<br>band structure (e.g. "Gamma-X-M-Gamma-R" for cubic, following SeeK-path convention).</td>
+</tr>
+<tr>
+<td><a href="../slots/batch_duration/">batch_duration</a></td>
+<td>The total duration of the batch reaction inside the autoclave, from<br>start to end of the reaction step.</td>
 </tr>
 <tr>
 <td><a href="../slots/bbox/">bbox</a></td>
@@ -2026,8 +2004,32 @@ slots and enums) and the four subprofile modules.</p>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
 <tr>
+<td><a href="../slots/catalyst_bed_diameter/">catalyst_bed_diameter</a></td>
+<td>The internal diameter of the packed catalyst bed section.</td>
+</tr>
+<tr>
+<td><a href="../slots/catalyst_bed_height/">catalyst_bed_height</a></td>
+<td>The axial length of the packed catalyst section in a reactor,<br>measured along the direction of flow.</td>
+</tr>
+<tr>
+<td><a href="../slots/catalyst_bed_volume/">catalyst_bed_volume</a></td>
+<td>The bulk volume taken up by the catalyst and potential diluent in a<br>fixed bed reactor.</td>
+</tr>
+<tr>
+<td><a href="../slots/catalyst_dilution_material/">catalyst_dilution_material</a></td>
+<td>An inert solid mixed with catalyst particles in a fixed bed to modify<br>bed properties (e.g. improve heat/mass transfer, dilute activity).</td>
+</tr>
+<tr>
+<td><a href="../slots/catalyst_form/">catalyst_form</a></td>
+<td>The physical form or presentation of the catalyst as loaded into the<br>reactor (e.g. thin film, bulk, powder, supported). A separate axis<br>from catalyst_type (the catalytic regime).</td>
+</tr>
+<tr>
 <td><a href="../slots/catalyst_measured_properties/">catalyst_measured_properties</a></td>
 <td>Key measured properties of the resulting catalyst<br>(e.g. BET surface area, sieve fraction, molar ratio).</td>
+</tr>
+<tr>
+<td><a href="../slots/catalyst_particle_size/">catalyst_particle_size</a></td>
+<td>A measure of the characteristic linear dimension of a particle in a<br>sample, typically reported as diameter or sieve fraction range.</td>
 </tr>
 <tr>
 <td><a href="../slots/catalyst_quantity/">catalyst_quantity</a></td>
@@ -2038,12 +2040,28 @@ slots and enums) and the four subprofile modules.</p>
 <td>Support material on which the active phase is deposited (e.g. Al2O3, SiO2).</td>
 </tr>
 <tr>
+<td><a href="../slots/catalyst_type/">catalyst_type</a></td>
+<td>The catalytic regime of the reaction (e.g. heterogeneous, homogeneous,<br>biocatalysis, electrocatalysis, photocatalysis). For the physical<br>form/presentation of the catalyst itself, use catalyst_form instead.<br><br>Deliberately kept <code>recommended</code> rather than <code>required</code> (see nfdi4cat/<br>CoreMeta4Cat#117): classification here can be genuinely disputed or<br>not yet covered by CatalysisResearchFieldEnum for a novel catalyst,<br>and forcing a value would push researchers into a premature or<br>contested classification rather than leaving the field unset until<br>consensus/vocabulary catches up. Open for discussion in a follow-up<br>issue if a different tradeoff is wanted. See also nfdi4cat/<br>CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +<br>catalyst_form) or PR #118's CatalystType class hierarchy should be<br>the long-term mechanism -- kept as two enums here because the<br>VOC4CAT terms show CatalystType conflates the regime axis<br>(Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form<br>axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical<br>VOC4CAT ids to catalyst_form's permissible values), which are<br>independent and often both apply to the same catalyst at once.</td>
+</tr>
+<tr>
+<td><a href="../slots/cell_operating_mode/">cell_operating_mode</a></td>
+<td>The functional mode of an electrochemical cell based on the direction<br>of energy conversion.</td>
+</tr>
+<tr>
 <td><a href="../slots/centroid/">centroid</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
 <tr>
 <td><a href="../slots/change_type/">change_type</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
+</tr>
+<tr>
+<td><a href="../slots/channel_dimensions/">channel_dimensions</a></td>
+<td>The characteristic dimensions (e.g. width, depth) of the microreactor<br>channels.</td>
+</tr>
+<tr>
+<td><a href="../slots/channel_material/">channel_material</a></td>
+<td>Material used for the construction of the microreactor channels.</td>
 </tr>
 <tr>
 <td><a href="../slots/charge_compensation/">charge_compensation</a></td>
@@ -2314,6 +2332,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>External standard used for quantification or calibration.</td>
 </tr>
 <tr>
+<td><a href="../slots/faradaic_current/">faradaic_current</a></td>
+<td>The current that is flowing through an electrochemical cell and is<br>causing (or is caused by) chemical reactions.</td>
+</tr>
+<tr>
 <td><a href="../slots/feed_composition_range/">feed_composition_range</a></td>
 <td>Feed composition range studied, provided as a QuantitativeRange.<br>Express concentration bounds in an appropriate unit (e.g. "mol/L", "%" for<br>vol% or mol%). For fixed-composition experiments use reactant.has_concentration.</td>
 </tr>
@@ -2366,6 +2388,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Type of flame used in FSP (e.g. methane/oxygen, H2/O2).</td>
 </tr>
 <tr>
+<td><a href="../slots/flow_direction/">flow_direction</a></td>
+<td>The direction of reactant flow through the tube (e.g. upflow,<br>downflow, horizontal).</td>
+</tr>
+<tr>
 <td><a href="../slots/force_constant_method/">force_constant_method</a></td>
 <td>Method used to compute the interatomic force constants (e.g. finite<br>differences / supercell method, DFPT/linear response).</td>
 </tr>
@@ -2404,6 +2430,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/gas_distributor_type/">gas_distributor_type</a></td>
 <td>Type or design of the gas distributor plate in a fluidized bed reactor.</td>
+</tr>
+<tr>
+<td><a href="../slots/gas_liquid_ratio/">gas_liquid_ratio</a></td>
+<td>The volumetric ratio of gas to liquid phase in the slurry reactor.</td>
 </tr>
 <tr>
 <td><a href="../slots/gb_excess_volume/">gb_excess_volume</a></td>
@@ -2463,7 +2493,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td><a href="../slots/has_active_area/">has_active_area</a></td>
-<td>In contrast to substrate area, the actual area of a sample or electrode which is active.</td>
+<td>In contrast to substrate area, the actual area of a sample or<br>electrode which is active.</td>
 </tr>
 <tr>
 <td><a href="../slots/has_aging_duration/">has_aging_duration</a></td>
@@ -2483,7 +2513,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td><a href="../slots/has_anode/">has_anode</a></td>
-<td>The electrode where oxidation occurs in an electrochemical cell. It is the positive electrode in an electrolytic cell, while it is the negative electrode in a galvanic cell.</td>
+<td>The electrode where oxidation occurs in an electrochemical cell. It is<br>the positive electrode in an electrolytic cell, while it is the<br>negative electrode in a galvanic cell.</td>
 </tr>
 <tr>
 <td><a href="../slots/has_atmosphere/">has_atmosphere</a></td>
@@ -2510,40 +2540,12 @@ slots and enums) and the four subprofile modules.</p>
 <td>Temperature range of the calcination programme (initial -&gt; final temperature),<br>provided as a QuantitativeRange. Unit: Degree Celsius.</td>
 </tr>
 <tr>
-<td><a href="../slots/has_catalyst_bed_height/">has_catalyst_bed_height</a></td>
-<td>The axial length of the packed catalyst section in a reactor, measured along the direction of flow between the defined bed boundaries.</td>
-</tr>
-<tr>
-<td><a href="../slots/has_catalyst_bed_volume/">has_catalyst_bed_volume</a></td>
-<td>The bulk volume taken up by the catalyst and potential diluent in a fixed bed reactor.</td>
-</tr>
-<tr>
-<td><a href="../slots/has_catalyst_dilution_material/">has_catalyst_dilution_material</a></td>
-<td>An inert solid mixed with catalyst particles in a fixed bed to modify bed properties (e.g., improve heat transfer, hydrodynamics or isothermicity) without participating in the reaction.</td>
-</tr>
-<tr>
-<td><a href="../slots/has_catalyst_particle_size/">has_catalyst_particle_size</a></td>
-<td>A measure of the characteristic linear dimension of a particle in a sample, typically reported as diameter, equivalent diameter, or another size metric determined by an appropriate measurement method.</td>
-</tr>
-<tr>
-<td><a href="../slots/has_catalyst_type/">has_catalyst_type</a></td>
-<td>Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).<br>For heterogeneous catalysts, use voc4cat terms where available.</td>
-</tr>
-<tr>
 <td><a href="../slots/has_cathode/">has_cathode</a></td>
-<td>The electrode where reduction occurs in an electrochemical cell. It is the negative electrode in an electrolytic cell, while it is the positive electrode in a galvanic cell.</td>
-</tr>
-<tr>
-<td><a href="../slots/has_cell_operating_mode/">has_cell_operating_mode</a></td>
-<td>The functional mode of an electrochemical cell based on the direction of energy conversion, specifiying wheter the system generates electrical energy from spontaneous reactions or consumes energy to drive non-spontaneous reactions.</td>
+<td>The electrode where reduction occurs in an electrochemical cell. It is<br>the negative electrode in an electrolytic cell, while it is the<br>positive electrode in a galvanic cell.</td>
 </tr>
 <tr>
 <td><a href="../slots/has_concentration/">has_concentration</a></td>
 <td>The slot to provide the Concentration of a ChemicalSubstance.</td>
-</tr>
-<tr>
-<td><a href="../slots/has_conversion/">has_conversion</a></td>
-<td>A dimensionless physical quantity describing the fraction of a reactant that reacts in a chemical conversion. If a reactant is consumed completely its conversion is 1 (or 100 %).</td>
 </tr>
 <tr>
 <td><a href="../slots/has_dataset/">has_dataset</a></td>
@@ -2584,10 +2586,6 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/has_experiment_duration/">has_experiment_duration</a></td>
 <td>Total duration of the experiment or measurement run.</td>
-</tr>
-<tr>
-<td><a href="../slots/has_faradaic_current/">has_faradaic_current</a></td>
-<td>The current that is flowing through an electrochemical cell and is causing (or is caused by) chemical reactions (charge transfer) occurring at the electrode surfaces.</td>
 </tr>
 <tr>
 <td><a href="../slots/has_flow_rate/">has_flow_rate</a></td>
@@ -2698,32 +2696,12 @@ slots and enums) and the four subprofile modules.</p>
 <td>A slot to specify a step (part) of a ChemicalReaction that is itself a ChemicalReaction.</td>
 </tr>
 <tr>
-<td><a href="../slots/has_reaction_type/">has_reaction_type</a></td>
-<td>A group of chemical reactions with common conditions or reactants, e.g. Oxidation, Hydrogenation, Reduction, Cracking.</td>
-</tr>
-<tr>
 <td><a href="../slots/has_sample_mass/">has_sample_mass</a></td>
 <td>Mass of the sample used in a process or measurement.</td>
 </tr>
 <tr>
 <td><a href="../slots/has_sample_pretreatment/">has_sample_pretreatment</a></td>
 <td>Pre-treatment applied to the sample before a process or measurement.</td>
-</tr>
-<tr>
-<td><a href="../slots/has_selectivity/">has_selectivity</a></td>
-<td>A dimensionless physical quantity describing how effective a reactant is converted to the desired product in a chemical conversion. It is calculated as the ratio between the amount of the desired product and the amount of the desired product that could have been formed if all reactants were converted to the desired product. The selectivity is 1 (or 100 %) if no other than the desired product is formed.</td>
-</tr>
-<tr>
-<td><a href="../slots/has_space_time_yield/">has_space_time_yield</a></td>
-<td>A physical quantity that describes the amount of product produced per unit of time and unit of producing entity. The producing entity is for example the volume of a chemical reactor or in catalysis the mass or volume or moles of catalyst. Example unit: kg{product} / (hour * cubicmeter{catalyst})</td>
-</tr>
-<tr>
-<td><a href="../slots/has_stirrer_diameter/">has_stirrer_diameter</a></td>
-<td>The effective diameter of the stirrer. Typically expressed as the distance across the rotating blade or mixing head from one tip to the opposite tip.</td>
-</tr>
-<tr>
-<td><a href="../slots/has_stirrer_type/">has_stirrer_type</a></td>
-<td>The category of mechanical or magnetic agitation device used to ensure homogeneous mixing within a reaction system or mixing vessel, such as a magnetic stirrer or an overhead mechanical (steel shaft) stirrer.</td>
 </tr>
 <tr>
 <td><a href="../slots/has_stirring_duration/">has_stirring_duration</a></td>
@@ -2800,6 +2778,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/imaginary_modes/">imaginary_modes</a></td>
 <td>Whether imaginary (soft) phonon modes are present in the dispersion.<br>Imaginary modes indicate dynamical instability of the structure.</td>
+</tr>
+<tr>
+<td><a href="../slots/impeller_type/">impeller_type</a></td>
+<td>The category of impeller used to agitate and suspend the slurry<br>(e.g. Rushton turbine, pitched blade, anchor).</td>
 </tr>
 <tr>
 <td><a href="../slots/impregnation_duration/">impregnation_duration</a></td>
@@ -2946,18 +2928,6 @@ slots and enums) and the four subprofile modules.</p>
 <td>Upper bound of the range.</td>
 </tr>
 <tr>
-<td><a href="../slots/maximum_oven_temperature/">maximum_oven_temperature</a></td>
-<td>Maximum oven temperature in GC temperature programme.</td>
-</tr>
-<tr>
-<td><a href="../slots/maximum_potential/">maximum_potential</a></td>
-<td>Upper potential limit in cyclic voltammetry.</td>
-</tr>
-<tr>
-<td><a href="../slots/maximum_wavelength/">maximum_wavelength</a></td>
-<td>Maximum wavelength of the UV-Vis scan range.</td>
-</tr>
-<tr>
 <td><a href="../slots/measurement_duration/">measurement_duration</a></td>
 <td>Duration of a single DLS acquisition.</td>
 </tr>
@@ -2988,18 +2958,6 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/min_value/">min_value</a></td>
 <td>Lower bound of the range.</td>
-</tr>
-<tr>
-<td><a href="../slots/minimum_oven_temperature/">minimum_oven_temperature</a></td>
-<td>Minimum oven temperature in GC temperature programme.</td>
-</tr>
-<tr>
-<td><a href="../slots/minimum_potential/">minimum_potential</a></td>
-<td>Lower potential limit in cyclic voltammetry.</td>
-</tr>
-<tr>
-<td><a href="../slots/minimum_wavelength/">minimum_wavelength</a></td>
-<td>Minimum wavelength of the UV-Vis scan range.</td>
 </tr>
 <tr>
 <td><a href="../slots/misorientation_angle/">misorientation_angle</a></td>
@@ -3054,6 +3012,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Number of atoms in the simulation cell or supercell.</td>
 </tr>
 <tr>
+<td><a href="../slots/number_of_channels/">number_of_channels</a></td>
+<td>The number of parallel channels in the microreactor.</td>
+</tr>
+<tr>
 <td><a href="../slots/number_of_cycles/">number_of_cycles</a></td>
 <td>Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).</td>
 </tr>
@@ -3070,6 +3032,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Total number of Monte Carlo moves or trial configurations generated.</td>
 </tr>
 <tr>
+<td><a href="../slots/number_of_tubes/">number_of_tubes</a></td>
+<td>The number of parallel tubes in the reactor.</td>
+</tr>
+<tr>
 <td><a href="../slots/occurred_in/">occurred_in</a></td>
 <td>The slot to specify the Surrounding in which an Activity took place.</td>
 </tr>
@@ -3084,6 +3050,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/other_identifier/">other_identifier</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
+</tr>
+<tr>
+<td><a href="../slots/oven_temperature_range/">oven_temperature_range</a></td>
+<td>Oven temperature range in the GC temperature programme, provided as a<br>QuantitativeRange with min_value and max_value (unit_code: "Cel").</td>
 </tr>
 <tr>
 <td><a href="../slots/oxidizer/">oxidizer</a></td>
@@ -3158,6 +3128,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Chemical agent used to induce precipitation (e.g. NaOH, NH3).</td>
 </tr>
 <tr>
+<td><a href="../slots/precipitating_concentration/">precipitating_concentration</a></td>
+<td>Concentration of the precipitating agent/solution used to induce precipitation.</td>
+</tr>
+<tr>
 <td><a href="../slots/precipitation_agent/">precipitation_agent</a></td>
 <td>Agent used to induce precipitation in molecular synthesis.</td>
 </tr>
@@ -3230,16 +3204,32 @@ slots and enums) and the four subprofile modules.</p>
 <td>The slot to specify the ontology class that is instantiated by an entity.</td>
 </tr>
 <tr>
-<td><a href="../slots/reactant/">reactant</a></td>
-<td>Reactant(s) or feed chemicals used in the reaction. Provide a ChemicalEntity<br>instance with inchikey, smiles, or iupac_name. For feed mixtures, list each<br>component as a separate ChemicalEntity and record composition via has_concentration.</td>
+<td><a href="../slots/reaction_chamber_material/">reaction_chamber_material</a></td>
+<td>Material used for the construction of the inner reaction chamber<br>(the surface in direct contact with the reaction mixture). Distinct<br>from vessel_material, the material of the outer pressure vessel/shell.</td>
+</tr>
+<tr>
+<td><a href="../slots/reaction_name/">reaction_name</a></td>
+<td>A name for the catalytic reaction which assigns the reactants and<br>(desired) products (e.g. "ammonia synthesis", "Fischer-Tropsch synthesis").</td>
 </tr>
 <tr>
 <td><a href="../slots/reaction_vessel/">reaction_vessel</a></td>
 <td>Type of reaction vessel used (e.g. Schlenk flask, round-bottom flask).</td>
 </tr>
 <tr>
+<td><a href="../slots/reactor_diameter/">reactor_diameter</a></td>
+<td>The internal diameter of the reactor vessel.</td>
+</tr>
+<tr>
+<td><a href="../slots/reactor_stirrer_type/">reactor_stirrer_type</a></td>
+<td>The category of mechanical or magnetic agitation device used in the<br>reactor, such as a magnetic stirrer or an overhead mechanical (steel<br>shaft) stirrer. Distinct from the synthesis-context stirrer_type slot<br>(coremeta4cat_synthesis_ap), since reactor and synthesis-vessel stirring<br>may use different equipment.</td>
+</tr>
+<tr>
 <td><a href="../slots/reactor_temperature_range/">reactor_temperature_range</a></td>
 <td>Temperature range in the reactor during the reaction, provided as a<br>QuantitativeRange with min_value and max_value (unit_code: "Cel").<br>For a single set-point, set min_value equal to max_value.</td>
+</tr>
+<tr>
+<td><a href="../slots/reactor_working_volume/">reactor_working_volume</a></td>
+<td>Volume of the reaction chamber, calculated by its dimensions. Volume<br>of pipes and valves connected to the reactor is not included.</td>
 </tr>
 <tr>
 <td><a href="../slots/realized_plan/">realized_plan</a></td>
@@ -3282,6 +3272,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
 <tr>
+<td><a href="../slots/residence_time/">residence_time</a></td>
+<td>The average time a unit of fluid spends inside the reactor before<br>exiting.</td>
+</tr>
+<tr>
 <td><a href="../slots/resolution/">resolution</a></td>
 <td>Resolution of a measurement or detector.</td>
 </tr>
@@ -3316,6 +3310,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/sampling_interval/">sampling_interval</a></td>
 <td>Interval between successive MC snapshots used for property averaging.</td>
+</tr>
+<tr>
+<td><a href="../slots/scan_potential_range/">scan_potential_range</a></td>
+<td>Potential window scanned in cyclic voltammetry, provided as a<br>QuantitativeRange with min_value and max_value (unit_code: "V").</td>
 </tr>
 <tr>
 <td><a href="../slots/scan_rate/">scan_rate</a></td>
@@ -3466,8 +3464,16 @@ slots and enums) and the four subprofile modules.</p>
 <td>Potential step size in cyclic voltammetry.</td>
 </tr>
 <tr>
+<td><a href="../slots/stirrer_diameter/">stirrer_diameter</a></td>
+<td>The effective diameter of the stirrer. Typically expressed as the<br>distance across the rotating blade or mixing head from one tip to<br>the opposite tip.</td>
+</tr>
+<tr>
 <td><a href="../slots/stirrer_type/">stirrer_type</a></td>
 <td>Type of stirrer used (e.g. magnetic, mechanical, none).</td>
+</tr>
+<tr>
+<td><a href="../slots/stirring_rate/">stirring_rate</a></td>
+<td>The rate at which the stirrer rotates, typically expressed in<br>revolutions per unit time (e.g. revolutions per minute).</td>
 </tr>
 <tr>
 <td><a href="../slots/storage_conditions/">storage_conditions</a></td>
@@ -3558,6 +3564,18 @@ slots and enums) and the four subprofile modules.</p>
 <td>Trace ion detection setting or threshold.</td>
 </tr>
 <tr>
+<td><a href="../slots/tube_internal_diameter/">tube_internal_diameter</a></td>
+<td>The internal diameter of the tubular reaction chamber.</td>
+</tr>
+<tr>
+<td><a href="../slots/tube_length/">tube_length</a></td>
+<td>The length of the tubular reaction chamber.</td>
+</tr>
+<tr>
+<td><a href="../slots/tube_material/">tube_material</a></td>
+<td>Material used for the construction of the reactor tube(s).</td>
+</tr>
+<tr>
 <td><a href="../slots/type/">type</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
@@ -3602,12 +3620,24 @@ slots and enums) and the four subprofile modules.</p>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
 <tr>
+<td><a href="../slots/vessel_internal_volume/">vessel_internal_volume</a></td>
+<td>The internal (working) volume of the autoclave vessel.</td>
+</tr>
+<tr>
+<td><a href="../slots/vessel_material/">vessel_material</a></td>
+<td>Material used for the construction of the outer autoclave vessel/<br>pressure shell. Distinct from reaction_chamber_material, the material<br>of the inner reaction chamber lining.</td>
+</tr>
+<tr>
 <td><a href="../slots/vessel_volume/">vessel_volume</a></td>
 <td>Volume of the milling vessel.</td>
 </tr>
 <tr>
 <td><a href="../slots/was_generated_by/">was_generated_by</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
+</tr>
+<tr>
+<td><a href="../slots/wavelength_range/">wavelength_range</a></td>
+<td>Wavelength range of the UV-Vis scan, provided as a QuantitativeRange<br>with min_value and max_value (unit_code: "nm").</td>
 </tr>
 <tr>
 <td><a href="../slots/working_electrode/">working_electrode</a></td>
@@ -3635,6 +3665,14 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../enums/CatalysisResearchFieldEnum/">CatalysisResearchFieldEnum</a></td>
 <td>Enumeration of catalysis research fields.<br>Intended for use via rdf_type on a dcat:Dataset (via ClassifierMixin)<br>to classify which field of catalysis the dataset belongs to,<br>following DCAT-AP-PLUS Pattern 3 (Flexible classification).</td>
+</tr>
+<tr>
+<td><a href="../enums/CatalystFormEnum/">CatalystFormEnum</a></td>
+<td>Enumeration of the physical form/presentation of a catalyst as loaded<br>into a reactor -- a separate axis from CatalysisResearchFieldEnum<br>(which describes the catalytic regime, e.g. heterogeneous/homogeneous).</td>
+</tr>
+<tr>
+<td><a href="../enums/CellOperatingModeEnum/">CellOperatingModeEnum</a></td>
+<td>Enumeration of the functional mode of an electrochemical cell, based<br>on the direction of energy conversion.</td>
 </tr>
 <tr>
 <td><a href="../enums/DatasetThemes/">DatasetThemes</a></td>

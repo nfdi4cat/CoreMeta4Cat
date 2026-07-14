@@ -282,6 +282,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../working-with-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../overview/" class="md-nav__link">
         
   
@@ -400,10 +427,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -421,8 +448,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -431,6 +458,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -768,7 +823,11 @@ Alias: has_pressure</p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_quantitative_attribute/">has_quantitative_attribute</a><ul>
-<li><strong>has_pressure</strong></li>
+<li><strong>has_pressure</strong><ul>
+<li><a href="../synthesis_pressure/">synthesis_pressure</a></li>
+<li><a href="../experiment_pressure/">experiment_pressure</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -783,28 +842,13 @@ Alias: has_pressure</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/SubstanceSample/">SubstanceSample</a></td>
-<td>A MaterialSample derived from a chemical substance that is of interest in an analytical procedure.</td>
+<td><a href="../../classes/PlugFlowReactor/">PlugFlowReactor</a></td>
+<td>Plug flow reactor (PFR) — a tubular reactor in which reactant composition<br>varies along the axis with no axial mixing.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/StartingMaterial/">StartingMaterial</a></td>
-<td>A ChemicalSubstance with that has a starting material role in a synthesis.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Reagent/">Reagent</a></td>
-<td>A ChemicalSubstance that is consumed or transformed in a ChemicalReaction.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a></td>
-<td>A LinkML mixin used to pass down properties common to all material entities that are described in a chemical context via being composed of chemical entities (e.g. atom, molecule, ion, ion pair, radical, complex, conformer etc., ) of the same type or of different types.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/DissolvingSubstance/">DissolvingSubstance</a></td>
-<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ChemicalSubstance.</td>
+<td><a href="../../classes/MaterialisticMixin/">MaterialisticMixin</a></td>
+<td>A LinkML mixin used to pass down properties common to all material entities. It is needed for example to have MaterialSample have the same properties as MaterialEntity, although it is defined as a subclass of EvaluatedEntity.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -813,13 +857,78 @@ Alias: has_pressure</p>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../../classes/Microkinetics/">Microkinetics</a></td>
-<td>Microkinetic modelling — a mean-field kinetic approach that integrates<br>elementary reaction steps and their rate constants to predict catalytic<br>activity and selectivity under reaction conditions.</td>
+<td><a href="../../classes/PolymerSample/">PolymerSample</a></td>
+<td>A SubstanceSample derived from a Polymer.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Reactor/">Reactor</a></td>
+<td>A reactor is a container for controlling a biological or chemical reaction or process.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/SlurryReactor/">SlurryReactor</a></td>
+<td>Slurry reactor — a three-phase reactor in which catalyst particles are<br>suspended in a liquid phase through which gas is bubbled.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CatalyticReaction/">CatalyticReaction</a></td>
+<td>A ChemicalReaction (chemdcat-ap) specialization representing the<br>catalytic reaction being studied. Inherits the generic reaction slots<br>(starting materials, reactants, products, catalyst, solvent, reactor,<br>temperature, pressure, yield, reaction steps) from ChemicalReaction and<br>adds catalysis-specific operating-condition slots.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via the inherited used_reactor slot (is_a:<br>carried_out_by), narrowed here to require a ChemicalReactor instance<br>rather than touching the generic carried_out_by relation directly.<br>Reactants are linked via the inherited used_reactant slot (range:<br>Reagent) -- CatalyticReaction does not declare its own reactant slot.<br>The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)<br>is expressed via rdf_type using a voc4cat or ChemO term.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Microreactor/">Microreactor</a></td>
+<td>Microreactor — a miniaturised flow reactor with characteristic dimensions<br>in the sub-millimetre range, enabling precise thermal control and rapid<br>screening.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Reagent/">Reagent</a></td>
+<td>A ChemicalSubstance that is consumed or transformed in a ChemicalReaction.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Precursor/">Precursor</a></td>
+<td>A MaterialSample that serves as input material in a catalyst Synthesis.<br>Precursors are consumed or transformed during the preparation process.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ChemicalReactor/">ChemicalReactor</a></td>
+<td>Abstract Reactor (chemdcat-ap) subclass representing a catalytic reactor<br>vessel.<br><br>Reactor is more specific than the general Device (AgenticEntity): it restricts<br>the used_reactor relation (is_a: carried_out_by) on Reaction to dedicated<br>reactor equipment. This semantic distinction separates analytical<br>instruments (Device) from reaction vessels (Reactor). ChemicalReactor<br>further specializes chemdcat-ap's generic Reactor for catalysis use cases.<br><br>Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify<br>reactor geometry and operating mode.<br>Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Autoclave/">Autoclave</a></td>
+<td>Autoclave reactor — a sealed pressure vessel for batch reactions at<br>elevated temperature and/or pressure.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ElectrochemicalReactor/">ElectrochemicalReactor</a></td>
+<td>Electrochemical reactor used in electrocatalytic experiments, including<br>H-cells, flow cells, and membrane electrode assemblies.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/DissolvingSubstance/">DissolvingSubstance</a></td>
+<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ChemicalSubstance.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/FixedBedReactor/">FixedBedReactor</a></td>
+<td>Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.<br>The most common reactor type in heterogeneous catalysis testing.</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../../classes/PolymerMixin/">PolymerMixin</a></td>
 <td>A LinkML mixin used to pass down properties common to all chemical substances that are composed of macromolecules of different kinds and which may be differentiated by composition, length, degree of branching etc..</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/SubstanceSample/">SubstanceSample</a></td>
+<td>A MaterialSample derived from a chemical substance that is of interest in an analytical procedure.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Microkinetics/">Microkinetics</a></td>
+<td>Microkinetic modelling — a mean-field kinetic approach that integrates<br>elementary reaction steps and their rate constants to predict catalytic<br>activity and selectivity under reaction conditions.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -833,23 +942,23 @@ Alias: has_pressure</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Catalyst/">Catalyst</a></td>
-<td>A ChemicalSubstance or MaterialEntity that initiates or accelerates a ChemicalReaction without itself being affected.</td>
+<td><a href="../../classes/CSTR/">CSTR</a></td>
+<td>Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow<br>reactor operating at steady state.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Reactor/">Reactor</a></td>
-<td>A reactor is a container for controlling a biological or chemical reaction or process.</td>
+<td><a href="../../classes/StartingMaterial/">StartingMaterial</a></td>
+<td>A ChemicalSubstance with that has a starting material role in a synthesis.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/PolymerSample/">PolymerSample</a></td>
-<td>A SubstanceSample derived from a Polymer.</td>
+<td><a href="../../classes/ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a></td>
+<td>A LinkML mixin used to pass down properties common to all material entities that are described in a chemical context via being composed of chemical entities (e.g. atom, molecule, ion, ion pair, radical, complex, conformer etc., ) of the same type or of different types.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/MaterialisticMixin/">MaterialisticMixin</a></td>
-<td>A LinkML mixin used to pass down properties common to all material entities. It is needed for example to have MaterialSample have the same properties as MaterialEntity, although it is defined as a subclass of EvaluatedEntity.</td>
+<td><a href="../../classes/FluidizedBedReactor/">FluidizedBedReactor</a></td>
+<td>Fluidized bed reactor — a reactor in which the catalyst particles are<br>suspended in an upward-flowing gas or liquid stream.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -858,13 +967,13 @@ Alias: has_pressure</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/CatalystSample/">CatalystSample</a></td>
-<td>A MaterialSample that is the product of a catalyst Synthesis.<br>The specific type of catalyst (e.g. heterogeneous, supported metal)<br>is expressed via rdf_type using a VOC4CAT term.</td>
+<td><a href="../../classes/Catalyst/">Catalyst</a></td>
+<td>A ChemicalSubstance or MaterialEntity that initiates or accelerates a ChemicalReaction without itself being affected.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Precursor/">Precursor</a></td>
-<td>A MaterialSample that serves as input material in a catalyst Synthesis.<br>Precursors are consumed or transformed during the preparation process.</td>
+<td><a href="../../classes/CatalystSample/">CatalystSample</a></td>
+<td>A MaterialSample that is the product of a catalyst Synthesis.<br>The specific type of catalyst (e.g. heterogeneous, supported metal)<br>is expressed via rdf_type using a VOC4CAT term.</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -917,8 +1026,8 @@ Alias: has_pressure</p>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_pressure</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MaterialisticMixin</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MaterialisticMixin</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Microkinetics</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pressure</span>
 <span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>

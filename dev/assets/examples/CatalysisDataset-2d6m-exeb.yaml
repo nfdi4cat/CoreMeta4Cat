@@ -1,0 +1,605 @@
+---
+id: hdl:21.11165/4cat/2d6m-exeb
+title:
+- 'Dataset for Publication: Reaction Kinetics of CO and CO2 Methanation over Nickel'
+description:
+- 'Steady-state methanation kinetics screening dataset covering 16 valid experimental runs (Exp2,3,4,7,8,9,11,12,13,14,15,16,17,18,19,20
+  -- Exp1, Exp5, Exp6, Exp10 excluded by the data providers, see ReadMe.txt) over 16 distinct supported
+  Ni catalysts (Al2O3, SiO2, ZrO2, TiO2, MgAl2O4 supports; 5-40.8 wt% Ni) in isothermal cylindrical fixed-bed
+  reactors. Three reaction types were studied depending on feed gas composition: CO methanation (4 runs),
+  CO2 methanation (8 runs), and mixed CO/CO2 co-methanation (4 runs). Conversion was determined from outlet
+  gas composition analysis. Related publication: DOI 10.1021/acs.iecr.1c00389.'
+rdf_type:
+  id: VOC4CAT:0007001
+  title: heterogeneous catalysis
+keyword:
+- Chemistry
+- Catalysis
+- Heterogeneous catalysis
+- CO methanation
+- CO2 methanation
+- Nickel catalyst
+- Fixed-bed reactor
+creator:
+- name:
+  - 'Schmider, Daniel'
+- name:
+  - 'Maier, Lubow'
+- name:
+  - 'Deutschmann, Olaf'
+publisher:
+  name:
+  - NFDI4Cat Central Data Repository
+dataset_distribution:
+- access_URL:
+  - id: https://hdl.handle.net/21.11165/4cat/2d6m-exeb
+    title: Repository landing page
+  description:
+  - Repository landing page providing access to the per-experiment CSV/JSON data files.
+  licence:
+    id: https://creativecommons.org/licenses/by/4.0/
+    title: CC BY 4.0
+other_identifier:
+- notation: https://hdl.handle.net/21.11165/4cat/2d6m-exeb
+- notation: doi:10.1021/acs.iecr.1c00389
+  description: Related publication DOI
+was_generated_by:
+- id: coremeta4cat:CHAR_2d6m-exeb_outlet_gas_analysis
+  title:
+  - Outlet gas composition analysis (all 16 runs)
+  description:
+  - 'Steady-state outlet gas composition analysis used to determine CO/CO2 conversion for all 16 catalyst
+    screening runs (CO methanation: Exp2, 3, 4, 12; CO2 methanation: Exp7, 8, 9, 13, 14, 15, 16, 17; mixed
+    CO/CO2 methanation: Exp11, 18, 19, 20). Dataset files do not name a specific instrument model; gas
+    chromatography is the standard analytical method for this reaction class and is assumed here.'
+  rdf_type:
+    id: VOC4CAT:0000130
+    title: gas chromatography
+  carried_out_by:
+  - id: coremeta4cat:DEV_2d6m-exeb_GC
+    title: gas chromatograph
+    description: Instrument model not specified in the source dataset files.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_2d6m-exeb_all
+    title: 16 supported Ni catalyst samples (this screening series)
+    description: 'Supported Ni catalysts on Al2O3, SiO2, ZrO2, TiO2, and MgAl2O4, Ni loading 5-40.8 wt%,
+      screened for CO methanation, CO2 methanation, and mixed CO/CO2 methanation (see the corresponding
+      CatalyticReaction entries for per-catalyst detail: used_catalyst in coremeta4cat:REAC_2d6m-exeb_CO_methanation,
+      coremeta4cat:REAC_2d6m-exeb_CO2_methanation, coremeta4cat:REAC_2d6m-exeb_mixed_methanation).'
+  realized_plan:
+    id: coremeta4cat:CHAR_2d6m-exeb_GC_method
+    title: Outlet gas GC method
+    description: Analytical protocol for determining reactant/product mole fractions from the reactor
+      outlet stream. Method parameters not specified in the source dataset files.
+  other_identifier:
+  - notation: doi:10.1021/acs.iecr.1c00389
+    description: Related publication DOI
+  activity_designator: Characterization
+is_about_activity:
+- id: coremeta4cat:REAC_2d6m-exeb_CO_methanation
+  reaction_name:
+  - CO methanation
+  title:
+  - CO methanation catalyst screening (4 Ni catalysts)
+  description:
+  - 'Catalytic CO methanation (CO + 3H2 -> CH4 + H2O) screened over 4 supported Ni catalysts (Al2O3, SiO2,
+    ZrO2 supports; 10-20 wt% Ni) in cylindrical isothermal fixed-bed reactors (radius 3-10 mm across runs).
+    Steady-state CO conversion measured as a function of superficial velocity and temperature. Source
+    runs: Exp2, Exp3, Exp4, Exp12 (Ni/Al2O3 x2, Ni/SiO2, Ni/ZrO2). Total pressure ~100-101.3 kPa in all
+    four runs.'
+  rdf_type:
+    id: VOC4CAT:0007010
+    title: CO methanation
+  catalyst_type:
+  - heterogeneous_catalysis
+  catalyst_form:
+  - supported
+  used_catalyst:
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp2
+    title: 20 wt% Ni/Al2O3 (Exp2)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 20.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp2_metadata.json: catalyst.metal_loading)'
+    - value: 630.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp2_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 14.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp2_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.5
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp2_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp3
+    title: 20 wt% Ni/Al2O3 (Exp3)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 20.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp3_metadata.json: catalyst.metal_loading)'
+    - value: 375.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp3_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 3.56
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp3_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.2
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp3_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp4
+    title: 10 wt% Ni/SiO2 (Exp4)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 10.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp4_metadata.json: catalyst.metal_loading)'
+    - value: 265.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp4_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 2.81
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp4_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.05
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp4_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp12
+    title: 10 wt% Ni/ZrO2 (Exp12)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 10.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp12_metadata.json: catalyst.metal_loading)'
+    - value: 265.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp12_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 3.06
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp12_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.05
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp12_metadata.json: catalyst.mass)'
+  used_reactant:
+  - id: coremeta4cat:REAC_2d6m-exeb_CO
+    title: carbon monoxide
+    rdf_type:
+      id: CHEBI:17245
+      title: carbon monoxide
+    has_concentration:
+    - value: 1.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MoleFraction
+      unit: PERCENT
+      description: Feed CO mole fraction ranges 1-25% across the 4 runs (Exp2, Exp3, Exp4, Exp12 inlet.mole_fractions.CO)
+  - id: coremeta4cat:REAC_2d6m-exeb_H2
+    title: hydrogen
+    rdf_type:
+      id: CHEBI:18276
+      title: molecular hydrogen
+    has_concentration:
+    - value: 50.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MoleFraction
+      unit: PERCENT
+      description: Feed H2 mole fraction ranges 50-75% across the 4 runs
+  used_reactor:
+  - id: coremeta4cat:REAC_2d6m-exeb_CO_reactor
+    title: isothermal cylindrical fixed-bed reactors
+    description: Cylindrical fixed-bed reactors, radius 3-10 mm across the 4 runs, isothermal operation.
+  reactor_temperature_range:
+  - min_value: 423.0
+    max_value: 874.6
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: Overall temperature range explored across all 4 CO methanation runs
+  experiment_pressure:
+  - value: 100.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/KiloPA
+    description: ~100-101.3 kPa in all 4 runs
+  product_identification_method:
+  - id: coremeta4cat:REAC_2d6m-exeb_CO_product_id
+    title: CO conversion from outlet gas composition
+    description: CO conversion (dimensionless, 0-1) calculated from inlet and outlet CO concentrations.
+      Specific analytical instrument not stated in dataset files; gas chromatography is the standard method
+      for this reaction.
+  other_identifier:
+  - notation: doi:10.1021/acs.iecr.1c00389
+    description: Related publication DOI
+- id: coremeta4cat:REAC_2d6m-exeb_CO2_methanation
+  reaction_name:
+  - CO2 methanation
+  title:
+  - CO2 methanation catalyst screening (8 Ni catalysts)
+  description:
+  - 'Catalytic CO2 methanation (CO2 + 4H2 -> CH4 + 2H2O) screened over 8 supported Ni catalysts (Al2O3,
+    SiO2, ZrO2, MgAl2O4 supports; 10-40.8 wt% Ni) in cylindrical isothermal fixed-bed reactors (radius
+    3-10 mm across runs). Steady-state CO2 conversion measured as a function of superficial velocity and
+    temperature. Source runs: Exp7, Exp8, Exp9, Exp13, Exp14, Exp15, Exp16, Exp17 (Ni/Al2O3 x4, Ni/MgAl2O4
+    x2, Ni/ZrO2, Ni/SiO2). Total pressure ~100-101.3 kPa in all runs except Exp9 (800 kPa, an outlier
+    within this series).'
+  rdf_type:
+    id: VOC4CAT:0007011
+    title: CO2 methanation
+  catalyst_type:
+  - heterogeneous_catalysis
+  catalyst_form:
+  - supported
+  used_catalyst:
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp7
+    title: 10 wt% Ni/MgAl2O4 (Exp7)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 10.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp7_metadata.json: catalyst.metal_loading)'
+    - value: 335.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp7_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 4.55
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp7_metadata.json: catalyst.specific_surface_area)'
+    - value: 1.2
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp7_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp8
+    title: 20 wt% Ni/Al2O3 (Exp8)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 20.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp8_metadata.json: catalyst.metal_loading)'
+    - value: 375.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp8_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 3.56
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp8_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.2
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp8_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp9
+    title: 40.8 wt% Ni/Al2O3 (Exp9)
+    description: High Ni-loading Al2O3-supported catalyst; this run also used an elevated feed pressure
+      of 800 kPa, an outlier relative to the other runs in this series (~100-101.3 kPa).
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 40.8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp9_metadata.json: catalyst.metal_loading)'
+    - value: 175.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp9_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 8.28
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp9_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.025
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp9_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp13
+    title: 10 wt% Ni/ZrO2 (Exp13)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 10.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp13_metadata.json: catalyst.metal_loading)'
+    - value: 265.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp13_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 3.06
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp13_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.05
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp13_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp14
+    title: 10 wt% Ni/SiO2 (Exp14)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 10.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp14_metadata.json: catalyst.metal_loading)'
+    - value: 265.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp14_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 2.81
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp14_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.05
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp14_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp15
+    title: 20 wt% Ni/Al2O3 (Exp15)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 20.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp15_metadata.json: catalyst.metal_loading)'
+    - value: 750.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp15_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 1.76
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp15_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp16
+    title: 15 wt% Ni/Al2O3 (Exp16)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 15.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp16_metadata.json: catalyst.metal_loading)'
+    - value: 630.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp16_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 8.72
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp16_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.3
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp16_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp17
+    title: 10 wt% Ni/MgAl2O4 (Exp17)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 10.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp17_metadata.json: catalyst.metal_loading)'
+    - value: 335.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp17_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 3.84
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp17_metadata.json: catalyst.specific_surface_area)'
+    - value: 1.2
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp17_metadata.json: catalyst.mass)'
+  used_reactant:
+  - id: coremeta4cat:REAC_2d6m-exeb_CO2
+    title: carbon dioxide
+    rdf_type:
+      id: CHEBI:16526
+      title: carbon dioxide
+    has_concentration:
+    - value: 1.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MoleFraction
+      unit: PERCENT
+      description: Feed CO2 mole fraction ranges 1-22.2% across the 8 runs (inlet.mole_fractions.CO2)
+  - id: coremeta4cat:REAC_2d6m-exeb_H2_CO2series
+    title: hydrogen
+    rdf_type:
+      id: CHEBI:18276
+      title: molecular hydrogen
+    has_concentration:
+    - value: 5.1
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MoleFraction
+      unit: PERCENT
+      description: Feed H2 mole fraction ranges 5.1-77.8% across the 8 runs
+  used_reactor:
+  - id: coremeta4cat:REAC_2d6m-exeb_CO2_reactor
+    title: isothermal cylindrical fixed-bed reactors
+    description: Cylindrical fixed-bed reactors, radius 3-10 mm across the 8 runs, isothermal operation.
+  reactor_temperature_range:
+  - min_value: 405.1
+    max_value: 1114.4
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: Overall temperature range explored across all 8 CO2 methanation runs
+  experiment_pressure:
+  - value: 100.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/KiloPA
+    description: ~100-101.3 kPa in 7 of the 8 runs; Exp9 used 800 kPa (see used_catalyst description)
+  product_identification_method:
+  - id: coremeta4cat:REAC_2d6m-exeb_CO2_product_id
+    title: CO2 conversion from outlet gas composition
+    description: CO2 conversion (dimensionless, 0-1) calculated from inlet and outlet CO2 concentrations.
+      Specific analytical instrument not stated in dataset files; gas chromatography is the standard method
+      for this reaction.
+  other_identifier:
+  - notation: doi:10.1021/acs.iecr.1c00389
+    description: Related publication DOI
+- id: coremeta4cat:REAC_2d6m-exeb_mixed_methanation
+  reaction_name:
+  - CO/CO2 co-methanation
+  title:
+  - Mixed CO+CO2 methanation catalyst screening (4 Ni catalysts)
+  description:
+  - 'Catalytic co-methanation of a mixed CO/CO2 feed (CO + 3H2 -> CH4 + H2O; CO2 + 4H2 -> CH4 + 2H2O)
+    screened over 4 supported Ni catalysts (ZrO2, SiO2, TiO2, Al2O3 supports; 5 wt% Ni in all 4) in cylindrical
+    isothermal fixed-bed reactors (radius 3.77-6.5 mm across runs). Steady-state CO and CO2 conversion
+    measured as a function of superficial velocity and temperature. Source runs: Exp11, Exp18, Exp19,
+    Exp20. Total pressure ~100 kPa in all four runs.'
+  rdf_type:
+    id: VOC4CAT:0007010
+    title: CO methanation
+  catalyst_type:
+  - heterogeneous_catalysis
+  catalyst_form:
+  - supported
+  used_catalyst:
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp11
+    title: 5 wt% Ni/ZrO2 (Exp11)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 5.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp11_metadata.json: catalyst.metal_loading)'
+    - value: 220.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp11_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 1.826
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp11_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp11_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp18
+    title: 5 wt% Ni/SiO2 (Exp18)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 5.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp18_metadata.json: catalyst.metal_loading)'
+    - value: 3000.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp18_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 1.1
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp18_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.18
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp18_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp19
+    title: 5 wt% Ni/TiO2 (Exp19)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 5.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp19_metadata.json: catalyst.metal_loading)'
+    - value: 630.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp19_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 14.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp19_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp19_metadata.json: catalyst.mass)'
+  - id: coremeta4cat:CAT_2d6m-exeb_Exp20
+    title: 5 wt% Ni/Al2O3 (Exp20)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 5.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: 'Ni loading (Exp20_metadata.json: catalyst.metal_loading)'
+    - value: 220.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: MicroM
+      description: 'Particle diameter (Exp20_metadata.json: catalyst.particles_mean_diameter)'
+    - value: 0.897
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: 'BET specific surface area (Exp20_metadata.json: catalyst.specific_surface_area)'
+    - value: 0.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: GM
+      description: 'Catalyst bed mass (Exp20_metadata.json: catalyst.mass)'
+  used_reactant:
+  - id: coremeta4cat:REAC_2d6m-exeb_CO_mixed
+    title: carbon monoxide
+    rdf_type:
+      id: CHEBI:17245
+      title: carbon monoxide
+    has_concentration:
+    - value: 0.6
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MoleFraction
+      unit: PERCENT
+      description: Feed CO mole fraction; 0.6% in 3 of 4 runs, 6% in Exp18
+  - id: coremeta4cat:REAC_2d6m-exeb_CO2_mixed
+    title: carbon dioxide
+    rdf_type:
+      id: CHEBI:16526
+      title: carbon dioxide
+    has_concentration:
+    - value: 6.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MoleFraction
+      unit: PERCENT
+      description: Feed CO2 mole fraction ranges 6-17% across the 4 runs
+  - id: coremeta4cat:REAC_2d6m-exeb_H2_mixed
+    title: hydrogen
+    rdf_type:
+      id: CHEBI:18276
+      title: molecular hydrogen
+    has_concentration:
+    - value: 57.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MoleFraction
+      unit: PERCENT
+      description: Feed H2 mole fraction ranges 57-88% across the 4 runs
+  used_reactor:
+  - id: coremeta4cat:REAC_2d6m-exeb_mixed_reactor
+    title: isothermal cylindrical fixed-bed reactors
+    description: Cylindrical fixed-bed reactors, radius 3.77-6.5 mm across the 4 runs, isothermal operation.
+  reactor_temperature_range:
+  - min_value: 428.3
+    max_value: 672.2
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: Overall temperature range explored across all 4 mixed CO/CO2 methanation runs
+  experiment_pressure:
+  - value: 100.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/KiloPA
+    description: ~100 kPa in all 4 runs
+  product_identification_method:
+  - id: coremeta4cat:REAC_2d6m-exeb_mixed_product_id
+    title: CO and CO2 conversion from outlet gas composition
+    description: CO and CO2 conversion (dimensionless, 0-1) calculated from inlet and outlet gas concentrations.
+      Specific analytical instrument not stated in dataset files; gas chromatography is the standard method
+      for this reaction.
+  other_identifier:
+  - notation: doi:10.1021/acs.iecr.1c00389
+    description: Related publication DOI
+is_about_entity:
+- id: coremeta4cat:CAT_2d6m-exeb_all
+  title: 16 supported Ni catalyst samples (this screening series)
+  description: Supported Ni catalysts on Al2O3, SiO2, ZrO2, TiO2, and MgAl2O4, Ni loading 5-40.8 wt%.
+    See used_catalyst under is_about_activity above for per-sample detail (particle size, BET surface
+    area, catalyst mass).

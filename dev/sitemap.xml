@@ -9,6 +9,10 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/catalysis-dataset/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/characterization/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -46,6 +50,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/synthesis/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/working-with-data/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -105,6 +113,10 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Area/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Atmosphere/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -133,14 +145,6 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/BioCatalyst/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/BulkCatalyst/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CSTR/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -157,22 +161,6 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CarbonCouplingReaction/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CarbonDioxideHydrogenation/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CarbonMonoxideOxidation/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Carbonylation/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Catalogue/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -181,7 +169,15 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CatalysisDataGeneratingActivity/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CatalysisDataset/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CatalysisPlan/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -190,10 +186,6 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CatalystSample/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CatalystType/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -269,10 +261,6 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Conversion/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CyclicVoltammetry/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -313,15 +301,7 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Dehydrogenation/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Density/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/DepositedSampleCatalyst/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -369,11 +349,11 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ElectricPotential/</loc>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ElectricCurrent/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ElectroCatalyst/</loc>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ElectricPotential/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -433,10 +413,6 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/FischerTropschSynthesis/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/FixedBedReactor/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -457,10 +433,6 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/GasPhaseAnalysis/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Geometry/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -477,27 +449,7 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/HeterogeneousCatalyst/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/HighPerformanceLiquidChromatographyMassSpectrometry/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/HomogeneousCatalyst/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Hydrodeoxygenation/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Hydrogenation/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Hydroxylation/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -550,10 +502,6 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/LinguisticSystem/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/LiquidPhaseAnalysis/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -645,14 +593,6 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Oxidation/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/OxygenEvolutionReaction/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/PHValue/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -666,10 +606,6 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/PhononDispersion/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/PhotoCatalyst/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -725,10 +661,6 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/PowerderedCatalyst/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/PrecipitationMixin/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -777,15 +709,7 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ReactionType/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Reactor/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ReactorPerformanceMeasures/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -818,14 +742,6 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ScanningElectronMicroscopy/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/SelectiveOxidation/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Selectivity/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -865,10 +781,6 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/SpaceTimeYield/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Standard/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -890,10 +802,6 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/SubstanceSampleCharacterizationDataset/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/SupportedCatalsyt/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -938,10 +846,6 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Thermogravimetry/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ThinFilmCatalyst/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -990,6 +894,14 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/enums/CatalysisResearchFieldEnum/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/enums/CatalystFormEnum/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/enums/CellOperatingModeEnum/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -1065,11 +977,27 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/activity_designator/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/adsorbate_gas/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/adsorption_gas/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/agitation_sparging_rate/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/agitation_speed/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/agitation_type/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -1114,6 +1042,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/band_path/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/batch_duration/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -1185,7 +1117,31 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_bed_diameter/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_bed_height/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_bed_volume/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_dilution_material/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_form/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_measured_properties/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_particle_size/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -1197,11 +1153,27 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_type/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/cell_operating_mode/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/centroid/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/change_type/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/channel_dimensions/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/channel_material/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -1473,6 +1445,10 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/faradaic_current/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/feed_composition_range/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -1525,6 +1501,10 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/flow_direction/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/force_constant_method/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -1562,6 +1542,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/gas_distributor_type/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/gas_liquid_ratio/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -1669,39 +1653,11 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_catalyst_bed_height/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_catalyst_bed_volume/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_catalyst_dilution_material/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_catalyst_particle_size/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_catalyst_type/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_cathode/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_cell_operating_mode/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_concentration/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_conversion/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -1742,10 +1698,6 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_experiment_duration/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_faradaic_current/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -1857,31 +1809,11 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_reaction_type/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_sample_mass/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_sample_pretreatment/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_selectivity/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_space_time_yield/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_stirrer_diameter/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/has_stirrer_type/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -1958,6 +1890,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/imaginary_modes/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/impeller_type/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -2105,18 +2041,6 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/maximum_oven_temperature/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/maximum_potential/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/maximum_wavelength/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/measurement_duration/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -2146,18 +2070,6 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/min_value/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/minimum_oven_temperature/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/minimum_potential/</loc>
-         <lastmod>2026-07-14</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/minimum_wavelength/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -2213,6 +2125,10 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/number_of_channels/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/number_of_cycles/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -2229,6 +2145,10 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/number_of_tubes/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/occurred_in/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -2242,6 +2162,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/other_identifier/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/oven_temperature_range/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -2317,6 +2241,10 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/precipitating_concentration/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/precipitation_agent/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -2389,7 +2317,11 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reactant/</loc>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reaction_chamber_material/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reaction_name/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -2397,7 +2329,19 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reactor_diameter/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reactor_stirrer_type/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reactor_temperature_range/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reactor_working_volume/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -2441,6 +2385,10 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/residence_time/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/resolution/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -2474,6 +2422,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/sampling_interval/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/scan_potential_range/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -2625,7 +2577,15 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/stirrer_diameter/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/stirrer_type/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/stirring_rate/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
@@ -2717,6 +2677,18 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/tube_internal_diameter/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/tube_length/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/tube_material/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/type/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
@@ -2761,11 +2733,23 @@
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/vessel_internal_volume/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/vessel_material/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/vessel_volume/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/was_generated_by/</loc>
+         <lastmod>2026-07-14</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/wavelength_range/</loc>
          <lastmod>2026-07-14</lastmod>
     </url>
     <url>

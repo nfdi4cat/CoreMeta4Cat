@@ -288,6 +288,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../working-with-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../overview/" class="md-nav__link">
         
   
@@ -675,10 +702,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -696,8 +723,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -706,6 +733,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1206,27 +1261,27 @@ Each extension type has a designated parent class (see the table below). Always 
 <tr>
 <td>New preparation method</td>
 <td><code>PreparationMethod</code></td>
-<td><code>catcore_synthesis_ap.yaml</code></td>
+<td><code>coremeta4cat_synthesis_ap.yaml</code></td>
 </tr>
 <tr>
 <td>New characterisation technique</td>
 <td><code>CharacterizationTechnique</code></td>
-<td><code>catcore_characterization_ap.yaml</code></td>
+<td><code>coremeta4cat_characterization_ap.yaml</code></td>
 </tr>
 <tr>
 <td>New reactor type</td>
-<td><code>ReactorDesignType</code></td>
-<td><code>catcore_reaction_ap.yaml</code></td>
+<td><code>ChemicalReactor</code> (abstract)</td>
+<td><code>coremeta4cat_reaction_ap.yaml</code></td>
 </tr>
 <tr>
 <td>New simulation method</td>
 <td><code>SimulationMethod</code></td>
-<td><code>catcore_simulation_ap.yaml</code></td>
+<td><code>coremeta4cat_simulation_ap.yaml</code></td>
 </tr>
 <tr>
 <td>New calculated property</td>
 <td><code>CalculatedProperty</code></td>
-<td><code>catcore_simulation_ap.yaml</code></td>
+<td><code>coremeta4cat_simulation_ap.yaml</code></td>
 </tr>
 <tr>
 <td>New mixin (slot group)</td>
@@ -1236,27 +1291,27 @@ Each extension type has a designated parent class (see the table below). Always 
 <tr>
 <td>New shared slot</td>
 <td><em>(no class — top-level slot)</em></td>
-<td><code>catcore_common.yaml</code></td>
+<td><code>coremeta4cat_common.yaml</code></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Rule 3 — Register an ontology term.</strong>
-Every new class should have a <code>class_uri:</code> pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, …). If no suitable term exists yet, use a provisional catcore-prefixed URI (<code>catcore:MyNewClass</code>) and open a Voc4Cat issue to request a proper term.</p>
+Every new class should have a <code>class_uri:</code> pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, …). If no suitable term exists yet, use a provisional coremeta4cat-prefixed URI (<code>coremeta4cat:MyNewClass</code>) and open a Voc4Cat issue to request a proper term.</p>
 <p><strong>Rule 4 — Declare slots in the right file.</strong>
-Slots used by exactly one class go in that class's subprofile file. Slots shared by two or more classes go in <code>catcore_common.yaml</code>.</p>
+Slots used by exactly one class go in that class's subprofile file. Slots shared by two or more classes go in <code>coremeta4cat_common.yaml</code>.</p>
 <p><strong>Rule 5 — Apply existing mixins before adding new slots.</strong>
 If your new class needs drying, calcination, precipitation, or thermal process parameters, apply the appropriate mixin rather than redeclaring those slots. Only add method-specific slots beyond what the mixin provides.</p>
 <p><strong>Rule 6 — Mark obligation levels.</strong>
 Every slot in a new class should have either <code>required: true</code> (Mandatory), <code>recommended: true</code> (Recommended), or neither (Optional). Do not leave obligations implicit.</p>
 <hr />
 <h2 id="adding-a-preparation-method">Adding a preparation method</h2>
-<p>New catalyst synthesis routes are added to <code>catcore_synthesis_ap.yaml</code> as <code>PreparationMethod</code> subclasses.</p>
+<p>New catalyst synthesis routes are added to <code>coremeta4cat_synthesis_ap.yaml</code> as <code>PreparationMethod</code> subclasses.</p>
 <h3 id="step-by-step">Step-by-step</h3>
 <p><strong>1. Identify which mixins apply.</strong></p>
 <p>Before declaring any slots, check whether the method includes a drying step, calcination step, precipitation step, or generic thermal process. Apply all relevant mixins:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">MyNewMethod</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PreparationMethod</span>
-<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:XXXXXXX</span><span class="w">   </span><span class="c1"># register a real term, or use catcore: prefix temporarily</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:XXXXXXX</span><span class="w">   </span><span class="c1"># register a real term, or use coremeta4cat: prefix temporarily</span>
 <span class="w">  </span><span class="nt">mixins</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DryingMixin</span><span class="w">              </span><span class="c1"># if the method has a drying step</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalcinationMixin</span><span class="w">         </span><span class="c1"># if the method has a calcination step</span>
@@ -1276,7 +1331,7 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">my_specific_parameter_a</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">What this parameter means and its typical range.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:my_specific_parameter_a</span><span class="w">   </span><span class="c1"># or a Voc4Cat / ontology URI</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:my_specific_parameter_a</span><span class="w">   </span><span class="c1"># or a Voc4Cat / ontology URI</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cel</span><span class="w">   </span><span class="c1"># use UCUM codes — e.g. Cel, h, mL/min, bar, g</span>
@@ -1284,13 +1339,13 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">my_specific_parameter_b</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">What this parameter means.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:my_specific_parameter_b</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:my_specific_parameter_b</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 <h3 id="minimal-complete-example-photochemicalsynthesis">Minimal complete example — PhotochemicalSynthesis</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">PhotochemicalSynthesis</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PreparationMethod</span>
-<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:PhotochemicalSynthesis</span><span class="w">   </span><span class="c1"># replace with Voc4Cat term when available</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:PhotochemicalSynthesis</span><span class="w">   </span><span class="c1"># replace with Voc4Cat term when available</span>
 <span class="w">  </span><span class="nt">mixins</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DryingMixin</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
@@ -1307,13 +1362,13 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">light_source</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of light source used (e.g. Xe lamp, UV-LED, solar simulator).</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:light_source</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:light_source</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
 <span class="w">  </span><span class="nt">irradiation_wavelength</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dominant wavelength of the irradiation source.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:irradiation_wavelength</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:irradiation_wavelength</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nm</span>
@@ -1321,7 +1376,7 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">irradiation_duration</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Total duration of light irradiation.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:irradiation_duration</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:irradiation_duration</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">h</span>
@@ -1329,14 +1384,14 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">light_intensity</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Irradiance at the sample surface.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:light_intensity</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:light_intensity</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mW/cm2</span>
 </code></pre></div>
 <hr />
 <h2 id="adding-a-characterisation-technique">Adding a characterisation technique</h2>
-<p>New analytical techniques are added to <code>catcore_characterization_ap.yaml</code> as <code>CharacterizationTechnique</code> subclasses.</p>
+<p>New analytical techniques are added to <code>coremeta4cat_characterization_ap.yaml</code> as <code>CharacterizationTechnique</code> subclasses.</p>
 <h3 id="step-by-step_1">Step-by-step</h3>
 <p><strong>1. Check available mixins for the technique.</strong></p>
 <p>The characterisation subprofile provides these mixins — apply all that fit:</p>
@@ -1390,7 +1445,7 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">technique_specific_slot_a</span>
 </code></pre></div>
 <p><strong>3. Declare technique-specific slots.</strong></p>
-<p>Use the same pattern as for preparation method slots (see above). Place them in the <code>slots:</code> section of <code>catcore_characterization_ap.yaml</code>.</p>
+<p>Use the same pattern as for preparation method slots (see above). Place them in the <code>slots:</code> section of <code>coremeta4cat_characterization_ap.yaml</code>.</p>
 <h3 id="minimal-complete-example-neutrondiffraction">Minimal complete example — NeutronDiffraction</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">NeutronDiffraction</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CharacterizationTechnique</span>
@@ -1408,7 +1463,7 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">neutron_wavelength</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Wavelength of the neutron beam.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:neutron_wavelength</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:neutron_wavelength</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ao</span><span class="w">   </span><span class="c1"># Angstrom</span>
@@ -1416,25 +1471,25 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">moderator_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of neutron moderator (e.g. cold, thermal, hot source).</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:moderator_type</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:moderator_type</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
 <span class="w">  </span><span class="nt">detector_coverage</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Angular range covered by the detector bank.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:detector_coverage</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:detector_coverage</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deg</span>
 </code></pre></div>
 <hr />
 <h2 id="adding-a-reactor-type">Adding a reactor type</h2>
-<p>New reactor geometries or operating modes are added to <code>catcore_reaction_ap.yaml</code> as <code>ReactorDesignType</code> subclasses.</p>
+<p>New reactor geometries or operating modes are added to <code>coremeta4cat_reaction_ap.yaml</code> as <code>ChemicalReactor</code> subclasses. <code>ChemicalReactor</code> is itself an abstract specialization of chemdcat-ap's generic <code>Reactor</code> class (see <a href="../design-patterns/#pattern-5-specializing-chemdcat-ap-inheritance">Pattern 5</a> in Design Patterns) -- new reactor types inherit that chain, they don't need to redeclare anything from it.</p>
 <h3 id="step-by-step_2">Step-by-step</h3>
 <p>New reactor types are simpler than new preparation methods — there are currently no reactor-specific mixins, so you just add the class and any reactor-specific slots directly:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">MyNewReactor</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReactorDesignType</span>
-<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:XXXXXXX</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:XXXXXXX</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
 <span class="w">    </span><span class="no">Brief description of the reactor geometry and typical operating conditions.</span>
 <span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
@@ -1443,8 +1498,8 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <p>If the reactor shares parameters with an existing type (e.g. both are tubular flow reactors), consider whether a shared mixin should be introduced rather than duplicating slots.</p>
 <h3 id="minimal-complete-example-monolithreactor">Minimal complete example — MonolithReactor</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">MonolithReactor</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReactorDesignType</span>
-<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:MonolithReactor</span><span class="w">   </span><span class="c1"># replace with Voc4Cat term when available</span>
+<span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:MonolithReactor</span><span class="w">   </span><span class="c1"># replace with Voc4Cat term when available</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
 <span class="w">    </span><span class="no">Monolith reactor — a reactor containing a structured monolithic substrate</span>
 <span class="w">    </span><span class="no">(ceramic or metallic) with parallel channels coated with catalyst.</span>
@@ -1458,7 +1513,7 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">channel_density</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of channels per unit cross-sectional area of the monolith.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:channel_density</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:channel_density</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1/cm2</span>
@@ -1466,7 +1521,7 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">washcoat_loading</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mass of washcoat (catalyst layer) per unit volume of monolith.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:washcoat_loading</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:washcoat_loading</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">g/L</span>
@@ -1474,19 +1529,19 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">monolith_material</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Material of the monolith substrate (e.g. cordierite, FeCrAlloy).</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:monolith_material</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:monolith_material</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 <hr />
 <h2 id="adding-a-simulation-method">Adding a simulation method</h2>
-<p>New computational approaches are added to <code>catcore_simulation_ap.yaml</code> as <code>SimulationMethod</code> subclasses.</p>
+<p>New computational approaches are added to <code>coremeta4cat_simulation_ap.yaml</code> as <code>SimulationMethod</code> subclasses.</p>
 <h3 id="step-by-step_3">Step-by-step</h3>
 <p><strong>1. Check the <code>DFTSettingsMixin</code> if the method uses a plane-wave basis.</strong></p>
 <p>The simulation subprofile provides <code>DFTSettingsMixin</code> (exchange-correlation functional, k-point mesh, energy cutoff, pseudopotential type) for DFT-based methods. If your new method is DFT-derived (e.g. DFT+U, hybrid-DFT, GW), apply this mixin.</p>
 <p><strong>2. Declare the class and its specific slots.</strong></p>
 <div class="highlight"><pre><span></span><code><span class="nt">MyNewSimulationMethod</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SimulationMethod</span>
-<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NCIT:XXXXXXX</span><span class="w">   </span><span class="c1"># or catcore: prefix temporarily</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NCIT:XXXXXXX</span><span class="w">   </span><span class="c1"># or coremeta4cat: prefix temporarily</span>
 <span class="w">  </span><span class="nt">mixins</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DFTSettingsMixin</span><span class="w">      </span><span class="c1"># if DFT-based</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
@@ -1497,7 +1552,7 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <h3 id="minimal-complete-example-kineticmontecarlo">Minimal complete example — KineticMonteCarlo</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">KineticMonteCarlo</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SimulationMethod</span>
-<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:KineticMonteCarlo</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:KineticMonteCarlo</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
 <span class="w">    </span><span class="no">Kinetic Monte Carlo simulation of surface reaction kinetics, using</span>
 <span class="w">    </span><span class="no">a reaction network of elementary steps with rate constants.</span>
@@ -1511,13 +1566,13 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">reaction_network_size</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Number of elementary reaction steps in the KMC reaction network.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">integer</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:reaction_network_size</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:reaction_network_size</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
 <span class="w">  </span><span class="nt">simulation_time_kmc</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Total simulated physical time of the KMC trajectory.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:simulation_time_kmc</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:simulation_time_kmc</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s</span>
@@ -1525,15 +1580,15 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <span class="w">  </span><span class="nt">surface_coverage_tracking</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Species for which surface coverage is tracked as a function of time.</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:surface_coverage_tracking</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:surface_coverage_tracking</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 <hr />
 <h2 id="adding-a-calculated-property">Adding a calculated property</h2>
-<p>New computed outputs are added to <code>catcore_simulation_ap.yaml</code> as <code>CalculatedProperty</code> subclasses.</p>
+<p>New computed outputs are added to <code>coremeta4cat_simulation_ap.yaml</code> as <code>CalculatedProperty</code> subclasses.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">MyNewProperty</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalculatedProperty</span>
-<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:MyNewProperty</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:MyNewProperty</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
 <span class="w">    </span><span class="no">What physical or chemical quantity is computed and what it tells us about the catalyst.</span>
 <span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
@@ -1541,27 +1596,27 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 </code></pre></div>
 <hr />
 <h2 id="adding-a-shared-slot">Adding a shared slot</h2>
-<p>If a slot is needed by <strong>two or more subprofiles</strong>, declare it in <code>catcore_common.yaml</code> rather than in any individual subprofile. This keeps the schema DRY and avoids slot name collisions.</p>
-<p><strong>Checklist before adding a slot to catcore_common:</strong></p>
+<p>If a slot is needed by <strong>two or more subprofiles</strong>, declare it in <code>coremeta4cat_common.yaml</code> rather than in any individual subprofile. This keeps the schema DRY and avoids slot name collisions.</p>
+<p><strong>Checklist before adding a slot to coremeta4cat_common:</strong></p>
 <ul>
 <li>[ ] The slot is genuinely needed in at least two different subprofile modules</li>
-<li>[ ] No existing slot in <code>catcore_common</code> covers the same concept</li>
-<li>[ ] The slot has a <code>slot_uri</code> pointing to an established ontology term (or a provisional catcore URI)</li>
+<li>[ ] No existing slot in <code>coremeta4cat_common</code> covers the same concept</li>
+<li>[ ] The slot has a <code>slot_uri</code> pointing to an established ontology term (or a provisional coremeta4cat URI)</li>
 <li>[ ] A UCUM unit code is provided for all numeric slots</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># In catcore_common.yaml, under the slots: section:</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># In coremeta4cat_common.yaml, under the slots: section:</span>
 
 <span class="nt">my_shared_slot</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">What this parameter means, with any relevant units or value constraints.</span>
 <span class="w">  </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
-<span class="w">  </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catcore:my_shared_slot</span><span class="w">   </span><span class="c1"># replace with ontology URI if available</span>
+<span class="w">  </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:my_shared_slot</span><span class="w">   </span><span class="c1"># replace with ontology URI if available</span>
 <span class="w">  </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mL/min</span>
 </code></pre></div>
 <hr />
 <h2 id="adding-a-mixin-class">Adding a mixin class</h2>
-<p>If a set of slots is shared across three or more classes in the same subprofile, consider factoring them into a new mixin. Mixins shared across two subprofiles should go in <code>catcore_common.yaml</code>.</p>
+<p>If a set of slots is shared across three or more classes in the same subprofile, consider factoring them into a new mixin. Mixins shared across two subprofiles should go in <code>coremeta4cat_common.yaml</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">MyNewMixin</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">mixin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
@@ -1589,19 +1644,19 @@ Every slot in a new class should have either <code>required: true</code> (Mandat
 <p>This section is for schema developers who need to introduce a new chemistry-layer or intermediate module between CoreMeta4Cat and DCAT-AP-PLUS. Most users extending the four pillars do not need this.</p>
 </div>
 <p>CoreMeta4Cat sits at the top of a layered import chain:</p>
-<div class="highlight"><pre><span></span><code>catcore.yaml  →  catcore_common.yaml  →  chem_dcat_ap  →  …  →  dcat_ap_plus
+<div class="highlight"><pre><span></span><code>coremeta4cat.yaml  →  coremeta4cat_common.yaml  →  chem_dcat_ap  →  …  →  dcat_ap_plus
 </code></pre></div>
-<p>If you need to introduce a new intermediate chemistry layer (e.g. a <code>polymer_catalysis_ap</code> that adds polymer-specific base classes used across multiple pillars), add it between <code>catcore_common</code> and the first pillar that needs it. Import it in <code>catcore_common.yaml</code> via the <code>imports:</code> key, and document the new layer in the import hierarchy diagram in <code>catcore.yaml</code>.</p>
+<p>If you need to introduce a new intermediate chemistry layer (e.g. a <code>polymer_catalysis_ap</code> that adds polymer-specific base classes used across multiple pillars), add it between <code>coremeta4cat_common</code> and the first pillar that needs it. Import it in <code>coremeta4cat_common.yaml</code> via the <code>imports:</code> key, and document the new layer in the import hierarchy diagram in <code>coremeta4cat.yaml</code>.</p>
 <p>Do not import new intermediate layers directly in individual pillar files — this would create hidden import order dependencies and make the schema harder to reason about.</p>
 <hr />
 <h2 id="checklist-summary">Checklist summary</h2>
 <p>Before submitting a pull request with a new extension:</p>
 <ul>
 <li>[ ] New class uses <code>is_a:</code> with the correct parent (see <a href="#general-rules">General rules</a>)</li>
-<li>[ ] <code>class_uri:</code> is set (Voc4Cat / ontology term, or <code>catcore:</code> placeholder with issue link)</li>
+<li>[ ] <code>class_uri:</code> is set (Voc4Cat / ontology term, or <code>coremeta4cat:</code> placeholder with issue link)</li>
 <li>[ ] Existing mixins are applied before adding new slots</li>
 <li>[ ] Slots exclusive to this class are declared in the correct subprofile file</li>
-<li>[ ] Slots shared across subprofiles are declared in <code>catcore_common.yaml</code></li>
+<li>[ ] Slots shared across subprofiles are declared in <code>coremeta4cat_common.yaml</code></li>
 <li>[ ] All slots have <code>slot_uri:</code>, <code>range:</code>, <code>multivalued: true</code></li>
 <li>[ ] Numeric slots have <code>unit: { ucum_code: ... }</code></li>
 <li>[ ] Obligation levels are set (<code>required:</code> or <code>recommended:</code>) on all slots</li>

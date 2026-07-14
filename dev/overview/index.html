@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/overview/">
       
       
-        <link rel="prev" href="../getting-started/">
+        <link rel="prev" href="../working-with-data/">
       
       
         <link rel="next" href="../design-patterns/">
@@ -269,6 +269,33 @@
     
   
     Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../working-with-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
   
 
     
@@ -569,10 +596,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -590,8 +617,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -600,6 +627,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1002,12 +1057,12 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:reaction-001</span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reaction</span>
 <span class="w">    </span><span class="nt">catalyst_quantity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span><span class="w">   </span><span class="c1"># mg</span>
-<span class="w">    </span><span class="nt">reactant</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">used_reactant</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;1</span><span class="nv"> </span><span class="s">vol%</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">N2&quot;</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;2</span><span class="nv"> </span><span class="s">vol%</span><span class="nv"> </span><span class="s">O2</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">N2&quot;</span>
 <span class="w">    </span><span class="nt">reactor_temperature_range</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;200–400</span><span class="nv"> </span><span class="s">°C&quot;</span>
 <span class="w">    </span><span class="nt">experiment_pressure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w">   </span><span class="c1"># bar</span>
-<span class="w">    </span><span class="nt">carried_out_by</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">used_reactor</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:reactor-001</span>
 <span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FixedBedReactor</span>
 
@@ -1099,7 +1154,7 @@
 </ul>
 <h3 id="reaction">Reaction</h3>
 <p>The <strong>Reaction</strong> pillar represents the catalytic process being studied. It is modelled as a DCAT-AP-PLUS <code>EvaluatedActivity</code> — the process the dataset is <em>about</em>, not the process that <em>generates</em> the data. This distinction matters: for operando experiments (e.g. in-situ XRD during a reaction), the dataset carries both <code>was_generated_by: Characterization</code> and <code>is_about_activity: Reaction</code>.</p>
-<p>The reactor is linked via <code>carried_out_by</code> as one of eight <code>ReactorDesignType</code> subclasses:</p>
+<p>The reactor is linked via <code>used_reactor</code> (<code>is_a: carried_out_by</code>) as one of eight <code>ChemicalReactor</code> subclasses:</p>
 <div class="grid">
 <ul>
 <li><code>ElectrochemicalReactor</code></li>

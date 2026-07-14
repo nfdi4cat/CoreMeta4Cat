@@ -282,6 +282,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../working-with-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../overview/" class="md-nav__link">
         
   
@@ -400,10 +427,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -421,8 +448,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -431,6 +458,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -659,6 +714,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -754,8 +820,13 @@
 <p><em>Plane-wave kinetic energy cutoff for the basis set expansion.</em></p>
 <p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/energy_cutoff">coremeta4cat:energy_cutoff</a>
 Alias: energy_cutoff</p>
-<!-- no inheritance hierarchy -->
-
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../has_quantitative_attribute/">has_quantitative_attribute</a><ul>
+<li><strong>energy_cutoff</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -767,23 +838,8 @@ Alias: energy_cutoff</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/ElectronicStructure/">ElectronicStructure</a></td>
-<td>Electronic band structure and density of states, characterising the<br>electronic properties of a catalyst relevant to activity descriptors<br>(d-band centre, band gap, Fermi energy).</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../../classes/EquationsOfState/">EquationsOfState</a></td>
 <td>Equation of state relating energy (or enthalpy) to volume, fitted to a<br>parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium<br>volume, bulk modulus, and its pressure derivative.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/DFT/">DFT</a></td>
-<td>Density functional theory — a quantum mechanical method for calculating<br>the electronic structure of atoms, molecules, and periodic solids.<br>The most widely used ab initio method in computational catalysis.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/DFTSettingsMixin/">DFTSettingsMixin</a></td>
-<td>Mixin providing plane-wave DFT numerical settings shared by CalculatedProperty<br>subclasses that are computed with periodic DFT (DielectricTensors,<br>EquationsOfState, ElectronicStructure, BandGap).</td>
 <td>no</td>
 </tr>
 <tr>
@@ -792,8 +848,23 @@ Alias: energy_cutoff</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../../classes/ElectronicStructure/">ElectronicStructure</a></td>
+<td>Electronic band structure and density of states, characterising the<br>electronic properties of a catalyst relevant to activity descriptors<br>(d-band centre, band gap, Fermi energy).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/DFTSettingsMixin/">DFTSettingsMixin</a></td>
+<td>Mixin providing plane-wave DFT numerical settings shared by CalculatedProperty<br>subclasses that are computed with periodic DFT (DielectricTensors,<br>EquationsOfState, ElectronicStructure, BandGap).</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../../classes/DielectricTensors/">DielectricTensors</a></td>
 <td>Dielectric tensor computed from density functional perturbation theory (DFPT).<br>Characterises the optical and static dielectric response of a material.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/DFT/">DFT</a></td>
+<td>Density functional theory — a quantum mechanical method for calculating<br>the electronic structure of atoms, molecules, and periodic solids.<br>The most widely used ab initio method in computational catalysis.</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -805,6 +876,9 @@ Alias: energy_cutoff</p>
 </li>
 <li>
 <p>Multivalued: True</p>
+</li>
+<li>
+<p>Recommended: True</p>
 </li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -837,13 +911,17 @@ Alias: energy_cutoff</p>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Plane-wave kinetic energy cutoff for the basis set expansion.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:energy_cutoff</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">energy_cutoff</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DFTSettingsMixin</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DFT</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span>
+<span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">unit</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eV</span>
 </code></pre></div>

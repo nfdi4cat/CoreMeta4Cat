@@ -148,6 +148,18 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="../../../working-with-data/">
+<span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../../../overview/">
 <span class="md-ellipsis">
     
@@ -196,8 +208,8 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
-<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
 <span class="md-ellipsis">
     
   
@@ -208,8 +220,8 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_7">
+<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -218,6 +230,18 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../catalysis-dataset/">
+<span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../../synthesis/">
 <span class="md-ellipsis">
@@ -338,6 +362,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#usages">
+<span class="md-ellipsis">
+      
+        Usages
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#identifier-and-mapping-information">
 <span class="md-ellipsis">
       
@@ -407,7 +440,11 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-catalyticreaction">Class: CatalyticReaction</h1>
-<p><em>An EvaluatedActivity representing the catalytic reaction being studied.</em></p>
+<p><em>A ChemicalReaction (chemdcat-ap) specialization representing the</em></p>
+<p><em>catalytic reaction being studied. Inherits the generic reaction slots</em></p>
+<p><em>(starting materials, reactants, products, catalyst, solvent, reactor,</em></p>
+<p><em>temperature, pressure, yield, reaction steps) from ChemicalReaction and</em></p>
+<p><em>adds catalysis-specific operating-condition slots.</em></p>
 <p>__</p>
 <p><em>Reaction is NOT a DataGeneratingActivity — it is the catalytic process</em></p>
 <p><em>being observed, not the process that generates the dataset. A CatalysisDataset</em></p>
@@ -418,16 +455,19 @@
 <p>_  was_generated_by: Characterization  (the measurement producing data)_</p>
 <p>_  is_about_activity: Reaction         (the catalytic process being monitored)_</p>
 <p>__</p>
-<p><em>The reactor is linked via carried_out_by as a Reactor (Device).</em></p>
-<p><em>Reactants are linked via had_input_entity. The type of catalytic reaction</em></p>
-<p><em>(e.g. ammonia synthesis, CO oxidation) is expressed via rdf_type using a</em></p>
-<p><em>voc4cat or ChemO term.</em></p>
-<p>URI: <a href="http://semanticscience.org/resource/SIO_010345">SIO:010345</a></p>
+<p><em>The reactor is linked via the inherited used_reactor slot (is_a:</em></p>
+<p><em>carried_out_by), narrowed here to require a ChemicalReactor instance</em></p>
+<p><em>rather than touching the generic carried_out_by relation directly.</em></p>
+<p><em>Reactants are linked via the inherited used_reactant slot (range:</em></p>
+<p><em>Reagent) -- CatalyticReaction does not declare its own reactant slot.</em></p>
+<p><em>The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)</em></p>
+<p><em>is expressed via rdf_type using a voc4cat or ChemO term.</em></p>
+<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/class/CatalyticReaction">coremeta4cat:class/CatalyticReaction</a></p>
 <pre class="mermaid"><code> classDiagram
     class CatalyticReaction
     click CatalyticReaction href "../../classes/CatalyticReaction/"
-      EvaluatedActivity &lt;|-- CatalyticReaction
-        click EvaluatedActivity href "../../classes/EvaluatedActivity/"
+      ChemicalReaction &lt;|-- CatalyticReaction
+        click ChemicalReaction href "../../classes/ChemicalReaction/"
 
       CatalyticReaction : carried_out_by
 
@@ -435,8 +475,19 @@
 
 
 
-        CatalyticReaction --&gt; "1..* _recommended_" ChemicalReactor : carried_out_by
-        click ChemicalReactor href "../../classes/ChemicalReactor/"
+        CatalyticReaction --&gt; "* _recommended_" AgenticEntity : carried_out_by
+        click AgenticEntity href "../../classes/AgenticEntity/"
+
+
+
+      CatalyticReaction : catalyst_form
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" CatalystFormEnum : catalyst_form
+        click CatalystFormEnum href "../../enums/CatalystFormEnum/"
 
 
 
@@ -446,8 +497,19 @@
 
 
 
-        CatalyticReaction --&gt; "1..*" Mass : catalyst_quantity
+        CatalyticReaction --&gt; "* _recommended_" Mass : catalyst_quantity
         click Mass href "../../classes/Mass/"
+
+
+
+      CatalyticReaction : catalyst_type
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" CatalysisResearchFieldEnum : catalyst_type
+        click CatalysisResearchFieldEnum href "../../enums/CatalysisResearchFieldEnum/"
 
 
 
@@ -459,7 +521,7 @@
 
 
 
-        CatalyticReaction --&gt; "*" Pressure : experiment_pressure
+        CatalyticReaction --&gt; "* _recommended_" Pressure : experiment_pressure
         click Pressure href "../../classes/Pressure/"
 
 
@@ -470,8 +532,19 @@
 
 
 
-        CatalyticReaction --&gt; "*" QuantitativeRange : feed_composition_range
+        CatalyticReaction --&gt; "* _recommended_" QuantitativeRange : feed_composition_range
         click QuantitativeRange href "../../classes/QuantitativeRange/"
+
+
+
+      CatalyticReaction : generated_product
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" ChemicalProduct : generated_product
+        click ChemicalProduct href "../../classes/ChemicalProduct/"
 
 
 
@@ -492,8 +565,8 @@
 
 
 
-        CatalyticReaction --&gt; "* _recommended_" EvaluatedEntity : had_input_entity
-        click EvaluatedEntity href "../../classes/EvaluatedEntity/"
+        CatalyticReaction --&gt; "* _recommended_" Entity : had_input_entity
+        click Entity href "../../classes/Entity/"
 
 
 
@@ -519,16 +592,7 @@
 
 
 
-      CatalyticReaction : has_catalyst_type
-
-
-
-
-
-        CatalyticReaction --&gt; "* _recommended_" CatalystType : has_catalyst_type
-        click CatalystType href "../../classes/CatalystType/"
-
-
+      CatalyticReaction : has_duration
 
       CatalyticReaction : has_experiment_duration
 
@@ -549,6 +613,17 @@
 
         CatalyticReaction --&gt; "*" Activity : has_part
         click Activity href "../../classes/Activity/"
+
+
+
+      CatalyticReaction : has_pressure
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" Pressure : has_pressure
+        click Pressure href "../../classes/Pressure/"
 
 
 
@@ -574,14 +649,36 @@
 
 
 
-      CatalyticReaction : has_reaction_type
+      CatalyticReaction : has_reaction_step
 
 
 
 
 
-        CatalyticReaction --&gt; "* _recommended_" ReactionType : has_reaction_type
-        click ReactionType href "../../classes/ReactionType/"
+        CatalyticReaction --&gt; "*" CatalyticReaction : has_reaction_step
+        click CatalyticReaction href "../../classes/CatalyticReaction/"
+
+
+
+      CatalyticReaction : has_temperature
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" Temperature : has_temperature
+        click Temperature href "../../classes/Temperature/"
+
+
+
+      CatalyticReaction : has_yield
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" Yield : has_yield
+        click Yield href "../../classes/Yield/"
 
 
 
@@ -631,16 +728,7 @@
 
 
 
-      CatalyticReaction : reactant
-
-
-
-
-
-        CatalyticReaction --&gt; "1..*" ChemicalEntity : reactant
-        click ChemicalEntity href "../../classes/ChemicalEntity/"
-
-
+      CatalyticReaction : reaction_name
 
       CatalyticReaction : reactor_temperature_range
 
@@ -648,8 +736,19 @@
 
 
 
-        CatalyticReaction --&gt; "*" QuantitativeRange : reactor_temperature_range
+        CatalyticReaction --&gt; "* _recommended_" QuantitativeRange : reactor_temperature_range
         click QuantitativeRange href "../../classes/QuantitativeRange/"
+
+
+
+      CatalyticReaction : related_resource
+
+
+
+
+
+        CatalyticReaction --&gt; "*" Resource : related_resource
+        click Resource href "../../classes/Resource/"
 
 
 
@@ -666,12 +765,70 @@
 
 
 
+      CatalyticReaction : used_catalyst
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" Catalyst : used_catalyst
+        click Catalyst href "../../classes/Catalyst/"
+
+
+
+      CatalyticReaction : used_reactant
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" Reagent : used_reactant
+        click Reagent href "../../classes/Reagent/"
+
+
+
+      CatalyticReaction : used_reactor
+
+
+
+
+
+        CatalyticReaction --&gt; "1..* _recommended_" ChemicalReactor : used_reactor
+        click ChemicalReactor href "../../classes/ChemicalReactor/"
+
+
+
+      CatalyticReaction : used_solvent
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" DissolvingSubstance : used_solvent
+        click DissolvingSubstance href "../../classes/DissolvingSubstance/"
+
+
+
+      CatalyticReaction : used_starting_material
+
+
+
+
+
+        CatalyticReaction --&gt; "* _recommended_" StartingMaterial : used_starting_material
+        click StartingMaterial href "../../classes/StartingMaterial/"
+
+
+
 </code></pre>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Activity/">Activity</a> [ <a href="../ClassifierMixin/">ClassifierMixin</a>]<ul>
 <li><a href="../EvaluatedActivity/">EvaluatedActivity</a><ul>
+<li><a href="../ChemicalReaction/">ChemicalReaction</a><ul>
 <li><strong>CatalyticReaction</strong></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -690,31 +847,31 @@
 <tbody>
 <tr>
 <td><a href="../../slots/catalyst_quantity/">catalyst_quantity</a></td>
-<td>1..* <br/> <a href="../Mass/">Mass</a></td>
+<td>* <em>recommended</em> <br/> <a href="../Mass/">Mass</a></td>
 <td>Mass of catalyst loaded into the reactor.</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../../slots/reactant/">reactant</a></td>
-<td>1..* <br/> <a href="../ChemicalEntity/">ChemicalEntity</a></td>
-<td>Reactant(s) or feed chemicals used in the reaction. Provide a ChemicalEntity<br/>instance with inchikey, smiles, or iupac_name. For feed mixtures, list each<br/>component as a separate ChemicalEntity and record composition via has_concentration.</td>
+<td><a href="../../slots/catalyst_type/">catalyst_type</a></td>
+<td>* <em>recommended</em> <br/> <a href="../../enums/CatalysisResearchFieldEnum/">CatalysisResearchFieldEnum</a></td>
+<td>The catalytic regime of the reaction (e.g. heterogeneous, homogeneous,<br/>biocatalysis, electrocatalysis, photocatalysis). For the physical<br/>form/presentation of the catalyst itself, use catalyst_form instead.<br/><br/>Deliberately kept <code>recommended</code> rather than <code>required</code> (see nfdi4cat/<br/>CoreMeta4Cat#117): classification here can be genuinely disputed or<br/>not yet covered by CatalysisResearchFieldEnum for a novel catalyst,<br/>and forcing a value would push researchers into a premature or<br/>contested classification rather than leaving the field unset until<br/>consensus/vocabulary catches up. Open for discussion in a follow-up<br/>issue if a different tradeoff is wanted. See also nfdi4cat/<br/>CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +<br/>catalyst_form) or PR #118's CatalystType class hierarchy should be<br/>the long-term mechanism -- kept as two enums here because the<br/>VOC4CAT terms show CatalystType conflates the regime axis<br/>(Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form<br/>axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical<br/>VOC4CAT ids to catalyst_form's permissible values), which are<br/>independent and often both apply to the same catalyst at once.</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../../slots/has_catalyst_type/">has_catalyst_type</a></td>
-<td>* <em>recommended</em> <br> <a href="../CatalystType/">CatalystType</a></br></td>
-<td>Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).<br/>For heterogeneous catalysts, use voc4cat terms where available.</td>
+<td><a href="../../slots/catalyst_form/">catalyst_form</a></td>
+<td>* <em>recommended</em> <br> <a href="../../enums/CatalystFormEnum/">CatalystFormEnum</a></br></td>
+<td>The physical form or presentation of the catalyst as loaded into the<br/>reactor (e.g. thin film, bulk, powder, supported). A separate axis<br/>from catalyst_type (the catalytic regime).</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../../slots/has_reaction_type/">has_reaction_type</a></td>
-<td>* <em>recommended</em> <br> <a href="../ReactionType/">ReactionType</a></br></td>
-<td>A group of chemical reactions with common conditions or reactants, e.g. Oxidation, Hydrogenation, Reduction, Cracking.</td>
+<td><a href="../../slots/reaction_name/">reaction_name</a></td>
+<td>* <em>recommended</em> <br> <a href="../../types/String/">String</a></br></td>
+<td>A name for the catalytic reaction which assigns the reactants and<br/>(desired) products (e.g. "ammonia synthesis", "Fischer-Tropsch synthesis").</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../../slots/reactor_temperature_range/">reactor_temperature_range</a></td>
-<td>* <br> <a href="../QuantitativeRange/">QuantitativeRange</a></br></td>
+<td>* <em>recommended</em> <br> <a href="../QuantitativeRange/">QuantitativeRange</a></br></td>
 <td>Temperature range in the reactor during the reaction, provided as a<br/>QuantitativeRange with min_value and max_value (unit_code: "Cel").<br/>For a single set-point, set min_value equal to max_value.</td>
 <td>direct</td>
 </tr>
@@ -726,13 +883,13 @@
 </tr>
 <tr>
 <td><a href="../../slots/experiment_pressure/">experiment_pressure</a></td>
-<td>* <br> <a href="../Pressure/">Pressure</a></br></td>
+<td>* <em>recommended</em> <br> <a href="../Pressure/">Pressure</a></br></td>
 <td>Total pressure in the reactor during the experiment.</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../../slots/feed_composition_range/">feed_composition_range</a></td>
-<td>* <br/> <a href="../QuantitativeRange/">QuantitativeRange</a></td>
+<td>* <em>recommended</em> <br> <a href="../QuantitativeRange/">QuantitativeRange</a></br></td>
 <td>Feed composition range studied, provided as a QuantitativeRange.<br/>Express concentration bounds in an appropriate unit (e.g. "mol/L", "%" for<br/>vol% or mol%). For fixed-composition experiments use reactant.has_concentration.</td>
 <td>direct</td>
 </tr>
@@ -749,6 +906,78 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../../slots/used_starting_material/">used_starting_material</a></td>
+<td>* <em>recommended</em> <br> <a href="../StartingMaterial/">StartingMaterial</a></br></td>
+<td>The slot to specify the StartingMaterial(s) of a ChemicalReaction.</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
+<td><a href="../../slots/used_reactant/">used_reactant</a></td>
+<td>* <em>recommended</em> <br> <a href="../Reagent/">Reagent</a></br></td>
+<td>The slot to specify the Reagent(s) of a ChemicalReaction.</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
+<td><a href="../../slots/generated_product/">generated_product</a></td>
+<td>* <em>recommended</em> <br> <a href="../ChemicalProduct/">ChemicalProduct</a></br></td>
+<td>The slot to specify the Product(s) of a ChemicalReaction.</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
+<td><a href="../../slots/used_catalyst/">used_catalyst</a></td>
+<td>* <em>recommended</em> <br> <a href="../Catalyst/">Catalyst</a></br></td>
+<td>The slot to specify the Catalyst of a ChemicalReaction.</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
+<td><a href="../../slots/used_solvent/">used_solvent</a></td>
+<td>* <em>recommended</em> <br> <a href="../DissolvingSubstance/">DissolvingSubstance</a></br></td>
+<td>The slot to specify the chemical substance that had a solvent role (CHEBI:35223) in a ChemicalReaction.</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
+<td><a href="../../slots/has_duration/">has_duration</a></td>
+<td>0..1 <br> <a href="../../types/Duration/">Duration</a></br></td>
+<td>A slot to provide the duration of a ChemicalReaction.</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
+<td><a href="../../slots/used_reactor/">used_reactor</a></td>
+<td>1..* <em>recommended</em> <br> <a href="../ChemicalReactor/">ChemicalReactor</a></br></td>
+<td>The reactor in which the Reaction takes place.<br/>Must be a ChemicalReactor instance (a Reactor subclass specific to<br/>catalytic reaction vessels, e.g. FixedBedReactor, CSTR, Autoclave).</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
+<td><a href="../../slots/has_temperature/">has_temperature</a></td>
+<td>* <em>recommended</em> <br> <a href="../Temperature/">Temperature</a></br></td>
+<td>The slot to specify the Temperature at which a ChemicalReaction takes place.</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
+<td><a href="../../slots/has_pressure/">has_pressure</a></td>
+<td>* <em>recommended</em> <br> <a href="../Pressure/">Pressure</a></br></td>
+<td>The slot to specify the Pressure at which a ChemicalReaction takes place.</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
+<td><a href="../../slots/has_yield/">has_yield</a></td>
+<td>* <em>recommended</em> <br> <a href="../Yield/">Yield</a></br></td>
+<td>A slot to provide the percentage of how much of the ChemicalProduct was produced by a ChemicalReaction.</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
+<td><a href="../../slots/has_reaction_step/">has_reaction_step</a></td>
+<td>* <br> <a href="./">CatalyticReaction</a></br></td>
+<td>A step (part) of this CatalyticReaction that is itself a CatalyticReaction.<br/>Narrowed from the inherited ChemicalReaction range so nested reaction<br/>steps keep their catalysis-specific fields (catalyst_type, used_reactor,<br/>product_identification_method, ...) when loaded.</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
+<td><a href="../../slots/related_resource/">related_resource</a></td>
+<td>* <br> <a href="../Resource/">Resource</a></br></td>
+<td>The slot to specify any Documents related to a ChemicalReaction.</td>
+<td><a href="../ChemicalReaction/">ChemicalReaction</a></td>
+</tr>
+<tr>
 <td><a href="../../slots/id/">id</a></td>
 <td>1 <br> <a href="../../types/Uriorcurie/">Uriorcurie</a></br></td>
 <td>A slot to provide an URI for an entity within this schema.</td>
@@ -762,44 +991,44 @@
 </tr>
 <tr>
 <td><a href="../../slots/description/">description</a></td>
-<td>* <br/> <a href="../../types/String/">String</a></td>
+<td>* <br> <a href="../../types/String/">String</a></br></td>
 <td>The slot to provide a description for the Activity.</td>
 <td><a href="../Activity/">Activity</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/other_identifier/">other_identifier</a></td>
-<td>* <br/> <a href="../Identifier/">Identifier</a></td>
+<td>* <br> <a href="../Identifier/">Identifier</a></br></td>
 <td>A slot to provide a secondary identifier of the EvaluatedActivity.</td>
 <td><a href="../Activity/">Activity</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/has_part/">has_part</a></td>
-<td>* <br/> <a href="../Activity/">Activity</a></td>
+<td>* <br> <a href="../Activity/">Activity</a></br></td>
 <td>The slot to provide an Activity that is part of the Activity.</td>
 <td><a href="../Activity/">Activity</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/had_input_entity/">had_input_entity</a></td>
-<td>* <em>recommended</em> <br/> <a href="../EvaluatedEntity/">EvaluatedEntity</a></td>
-<td>The reactant chemicals or feeds entering the reactor.</td>
+<td>* <em>recommended</em> <br> <a href="../Entity/">Entity</a></br></td>
+<td>The slot to specify the Entity that was used as an input of an Activity that is to be changed, consumed or transformed.</td>
 <td><a href="../Activity/">Activity</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/had_output_entity/">had_output_entity</a></td>
-<td>* <em>recommended</em> <br/> <a href="../Entity/">Entity</a></td>
+<td>* <em>recommended</em> <br> <a href="../Entity/">Entity</a></br></td>
 <td>The slot to specify the Entity that was generated as an output of an Activity.</td>
 <td><a href="../Activity/">Activity</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/had_input_activity/">had_input_activity</a></td>
-<td>* <em>recommended</em> <br/> <a href="../Activity/">Activity</a></td>
+<td>* <em>recommended</em> <br> <a href="../Activity/">Activity</a></br></td>
 <td>The slot to provide a previous Activity that informed the Activity by being causally via a shared participant.</td>
 <td><a href="../Activity/">Activity</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/carried_out_by/">carried_out_by</a></td>
-<td>1..* <em>recommended</em> <br/> <a href="../ChemicalReactor/">ChemicalReactor</a></td>
-<td>The reactor in which the Reaction takes place.<br/>Must be a Reactor instance (a Device subclass specific to catalytic<br/>reaction vessels, e.g. FixedBedReactor, CSTR, Autoclave).</td>
+<td>* <em>recommended</em> <br> <a href="../AgenticEntity/">AgenticEntity</a></br></td>
+<td>The slot to specify the AgenticEntity that played a certain part in carrying out the Activity, either via having a specific role, function or disposition that was realized in the Activity.</td>
 <td><a href="../Activity/">Activity</a></td>
 </tr>
 <tr>
@@ -816,7 +1045,7 @@
 </tr>
 <tr>
 <td><a href="../../slots/part_of/">part_of</a></td>
-<td>* <br/> <a href="../Activity/">Activity</a></td>
+<td>* <br> <a href="../Activity/">Activity</a></br></td>
 <td>The slot to provide an Activity of which the Activity is a part.</td>
 <td><a href="../Activity/">Activity</a></td>
 </tr>
@@ -829,8 +1058,33 @@
 <tr>
 <td><a href="../../slots/rdf_type/">rdf_type</a></td>
 <td>0..1 <em>recommended</em> <br/> <a href="../DefinedTerm/">DefinedTerm</a></td>
-<td>The type of catalytic reaction as an ontology term (e.g. VOC4CAT:0007010<br/>for a specific reaction type, or a ChemO/RXNO term).</td>
+<td>The type of catalytic reaction as an ontology term (e.g. VOC4CAT:0007010<br/>for a specific reaction type, or a ChemO/RXNO term).<br/><br/>This is the sole reaction-type classification mechanism (DCAT-AP-PLUS<br/>Pattern 3) -- deliberately not duplicated by a dedicated has_reaction_type<br/>slot + ReactionType class hierarchy (cf. PR #118, since superseded here).<br/>Kept <code>recommended</code> rather than <code>required</code> for the same reason as<br/>catalyst_type below: see nfdi4cat/CoreMeta4Cat#117 for the cardinality<br/>discussion and nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism<br/>discussion.</td>
 <td><a href="../ClassifierMixin/">ClassifierMixin</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="usages">Usages</h2>
+<table>
+<thead>
+<tr>
+<th>used by</th>
+<th>used in</th>
+<th>type</th>
+<th>used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../CatalysisDataset/">CatalysisDataset</a></td>
+<td><a href="../../slots/is_about_activity/">is_about_activity</a></td>
+<td>range</td>
+<td><a href="./">CatalyticReaction</a></td>
+</tr>
+<tr>
+<td><a href="./">CatalyticReaction</a></td>
+<td><a href="../../slots/has_reaction_step/">has_reaction_step</a></td>
+<td>range</td>
+<td><a href="./">CatalyticReaction</a></td>
 </tr>
 </tbody>
 </table>
@@ -850,7 +1104,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>SIO:010345</td>
+<td>coremeta4cat:CatalyticReaction</td>
 </tr>
 <tr>
 <td>native</td>
@@ -863,23 +1117,29 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">"An</span><span class="nv"> </span><span class="s">EvaluatedActivity</span><span class="nv"> </span><span class="s">representing</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">studied.\n\</span>
-<span class="w">  </span><span class="s">\nReaction</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">NOT</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process\nbeing\</span>
-<span class="w">  </span><span class="s">\ observed,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">generates</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">CatalysisDataset\nis</span><span class="nv"> </span><span class="s">linked\</span>
-<span class="w">  </span><span class="s">\ to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">is_about_activity.\n\nFor</span><span class="nv"> </span><span class="s">operando</span><span class="nv"> </span><span class="s">experiments\</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">"A</span><span class="nv"> </span><span class="s">ChemicalReaction</span><span class="nv"> </span><span class="s">(chemdcat-ap)</span><span class="nv"> </span><span class="s">specialization</span><span class="nv"> </span><span class="s">representing</span><span class="nv"> </span><span class="s">the\ncatalytic\</span>
+<span class="w">  </span><span class="s">\ reaction</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">studied.</span><span class="nv"> </span><span class="s">Inherits</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">generic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">slots\n(starting</span><span class="nv"> </span><span class="s">materials,\</span>
+<span class="w">  </span><span class="s">\ reactants,</span><span class="nv"> </span><span class="s">products,</span><span class="nv"> </span><span class="s">catalyst,</span><span class="nv"> </span><span class="s">solvent,</span><span class="nv"> </span><span class="s">reactor,\ntemperature,</span><span class="nv"> </span><span class="s">pressure,</span><span class="nv"> </span><span class="s">yield,\</span>
+<span class="w">  </span><span class="s">\ reaction</span><span class="nv"> </span><span class="s">steps)</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">ChemicalReaction</span><span class="nv"> </span><span class="s">and\nadds</span><span class="nv"> </span><span class="s">catalysis-specific</span><span class="nv"> </span><span class="s">operating-condition\</span>
+<span class="w">  </span><span class="s">\ slots.\n\nReaction</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">NOT</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process\n\</span>
+<span class="w">  </span><span class="s">being</span><span class="nv"> </span><span class="s">observed,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">generates</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">CatalysisDataset\n\</span>
+<span class="w">  </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">is_about_activity.\n\nFor</span><span class="nv"> </span><span class="s">operando</span><span class="nv"> </span><span class="s">experiments\</span>
 <span class="w">  </span><span class="s">\ (e.g.</span><span class="nv"> </span><span class="s">in-situ</span><span class="nv"> </span><span class="s">XRD</span><span class="nv"> </span><span class="s">during</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">reaction),</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset\ncarries</span><span class="nv"> </span><span class="s">both:\n</span><span class="nv">  </span><span class="s">was_generated_by:\</span>
 <span class="w">  </span><span class="s">\ Characterization</span><span class="nv">  </span><span class="s">(the</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">producing</span><span class="nv"> </span><span class="s">data)\n</span><span class="nv">  </span><span class="s">is_about_activity:</span><span class="nv"> </span><span class="s">Reaction\</span>
-<span class="w">  </span><span class="s">\ </span><span class="nv">        </span><span class="s">(the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">monitored)\n\nThe</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">carried_out_by\</span>
-<span class="w">  </span><span class="s">\ as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Reactor</span><span class="nv"> </span><span class="s">(Device).\nReactants</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">had_input_entity.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">of\</span>
-<span class="w">  </span><span class="s">\ catalytic</span><span class="nv"> </span><span class="s">reaction\n(e.g.</span><span class="nv"> </span><span class="s">ammonia</span><span class="nv"> </span><span class="s">synthesis,</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">oxidation)</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">rdf_type\</span>
-<span class="w">  </span><span class="s">\ using</span><span class="nv"> </span><span class="s">a\nvoc4cat</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">ChemO</span><span class="nv"> </span><span class="s">term."</span>
+<span class="w">  </span><span class="s">\ </span><span class="nv">        </span><span class="s">(the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">monitored)\n\nThe</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the\</span>
+<span class="w">  </span><span class="s">\ inherited</span><span class="nv"> </span><span class="s">used_reactor</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(is_a:\ncarried_out_by),</span><span class="nv"> </span><span class="s">narrowed</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">require\</span>
+<span class="w">  </span><span class="s">\ a</span><span class="nv"> </span><span class="s">ChemicalReactor</span><span class="nv"> </span><span class="s">instance\nrather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">touching</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">generic</span><span class="nv"> </span><span class="s">carried_out_by</span><span class="nv"> </span><span class="s">relation\</span>
+<span class="w">  </span><span class="s">\ directly.\nReactants</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">inherited</span><span class="nv"> </span><span class="s">used_reactant</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(range:\n\</span>
+<span class="w">  </span><span class="s">Reagent)</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">CatalyticReaction</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">declare</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">own</span><span class="nv"> </span><span class="s">reactant</span><span class="nv"> </span><span class="s">slot.\nThe</span><span class="nv"> </span><span class="s">type\</span>
+<span class="w">  </span><span class="s">\ of</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">ammonia</span><span class="nv"> </span><span class="s">synthesis,</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">oxidation)\nis</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via\</span>
+<span class="w">  </span><span class="s">\ rdf_type</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">ChemO</span><span class="nv"> </span><span class="s">term."</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
-<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvaluatedActivity</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_quantity</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactant</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_catalyst_type</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_reaction_type</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_type</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_form</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reaction_name</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactor_temperature_range</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_atmosphere</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experiment_pressure</span>
@@ -891,24 +1151,32 @@
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf_type</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">ontology</span><span class="nv"> </span><span class="s">term</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">VOC4CAT:0007010</span>
 
-<span class="w">      </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">type,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemO/RXNO</span><span class="nv"> </span><span class="s">term).'</span>
+<span class="w">      </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">type,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemO/RXNO</span><span class="nv"> </span><span class="s">term).</span>
+
+
+<span class="w">      </span><span class="s">This</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">sole</span><span class="nv"> </span><span class="s">reaction-type</span><span class="nv"> </span><span class="s">classification</span><span class="nv"> </span><span class="s">mechanism</span><span class="nv"> </span><span class="s">(DCAT-AP-PLUS</span>
+
+<span class="w">      </span><span class="s">Pattern</span><span class="nv"> </span><span class="s">3)</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">deliberately</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">duplicated</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dedicated</span><span class="nv"> </span><span class="s">has_reaction_type</span>
+
+<span class="w">      </span><span class="s">slot</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">ReactionType</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">hierarchy</span><span class="nv"> </span><span class="s">(cf.</span><span class="nv"> </span><span class="s">PR</span><span class="nv"> </span><span class="s">#118,</span><span class="nv"> </span><span class="s">since</span><span class="nv"> </span><span class="s">superseded</span><span class="nv"> </span><span class="s">here).</span>
+
+<span class="w">      </span><span class="s">Kept</span><span class="nv"> </span><span class="s">`recommended`</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">`required`</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">reason</span><span class="nv"> </span><span class="s">as</span>
+
+<span class="w">      </span><span class="s">catalyst_type</span><span class="nv"> </span><span class="s">below:</span><span class="nv"> </span><span class="s">see</span><span class="nv"> </span><span class="s">nfdi4cat/CoreMeta4Cat#117</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">cardinality</span>
+
+<span class="w">      </span><span class="s">discussion</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">nfdi4cat/CoreMeta4Cat#116</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">classification-mechanism</span>
+
+<span class="w">      </span><span class="s">discussion.'</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">carried_out_by</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">carried_out_by</span>
+<span class="w">  </span><span class="nt">used_reactor</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_reactor</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">takes</span><span class="nv"> </span><span class="s">place.</span>
 
-<span class="w">      </span><span class="s">Must</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Reactor</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(a</span><span class="nv"> </span><span class="s">Device</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">catalytic</span>
+<span class="w">      </span><span class="s">Must</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemicalReactor</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(a</span><span class="nv"> </span><span class="s">Reactor</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">to</span>
 
-<span class="w">      </span><span class="s">reaction</span><span class="nv"> </span><span class="s">vessels,</span><span class="nv"> </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">FixedBedReactor,</span><span class="nv"> </span><span class="s">CSTR,</span><span class="nv"> </span><span class="s">Autoclave).'</span>
+<span class="w">      </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">vessels,</span><span class="nv"> </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">FixedBedReactor,</span><span class="nv"> </span><span class="s">CSTR,</span><span class="nv"> </span><span class="s">Autoclave).'</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">had_input_entity</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">had_input_entity</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The reactant chemicals or feeds entering the reactor.</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvaluatedEntity</span>
-<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">product_identification_method</span><span class="p">:</span>
@@ -923,47 +1191,70 @@
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:010345</span>
+<span class="w">  </span><span class="nt">has_reaction_step</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_reaction_step</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">step</span><span class="nv"> </span><span class="s">(part)</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">CatalyticReaction</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">itself</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CatalyticReaction.</span>
+
+<span class="w">      </span><span class="s">Narrowed</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">inherited</span><span class="nv"> </span><span class="s">ChemicalReaction</span><span class="nv"> </span><span class="s">range</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">nested</span><span class="nv"> </span><span class="s">reaction</span>
+
+<span class="w">      </span><span class="s">steps</span><span class="nv"> </span><span class="s">keep</span><span class="nv"> </span><span class="s">their</span><span class="nv"> </span><span class="s">catalysis-specific</span><span class="nv"> </span><span class="s">fields</span><span class="nv"> </span><span class="s">(catalyst_type,</span><span class="nv"> </span><span class="s">used_reactor,</span>
+
+<span class="w">      </span><span class="s">product_identification_method,</span><span class="nv"> </span><span class="s">...)</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">loaded.'</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">"An</span><span class="nv"> </span><span class="s">EvaluatedActivity</span><span class="nv"> </span><span class="s">representing</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">studied.\n\</span>
-<span class="w">  </span><span class="s">\nReaction</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">NOT</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process\nbeing\</span>
-<span class="w">  </span><span class="s">\ observed,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">generates</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">CatalysisDataset\nis</span><span class="nv"> </span><span class="s">linked\</span>
-<span class="w">  </span><span class="s">\ to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">is_about_activity.\n\nFor</span><span class="nv"> </span><span class="s">operando</span><span class="nv"> </span><span class="s">experiments\</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">"A</span><span class="nv"> </span><span class="s">ChemicalReaction</span><span class="nv"> </span><span class="s">(chemdcat-ap)</span><span class="nv"> </span><span class="s">specialization</span><span class="nv"> </span><span class="s">representing</span><span class="nv"> </span><span class="s">the\ncatalytic\</span>
+<span class="w">  </span><span class="s">\ reaction</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">studied.</span><span class="nv"> </span><span class="s">Inherits</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">generic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">slots\n(starting</span><span class="nv"> </span><span class="s">materials,\</span>
+<span class="w">  </span><span class="s">\ reactants,</span><span class="nv"> </span><span class="s">products,</span><span class="nv"> </span><span class="s">catalyst,</span><span class="nv"> </span><span class="s">solvent,</span><span class="nv"> </span><span class="s">reactor,\ntemperature,</span><span class="nv"> </span><span class="s">pressure,</span><span class="nv"> </span><span class="s">yield,\</span>
+<span class="w">  </span><span class="s">\ reaction</span><span class="nv"> </span><span class="s">steps)</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">ChemicalReaction</span><span class="nv"> </span><span class="s">and\nadds</span><span class="nv"> </span><span class="s">catalysis-specific</span><span class="nv"> </span><span class="s">operating-condition\</span>
+<span class="w">  </span><span class="s">\ slots.\n\nReaction</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">NOT</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process\n\</span>
+<span class="w">  </span><span class="s">being</span><span class="nv"> </span><span class="s">observed,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">generates</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">CatalysisDataset\n\</span>
+<span class="w">  </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">is_about_activity.\n\nFor</span><span class="nv"> </span><span class="s">operando</span><span class="nv"> </span><span class="s">experiments\</span>
 <span class="w">  </span><span class="s">\ (e.g.</span><span class="nv"> </span><span class="s">in-situ</span><span class="nv"> </span><span class="s">XRD</span><span class="nv"> </span><span class="s">during</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">reaction),</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset\ncarries</span><span class="nv"> </span><span class="s">both:\n</span><span class="nv">  </span><span class="s">was_generated_by:\</span>
 <span class="w">  </span><span class="s">\ Characterization</span><span class="nv">  </span><span class="s">(the</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">producing</span><span class="nv"> </span><span class="s">data)\n</span><span class="nv">  </span><span class="s">is_about_activity:</span><span class="nv"> </span><span class="s">Reaction\</span>
-<span class="w">  </span><span class="s">\ </span><span class="nv">        </span><span class="s">(the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">monitored)\n\nThe</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">carried_out_by\</span>
-<span class="w">  </span><span class="s">\ as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Reactor</span><span class="nv"> </span><span class="s">(Device).\nReactants</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">had_input_entity.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">of\</span>
-<span class="w">  </span><span class="s">\ catalytic</span><span class="nv"> </span><span class="s">reaction\n(e.g.</span><span class="nv"> </span><span class="s">ammonia</span><span class="nv"> </span><span class="s">synthesis,</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">oxidation)</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">rdf_type\</span>
-<span class="w">  </span><span class="s">\ using</span><span class="nv"> </span><span class="s">a\nvoc4cat</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">ChemO</span><span class="nv"> </span><span class="s">term."</span>
+<span class="w">  </span><span class="s">\ </span><span class="nv">        </span><span class="s">(the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">monitored)\n\nThe</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the\</span>
+<span class="w">  </span><span class="s">\ inherited</span><span class="nv"> </span><span class="s">used_reactor</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(is_a:\ncarried_out_by),</span><span class="nv"> </span><span class="s">narrowed</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">require\</span>
+<span class="w">  </span><span class="s">\ a</span><span class="nv"> </span><span class="s">ChemicalReactor</span><span class="nv"> </span><span class="s">instance\nrather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">touching</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">generic</span><span class="nv"> </span><span class="s">carried_out_by</span><span class="nv"> </span><span class="s">relation\</span>
+<span class="w">  </span><span class="s">\ directly.\nReactants</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">inherited</span><span class="nv"> </span><span class="s">used_reactant</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(range:\n\</span>
+<span class="w">  </span><span class="s">Reagent)</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">CatalyticReaction</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">declare</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">own</span><span class="nv"> </span><span class="s">reactant</span><span class="nv"> </span><span class="s">slot.\nThe</span><span class="nv"> </span><span class="s">type\</span>
+<span class="w">  </span><span class="s">\ of</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">ammonia</span><span class="nv"> </span><span class="s">synthesis,</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">oxidation)\nis</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via\</span>
+<span class="w">  </span><span class="s">\ rdf_type</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">ChemO</span><span class="nv"> </span><span class="s">term."</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
-<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvaluatedActivity</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">rdf_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf_type</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">ontology</span><span class="nv"> </span><span class="s">term</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">VOC4CAT:0007010</span>
 
-<span class="w">      </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">type,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemO/RXNO</span><span class="nv"> </span><span class="s">term).'</span>
+<span class="w">      </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">type,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemO/RXNO</span><span class="nv"> </span><span class="s">term).</span>
+
+
+<span class="w">      </span><span class="s">This</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">sole</span><span class="nv"> </span><span class="s">reaction-type</span><span class="nv"> </span><span class="s">classification</span><span class="nv"> </span><span class="s">mechanism</span><span class="nv"> </span><span class="s">(DCAT-AP-PLUS</span>
+
+<span class="w">      </span><span class="s">Pattern</span><span class="nv"> </span><span class="s">3)</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">deliberately</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">duplicated</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dedicated</span><span class="nv"> </span><span class="s">has_reaction_type</span>
+
+<span class="w">      </span><span class="s">slot</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">ReactionType</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">hierarchy</span><span class="nv"> </span><span class="s">(cf.</span><span class="nv"> </span><span class="s">PR</span><span class="nv"> </span><span class="s">#118,</span><span class="nv"> </span><span class="s">since</span><span class="nv"> </span><span class="s">superseded</span><span class="nv"> </span><span class="s">here).</span>
+
+<span class="w">      </span><span class="s">Kept</span><span class="nv"> </span><span class="s">`recommended`</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">`required`</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">reason</span><span class="nv"> </span><span class="s">as</span>
+
+<span class="w">      </span><span class="s">catalyst_type</span><span class="nv"> </span><span class="s">below:</span><span class="nv"> </span><span class="s">see</span><span class="nv"> </span><span class="s">nfdi4cat/CoreMeta4Cat#117</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">cardinality</span>
+
+<span class="w">      </span><span class="s">discussion</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">nfdi4cat/CoreMeta4Cat#116</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">classification-mechanism</span>
+
+<span class="w">      </span><span class="s">discussion.'</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">carried_out_by</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">carried_out_by</span>
+<span class="w">  </span><span class="nt">used_reactor</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_reactor</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">takes</span><span class="nv"> </span><span class="s">place.</span>
 
-<span class="w">      </span><span class="s">Must</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Reactor</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(a</span><span class="nv"> </span><span class="s">Device</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">catalytic</span>
+<span class="w">      </span><span class="s">Must</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemicalReactor</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(a</span><span class="nv"> </span><span class="s">Reactor</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">to</span>
 
-<span class="w">      </span><span class="s">reaction</span><span class="nv"> </span><span class="s">vessels,</span><span class="nv"> </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">FixedBedReactor,</span><span class="nv"> </span><span class="s">CSTR,</span><span class="nv"> </span><span class="s">Autoclave).'</span>
+<span class="w">      </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">vessels,</span><span class="nv"> </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">FixedBedReactor,</span><span class="nv"> </span><span class="s">CSTR,</span><span class="nv"> </span><span class="s">Autoclave).'</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">had_input_entity</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">had_input_entity</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The reactant chemicals or feeds entering the reactor.</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvaluatedEntity</span>
-<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">product_identification_method</span><span class="p">:</span>
@@ -978,72 +1269,116 @@
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_reaction_step</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_reaction_step</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">step</span><span class="nv"> </span><span class="s">(part)</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">CatalyticReaction</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">itself</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CatalyticReaction.</span>
+
+<span class="w">      </span><span class="s">Narrowed</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">inherited</span><span class="nv"> </span><span class="s">ChemicalReaction</span><span class="nv"> </span><span class="s">range</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">nested</span><span class="nv"> </span><span class="s">reaction</span>
+
+<span class="w">      </span><span class="s">steps</span><span class="nv"> </span><span class="s">keep</span><span class="nv"> </span><span class="s">their</span><span class="nv"> </span><span class="s">catalysis-specific</span><span class="nv"> </span><span class="s">fields</span><span class="nv"> </span><span class="s">(catalyst_type,</span><span class="nv"> </span><span class="s">used_reactor,</span>
+
+<span class="w">      </span><span class="s">product_identification_method,</span><span class="nv"> </span><span class="s">...)</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">loaded.'</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">catalyst_quantity</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_quantity</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mass of catalyst loaded into the reactor.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_mass</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:catalyst_quantity</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_quantity</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mass</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">reactant</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactant</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Reactant(s)</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">feed</span><span class="nv"> </span><span class="s">chemicals</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reaction.</span><span class="nv"> </span><span class="s">Provide</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemicalEntity</span>
+<span class="w">  </span><span class="nt">catalyst_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">regime</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">heterogeneous,</span><span class="nv"> </span><span class="s">homogeneous,</span>
 
-<span class="w">      </span><span class="s">instance</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">inchikey,</span><span class="nv"> </span><span class="s">smiles,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">iupac_name.</span><span class="nv"> </span><span class="s">For</span><span class="nv"> </span><span class="s">feed</span><span class="nv"> </span><span class="s">mixtures,</span><span class="nv"> </span><span class="s">list</span><span class="nv"> </span><span class="s">each</span>
+<span class="w">      </span><span class="s">biocatalysis,</span><span class="nv"> </span><span class="s">electrocatalysis,</span><span class="nv"> </span><span class="s">photocatalysis).</span><span class="nv"> </span><span class="s">For</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">physical</span>
 
-<span class="w">      </span><span class="s">component</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">separate</span><span class="nv"> </span><span class="s">ChemicalEntity</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">record</span><span class="nv"> </span><span class="s">composition</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">has_concentration.'</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0000101</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactant</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalEntity</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">has_catalyst_type</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_catalyst_type</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Type</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">catalyst</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">heterogeneous,</span><span class="nv"> </span><span class="s">homogeneous,</span><span class="nv"> </span><span class="s">biocatalyst).</span>
+<span class="w">      </span><span class="s">form/presentation</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalyst</span><span class="nv"> </span><span class="s">itself,</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">catalyst_form</span><span class="nv"> </span><span class="s">instead.</span>
 
-<span class="w">      </span><span class="s">For</span><span class="nv"> </span><span class="s">heterogeneous</span><span class="nv"> </span><span class="s">catalysts,</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">terms</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">available.'</span>
+
+<span class="w">      </span><span class="s">Deliberately</span><span class="nv"> </span><span class="s">kept</span><span class="nv"> </span><span class="s">`recommended`</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">`required`</span><span class="nv"> </span><span class="s">(see</span><span class="nv"> </span><span class="s">nfdi4cat/</span>
+
+<span class="w">      </span><span class="s">CoreMeta4Cat#117):</span><span class="nv"> </span><span class="s">classification</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">genuinely</span><span class="nv"> </span><span class="s">disputed</span><span class="nv"> </span><span class="s">or</span>
+
+<span class="w">      </span><span class="s">not</span><span class="nv"> </span><span class="s">yet</span><span class="nv"> </span><span class="s">covered</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">CatalysisResearchFieldEnum</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">novel</span><span class="nv"> </span><span class="s">catalyst,</span>
+
+<span class="w">      </span><span class="s">and</span><span class="nv"> </span><span class="s">forcing</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">would</span><span class="nv"> </span><span class="s">push</span><span class="nv"> </span><span class="s">researchers</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">premature</span><span class="nv"> </span><span class="s">or</span>
+
+<span class="w">      </span><span class="s">contested</span><span class="nv"> </span><span class="s">classification</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">leaving</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">unset</span><span class="nv"> </span><span class="s">until</span>
+
+<span class="w">      </span><span class="s">consensus/vocabulary</span><span class="nv"> </span><span class="s">catches</span><span class="nv"> </span><span class="s">up.</span><span class="nv"> </span><span class="s">Open</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">discussion</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">follow-up</span>
+
+<span class="w">      </span><span class="s">issue</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">tradeoff</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">wanted.</span><span class="nv"> </span><span class="s">See</span><span class="nv"> </span><span class="s">also</span><span class="nv"> </span><span class="s">nfdi4cat/</span>
+
+<span class="w">      </span><span class="s">CoreMeta4Cat#116</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">whether</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">two-slot</span><span class="nv"> </span><span class="s">design</span><span class="nv"> </span><span class="s">(catalyst_type</span><span class="nv"> </span><span class="s">+</span>
+
+<span class="w">      </span><span class="s">catalyst_form)</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">PR</span><span class="nv"> </span><span class="s">#118</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">CatalystType</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">hierarchy</span><span class="nv"> </span><span class="s">should</span><span class="nv"> </span><span class="s">be</span>
+
+<span class="w">      </span><span class="s">the</span><span class="nv"> </span><span class="s">long-term</span><span class="nv"> </span><span class="s">mechanism</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">kept</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">two</span><span class="nv"> </span><span class="s">enums</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">because</span><span class="nv"> </span><span class="s">the</span>
+
+<span class="w">      </span><span class="s">VOC4CAT</span><span class="nv"> </span><span class="s">terms</span><span class="nv"> </span><span class="s">show</span><span class="nv"> </span><span class="s">CatalystType</span><span class="nv"> </span><span class="s">conflates</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">regime</span><span class="nv"> </span><span class="s">axis</span>
+
+<span class="w">      </span><span class="s">(Heterogeneous/Homogeneous/Bio/Electro/Photo)</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">physical-form</span>
+
+<span class="w">      </span><span class="s">axis</span><span class="nv"> </span><span class="s">(ThinFilm/Bulk/Powdered/DepositedSample/Supported</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">identical</span>
+
+<span class="w">      </span><span class="s">VOC4CAT</span><span class="nv"> </span><span class="s">ids</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">catalyst_form</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">permissible</span><span class="nv"> </span><span class="s">values),</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">are</span>
+
+<span class="w">      </span><span class="s">independent</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">often</span><span class="nv"> </span><span class="s">both</span><span class="nv"> </span><span class="s">apply</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">catalyst</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">once.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007014</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_catalyst_type</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_type</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalystType</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisResearchFieldEnum</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">catalyst_form</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_form</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">physical</span><span class="nv"> </span><span class="s">form</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">presentation</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalyst</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">loaded</span><span class="nv"> </span><span class="s">into</span>
+<span class="w">      </span><span class="s">the</span>
+
+<span class="w">      </span><span class="s">reactor</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">thin</span><span class="nv"> </span><span class="s">film,</span><span class="nv"> </span><span class="s">bulk,</span><span class="nv"> </span><span class="s">powder,</span><span class="nv"> </span><span class="s">supported).</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">separate</span><span class="nv"> </span><span class="s">axis</span>
+
+<span class="w">      </span><span class="s">from</span><span class="nv"> </span><span class="s">catalyst_type</span><span class="nv"> </span><span class="s">(the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">regime).'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_form</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalystFormEnum</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">reaction_name</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reaction_name</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">assigns</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reactants</span><span class="nv"> </span><span class="s">and</span>
+
+<span class="w">      </span><span class="s">(desired)</span><span class="nv"> </span><span class="s">products</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">"ammonia</span><span class="nv"> </span><span class="s">synthesis",</span><span class="nv"> </span><span class="s">"Fischer-Tropsch</span><span class="nv"> </span><span class="s">synthesis").'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007009</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reaction_name</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">has_reaction_type</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_reaction_type</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A group of chemical reactions with common conditions or reactants,</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">e.g. Oxidation, Hydrogenation, Reduction, Cracking.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007010</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_reaction_type</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReactionType</span>
-<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">reactor_temperature_range</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactor_temperature_range</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Temperature</span><span class="nv"> </span><span class="s">range</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">during</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reaction,</span><span class="nv"> </span><span class="s">provided</span><span class="nv"> </span><span class="s">as</span>
@@ -1054,12 +1389,14 @@
 <span class="w">      </span><span class="s">For</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">set-point,</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">min_value</span><span class="nv"> </span><span class="s">equal</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">max_value.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007032</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactor_temperature_range</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantitativeRange</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -1094,12 +1431,14 @@
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Total pressure in the reactor during the experiment.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_pressure</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0000118</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experiment_pressure</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pressure</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -1112,12 +1451,14 @@
 <span class="w">      </span><span class="s">vol%</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">mol%).</span><span class="nv"> </span><span class="s">For</span><span class="nv"> </span><span class="s">fixed-composition</span><span class="nv"> </span><span class="s">experiments</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">reactant.has_concentration.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:feed_composition_range</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feed_composition_range</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QuantitativeRange</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -1144,6 +1485,7 @@
 <span class="w">      </span><span class="s">The</span><span class="nv"> </span><span class="s">abstract</span><span class="nv"> </span><span class="s">stub</span><span class="nv"> </span><span class="s">ProductIdentificationMethod</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">retained</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">backward</span><span class="nv"> </span><span class="s">compatibility.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">realized_plan</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:product_identification_method</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">product_identification_method</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
@@ -1151,6 +1493,225 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProductIdentificationMethod</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">used_starting_material</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_starting_material</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to specify the StartingMaterial(s) of a ChemicalReaction.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">had_input_entity</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0004009</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_starting_material</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StartingMaterial</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">used_reactant</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_reactant</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to specify the Reagent(s) of a ChemicalReaction.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">had_input_entity</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0004009</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_reactant</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reagent</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">generated_product</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">generated_product</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to specify the Product(s) of a ChemicalReaction.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">had_output_entity</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RO:0004008</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">generated_product</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalProduct</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">used_catalyst</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_catalyst</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to specify the Catalyst of a ChemicalReaction.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">carried_out_by</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RXNO:0000425</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_catalyst</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Catalyst</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">used_solvent</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_solvent</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to specify the chemical substance that had a solvent role</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(CHEBI:35223) in a ChemicalReaction.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">carried_out_by</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prov:wasAssociatedWith</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_solvent</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DissolvingSubstance</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_duration</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_duration</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A slot to provide the duration of a ChemicalReaction.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema:duration</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_duration</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">duration</span>
+<span class="w">  </span><span class="nt">used_reactor</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_reactor</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">takes</span><span class="nv"> </span><span class="s">place.</span>
+
+<span class="w">      </span><span class="s">Must</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemicalReactor</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(a</span><span class="nv"> </span><span class="s">Reactor</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">to</span>
+
+<span class="w">      </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">vessels,</span><span class="nv"> </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">FixedBedReactor,</span><span class="nv"> </span><span class="s">CSTR,</span><span class="nv"> </span><span class="s">Autoclave).'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">carried_out_by</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prov:wasAssociatedWith</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">used_reactor</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_temperature</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_temperature</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to specify the Temperature at which a ChemicalReaction takes</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">place.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_temperature</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SonochemicalSynthesis</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PhotoluminescenceMixin</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ElectrochemistryMixin</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PowderXRD</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SingleCrystalXRD</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">XRayAbsorptionSpectroscopy</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InfraredSpectroscopy</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DRIFTS</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RamanSpectroscopy</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NMRSpectroscopy</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DynamicLightScattering</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SizeExclusionChromatography</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HighPerformanceLiquidChromatographyMassSpectrometry</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MaterialisticMixin</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Microkinetics</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MonteCarlo</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AqueousStability</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_pressure</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_pressure</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to specify the Pressure at which a ChemicalReaction takes</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">place.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_pressure</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MaterialisticMixin</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Microkinetics</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pressure</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_yield</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_yield</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A slot to provide the percentage of how much of the ChemicalProduct</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">was produced by a ChemicalReaction.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_yield</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Yield</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">has_reaction_step</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_reaction_step</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">step</span><span class="nv"> </span><span class="s">(part)</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">CatalyticReaction</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">itself</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">CatalyticReaction.</span>
+
+<span class="w">      </span><span class="s">Narrowed</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">inherited</span><span class="nv"> </span><span class="s">ChemicalReaction</span><span class="nv"> </span><span class="s">range</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">nested</span><span class="nv"> </span><span class="s">reaction</span>
+
+<span class="w">      </span><span class="s">steps</span><span class="nv"> </span><span class="s">keep</span><span class="nv"> </span><span class="s">their</span><span class="nv"> </span><span class="s">catalysis-specific</span><span class="nv"> </span><span class="s">fields</span><span class="nv"> </span><span class="s">(catalyst_type,</span><span class="nv"> </span><span class="s">used_reactor,</span>
+
+<span class="w">      </span><span class="s">product_identification_method,</span><span class="nv"> </span><span class="s">...)</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">loaded.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_part</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BFO:0000051</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_reaction_step</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">related_resource</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">related_resource</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to specify any Documents related to a ChemicalReaction.</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:relation</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">related_resource</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Resource</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -1165,6 +1726,7 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisPlan</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Activity</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AgenticEntity</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
@@ -1318,7 +1880,8 @@
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">had_input_entity</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">had_input_entity</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The reactant chemicals or feeds entering the reactor.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to specify the Entity that was used as an input of an Activity</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">that is to be changed, consumed or transformed.</span>
 <span class="w">    </span><span class="nt">notes</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">not in DCAT-AP</span>
 <span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
@@ -1330,7 +1893,7 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Activity</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvaluatedEntity</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Entity</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -1377,11 +1940,9 @@
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">carried_out_by</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">carried_out_by</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">takes</span><span class="nv"> </span><span class="s">place.</span>
-
-<span class="w">      </span><span class="s">Must</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Reactor</span><span class="nv"> </span><span class="s">instance</span><span class="nv"> </span><span class="s">(a</span><span class="nv"> </span><span class="s">Device</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">catalytic</span>
-
-<span class="w">      </span><span class="s">reaction</span><span class="nv"> </span><span class="s">vessels,</span><span class="nv"> </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">FixedBedReactor,</span><span class="nv"> </span><span class="s">CSTR,</span><span class="nv"> </span><span class="s">Autoclave).'</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to specify the AgenticEntity that played a certain part</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">in carrying out the Activity, either via having a specific role, function or</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">disposition that was realized in the Activity.</span>
 <span class="w">    </span><span class="nt">notes</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">not in DCAT-AP</span>
 <span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
@@ -1393,8 +1954,7 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Activity</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AgenticEntity</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -1483,7 +2043,22 @@
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf_type</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">ontology</span><span class="nv"> </span><span class="s">term</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">VOC4CAT:0007010</span>
 
-<span class="w">      </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">type,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemO/RXNO</span><span class="nv"> </span><span class="s">term).'</span>
+<span class="w">      </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">type,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemO/RXNO</span><span class="nv"> </span><span class="s">term).</span>
+
+
+<span class="w">      </span><span class="s">This</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">sole</span><span class="nv"> </span><span class="s">reaction-type</span><span class="nv"> </span><span class="s">classification</span><span class="nv"> </span><span class="s">mechanism</span><span class="nv"> </span><span class="s">(DCAT-AP-PLUS</span>
+
+<span class="w">      </span><span class="s">Pattern</span><span class="nv"> </span><span class="s">3)</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">deliberately</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">duplicated</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dedicated</span><span class="nv"> </span><span class="s">has_reaction_type</span>
+
+<span class="w">      </span><span class="s">slot</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">ReactionType</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">hierarchy</span><span class="nv"> </span><span class="s">(cf.</span><span class="nv"> </span><span class="s">PR</span><span class="nv"> </span><span class="s">#118,</span><span class="nv"> </span><span class="s">since</span><span class="nv"> </span><span class="s">superseded</span><span class="nv"> </span><span class="s">here).</span>
+
+<span class="w">      </span><span class="s">Kept</span><span class="nv"> </span><span class="s">`recommended`</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">`required`</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">reason</span><span class="nv"> </span><span class="s">as</span>
+
+<span class="w">      </span><span class="s">catalyst_type</span><span class="nv"> </span><span class="s">below:</span><span class="nv"> </span><span class="s">see</span><span class="nv"> </span><span class="s">nfdi4cat/CoreMeta4Cat#117</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">cardinality</span>
+
+<span class="w">      </span><span class="s">discussion</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">nfdi4cat/CoreMeta4Cat#116</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">classification-mechanism</span>
+
+<span class="w">      </span><span class="s">discussion.'</span>
 <span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">domain_agnostic_core</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
@@ -1496,7 +2071,6 @@
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DefinedTerm</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:010345</span>
 </code></pre></div>
 </details>
 </article>

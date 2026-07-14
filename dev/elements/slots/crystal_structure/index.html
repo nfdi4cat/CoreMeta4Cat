@@ -282,6 +282,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../working-with-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../overview/" class="md-nav__link">
         
   
@@ -400,10 +427,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -421,8 +448,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -431,6 +458,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -659,6 +714,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -755,8 +821,13 @@
 <p><em>lattice parameters (e.g. "Fm-3m, a=3.92 A for Pt").</em></p>
 <p>URI: <a href="http://semanticscience.org/resource/SIO_001100">SIO:001100</a>
 Alias: crystal_structure</p>
-<!-- no inheritance hierarchy -->
-
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../has_qualitative_attribute/">has_qualitative_attribute</a><ul>
+<li><strong>crystal_structure</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -768,23 +839,8 @@ Alias: crystal_structure</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/Ferroelectrics/">Ferroelectrics</a></td>
-<td>Ferroelectric properties computed from DFT, including spontaneous<br>polarization, switching barrier, and coercive field. Relevant for<br>ferroelectric-photocatalyst design.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MaterialDescriptorMixin/">MaterialDescriptorMixin</a></td>
-<td>Mixin providing material identity slots shared by CalculatedProperty<br>subclasses that target a specific material composition and crystal<br>structure (DielectricTensors, PhononDispersion, EquationsOfState,<br>AqueousStability, GrainBoundaries, ElectronicStructure, Ferroelectrics,<br>BandGap).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ElectronicStructure/">ElectronicStructure</a></td>
-<td>Electronic band structure and density of states, characterising the<br>electronic properties of a catalyst relevant to activity descriptors<br>(d-band centre, band gap, Fermi energy).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/GrainBoundaries/">GrainBoundaries</a></td>
-<td>Grain boundary structure and energetics from atomistic simulation.<br>Relevant for understanding polycrystalline catalyst behaviour,<br>sintering, and charge/defect segregation.</td>
+<td><a href="../../classes/EquationsOfState/">EquationsOfState</a></td>
+<td>Equation of state relating energy (or enthalpy) to volume, fitted to a<br>parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium<br>volume, bulk modulus, and its pressure derivative.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -793,8 +849,8 @@ Alias: crystal_structure</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/EquationsOfState/">EquationsOfState</a></td>
-<td>Equation of state relating energy (or enthalpy) to volume, fitted to a<br>parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium<br>volume, bulk modulus, and its pressure derivative.</td>
+<td><a href="../../classes/GrainBoundaries/">GrainBoundaries</a></td>
+<td>Grain boundary structure and energetics from atomistic simulation.<br>Relevant for understanding polycrystalline catalyst behaviour,<br>sintering, and charge/defect segregation.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -803,8 +859,23 @@ Alias: crystal_structure</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../../classes/ElectronicStructure/">ElectronicStructure</a></td>
+<td>Electronic band structure and density of states, characterising the<br>electronic properties of a catalyst relevant to activity descriptors<br>(d-band centre, band gap, Fermi energy).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MaterialDescriptorMixin/">MaterialDescriptorMixin</a></td>
+<td>Mixin providing material identity slots shared by CalculatedProperty<br>subclasses that target a specific material composition and crystal<br>structure (DielectricTensors, PhononDispersion, EquationsOfState,<br>AqueousStability, GrainBoundaries, ElectronicStructure, Ferroelectrics,<br>BandGap).</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../../classes/DielectricTensors/">DielectricTensors</a></td>
 <td>Dielectric tensor computed from density functional perturbation theory (DFPT).<br>Characterises the optical and static dielectric response of a material.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Ferroelectrics/">Ferroelectrics</a></td>
+<td>Ferroelectric properties computed from DFT, including spontaneous<br>polarization, switching barrier, and coercive field. Relevant for<br>ferroelectric-photocatalyst design.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -821,6 +892,9 @@ Alias: crystal_structure</p>
 </li>
 <li>
 <p>Multivalued: True</p>
+</li>
+<li>
+<p>Recommended: True</p>
 </li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -855,12 +929,16 @@ Alias: crystal_structure</p>
 <span class="w">  </span><span class="s">lattice</span><span class="nv"> </span><span class="s">parameters</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">&quot;Fm-3m,</span><span class="nv"> </span><span class="s">a=3.92</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">Pt&quot;).&#39;</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:001100</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">crystal_structure</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MaterialDescriptorMixin</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 

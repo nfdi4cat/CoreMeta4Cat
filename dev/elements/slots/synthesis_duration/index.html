@@ -282,6 +282,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../working-with-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../overview/" class="md-nav__link">
         
   
@@ -400,10 +427,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -421,8 +448,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -431,6 +458,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -659,6 +714,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -754,8 +820,13 @@
 <p><em>Total duration of the synthesis step.</em></p>
 <p>URI: <a href="https://w3id.org/nfdi4cat/voc4cat_0000050">VOC4CAT:0000050</a>
 Alias: synthesis_duration</p>
-<!-- no inheritance hierarchy -->
-
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../has_duration/">has_duration</a><ul>
+<li><strong>synthesis_duration</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -767,8 +838,13 @@ Alias: synthesis_duration</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/MicrowaveAssisted/">MicrowaveAssisted</a></td>
-<td>Catalyst preparation using microwave irradiation to rapidly and<br>uniformly heat the reaction mixture.</td>
+<td><a href="../../classes/PlasmaAssisted/">PlasmaAssisted</a></td>
+<td>Catalyst preparation using plasma treatment to modify surface<br>properties or deposit active components.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Sublimation/">Sublimation</a></td>
+<td>Catalyst preparation by sublimation: a solid precursor is vaporised<br>and deposited onto a substrate without passing through a liquid phase.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -777,13 +853,8 @@ Alias: synthesis_duration</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/PlasmaAssisted/">PlasmaAssisted</a></td>
-<td>Catalyst preparation using plasma treatment to modify surface<br>properties or deposit active components.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/CombustionSynthesis/">CombustionSynthesis</a></td>
-<td>Catalyst preparation by combustion of a fuel/oxidizer mixture,<br>producing metal oxide catalysts in a single rapid step.</td>
+<td><a href="../../classes/MicrowaveAssisted/">MicrowaveAssisted</a></td>
+<td>Catalyst preparation using microwave irradiation to rapidly and<br>uniformly heat the reaction mixture.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -792,8 +863,8 @@ Alias: synthesis_duration</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Sublimation/">Sublimation</a></td>
-<td>Catalyst preparation by sublimation: a solid precursor is vaporised<br>and deposited onto a substrate without passing through a liquid phase.</td>
+<td><a href="../../classes/CombustionSynthesis/">CombustionSynthesis</a></td>
+<td>Catalyst preparation by combustion of a fuel/oxidizer mixture,<br>producing metal oxide catalysts in a single rapid step.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -842,6 +913,7 @@ Alias: synthesis_duration</p>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Total duration of the synthesis step.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_duration</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0000050</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">synthesis_duration</span>
 <span class="nt">domain_of</span><span class="p">:</span>
