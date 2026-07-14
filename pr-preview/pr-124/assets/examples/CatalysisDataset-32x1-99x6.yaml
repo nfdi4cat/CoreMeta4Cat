@@ -1,0 +1,784 @@
+---
+id: hdl:21.11165/4cat/32x1-99x6
+title:
+- 'Support Engineering with Phosphorus: Tuning the Palladium-Catalyzed Selective Hydrogenation of α,β-Unsaturated
+  Aldehydes'
+description:
+- Catalyst characterization (BET, ICP-AES, PXRD, DRIFT, IR) and catalytic testing data for a series of
+  Pd/P catalysts (nominal 2 wt% Pd, 0-5 wt% P) on Al2O3 and SiO2 supports, investigating how phosphorus
+  modification of the support tunes the Pd-catalyzed selective hydrogenation of cinnamyl alcohol (CAL)
+  and citral. Catalytic performance was screened via Central Composite Design (Al2O3/CAL, 27 runs) and
+  full-factorial designs (SiO2/CAL, Al2O3/citral, SiO2/citral; 9 runs each) varying temperature (30-70
+  C), pressure (1-9 bar), phosphorus loading, and reaction time. TEM is mentioned in the original repository
+  description but no TEM data files are included in the deposited dataset.
+rdf_type:
+  id: VOC4CAT:0007001
+  title: heterogeneous catalysis
+keyword:
+- Chemistry
+- Engineering
+- Catalysis
+- Heterogeneous catalysis
+- Palladium catalyst
+- Phosphorus modification
+- Selective hydrogenation
+- Cinnamyl alcohol
+- Citral
+creator:
+- name:
+  - Rang, Fabian
+- name:
+  - Hanf, Schirin
+- name:
+  - Holtermann, Birger
+- name:
+  - Eggeler, Yolita
+- name:
+  - Barth, Simon
+- name:
+  - Grunwaldt, Jan-Dierk
+publisher:
+  name:
+  - NFDI4Cat Central Data Repository
+release_date: '2026-03-11'
+dataset_distribution:
+- access_URL:
+  - id: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+    title: Repository landing page
+  description:
+  - Repository landing page providing access to the characterization and catalytic testing data files.
+  licence:
+    id: https://creativecommons.org/licenses/by/4.0/
+    title: CC BY 4.0
+other_identifier:
+- notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+- notation: doi:10.1021/ac0702802
+  description: Methodology reference cited for the DRIFT pseudo-absorbance conversion (not this dataset's
+    own publication)
+was_generated_by:
+- id: coremeta4cat:CHAR_32x1-99x6_BET
+  title:
+  - BET surface area analysis (10 catalysts)
+  description:
+  - Brunauer-Emmett-Teller specific surface area determination for all 10 Pd/P-Al2O3 and Pd/P-SiO2 catalysts
+    (0-5 wt% nominal P loading). Surface area ranged 72-126 m2/g, generally decreasing with increasing
+    P loading (bet_results.txt).
+  rdf_type:
+    id: ENM:0000064
+    title: BET analysis
+  carried_out_by:
+  - id: coremeta4cat:DEV_32x1-99x6_BET
+    title: BET surface area analyser
+    description: Instrument model not specified in the source dataset files.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+    description: Pd on Al2O3, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+    description: Pd on Al2O3, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3
+    description: Pd on Al2O3, nominal 2 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+    description: Pd on Al2O3, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3
+    description: Pd on Al2O3, nominal 4 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+    description: Pd on Al2O3, nominal 5 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+    description: Pd on SiO2, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+    description: Pd on SiO2, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+    description: Pd on SiO2, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+    description: Pd on SiO2, nominal 5 wt% P
+  realized_plan:
+    id: coremeta4cat:CHAR_32x1-99x6_BET_method
+    title: N2 physisorption BET method
+    description: Standard N2 physisorption at liquid-nitrogen temperature (-196C), Brunauer-Emmett-Teller
+      analysis. Adsorbate gas and measurement temperature not explicitly stated in bet_results.txt; assumed
+      standard BET convention.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  activity_designator: Characterization
+- id: coremeta4cat:CHAR_32x1-99x6_DRIFT
+  title:
+  - DRIFT CO-adsorption spectroscopy (4 catalysts)
+  description:
+  - Diffuse reflectance infrared Fourier transform spectroscopy of CO adsorbed at room temperature, for
+    4 catalysts (Pd/Al2O3, Pd/3P/Al2O3, Pd/SiO2, Pd/3P/SiO2). Spectra converted to pseudo-absorbance (log(1/reflectance))
+    per Anal. Chem. 2007, 79, 10, 3912-3918 (DOI 10.1021/ac0702802) and baseline-corrected (info_drifts.txt);
+    OriginPro 2023 used for analysis/plotting.
+  rdf_type:
+    id: CHMO:0000645
+    title: diffuse reflectance infrared Fourier transform spectroscopy
+  carried_out_by:
+  - id: coremeta4cat:DEV_32x1-99x6_DRIFT
+    title: FTIR spectrometer with DRIFT accessory
+    description: Instrument model not specified in the source dataset files.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+    description: Pd on Al2O3, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+    description: Pd on Al2O3, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+    description: Pd on SiO2, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+    description: Pd on SiO2, nominal 3 wt% P
+  realized_plan:
+    id: coremeta4cat:CHAR_32x1-99x6_DRIFT_method
+    title: CO-adsorption DRIFT method
+    description: CO adsorption at room temperature; pseudo-absorbance = log(1/reflectance).
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  activity_designator: Characterization
+- id: coremeta4cat:CHAR_32x1-99x6_ICPAES
+  title:
+  - ICP-AES elemental composition analysis (8 catalysts)
+  description:
+  - Inductively coupled plasma atomic emission spectroscopy for bulk Pd and P content of the 8 P-modified
+    catalysts (measured Pd 1.8-2.0 wt%, P 0.8-4.8 wt%, deviating somewhat from nominal loadings; icp_results.txt).
+    P-free reference catalysts (Pd/Al2O3, Pd/SiO2) were not analysed by ICP-AES.
+  rdf_type:
+    id: CHMO:0000267
+    title: inductively coupled plasma atomic emission spectroscopy
+  carried_out_by:
+  - id: coremeta4cat:DEV_32x1-99x6_ICPAES
+    title: ICP-AES spectrometer
+    description: Instrument model not specified in the source dataset files.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+    description: Pd on Al2O3, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3
+    description: Pd on Al2O3, nominal 2 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+    description: Pd on Al2O3, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3
+    description: Pd on Al2O3, nominal 4 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+    description: Pd on Al2O3, nominal 5 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+    description: Pd on SiO2, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+    description: Pd on SiO2, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+    description: Pd on SiO2, nominal 5 wt% P
+  realized_plan:
+    id: coremeta4cat:CHAR_32x1-99x6_ICPAES_method
+    title: ICP-AES elemental analysis method
+    description: 'Elements analyzed: Pd, P. Results reported in wt% (icp_results.txt).'
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  activity_designator: Characterization
+- id: coremeta4cat:CHAR_32x1-99x6_IR
+  title:
+  - Infrared spectroscopy (6 catalysts)
+  description:
+  - Infrared spectroscopy of the 6 P-modified catalysts (1, 3, 5 wt% nominal P on Al2O3 and SiO2). Wavenumber
+    range ~400-3599 cm-1, 3319 data points per file, pseudo-absorbance convention consistent with the
+    DRIFT data.
+  rdf_type:
+    id: CHMO:0000630
+    title: infrared spectroscopy
+  carried_out_by:
+  - id: coremeta4cat:DEV_32x1-99x6_IR
+    title: FTIR spectrometer
+    description: Instrument model not specified in the source dataset files.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+    description: Pd on Al2O3, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+    description: Pd on Al2O3, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+    description: Pd on Al2O3, nominal 5 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+    description: Pd on SiO2, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+    description: Pd on SiO2, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+    description: Pd on SiO2, nominal 5 wt% P
+  realized_plan:
+    id: coremeta4cat:CHAR_32x1-99x6_IR_method
+    title: Infrared spectroscopy method
+    description: Wavenumber range ~400-3599 cm-1; pseudo-absorbance units.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  activity_designator: Characterization
+- id: coremeta4cat:CHAR_32x1-99x6_PXRD
+  title:
+  - Powder XRD phase analysis (10 catalysts)
+  description:
+  - Powder X-ray diffraction for phase identification of all 10 Pd/P-Al2O3 and Pd/P-SiO2 catalysts, plus
+    a P/SiO2 support-only reference sample without Pd (file PXRD_1PSiO2.xy). Two-theta range ~2-92 degrees,
+    step size 0.015 degrees (most files); two files (nominal 5 wt% P samples) cover a shorter range ~2-63.5
+    degrees.
+  rdf_type:
+    id: CHMO:0000158
+    title: powder X-ray diffraction
+  carried_out_by:
+  - id: coremeta4cat:DEV_32x1-99x6_PXRD
+    title: X-ray diffractometer
+    description: Instrument model not specified in the source dataset files.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+    description: Pd on Al2O3, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+    description: Pd on Al2O3, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3
+    description: Pd on Al2O3, nominal 2 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+    description: Pd on Al2O3, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3
+    description: Pd on Al2O3, nominal 4 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+    description: Pd on Al2O3, nominal 5 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+    description: Pd on SiO2, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+    description: Pd on SiO2, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+    description: Pd on SiO2, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+    description: Pd on SiO2, nominal 5 wt% P
+  realized_plan:
+    id: coremeta4cat:CHAR_32x1-99x6_PXRD_method
+    title: Powder XRD measurement method
+    description: Two-theta scan, ~2-92 degrees, step size 0.015 degrees. One file (PXRD_1PSiO2.xy) is
+      a Pd-free P/SiO2 support reference; one file (PXRD_Pd5Al2O3.xy) is missing the 'P' in its name but
+      is interpreted as the nominal 5 wt% P/Al2O3 sample based on the file series context (matches ICP
+      sample FR507).
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  activity_designator: Characterization
+is_about_activity:
+- id: coremeta4cat:REAC_32x1-99x6_CAL_Al2O3
+  reaction_name:
+  - selective hydrogenation of cinnamyl alcohol
+  title:
+  - Selective hydrogenation of cinnamyl alcohol over Pd-P/Al2O3 catalysts
+  description:
+  - Selective hydrogenation of cinnamyl alcohol (CAL) over 6 Pd/P/Al2O3 catalysts (P loading 0-5 wt%,
+    ~2 wt% Pd) in a Central Composite Design (27 runs) exploring temperature, pressure, phosphorus loading,
+    and time. An initial fixed-condition screening (50C/5bar/30min, hot-filtration leaching test) gave
+    CAL conversion/HCAL yield of 32/30% (Pd/Al2O3) and 45/42% (Pd/3P/Al2O3). Conversion ranged 6-96%,
+    yield 6-90% across the 27-run design (catalytic_data.xlsx, 'Pd-XPAl2O3_CCD_CAL').
+  rdf_type:
+    id: VOC4CAT:0000260
+    title: hydrogenation
+  catalyst_type:
+  - heterogeneous_catalysis
+  catalyst_form:
+  - supported
+  used_catalyst:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+    description: Pd on Al2O3 support, unmodified (P-free) reference catalyst
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 119.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3 (nominal 1 wt% P)
+    description: Pd on Al2O3 support, nominal 1 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 1.8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 0.8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 118.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3 (nominal 2 wt% P)
+    description: Pd on Al2O3 support, nominal 2 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 2.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 2.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 116.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3 (nominal 3 wt% P)
+    description: Pd on Al2O3 support, nominal 3 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 1.8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 2.5
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 105.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3 (nominal 4 wt% P)
+    description: Pd on Al2O3 support, nominal 4 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 2.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 3.7
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 112.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3 (nominal 5 wt% P)
+    description: Pd on Al2O3 support, nominal 5 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 1.9
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 4.6
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 108.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  used_reactant:
+  - id: coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_substrate
+    title: cinnamyl alcohol
+    rdf_type:
+      id: CHEBI:15554
+      title: cinnamyl alcohol
+  - id: coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_H2
+    title: hydrogen
+    rdf_type:
+      id: CHEBI:18276
+      title: molecular hydrogen
+  used_reactor:
+  - id: coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_reactor
+    title: batch pressurized reactor
+    description: Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9
+      bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific
+      reactor model not stated in the source dataset files.
+  reactor_temperature_range:
+  - min_value: 303.15
+    max_value: 343.15
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: Temperature range explored in the design of experiments (catalytic_data.xlsx)
+  experiment_pressure:
+  - value: 1.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    description: Minimum pressure in the design space
+  - value: 9.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    description: Maximum pressure in the design space
+  product_identification_method:
+  - id: coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_product_id
+    title: Conversion/yield quantification
+    description: Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx.
+      Specific analytical instrument not stated in the source dataset files; GC is the standard method
+      for this reaction class.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+- id: coremeta4cat:REAC_32x1-99x6_CAL_SiO2
+  reaction_name:
+  - selective hydrogenation of cinnamyl alcohol
+  title:
+  - Selective hydrogenation of cinnamyl alcohol over Pd-P/SiO2 catalysts
+  description:
+  - Selective hydrogenation of cinnamyl alcohol (CAL) over 4 Pd/P/SiO2 catalysts (P loading 0-5 wt%, ~2
+    wt% Pd) in a full factorial design (9 runs) exploring temperature, pressure, phosphorus loading, and
+    time. An initial fixed-condition screening (50C/5bar/30min, hot-filtration leaching test) gave CAL
+    conversion/HCAL yield of 23/22% (Pd/SiO2) and 78/40% (Pd/3P/SiO2). Conversion ranged 12-100%, yield
+    9-56% across the 9-run design (catalytic_data.xlsx, 'Pd-XPSiO2_FF_CAL').
+  rdf_type:
+    id: VOC4CAT:0000260
+    title: hydrogenation
+  catalyst_type:
+  - heterogeneous_catalysis
+  catalyst_form:
+  - supported
+  used_catalyst:
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+    description: Pd on SiO2 support, unmodified (P-free) reference catalyst
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 126.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2 (nominal 1 wt% P)
+    description: Pd on SiO2 support, nominal 1 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 2.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 1.1
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 118.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2 (nominal 3 wt% P)
+    description: Pd on SiO2 support, nominal 3 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 1.8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 2.6
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 98.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2 (nominal 5 wt% P)
+    description: Pd on SiO2 support, nominal 5 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 2.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 4.8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 72.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  used_reactant:
+  - id: coremeta4cat:REAC_32x1-99x6_CAL_SiO2_substrate
+    title: cinnamyl alcohol
+    rdf_type:
+      id: CHEBI:15554
+      title: cinnamyl alcohol
+  - id: coremeta4cat:REAC_32x1-99x6_CAL_SiO2_H2
+    title: hydrogen
+    rdf_type:
+      id: CHEBI:18276
+      title: molecular hydrogen
+  used_reactor:
+  - id: coremeta4cat:REAC_32x1-99x6_CAL_SiO2_reactor
+    title: batch pressurized reactor
+    description: Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9
+      bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific
+      reactor model not stated in the source dataset files.
+  reactor_temperature_range:
+  - min_value: 303.15
+    max_value: 343.15
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: Temperature range explored in the design of experiments (catalytic_data.xlsx)
+  experiment_pressure:
+  - value: 1.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    description: Minimum pressure in the design space
+  - value: 9.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    description: Maximum pressure in the design space
+  product_identification_method:
+  - id: coremeta4cat:REAC_32x1-99x6_CAL_SiO2_product_id
+    title: Conversion/yield quantification
+    description: Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx.
+      Specific analytical instrument not stated in the source dataset files; GC is the standard method
+      for this reaction class.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+- id: coremeta4cat:REAC_32x1-99x6_Citral_Al2O3
+  reaction_name:
+  - selective hydrogenation of citral
+  title:
+  - Selective hydrogenation of citral over Pd-P/Al2O3 catalysts
+  description:
+  - Selective hydrogenation of citral over 3 Pd/P/Al2O3 catalysts (1, 3, 5 wt% nominal P loading, ~2 wt%
+    Pd) in a full factorial design (9 runs) exploring temperature, pressure, phosphorus loading, and time.
+    Conversion ranged 15-85%, yield 15-65% across the 9-run design (catalytic_data.xlsx, 'Pd-XPAl2O3_FF_Citral').
+  rdf_type:
+    id: VOC4CAT:0000260
+    title: hydrogenation
+  catalyst_type:
+  - heterogeneous_catalysis
+  catalyst_form:
+  - supported
+  used_catalyst:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3 (nominal 1 wt% P)
+    description: Pd on Al2O3 support, nominal 1 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 1.8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 0.8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 118.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3 (nominal 3 wt% P)
+    description: Pd on Al2O3 support, nominal 3 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 1.8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 2.5
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 105.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3 (nominal 5 wt% P)
+    description: Pd on Al2O3 support, nominal 5 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 1.9
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 4.6
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 108.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  used_reactant:
+  - id: coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_substrate
+    title: citral
+    rdf_type:
+      id: CHEBI:29085
+      title: citral
+  - id: coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_H2
+    title: hydrogen
+    rdf_type:
+      id: CHEBI:18276
+      title: molecular hydrogen
+  used_reactor:
+  - id: coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_reactor
+    title: batch pressurized reactor
+    description: Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9
+      bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific
+      reactor model not stated in the source dataset files.
+  reactor_temperature_range:
+  - min_value: 303.15
+    max_value: 343.15
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: Temperature range explored in the design of experiments (catalytic_data.xlsx)
+  experiment_pressure:
+  - value: 1.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    description: Minimum pressure in the design space
+  - value: 9.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    description: Maximum pressure in the design space
+  product_identification_method:
+  - id: coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_product_id
+    title: Conversion/yield quantification
+    description: Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx.
+      Specific analytical instrument not stated in the source dataset files; GC is the standard method
+      for this reaction class.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+- id: coremeta4cat:REAC_32x1-99x6_Citral_SiO2
+  reaction_name:
+  - selective hydrogenation of citral
+  title:
+  - Selective hydrogenation of citral over Pd-P/SiO2 catalysts
+  description:
+  - Selective hydrogenation of citral over 3 Pd/P/SiO2 catalysts (1, 3, 5 wt% nominal P loading, ~2 wt%
+    Pd) in a full factorial design (9 runs) exploring temperature, pressure, phosphorus loading, and time.
+    Conversion ranged 11-100%, yield 11-84% across the 9-run design (catalytic_data.xlsx, 'Pd-XPSiO2_FF_Citral').
+  rdf_type:
+    id: VOC4CAT:0000260
+    title: hydrogenation
+  catalyst_type:
+  - heterogeneous_catalysis
+  catalyst_form:
+  - supported
+  used_catalyst:
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2 (nominal 1 wt% P)
+    description: Pd on SiO2 support, nominal 1 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 2.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 1.1
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 118.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2 (nominal 3 wt% P)
+    description: Pd on SiO2 support, nominal 3 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 1.8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 2.6
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 98.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2 (nominal 5 wt% P)
+    description: Pd on SiO2 support, nominal 5 wt% P (phosphorus modifier)
+    has_physical_state: SOLID
+    has_quantitative_attribute:
+    - value: 2.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured Pd loading (icp_results.txt)
+    - value: 4.8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: PERCENT
+      description: ICP-AES measured P loading (icp_results.txt)
+    - value: 72.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
+      unit: M2-PER-GM
+      description: BET specific surface area (bet_results.txt)
+  used_reactant:
+  - id: coremeta4cat:REAC_32x1-99x6_Citral_SiO2_substrate
+    title: citral
+    rdf_type:
+      id: CHEBI:29085
+      title: citral
+  - id: coremeta4cat:REAC_32x1-99x6_Citral_SiO2_H2
+    title: hydrogen
+    rdf_type:
+      id: CHEBI:18276
+      title: molecular hydrogen
+  used_reactor:
+  - id: coremeta4cat:REAC_32x1-99x6_Citral_SiO2_reactor
+    title: batch pressurized reactor
+    description: Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9
+      bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific
+      reactor model not stated in the source dataset files.
+  reactor_temperature_range:
+  - min_value: 303.15
+    max_value: 343.15
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: Temperature range explored in the design of experiments (catalytic_data.xlsx)
+  experiment_pressure:
+  - value: 1.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    description: Minimum pressure in the design space
+  - value: 9.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    description: Maximum pressure in the design space
+  product_identification_method:
+  - id: coremeta4cat:REAC_32x1-99x6_Citral_SiO2_product_id
+    title: Conversion/yield quantification
+    description: Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx.
+      Specific analytical instrument not stated in the source dataset files; GC is the standard method
+      for this reaction class.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+is_about_entity:
+- id: coremeta4cat:CAT_32x1-99x6_all
+  title: 10 Pd/P catalyst samples (Al2O3 and SiO2 supports)
+  description: Pd catalysts (nominal 2 wt% Pd) with 0-5 wt% nominal phosphorus loading on Al2O3 (6 samples)
+    and SiO2 (4 samples) supports. See used_catalyst under is_about_activity and evaluated_entity under
+    was_generated_by above for per-sample detail (ICP-AES loading, BET surface area).
