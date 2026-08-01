@@ -72,7 +72,7 @@ jobs:
       # ── Checkout ─────────────────────────────────────────────────────────────
 
       - name: Check out PR branch (fork-safe)
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
         with:
           # Contributor's branch — only read here; write-back is in the finish job.
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -88,7 +88,7 @@ jobs:
       - name: Check out main branch into _main_branch/
         # Always run OUR scripts from main — never from the PR.
         # This is the key security boundary for pull_request_target.
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
         with:
           ref: main
           path: _main_branch
@@ -206,7 +206,7 @@ jobs:
       - name: Check out main branch
         # Run the test suite against the main-branch project with the modified
         # schema injected from the artifact.
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
         with:
           ref: main
           fetch-depth: 1
@@ -267,7 +267,7 @@ jobs:
       # ── Checkout ─────────────────────────────────────────────────────────────
 
       - name: Check out PR branch (fork-safe)
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
@@ -277,7 +277,7 @@ jobs:
           allow-unsafe-pr-checkout: true
 
       - name: Check out main branch into _main_branch/
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
         with:
           ref: main
           path: _main_branch
