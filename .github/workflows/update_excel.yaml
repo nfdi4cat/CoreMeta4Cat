@@ -63,7 +63,7 @@ jobs:
 
       - name: Open PR for updated workbook (if changed)
         id: create_pr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           add-paths: docs/assets/coremeta4cat_vocabulary.xlsx
