@@ -35,25 +35,25 @@ CHMO:0000645 a schema1:DefinedTerm ;
         VOC4CAT:0007001,
         <rdfs:Resource> ;
     dcterms:creator [ a foaf:Agent ;
+            foaf:name "Hanf, Schirin" ],
+        [ a foaf:Agent ;
             foaf:name "Schunk, Stephan A." ],
         [ a foaf:Agent ;
+            foaf:name "Neyyathala, Arjun" ],
+        [ a foaf:Agent ;
             foaf:name "Feldmann, Claus" ],
-        [ a foaf:Agent ;
-            foaf:name "Grunwaldt, Jan-Dierk" ],
-        [ a foaf:Agent ;
-            foaf:name "Barth, Simon" ],
-        [ a foaf:Agent ;
-            foaf:name "Hanf, Schirin" ],
         [ a foaf:Agent ;
             foaf:name "Dolcet, Paolo" ],
         [ a foaf:Agent ;
             foaf:name "Jevtovik, Ivana" ],
         [ a foaf:Agent ;
-            foaf:name "Gross, Silvia" ],
+            foaf:name "Grunwaldt, Jan-Dierk" ],
+        [ a foaf:Agent ;
+            foaf:name "Barth, Simon" ],
         [ a foaf:Agent ;
             foaf:name "Jung, Felix" ],
         [ a foaf:Agent ;
-            foaf:name "Neyyathala, Arjun" ] ;
+            foaf:name "Gross, Silvia" ] ;
     dcterms:description "Catalyst characterization (PXRD, DRIFT, CO chemisorption, XPS, STEM) and catalytic testing data for Pd3P/SiO2 (a phosphorus-modified palladium phosphide catalyst, internal code ARNE01) compared against an unmodified Pd/SiO2 reference (ARNE02), for Pd-catalyzed carbonylation reactions of aryl iodides. 31 batch reactor runs span three reaction types: alkoxycarbonylation (27 runs; mainly iodobenzene + ethanol -> ethyl benzoate, exploring reaction time, base, temperature, and substrate/nucleophile scope), phenoxycarbonylation (1 run, phenol nucleophile), and aminocarbonylation (3 runs, aniline nucleophile, 100-140 C). PXRD additionally covers two further Pd3P/SiO2 loading variants (1 wt% and 10 wt% Pd), and STEM additionally covers a recycled/spent Pd3P/SiO2 sample recovered after catalytic testing; STEM method details are documented but no STEM image/data files are included in the deposited dataset." ;
     dcterms:publisher [ a foaf:Agent ;
             foaf:name "NFDI4Cat Central Data Repository" ] ;
@@ -336,15 +336,15 @@ coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt a SIO:010344,
     dcterms:description "See CatalyticReaction files for full detail.",
         "Unmodified (phosphorus-free) palladium nanoparticles supported on silica, 5 wt% Pd, 0.5 mol% metal loading -- reference catalyst for comparison against the Pd3P phosphide." ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "Catalyst mass used per batch test" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
-            qudt:unit <https://qudt.org/vocab/unit/GM> ;
-            prov:value "0.01"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "Pd loading (Overview Reaction Description-2.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "5.0"^^xsd:float ] ;
+            prov:value "5.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst mass used per batch test" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.01"^^xsd:float ] ;
     dcterms:title "Pd/SiO2 (5 wt% Pd, ARNE02)",
         "Pd/SiO2 (5 wt% Pd, internal code ARNE02)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
@@ -354,30 +354,30 @@ coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt a SIO:010344,
     dcterms:description "Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt% Pd, 0.5 mol% metal loading.",
         "See CatalyticReaction files for full detail." ;
     dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Pd loading (Overview Reaction Description-2.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "5.0"^^xsd:float ],
+        [ a qudt:Quantity ;
             dcterms:description "Catalyst mass used per batch test" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
             qudt:unit <https://qudt.org/vocab/unit/GM> ;
             prov:value "0.01"^^xsd:float ],
         [ a qudt:Quantity ;
+            dcterms:description "Pd loading (Overview Reaction Description-2.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "5.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Pd loading (Overview Reaction Description-2.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "5.0"^^xsd:float ],
+        [ a qudt:Quantity ;
             dcterms:description "Catalyst mass used per batch test" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
             qudt:unit <https://qudt.org/vocab/unit/GM> ;
             prov:value "0.01"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "Pd loading (Overview Reaction Description-2.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "5.0"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "Pd loading (Overview Reaction Description-2.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "5.0"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "Pd loading (Overview Reaction Description-2.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "5.0"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "Catalyst mass used per batch test" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;

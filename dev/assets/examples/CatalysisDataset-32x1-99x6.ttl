@@ -39,17 +39,17 @@ CHMO:0000645 a schema1:DefinedTerm ;
         VOC4CAT:0007001,
         <rdfs:Resource> ;
     dcterms:creator [ a foaf:Agent ;
+            foaf:name "Grunwaldt, Jan-Dierk" ],
+        [ a foaf:Agent ;
             foaf:name "Eggeler, Yolita" ],
         [ a foaf:Agent ;
             foaf:name "Hanf, Schirin" ],
         [ a foaf:Agent ;
-            foaf:name "Holtermann, Birger" ],
-        [ a foaf:Agent ;
             foaf:name "Rang, Fabian" ],
         [ a foaf:Agent ;
-            foaf:name "Barth, Simon" ],
+            foaf:name "Holtermann, Birger" ],
         [ a foaf:Agent ;
-            foaf:name "Grunwaldt, Jan-Dierk" ] ;
+            foaf:name "Barth, Simon" ] ;
     dcterms:description "Catalyst characterization (BET, ICP-AES, PXRD, DRIFT, IR) and catalytic testing data for a series of Pd/P catalysts (nominal 2 wt% Pd, 0-5 wt% P) on Al2O3 and SiO2 supports, investigating how phosphorus modification of the support tunes the Pd-catalyzed selective hydrogenation of cinnamyl alcohol (CAL) and citral. Catalytic performance was screened via Central Composite Design (Al2O3/CAL, 27 runs) and full-factorial designs (SiO2/CAL, Al2O3/citral, SiO2/citral; 9 runs each) varying temperature (30-70 C), pressure (1-9 bar), phosphorus loading, and reaction time. TEM is mentioned in the original repository description but no TEM data files are included in the deposited dataset." ;
     dcterms:issued "2026-03-11"^^xsd:date ;
     dcterms:publisher [ a foaf:Agent ;
@@ -62,10 +62,10 @@ CHMO:0000645 a schema1:DefinedTerm ;
     dcterms:title "Repository landing page",
         "Support Engineering with Phosphorus: Tuning the Palladium-Catalyzed Selective Hydrogenation of α,β-Unsaturated Aldehydes" ;
     adms:identifier [ a adms:Identifier ;
-            skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" ],
-        [ a adms:Identifier ;
             dcterms:description "Methodology reference cited for the DRIFT pseudo-absorbance conversion (not this dataset's own publication)" ;
-            skos:notation "doi:10.1021/ac0702802" ] ;
+            skos:notation "doi:10.1021/ac0702802" ],
+        [ a adms:Identifier ;
+            skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" ] ;
     dcat:distribution [ a dcat:Distribution ;
             dcterms:description "Repository landing page providing access to the characterization and catalytic testing data files." ;
             dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
@@ -329,15 +329,15 @@ coremeta4cat:REAC_32x1-99x6_Citral_Al2O3 a coremeta4cat:CatalyticReaction,
     coremeta4cat:catalyst_form VOC4CAT:0007034 ;
     coremeta4cat:product_identification_method coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_product_id ;
     VOC4CAT:0000118 [ a qudt:Quantity ;
-            dcterms:description "Maximum pressure in the design space" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
-            qudt:unit <https://qudt.org/vocab/unit/BAR> ;
-            prov:value "9.0"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "Minimum pressure in the design space" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
             qudt:unit <https://qudt.org/vocab/unit/BAR> ;
-            prov:value "1.0"^^xsd:float ] ;
+            prov:value "1.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Maximum pressure in the design space" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+            qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+            prov:value "9.0"^^xsd:float ] ;
     VOC4CAT:0007009 "selective hydrogenation of citral" ;
     VOC4CAT:0007014 VOC4CAT:0007001 ;
     VOC4CAT:0007032 [ a qudt:Quantity ;
@@ -502,35 +502,35 @@ coremeta4cat:CAT_32x1-99x6_Al2O3_1P a SIO:010344,
     dcterms:description "Pd on Al2O3 support, nominal 1 wt% P (phosphorus modifier)",
         "Pd on Al2O3, nominal 1 wt% P" ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
+            dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "1.8"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "1.8"^^xsd:float ],
+            prov:value "0.8"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "BET specific surface area (bet_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
             qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
             prov:value "118.0"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "0.8"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "0.8"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "BET specific surface area (bet_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
             qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "118.0"^^xsd:float ] ;
+            prov:value "118.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "1.8"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "1.8"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "0.8"^^xsd:float ] ;
     dcterms:title "Pd/1P/Al2O3",
         "Pd/1P/Al2O3 (nominal 1 wt% P)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
@@ -550,10 +550,10 @@ coremeta4cat:CAT_32x1-99x6_Al2O3_5P a SIO:010344,
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
             prov:value "1.9"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (bet_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "108.0"^^xsd:float ],
+            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "1.9"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
@@ -565,10 +565,10 @@ coremeta4cat:CAT_32x1-99x6_Al2O3_5P a SIO:010344,
             qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
             prov:value "108.0"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "1.9"^^xsd:float ] ;
+            dcterms:description "BET specific surface area (bet_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "108.0"^^xsd:float ] ;
     dcterms:title "Pd/5P/Al2O3",
         "Pd/5P/Al2O3 (nominal 5 wt% P)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
@@ -578,10 +578,15 @@ coremeta4cat:CAT_32x1-99x6_SiO2_1P a SIO:010344,
     dcterms:description "Pd on SiO2 support, nominal 1 wt% P (phosphorus modifier)",
         "Pd on SiO2, nominal 1 wt% P" ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (bet_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "118.0"^^xsd:float ],
+            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "2.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "1.1"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
@@ -598,15 +603,10 @@ coremeta4cat:CAT_32x1-99x6_SiO2_1P a SIO:010344,
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
             prov:value "1.1"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "1.1"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "2.0"^^xsd:float ] ;
+            dcterms:description "BET specific surface area (bet_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "118.0"^^xsd:float ] ;
     dcterms:title "Pd/1P/SiO2",
         "Pd/1P/SiO2 (nominal 1 wt% P)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
@@ -616,30 +616,30 @@ coremeta4cat:CAT_32x1-99x6_SiO2_5P a SIO:010344,
     dcterms:description "Pd on SiO2 support, nominal 5 wt% P (phosphorus modifier)",
         "Pd on SiO2, nominal 5 wt% P" ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (bet_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "72.0"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (bet_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "72.0"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
             prov:value "2.0"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "2.0"^^xsd:float ],
+            dcterms:description "BET specific surface area (bet_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "72.0"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
             prov:value "4.8"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (bet_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "72.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "2.0"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
@@ -654,6 +654,16 @@ coremeta4cat:CAT_32x1-99x6_Al2O3_3P a SIO:010344,
     dcterms:description "Pd on Al2O3 support, nominal 3 wt% P (phosphorus modifier)",
         "Pd on Al2O3, nominal 3 wt% P" ;
     dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (bet_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "105.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "2.5"^^xsd:float ],
+        [ a qudt:Quantity ;
             dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
@@ -664,25 +674,15 @@ coremeta4cat:CAT_32x1-99x6_Al2O3_3P a SIO:010344,
             qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
             prov:value "105.0"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (bet_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "105.0"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "2.5"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "2.5"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "1.8"^^xsd:float ] ;
+            prov:value "1.8"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "2.5"^^xsd:float ] ;
     dcterms:title "Pd/3P/Al2O3",
         "Pd/3P/Al2O3 (nominal 3 wt% P)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
@@ -692,30 +692,30 @@ coremeta4cat:CAT_32x1-99x6_SiO2_3P a SIO:010344,
     dcterms:description "Pd on SiO2 support, nominal 3 wt% P (phosphorus modifier)",
         "Pd on SiO2, nominal 3 wt% P" ;
     dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (bet_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "98.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (bet_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "98.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "1.8"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "1.8"^^xsd:float ],
+        [ a qudt:Quantity ;
             dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
             prov:value "2.6"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (bet_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "98.0"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "1.8"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "ICP-AES measured Pd loading (icp_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "1.8"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (bet_results.txt)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "98.0"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "ICP-AES measured P loading (icp_results.txt)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
