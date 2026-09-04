@@ -843,29 +843,14 @@ Alias: realized_plan</p>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../../classes/DataGeneratingActivity/">DataGeneratingActivity</a></td>
-<td>An Activity (process) that has the objective to produce information (in form of a dataset) about another Activity or Entity.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/DataAnalysis/">DataAnalysis</a></td>
-<td>An Activity that evaluates the data produced by another Activity.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/CatalysisDataGeneratingActivity/">CatalysisDataGeneratingActivity</a></td>
-<td>A CoreMeta4Cat specialization of DCAT-AP-PLUS's DataGeneratingActivity<br>that adds a type designator (activity_designator). Synthesis,<br>Characterization, and Simulation all specialize this class instead of<br>DataGeneratingActivity directly, so that when one of them is nested<br>inside CatalysisDataset.was_generated_by, the LinkML Python loader can<br>tell which concrete subclass a given entry is meant to be and keep its<br>subclass-specific fields (e.g. Characterization.realized_plan) rather<br>than falling back to DataGeneratingActivity's own generic slot<br>definitions.<br><br>activity_designator is filled in automatically by LinkML when a class<br>is instantiated directly (e.g. loading a standalone Synthesis-NNN.yaml<br>file) -- it does not need to be set by hand there. It only needs to be<br>set explicitly in the source data when a Synthesis/Characterization/<br>Simulation instance is nested inside another object's was_generated_by<br>list (e.g. in a combined CatalysisDataset file), so the loader knows<br>which of the three to construct.</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../../classes/Characterization/">Characterization</a></td>
 <td>A DataGeneratingActivity in which a catalyst sample or catalytic material<br>is characterized using an analytical technique.<br><br>The catalyst sample being characterized is linked via evaluated_entity.<br>The analytical protocol is linked via realized_plan using a<br>CharacterizationTechnique instance. The instrument used is linked via<br>carried_out_by as a Device.<br><br>The specific technique type is expressed via rdf_type using an ontology<br>term (e.g. CHMO:0000158 for powder XRD, CHMO:0000404 for XPS),<br>following DCAT-AP-PLUS Pattern 3 — exactly as NMRSpectroscopy uses<br>rdf_type: CHMO:0000613.</td>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../../classes/Synthesis/">Synthesis</a></td>
-<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
-<td>yes</td>
+<td><a href="../../classes/DataAnalysis/">DataAnalysis</a></td>
+<td>An Activity that evaluates the data produced by another Activity.</td>
+<td>no</td>
 </tr>
 <tr>
 <td><a href="../../classes/SubstanceSampleCharacterization/">SubstanceSampleCharacterization</a></td>
@@ -875,6 +860,21 @@ Alias: realized_plan</p>
 <tr>
 <td><a href="../../classes/ReactionMonitoring/">ReactionMonitoring</a></td>
 <td>A DataGeneratingActivity that produces data about a ChemicalReaction, such as reaction monitoring, experimental documentation, or a combined recording-and-evaluation workflow. This is a coarse-grained convenience shape that does not distinguish between raw experimental recording and subsequent data evaluation. Domain-specific sub-profiles that need this distinction should define their own DataGeneratingActivity subclasses and use the DCAT-AP+ DataAnalysis chain to separate raw data from derived results.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Synthesis/">Synthesis</a></td>
+<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../../classes/DataGeneratingActivity/">DataGeneratingActivity</a></td>
+<td>An Activity (process) that has the objective to produce information (in form of a dataset) about another Activity or Entity.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CatalysisDataGeneratingActivity/">CatalysisDataGeneratingActivity</a></td>
+<td>A CoreMeta4Cat specialization of DCAT-AP-PLUS's DataGeneratingActivity<br>that adds a type designator (activity_designator). Synthesis,<br>Characterization, and Simulation all specialize this class instead of<br>DataGeneratingActivity directly, so that when one of them is nested<br>inside CatalysisDataset.was_generated_by, the LinkML Python loader can<br>tell which concrete subclass a given entry is meant to be and keep its<br>subclass-specific fields (e.g. Characterization.realized_plan) rather<br>than falling back to DataGeneratingActivity's own generic slot<br>definitions.<br><br>activity_designator is filled in automatically by LinkML when a class<br>is instantiated directly (e.g. loading a standalone Synthesis-NNN.yaml<br>file) -- it does not need to be set by hand there. It only needs to be<br>set explicitly in the source data when a Synthesis/Characterization/<br>Simulation instance is nested inside another object's was_generated_by<br>list (e.g. in a combined CatalysisDataset file), so the loader knows<br>which of the three to construct.</td>
 <td>no</td>
 </tr>
 </tbody>
