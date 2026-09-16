@@ -404,7 +404,7 @@ slots:
 
   has_stirring_speed:
     is_a: has_angular_velocity
-    slot_uri: SIO:000008
+    slot_uri: voc4cat:0008114
     range: AngularVelocity
     description: Rotational speed of stirring or agitation.
 
