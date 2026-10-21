@@ -1,0 +1,73 @@
+{
+  "id": "coremeta4cat:REAC_001_CO2_hydrogenation",
+  "had_input_entity": [
+    {
+      "id": "coremeta4cat:FEED_001_CO2_H2",
+      "title": "CO2/H2 feed gas mixture",
+      "description": "H2/CO2 molar ratio 3:1, total flow 100 mL/min"
+    }
+  ],
+  "used_reactant": [
+    {
+      "id": "https://pubchem.ncbi.nlm.nih.gov/compound/280",
+      "title": "CO2 (99.998% purity, 20 vol% in H2)"
+    },
+    {
+      "id": "https://pubchem.ncbi.nlm.nih.gov/compound/783",
+      "title": "H2 (99.999% purity)"
+    }
+  ],
+  "used_reactor": [
+    {
+      "id": "coremeta4cat:REACT_001_FixedBed",
+      "title": "stainless steel fixed-bed plug-flow reactor",
+      "description": "10 mm inner diameter, 30 cm length, 0.5 g catalyst diluted with SiC"
+    }
+  ],
+  "product_identification_method": [
+    {
+      "title": "online gas chromatography",
+      "description": "GC (Agilent 7890B) with TCD and FID detectors; columns: Molecular Sieve 5A and Poraplot Q; products: MeOH, CO, CH4, H2O quantified",
+      "id": "coremeta4cat:REAC_001_GC_method"
+    }
+  ],
+  "catalyst_quantity": [
+    {
+      "value": 0.5,
+      "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
+      "unit": "https://qudt.org/vocab/unit/GM"
+    }
+  ],
+  "catalyst_type": [
+    "heterogeneous_catalysis"
+  ],
+  "catalyst_form": [
+    "supported"
+  ],
+  "reactor_temperature_range": [
+    {
+      "min_value": 200.0,
+      "max_value": 300.0,
+      "unit": "https://qudt.org/vocab/unit/DEG_C",
+      "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature"
+    }
+  ],
+  "has_atmosphere": [
+    {
+      "value": "H2/CO2 = 3:1 (molar), GHSV = 10000 mL/(g*h)"
+    }
+  ],
+  "experiment_pressure": [
+    {
+      "value": 50.0,
+      "has_quantity_type": "http://qudt.org/vocab/quantitykind/Pressure",
+      "unit": "https://qudt.org/vocab/unit/BAR"
+    }
+  ],
+  "feed_composition_range": [
+    {
+      "description": "H2/CO2 = 3:1, CO2 concentration 20 vol%"
+    }
+  ],
+  "@type": "CatalyticReaction"
+}

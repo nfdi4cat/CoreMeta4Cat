@@ -15,6 +15,12 @@ gen-charts:
 schema-to-excel:
   uv run python scripts/schema_to_excel.py
 
+# Publish the real-world CatalysisDataset examples as downloadable json/yaml
+# (docs/assets/examples/) for the "Working with Data" documentation page
+[group('model development')]
+gen-example-outputs:
+  uv run python scripts/generate_example_outputs.py
+
 # Compare the Excel vocabulary workbook against the current schema
 [group('model development')]
 excel-to-schema:

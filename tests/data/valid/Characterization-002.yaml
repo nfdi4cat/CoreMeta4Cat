@@ -16,5 +16,6 @@ evaluated_entity:
     title: "Cu/ZnO/Al2O3 methanol synthesis catalyst"
     description: "63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)"
 realized_plan:
+  id: "coremeta4cat:CHAR_002_XRD_method"
   title: "powder X-ray diffraction"
   description: "Cu K-alpha, 2theta range 5 to 80 deg, step size 0.02 deg, scan rate 1 deg/min, Rietveld refinement for phase quantification"

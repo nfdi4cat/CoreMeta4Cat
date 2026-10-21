@@ -1,0 +1,28 @@
+@prefix AFR: <http://purl.allotrope.org/ontologies/result#AFR_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix VOC4CAT: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+coremeta4cat:CHAR_004_TPR_NiO_CeO2 a "Characterization" ;
+    AFR:0000317 "thermal conductivity detector (TCD), Ar carrier gas reference channel" ;
+    SIO:000008 [ a VOC4CAT:0000122 ;
+            prov:value "oxidative pretreatment: 10 vol% O2/Ar (50 mL/min) at 300 deg C for 30 min; cool to 50 deg C under Ar purge" ] ;
+    prov:used coremeta4cat:CAT_002_NiO_CeO2,
+        coremeta4cat:CHAR_004_TPR_method ;
+    prov:wasAssociatedWith coremeta4cat:DEV_005_Micromeritics_AutoChem ;
+    coremeta4cat:sample_description "NiO/CeO2 calcined at 500 deg C; 50 mg packed in quartz U-tube reactor (4 mm ID); quartz wool plugs above and below bed" .
+
+coremeta4cat:CAT_002_NiO_CeO2 a prov:Entity ;
+    dcterms:description "15 wt% NiO on CeO2, calcined at 500 deg C / 4 h" ;
+    dcterms:title "NiO/CeO2 dry reforming catalyst (calcined)" .
+
+coremeta4cat:CHAR_004_TPR_method a OBI:0000272 ;
+    dcterms:description "reducing gas: 5 vol% H2/Ar, total flow 50 mL/min (calibrated Brooks MFC); temperature programme: 50 deg C to 900 deg C at 10 deg C/min; isothermal hold: 30 min at 900 deg C; H2O trap: molecular sieve 3A between reactor outlet and TCD to prevent TCD signal interference; baseline: Ar flow for 30 min at 50 deg C before switching to H2/Ar; H2 consumption quantified by integration of TCD signal, calibrated against CuO reference standard (99.9%, 10 mg, single reduction peak at 310 deg C); NiO reduction: expected peaks at 280-350 deg C (NiO weakly interacting with CeO2) and 400-600 deg C (NiO strongly interacting); CeO2 surface reduction: 600-900 deg C" ;
+    dcterms:title "H2 temperature-programmed reduction (H2-TPR)" .
+
+coremeta4cat:DEV_005_Micromeritics_AutoChem a prov:Agent ;
+    dcterms:title "Micromeritics AutoChem II 2920 chemisorption analyzer" .
+

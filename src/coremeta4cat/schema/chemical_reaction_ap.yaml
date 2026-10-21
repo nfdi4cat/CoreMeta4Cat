@@ -137,8 +137,6 @@ classes:
     mixins:
       - ChemicalSubstanceMixin
     description: A chemical substance that is produced by a ChemicalReaction.
-    exact_mappings:
-      - VOC4CAT:0000194
     close_mappings:
       - ENVO:2000000
 
@@ -152,7 +150,6 @@ classes:
       - has_molar_equivalent
     exact_mappings:
       - VOC4CAT:0000194
-      - NCIT:C48810
     close_mappings:
       - CHEBI:35223
 

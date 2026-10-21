@@ -1,0 +1,14 @@
+id: coremeta4cat:CHAR_001_BET_CuZnO_Al2O3
+carried_out_by:
+- id: coremeta4cat:DEV_001_Micromeritics_ASAP2020
+  title: Micromeritics ASAP 2020 surface area and porosimetry analyzer
+evaluated_entity:
+- id: coremeta4cat:CAT_001_CuZnO_Al2O3
+  title: Cu/ZnO/Al2O3 methanol synthesis catalyst
+  description: 63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)
+realized_plan:
+  title: BET surface area measurement
+  description: N2 physisorption at 77 K, degassing at 300 deg C for 3 h under vacuum
+    prior to measurement
+  id: coremeta4cat:CHAR_001_BET_method
+activity_designator: Characterization

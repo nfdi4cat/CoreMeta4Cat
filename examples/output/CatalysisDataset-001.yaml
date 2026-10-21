@@ -1,0 +1,67 @@
+id: coremeta4cat:DS_001_MeOH_synthesis_CuZnO
+description:
+- Dataset covering preparation of Cu/ZnO/Al2O3 methanol synthesis catalyst by incipient
+  wetness impregnation and catalytic performance in CO2 hydrogenation at 50 bar, 200-300
+  deg C.
+title:
+- 'Methanol synthesis over Cu/ZnO/Al2O3: synthesis and catalytic performance dataset'
+was_generated_by:
+- id: coremeta4cat:SYNTH_001_Pt_Al2O3
+  had_input_entity:
+  - id: coremeta4cat:PREC_001_H2PtCl6
+    title: chloroplatinic acid hexahydrate
+    precursor_quantity:
+    - value: 0.0485
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/GM
+  realized_plan:
+    title: incipient wetness impregnation
+    description: incipient_wetness, 25 deg C, 12 h
+    id: coremeta4cat:SYNTH_001_impregnation_method
+  activity_designator: Synthesis
+  nominal_composition:
+  - 5 wt% Pt/Al2O3
+  catalyst_measured_properties:
+  - 'BET surface area: 185 m2/g, Pt particle size: 2.3 nm (TEM), Pt loading: 4.8 wt%
+    (ICP-AES)'
+  storage_conditions:
+  - stored in desiccator under argon atmosphere at room temperature
+  catalyst_support:
+  - gamma-Al2O3, Sasol Puralox, 200 m2/g
+  solvent:
+  - id: https://pubchem.ncbi.nlm.nih.gov/compound/962
+    title: deionized water
+  has_sample_pretreatment:
+  - value: reduction in H2 at 400 deg C for 2 hours prior to catalytic testing
+- id: coremeta4cat:CHAR_001_BET_CuZnO_Al2O3
+  carried_out_by:
+  - id: coremeta4cat:DEV_001_Micromeritics_ASAP2020
+    title: Micromeritics ASAP 2020 surface area and porosimetry analyzer
+  evaluated_entity:
+  - id: coremeta4cat:CAT_001_CuZnO_Al2O3
+    title: Cu/ZnO/Al2O3 methanol synthesis catalyst
+    description: 63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)
+  realized_plan:
+    title: BET surface area measurement
+    description: N2 physisorption at 77 K, degassing at 300 deg C for 3 h under vacuum
+      prior to measurement
+    id: coremeta4cat:CHAR_001_BET_method
+  activity_designator: Characterization
+- id: coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3
+  carried_out_by:
+  - id: coremeta4cat:DEV_002_Bruker_D8_Advance
+    title: Bruker D8 Advance diffractometer with Cu K-alpha radiation (1.5406 Ang)
+  evaluated_entity:
+  - id: coremeta4cat:CAT_001_CuZnO_Al2O3
+    title: Cu/ZnO/Al2O3 methanol synthesis catalyst
+    description: 63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)
+  realized_plan:
+    title: powder X-ray diffraction
+    description: Cu K-alpha, 2theta range 5 to 80 deg, step size 0.02 deg, scan rate
+      1 deg/min, Rietveld refinement for phase quantification
+    id: coremeta4cat:CHAR_002_XRD_method
+  activity_designator: Characterization
+is_about_entity:
+- id: coremeta4cat:CAT_001_CuZnO_Al2O3
+  title: Cu/ZnO/Al2O3 methanol synthesis catalyst
+  description: 63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)

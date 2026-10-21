@@ -37,6 +37,7 @@ watch:
 nav:
   - Home: index.md
   - Getting started: getting-started.md
+  - Working with Data: working-with-data.md
   - Overview: overview.md
   - Design Patterns: design-patterns.md
   - How to extend: how-to-extend.md
@@ -47,6 +48,7 @@ nav:
     # - Workflow: a_heros_journey/workflow.md
     # - Collaborations and Future Work: a_heros_journey/collaboration_and_future.md
   - Documentation:
+    - Catalysis Dataset: catalysis-dataset.md
     - Synthesis: synthesis.md
     - Characterization: characterization.md
     - Reaction: reaction.md

@@ -56,6 +56,45 @@ imports:
 
 classes:
 
+  CatalysisPlan:
+    is_a: Plan
+    abstract: true
+    description: |-
+      A CoreMeta4Cat specialization of DCAT-AP-PLUS's Plan that adds a
+      persistent identifier (id). Plan itself (external, dcat-ap-plus) only
+      lists title/description -- every CoreMeta4Cat protocol, technique, and
+      method class needs to be independently citable and cross-referenceable
+      (e.g. linked to from multiple Reaction/Characterization instances that
+      reuse the same protocol), so id is added once here rather than
+      repeated on each of PreparationMethod, CharacterizationTechnique,
+      SimulationMethod, and ProductIdentificationMethod individually.
+    slots:
+    - id
+
+  CatalysisDataGeneratingActivity:
+    is_a: DataGeneratingActivity
+    abstract: true
+    description: |-
+      A CoreMeta4Cat specialization of DCAT-AP-PLUS's DataGeneratingActivity
+      that adds a type designator (activity_designator). Synthesis,
+      Characterization, and Simulation all specialize this class instead of
+      DataGeneratingActivity directly, so that when one of them is nested
+      inside CatalysisDataset.was_generated_by, the LinkML Python loader can
+      tell which concrete subclass a given entry is meant to be and keep its
+      subclass-specific fields (e.g. Characterization.realized_plan) rather
+      than falling back to DataGeneratingActivity's own generic slot
+      definitions.
+
+      activity_designator is filled in automatically by LinkML when a class
+      is instantiated directly (e.g. loading a standalone Synthesis-NNN.yaml
+      file) -- it does not need to be set by hand there. It only needs to be
+      set explicitly in the source data when a Synthesis/Characterization/
+      Simulation instance is nested inside another object's was_generated_by
+      list (e.g. in a combined CatalysisDataset file), so the loader knows
+      which of the three to construct.
+    slots:
+    - activity_designator
+
   QuantitativeRange:
     class_uri: qudt:Quantity
     mixins:
@@ -101,7 +140,7 @@ classes:
 
   Duration:
     is_a: QuantitativeAttribute
-    class_uri: VOC4CAT:0008120
+    class_uri: qudt:Quantity
     description: A quantitative measure of elapsed time (duration of a process step).
     close_mappings:
     - PATO:0001309
@@ -115,8 +154,10 @@ classes:
 
   HeatingRate:
     is_a: QuantitativeAttribute
-    class_uri: VOC4CAT:0008116
+    class_uri: qudt:Quantity
     description: Rate of temperature change per unit time during a thermal ramp.
+    exact_mappings:
+    - VOC4CAT:0008116
 
   AngularVelocity:
     is_a: QuantitativeAttribute
@@ -138,6 +179,16 @@ classes:
     description: A quantitative measure of electric potential difference or voltage.
     close_mappings:
     - PATO:0001464
+
+  ElectricCurrent:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: A quantitative measure of electric current (e.g. faradaic current in an electrochemical cell).
+
+  Area:
+    is_a: QuantitativeAttribute
+    class_uri: qudt:Quantity
+    description: A quantitative measure of surface area (e.g. active electrode area).
 
   PowerQuantity:
     is_a: QuantitativeAttribute
@@ -218,10 +269,23 @@ classes:
 # ==================== QUANTITATIVE ATTRIBUTE SUB-SLOTS ====================
 # Sub-slots of has_quantitative_attribute (from DCAT-AP-PLUS via material_entities_ap).
 # Slots reused from the import chain (material_entities_ap, chemical_entities_ap):
-#   has_temperature, has_mass, has_volume, has_pressure, has_concentration, has_ph_value
+#   has_temperature, has_mass, has_volume, has_pressure, has_concentration, has_ph_value, has_yield
 # The slots below cover quantities not yet defined upstream.
 
 slots:
+
+  # ---- Type designator (LinkML polymorphism support) ----
+
+  activity_designator:
+    slot_uri: rdf:type
+    range: string
+    designates_type: true
+    description: |-
+      Internal type designator for CatalysisDataGeneratingActivity subclasses
+      (Synthesis, Characterization, Simulation). Only needs to be set by hand
+      when nesting one of these inside another object's was_generated_by list
+      (e.g. in a combined CatalysisDataset file) -- LinkML fills it in
+      automatically when a class is instantiated directly.
 
   # ---- Generic domain has_X slots ----
 
@@ -311,6 +375,7 @@ slots:
 
   has_calcination_temperature_range:
     slot_uri: coremeta4cat:hasCalcinationTemperatureRange
+    is_a: has_quantitative_attribute
     range: QuantitativeRange
     description: |-
       Temperature range of the calcination programme (initial -> final temperature),
@@ -339,7 +404,7 @@ slots:
 
   has_stirring_speed:
     is_a: has_angular_velocity
-    slot_uri: SIO:000008
+    slot_uri: voc4cat:0008114
     range: AngularVelocity
     description: Rotational speed of stirring or agitation.
 
@@ -441,12 +506,13 @@ slots:
 
   number_of_cycles:
     description: Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).
+    is_a: has_quantitative_attribute
     range: integer
     slot_uri: VOC4CAT:0008123
-    multivalued: true
 
   carrier_gas:
     description: Carrier gas used in a process (e.g. in GC analysis or ALD deposition).
+    is_a: carried_out_by
     range: ChemicalEntity
     slot_uri: coremeta4cat:carrier_gas
     multivalued: true
@@ -454,6 +520,7 @@ slots:
 
   dispersant:
     description: Dispersant used (e.g. in DLS measurement or flame spray pyrolysis).
+    is_a: carried_out_by
     range: ChemicalEntity
     slot_uri: coremeta4cat:dispersant
     multivalued: true
@@ -464,6 +531,7 @@ slots:
 
   drying_device:
     description: Device used for drying (e.g. oven, rotary evaporator).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: VOC4CAT:0008122
     multivalued: true
@@ -473,24 +541,27 @@ slots:
 
   step_size:
     description: Step size for a scan (angle, wavelength, energy, or potential).
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: AFR:0000950
     multivalued: true
 
   resolution:
     description: Resolution of a measurement or detector.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:resolution
     multivalued: true
 
   number_of_scans:
     description: Number of scans or accumulations recorded.
+    is_a: has_quantitative_attribute
     range: integer
     slot_uri: coremeta4cat:number_of_scans
-    multivalued: true
 
   solvent:
     description: Solvent used in a process or sample preparation.
+    is_a: carried_out_by
     range: ChemicalEntity
     slot_uri: VOC4CAT:0007246
     multivalued: true
@@ -498,36 +569,42 @@ slots:
 
   external_standard:
     description: External standard used for quantification or calibration.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:external_standard
     multivalued: true
 
   internal_standard:
     description: Internal standard used for quantification or calibration.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:internal_standard
     multivalued: true
 
   calibration_method:
     description: Calibration method applied during a measurement.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:calibration_method
     multivalued: true
 
   column_type:
     description: Type of chromatographic column used.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:column_type
     multivalued: true
 
   filtration_device:
     description: Device used for filtration.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:filtration_device
     multivalued: true
 
   filter_type:
     description: Type of filter membrane or medium used.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:filter_type
     multivalued: true
@@ -555,6 +632,11 @@ enums:
       electrocatalysis:
         description: Electrocatalysis — catalysis of electrochemical reactions.
         meaning: VOC4CAT:0000216
+      photocatalysis:
+        description: |-
+          Photocatalysis — catalysis of a chemical reaction through the
+          absorption of sufficient light energy by a photocatalyst.
+        meaning: VOC4CAT:0000001
       hybrid_catalysis:
         description: Hybrid catalysis — combination of two or more catalytic approaches.
       other:
@@ -591,3 +673,44 @@ enums:
         description: Thin film deposited on a substrate.
       other:
         description: Other sample state.
+
+  CatalystFormEnum:
+    description: |-
+      Enumeration of the physical form/presentation of a catalyst as loaded
+      into a reactor -- a separate axis from CatalysisResearchFieldEnum
+      (which describes the catalytic regime, e.g. heterogeneous/homogeneous).
+    permissible_values:
+      thin_film:
+        description: A catalyst introduced to the reaction chamber as a thin film on a substrate.
+        meaning: VOC4CAT:0000019
+      bulk:
+        description: A catalyst that consists mainly of the active material throughout its volume.
+        meaning: VOC4CAT:0007015
+      powdered:
+        description: A catalyst introduced to the reaction chamber as a loose powder.
+        meaning: VOC4CAT:0000017
+      deposited_sample:
+        description: A thin film of the catalyst deposited on a substrate for characterization purposes.
+        meaning: VOC4CAT:0000038
+      supported:
+        description: A catalyst where the active material is dispersed on a support material.
+        meaning: VOC4CAT:0007034
+      other:
+        description: Other catalyst form not covered by the above terms.
+
+  CellOperatingModeEnum:
+    description: |-
+      Enumeration of the functional mode of an electrochemical cell, based
+      on the direction of energy conversion.
+    permissible_values:
+      galvanic:
+        description: |-
+          An electrochemical cell that converts chemical energy into
+          electrical energy via a spontaneous reaction.
+        meaning: VOC4CAT:0007256
+      electrolytic:
+        description: |-
+          An electrochemical cell that consumes electrical energy to drive
+          a non-spontaneous reaction.
+      other:
+        description: Other cell operating mode.

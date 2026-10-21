@@ -61,12 +61,12 @@ The key points here are:
 The four CoreMeta4Cat data classes — **Synthesis**, **Characterization**, **Reaction**, and **Simulation** — are the core of the metadata model. Each is a separate class, defined in its own subprofile module, and linked from the `CatalysisDataset` via the slots above.
 
 ```
-catcore.yaml  (aggregator + CatalysisDataset)
-  ├── catcore_common.yaml          (shared slots and enumerations)
-  ├── catcore_synthesis_ap.yaml    (Synthesis + 12 preparation methods)
-  ├── catcore_characterization_ap.yaml  (Characterization + 28 techniques)
-  ├── catcore_reaction_ap.yaml     (Reaction + 8 reactor types)
-  └── catcore_simulation_ap.yaml   (Simulation + 4 methods + 12 properties)
+coremeta4cat.yaml  (aggregator + CatalysisDataset)
+  ├── coremeta4cat_common.yaml          (shared slots and enumerations)
+  ├── coremeta4cat_synthesis_ap.yaml    (Synthesis + 12 preparation methods)
+  ├── coremeta4cat_characterization_ap.yaml  (Characterization + 28 techniques)
+  ├── coremeta4cat_reaction_ap.yaml     (Reaction + 8 reactor types)
+  └── coremeta4cat_simulation_ap.yaml   (Simulation + 4 methods + 12 properties)
 ```
 
 ### Synthesis
@@ -115,12 +115,12 @@ Twenty-eight techniques are currently defined, organised into groups:
 
 ### Reaction
 
-**What it is:** The catalytic reaction being studied. Unlike Synthesis and Characterization, Reaction is **not** a `DataGeneratingActivity`. It is the process being *observed*, not the process generating the dataset.
+**What it is:** The catalytic reaction being studied. Unlike Synthesis and Characterization, Reaction is **not** a `DataGeneratingActivity`. It is the process being *observed*, not the process generating the dataset. In the schema it's named `CatalyticReaction`, and it specializes chemdcat-ap's generic `ChemicalReaction` -- see [Pattern 5: Specializing chemdcat-ap](#pattern-5-specializing-chemdcat-ap-inheritance) below for what that means in practice.
 
 **Key links:**
 
-- `carried_out_by` → a `ReactorDesignType` (the physical reactor)
-- `had_input_entity` → reactant feeds
+- `used_reactor` (`is_a: carried_out_by`) → a `ChemicalReactor` (the physical reactor)
+- `used_reactant` (`is_a: had_input_entity`) → the reactant feeds
 - `product_identification_method` → a `CharacterizationTechnique` used for product analysis
 
 Eight reactor design types are defined:
@@ -160,7 +160,7 @@ Rather than defining a fixed class hierarchy for every type of catalysis or ever
 
 ```yaml
 rdf_type:
-  id: voc4cat:0007001
+  id: VOC4CAT:0007001
   title: "heterogeneous catalysis"
 ```
 
@@ -188,16 +188,7 @@ realized_plan:
 
 The `rdf_type` slot gives the machine-readable ontology term; the concrete subclass (`Impregnation`, `PowderXRD`, …) provides the structured parameter slots. Both are used together.
 
-The allowed values for `rdf_type` on `CatalysisDataset` are defined in `CatalysisResearchFieldEnum`:
-
-| Value | Ontology term | Description |
-|---|---|---|
-| `heterogeneous_catalysis` | `voc4cat:0007001` | Catalyst and reactants in different phases |
-| `homogeneous_catalysis` | `voc4cat:0000294` | Catalyst and reactants in the same phase |
-| `electrocatalysis` | `voc4cat:0000216` | Catalysis of electrochemical reactions |
-| `biocatalysis` | `voc4cat:0000204` | Enzyme or whole-cell catalysis |
-| `hybrid_catalysis` | *(pending)* | Combination of two or more approaches |
-| `other` | — | Fallback for unlisted fields |
+The allowed values for `rdf_type` on `CatalysisDataset` are defined in `CatalysisResearchFieldEnum` -- see the [CatalysisDataset](catalysis-dataset.md) page for the full value table and a worked example combining multiple pillars into one dataset.
 
 ---
 
@@ -245,7 +236,12 @@ realized_plan:
   calcination_gaseous_environment: "air"
 ```
 
-This separation means a single `PreparationMethod` record could in principle be shared across multiple `Synthesis` activities — a direct gain for reproducibility.
+This separation means a single `PreparationMethod` record could in principle be shared across multiple `Synthesis` activities — a direct gain for reproducibility. That sharing depends on the Plan being independently identifiable, which is why `realized_plan.id` is populated above.
+
+`Plan` (external, DCAT-AP-PLUS) only carries `title`/`description` — no `id`. Rather than repeat an `id` slot on each of `PreparationMethod`, `CharacterizationTechnique`, `SimulationMethod`, and `ProductIdentificationMethod` individually, CoreMeta4Cat inserts one shared intermediate class, `CatalysisPlan` (`is_a: Plan`, abstract), that adds `id` once; all four then specialize `CatalysisPlan` instead of `Plan` directly. `realized_plan` itself needed `inlined: true` added explicitly on each of its class-level overrides (on `Synthesis`, `Characterization`, `Simulation`) once its range became identifier-bearing — LinkML's default for a single-valued, class-typed slot switches from "inline the whole object" to "reference by id" the moment the range class gains an identifier slot, unless told otherwise.
+
+!!! note "A LinkML JSON Schema quirk worth knowing"
+    Slots marked `recommended: true` (not `required: true`) still show up in the generated JSON Schema's `required` array — `gen-json-schema` has no native "recommended" tier to fall back to, so it folds recommended into required rather than dropping the distinction. In practice this means every Recommended field on a class needs a value for an instance to validate via `linkml-run-examples` (or any other JSON-Schema-based validator), not just Mandatory ones.
 
 ---
 
@@ -293,7 +289,10 @@ drying_*, calcination_*, concentration, solvent,
 experiment_duration, step_size, resolution, ...
 ```
 
-Slots that are exclusive to a single subprofile are declared in that subprofile file only.
+Slots that are exclusive to a single subprofile are declared in that subprofile file only. Physical quantity slots that belong to chemdcat-ap's own material/chemistry model (e.g. `has_temperature`, `has_pressure`) live further down the import chain, in `material_entities_ap.yaml` — see [Pattern 5](#pattern-5-specializing-chemdcat-ap-inheritance).
+
+!!! warning "Editing a shared slot changes it everywhere"
+    LinkML gives each slot exactly one definition, reused via `slots:`/`slot_usage`, not one copy per class. If you edit a shared slot's field through the Excel inbox workflow and no `slot_usage` override already exists for the class you're editing, the change applies to the slot's single global definition -- affecting every other class that uses it too. The inbox tooling detects this and warns you, listing every other class the edit will also affect. If you only meant to change it for one class, that needs a `slot_usage` override added directly in the YAML (open a schema issue), not an Excel edit.
 
 ---
 
@@ -324,11 +323,15 @@ was_generated_by:
       title: "powder X-ray diffraction"
 
 is_about_activity:
-  - type: Reaction              # the CO oxidation reaction being monitored
-    catalyst_quantity: 50.0
-    reactant: ["1 vol% CO", "2 vol% O2"]
-    carried_out_by:
-      type: FixedBedReactor
+  - type: CatalyticReaction     # the CO oxidation reaction being monitored
+    catalyst_quantity:
+      - value: 50.0
+        unit: https://qudt.org/vocab/unit/MilliGM
+    used_reactant:
+      - title: "CO (1 vol%)"
+      - title: "O2 (2 vol%)"
+    used_reactor:
+      - type: FixedBedReactor
 ```
 
 If `Reaction` were modelled as a `DataGeneratingActivity`, this relationship would collapse: it would be impossible to distinguish the measurement from the catalytic process it monitors.
@@ -342,17 +345,57 @@ The same distinction appears in DCAT-AP-PLUS itself — the NMR example in the b
 The full import chain, from the CoreMeta4Cat top level down to the DCAT-AP-PLUS base, is:
 
 ```
-catcore.yaml
-  └── catcore_common.yaml
-        └── chem_dcat_ap
-              └── chemical_reaction_ap
-                    └── chemical_entities_ap
-                          └── material_entities_ap
-                                └── dcat_ap_plus   ← DCAT-AP-PLUS base
-  ├── catcore_synthesis_ap.yaml
-  ├── catcore_characterization_ap.yaml
-  ├── catcore_reaction_ap.yaml
-  └── catcore_simulation_ap.yaml
+coremeta4cat.yaml
+  └── coremeta4cat_common.yaml
+        └── chem_dcat_ap.yaml               (chemdcat-ap, vendored locally)
+              └── chemical_reaction_ap.yaml  (ChemicalReaction, Reactor)
+                    └── chemical_entities_ap.yaml  (ChemicalEntity, MaterialisticMixin)
+                          └── material_entities_ap.yaml  (Temperature, Mass, Pressure, ...)
+                                └── dcat_ap_plus   ← DCAT-AP-PLUS base (external, not vendored)
+  ├── coremeta4cat_synthesis_ap.yaml
+  ├── coremeta4cat_characterization_ap.yaml
+  ├── coremeta4cat_reaction_ap.yaml
+  └── coremeta4cat_simulation_ap.yaml
 ```
 
 Each layer adds domain-specific classes and slots on top of the layer below, without modifying it. This means CoreMeta4Cat datasets remain valid DCAT-AP-PLUS instances, which in turn remain valid DCAT-AP datasets.
+
+The `chem_dcat_ap.yaml` / `chemical_reaction_ap.yaml` / `chemical_entities_ap.yaml` / `material_entities_ap.yaml` files are chemdcat-ap — vendored (copied) into this repo rather than imported as a package. `dcat_ap_plus` itself is *not* vendored; it's resolved via LinkML's normal import mechanism against its published schema URI.
+
+---
+
+## Pattern 5: Specializing chemdcat-ap (inheritance)
+
+!!! abstract "Pattern summary"
+    `CatalyticReaction` and `ChemicalReactor` are `is_a` specializations of chemdcat-ap's generic `ChemicalReaction` and `Reactor` classes, not independent classes that merely resemble them. This means they *inherit* chemdcat-ap's slots on top of their own catalysis-specific ones.
+
+Earlier versions of this schema modelled `CatalyticReaction` and `ChemicalReaction` as unrelated siblings — both `is_a: EvaluatedActivity`, duplicating the generic reaction concept instead of specializing it. That's been fixed:
+
+```
+ChemicalReaction (chemdcat-ap)  --is_a-->  EvaluatedActivity
+    ^
+    | is_a
+CatalyticReaction (coremeta4cat)
+
+Reactor (chemdcat-ap)  --is_a-->  Device
+    ^
+    | is_a
+ChemicalReactor (coremeta4cat, abstract)
+    ^
+    | is_a
+FixedBedReactor, CSTR, PlugFlowReactor, Autoclave,
+SlurryReactor, Microreactor, ElectrochemicalReactor, FluidizedBedReactor
+```
+
+**What this means in practice:**
+
+- `CatalyticReaction` automatically inherits `ChemicalReaction`'s slots — `used_starting_material`, `used_reactant`, `generated_product`, `used_catalyst`, `used_solvent`, `used_reactor`, `has_duration`, `has_temperature`, `has_pressure`, `has_yield`, `has_reaction_step`, `related_resource` — on top of its own catalysis-specific slots (`catalyst_quantity`, `catalyst_type`, `reactor_temperature_range`, ...).
+- Where a coremeta4cat-specific slot's purpose fully overlapped with an inherited one, the coremeta4cat slot was removed in favour of the inherited slot: `reactant` was dropped in favour of `used_reactant` (range `Reagent`). Other cases (e.g. `experiment_pressure` vs. the inherited `has_pressure`) are not identical in shape and remain an open reconciliation item, not yet a bug to "fix" by deleting one side.
+- Where `CatalyticReaction` needed to *narrow* an inherited slot (e.g. requiring a specific `ChemicalReactor` rather than any generic reactor), the narrowing is applied via `slot_usage` on the most specific already-existing inherited slot (`used_reactor`, `is_a: carried_out_by`) rather than on the generic parent relation (`carried_out_by`) directly. Narrowing the parent relation instead would duplicate `used_reactor` for no reason -- both would resolve to the same effective field, just under two different names.
+- The same specialization applies one level down: `ChemicalReactor` (and its 8 concrete reactor types) inherits `Reactor`'s slots, rather than duplicating them.
+
+**Where you'll see this:**
+
+- **Generated docs** (`reaction.md`) show the full inherited slot set under `CatalyticReaction`, not just the catalysis-specific ones.
+- **The vocabulary workbook** shows inherited fields as grey, read-only rows (see the workbook's Legend sheet) — they're visible for reference, but they belong to chemdcat-ap, not to this schema, so they can't be edited through the Excel inbox workflow.
+- **Naming**: the schema class is `CatalyticReaction`, not `Reaction`, specifically to avoid a name clash with chemdcat-ap's `ChemicalReaction` now that one specializes the other. Generated docs display it as "Reaction" for readability, but always use `CatalyticReaction` in data files and code.

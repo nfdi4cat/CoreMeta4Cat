@@ -27,11 +27,25 @@ Not sure whether a field exists, or how to annotate something? Use the [GitHub D
 
 ---
 
-## Understanding the vocabulary workbook
+## Propose changes via the vocabulary workbook (no coding required)
 
 Download the [vocabulary reference workbook](https://nfdi4cat.github.io/CoreMeta4Cat/latest/assets/coremeta4cat_vocabulary.xlsx) for a structured overview of all fields, organised by data class and colour-coded by importance (Mandatory / Recommended / Optional). The workbook opens with an **Introduction** sheet and a **Legend** sheet explaining the colour coding and column meanings.
 
-The schema is the authoritative source — the workbook is generated from it automatically.
+You can use it two ways:
+
+- **As a reference** — browse it to look up existing fields while designing or annotating your own data sheets.
+- **To propose a change** — edit a downloaded copy (correct a description, adjust M/R/O, add a new field or class — you can add a new field and the new class it points to in the same submission) and submit it as a pull request:
+
+    1. Edit the `Synthesis`, `Characterization`, `Reaction`, or `Simulation` sheet directly. Don't rename sheets or change column headers.
+    2. Place the edited file at `inbox/coremeta4cat_vocabulary.xlsx` in a new branch and open a pull request.
+    3. An automated check validates the workbook and posts the results as a comment on your PR — including any errors to fix and warnings to review (e.g. if a field you changed is shared across multiple classes, it lists every other class your edit also affects).
+    4. If validation passes, a maintainer reviews and merges; the schema updates automatically.
+
+  See [`inbox/README.md`](https://github.com/nfdi4cat/CoreMeta4Cat/blob/main/inbox/README.md) in the repository for the full workflow.
+
+Rows shown in grey italics in the workbook are inherited from chemdcat-ap, the underlying chemistry model — they're shown for reference but can't be changed through this workflow; open an issue instead.
+
+The schema is the authoritative source — the workbook is generated from it automatically, so any of your edits are proposals until they're validated and merged, not immediate changes.
 
 ---
 

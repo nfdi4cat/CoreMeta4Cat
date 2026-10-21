@@ -16,5 +16,6 @@ evaluated_entity:
     title: "Cu/ZnO/Al2O3 methanol synthesis catalyst"
     description: "63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)"
 realized_plan:
+  id: "coremeta4cat:CHAR_001_BET_method"
   title: "BET surface area measurement"
   description: "N2 physisorption at 77 K, degassing at 300 deg C for 3 h under vacuum prior to measurement"

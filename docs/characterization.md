@@ -104,7 +104,7 @@ The class follows a hierarchical structure in which selection of a characterizat
 
 **Data Type Class Details:**
 
-<details markdown="1" open>
+<details markdown="1" open id="schema-class-SamplePretreatment">
 <summary><strong>SamplePretreatment</strong></summary>
 
 **Description:** A qualitative descriptor of the pre-treatment applied to a sample
@@ -146,6 +146,29 @@ before a process or measurement (e.g. "reduction at 300 °C", "outgassing").
 </p></details>
 
 <details markdown="1" open>
+<summary><strong>activity designator</strong> (Optional)</summary>
+
+**Description:** Internal type designator for CatalysisDataGeneratingActivity subclasses
+(Synthesis, Characterization, Simulation). Only needs to be set by hand
+when nesting one of these inside another object's was_generated_by list
+(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
+automatically when a class is instantiated directly.
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [activity_designator](./elements/slots/activity_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20activity_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1" open>
 <summary><strong>realized plan</strong> (Mandatory)</summary>
 
 **Description:** The CharacterizationTechnique (protocol) realized in this Characterization.
@@ -158,7 +181,7 @@ before a process or measurement (e.g. "reduction at 300 °C", "outgassing").
 
 **Data Type Class Details:**
 
-<details markdown="1" open>
+<details markdown="1" open id="schema-class-CharacterizationTechnique">
 <summary><strong>CharacterizationTechnique</strong></summary>
 
 **Abstract Class**
@@ -171,6 +194,25 @@ Linked from Characterization via realized_plan.
 
 **Schema Reference:** [CharacterizationTechnique](./elements/classes/CharacterizationTechnique.md)
 
+**Slots**
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CharacterizationTechnique target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -179,7 +221,7 @@ Linked from Characterization via realized_plan.
 
 **Possible Subclasses / Enumerations of CharacterizationTechnique:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-PowderXRD">
 <summary><strong>PowderXRD</strong></summary>
 
 **Description:** Powder X-ray diffraction for phase identification and structural analysis.
@@ -206,7 +248,7 @@ Provide unit as a QUDT term (e.g. Degree).
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-QuantitativeRange">
 <summary><strong>QuantitativeRange</strong></summary>
 
 **Description:** A quantitative property expressed as a range between a lower and upper bound,
@@ -303,7 +345,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-OperationMode">
 <summary><strong>OperationMode</strong></summary>
 
 **Description:** A qualitative descriptor of the operation mode of an instrument or
@@ -334,13 +376,13 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-Atmosphere">
 <summary><strong>Atmosphere</strong></summary>
 
 **Description:** A qualitative descriptor of the gaseous environment or atmospheric
@@ -358,7 +400,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Possible Subclasses / Enumerations of Atmosphere:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-CalcinationGaseousEnvironment">
 <summary><strong>CalcinationGaseousEnvironment</strong></summary>
 
 **Description:** The specific gaseous environment maintained during a calcination step
@@ -383,13 +425,32 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" id="schema-class-Temperature">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Schema Reference:** [Temperature](./elements/classes/Temperature.md)
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Temperature target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -412,7 +473,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-AngularVelocity">
 <summary><strong>AngularVelocity</strong></summary>
 
 **Description:** Rate of rotational motion, typically expressed in revolutions per minute.
@@ -448,7 +509,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-Duration">
 <summary><strong>Duration</strong></summary>
 
 **Description:** A quantitative measure of elapsed time (duration of a process step).
@@ -465,6 +526,23 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_experiment_duration target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -513,7 +591,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-SingleCrystalXRD">
 <summary><strong>SingleCrystalXRD</strong></summary>
 
 **Description:** Single crystal X-ray diffraction for structure determination.
@@ -527,16 +605,48 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
+
+**Data Type:** Temperature
+
+**Cardinality:**  Optional
+
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
+**Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
 **Description:** No description available
 
 **Data Type:** string
 
 **Cardinality:**  Optional
 
-**Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+**Schema Reference:** [id](./elements/slots/id.md)
 
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -585,7 +695,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-XRayAbsorptionSpectroscopy">
 <summary><strong>XRayAbsorptionSpectroscopy</strong></summary>
 
 **Description:** X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.
@@ -619,13 +729,9 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
-**Schema Reference:** [OperationMode](./elements/classes/OperationMode.md)
+*Full field list already shown [earlier on this page](#schema-class-OperationMode) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20OperationMode target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_operation_mode target="_blank" class="md-button md-button--primary">
@@ -686,7 +792,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-EnergyQuantity">
 <summary><strong>EnergyQuantity</strong></summary>
 
 **Description:** A quantitative measure of energy (eV, keV, kJ/mol, etc.).
@@ -710,13 +816,28 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -763,13 +884,13 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 </p></details>
 
 <details markdown="1">
-<summary><strong>number of cycles</strong> (Optional, Multivalued)</summary>
+<summary><strong>number of cycles</strong> (Optional)</summary>
 
 **Description:** Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).
 
 **Data Type:** integer
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Optional
 
 **CURIE:** [`VOC4CAT:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
 
@@ -777,6 +898,23 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -848,49 +986,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [QuantitativeRange](./elements/classes/QuantitativeRange.md)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Slots**
-
-<details markdown="1">
-<summary><strong>title</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [title](./elements/slots/title.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20title target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1">
-<summary><strong>description</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [description](./elements/slots/description.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20description target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20QuantitativeRange target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_energy_range target="_blank" class="md-button md-button--primary">
@@ -904,7 +1002,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-XPS">
 <summary><strong>XPS</strong></summary>
 
 **Description:** X-ray photoelectron spectroscopy for surface elemental and chemical state analysis.
@@ -937,13 +1035,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [Duration](./elements/classes/Duration.md)
+*Full field list already shown [earlier on this page](#schema-class-Duration) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Duration target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20total_acquisition_time target="_blank" class="md-button md-button--primary">
@@ -952,13 +1046,13 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 </p></details>
 
 <details markdown="1">
-<summary><strong>number of scans</strong> (Optional, Multivalued)</summary>
+<summary><strong>number of scans</strong> (Optional)</summary>
 
 **Description:** Number of scans or accumulations recorded.
 
 **Data Type:** integer
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Optional
 
 **CURIE:** [`coremeta4cat:number_of_scans`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_scans)
 
@@ -1011,13 +1105,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [EnergyQuantity](./elements/classes/EnergyQuantity.md)
+*Full field list already shown [earlier on this page](#schema-class-EnergyQuantity) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20EnergyQuantity target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20pass_energy target="_blank" class="md-button md-button--primary">
@@ -1040,7 +1130,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-LengthQuantity">
 <summary><strong>LengthQuantity</strong></summary>
 
 **Description:** A quantitative measure of length or spatial dimension (nm, mm, cm).
@@ -1069,8 +1159,6 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Data Type:** string
 
 **Cardinality:**  Optional, Multivalued
-
-**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 **Schema Reference:** [lense_mode](./elements/slots/lense_mode.md)
 
@@ -1108,7 +1196,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -1122,34 +1210,29 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`coremeta4cat:Atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/Atmosphere)
 
-**Schema Reference:** [Atmosphere](./elements/classes/Atmosphere.md)
+*Full field list already shown [earlier on this page](#schema-class-Atmosphere) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Atmosphere target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
-
-**Possible Subclasses / Enumerations of Atmosphere:**
-
-<details markdown="1">
-<summary><strong>CalcinationGaseousEnvironment</strong></summary>
-
-**Description:** The specific gaseous environment maintained during a calcination step
-(e.g. "air", "N2", "10% O2/N2").
-
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
-
-**Schema Reference:** [CalcinationGaseousEnvironment](./elements/classes/CalcinationGaseousEnvironment.md)
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalcinationGaseousEnvironment target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_atmosphere target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1221,49 +1304,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [QuantitativeRange](./elements/classes/QuantitativeRange.md)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Slots**
-
-<details markdown="1">
-<summary><strong>title</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [title](./elements/slots/title.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20title target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1">
-<summary><strong>description</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [description](./elements/slots/description.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20description target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20QuantitativeRange target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_energy_range target="_blank" class="md-button md-button--primary">
@@ -1277,7 +1320,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-EDX">
 <summary><strong>EDX</strong></summary>
 
 **Description:** Energy-dispersive X-ray spectroscopy for elemental mapping and quantification.
@@ -1310,13 +1353,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [EnergyQuantity](./elements/classes/EnergyQuantity.md)
+*Full field list already shown [earlier on this page](#schema-class-EnergyQuantity) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20EnergyQuantity target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20primary_energy target="_blank" class="md-button md-button--primary">
@@ -1346,13 +1385,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [Duration](./elements/classes/Duration.md)
+*Full field list already shown [earlier on this page](#schema-class-Duration) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Duration target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20counting_time target="_blank" class="md-button md-button--primary">
@@ -1398,13 +1433,30 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
   </a>
 </p></details>
 
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20EDX target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-InfraredSpectroscopy">
 <summary><strong>InfraredSpectroscopy</strong></summary>
 
 **Description:** Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.
@@ -1438,13 +1490,9 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
-**Schema Reference:** [OperationMode](./elements/classes/OperationMode.md)
+*Full field list already shown [earlier on this page](#schema-class-OperationMode) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20OperationMode target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_operation_mode target="_blank" class="md-button md-button--primary">
@@ -1481,49 +1529,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [QuantitativeRange](./elements/classes/QuantitativeRange.md)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Slots**
-
-<details markdown="1">
-<summary><strong>title</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [title](./elements/slots/title.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20title target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1">
-<summary><strong>description</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [description](./elements/slots/description.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20description target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20QuantitativeRange target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_wavenumber_range target="_blank" class="md-button md-button--primary">
@@ -1553,13 +1561,28 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -1587,13 +1610,13 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 </p></details>
 
 <details markdown="1">
-<summary><strong>number of scans</strong> (Optional, Multivalued)</summary>
+<summary><strong>number of scans</strong> (Optional)</summary>
 
 **Description:** Number of scans or accumulations recorded.
 
 **Data Type:** integer
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Optional
 
 **CURIE:** [`coremeta4cat:number_of_scans`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_scans)
 
@@ -1614,7 +1637,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -1628,34 +1651,29 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`coremeta4cat:Atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/Atmosphere)
 
-**Schema Reference:** [Atmosphere](./elements/classes/Atmosphere.md)
+*Full field list already shown [earlier on this page](#schema-class-Atmosphere) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Atmosphere target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
-
-**Possible Subclasses / Enumerations of Atmosphere:**
-
-<details markdown="1">
-<summary><strong>CalcinationGaseousEnvironment</strong></summary>
-
-**Description:** The specific gaseous environment maintained during a calcination step
-(e.g. "air", "N2", "10% O2/N2").
-
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
-
-**Schema Reference:** [CalcinationGaseousEnvironment](./elements/classes/CalcinationGaseousEnvironment.md)
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalcinationGaseousEnvironment target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_atmosphere target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -1666,7 +1684,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-DRIFTS">
 <summary><strong>DRIFTS</strong></summary>
 
 **Description:** Diffuse reflectance infrared Fourier transform spectroscopy for in-situ
@@ -1691,6 +1709,241 @@ surface species identification under reactive gas conditions.
 
 **Schema Reference:** [adsorption_gas](./elements/slots/adsorption_gas.md)
 
+**Data Type Class Details:**
+
+<details markdown="1" id="schema-class-ChemicalEntity">
+<summary><strong>ChemicalEntity</strong></summary>
+
+**Description:** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.
+
+**CURIE:** [`CHEBI:23367`](http://purl.obolibrary.org/obo/CHEBI_23367)
+
+**Schema Reference:** [ChemicalEntity](./elements/classes/ChemicalEntity.md)
+
+**Slots**
+
+<details markdown="1">
+<summary><strong>inchi</strong> (Recommended)</summary>
+
+**Description:** The slot to provide the InChi descriptor of a ChemicalEntity.
+
+**Data Type:** InChi
+
+**Cardinality:**  Recommended
+
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
+**Schema Reference:** [inchi](./elements/slots/inchi.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" id="schema-class-InChi">
+<summary><strong>InChi</strong></summary>
+
+**Description:** A structure descriptor which conforms to the InChI format specification.
+
+**CURIE:** [`CHEMINF:000113`](http://semanticscience.org/resource/CHEMINF_000113)
+
+**Schema Reference:** [InChi](./elements/classes/InChi.md)
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20InChi target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20inchi target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>inchikey</strong> (Recommended)</summary>
+
+**Description:** The slot to provide the InChiKey of a ChemicalEntity.
+
+**Data Type:** InChIKey
+
+**Cardinality:**  Recommended
+
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
+**Schema Reference:** [inchikey](./elements/slots/inchikey.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" id="schema-class-InChIKey">
+<summary><strong>InChIKey</strong></summary>
+
+**Description:** No description available
+
+**CURIE:** [`CHEMINF:000059`](http://semanticscience.org/resource/CHEMINF_000059)
+
+**Schema Reference:** [InChIKey](./elements/classes/InChIKey.md)
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20InChIKey target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20inchikey target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>smiles</strong> (Recommended)</summary>
+
+**Description:** The slot to provide the canonical SMILES descriptor of a ChemicalEntity.
+
+**Data Type:** SMILES
+
+**Cardinality:**  Recommended
+
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
+**Schema Reference:** [smiles](./elements/slots/smiles.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" id="schema-class-SMILES">
+<summary><strong>SMILES</strong></summary>
+
+**Description:** A structure descriptor that denotes a molecular structure as a graph and conforms to the SMILES format specification.
+
+**CURIE:** [`CHEMINF:000018`](http://semanticscience.org/resource/CHEMINF_000018)
+
+**Schema Reference:** [SMILES](./elements/classes/SMILES.md)
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SMILES target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20smiles target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>molecular formula</strong> (Recommended)</summary>
+
+**Description:** The slot to provide the IUPAC formula of a ChemicalEntity.
+
+**Data Type:** MolecularFormula
+
+**Cardinality:**  Recommended
+
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
+**Schema Reference:** [molecular_formula](./elements/slots/molecular_formula.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" id="schema-class-MolecularFormula">
+<summary><strong>MolecularFormula</strong></summary>
+
+**Description:** A structure descriptor which identifies each constituent element by its chemical symbol and indicates the number of atoms of each element found in each discrete molecule of that compound.
+
+**CURIE:** [`CHEMINF:000042`](http://semanticscience.org/resource/CHEMINF_000042)
+
+**Schema Reference:** [MolecularFormula](./elements/classes/MolecularFormula.md)
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MolecularFormula target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20molecular_formula target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>iupac name</strong> (Recommended)</summary>
+
+**Description:** The slot to provide the IUPAC name of a ChemicalEntity.
+
+**Data Type:** IUPACName
+
+**Cardinality:**  Recommended
+
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
+**Schema Reference:** [iupac_name](./elements/slots/iupac_name.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" id="schema-class-IUPACName">
+<summary><strong>IUPACName</strong></summary>
+
+**Description:** A systematic name which is formulated according to the rules and recommendations for chemical nomenclature set out by the International Union of Pure and Applied Chemistry (IUPAC).
+
+**CURIE:** [`CHEMINF:000107`](http://semanticscience.org/resource/CHEMINF_000107)
+
+**Schema Reference:** [IUPACName](./elements/classes/IUPACName.md)
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20IUPACName target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20iupac_name target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>has molar mass</strong> (Recommended)</summary>
+
+**Description:** The slot to provide the MolarMass of a ChemicalEntity.
+
+**Data Type:** MolarMass
+
+**Cardinality:**  Recommended
+
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
+**Schema Reference:** [has_molar_mass](./elements/slots/has_molar_mass.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" id="schema-class-MolarMass">
+<summary><strong>MolarMass</strong></summary>
+
+**Description:** A Mass (physical quality) that quantifies the mass of a homogeneous ChemicalSubstance containing 6.02 x 10^23 atoms or molecules.
+
+**CURIE:** [`AFR:0002409`](http://purl.allotrope.org/ontologies/result#AFR_0002409)
+
+**Schema Reference:** [MolarMass](./elements/classes/MolarMass.md)
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MolarMass target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_molar_mass target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ChemicalEntity target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20adsorption_gas target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -1706,7 +1959,7 @@ surface species identification under reactive gas conditions.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -1720,31 +1973,9 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`coremeta4cat:Atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/Atmosphere)
 
-**Schema Reference:** [Atmosphere](./elements/classes/Atmosphere.md)
+*Full field list already shown [earlier on this page](#schema-class-Atmosphere) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Atmosphere target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
-
-**Possible Subclasses / Enumerations of Atmosphere:**
-
-<details markdown="1">
-<summary><strong>CalcinationGaseousEnvironment</strong></summary>
-
-**Description:** The specific gaseous environment maintained during a calcination step
-(e.g. "air", "N2", "10% O2/N2").
-
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
-
-**Schema Reference:** [CalcinationGaseousEnvironment](./elements/classes/CalcinationGaseousEnvironment.md)
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalcinationGaseousEnvironment target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_atmosphere target="_blank" class="md-button md-button--primary">
@@ -1767,7 +1998,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-VolumeFlowRate">
 <summary><strong>VolumeFlowRate</strong></summary>
 
 **Description:** Volume of fluid passing a given point per unit time.
@@ -1817,49 +2048,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [QuantitativeRange](./elements/classes/QuantitativeRange.md)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Slots**
-
-<details markdown="1">
-<summary><strong>title</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [title](./elements/slots/title.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20title target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1">
-<summary><strong>description</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [description](./elements/slots/description.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20description target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20QuantitativeRange target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_wavenumber_range target="_blank" class="md-button md-button--primary">
@@ -1965,13 +2156,28 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -1980,13 +2186,13 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 </p></details>
 
 <details markdown="1">
-<summary><strong>number of scans</strong> (Optional, Multivalued)</summary>
+<summary><strong>number of scans</strong> (Optional)</summary>
 
 **Description:** Number of scans or accumulations recorded.
 
 **Data Type:** integer
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Optional
 
 **CURIE:** [`coremeta4cat:number_of_scans`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_scans)
 
@@ -1998,13 +2204,30 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
   </a>
 </p></details>
 
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20DRIFTS target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-RamanSpectroscopy">
 <summary><strong>RamanSpectroscopy</strong></summary>
 
 **Description:** Raman spectroscopy for vibrational and structural characterization.
@@ -2037,13 +2260,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [LengthQuantity](./elements/classes/LengthQuantity.md)
+*Full field list already shown [earlier on this page](#schema-class-LengthQuantity) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20LengthQuantity target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20excitation_laser_wavelength target="_blank" class="md-button md-button--primary">
@@ -2066,7 +2285,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-PowerQuantity">
 <summary><strong>PowerQuantity</strong></summary>
 
 **Description:** Rate of energy transfer per unit time (e.g. laser power in mW).
@@ -2128,13 +2347,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [Duration](./elements/classes/Duration.md)
+*Full field list already shown [earlier on this page](#schema-class-Duration) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Duration target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_integration_time target="_blank" class="md-button md-button--primary">
@@ -2143,13 +2358,13 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 </p></details>
 
 <details markdown="1">
-<summary><strong>number of scans</strong> (Optional, Multivalued)</summary>
+<summary><strong>number of scans</strong> (Optional)</summary>
 
 **Description:** Number of scans or accumulations recorded.
 
 **Data Type:** integer
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Optional
 
 **CURIE:** [`coremeta4cat:number_of_scans`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_scans)
 
@@ -2170,7 +2385,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -2184,31 +2399,9 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`coremeta4cat:Atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/Atmosphere)
 
-**Schema Reference:** [Atmosphere](./elements/classes/Atmosphere.md)
+*Full field list already shown [earlier on this page](#schema-class-Atmosphere) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Atmosphere target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
-
-**Possible Subclasses / Enumerations of Atmosphere:**
-
-<details markdown="1">
-<summary><strong>CalcinationGaseousEnvironment</strong></summary>
-
-**Description:** The specific gaseous environment maintained during a calcination step
-(e.g. "air", "N2", "10% O2/N2").
-
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
-
-**Schema Reference:** [CalcinationGaseousEnvironment](./elements/classes/CalcinationGaseousEnvironment.md)
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalcinationGaseousEnvironment target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_atmosphere target="_blank" class="md-button md-button--primary">
@@ -2219,13 +2412,28 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -2252,13 +2460,30 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
   </a>
 </p></details>
 
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20RamanSpectroscopy target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-NMRSpectroscopy">
 <summary><strong>NMRSpectroscopy</strong></summary>
 
 **Description:** Nuclear magnetic resonance spectroscopy for structure elucidation.
@@ -2304,6 +2529,19 @@ this subprofile.
 
 **Schema Reference:** [solvent](./elements/slots/solvent.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>ChemicalEntity</strong></summary>
+
+**Description:** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.
+
+**CURIE:** [`CHEBI:23367`](http://purl.obolibrary.org/obo/CHEBI_23367)
+
+*Full field list already shown [earlier on this page](#schema-class-ChemicalEntity) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20solvent target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -2334,13 +2572,28 @@ this subprofile.
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -2387,13 +2640,13 @@ this subprofile.
 </p></details>
 
 <details markdown="1">
-<summary><strong>number of scans</strong> (Optional, Multivalued)</summary>
+<summary><strong>number of scans</strong> (Optional)</summary>
 
 **Description:** Number of scans or accumulations recorded.
 
 **Data Type:** integer
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Optional
 
 **CURIE:** [`coremeta4cat:number_of_scans`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_scans)
 
@@ -2414,7 +2667,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -2428,34 +2681,29 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`coremeta4cat:Atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/Atmosphere)
 
-**Schema Reference:** [Atmosphere](./elements/classes/Atmosphere.md)
+*Full field list already shown [earlier on this page](#schema-class-Atmosphere) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Atmosphere target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
-
-**Possible Subclasses / Enumerations of Atmosphere:**
-
-<details markdown="1">
-<summary><strong>CalcinationGaseousEnvironment</strong></summary>
-
-**Description:** The specific gaseous environment maintained during a calcination step
-(e.g. "air", "N2", "10% O2/N2").
-
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
-
-**Schema Reference:** [CalcinationGaseousEnvironment](./elements/classes/CalcinationGaseousEnvironment.md)
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalcinationGaseousEnvironment target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_atmosphere target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2466,7 +2714,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-TransmissionElectronMicroscopy">
 <summary><strong>TransmissionElectronMicroscopy</strong></summary>
 
 **Description:** TEM for atomic-resolution imaging and diffraction of catalyst particles.
@@ -2500,16 +2748,29 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
-**Schema Reference:** [OperationMode](./elements/classes/OperationMode.md)
+*Full field list already shown [earlier on this page](#schema-class-OperationMode) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20OperationMode target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_operation_mode target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2548,7 +2809,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-ElectricPotential">
 <summary><strong>ElectricPotential</strong></summary>
 
 **Description:** A quantitative measure of electric potential difference or voltage.
@@ -2594,7 +2855,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-ScanningElectronMicroscopy">
 <summary><strong>ScanningElectronMicroscopy</strong></summary>
 
 **Description:** SEM for surface morphology and particle size/shape imaging.
@@ -2646,6 +2907,23 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 </p></details>
 
 <details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
 <summary><strong>gun type</strong> (Optional, Multivalued)</summary>
 
 **Description:** Type of electron gun (e.g. FEG, thermionic LaB6).
@@ -2686,13 +2964,9 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [ElectricPotential](./elements/classes/ElectricPotential.md)
+*Full field list already shown [earlier on this page](#schema-class-ElectricPotential) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectricPotential target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20acceleration_voltage target="_blank" class="md-button md-button--primary">
@@ -2725,7 +2999,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-Thermogravimetry">
 <summary><strong>Thermogravimetry</strong></summary>
 
 **Description:** Thermogravimetric analysis (TGA/DTG) for mass loss, decomposition, and oxidation state characterization.
@@ -2759,13 +3033,9 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
-**Schema Reference:** [OperationMode](./elements/classes/OperationMode.md)
+*Full field list already shown [earlier on this page](#schema-class-OperationMode) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20OperationMode target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_operation_mode target="_blank" class="md-button md-button--primary">
@@ -2782,7 +3052,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -2796,31 +3066,9 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`coremeta4cat:Atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/Atmosphere)
 
-**Schema Reference:** [Atmosphere](./elements/classes/Atmosphere.md)
+*Full field list already shown [earlier on this page](#schema-class-Atmosphere) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Atmosphere target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
-
-**Possible Subclasses / Enumerations of Atmosphere:**
-
-<details markdown="1">
-<summary><strong>CalcinationGaseousEnvironment</strong></summary>
-
-**Description:** The specific gaseous environment maintained during a calcination step
-(e.g. "air", "N2", "10% O2/N2").
-
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
-
-**Schema Reference:** [CalcinationGaseousEnvironment](./elements/classes/CalcinationGaseousEnvironment.md)
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalcinationGaseousEnvironment target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_atmosphere target="_blank" class="md-button md-button--primary">
@@ -2841,6 +3089,19 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Schema Reference:** [initial_temperature](./elements/slots/initial_temperature.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20initial_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -2859,6 +3120,19 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **CURIE:** [`NCIT:C164644`](http://purl.obolibrary.org/obo/NCIT_C164644)
 
 **Schema Reference:** [final_temperature](./elements/slots/final_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20final_temperature target="_blank" class="md-button md-button--primary">
@@ -2879,8 +3153,42 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Schema Reference:** [has_sample_mass](./elements/slots/has_sample_mass.md)
 
+**Data Type Class Details:**
+
+<details markdown="1" id="schema-class-Mass">
+<summary><strong>Mass</strong></summary>
+
+**Description:** The strength of a body's gravitational attraction to other bodies.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Schema Reference:** [Mass](./elements/classes/Mass.md)
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Mass target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_sample_mass target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2914,49 +3222,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [QuantitativeRange](./elements/classes/QuantitativeRange.md)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Slots**
-
-<details markdown="1">
-<summary><strong>title</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [title](./elements/slots/title.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20title target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1">
-<summary><strong>description</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [description](./elements/slots/description.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20description target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20QuantitativeRange target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature_range target="_blank" class="md-button md-button--primary">
@@ -2979,7 +3247,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-HeatingRate">
 <summary><strong>HeatingRate</strong></summary>
 
 **Description:** Rate of temperature change per unit time during a thermal ramp.
@@ -3015,7 +3283,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-HeatingProcedure">
 <summary><strong>HeatingProcedure</strong></summary>
 
 **Description:** A qualitative descriptor of the thermal programme or heating procedure
@@ -3043,7 +3311,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-TPR">
 <summary><strong>TPR</strong></summary>
 
 **Description:** Temperature-programmed reduction for reducibility and metal-support interaction characterization.
@@ -3074,6 +3342,23 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 </p></details>
 
 <details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
 <summary><strong>has temperature range</strong> (Optional)</summary>
 
 **Description:** Temperature programme range (start -> final temperature) as a QuantitativeRange.
@@ -3102,49 +3387,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [QuantitativeRange](./elements/classes/QuantitativeRange.md)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Slots**
-
-<details markdown="1">
-<summary><strong>title</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [title](./elements/slots/title.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20title target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1">
-<summary><strong>description</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [description](./elements/slots/description.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20description target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20QuantitativeRange target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature_range target="_blank" class="md-button md-button--primary">
@@ -3174,13 +3419,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [HeatingRate](./elements/classes/HeatingRate.md)
+*Full field list already shown [earlier on this page](#schema-class-HeatingRate) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20HeatingRate target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_heating_rate target="_blank" class="md-button md-button--primary">
@@ -3211,13 +3452,9 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **CURIE:** [`coremeta4cat:HeatingProcedure`](https://w3id.org/nfdi4cat/coremeta4cat/HeatingProcedure)
 
-**Schema Reference:** [HeatingProcedure](./elements/classes/HeatingProcedure.md)
+*Full field list already shown [earlier on this page](#schema-class-HeatingProcedure) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20HeatingProcedure target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_heating_procedure target="_blank" class="md-button md-button--primary">
@@ -3231,7 +3468,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-TPO">
 <summary><strong>TPO</strong></summary>
 
 **Description:** Temperature-programmed oxidation for coke quantification and reoxidation characterization.
@@ -3262,6 +3499,23 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 </p></details>
 
 <details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
 <summary><strong>has temperature range</strong> (Optional)</summary>
 
 **Description:** Temperature programme range (start -> final temperature) as a QuantitativeRange.
@@ -3290,49 +3544,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [QuantitativeRange](./elements/classes/QuantitativeRange.md)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Slots**
-
-<details markdown="1">
-<summary><strong>title</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [title](./elements/slots/title.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20title target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1">
-<summary><strong>description</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [description](./elements/slots/description.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20description target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20QuantitativeRange target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature_range target="_blank" class="md-button md-button--primary">
@@ -3362,13 +3576,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [HeatingRate](./elements/classes/HeatingRate.md)
+*Full field list already shown [earlier on this page](#schema-class-HeatingRate) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20HeatingRate target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_heating_rate target="_blank" class="md-button md-button--primary">
@@ -3399,13 +3609,9 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **CURIE:** [`coremeta4cat:HeatingProcedure`](https://w3id.org/nfdi4cat/coremeta4cat/HeatingProcedure)
 
-**Schema Reference:** [HeatingProcedure](./elements/classes/HeatingProcedure.md)
+*Full field list already shown [earlier on this page](#schema-class-HeatingProcedure) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20HeatingProcedure target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_heating_procedure target="_blank" class="md-button md-button--primary">
@@ -3419,7 +3625,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-BET">
 <summary><strong>BET</strong></summary>
 
 **Description:** Brunauer-Emmett-Teller analysis for specific surface area and pore size distribution.
@@ -3462,6 +3668,19 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **Schema Reference:** [degassing_temperature](./elements/slots/degassing_temperature.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20degassing_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -3480,6 +3699,19 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 **CURIE:** [`coremeta4cat:measurement_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/measurement_temperature)
 
 **Schema Reference:** [measurement_temperature](./elements/slots/measurement_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20measurement_temperature target="_blank" class="md-button md-button--primary">
@@ -3519,8 +3751,38 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **Schema Reference:** [has_sample_mass](./elements/slots/has_sample_mass.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Mass</strong></summary>
+
+**Description:** The strength of a body's gravitational attraction to other bodies.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Mass) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_sample_mass target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3531,7 +3793,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-ICPAES">
 <summary><strong>ICPAES</strong></summary>
 
 **Description:** Inductively coupled plasma atomic emission spectroscopy for bulk elemental composition.
@@ -3618,13 +3880,30 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
   </a>
 </p></details>
 
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ICPAES target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-ElementalAnalysis">
 <summary><strong>ElementalAnalysis</strong></summary>
 
 **Description:** Combustion elemental analysis (CHNS/O) for carbon, hydrogen, nitrogen, sulfur content.
@@ -3667,6 +3946,19 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **Schema Reference:** [combustion_temperature](./elements/slots/combustion_temperature.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20combustion_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -3686,8 +3978,38 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **Schema Reference:** [carrier_gas](./elements/slots/carrier_gas.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>ChemicalEntity</strong></summary>
+
+**Description:** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.
+
+**CURIE:** [`CHEBI:23367`](http://purl.obolibrary.org/obo/CHEBI_23367)
+
+*Full field list already shown [earlier on this page](#schema-class-ChemicalEntity) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20carrier_gas target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3698,7 +4020,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-UVVisSpectroscopy">
 <summary><strong>UVVisSpectroscopy</strong></summary>
 
 **Description:** UV-Vis spectroscopy for electronic transitions, band gap, and concentration determination.
@@ -3710,43 +4032,40 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 **Slots**
 
 <details markdown="1">
-<summary><strong>minimum wavelength</strong> (Optional, Multivalued)</summary>
+<summary><strong>wavelength range</strong> (Optional, Multivalued)</summary>
 
-**Description:** Minimum wavelength of the UV-Vis scan range.
+**Description:** Wavelength range of the UV-Vis scan, provided as a QuantitativeRange
+with min_value and max_value (unit_code: "nm").
 
-**Data Type:** float
+**Data Type:** QuantitativeRange
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`coremeta4cat:minimum_wavelength`](https://w3id.org/nfdi4cat/coremeta4cat/minimum_wavelength)
+**CURIE:** [`coremeta4cat:wavelength_range`](https://w3id.org/nfdi4cat/coremeta4cat/wavelength_range)
 
-**Schema Reference:** [minimum_wavelength](./elements/slots/minimum_wavelength.md)
+**Schema Reference:** [wavelength_range](./elements/slots/wavelength_range.md)
 
-**Unit:** nm
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20minimum_wavelength target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
+**Data Type Class Details:**
 
 <details markdown="1">
-<summary><strong>maximum wavelength</strong> (Optional, Multivalued)</summary>
+<summary><strong>QuantitativeRange</strong></summary>
 
-**Description:** Maximum wavelength of the UV-Vis scan range.
+**Description:** A quantitative property expressed as a range between a lower and upper bound,
+sharing a common unit. Used where an experiment operates over a range of
+conditions (e.g. a temperature sweep, a feed concentration window).
 
-**Data Type:** float
+Aligned to qudt:Quantity (as in the DCAT-AP-PLUS QuantitativeAttribute pattern)
+but with min_value / max_value instead of a single value to represent an
+interval rather than a point value. Provide the shared unit as a QUDT DefinedTerm.
 
-**Cardinality:**  Optional, Multivalued
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**CURIE:** [`coremeta4cat:maximum_wavelength`](https://w3id.org/nfdi4cat/coremeta4cat/maximum_wavelength)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Schema Reference:** [maximum_wavelength](./elements/slots/maximum_wavelength.md)
-
-**Unit:** nm
+</details>
 
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20maximum_wavelength target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20wavelength_range target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3785,6 +4104,19 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **Schema Reference:** [solvent](./elements/slots/solvent.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>ChemicalEntity</strong></summary>
+
+**Description:** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.
+
+**CURIE:** [`CHEBI:23367`](http://purl.obolibrary.org/obo/CHEBI_23367)
+
+*Full field list already shown [earlier on this page](#schema-class-ChemicalEntity) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20solvent target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -3794,16 +4126,52 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 <details markdown="1">
 <summary><strong>has concentration</strong> (Optional)</summary>
 
+**Description:** The slot to provide the Concentration of a ChemicalSubstance.
+
+**Data Type:** Concentration
+
+**Cardinality:**  Optional
+
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
+**Schema Reference:** [has_concentration](./elements/slots/has_concentration.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" id="schema-class-Concentration">
+<summary><strong>Concentration</strong></summary>
+
+**Description:** A QuantitativeAttribute of a ChemicalSubstance that represents the amount of a constituent divided by the volume of the mixture.
+
+**CURIE:** [`CHMO:0002820`](http://purl.obolibrary.org/obo/CHMO_0002820)
+
+**Schema Reference:** [Concentration](./elements/classes/Concentration.md)
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Concentration target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_concentration target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
 **Description:** No description available
 
 **Data Type:** string
 
 **Cardinality:**  Optional
 
-**Schema Reference:** [has_concentration](./elements/slots/has_concentration.md)
+**Schema Reference:** [id](./elements/slots/id.md)
 
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_concentration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3814,7 +4182,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-PhotoluminescenceSpectroscopy">
 <summary><strong>PhotoluminescenceSpectroscopy</strong></summary>
 
 **Description:** Photoluminescence spectroscopy for defect and charge carrier characterization.
@@ -3906,16 +4274,29 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [Duration](./elements/classes/Duration.md)
+*Full field list already shown [earlier on this page](#schema-class-Duration) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Duration target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_integration_time target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3942,13 +4323,9 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [LengthQuantity](./elements/classes/LengthQuantity.md)
+*Full field list already shown [earlier on this page](#schema-class-LengthQuantity) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20LengthQuantity target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20excitation_wavelength target="_blank" class="md-button md-button--primary">
@@ -3978,13 +4355,9 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [LengthQuantity](./elements/classes/LengthQuantity.md)
+*Full field list already shown [earlier on this page](#schema-class-LengthQuantity) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20LengthQuantity target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20emission_wavelength target="_blank" class="md-button md-button--primary">
@@ -4014,13 +4387,28 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -4034,7 +4422,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-PhotoluminescenceLifetime">
 <summary><strong>PhotoluminescenceLifetime</strong></summary>
 
 **Description:** Time-resolved photoluminescence for charge carrier lifetime and recombination dynamics.
@@ -4065,13 +4453,13 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 </p></details>
 
 <details markdown="1">
-<summary><strong>number of shots</strong> (Optional, Multivalued)</summary>
+<summary><strong>number of shots</strong> (Optional)</summary>
 
 **Description:** Number of laser shots accumulated per measurement point.
 
 **Data Type:** integer
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Optional
 
 **CURIE:** [`coremeta4cat:number_of_shots`](https://w3id.org/nfdi4cat/coremeta4cat/number_of_shots)
 
@@ -4079,6 +4467,23 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_shots target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -4105,13 +4510,9 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [LengthQuantity](./elements/classes/LengthQuantity.md)
+*Full field list already shown [earlier on this page](#schema-class-LengthQuantity) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20LengthQuantity target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20excitation_wavelength target="_blank" class="md-button md-button--primary">
@@ -4141,13 +4542,9 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [LengthQuantity](./elements/classes/LengthQuantity.md)
+*Full field list already shown [earlier on this page](#schema-class-LengthQuantity) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20LengthQuantity target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20emission_wavelength target="_blank" class="md-button md-button--primary">
@@ -4177,13 +4574,28 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -4197,7 +4609,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-CyclicVoltammetry">
 <summary><strong>CyclicVoltammetry</strong></summary>
 
 **Description:** Cyclic voltammetry for electrochemical activity, redox potential, and capacitance characterization.
@@ -4230,43 +4642,40 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 </p></details>
 
 <details markdown="1">
-<summary><strong>minimum potential</strong> (Optional, Multivalued)</summary>
+<summary><strong>scan potential range</strong> (Optional, Multivalued)</summary>
 
-**Description:** Lower potential limit in cyclic voltammetry.
+**Description:** Potential window scanned in cyclic voltammetry, provided as a
+QuantitativeRange with min_value and max_value (unit_code: "V").
 
-**Data Type:** float
+**Data Type:** QuantitativeRange
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`coremeta4cat:minimum_potential`](https://w3id.org/nfdi4cat/coremeta4cat/minimum_potential)
+**CURIE:** [`coremeta4cat:scan_potential_range`](https://w3id.org/nfdi4cat/coremeta4cat/scan_potential_range)
 
-**Schema Reference:** [minimum_potential](./elements/slots/minimum_potential.md)
+**Schema Reference:** [scan_potential_range](./elements/slots/scan_potential_range.md)
 
-**Unit:** V
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20minimum_potential target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
+**Data Type Class Details:**
 
 <details markdown="1">
-<summary><strong>maximum potential</strong> (Optional, Multivalued)</summary>
+<summary><strong>QuantitativeRange</strong></summary>
 
-**Description:** Upper potential limit in cyclic voltammetry.
+**Description:** A quantitative property expressed as a range between a lower and upper bound,
+sharing a common unit. Used where an experiment operates over a range of
+conditions (e.g. a temperature sweep, a feed concentration window).
 
-**Data Type:** float
+Aligned to qudt:Quantity (as in the DCAT-AP-PLUS QuantitativeAttribute pattern)
+but with min_value / max_value instead of a single value to represent an
+interval rather than a point value. Provide the shared unit as a QUDT DefinedTerm.
 
-**Cardinality:**  Optional, Multivalued
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**CURIE:** [`coremeta4cat:maximum_potential`](https://w3id.org/nfdi4cat/coremeta4cat/maximum_potential)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Schema Reference:** [maximum_potential](./elements/slots/maximum_potential.md)
-
-**Unit:** V
+</details>
 
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20maximum_potential target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20scan_potential_range target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -4293,13 +4702,13 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 </p></details>
 
 <details markdown="1">
-<summary><strong>number of cycles</strong> (Optional, Multivalued)</summary>
+<summary><strong>number of cycles</strong> (Optional)</summary>
 
 **Description:** Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).
 
 **Data Type:** integer
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Optional
 
 **CURIE:** [`VOC4CAT:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
 
@@ -4307,6 +4716,23 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -4400,6 +4826,19 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **Schema Reference:** [electrolyte_concentration](./elements/slots/electrolyte_concentration.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Concentration</strong></summary>
+
+**Description:** A QuantitativeAttribute of a ChemicalSubstance that represents the amount of a constituent divided by the volume of the mixture.
+
+**CURIE:** [`CHMO:0002820`](http://purl.obolibrary.org/obo/CHMO_0002820)
+
+*Full field list already shown [earlier on this page](#schema-class-Concentration) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20electrolyte_concentration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -4415,7 +4854,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -4429,31 +4868,9 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`coremeta4cat:Atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/Atmosphere)
 
-**Schema Reference:** [Atmosphere](./elements/classes/Atmosphere.md)
+*Full field list already shown [earlier on this page](#schema-class-Atmosphere) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Atmosphere target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
-
-**Possible Subclasses / Enumerations of Atmosphere:**
-
-<details markdown="1">
-<summary><strong>CalcinationGaseousEnvironment</strong></summary>
-
-**Description:** The specific gaseous environment maintained during a calcination step
-(e.g. "air", "N2", "10% O2/N2").
-
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
-
-**Schema Reference:** [CalcinationGaseousEnvironment](./elements/classes/CalcinationGaseousEnvironment.md)
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalcinationGaseousEnvironment target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_atmosphere target="_blank" class="md-button md-button--primary">
@@ -4464,13 +4881,28 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -4484,7 +4916,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-ConductivityMeasurement">
 <summary><strong>ConductivityMeasurement</strong></summary>
 
 **Description:** Electrical conductivity measurement for ionic and electronic transport characterization.
@@ -4574,6 +5006,23 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 </p></details>
 
 <details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
 <summary><strong>reference electrode</strong> (Optional, Multivalued)</summary>
 
 **Description:** Reference electrode used in electrochemical cell (e.g. Ag/AgCl, RHE).
@@ -4662,6 +5111,19 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Schema Reference:** [electrolyte_concentration](./elements/slots/electrolyte_concentration.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Concentration</strong></summary>
+
+**Description:** A QuantitativeAttribute of a ChemicalSubstance that represents the amount of a constituent divided by the volume of the mixture.
+
+**CURIE:** [`CHMO:0002820`](http://purl.obolibrary.org/obo/CHMO_0002820)
+
+*Full field list already shown [earlier on this page](#schema-class-Concentration) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20electrolyte_concentration target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -4677,7 +5139,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -4691,31 +5153,9 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`coremeta4cat:Atmosphere`](https://w3id.org/nfdi4cat/coremeta4cat/Atmosphere)
 
-**Schema Reference:** [Atmosphere](./elements/classes/Atmosphere.md)
+*Full field list already shown [earlier on this page](#schema-class-Atmosphere) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Atmosphere target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
-
-**Possible Subclasses / Enumerations of Atmosphere:**
-
-<details markdown="1">
-<summary><strong>CalcinationGaseousEnvironment</strong></summary>
-
-**Description:** The specific gaseous environment maintained during a calcination step
-(e.g. "air", "N2", "10% O2/N2").
-
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
-
-**Schema Reference:** [CalcinationGaseousEnvironment](./elements/classes/CalcinationGaseousEnvironment.md)
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalcinationGaseousEnvironment target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_atmosphere target="_blank" class="md-button md-button--primary">
@@ -4726,13 +5166,28 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -4746,7 +5201,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-DynamicLightScattering">
 <summary><strong>DynamicLightScattering</strong></summary>
 
 **Description:** Dynamic light scattering for hydrodynamic particle size distribution in suspension.
@@ -4770,6 +5225,19 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Schema Reference:** [solvent](./elements/slots/solvent.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>ChemicalEntity</strong></summary>
+
+**Description:** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.
+
+**CURIE:** [`CHEBI:23367`](http://purl.obolibrary.org/obo/CHEBI_23367)
+
+*Full field list already shown [earlier on this page](#schema-class-ChemicalEntity) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20solvent target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -4779,13 +5247,28 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 <details markdown="1">
 <summary><strong>has concentration</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Concentration of a ChemicalSubstance.
 
-**Data Type:** string
+**Data Type:** Concentration
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_concentration](./elements/slots/has_concentration.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Concentration</strong></summary>
+
+**Description:** A QuantitativeAttribute of a ChemicalSubstance that represents the amount of a constituent divided by the volume of the mixture.
+
+**CURIE:** [`CHMO:0002820`](http://purl.obolibrary.org/obo/CHMO_0002820)
+
+*Full field list already shown [earlier on this page](#schema-class-Concentration) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_concentration target="_blank" class="md-button md-button--primary">
@@ -4815,13 +5298,9 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [LengthQuantity](./elements/classes/LengthQuantity.md)
+*Full field list already shown [earlier on this page](#schema-class-LengthQuantity) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20LengthQuantity target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20light_wavelength target="_blank" class="md-button md-button--primary">
@@ -4844,7 +5323,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Data Type Class Details:**
 
-<details markdown="1">
+<details markdown="1" id="schema-class-PlaneAngle">
 <summary><strong>PlaneAngle</strong></summary>
 
 **Description:** A quantitative measure of a plane angle (e.g. scattering angle in degrees).
@@ -4887,13 +5366,28 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -4913,6 +5407,19 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **CURIE:** [`coremeta4cat:dispersant`](https://w3id.org/nfdi4cat/coremeta4cat/dispersant)
 
 **Schema Reference:** [dispersant](./elements/slots/dispersant.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>ChemicalEntity</strong></summary>
+
+**Description:** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.
+
+**CURIE:** [`CHEBI:23367`](http://purl.obolibrary.org/obo/CHEBI_23367)
+
+*Full field list already shown [earlier on this page](#schema-class-ChemicalEntity) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20dispersant target="_blank" class="md-button md-button--primary">
@@ -4942,16 +5449,29 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [Duration](./elements/classes/Duration.md)
+*Full field list already shown [earlier on this page](#schema-class-Duration) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Duration target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20measurement_duration target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -4962,7 +5482,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-ElectroSprayIonizationMassSpectrometry">
 <summary><strong>ElectroSprayIonizationMassSpectrometry</strong></summary>
 
 **Description:** Electrospray ionisation mass spectrometry for molecular mass and identity determination.
@@ -4996,13 +5516,9 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
-**Schema Reference:** [OperationMode](./elements/classes/OperationMode.md)
+*Full field list already shown [earlier on this page](#schema-class-OperationMode) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20OperationMode target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_operation_mode target="_blank" class="md-button md-button--primary">
@@ -5032,13 +5548,9 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [ElectricPotential](./elements/classes/ElectricPotential.md)
+*Full field list already shown [earlier on this page](#schema-class-ElectricPotential) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectricPotential target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20spray_voltage target="_blank" class="md-button md-button--primary">
@@ -5058,6 +5570,19 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 **CURIE:** [`coremeta4cat:capillary_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/capillary_temperature)
 
 **Schema Reference:** [capillary_temperature](./elements/slots/capillary_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20capillary_temperature target="_blank" class="md-button md-button--primary">
@@ -5106,13 +5631,9 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [VolumeFlowRate](./elements/classes/VolumeFlowRate.md)
+*Full field list already shown [earlier on this page](#schema-class-VolumeFlowRate) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20VolumeFlowRate target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_flow_rate target="_blank" class="md-button md-button--primary">
@@ -5133,6 +5654,19 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Schema Reference:** [carrier_gas](./elements/slots/carrier_gas.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>ChemicalEntity</strong></summary>
+
+**Description:** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.
+
+**CURIE:** [`CHEBI:23367`](http://purl.obolibrary.org/obo/CHEBI_23367)
+
+*Full field list already shown [earlier on this page](#schema-class-ChemicalEntity) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20carrier_gas target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -5142,16 +5676,48 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 <details markdown="1">
 <summary><strong>has concentration</strong> (Optional)</summary>
 
+**Description:** The slot to provide the Concentration of a ChemicalSubstance.
+
+**Data Type:** Concentration
+
+**Cardinality:**  Optional
+
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
+**Schema Reference:** [has_concentration](./elements/slots/has_concentration.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Concentration</strong></summary>
+
+**Description:** A QuantitativeAttribute of a ChemicalSubstance that represents the amount of a constituent divided by the volume of the mixture.
+
+**CURIE:** [`CHMO:0002820`](http://purl.obolibrary.org/obo/CHMO_0002820)
+
+*Full field list already shown [earlier on this page](#schema-class-Concentration) -- this class is reached from multiple fields.*
+
+</details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_concentration target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
 **Description:** No description available
 
 **Data Type:** string
 
 **Cardinality:**  Optional
 
-**Schema Reference:** [has_concentration](./elements/slots/has_concentration.md)
+**Schema Reference:** [id](./elements/slots/id.md)
 
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_concentration target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -5185,49 +5751,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [QuantitativeRange](./elements/classes/QuantitativeRange.md)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Slots**
-
-<details markdown="1">
-<summary><strong>title</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [title](./elements/slots/title.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20title target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1">
-<summary><strong>description</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [description](./elements/slots/description.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20description target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20QuantitativeRange target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_mz_range target="_blank" class="md-button md-button--primary">
@@ -5241,7 +5767,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-GCMS">
 <summary><strong>GCMS</strong></summary>
 
 **Description:** Gas chromatography-mass spectrometry for volatile compound identification and quantification.
@@ -5264,6 +5790,19 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **CURIE:** [`coremeta4cat:carrier_gas`](https://w3id.org/nfdi4cat/coremeta4cat/carrier_gas)
 
 **Schema Reference:** [carrier_gas](./elements/slots/carrier_gas.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>ChemicalEntity</strong></summary>
+
+**Description:** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.
+
+**CURIE:** [`CHEBI:23367`](http://purl.obolibrary.org/obo/CHEBI_23367)
+
+*Full field list already shown [earlier on this page](#schema-class-ChemicalEntity) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20carrier_gas target="_blank" class="md-button md-button--primary">
@@ -5303,6 +5842,19 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Schema Reference:** [inlet_temperature](./elements/slots/inlet_temperature.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20inlet_temperature target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -5310,39 +5862,40 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 </p></details>
 
 <details markdown="1">
-<summary><strong>minimum oven temperature</strong> (Optional, Multivalued)</summary>
+<summary><strong>oven temperature range</strong> (Optional, Multivalued)</summary>
 
-**Description:** Minimum oven temperature in GC temperature programme.
+**Description:** Oven temperature range in the GC temperature programme, provided as a
+QuantitativeRange with min_value and max_value (unit_code: "Cel").
 
-**Data Type:** Temperature
+**Data Type:** QuantitativeRange
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`coremeta4cat:minimum_oven_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/minimum_oven_temperature)
+**CURIE:** [`coremeta4cat:oven_temperature_range`](https://w3id.org/nfdi4cat/coremeta4cat/oven_temperature_range)
 
-**Schema Reference:** [minimum_oven_temperature](./elements/slots/minimum_oven_temperature.md)
+**Schema Reference:** [oven_temperature_range](./elements/slots/oven_temperature_range.md)
 
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20minimum_oven_temperature target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
+**Data Type Class Details:**
 
 <details markdown="1">
-<summary><strong>maximum oven temperature</strong> (Optional, Multivalued)</summary>
+<summary><strong>QuantitativeRange</strong></summary>
 
-**Description:** Maximum oven temperature in GC temperature programme.
+**Description:** A quantitative property expressed as a range between a lower and upper bound,
+sharing a common unit. Used where an experiment operates over a range of
+conditions (e.g. a temperature sweep, a feed concentration window).
 
-**Data Type:** Temperature
+Aligned to qudt:Quantity (as in the DCAT-AP-PLUS QuantitativeAttribute pattern)
+but with min_value / max_value instead of a single value to represent an
+interval rather than a point value. Provide the shared unit as a QUDT DefinedTerm.
 
-**Cardinality:**  Optional, Multivalued
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**CURIE:** [`coremeta4cat:maximum_oven_temperature`](https://w3id.org/nfdi4cat/coremeta4cat/maximum_oven_temperature)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Schema Reference:** [maximum_oven_temperature](./elements/slots/maximum_oven_temperature.md)
+</details>
 
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20maximum_oven_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20oven_temperature_range target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -5369,13 +5922,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [HeatingRate](./elements/classes/HeatingRate.md)
+*Full field list already shown [earlier on this page](#schema-class-HeatingRate) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20HeatingRate target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20heating_ramp target="_blank" class="md-button md-button--primary">
@@ -5406,13 +5955,9 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **CURIE:** [`coremeta4cat:HeatingProcedure`](https://w3id.org/nfdi4cat/coremeta4cat/HeatingProcedure)
 
-**Schema Reference:** [HeatingProcedure](./elements/classes/HeatingProcedure.md)
+*Full field list already shown [earlier on this page](#schema-class-HeatingProcedure) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20HeatingProcedure target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_heating_procedure target="_blank" class="md-button md-button--primary">
@@ -5499,6 +6044,23 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 </p></details>
 
 <details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
 <summary><strong>column type</strong> (Optional, Multivalued)</summary>
 
 **Description:** Type of chromatographic column used.
@@ -5530,6 +6092,19 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **Schema Reference:** [eluent](./elements/slots/eluent.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>ChemicalEntity</strong></summary>
+
+**Description:** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.
+
+**CURIE:** [`CHEBI:23367`](http://purl.obolibrary.org/obo/CHEBI_23367)
+
+*Full field list already shown [earlier on this page](#schema-class-ChemicalEntity) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20eluent target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -5558,13 +6133,9 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [VolumeFlowRate](./elements/classes/VolumeFlowRate.md)
+*Full field list already shown [earlier on this page](#schema-class-VolumeFlowRate) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20VolumeFlowRate target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_flow_rate target="_blank" class="md-button md-button--primary">
@@ -5584,6 +6155,23 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 **CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
 
 **Schema Reference:** [has_injection_volume](./elements/slots/has_injection_volume.md)
+
+**Data Type Class Details:**
+
+<details markdown="1" id="schema-class-Volume">
+<summary><strong>Volume</strong></summary>
+
+**Description:** A measure of regions in three-dimensional space.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Schema Reference:** [Volume](./elements/classes/Volume.md)
+
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Volume target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p></details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_injection_volume target="_blank" class="md-button md-button--primary">
@@ -5658,49 +6246,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [QuantitativeRange](./elements/classes/QuantitativeRange.md)
+*Full field list already shown [earlier on this page](#schema-class-QuantitativeRange) -- this class is reached from multiple fields.*
 
-**Slots**
-
-<details markdown="1">
-<summary><strong>title</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [title](./elements/slots/title.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20title target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1">
-<summary><strong>description</strong> (Optional)</summary>
-
-**Description:** No description available
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**Schema Reference:** [description](./elements/slots/description.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20description target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20QuantitativeRange target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_mz_range target="_blank" class="md-button md-button--primary">
@@ -5714,7 +6262,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-SizeExclusionChromatography">
 <summary><strong>SizeExclusionChromatography</strong></summary>
 
 **Description:** Size exclusion chromatography for molecular weight distribution determination.
@@ -5728,13 +6276,28 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
-**Description:** No description available
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
 
-**Data Type:** string
+**Data Type:** Temperature
 
 **Cardinality:**  Optional
 
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
 **Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
@@ -5757,6 +6320,23 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calibration_standard target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
+**Description:** No description available
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**Schema Reference:** [id](./elements/slots/id.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -5793,6 +6373,19 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Schema Reference:** [eluent](./elements/slots/eluent.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>ChemicalEntity</strong></summary>
+
+**Description:** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.
+
+**CURIE:** [`CHEBI:23367`](http://purl.obolibrary.org/obo/CHEBI_23367)
+
+*Full field list already shown [earlier on this page](#schema-class-ChemicalEntity) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20eluent target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -5821,13 +6414,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [VolumeFlowRate](./elements/classes/VolumeFlowRate.md)
+*Full field list already shown [earlier on this page](#schema-class-VolumeFlowRate) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20VolumeFlowRate target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_flow_rate target="_blank" class="md-button md-button--primary">
@@ -5847,6 +6436,19 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
 
 **Schema Reference:** [has_injection_volume](./elements/slots/has_injection_volume.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Volume</strong></summary>
+
+**Description:** A measure of regions in three-dimensional space.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Volume) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_injection_volume target="_blank" class="md-button md-button--primary">
@@ -5898,7 +6500,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
       </a>
     </p></details>
 
-<details markdown="1">
+<details markdown="1" id="schema-class-HighPerformanceLiquidChromatographyMassSpectrometry">
 <summary><strong>HighPerformanceLiquidChromatographyMassSpectrometry</strong></summary>
 
 **Description:** High-performance liquid chromatography-mass spectrometry for compound identification and quantification.
@@ -5950,16 +6552,48 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <details markdown="1">
 <summary><strong>has temperature</strong> (Optional)</summary>
 
+**Description:** The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.
+
+**Data Type:** Temperature
+
+**Cardinality:**  Optional
+
+**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+
+**Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Temperature</strong></summary>
+
+**Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Temperature) -- this class is reached from multiple fields.*
+
+</details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>id</strong> (Optional)</summary>
+
 **Description:** No description available
 
 **Data Type:** string
 
 **Cardinality:**  Optional
 
-**Schema Reference:** [has_temperature](./elements/slots/has_temperature.md)
+**Schema Reference:** [id](./elements/slots/id.md)
 
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_temperature target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -5996,6 +6630,19 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Schema Reference:** [eluent](./elements/slots/eluent.md)
 
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>ChemicalEntity</strong></summary>
+
+**Description:** Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.
+
+**CURIE:** [`CHEBI:23367`](http://purl.obolibrary.org/obo/CHEBI_23367)
+
+*Full field list already shown [earlier on this page](#schema-class-ChemicalEntity) -- this class is reached from multiple fields.*
+
+</details>
+
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20eluent target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
@@ -6024,13 +6671,9 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
-**Schema Reference:** [VolumeFlowRate](./elements/classes/VolumeFlowRate.md)
+*Full field list already shown [earlier on this page](#schema-class-VolumeFlowRate) -- this class is reached from multiple fields.*
 
-<p>
-      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20VolumeFlowRate target="_blank" class="md-button md-button--primary">
-        💡 Submit Term Feedback
-      </a>
-    </p></details>
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_flow_rate target="_blank" class="md-button md-button--primary">
@@ -6050,6 +6693,19 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
 
 **Schema Reference:** [has_injection_volume](./elements/slots/has_injection_volume.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Volume</strong></summary>
+
+**Description:** A measure of regions in three-dimensional space.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Volume) -- this class is reached from multiple fields.*
+
+</details>
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_injection_volume target="_blank" class="md-button md-button--primary">

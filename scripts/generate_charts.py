@@ -97,6 +97,22 @@ def _add_node(
     hover.append(hover_text)
 
 
+def _class_is_a_chain(schema: dict, class_name: str) -> set[str]:
+    """Return class_name plus every ancestor reachable via is_a.
+
+    Climbs only within the locally merged/vendored schema; silently stops
+    at an external, unvendored ancestor (same convention as
+    get_all_class_slots in generate_schema_docs.py).
+    """
+    classes = schema.get("classes", {})
+    chain: set[str] = set()
+    current: Optional[str] = class_name
+    while current and current not in chain:
+        chain.add(current)
+        current = classes.get(current, {}).get("is_a")
+    return chain
+
+
 def _build_tree_for_class(
     schema: dict,
     class_name: str,
@@ -110,15 +126,27 @@ def _build_tree_for_class(
     context_class: str,
     seen_classes: Optional[set] = None,
     depth: int = 0,
+    root_chain: Optional[frozenset[str]] = None,
 ) -> None:
     """
     Recursively add schema slots (and their sub-classes) as sunburst nodes.
     Each slot becomes a node whose colour reflects its M/R/O status.
     If a slot's range is another schema class, that class's own slots are
     added as children, preserving the visual nesting of the original charts.
+
+    `root_chain` is the chart's own root class plus its is_a ancestors
+    (computed once by the caller). A slot whose range is itself part of
+    that chain -- e.g. Reaction's has_reaction_step, range ChemicalReaction,
+    which is CatalyticReaction's own is_a parent -- is left as a leaf
+    instead of being fully re-expanded: its entire field set (used_reactor,
+    used_reactant, ...) is already shown once at the top of this same
+    chart, so expanding it again under the slot just duplicates the whole
+    chart inside one of its own wedges.
     """
     if seen_classes is None:
         seen_classes = set()
+    if root_chain is None:
+        root_chain = frozenset(_class_is_a_chain(schema, class_name))
     if class_name in seen_classes or depth > 6:
         return
     seen_classes = seen_classes | {class_name}
@@ -137,15 +165,19 @@ def _build_tree_for_class(
                   slot_id, slot_name.replace("_", " "), parent_id, color,
                   f"{slot_name} ({mro})")
 
-        # If this slot points to a schema class, recurse into it
-        if range_type and range_type in classes and not is_mixin(schema, range_type):
+        # If this slot points to a schema class (and that class isn't
+        # already fully represented by this chart's own root), recurse into it
+        if (range_type and range_type in classes and not is_mixin(schema, range_type)
+                and range_type not in root_chain):
             _build_tree_for_class(
                 schema, range_type, slot_id,
                 ids, names, parents, colors, hover,
-                color_map, context_class, seen_classes, depth + 1,
+                color_map, context_class, seen_classes, depth + 1, root_chain,
             )
             # Also expand any subclasses of the range class
             for sub in get_subclasses(schema, range_type):
+                if sub in root_chain:
+                    continue
                 sub_id = f"{slot_id}|{sub}"
                 sub_color = color_map.get(mro, "#dddddd")
                 _add_node(ids, names, parents, colors, hover,
@@ -154,7 +186,7 @@ def _build_tree_for_class(
                 _build_tree_for_class(
                     schema, sub, sub_id,
                     ids, names, parents, colors, hover,
-                    color_map, context_class, seen_classes | {range_type}, depth + 2,
+                    color_map, context_class, seen_classes | {range_type}, depth + 2, root_chain,
                 )
 
     # class-ranged slot_usage entries (gateway slots like realized_plan, had_input_entity)
@@ -168,13 +200,15 @@ def _build_tree_for_class(
         _add_node(ids, names, parents, colors, hover,
                   su_id, su_name.replace("_", " "), parent_id, color,
                   f"{su_name} ({mro})")
-        if rng and rng in classes and not is_mixin(schema, rng):
+        if rng and rng in classes and not is_mixin(schema, rng) and rng not in root_chain:
             _build_tree_for_class(
                 schema, rng, su_id,
                 ids, names, parents, colors, hover,
-                color_map, class_name, seen_classes, depth + 1,
+                color_map, class_name, seen_classes, depth + 1, root_chain,
             )
             for sub in get_subclasses(schema, rng):
+                if sub in root_chain:
+                    continue
                 sub_id = f"{su_id}|{sub}"
                 sub_color = color_map.get(mro, "#dddddd")
                 _add_node(ids, names, parents, colors, hover,
@@ -183,7 +217,7 @@ def _build_tree_for_class(
                 _build_tree_for_class(
                     schema, sub, sub_id,
                     ids, names, parents, colors, hover,
-                    color_map, class_name, seen_classes | {rng}, depth + 2,
+                    color_map, class_name, seen_classes | {rng}, depth + 2, root_chain,
                 )
 
 

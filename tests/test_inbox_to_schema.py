@@ -282,3 +282,191 @@ def test_new_string_slot_writes_range_and_second_run_is_noop(tmp_path, monkeypat
     assert not slot_changes, (
         f"second run was not idempotent for '{name}': {slot_changes}"
     )
+
+
+# ── inheritance-aware editability tests ──────────────────────────────────────
+#
+# CatalyticReaction is_a ChemicalReaction (chemdcat-ap): get_all_class_slots
+# now returns chemdcat-ap-inherited slots (e.g. used_reactant, used_catalyst,
+# has_reaction_step) alongside CatalyticReaction's own slots. These tests pin
+# that inherited, vendored names are visible for reference but are never
+# treated as deletable or editable via the inbox workflow -- regression guard
+# for the false-positive deletion / silent-edit risk this introduced.
+
+def test_inherited_slot_absent_from_workbook_is_not_flagged_for_deletion(indexes):
+    """A workbook containing only CatalyticReaction's own (pre-inheritance)
+    slots -- i.e. missing every chemdcat-ap-inherited slot such as
+    used_reactant/used_catalyst/has_reaction_step -- must not propose deleting
+    any of those inherited slots or the vendored classes reachable through them
+    (Reactor, Catalyst, ChemicalProduct, ...). They were never addable/
+    removable via Excel, so their absence is not a deletion signal."""
+    schema = indexes[0]
+    own_only = [
+        "catalyst_quantity", "catalyst_type", "catalyst_form",
+        "reaction_name", "reactor_temperature_range", "has_atmosphere",
+        "experiment_pressure", "feed_composition_range",
+        "has_experiment_duration", "product_identification_method",
+    ]
+    inherited = set(ib.get_all_class_slots(schema, "CatalyticReaction")) - set(own_only)
+    assert inherited, "precondition: CatalyticReaction must have inherited slots"
+
+    excel = {"Reaction": [_slot_row(ib.snake_to_readable(n)) for n in own_only]}
+    changes, reporter = _plan(indexes, excel)
+
+    deleted_names = {c["name"] for c in changes if c["type"] in ("slot_delete", "class_delete")}
+    assert not (deleted_names & inherited), (
+        f"inherited names were incorrectly flagged for deletion: {deleted_names & inherited}"
+    )
+
+
+def test_inherited_slot_present_in_workbook_is_not_editable(indexes):
+    """A row for a known, inherited chemdcat-ap slot (e.g. 'used reactant')
+    that differs from the schema (different M/R/O, URI, description) must not
+    produce any change -- it is display-only, never modifiable via inbox."""
+    schema, slot_origin = indexes[0], indexes[1]
+    assert "used_reactant" not in slot_origin, (
+        "precondition: used_reactant must be a vendored (non-editable) slot"
+    )
+
+    row = _slot_row(
+        "used reactant", mro="M", uri="FAKE:000001",
+        description="a hijacked description",
+    )
+    excel = {"Reaction": [row]}
+    changes, reporter = _plan(indexes, excel)
+
+    assert not any(c.get("name") == "used_reactant" for c in changes)
+    assert not reporter.has_errors
+
+
+def test_inherited_class_present_in_workbook_is_not_editable(indexes):
+    """A class row for a known, inherited chemdcat-ap class (e.g. 'Catalyst')
+    that differs from the schema must not produce any change."""
+    schema, slot_origin, class_origin = indexes[0], indexes[1], indexes[2]
+    assert "Catalyst" not in class_origin, (
+        "precondition: Catalyst must be a vendored (non-editable) class"
+    )
+
+    row = _slot_row("Catalyst", description="a hijacked description")
+    row["type"] = "class"
+    excel = {"Reaction": [row]}
+    changes, reporter = _plan(indexes, excel)
+
+    assert not any(c.get("name") == "Catalyst" for c in changes)
+    assert not reporter.has_errors
+
+
+def test_own_slot_absent_from_workbook_is_still_flagged_for_deletion(indexes):
+    """Regression guard for the fix itself: a genuinely owned/editable slot
+    that is missing from the workbook must still be detected as a deletion --
+    the inheritance-awareness fix must not silently disable deletion detection
+    for editable slots too."""
+    schema = indexes[0]
+    # A minimal, otherwise-complete-looking workbook missing one own slot.
+    own_minus_one = [
+        "catalyst_type", "reactor_temperature_range",
+        "has_atmosphere", "experiment_pressure", "feed_composition_range",
+        "has_experiment_duration", "product_identification_method",
+    ]
+    excel = {"Reaction": [_slot_row(ib.snake_to_readable(n)) for n in own_minus_one]}
+    changes, reporter = _plan(indexes, excel)
+
+    assert any(
+        c["type"] == "slot_delete" and c["name"] == "catalyst_quantity"
+        for c in changes
+    )
+
+
+# ── same-batch forward-reference tests ───────────────────────────────────────
+#
+# A larger submission commonly adds a new slot AND the new class it ranges
+# over (or a new class AND its new parent class) together. Without a
+# same-batch pre-scan, this always failed: validation only ever saw the
+# schema as it existed before the batch, so any forward reference to a class
+# defined elsewhere in the same sheet looked "unknown" regardless of row
+# order. These tests pin the fix.
+
+def test_new_slot_referencing_new_class_in_same_batch_resolves(indexes):
+    """A new slot whose range names a class that is ALSO new in this same
+    submission must resolve without error, not fail with 'unknown range'."""
+    class_label = "QA Forward Ref Technique"
+    class_name = ib._label_to_class_name(class_label)
+    assert class_name not in indexes[0].get("classes", {})
+
+    class_row = _slot_row(class_label, domain="ProductIdentificationMethod")
+    class_row["type"] = "class"
+    slot_row = _slot_row("qa forward ref method", range_=class_name, mro="R")
+
+    changes, reporter = _plan(indexes, {"Reaction": [slot_row, class_row]})
+
+    assert not reporter.has_errors, [d.message for d in reporter._diags if d.level == "error"]
+    assert any(c["type"] == "slot_add" and c["range"] == class_name for c in changes)
+    assert any(c["type"] == "class_add" and c["name"] == class_name for c in changes)
+
+
+def test_new_class_with_new_parent_in_same_batch_resolves(indexes):
+    """A new class whose domain (parent) is ALSO new in this same submission
+    must resolve without error, not fail with 'domain not recognised'."""
+    parent_label = "QA Forward Ref Parent"
+    child_label = "QA Forward Ref Child"
+    parent_name = ib._label_to_class_name(parent_label)
+    child_name = ib._label_to_class_name(child_label)
+    assert parent_name not in indexes[0].get("classes", {})
+
+    parent_row = _slot_row(parent_label, domain="ProductIdentificationMethod")
+    parent_row["type"] = "class"
+    child_row = _slot_row(child_label, domain=parent_label)
+    child_row["type"] = "class"
+
+    changes, reporter = _plan(indexes, {"Reaction": [parent_row, child_row]})
+
+    assert not reporter.has_errors, [d.message for d in reporter._diags if d.level == "error"]
+    assert any(c["type"] == "class_add" and c["name"] == parent_name for c in changes)
+    assert any(
+        c["type"] == "class_add" and c["name"] == child_name and c["is_a"] == parent_name
+        for c in changes
+    )
+
+
+# ── shared/global-slot-change warning tests ──────────────────────────────────
+
+def test_shared_slot_edit_warns_about_other_owner_classes(indexes):
+    """Editing a field on a slot that has no existing slot_usage override and
+    is directly used by more than one class must warn, naming the other
+    classes it will also affect -- the edit changes the slot's single global
+    definition, not something scoped to the row's class."""
+    schema = indexes[0]
+    owners = ib._slot_owner_classes(schema, "has_atmosphere")
+    assert len(owners) > 1, "precondition: has_atmosphere must be genuinely shared"
+
+    excel = {"Reaction": [_slot_row("has atmosphere", uri="FAKE:000001")]}
+    _, reporter = _plan(indexes, excel)
+
+    shared_warnings = [
+        d for d in reporter._diags
+        if d.level == "warning"
+        and d.context == "slot `has_atmosphere`"
+        and "global definition" in d.message
+    ]
+    assert len(shared_warnings) == 1
+    for other in owners:
+        if other != "CatalyticReaction":
+            assert other in shared_warnings[0].message
+
+
+def test_non_shared_slot_edit_does_not_warn_about_sharing(indexes):
+    """Editing a slot used by only one class must not trigger the shared-slot
+    warning, even though other warnings (e.g. a range change) may still
+    legitimately fire."""
+    schema = indexes[0]
+    owners = ib._slot_owner_classes(schema, "reactor_working_volume")
+    assert owners == ["CSTR"], "precondition: reactor_working_volume must be single-owner"
+
+    excel = {"Reaction": [_slot_row("reactor working volume", uri="FAKE:000002", domain="CSTR")]}
+    _, reporter = _plan(indexes, excel)
+
+    shared_warnings = [
+        d for d in reporter._diags
+        if d.level == "warning" and "global definition" in d.message
+    ]
+    assert not shared_warnings

@@ -27,5 +27,6 @@ evaluated_entity:
     title: "NiO/CeO2 dry reforming catalyst (calcined)"
     description: "15 wt% NiO on CeO2, calcined at 500 deg C / 4 h"
 realized_plan:
+  id: "coremeta4cat:CHAR_004_TPR_method"
   title: "H2 temperature-programmed reduction (H2-TPR)"
   description: "reducing gas: 5 vol% H2/Ar, total flow 50 mL/min (calibrated Brooks MFC); temperature programme: 50 deg C to 900 deg C at 10 deg C/min; isothermal hold: 30 min at 900 deg C; H2O trap: molecular sieve 3A between reactor outlet and TCD to prevent TCD signal interference; baseline: Ar flow for 30 min at 50 deg C before switching to H2/Ar; H2 consumption quantified by integration of TCD signal, calibrated against CuO reference standard (99.9%, 10 mg, single reduction peak at 310 deg C); NiO reduction: expected peaks at 280-350 deg C (NiO weakly interacting with CeO2) and 400-600 deg C (NiO strongly interacting); CeO2 surface reduction: 600-900 deg C"

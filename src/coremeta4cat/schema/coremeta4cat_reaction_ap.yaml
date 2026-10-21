@@ -11,11 +11,19 @@ description: |-
   - ProductIdentificationMethod — abstract stub; users point to a
     CharacterizationTechnique instance from coremeta4cat_characterization_ap
 
-  Alignment to DCAT-AP-PLUS:
-    Reaction          --> is_a: EvaluatedActivity  (the process being studied,
-                        NOT the data-generating process)
-    Reactor --> is_a: Device             (the AgenticEntity carrying out
-                        the Reaction via carried_out_by)
+  Alignment to DCAT-AP-PLUS / chemdcat-ap:
+    Reaction --> is_a: ChemicalReaction (chemdcat-ap) --> is_a: EvaluatedActivity
+                        CatalyticReaction specializes chemdcat-ap's generic
+                        ChemicalReaction, inheriting its starting-material/
+                        reactant/product/catalyst/solvent/reactor/temperature/
+                        pressure/yield slots, and adds catalysis-specific
+                        operating-condition slots on top (the process being
+                        studied, NOT the data-generating process).
+    Reactor --> is_a: Reactor (chemdcat-ap) --> is_a: Device
+                        ChemicalReactor specializes chemdcat-ap's generic
+                        Reactor (the AgenticEntity carrying out the Reaction
+                        via carried_out_by) with catalysis-specific reactor
+                        vessel subclasses.
 
   The Reaction is NOT a DataGeneratingActivity. It is the catalytic process
   that a dataset is *about*, linked via is_about_activity on CatalysisDataset.
@@ -58,16 +66,22 @@ default_range: string
 imports:
 - linkml:types
 - coremeta4cat_common     # shared has_X sub-slots, atmosphere, enums
+- chemical_reaction_ap    # ChemicalReaction, Reactor (chemdcat-ap) — explicit
+                          # even though already transitively reachable via
+                          # coremeta4cat_common -> chem_dcat_ap -> chemical_reaction_ap
 
-# ==================== REACTION (EvaluatedActivity) ====================
+# ==================== REACTION (ChemicalReaction specialization) ====================
 
 classes:
 
   CatalyticReaction:
-    is_a: EvaluatedActivity
-    class_uri: SIO:010345   # chemical reaction
+    is_a: ChemicalReaction
     description: |-
-      An EvaluatedActivity representing the catalytic reaction being studied.
+      A ChemicalReaction (chemdcat-ap) specialization representing the
+      catalytic reaction being studied. Inherits the generic reaction slots
+      (starting materials, reactants, products, catalyst, solvent, reactor,
+      temperature, pressure, yield, reaction steps) from ChemicalReaction and
+      adds catalysis-specific operating-condition slots.
 
       Reaction is NOT a DataGeneratingActivity — it is the catalytic process
       being observed, not the process that generates the dataset. A CatalysisDataset
@@ -78,14 +92,18 @@ classes:
         was_generated_by: Characterization  (the measurement producing data)
         is_about_activity: Reaction         (the catalytic process being monitored)
 
-      The reactor is linked via carried_out_by as a Reactor (Device).
-      Reactants are linked via had_input_entity. The type of catalytic reaction
-      (e.g. ammonia synthesis, CO oxidation) is expressed via rdf_type using a
-      voc4cat or ChemO term.
+      The reactor is linked via the inherited used_reactor slot (is_a:
+      carried_out_by), narrowed here to require a ChemicalReactor instance
+      rather than touching the generic carried_out_by relation directly.
+      Reactants are linked via the inherited used_reactant slot (range:
+      Reagent) -- CatalyticReaction does not declare its own reactant slot.
+      The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)
+      is expressed via rdf_type using a voc4cat or ChemO term.
     slots:
     - catalyst_quantity
-    - reactant
     - catalyst_type
+    - catalyst_form
+    - reaction_name
     - reactor_temperature_range
     - has_atmosphere
     - experiment_pressure
@@ -97,21 +115,22 @@ classes:
         description: |-
           The type of catalytic reaction as an ontology term (e.g. VOC4CAT:0007010
           for a specific reaction type, or a ChemO/RXNO term).
+
+          This is the sole reaction-type classification mechanism (DCAT-AP-PLUS
+          Pattern 3) -- deliberately not duplicated by a dedicated has_reaction_type
+          slot + ReactionType class hierarchy (cf. PR #118, since superseded here).
+          Kept `recommended` rather than `required` for the same reason as
+          catalyst_type below: see nfdi4cat/CoreMeta4Cat#117 for the cardinality
+          discussion and nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism
+          discussion.
         recommended: true
-      carried_out_by:
+      used_reactor:
         description: |-
           The reactor in which the Reaction takes place.
-          Must be a Reactor instance (a Device subclass specific to catalytic
-          reaction vessels, e.g. FixedBedReactor, CSTR, Autoclave).
+          Must be a ChemicalReactor instance (a Reactor subclass specific to
+          catalytic reaction vessels, e.g. FixedBedReactor, CSTR, Autoclave).
         range: ChemicalReactor
         required: true
-        multivalued: true
-        inlined_as_list: true
-      had_input_entity:
-        description: |-
-          The reactant chemicals or feeds entering the reactor.
-        range: EvaluatedEntity
-        recommended: true
         multivalued: true
         inlined_as_list: true
       product_identification_method:
@@ -123,11 +142,18 @@ classes:
         required: true
         multivalued: true
         inlined_as_list: true
+      has_reaction_step:
+        description: |-
+          A step (part) of this CatalyticReaction that is itself a CatalyticReaction.
+          Narrowed from the inherited ChemicalReaction range so nested reaction
+          steps keep their catalysis-specific fields (catalyst_type, used_reactor,
+          product_identification_method, ...) when loaded.
+        range: CatalyticReaction
 
   # ==================== PRODUCT IDENTIFICATION METHOD ====================
 
   ProductIdentificationMethod:
-    is_a: Plan
+    is_a: CatalysisPlan
     class_uri: OBI:0000272
     description: |-
       Abstract Plan representing the method used to identify and quantify reaction
@@ -135,29 +161,34 @@ classes:
       subclass from coremeta4cat_characterization_ap (e.g. GCMS, HPLC_MS, NMRSpectroscopy).
 
       This abstract class is retained for backward compatibility with the original
-      CoreMeta4Cat monolith. It is a subclass of Plan (prov:Plan / OBI:0000272) so that
-      it can participate in the realized_plan slot if needed.
+      CoreMeta4Cat monolith. It is a subclass of CatalysisPlan (which is itself a Plan,
+      prov:Plan / OBI:0000272) so that it can participate in the realized_plan slot,
+      and so it (and every other CoreMeta4Cat protocol/technique class) can carry a
+      persistent id.
 
-  # ==================== REACTOR DESIGN TYPES (Devices) ====================
-  # Reactor and its subclasses are Device subclasses (AgenticEntity).
-  # They are the physical reactor carried_out_by which a Reaction takes place.
+  # ==================== REACTOR DESIGN TYPES (Reactor specializations) ====================
+  # ChemicalReactor and its subclasses specialize chemdcat-ap's Reactor class
+  # (itself a Device/AgenticEntity subclass). They are the physical reactor
+  # in which a Reaction takes place, linked via used_reactor.
   # The reactor type is expressed both via the subclass and optionally via rdf_type.
 
   ChemicalReactor:
-    is_a: Device
+    is_a: Reactor
     class_uri: VOC4CAT:0007018
     abstract: true
     description: |-
-      Abstract Device subclass representing a catalytic reactor vessel.
+      Abstract Reactor (chemdcat-ap) subclass representing a catalytic reactor
+      vessel.
 
       Reactor is more specific than the general Device (AgenticEntity): it restricts
-      carried_out_by on Reaction to dedicated reactor equipment. This semantic
-      distinction separates analytical instruments (Device) from reaction vessels
-      (Reactor) in the carried_out_by relationship.
+      the used_reactor relation (is_a: carried_out_by) on Reaction to dedicated
+      reactor equipment. This semantic distinction separates analytical
+      instruments (Device) from reaction vessels (Reactor). ChemicalReactor
+      further specializes chemdcat-ap's generic Reactor for catalysis use cases.
 
       Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify
       reactor geometry and operating mode.
-      Linked from Reaction via carried_out_by (restricted to range: Reactor).
+      Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).
 
   ElectrochemicalReactor:
     is_a: ChemicalReactor
@@ -165,6 +196,12 @@ classes:
     description: |-
       Electrochemical reactor used in electrocatalytic experiments, including
       H-cells, flow cells, and membrane electrode assemblies.
+    slots:
+    - has_cathode
+    - has_anode
+    - cell_operating_mode
+    - has_active_area
+    - faradaic_current
 
   CSTR:
     is_a: ChemicalReactor
@@ -172,6 +209,13 @@ classes:
     description: |-
       Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow
       reactor operating at steady state.
+    slots:
+    - stirring_rate
+    - residence_time
+    - reactor_working_volume
+    - reactor_diameter
+    - stirrer_diameter
+    - reactor_stirrer_type
 
   PlugFlowReactor:
     is_a: ChemicalReactor
@@ -179,6 +223,13 @@ classes:
     description: |-
       Plug flow reactor (PFR) — a tubular reactor in which reactant composition
       varies along the axis with no axial mixing.
+    slots:
+    - tube_length
+    - tube_internal_diameter
+    - flow_direction
+    - number_of_tubes
+    - tube_material
+    - catalyst_particle_size
 
   Autoclave:
     is_a: ChemicalReactor
@@ -186,6 +237,12 @@ classes:
     description: |-
       Autoclave reactor — a sealed pressure vessel for batch reactions at
       elevated temperature and/or pressure.
+    slots:
+    - agitation_type
+    - reaction_chamber_material
+    - vessel_internal_volume
+    - vessel_material
+    - batch_duration
 
   SlurryReactor:
     is_a: ChemicalReactor
@@ -193,6 +250,12 @@ classes:
     description: |-
       Slurry reactor — a three-phase reactor in which catalyst particles are
       suspended in a liquid phase through which gas is bubbled.
+    slots:
+    - catalyst_particle_size
+    - gas_liquid_ratio
+    - agitation_sparging_rate
+    - impeller_type
+    - agitation_speed
 
   Microreactor:
     is_a: ChemicalReactor
@@ -201,6 +264,10 @@ classes:
       Microreactor — a miniaturised flow reactor with characteristic dimensions
       in the sub-millimetre range, enabling precise thermal control and rapid
       screening.
+    slots:
+    - channel_material
+    - channel_dimensions
+    - number_of_channels
 
   FixedBedReactor:
     is_a: ChemicalReactor
@@ -208,6 +275,12 @@ classes:
     description: |-
       Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.
       The most common reactor type in heterogeneous catalysis testing.
+    slots:
+    - catalyst_particle_size
+    - catalyst_bed_diameter
+    - catalyst_bed_volume
+    - catalyst_dilution_material
+    - catalyst_bed_height
 
   FluidizedBedReactor:
     is_a: ChemicalReactor
@@ -230,31 +303,56 @@ slots:
 
   catalyst_quantity:
     description: Mass of catalyst loaded into the reactor.
+    is_a: has_mass
     range: Mass
     slot_uri: coremeta4cat:catalyst_quantity
-    required: true
-    multivalued: true
-    inlined_as_list: true
-
-  reactant:
-    description: |-
-      Reactant(s) or feed chemicals used in the reaction. Provide a ChemicalEntity
-      instance with inchikey, smiles, or iupac_name. For feed mixtures, list each
-      component as a separate ChemicalEntity and record composition via has_concentration.
-    range: ChemicalEntity
-    slot_uri: VOC4CAT:0000101
-    required: true
+    recommended: true
     multivalued: true
     inlined_as_list: true
 
   catalyst_type:
     description: |-
-      Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).
-      For heterogeneous catalysts, use voc4cat terms where available.
-    range: string
+      The catalytic regime of the reaction (e.g. heterogeneous, homogeneous,
+      biocatalysis, electrocatalysis, photocatalysis). For the physical
+      form/presentation of the catalyst itself, use catalyst_form instead.
+
+      Deliberately kept `recommended` rather than `required` (see nfdi4cat/
+      CoreMeta4Cat#117): classification here can be genuinely disputed or
+      not yet covered by CatalysisResearchFieldEnum for a novel catalyst,
+      and forcing a value would push researchers into a premature or
+      contested classification rather than leaving the field unset until
+      consensus/vocabulary catches up. Open for discussion in a follow-up
+      issue if a different tradeoff is wanted. See also nfdi4cat/
+      CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +
+      catalyst_form) or PR #118's CatalystType class hierarchy should be
+      the long-term mechanism -- kept as two enums here because the
+      VOC4CAT terms show CatalystType conflates the regime axis
+      (Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form
+      axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical
+      VOC4CAT ids to catalyst_form's permissible values), which are
+      independent and often both apply to the same catalyst at once.
+    range: CatalysisResearchFieldEnum
     slot_uri: VOC4CAT:0007014
     recommended: true
     multivalued: true
+
+  catalyst_form:
+    description: |-
+      The physical form or presentation of the catalyst as loaded into the
+      reactor (e.g. thin film, bulk, powder, supported). A separate axis
+      from catalyst_type (the catalytic regime).
+    range: CatalystFormEnum
+    recommended: true
+    multivalued: true
+
+  reaction_name:
+    description: |-
+      A name for the catalytic reaction which assigns the reactants and
+      (desired) products (e.g. "ammonia synthesis", "Fischer-Tropsch synthesis").
+    is_a: has_qualitative_attribute
+    range: string
+    slot_uri: VOC4CAT:0007009
+    recommended: true
 
   # ---- OperationParameters slots (flattened onto Reaction) ----
 
@@ -263,6 +361,7 @@ slots:
       Temperature range in the reactor during the reaction, provided as a
       QuantitativeRange with min_value and max_value (unit_code: "Cel").
       For a single set-point, set min_value equal to max_value.
+    is_a: has_quantitative_attribute
     range: QuantitativeRange
     slot_uri: VOC4CAT:0007032
     multivalued: true
@@ -270,6 +369,7 @@ slots:
 
   experiment_pressure:
     description: Total pressure in the reactor during the experiment.
+    is_a: has_pressure
     range: Pressure
     slot_uri: VOC4CAT:0000118
     multivalued: true
@@ -280,21 +380,303 @@ slots:
       Feed composition range studied, provided as a QuantitativeRange.
       Express concentration bounds in an appropriate unit (e.g. "mol/L", "%" for
       vol% or mol%). For fixed-composition experiments use reactant.has_concentration.
+    is_a: has_quantitative_attribute
     range: QuantitativeRange
     slot_uri: coremeta4cat:feed_composition_range
     multivalued: true
     inlined_as_list: true
 
+  # ---- ElectrochemicalReactor-specific slots ----
+
+  has_cathode:
+    description: |-
+      The electrode where reduction occurs in an electrochemical cell. It is
+      the negative electrode in an electrolytic cell, while it is the
+      positive electrode in a galvanic cell.
+    is_a: has_qualitative_attribute
+    range: string
+    slot_uri: VOC4CAT:0007254
+    recommended: true
+
+  has_anode:
+    description: |-
+      The electrode where oxidation occurs in an electrochemical cell. It is
+      the positive electrode in an electrolytic cell, while it is the
+      negative electrode in a galvanic cell.
+    is_a: has_qualitative_attribute
+    range: string
+    slot_uri: VOC4CAT:0007255
+    recommended: true
+
+  cell_operating_mode:
+    description: |-
+      The functional mode of an electrochemical cell based on the direction
+      of energy conversion.
+    range: CellOperatingModeEnum
+    slot_uri: coremeta4cat:cell_operating_mode
+    recommended: true
+
+  has_active_area:
+    description: |-
+      In contrast to substrate area, the actual area of a sample or
+      electrode which is active.
+    is_a: has_quantitative_attribute
+    range: Area
+    slot_uri: VOC4CAT:0007258
+
+  faradaic_current:
+    description: |-
+      The current that is flowing through an electrochemical cell and is
+      causing (or is caused by) chemical reactions.
+    is_a: has_quantitative_attribute
+    range: ElectricCurrent
+    slot_uri: VOC4CAT:0007259
+    recommended: true
+
+  # ---- CSTR-specific slots ----
+
+  stirring_rate:
+    description: |-
+      The rate at which the stirrer rotates, typically expressed in
+      revolutions per unit time (e.g. revolutions per minute).
+    is_a: has_angular_velocity
+    range: AngularVelocity
+    slot_uri: VOC4CAT:0008114
+    recommended: true
+
+  residence_time:
+    description: |-
+      The average time a unit of fluid spends inside the reactor before
+      exiting.
+    is_a: has_duration
+    range: Duration
+    recommended: true
+
+  reactor_working_volume:
+    description: |-
+      Volume of the reaction chamber, calculated by its dimensions. Volume
+      of pipes and valves connected to the reactor is not included.
+    is_a: has_volume
+    range: Volume
+    slot_uri: VOC4CAT:0000153
+    recommended: true
+
+  reactor_diameter:
+    description: The internal diameter of the reactor vessel.
+    is_a: has_length
+    range: LengthQuantity
+
+  stirrer_diameter:
+    description: |-
+      The effective diameter of the stirrer. Typically expressed as the
+      distance across the rotating blade or mixing head from one tip to
+      the opposite tip.
+    is_a: has_length
+    range: LengthQuantity
+    slot_uri: VOC4CAT:0008115
+
+  reactor_stirrer_type:
+    description: |-
+      The category of mechanical or magnetic agitation device used in the
+      reactor, such as a magnetic stirrer or an overhead mechanical (steel
+      shaft) stirrer. Distinct from the synthesis-context stirrer_type slot
+      (coremeta4cat_synthesis_ap), since reactor and synthesis-vessel stirring
+      may use different equipment.
+    is_a: has_qualitative_attribute
+    range: string
+    slot_uri: VOC4CAT:0008113
+
+  # ---- PlugFlowReactor-specific slots ----
+
+  tube_length:
+    description: The length of the tubular reaction chamber.
+    is_a: has_length
+    range: LengthQuantity
+    recommended: true
+
+  tube_internal_diameter:
+    description: The internal diameter of the tubular reaction chamber.
+    is_a: has_length
+    range: LengthQuantity
+    recommended: true
+
+  flow_direction:
+    description: |-
+      The direction of reactant flow through the tube (e.g. upflow,
+      downflow, horizontal).
+    is_a: has_qualitative_attribute
+    range: string
+    recommended: true
+
+  number_of_tubes:
+    description: The number of parallel tubes in the reactor.
+    is_a: has_quantitative_attribute
+    range: integer
+    recommended: true
+
+  tube_material:
+    description: Material used for the construction of the reactor tube(s).
+    is_a: has_qualitative_attribute
+    range: string
+    recommended: true
+
+  # ---- Shared reactor-geometry slots (multiple reactor types) ----
+
+  catalyst_particle_size:
+    description: |-
+      A measure of the characteristic linear dimension of a particle in a
+      sample, typically reported as diameter or sieve fraction range.
+    is_a: has_length
+    range: LengthQuantity
+    slot_uri: VOC4CAT:0008212
+    recommended: true
+
+  # ---- Autoclave-specific slots ----
+
+  agitation_type:
+    description: |-
+      The category of agitation used inside the autoclave (e.g. magnetic
+      stirring, mechanical overhead stirring, rocking, none).
+    is_a: has_qualitative_attribute
+    range: string
+    recommended: true
+
+  reaction_chamber_material:
+    description: |-
+      Material used for the construction of the inner reaction chamber
+      (the surface in direct contact with the reaction mixture). Distinct
+      from vessel_material, the material of the outer pressure vessel/shell.
+    is_a: has_qualitative_attribute
+    range: string
+    slot_uri: VOC4CAT:0000156
+    recommended: true
+
+  vessel_internal_volume:
+    description: The internal (working) volume of the autoclave vessel.
+    is_a: has_volume
+    range: Volume
+    recommended: true
+
+  vessel_material:
+    description: |-
+      Material used for the construction of the outer autoclave vessel/
+      pressure shell. Distinct from reaction_chamber_material, the material
+      of the inner reaction chamber lining.
+    is_a: has_qualitative_attribute
+    range: string
+    recommended: true
+
+  batch_duration:
+    description: |-
+      The total duration of the batch reaction inside the autoclave, from
+      start to end of the reaction step.
+    is_a: has_duration
+    range: Duration
+    recommended: true
+
+  # ---- SlurryReactor-specific slots ----
+
+  gas_liquid_ratio:
+    description: |-
+      The volumetric ratio of gas to liquid phase in the slurry reactor.
+    is_a: has_quantitative_attribute
+    range: float
+    recommended: true
+
+  agitation_sparging_rate:
+    description: |-
+      The volumetric flow rate at which gas is sparged/bubbled through the
+      liquid phase, or the rate of mechanical agitation used to maintain
+      the slurry suspension.
+    is_a: has_flow_rate
+    range: VolumeFlowRate
+    recommended: true
+
+  impeller_type:
+    description: |-
+      The category of impeller used to agitate and suspend the slurry
+      (e.g. Rushton turbine, pitched blade, anchor).
+    is_a: has_qualitative_attribute
+    range: string
+    recommended: true
+
+  agitation_speed:
+    description: |-
+      The rotational speed of the agitator/impeller, typically expressed
+      in revolutions per unit time.
+    is_a: has_angular_velocity
+    range: AngularVelocity
+    recommended: true
+
+  # ---- Microreactor-specific slots ----
+
+  channel_material:
+    description: Material used for the construction of the microreactor channels.
+    is_a: has_qualitative_attribute
+    range: string
+    recommended: true
+
+  channel_dimensions:
+    description: |-
+      The characteristic dimensions (e.g. width, depth) of the microreactor
+      channels.
+    is_a: has_length
+    range: LengthQuantity
+    multivalued: true
+    inlined_as_list: true
+    recommended: true
+
+  number_of_channels:
+    description: The number of parallel channels in the microreactor.
+    is_a: has_quantitative_attribute
+    range: integer
+    recommended: true
+
+  # ---- FixedBedReactor-specific slots ----
+
+  catalyst_bed_diameter:
+    description: The internal diameter of the packed catalyst bed section.
+    is_a: has_length
+    range: LengthQuantity
+    recommended: true
+
+  catalyst_bed_volume:
+    description: |-
+      The bulk volume taken up by the catalyst and potential diluent in a
+      fixed bed reactor.
+    is_a: has_volume
+    range: Volume
+    slot_uri: VOC4CAT:0007021
+    recommended: true
+
+  catalyst_dilution_material:
+    description: |-
+      An inert solid mixed with catalyst particles in a fixed bed to modify
+      bed properties (e.g. improve heat/mass transfer, dilute activity).
+    is_a: has_qualitative_attribute
+    range: string
+    slot_uri: VOC4CAT:0008218
+
+  catalyst_bed_height:
+    description: |-
+      The axial length of the packed catalyst section in a reactor,
+      measured along the direction of flow.
+    is_a: has_length
+    range: LengthQuantity
+    slot_uri: VOC4CAT:0008217
+
   # ---- FluidizedBedReactor-specific slots ----
 
   gas_distributor_type:
     description: Type or design of the gas distributor plate in a fluidized bed reactor.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:gas_distributor_type
     multivalued: true
 
   bed_expansion_height:
     description: Height of bed expansion above the settled bed height under operating conditions.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:bed_expansion_height
     multivalued: true
@@ -303,6 +685,7 @@ slots:
 
   bubble_size_distribution:
     description: Description or characterization of bubble size distribution in the fluidized bed.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:bubble_size_distribution
 
@@ -311,6 +694,7 @@ slots:
       The analytical method used to identify and/or quantify reaction products.
       Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).
       The abstract stub ProductIdentificationMethod is retained for backward compatibility.
+    is_a: realized_plan
     range: ProductIdentificationMethod
     slot_uri: coremeta4cat:product_identification_method
     required: true

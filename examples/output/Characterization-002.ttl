@@ -1,0 +1,21 @@
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3 a "Characterization" ;
+    prov:used coremeta4cat:CAT_001_CuZnO_Al2O3,
+        coremeta4cat:CHAR_002_XRD_method ;
+    prov:wasAssociatedWith coremeta4cat:DEV_002_Bruker_D8_Advance .
+
+coremeta4cat:CAT_001_CuZnO_Al2O3 a prov:Entity ;
+    dcterms:description "63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)" ;
+    dcterms:title "Cu/ZnO/Al2O3 methanol synthesis catalyst" .
+
+coremeta4cat:CHAR_002_XRD_method a OBI:0000272 ;
+    dcterms:description "Cu K-alpha, 2theta range 5 to 80 deg, step size 0.02 deg, scan rate 1 deg/min, Rietveld refinement for phase quantification" ;
+    dcterms:title "powder X-ray diffraction" .
+
+coremeta4cat:DEV_002_Bruker_D8_Advance a prov:Agent ;
+    dcterms:title "Bruker D8 Advance diffractometer with Cu K-alpha radiation (1.5406 Ang)" .
+

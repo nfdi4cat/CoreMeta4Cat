@@ -1,0 +1,58 @@
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix VOC4CAT: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+coremeta4cat:SYNTH_002_NiO_CeO2 a "Synthesis" ;
+    SIO:000008 [ a VOC4CAT:0000122 ;
+            prov:value "in situ reduction: 5 vol% H2/N2 at 700 deg C for 1 h (10 deg C/min ramp) before DRM tests" ] ;
+    prov:generated coremeta4cat:CAT_002_NiO_CeO2 ;
+    prov:used coremeta4cat:PREC_004_Ni_NO3_6H2O,
+        coremeta4cat:PREC_005_Ce_NO3_6H2O,
+        coremeta4cat:PREC_006_Na2CO3,
+        coremeta4cat:SYNTH_002_coprecipitation_method ;
+    coremeta4cat:catalyst_measured_properties "BET surface area: 42 m2/g",
+        "Ni loading: 14.7 wt% (ICP-AES)",
+        "NiO crystallite size: 8.4 nm (Scherrer, XRD)",
+        "reducibility onset: 280 deg C, completion at 600 deg C (H2-TPR)" ;
+    coremeta4cat:nominal_composition "15 wt% NiO/CeO2" ;
+    VOC4CAT:0007246 <https://pubchem.ncbi.nlm.nih.gov/compound/962> ;
+    VOC4CAT:0008105 "sealed glass vial in desiccator, ambient temperature, protected from moisture" .
+
+<https://pubchem.ncbi.nlm.nih.gov/compound/962> a CHEBI:23367 ;
+    dcterms:title "deionized water (18.2 MOhm cm, MilliQ)" .
+
+coremeta4cat:CAT_002_NiO_CeO2 a OBI:0000747 ;
+    dcterms:description "15 wt% NiO on CeO2 support, co-precipitated at pH 8.5, calcined 500 deg C / 4 h, sieved to 250-500 um" ;
+    dcterms:title "NiO/CeO2 dry reforming catalyst (calcined precursor)" .
+
+coremeta4cat:PREC_004_Ni_NO3_6H2O a VOC4CAT:0007794 ;
+    dcterms:title "nickel(II) nitrate hexahydrate (Sigma-Aldrich, purity 99%)" ;
+    VOC4CAT:0008118 [ a qudt:Quantity ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "8.72"^^xsd:float ] .
+
+coremeta4cat:PREC_005_Ce_NO3_6H2O a VOC4CAT:0007794 ;
+    dcterms:title "cerium(III) nitrate hexahydrate (Sigma-Aldrich, purity 99.5%)" ;
+    VOC4CAT:0008118 [ a qudt:Quantity ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "13.03"^^xsd:float ] .
+
+coremeta4cat:PREC_006_Na2CO3 a VOC4CAT:0007794 ;
+    dcterms:title "sodium carbonate precipitating agent (anhydrous, Sigma-Aldrich, purity 99.5%)" ;
+    VOC4CAT:0008118 [ a qudt:Quantity ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "5.3"^^xsd:float ] .
+
+coremeta4cat:SYNTH_002_coprecipitation_method a VOC4CAT:0007016 ;
+    dcterms:description "aqueous solutions of Ni(NO3)2 (0.5 M) and Ce(NO3)3 (0.5 M) mixed in stoichiometric ratio; precipitant: 1 M Na2CO3 solution added dropwise at 2 mL/min; target pH 8.5 maintained by feedback addition; mixing: 600 rpm mechanical stirring at 60 deg C for 2 h; aging: 12 h at 60 deg C without stirring; filtration: vacuum filtration through Whatman grade 4 filter paper; washing: 5 successive deionized water washes until conductivity < 5 uS/cm (Na+ removal); drying: 120 deg C for 12 h in static air oven; calcination: 5 deg C/min ramp to 500 deg C, isothermal hold for 4 h in static air, natural cooling" ;
+    dcterms:title "co-precipitation" .
+

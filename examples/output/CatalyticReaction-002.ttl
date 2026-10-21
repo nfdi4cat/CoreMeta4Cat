@@ -1,0 +1,80 @@
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix VOC4CAT: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+coremeta4cat:REAC_002_DRM_NiCeO2 a coremeta4cat:CatalyticReaction ;
+    RO:0004009 <https://pubchem.ncbi.nlm.nih.gov/compound/280>,
+        <https://pubchem.ncbi.nlm.nih.gov/compound/297>,
+        <https://pubchem.ncbi.nlm.nih.gov/compound/947> ;
+    RXNO:0000425 coremeta4cat:CAT_002_NiCeO2 ;
+    SIO:000008 [ a qudt:Quantity ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+            qudt:unit <https://qudt.org/vocab/unit/HR> ;
+            prov:value "20.0"^^xsd:float ] ;
+    prov:used coremeta4cat:FEED_004_CH4_DRM,
+        coremeta4cat:FEED_005_CO2_DRM,
+        coremeta4cat:FEED_006_N2_standard ;
+    prov:wasAssociatedWith coremeta4cat:REACT_003_FixedBed_DRM ;
+    coremeta4cat:catalyst_form VOC4CAT:0007034 ;
+    coremeta4cat:catalyst_quantity [ a qudt:Quantity ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.2"^^xsd:float ] ;
+    coremeta4cat:feed_composition_range [ a qudt:Quantity ;
+            dcterms:description "stoichiometric DRM: CH4/CO2 = 1:1 (molar)" ],
+        [ a qudt:Quantity ;
+            dcterms:description "CO2-rich condition: CH4/CO2 = 1:1.5 to suppress carbon deposition" ] ;
+    coremeta4cat:product_identification_method coremeta4cat:REAC_002_GC_method ;
+    VOC4CAT:0000118 [ a qudt:Quantity ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+            qudt:unit <https://qudt.org/vocab/unit/ATM> ;
+            prov:value "1.0"^^xsd:float ] ;
+    VOC4CAT:0007014 VOC4CAT:0007001 ;
+    VOC4CAT:0007032 [ a qudt:Quantity ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+            qudt:unit <https://qudt.org/vocab/unit/DEG_C> ;
+            coremeta4cat:maxValue "800.0"^^xsd:float ;
+            coremeta4cat:minValue "600.0"^^xsd:float ] ;
+    VOC4CAT:0007809 [ a coremeta4cat:Atmosphere ;
+            prov:value "CH4/CO2/N2 = 45:45:10 vol%, total flow 100 mL/min (STP), GHSV = 30000 mL/(g*h)" ] .
+
+<https://pubchem.ncbi.nlm.nih.gov/compound/280> a SIO:010411 ;
+    dcterms:title "CO2 (99.998% purity, Linde)" .
+
+<https://pubchem.ncbi.nlm.nih.gov/compound/297> a SIO:010411 ;
+    dcterms:title "CH4 (99.995% purity, Linde)" .
+
+<https://pubchem.ncbi.nlm.nih.gov/compound/947> a SIO:010411 ;
+    dcterms:title "N2 balance (99.999% purity, internal standard for GC quantification)" .
+
+coremeta4cat:CAT_002_NiCeO2 a SIO:010344 ;
+    dcterms:description "Ni0 after in situ reduction of NiO/CeO2" ;
+    dcterms:title "Ni/CeO2" .
+
+coremeta4cat:FEED_004_CH4_DRM a prov:Entity ;
+    dcterms:description "CH4 flow: 45 mL/min (STP); calibrated Brooks SLA5850 MFC" ;
+    dcterms:title "methane feed (99.995%, Linde)" .
+
+coremeta4cat:FEED_005_CO2_DRM a prov:Entity ;
+    dcterms:description "CO2 flow: 45 mL/min (STP); calibrated Brooks SLA5850 MFC" ;
+    dcterms:title "CO2 feed (99.998%, Linde)" .
+
+coremeta4cat:FEED_006_N2_standard a prov:Entity ;
+    dcterms:description "N2 flow: 10 mL/min (STP); used as internal standard for GC molar balance" ;
+    dcterms:title "N2 internal standard (99.999%, Linde)" .
+
+coremeta4cat:REACT_003_FixedBed_DRM a VOC4CAT:0007018 ;
+    dcterms:description "quartz tube reactor, 8 mm inner diameter, 30 cm length; catalyst bed: 200 mg NiO/CeO2 (250-500 um sieve fraction) diluted 1:2 (mass) with inert SiC chips (500 um); thermocouple inserted into catalyst bed centre; backpressure regulator at outlet (1 bar); reactor surrounded by ceramic-fibre furnace with PID temperature controller; mass flow controllers (Brooks SLA5850) for CH4, CO2, N2" ;
+    dcterms:title "quartz fixed-bed plug-flow reactor (DRM)" .
+
+coremeta4cat:REAC_002_GC_method a OBI:0000272 ;
+    dcterms:description "Shimadzu GC-2014 with TCD detector (Ar carrier gas); column 1: HayeSep D (2 m x 1/8 in) for CO2, CH4 separation; column 2: Molecular Sieve 5A (2 m x 1/8 in) for CO, H2, N2, CH4 separation; 10-port Valco valve for column switching; oven temperature: 50 deg C isothermal; TCD temperature: 250 deg C; injection: automated gas sampling valve, 1 mL loop; analysis cycle: 10 min; calibration: certified gas standard (Air Liquide CRYSTAL mixture: H2 5%, CO 5%, CH4 5%, CO2 10%, N2 balance); CH4 conversion, CO2 conversion, H2/CO ratio, and carbon balance calculated from N2-normalised molar flows" ;
+    dcterms:title "online dual-column gas chromatography (TCD)" .
+

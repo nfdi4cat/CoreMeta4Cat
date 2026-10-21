@@ -52,5 +52,6 @@ had_output_entity:
     title: "NiO/CeO2 dry reforming catalyst (calcined precursor)"
     description: "15 wt% NiO on CeO2 support, co-precipitated at pH 8.5, calcined 500 deg C / 4 h, sieved to 250-500 um"
 realized_plan:
+  id: "coremeta4cat:SYNTH_002_coprecipitation_method"
   title: "co-precipitation"
   description: "aqueous solutions of Ni(NO3)2 (0.5 M) and Ce(NO3)3 (0.5 M) mixed in stoichiometric ratio; precipitant: 1 M Na2CO3 solution added dropwise at 2 mL/min; target pH 8.5 maintained by feedback addition; mixing: 600 rpm mechanical stirring at 60 deg C for 2 h; aging: 12 h at 60 deg C without stirring; filtration: vacuum filtration through Whatman grade 4 filter paper; washing: 5 successive deionized water washes until conductivity < 5 uS/cm (Na+ removal); drying: 120 deg C for 12 h in static air oven; calcination: 5 deg C/min ramp to 500 deg C, isothermal hold for 4 h in static air, natural cooling"

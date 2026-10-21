@@ -1,0 +1,29 @@
+@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+coremeta4cat:SIM_001_DFT_Cu111_CO_ads a "Simulation" ;
+    prov:used coremeta4cat:SIM_001_DFT_method,
+        coremeta4cat:SLAB_001_Cu111 ;
+    coremeta4cat:calculated_property [ a IAO:0000109 ;
+            dcterms:description "Cu-C bond length at hollow adsorption site" ;
+            prov:value "2.312 Ang" ],
+        [ a IAO:0000109 ;
+            dcterms:description "CO adsorption energy on hollow fcc site of Cu(111) relative to gas-phase CO" ;
+            prov:value "-0.67 eV" ],
+        [ a IAO:0000109 ;
+            dcterms:description "C-O bond length of adsorbed CO" ;
+            prov:value "1.157 Ang" ] ;
+    coremeta4cat:software_package "VASP 6.3.0",
+        "VESTA 3.5.8 (structure visualization)" .
+
+coremeta4cat:SIM_001_DFT_method a OBI:0000272 ;
+    dcterms:description "PBE functional, PAW pseudopotentials, 400 eV cutoff, 4x4x1 Monkhorst-Pack k-mesh, D3 dispersion correction, spin-unpolarized" ;
+    dcterms:title "periodic plane-wave DFT" .
+
+coremeta4cat:SLAB_001_Cu111 a prov:Entity ;
+    dcterms:description "4-layer Cu(111) p(3x3) slab, bottom 2 layers fixed, 15 Ang vacuum" ;
+    dcterms:title "Cu(111) surface slab model" .
+

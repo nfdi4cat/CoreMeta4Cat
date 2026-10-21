@@ -47,6 +47,8 @@ _ROOT = _HERE.parent
 sys.path.insert(0, str(_HERE))
 
 from generate_schema_docs import (  # noqa: E402
+    EDITABLE_MODULE_FILES,
+    build_origin_index,
     get_all_class_slots,
     get_class_ranged_slot_usage,
     get_slot_details,
@@ -70,15 +72,15 @@ CLASS_MAP: dict[str, str] = {
     "Simulation":       "Simulation",
 }
 
-# Schema modules in load order (consistent with load_merged_schema)
-MODULE_FILES = [
-    "coremeta4cat_common.yaml",
-    "coremeta4cat_synthesis_ap.yaml",
-    "coremeta4cat_characterization_ap.yaml",
-    "coremeta4cat_reaction_ap.yaml",
-    "coremeta4cat_simulation_ap.yaml",
-    "coremeta4cat.yaml",
-]
+# The set of coremeta4cat-authored (editable) modules is the single canonical
+# EDITABLE_MODULE_FILES list from generate_schema_docs.py (imported above) —
+# this is also what build_origin_index() scans, so "editable via the inbox
+# workflow" always means "defined in one of these files."
+#
+# New top-level slots/classes with no other owning module land here by default
+# (the top-level aggregator module — deliberately NOT EDITABLE_MODULE_FILES[-1],
+# since that list is ordered for schema-merge precedence, not for this purpose).
+DEFAULT_NEW_ELEMENT_FILE = "coremeta4cat.yaml"
 
 # Primitive LinkML types that are valid in the range column
 PRIMITIVE_TYPES: frozenset[str] = frozenset({
@@ -209,28 +211,9 @@ def _make_yaml() -> YAML:
 # Schema index builders
 # ─────────────────────────────────────────────────────────────────────────────
 
-
-def build_origin_index(schema_dir: Path) -> tuple[dict[str, Path], dict[str, Path]]:
-    """
-    Return (slot_origin, class_origin): maps each slot/class name to the YAML
-    file that defines it. Later modules override earlier ones.
-    """
-    y = _make_yaml()
-    slot_origin:  dict[str, Path] = {}
-    class_origin: dict[str, Path] = {}
-
-    for fname in MODULE_FILES:
-        fpath = schema_dir / fname
-        if not fpath.exists():
-            continue
-        with fpath.open(encoding="utf-8") as fh:
-            doc = y.load(fh) or {}
-        for name in (doc.get("slots") or {}):
-            slot_origin[name] = fpath
-        for name in (doc.get("classes") or {}):
-            class_origin[name] = fpath
-
-    return slot_origin, class_origin
+# build_origin_index() now lives in generate_schema_docs.py (imported above)
+# so schema_to_excel.py can share the exact same editable/vendored predicate
+# for rendering read-only rows.
 
 
 def build_label_index(schema: dict) -> tuple[dict[str, str], dict[str, str]]:
@@ -308,6 +291,29 @@ def _label_to_class_name(label: str) -> str:
     if " " not in label and label[:1].isupper():
         return label.strip()   # already PascalCase
     return "".join(word.capitalize() for word in label.strip().split())
+
+
+def _collect_pending_class_names(rows: list[dict], label_to_class: dict[str, str]) -> set[str]:
+    """
+    Pre-scan one sheet's rows for class-type rows that don't yet exist in the
+    schema, i.e. classes proposed as new in this same submission. Returns
+    their derived PascalCase names.
+
+    A larger submission commonly adds a new slot AND the new class it points
+    to (or a new class AND its new parent class) in the same batch. Without
+    this pre-scan, validating each row only against the schema as it exists
+    *before* the batch means such forward references always fail, regardless
+    of row order. Treating these pending names as valid supports reviewing
+    and applying the whole multi-part change together.
+    """
+    pending: set[str] = set()
+    for row in rows:
+        if row["type"] != "class":
+            continue
+        label = row["label"]
+        if label_to_class.get(label) is None:
+            pending.add(_label_to_class_name(label))
+    return pending
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -439,10 +445,12 @@ def parse_excel(
 # ─────────────────────────────────────────────────────────────────────────────
 
 
-def _valid_range(range_val: str, schema: dict) -> bool:
+def _valid_range(range_val: str, schema: dict, pending_class_names: set[str] | None = None) -> bool:
     if not range_val:
         return True
-    return range_val in PRIMITIVE_TYPES or range_val in schema.get("classes", {})
+    if range_val in PRIMITIVE_TYPES or range_val in schema.get("classes", {}):
+        return True
+    return bool(pending_class_names) and range_val in pending_class_names
 
 
 def _range_hint(schema: dict) -> str:
@@ -478,6 +486,10 @@ def plan_changes(
     changes: list[dict[str, Any]] = []
 
     for sheet_title, rows in excel_data.items():
+        # Classes proposed as new elsewhere in this same sheet -- lets a new
+        # slot/class reference another new class in the same submission
+        # (e.g. adding a slot together with the class it ranges over).
+        pending_class_names = _collect_pending_class_names(rows, label_to_class)
         schema_class = CLASS_MAP[sheet_title]
 
         # Collect all slot/class names the schema knows about for this class
@@ -512,15 +524,28 @@ def plan_changes(
                     # slot lives in that subclass's slot_usage, not in the
                     # top-level class.  Use the domain class as context so
                     # _plan_slot_changes targets the right YAML node.
-                    effective_class = (
-                        (label_to_class.get(domain) or domain)
-                        if domain else schema_class
-                    )
                     seen_slot_names.add(slot_name)
-                    _plan_slot_changes(
-                        row, slot_name, schema, sheet_title, effective_class,
-                        slot_origin, class_origin, changes, reporter,
-                    )
+                    if slot_name not in slot_origin:
+                        # Inherited from a vendored chemdcat-ap module (e.g.
+                        # ChemicalReaction's used_reactant) — visible for
+                        # reference on the effective class, but not owned by
+                        # any editable module. Never modifiable via the inbox
+                        # workflow, regardless of what the row contains.
+                        reporter.info(
+                            sheet_title, f"slot '{label}'",
+                            f"Skipped: `{slot_name}` is inherited from a chemdcat-ap "
+                            f"base class and is not modifiable via the inbox workflow "
+                            f"(edit the YAML directly).",
+                        )
+                    else:
+                        effective_class = (
+                            (label_to_class.get(domain) or domain)
+                            if domain else schema_class
+                        )
+                        _plan_slot_changes(
+                            row, slot_name, schema, sheet_title, effective_class,
+                            slot_origin, class_origin, changes, reporter,
+                        )
 
                 elif domain:
                     # ── Unknown label + non-empty domain ───────────────────
@@ -558,6 +583,7 @@ def plan_changes(
                             row, sheet_title, schema_class,
                             schema, class_origin, slot_origin, label_to_slot,
                             label_to_class, changes, reporter,
+                            pending_class_names,
                         )
 
                 else:
@@ -566,6 +592,7 @@ def plan_changes(
                         row, sheet_title, schema_class,
                         schema, class_origin, slot_origin, label_to_slot,
                         label_to_class, changes, reporter,
+                        pending_class_names,
                     )
 
             elif row_type == "class":
@@ -584,17 +611,38 @@ def plan_changes(
                         row, sheet_title, schema_class,
                         schema, class_origin, label_to_class,
                         changes, reporter,
+                        pending_class_names,
                     )
                 else:
                     seen_class_names.add(class_name)
-                    _plan_class_changes(
-                        row, class_name, schema, sheet_title,
-                        class_origin, changes, reporter,
-                    )
+                    if class_name not in class_origin:
+                        # Inherited from a vendored chemdcat-ap module (e.g.
+                        # Catalyst, Reactor) — visible for reference, but not
+                        # owned by any editable module and never modifiable
+                        # via the inbox workflow.
+                        reporter.info(
+                            sheet_title, f"class '{label}'",
+                            f"Skipped: `{class_name}` is a chemdcat-ap base class "
+                            f"and is not modifiable via the inbox workflow "
+                            f"(edit the YAML directly).",
+                        )
+                    else:
+                        _plan_class_changes(
+                            row, class_name, schema, sheet_title,
+                            class_origin, changes, reporter,
+                        )
 
         # ── detect deletions ───────────────────────────────────────────────
+        # Only slots/classes owned by an editable module can ever be
+        # "deleted" via the inbox workflow. Names inherited from a vendored
+        # chemdcat-ap module (not in slot_origin/class_origin) are skipped
+        # here entirely — they were never addable/removable via Excel in the
+        # first place, so their absence from a contributor's workbook is not
+        # a deletion signal.
 
         for slot_name in schema_slot_names:
+            if slot_name not in slot_origin:
+                continue
             if slot_name not in seen_slot_names:
                 reporter.warning(
                     sheet_title, f"slot `{slot_name}`",
@@ -611,11 +659,13 @@ def plan_changes(
                     "name":         slot_name,
                     "schema_class": schema_class,
                     "_target":      class_origin.get(
-                        schema_class, SCHEMA_DIR / MODULE_FILES[-1]
+                        schema_class, SCHEMA_DIR / DEFAULT_NEW_ELEMENT_FILE
                     ),
                 })
 
         for class_name in schema_class_names:
+            if class_name not in class_origin:
+                continue
             if class_name not in seen_class_names:
                 reporter.warning(
                     sheet_title, f"class `{class_name}`",
@@ -630,7 +680,7 @@ def plan_changes(
                     "name":         class_name,
                     "schema_class": schema_class,
                     "_target":      class_origin.get(
-                        class_name, SCHEMA_DIR / MODULE_FILES[-1]
+                        class_name, SCHEMA_DIR / DEFAULT_NEW_ELEMENT_FILE
                     ),
                 })
 
@@ -647,6 +697,23 @@ def _effective(slot_def: dict, su: dict, key: str, default: Any = None) -> Any:
     return slot_def.get(key, default)
 
 
+def _slot_owner_classes(schema: dict, slot_name: str) -> list[str]:
+    """
+    Return every class that directly references slot_name, via its own
+    slots: list or a slot_usage entry. Used to warn when an edit to a slot
+    that has no existing slot_usage override for the row's class would fall
+    through to the slot's single, global definition -- silently changing it
+    for every other class that also uses it, not just the one being edited.
+    """
+    owners: list[str] = []
+    for cname, cdef in schema.get("classes", {}).items():
+        if not isinstance(cdef, dict):
+            continue
+        if slot_name in (cdef.get("slots") or []) or slot_name in (cdef.get("slot_usage") or {}):
+            owners.append(cname)
+    return owners
+
+
 def _plan_slot_changes(
     row: dict,
     slot_name: str,
@@ -660,10 +727,12 @@ def _plan_slot_changes(
 ) -> None:
     slot_def  = get_slot_details(schema, slot_name)
     class_def = schema.get("classes", {}).get(schema_class, {})
+    has_su_override = slot_name in (class_def.get("slot_usage") or {})
     su        = (class_def.get("slot_usage") or {}).get(slot_name) or {}
 
     target_su   = class_origin.get(schema_class)
     target_slot = slot_origin.get(slot_name)
+    changes_before = len(changes)
 
     # -- M/R/O --
     new_mro = row["mro"]
@@ -760,6 +829,23 @@ def _plan_slot_changes(
             "_target_slot": target_slot,
         })
 
+    # -- warn if this edit falls through to the slot's single global
+    # definition, shared by more than one class ---------------------------
+    if len(changes) > changes_before and not has_su_override:
+        owners = [c for c in _slot_owner_classes(schema, slot_name) if c != schema_class]
+        if owners:
+            owners_str = ", ".join(f"`{c}`" for c in sorted(owners))
+            reporter.warning(
+                sheet, f"slot `{slot_name}`",
+                f"This edit changes `{slot_name}`'s single, global definition "
+                f"-- it is not scoped to `{schema_class}` alone. It will also "
+                f"change `{slot_name}` for: {owners_str}.",
+                hint="If you only meant to change it for this class, a "
+                     "maintainer needs to add a slot_usage override for "
+                     f"`{slot_name}` on `{schema_class}` first, rather than "
+                     "editing the global slot.",
+            )
+
 
 def _plan_class_changes(
     row: dict,
@@ -799,18 +885,22 @@ def _plan_new_slot(
     label_to_class: dict[str, str],
     changes: list,
     reporter: Reporter,
+    pending_class_names: set[str] | None = None,
 ) -> None:
     label     = row["label"]
     domain    = row["domain"]
     slot_name = _label_to_slot_name(label)
+    pending_class_names = pending_class_names or set()
 
     # Resolve the class that will own the new slot:
     #   • empty domain     → the sheet's top-level data class (schema_class)
     #   • non-empty domain → the named subclass (e.g. ElectrochemicalReactor),
     #                        added to that class exactly like the top-level case.
+    #                        The domain may also be a class proposed as new
+    #                        elsewhere in this same submission (pending_class_names).
     if domain:
         owner_class = label_to_class.get(domain) or domain
-        if owner_class not in schema.get("classes", {}):
+        if owner_class not in schema.get("classes", {}) and owner_class not in pending_class_names:
             reporter.error(
                 sheet, f"new slot '{label}'",
                 f"The domain `{domain}` is not a recognised class. "
@@ -845,7 +935,7 @@ def _plan_new_slot(
 
     # Range validation
     range_val = row["range"] or DEFAULT_RANGE
-    if not _valid_range(range_val, schema):
+    if not _valid_range(range_val, schema, pending_class_names):
         reporter.error(
             sheet, f"new slot '{label}'",
             f"Unknown range `{range_val}` for new slot.",
@@ -853,7 +943,7 @@ def _plan_new_slot(
         )
         return
 
-    target = class_origin.get(owner_class, SCHEMA_DIR / MODULE_FILES[-1])
+    target = class_origin.get(owner_class, SCHEMA_DIR / DEFAULT_NEW_ELEMENT_FILE)
     reporter.info(
         sheet, f"new slot `{slot_name}`",
         f"Will add `{slot_name}` to `{owner_class}`.",
@@ -883,10 +973,12 @@ def _plan_new_class(
     label_to_class: dict[str, str],
     changes: list,
     reporter: Reporter,
+    pending_class_names: set[str] | None = None,
 ) -> None:
     label      = row["label"]
     domain     = row["domain"]
     class_name = _label_to_class_name(label)
+    pending_class_names = pending_class_names or set()
 
     # Name conflict
     if class_name in schema.get("classes", {}):
@@ -906,7 +998,12 @@ def _plan_new_class(
         )
         return
 
+    # The parent may already exist, or be proposed as new elsewhere in this
+    # same submission (pending_class_names) -- e.g. "Chromatographic Methods"
+    # and "Gas Chromatography (GC)" added together, one as the other's parent.
     parent_name = label_to_class.get(domain)
+    if parent_name is None and _label_to_class_name(domain) in pending_class_names:
+        parent_name = _label_to_class_name(domain)
     if parent_name is None:
         reporter.error(
             sheet, f"new class '{label}'",
@@ -916,7 +1013,7 @@ def _plan_new_class(
         )
         return
 
-    target = class_origin.get(parent_name, SCHEMA_DIR / MODULE_FILES[-1])
+    target = class_origin.get(parent_name, SCHEMA_DIR / DEFAULT_NEW_ELEMENT_FILE)
     reporter.info(
         sheet, f"new class `{class_name}`",
         f"Will add `{class_name}` as subclass of `{parent_name}`.",

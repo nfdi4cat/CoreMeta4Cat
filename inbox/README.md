@@ -19,23 +19,31 @@ This folder is the drop-zone for vocabulary workbook contributions via pull requ
 
 4. The **Excel inbox** GitHub Actions workflow runs automatically and:
    - Validates the workbook structure (sheet names, column headers).
-   - Runs a round-trip diff against the current schema and reports any
-     differences as a comment on the PR.
-   - If validation passes, the file is promoted to `docs/assets/` and the
-     inbox copy is cleaned up automatically.
-   - If validation fails, the PR is blocked until the issues are resolved.
+   - Diffs every row against the current schema and plans the corresponding
+     schema changes: modifying an existing field's M/R/O, description, URI,
+     range, etc.; adding a genuinely new field or class (you can add a new
+     field and the new class it points to in the same submission -- both
+     are validated together); or flagging a field/class present in the
+     schema but missing from your workbook as a deletion.
+   - Posts the results as a comment on your PR: errors that must be fixed
+     before anything is written, and warnings that need maintainer review
+     (e.g. a deletion, or an edit to a field that is shared across multiple
+     classes -- which lists every other class the edit also affects, since
+     such a field has one single definition, not one per class).
+   - If there are no errors, the resulting schema changes are committed
+     directly to your PR branch, the regenerated `docs/assets/*.xlsx`
+     workbook is committed alongside them, and the inbox copy is removed
+     automatically. A maintainer then reviews the diff before merging.
+   - If there are errors, nothing is written -- fix the workbook and push
+     again.
 
-## What the round-trip check does
+## What's editable
 
-The check compares every top-level slot listed in the workbook against the
-LinkML schema and reports:
-
-- Slots present in the workbook but missing from the schema
-- Slots present in the schema but missing from the workbook
-- Mandatory/Recommended/Optional (M/R/O) mismatches
-
-The schema is the ground truth. If your edits require schema changes, please
-open a schema issue or include the schema change in the same PR.
+Rows that appear in the workbook but are shown greyed-out (see the
+**Legend** sheet) are inherited from chemdcat-ap, the underlying chemistry
+model CoreMeta4Cat is built on. They're shown for reference so you can see
+the full effective field set, but they cannot be added, changed, or removed
+through this workflow -- open a schema issue instead.
 
 ## Notes
 

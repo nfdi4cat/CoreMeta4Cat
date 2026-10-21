@@ -2,8 +2,8 @@
 # Reaction-002 -- Dry methane reforming (DRM) over Ni/CeO2 in fixed-bed reactor
 # Target class: Reaction
 #
-# NOTE (carried_out_by): range is ReactorDesignType (abstract: true) -> dangling $ref.
-# Loader instantiates abstract ReactorDesignType. Each item needs an id.
+# NOTE (used_reactor): range is ChemicalReactor (abstract: true) -> dangling $ref.
+# Loader instantiates abstract ChemicalReactor. Each item needs an id.
 # NOTE (product_identification_method): same abstract stub limitation as Reaction-001.
 #
 # Demonstrates:
@@ -12,15 +12,24 @@
 #   - feed_composition_range (two entries: stoichiometric + CO2-rich conditions)
 #   - Detailed product_identification_method (online GC with two columns)
 #   - FixedBedReactor with detailed description (quartz tube, dilution, thermocouple)
+#   - used_catalyst and used_reactant (both inherited from ChemicalReaction) for
+#     detailed catalyst/reactant identity, alongside catalyst_type/catalyst_form
+#     for the controlled-vocabulary regime/form
 
 id: "coremeta4cat:REAC_002_DRM_NiCeO2"
 catalyst_quantity:
   - value: 0.2
     has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
-    unit: g
+    unit: https://qudt.org/vocab/unit/GM
 catalyst_type:
-  - "heterogeneous, supported metal (Ni0 after in situ reduction of NiO/CeO2)"
-reactant:
+  - "heterogeneous_catalysis"
+catalyst_form:
+  - "supported"
+used_catalyst:
+  - id: "coremeta4cat:CAT_002_NiCeO2"
+    title: "Ni/CeO2"
+    description: "Ni0 after in situ reduction of NiO/CeO2"
+used_reactant:
   - id: "https://pubchem.ncbi.nlm.nih.gov/compound/297"
     title: "CH4 (99.995% purity, Linde)"
   - id: "https://pubchem.ncbi.nlm.nih.gov/compound/280"
@@ -45,7 +54,7 @@ has_experiment_duration:
   value: 20.0
   has_quantity_type: http://qudt.org/vocab/quantitykind/Time
   unit: https://qudt.org/vocab/unit/HR
-carried_out_by:
+used_reactor:
   - id: "coremeta4cat:REACT_003_FixedBed_DRM"
     title: "quartz fixed-bed plug-flow reactor (DRM)"
     description: "quartz tube reactor, 8 mm inner diameter, 30 cm length; catalyst bed: 200 mg NiO/CeO2 (250-500 um sieve fraction) diluted 1:2 (mass) with inert SiC chips (500 um); thermocouple inserted into catalyst bed centre; backpressure regulator at outlet (1 bar); reactor surrounded by ceramic-fibre furnace with PID temperature controller; mass flow controllers (Brooks SLA5850) for CH4, CO2, N2"
@@ -60,5 +69,6 @@ had_input_entity:
     title: "N2 internal standard (99.999%, Linde)"
     description: "N2 flow: 10 mL/min (STP); used as internal standard for GC molar balance"
 product_identification_method:
-  - title: "online dual-column gas chromatography (TCD)"
+  - id: "coremeta4cat:REAC_002_GC_method"
+    title: "online dual-column gas chromatography (TCD)"
     description: "Shimadzu GC-2014 with TCD detector (Ar carrier gas); column 1: HayeSep D (2 m x 1/8 in) for CO2, CH4 separation; column 2: Molecular Sieve 5A (2 m x 1/8 in) for CO, H2, N2, CH4 separation; 10-port Valco valve for column switching; oven temperature: 50 deg C isothermal; TCD temperature: 250 deg C; injection: automated gas sampling valve, 1 mL loop; analysis cycle: 10 min; calibration: certified gas standard (Air Liquide CRYSTAL mixture: H2 5%, CO 5%, CH4 5%, CO2 10%, N2 balance); CH4 conversion, CO2 conversion, H2/CO ratio, and carbon balance calculated from N2-normalised molar flows"

@@ -89,7 +89,7 @@ classes:
   # ==================== SIMULATION (DataGeneratingActivity) ====================
 
   Simulation:
-    is_a: DataGeneratingActivity
+    is_a: CatalysisDataGeneratingActivity
     class_uri: NCIT:C48936   # computer simulation
     description: |-
       A DataGeneratingActivity in which a catalyst, catalytic material, or
@@ -117,6 +117,7 @@ classes:
           The SimulationMethod (protocol) realized in this Simulation.
         range: SimulationMethod
         required: true
+        inlined: true
       carried_out_by:
         description: |-
           The simulation software used, provided as a Software agent instance.
@@ -135,7 +136,7 @@ classes:
   # ==================== SIMULATION METHODS (Plans) ====================
 
   SimulationMethod:
-    is_a: Plan
+    is_a: CatalysisPlan
     class_uri: OBI:0000272
     abstract: true
     description: |-
@@ -410,6 +411,7 @@ slots:
     description: |-
       Software package or code used for the simulation (e.g. VASP, Quantum ESPRESSO,
       LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:software_package
     required: true
@@ -419,6 +421,7 @@ slots:
     description: |-
       A property computed by this Simulation, provided as a CalculatedProperty
       instance. Multiple properties may be computed in a single simulation run.
+    is_a: had_output_entity
     range: CalculatedProperty
     slot_uri: coremeta4cat:calculated_property
     required: true
@@ -431,12 +434,14 @@ slots:
     description: |-
       Exchange-correlation functional used (e.g. PBE, PBEsol, RPBE, B3LYP,
       HSE06). The choice of functional directly affects accuracy.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:exchange_correlation_functional
     multivalued: true
 
   energy_cutoff:
     description: Plane-wave kinetic energy cutoff for the basis set expansion.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:energy_cutoff
     multivalued: true
@@ -447,6 +452,7 @@ slots:
     description: |-
       Convergence thresholds applied during self-consistent field (SCF) and/or
       geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:convergence_criteria
     multivalued: true
@@ -455,6 +461,7 @@ slots:
     description: |-
       Hubbard U correction parameters (DFT+U). Specify element, orbital, and
       U value (e.g. "Fe d: U=4.0 eV, J=0.0 eV").
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:dft_u_parameters
     multivalued: true
@@ -463,12 +470,13 @@ slots:
     description: |-
       Whether spin polarization (collinear magnetism) is included in the DFT
       calculation. Set to true for systems containing magnetic elements.
+    is_a: has_qualitative_attribute
     range: boolean
     slot_uri: coremeta4cat:spin_polarization
-    multivalued: true
 
   total_energy_per_atom:
     description: Total DFT ground-state energy divided by number of atoms in the unit cell.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:total_energy_per_atom
     multivalued: true
@@ -481,12 +489,14 @@ slots:
     description: |-
       Force field or interatomic potential used (e.g. ReaxFF, CHARMM, Tersoff,
       EAM). Include parametrisation source or reference.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:force_field
     multivalued: true
 
   simulation_timestep:
     description: Integration timestep used in molecular dynamics.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: APOLLO_SV:00000012
     multivalued: true
@@ -495,6 +505,7 @@ slots:
 
   simulation_time:
     description: Total simulated physical time of the MD trajectory.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:simulation_time
     multivalued: true
@@ -505,15 +516,16 @@ slots:
     description: |-
       Statistical ensemble used in MD (e.g. NVE, NVT, NPT). Determines which
       thermodynamic quantities are conserved.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:ensemble_type
     multivalued: true
 
   number_of_atoms:
     description: Number of atoms in the simulation cell or supercell.
+    is_a: has_quantitative_attribute
     range: integer
     slot_uri: coremeta4cat:number_of_atoms
-    multivalued: true
 
   # ---- Microkinetics method slots ----
 
@@ -521,6 +533,7 @@ slots:
     description: |-
       Rate constants or Arrhenius parameters (pre-exponential factor and
       activation energy) for each elementary step in the reaction network.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: NCIT:C94967
     multivalued: true
@@ -529,18 +542,21 @@ slots:
     description: |-
       Numerical solver used for the microkinetic rate equations (e.g. LSODA,
       stiff ODE solver, steady-state Newton method).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:solver_type
     multivalued: true
 
   surface_coverage:
     description: Surface coverage of adsorbed species (fraction of surface sites occupied).
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:surface_coverage
     multivalued: true
 
   activation_energy:
     description: Activation energy for each elementary step in the reaction mechanism.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:activation_energy
     multivalued: true
@@ -551,20 +567,22 @@ slots:
 
   interaction_potential:
     description: Interaction potential or Hamiltonian used to compute energies in MC moves.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:interaction_potential
     multivalued: true
 
   number_of_steps:
     description: Total number of Monte Carlo moves or trial configurations generated.
+    is_a: has_quantitative_attribute
     range: integer
     slot_uri: coremeta4cat:number_of_steps
-    multivalued: true
 
   lattice_size_type:
     description: |-
       Lattice geometry and dimensions used in lattice-based MC (e.g.
       "100x100 square lattice", "hexagonal 50x50").
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:lattice_size_type
     multivalued: true
@@ -573,21 +591,22 @@ slots:
     description: |-
       Criterion for accepting or rejecting MC moves (e.g. Metropolis,
       Kawasaki, heat-bath algorithm).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:acceptance_criteria
     multivalued: true
 
   equilibration_steps:
     description: Number of MC steps used for equilibration before data collection begins.
+    is_a: has_quantitative_attribute
     range: integer
     slot_uri: coremeta4cat:equilibration_steps
-    multivalued: true
 
   sampling_interval:
     description: Interval between successive MC snapshots used for property averaging.
+    is_a: has_quantitative_attribute
     range: integer
     slot_uri: coremeta4cat:sampling_interval
-    multivalued: true
 
   # ---- MaterialDescriptorMixin slots ----
 
@@ -595,6 +614,7 @@ slots:
     description: |-
       Chemical composition of the simulated material (e.g. "Fe2O3", "Pt/CeO2").
       Use empirical formula or SMILES for molecular systems.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:material_composition
     multivalued: true
@@ -603,6 +623,7 @@ slots:
     description: |-
       Crystal structure of the simulated material, including space group and
       lattice parameters (e.g. "Fm-3m, a=3.92 A for Pt").
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: SIO:001100
     multivalued: true
@@ -613,6 +634,7 @@ slots:
     description: |-
       Monkhorst-Pack k-point mesh used for Brillouin zone sampling
       (e.g. "4x4x1" for a surface slab, "8x8x8" for a bulk cell).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:k_point_mesh
     multivalued: true
@@ -621,6 +643,7 @@ slots:
 
   formation_energy:
     description: Formation energy per atom relative to elemental reference states.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:formation_energy
     multivalued: true
@@ -631,6 +654,7 @@ slots:
     description: |-
       Elemental reference energies used to compute formation energies
       (e.g. DFT total energies of elemental ground-state structures).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:reference_energies
     multivalued: true
@@ -639,6 +663,7 @@ slots:
     description: |-
       Distance above the convex hull of stable phases (thermodynamic stability
       metric). Zero for phases on the hull; positive values indicate metastability.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:energy_above_hull
     multivalued: true
@@ -647,6 +672,7 @@ slots:
 
   phase_diagram_type:
     description: Type of phase diagram constructed (e.g. binary, ternary, quaternary).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:phase_diagram_type
     multivalued: true
@@ -655,6 +681,7 @@ slots:
     description: |-
       List of stable competing phases used in convex hull construction
       (e.g. "Fe2O3, Fe3O4, FeO, Fe").
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:competing_phases
     multivalued: true
@@ -665,18 +692,21 @@ slots:
     description: |-
       Components of the piezoelectric tensor e_ij (C/m2) or d_ij (pC/N),
       describing the coupling between stress and electric polarization.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:piezoelectric_tensor
     multivalued: true
 
   crystal_symmetry:
     description: Point group or space group symmetry of the crystal structure.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:crystal_symmetry
     multivalued: true
 
   strain_applied:
     description: Magnitude of applied strain in the piezoelectric calculation.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:strain_applied
     multivalued: true
@@ -685,6 +715,7 @@ slots:
     description: |-
       Decomposition of the piezoelectric or dielectric response into ionic
       (nuclear) and electronic contributions.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:ionic_electronic_contributions
     multivalued: true
@@ -695,12 +726,14 @@ slots:
     description: |-
       Full Voigt-notation elastic tensor C_ij (GPa) describing the linear
       elastic response of the material.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:elastic_tensor
     multivalued: true
 
   bulk_modulus:
     description: Bulk modulus (resistance to uniform compression).
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:bulk_modulus
     multivalued: true
@@ -709,6 +742,7 @@ slots:
 
   shear_modulus:
     description: Shear modulus (resistance to shear deformation).
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:shear_modulus
     multivalued: true
@@ -717,12 +751,14 @@ slots:
 
   poisson_ratio:
     description: Poisson's ratio (ratio of transverse to axial strain under uniaxial load).
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:poisson_ratio
     multivalued: true
 
   young_modulus:
     description: Young's modulus (stiffness under uniaxial tension or compression).
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:young_modulus
     multivalued: true
@@ -735,6 +771,7 @@ slots:
     description: |-
       Cleavage energy per unit area required to create the surface from the bulk.
       A lower value indicates a more stable surface facet.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:surface_energy
     multivalued: true
@@ -744,12 +781,14 @@ slots:
   miller_indices:
     description: |-
       Miller indices of the modelled surface facet (e.g. "(111)", "(110)", "(100)").
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:miller_indices
     multivalued: true
 
   slab_thickness:
     description: Thickness of the periodic slab model used to represent the surface.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:slab_thickness
     multivalued: true
@@ -760,6 +799,7 @@ slots:
     description: |-
       Vacuum layer thickness added above the slab to prevent spurious
       periodic interactions between slab images.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:vacuum_spacing
     multivalued: true
@@ -770,6 +810,7 @@ slots:
     description: |-
       Method used to terminate the slab and handle dangling bonds
       (e.g. H-passivation, OH-termination, dipole correction).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:surface_termination_method
     multivalued: true
@@ -780,6 +821,7 @@ slots:
     description: |-
       Components of the static and/or high-frequency dielectric tensor epsilon_ij,
       computed from DFPT.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:dielectric_tensor
     multivalued: true
@@ -788,6 +830,7 @@ slots:
     description: |-
       Born effective charge tensors Z*_ij for each atom, describing how
       the polarization changes with atomic displacements.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:born_effective_charges
     multivalued: true
@@ -798,6 +841,7 @@ slots:
     description: |-
       Method used to compute the interatomic force constants (e.g. finite
       differences / supercell method, DFPT/linear response).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:force_constant_method
     multivalued: true
@@ -806,12 +850,14 @@ slots:
     description: |-
       k/q-point mesh for phonon Brillouin zone sampling (e.g. "8x8x8").
       Distinct from the electronic k-point mesh.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:kq_point_mesh
     multivalued: true
 
   smearing_parameter:
     description: Smearing or broadening parameter applied to the phonon density of states.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:smearing_parameter
     multivalued: true
@@ -822,9 +868,9 @@ slots:
     description: |-
       Whether imaginary (soft) phonon modes are present in the dispersion.
       Imaginary modes indicate dynamical instability of the structure.
+    is_a: has_qualitative_attribute
     range: boolean
     slot_uri: coremeta4cat:imaginary_modes
-    multivalued: true
 
   # ---- EquationsOfState slots ----
 
@@ -832,18 +878,21 @@ slots:
     description: |-
       Parametric model used to fit the energy-volume curve
       (e.g. Birch-Murnaghan 3rd order, Vinet, Murnaghan).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:fit_method
     multivalued: true
 
   pressure_derivative:
     description: Pressure derivative of the bulk modulus B' (dimensionless).
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:pressure_derivative
     multivalued: true
 
   fit_residuals:
     description: Root-mean-square residuals of the energy-volume fit.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:fit_residuals
     multivalued: true
@@ -852,6 +901,7 @@ slots:
 
   ph_range:
     description: pH range covered in the Pourbaix stability diagram (e.g. "0-14").
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:ph_range
     multivalued: true
@@ -860,6 +910,7 @@ slots:
     description: |-
       Electrode potential range covered in the Pourbaix diagram
       (e.g. "-2 to +2 V vs SHE").
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:potential_range
     multivalued: true
@@ -868,12 +919,14 @@ slots:
     description: |-
       Implicit solvation model used to account for aqueous environment
       (e.g. VASPsol, SCCS/Environ, COSMO).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:solvation_model
     multivalued: true
 
   ionic_strength:
     description: Ionic strength of the electrolyte solution modelled.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:ionic_strength
     multivalued: true
@@ -886,12 +939,14 @@ slots:
     description: |-
       Crystallographic plane of the grain boundary, expressed using
       Miller indices (e.g. "Sigma5 (310)[001]").
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:grain_boundary_plane
     multivalued: true
 
   misorientation_angle:
     description: Misorientation angle between adjacent grains at the boundary.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:misorientation_angle
     multivalued: true
@@ -900,6 +955,7 @@ slots:
 
   grain_boundary_energy:
     description: Excess energy per unit area of the grain boundary.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:grain_boundary_energy
     multivalued: true
@@ -910,12 +966,14 @@ slots:
     description: |-
       Dimensions of the simulation cell used to model the grain boundary
       (e.g. "10x10x30 nm").
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:simulation_cell_size
     multivalued: true
 
   gb_excess_volume:
     description: Excess volume per unit area associated with the grain boundary.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:gb_excess_volume
     multivalued: true
@@ -924,6 +982,7 @@ slots:
     description: |-
       Description of the structural units (repeating atomic motifs) that
       constitute the grain boundary structure.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:gb_structural_units
     multivalued: true
@@ -932,6 +991,7 @@ slots:
     description: |-
       Data describing charge carrier or point defect segregation behaviour
       at the grain boundary (e.g. segregation energy per defect type).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:charge_defect_segregation
     multivalued: true
@@ -942,6 +1002,7 @@ slots:
     description: |-
       Electronic smearing scheme and width used in the SCF calculation
       (e.g. Methfessel-Paxton order 1 with sigma=0.2 eV, Gaussian with sigma=0.05 eV).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:smearing_method
     multivalued: true
@@ -950,20 +1011,22 @@ slots:
     description: |-
       Whether the electronic structure calculation is spin-polarized
       (accounts for spin-up and spin-down electrons separately).
+    is_a: has_qualitative_attribute
     range: boolean
     slot_uri: coremeta4cat:spin_polarized
-    multivalued: true
 
   band_path:
     description: |-
       High-symmetry k-path through the Brillouin zone used to plot the
       band structure (e.g. "Gamma-X-M-Gamma-R" for cubic, following SeeK-path convention).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:band_path
     multivalued: true
 
   fermi_energy:
     description: Fermi energy (chemical potential of electrons) in the calculated system.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:fermi_energy
     multivalued: true
@@ -976,12 +1039,14 @@ slots:
     description: |-
       Crystallographic direction of the spontaneous electric polarization
       (e.g. "[001]" for tetragonal BaTiO_3).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:polarization_direction
     multivalued: true
 
   spontaneous_polarization:
     description: Magnitude of the spontaneous electric polarization.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:spontaneous_polarization
     multivalued: true
@@ -992,12 +1057,14 @@ slots:
     description: |-
       Reference (paraelectric/centrosymmetric) structure used as the zero-
       polarization endpoint in the Berry-phase polarization calculation.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:reference_structure
     multivalued: true
 
   switching_barrier:
     description: Energy barrier for polarization switching between equivalent states.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:switching_barrier
     multivalued: true
@@ -1006,6 +1073,7 @@ slots:
 
   coercive_field:
     description: Electric field required to reverse the polarization direction.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:coercive_field
     multivalued: true
@@ -1014,6 +1082,7 @@ slots:
 
   temperature_dependence:
     description: Description of how the ferroelectric properties vary with temperature.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:temperature_dependence
     multivalued: true
@@ -1024,6 +1093,7 @@ slots:
     description: |-
       Reference to the material or MaterialSample being characterised by this
       calculated band gap.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: VOC4CAT:0005056
     multivalued: true
@@ -1032,12 +1102,14 @@ slots:
     description: |-
       Model structure used in the band gap calculation (e.g. bulk unit cell,
       surface slab, defect supercell).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:structure_model
     multivalued: true
 
   smearing_broadening:
     description: Gaussian or Lorentzian broadening applied to the simulated spectrum.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:smearing_broadening
     multivalued: true
@@ -1048,12 +1120,14 @@ slots:
     description: |-
       Band gap character: "direct" (VBM and CBM at same k-point) or
       "indirect" (VBM and CBM at different k-points).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:direct_indirect
     multivalued: true
 
   experimental_reference:
     description: Experimental band gap value used for benchmarking the calculation.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:experimental_reference
     multivalued: true
@@ -1064,14 +1138,15 @@ slots:
     description: |-
       Whether a many-body GW correction or hybrid functional (e.g. HSE06)
       was applied to correct the DFT band gap underestimation.
+    is_a: has_qualitative_attribute
     range: boolean
     slot_uri: coremeta4cat:gw_hybrid_correction
-    multivalued: true
 
   excitonic_correction:
     description: |-
       Excitonic correction (from Bethe-Salpeter equation) applied to the
       optical band gap.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:excitonic_correction
     multivalued: true

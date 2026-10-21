@@ -1,0 +1,666 @@
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix VOC4CAT: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://creativecommons.org/licenses/by/4.0/> a dcterms:LicenseDocument ;
+    dcterms:title "CC BY 4.0" .
+
+<https://hdl.handle.net/21.11165/4cat/2d6m-exeb> a rdfs:Resource,
+        dcat:Dataset,
+        VOC4CAT:0007001 ;
+    dcterms:creator [ a foaf:Agent ;
+            foaf:name "Deutschmann, Olaf" ],
+        [ a foaf:Agent ;
+            foaf:name "Maier, Lubow" ],
+        [ a foaf:Agent ;
+            foaf:name "Schmider, Daniel" ] ;
+    dcterms:description "Steady-state methanation kinetics screening dataset covering 16 valid experimental runs (Exp2,3,4,7,8,9,11,12,13,14,15,16,17,18,19,20 -- Exp1, Exp5, Exp6, Exp10 excluded by the data providers, see ReadMe.txt) over 16 distinct supported Ni catalysts (Al2O3, SiO2, ZrO2, TiO2, MgAl2O4 supports; 5-40.8 wt% Ni) in isothermal cylindrical fixed-bed reactors. Three reaction types were studied depending on feed gas composition: CO methanation (4 runs), CO2 methanation (8 runs), and mixed CO/CO2 co-methanation (4 runs). Conversion was determined from outlet gas composition analysis. Related publication: DOI 10.1021/acs.iecr.1c00389." ;
+    dcterms:publisher [ a foaf:Agent ;
+            foaf:name "NFDI4Cat Central Data Repository" ] ;
+    dcterms:subject coremeta4cat:CAT_2d6m-exeb_all,
+        coremeta4cat:REAC_2d6m-exeb_CO2_methanation,
+        coremeta4cat:REAC_2d6m-exeb_CO_methanation,
+        coremeta4cat:REAC_2d6m-exeb_mixed_methanation ;
+    dcterms:title "Dataset for Publication: Reaction Kinetics of CO and CO2 Methanation over Nickel",
+        "Repository landing page" ;
+    adms:identifier [ a adms:Identifier ;
+            skos:notation "https://hdl.handle.net/21.11165/4cat/2d6m-exeb" ],
+        [ a adms:Identifier ;
+            dcterms:description "Related publication DOI" ;
+            skos:notation "doi:10.1021/acs.iecr.1c00389" ] ;
+    dcat:distribution [ a dcat:Distribution ;
+            dcterms:description "Repository landing page providing access to the per-experiment CSV/JSON data files." ;
+            dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+            dcat:accessURL <https://hdl.handle.net/21.11165/4cat/2d6m-exeb> ] ;
+    dcat:keyword "CO methanation",
+        "CO2 methanation",
+        "Catalysis",
+        "Chemistry",
+        "Fixed-bed reactor",
+        "Heterogeneous catalysis",
+        "Nickel catalyst" ;
+    prov:wasGeneratedBy coremeta4cat:CHAR_2d6m-exeb_outlet_gas_analysis .
+
+coremeta4cat:CAT_2d6m-exeb_Exp11 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp11_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "220.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp11_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "5.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp11_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.15"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp11_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "1.826"^^xsd:float ] ;
+    dcterms:title "5 wt% Ni/ZrO2 (Exp11)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp12 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp12_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.05"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp12_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "3.06"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp12_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "265.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp12_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "10.0"^^xsd:float ] ;
+    dcterms:title "10 wt% Ni/ZrO2 (Exp12)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp13 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp13_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.05"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp13_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "3.06"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp13_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "10.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp13_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "265.0"^^xsd:float ] ;
+    dcterms:title "10 wt% Ni/ZrO2 (Exp13)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp14 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp14_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "2.81"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp14_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "10.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp14_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.05"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp14_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "265.0"^^xsd:float ] ;
+    dcterms:title "10 wt% Ni/SiO2 (Exp14)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp15 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp15_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "20.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp15_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "750.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp15_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "1.76"^^xsd:float ] ;
+    dcterms:title "20 wt% Ni/Al2O3 (Exp15)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp16 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp16_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "15.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp16_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "630.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp16_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.3"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp16_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "8.72"^^xsd:float ] ;
+    dcterms:title "15 wt% Ni/Al2O3 (Exp16)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp17 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp17_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "1.2"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp17_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "10.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp17_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "3.84"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp17_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "335.0"^^xsd:float ] ;
+    dcterms:title "10 wt% Ni/MgAl2O4 (Exp17)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp18 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp18_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.18"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp18_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "3000.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp18_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "1.1"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp18_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "5.0"^^xsd:float ] ;
+    dcterms:title "5 wt% Ni/SiO2 (Exp18)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp19 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp19_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "14.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp19_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "630.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp19_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.15"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp19_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "5.0"^^xsd:float ] ;
+    dcterms:title "5 wt% Ni/TiO2 (Exp19)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp2 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp2_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "20.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp2_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "630.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp2_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.5"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp2_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "14.0"^^xsd:float ] ;
+    dcterms:title "20 wt% Ni/Al2O3 (Exp2)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp20 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp20_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.15"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp20_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "220.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp20_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "5.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp20_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "0.897"^^xsd:float ] ;
+    dcterms:title "5 wt% Ni/Al2O3 (Exp20)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp3 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp3_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "20.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp3_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "3.56"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp3_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "375.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp3_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.2"^^xsd:float ] ;
+    dcterms:title "20 wt% Ni/Al2O3 (Exp3)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp4 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp4_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "265.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp4_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.05"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp4_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "2.81"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp4_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "10.0"^^xsd:float ] ;
+    dcterms:title "10 wt% Ni/SiO2 (Exp4)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp7 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp7_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "335.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp7_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "10.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp7_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "1.2"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp7_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "4.55"^^xsd:float ] ;
+    dcterms:title "10 wt% Ni/MgAl2O4 (Exp7)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp8 a SIO:010344 ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp8_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "375.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp8_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "3.56"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp8_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "20.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp8_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.2"^^xsd:float ] ;
+    dcterms:title "20 wt% Ni/Al2O3 (Exp8)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CAT_2d6m-exeb_Exp9 a SIO:010344 ;
+    dcterms:description "High Ni-loading Al2O3-supported catalyst; this run also used an elevated feed pressure of 800 kPa, an outlier relative to the other runs in this series (~100-101.3 kPa)." ;
+    dcterms:relation [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp9_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.025"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp9_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "8.28"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp9_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "40.8"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp9_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "175.0"^^xsd:float ] ;
+    dcterms:title "40.8 wt% Ni/Al2O3 (Exp9)" ;
+    SIO:000008 PATO:0001736 .
+
+coremeta4cat:CHAR_2d6m-exeb_GC_method a OBI:0000272 ;
+    dcterms:description "Analytical protocol for determining reactant/product mole fractions from the reactor outlet stream. Method parameters not specified in the source dataset files." ;
+    dcterms:title "Outlet gas GC method" .
+
+coremeta4cat:CHAR_2d6m-exeb_outlet_gas_analysis a VOC4CAT:0000130,
+        "Characterization" ;
+    dcterms:description "Steady-state outlet gas composition analysis used to determine CO/CO2 conversion for all 16 catalyst screening runs (CO methanation: Exp2, 3, 4, 12; CO2 methanation: Exp7, 8, 9, 13, 14, 15, 16, 17; mixed CO/CO2 methanation: Exp11, 18, 19, 20). Dataset files do not name a specific instrument model; gas chromatography is the standard analytical method for this reaction class and is assumed here." ;
+    dcterms:title "Outlet gas composition analysis (all 16 runs)" ;
+    adms:identifier [ a adms:Identifier ;
+            dcterms:description "Related publication DOI" ;
+            skos:notation "doi:10.1021/acs.iecr.1c00389" ] ;
+    prov:used coremeta4cat:CAT_2d6m-exeb_all,
+        coremeta4cat:CHAR_2d6m-exeb_GC_method ;
+    prov:wasAssociatedWith coremeta4cat:DEV_2d6m-exeb_GC .
+
+coremeta4cat:DEV_2d6m-exeb_GC a prov:Agent ;
+    dcterms:description "Instrument model not specified in the source dataset files." ;
+    dcterms:title "gas chromatograph" .
+
+coremeta4cat:REAC_2d6m-exeb_CO a CHEBI:17245,
+        SIO:010411 ;
+    dcterms:title "carbon monoxide" ;
+    SIO:000008 [ a CHMO:0002820 ;
+            dcterms:description "Feed CO mole fraction ranges 1-25% across the 4 runs (Exp2, Exp3, Exp4, Exp12 inlet.mole_fractions.CO)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MoleFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "1.0"^^xsd:float ] .
+
+coremeta4cat:REAC_2d6m-exeb_CO2 a CHEBI:16526,
+        SIO:010411 ;
+    dcterms:title "carbon dioxide" ;
+    SIO:000008 [ a CHMO:0002820 ;
+            dcterms:description "Feed CO2 mole fraction ranges 1-22.2% across the 8 runs (inlet.mole_fractions.CO2)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MoleFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "1.0"^^xsd:float ] .
+
+coremeta4cat:REAC_2d6m-exeb_CO2_methanation a coremeta4cat:CatalyticReaction,
+        VOC4CAT:0007011 ;
+    RO:0004009 coremeta4cat:REAC_2d6m-exeb_CO2,
+        coremeta4cat:REAC_2d6m-exeb_H2_CO2series ;
+    RXNO:0000425 coremeta4cat:CAT_2d6m-exeb_Exp13,
+        coremeta4cat:CAT_2d6m-exeb_Exp14,
+        coremeta4cat:CAT_2d6m-exeb_Exp15,
+        coremeta4cat:CAT_2d6m-exeb_Exp16,
+        coremeta4cat:CAT_2d6m-exeb_Exp17,
+        coremeta4cat:CAT_2d6m-exeb_Exp7,
+        coremeta4cat:CAT_2d6m-exeb_Exp8,
+        coremeta4cat:CAT_2d6m-exeb_Exp9 ;
+    dcterms:description "Catalytic CO2 methanation (CO2 + 4H2 -> CH4 + 2H2O) screened over 8 supported Ni catalysts (Al2O3, SiO2, ZrO2, MgAl2O4 supports; 10-40.8 wt% Ni) in cylindrical isothermal fixed-bed reactors (radius 3-10 mm across runs). Steady-state CO2 conversion measured as a function of superficial velocity and temperature. Source runs: Exp7, Exp8, Exp9, Exp13, Exp14, Exp15, Exp16, Exp17 (Ni/Al2O3 x4, Ni/MgAl2O4 x2, Ni/ZrO2, Ni/SiO2). Total pressure ~100-101.3 kPa in all runs except Exp9 (800 kPa, an outlier within this series)." ;
+    dcterms:title "CO2 methanation catalyst screening (8 Ni catalysts)" ;
+    adms:identifier [ a adms:Identifier ;
+            dcterms:description "Related publication DOI" ;
+            skos:notation "doi:10.1021/acs.iecr.1c00389" ] ;
+    prov:wasAssociatedWith coremeta4cat:REAC_2d6m-exeb_CO2_reactor ;
+    coremeta4cat:catalyst_form VOC4CAT:0007034 ;
+    coremeta4cat:product_identification_method coremeta4cat:REAC_2d6m-exeb_CO2_product_id ;
+    VOC4CAT:0000118 [ a qudt:Quantity ;
+            dcterms:description "~100-101.3 kPa in 7 of the 8 runs; Exp9 used 800 kPa (see used_catalyst description)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+            qudt:unit <https://qudt.org/vocab/unit/KiloPA> ;
+            prov:value "100.0"^^xsd:float ] ;
+    VOC4CAT:0007009 "CO2 methanation" ;
+    VOC4CAT:0007014 VOC4CAT:0007001 ;
+    VOC4CAT:0007032 [ a qudt:Quantity ;
+            dcterms:description "Overall temperature range explored across all 8 CO2 methanation runs" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+            qudt:unit <https://qudt.org/vocab/unit/K> ;
+            coremeta4cat:maxValue "1114.4"^^xsd:float ;
+            coremeta4cat:minValue "405.1"^^xsd:float ] .
+
+coremeta4cat:REAC_2d6m-exeb_CO2_mixed a CHEBI:16526,
+        SIO:010411 ;
+    dcterms:title "carbon dioxide" ;
+    SIO:000008 [ a CHMO:0002820 ;
+            dcterms:description "Feed CO2 mole fraction ranges 6-17% across the 4 runs" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MoleFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "6.0"^^xsd:float ] .
+
+coremeta4cat:REAC_2d6m-exeb_CO2_product_id a OBI:0000272 ;
+    dcterms:description "CO2 conversion (dimensionless, 0-1) calculated from inlet and outlet CO2 concentrations. Specific analytical instrument not stated in dataset files; gas chromatography is the standard method for this reaction." ;
+    dcterms:title "CO2 conversion from outlet gas composition" .
+
+coremeta4cat:REAC_2d6m-exeb_CO2_reactor a VOC4CAT:0007018 ;
+    dcterms:description "Cylindrical fixed-bed reactors, radius 3-10 mm across the 8 runs, isothermal operation." ;
+    dcterms:title "isothermal cylindrical fixed-bed reactors" .
+
+coremeta4cat:REAC_2d6m-exeb_CO_methanation a coremeta4cat:CatalyticReaction,
+        VOC4CAT:0007010 ;
+    RO:0004009 coremeta4cat:REAC_2d6m-exeb_CO,
+        coremeta4cat:REAC_2d6m-exeb_H2 ;
+    RXNO:0000425 coremeta4cat:CAT_2d6m-exeb_Exp12,
+        coremeta4cat:CAT_2d6m-exeb_Exp2,
+        coremeta4cat:CAT_2d6m-exeb_Exp3,
+        coremeta4cat:CAT_2d6m-exeb_Exp4 ;
+    dcterms:description "Catalytic CO methanation (CO + 3H2 -> CH4 + H2O) screened over 4 supported Ni catalysts (Al2O3, SiO2, ZrO2 supports; 10-20 wt% Ni) in cylindrical isothermal fixed-bed reactors (radius 3-10 mm across runs). Steady-state CO conversion measured as a function of superficial velocity and temperature. Source runs: Exp2, Exp3, Exp4, Exp12 (Ni/Al2O3 x2, Ni/SiO2, Ni/ZrO2). Total pressure ~100-101.3 kPa in all four runs." ;
+    dcterms:title "CO methanation catalyst screening (4 Ni catalysts)" ;
+    adms:identifier [ a adms:Identifier ;
+            dcterms:description "Related publication DOI" ;
+            skos:notation "doi:10.1021/acs.iecr.1c00389" ] ;
+    prov:wasAssociatedWith coremeta4cat:REAC_2d6m-exeb_CO_reactor ;
+    coremeta4cat:catalyst_form VOC4CAT:0007034 ;
+    coremeta4cat:product_identification_method coremeta4cat:REAC_2d6m-exeb_CO_product_id ;
+    VOC4CAT:0000118 [ a qudt:Quantity ;
+            dcterms:description "~100-101.3 kPa in all 4 runs" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+            qudt:unit <https://qudt.org/vocab/unit/KiloPA> ;
+            prov:value "100.0"^^xsd:float ] ;
+    VOC4CAT:0007009 "CO methanation" ;
+    VOC4CAT:0007014 VOC4CAT:0007001 ;
+    VOC4CAT:0007032 [ a qudt:Quantity ;
+            dcterms:description "Overall temperature range explored across all 4 CO methanation runs" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+            qudt:unit <https://qudt.org/vocab/unit/K> ;
+            coremeta4cat:maxValue "874.6"^^xsd:float ;
+            coremeta4cat:minValue "423.0"^^xsd:float ] .
+
+coremeta4cat:REAC_2d6m-exeb_CO_mixed a CHEBI:17245,
+        SIO:010411 ;
+    dcterms:title "carbon monoxide" ;
+    SIO:000008 [ a CHMO:0002820 ;
+            dcterms:description "Feed CO mole fraction; 0.6% in 3 of 4 runs, 6% in Exp18" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MoleFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "0.6"^^xsd:float ] .
+
+coremeta4cat:REAC_2d6m-exeb_CO_product_id a OBI:0000272 ;
+    dcterms:description "CO conversion (dimensionless, 0-1) calculated from inlet and outlet CO concentrations. Specific analytical instrument not stated in dataset files; gas chromatography is the standard method for this reaction." ;
+    dcterms:title "CO conversion from outlet gas composition" .
+
+coremeta4cat:REAC_2d6m-exeb_CO_reactor a VOC4CAT:0007018 ;
+    dcterms:description "Cylindrical fixed-bed reactors, radius 3-10 mm across the 4 runs, isothermal operation." ;
+    dcterms:title "isothermal cylindrical fixed-bed reactors" .
+
+coremeta4cat:REAC_2d6m-exeb_H2 a CHEBI:18276,
+        SIO:010411 ;
+    dcterms:title "hydrogen" ;
+    SIO:000008 [ a CHMO:0002820 ;
+            dcterms:description "Feed H2 mole fraction ranges 50-75% across the 4 runs" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MoleFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "50.0"^^xsd:float ] .
+
+coremeta4cat:REAC_2d6m-exeb_H2_CO2series a CHEBI:18276,
+        SIO:010411 ;
+    dcterms:title "hydrogen" ;
+    SIO:000008 [ a CHMO:0002820 ;
+            dcterms:description "Feed H2 mole fraction ranges 5.1-77.8% across the 8 runs" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MoleFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "5.1"^^xsd:float ] .
+
+coremeta4cat:REAC_2d6m-exeb_H2_mixed a CHEBI:18276,
+        SIO:010411 ;
+    dcterms:title "hydrogen" ;
+    SIO:000008 [ a CHMO:0002820 ;
+            dcterms:description "Feed H2 mole fraction ranges 57-88% across the 4 runs" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MoleFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "57.0"^^xsd:float ] .
+
+coremeta4cat:REAC_2d6m-exeb_mixed_methanation a coremeta4cat:CatalyticReaction,
+        VOC4CAT:0007010 ;
+    RO:0004009 coremeta4cat:REAC_2d6m-exeb_CO2_mixed,
+        coremeta4cat:REAC_2d6m-exeb_CO_mixed,
+        coremeta4cat:REAC_2d6m-exeb_H2_mixed ;
+    RXNO:0000425 coremeta4cat:CAT_2d6m-exeb_Exp11,
+        coremeta4cat:CAT_2d6m-exeb_Exp18,
+        coremeta4cat:CAT_2d6m-exeb_Exp19,
+        coremeta4cat:CAT_2d6m-exeb_Exp20 ;
+    dcterms:description "Catalytic co-methanation of a mixed CO/CO2 feed (CO + 3H2 -> CH4 + H2O; CO2 + 4H2 -> CH4 + 2H2O) screened over 4 supported Ni catalysts (ZrO2, SiO2, TiO2, Al2O3 supports; 5 wt% Ni in all 4) in cylindrical isothermal fixed-bed reactors (radius 3.77-6.5 mm across runs). Steady-state CO and CO2 conversion measured as a function of superficial velocity and temperature. Source runs: Exp11, Exp18, Exp19, Exp20. Total pressure ~100 kPa in all four runs." ;
+    dcterms:title "Mixed CO+CO2 methanation catalyst screening (4 Ni catalysts)" ;
+    adms:identifier [ a adms:Identifier ;
+            dcterms:description "Related publication DOI" ;
+            skos:notation "doi:10.1021/acs.iecr.1c00389" ] ;
+    prov:wasAssociatedWith coremeta4cat:REAC_2d6m-exeb_mixed_reactor ;
+    coremeta4cat:catalyst_form VOC4CAT:0007034 ;
+    coremeta4cat:product_identification_method coremeta4cat:REAC_2d6m-exeb_mixed_product_id ;
+    VOC4CAT:0000118 [ a qudt:Quantity ;
+            dcterms:description "~100 kPa in all 4 runs" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+            qudt:unit <https://qudt.org/vocab/unit/KiloPA> ;
+            prov:value "100.0"^^xsd:float ] ;
+    VOC4CAT:0007009 "CO/CO2 co-methanation" ;
+    VOC4CAT:0007014 VOC4CAT:0007001 ;
+    VOC4CAT:0007032 [ a qudt:Quantity ;
+            dcterms:description "Overall temperature range explored across all 4 mixed CO/CO2 methanation runs" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+            qudt:unit <https://qudt.org/vocab/unit/K> ;
+            coremeta4cat:maxValue "672.2"^^xsd:float ;
+            coremeta4cat:minValue "428.3"^^xsd:float ] .
+
+coremeta4cat:REAC_2d6m-exeb_mixed_product_id a OBI:0000272 ;
+    dcterms:description "CO and CO2 conversion (dimensionless, 0-1) calculated from inlet and outlet gas concentrations. Specific analytical instrument not stated in dataset files; gas chromatography is the standard method for this reaction." ;
+    dcterms:title "CO and CO2 conversion from outlet gas composition" .
+
+coremeta4cat:REAC_2d6m-exeb_mixed_reactor a VOC4CAT:0007018 ;
+    dcterms:description "Cylindrical fixed-bed reactors, radius 3.77-6.5 mm across the 4 runs, isothermal operation." ;
+    dcterms:title "isothermal cylindrical fixed-bed reactors" .
+
+VOC4CAT:0000130 a schema1:DefinedTerm ;
+    schema1:name "gas chromatography" .
+
+VOC4CAT:0007011 a schema1:DefinedTerm ;
+    schema1:name "CO2 methanation" .
+
+CHEBI:16526 a schema1:DefinedTerm ;
+    schema1:name "carbon dioxide" .
+
+CHEBI:17245 a schema1:DefinedTerm ;
+    schema1:name "carbon monoxide" .
+
+coremeta4cat:CAT_2d6m-exeb_all a prov:Entity ;
+    dcterms:description "Supported Ni catalysts on Al2O3, SiO2, ZrO2, TiO2, and MgAl2O4, Ni loading 5-40.8 wt%, screened for CO methanation, CO2 methanation, and mixed CO/CO2 methanation (see the corresponding CatalyticReaction entries for per-catalyst detail: used_catalyst in coremeta4cat:REAC_2d6m-exeb_CO_methanation, coremeta4cat:REAC_2d6m-exeb_CO2_methanation, coremeta4cat:REAC_2d6m-exeb_mixed_methanation).",
+        "Supported Ni catalysts on Al2O3, SiO2, ZrO2, TiO2, and MgAl2O4, Ni loading 5-40.8 wt%. See used_catalyst under is_about_activity above for per-sample detail (particle size, BET surface area, catalyst mass)." ;
+    dcterms:title "16 supported Ni catalyst samples (this screening series)" .
+
+VOC4CAT:0007010 a schema1:DefinedTerm ;
+    schema1:name "CO methanation" .
+
+CHEBI:18276 a schema1:DefinedTerm ;
+    schema1:name "molecular hydrogen" .
+
+VOC4CAT:0007001 a schema1:DefinedTerm ;
+    schema1:name "heterogeneous catalysis" .
+

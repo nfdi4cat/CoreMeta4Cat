@@ -7,7 +7,22 @@ _ROOT = _HERE.parent
 
 # coremeta4cat.yaml is loaded FIRST so its generic stubs (range: Plan, range: AgenticEntity)
 # are overwritten by the specific ranges in the subprofile modules.
-MODULE_FILES = [
+#
+# EDITABLE_MODULE_FILES are the coremeta4cat-authored modules: everything a
+# contributor can add/modify/delete via the Excel inbox workflow. This is the
+# canonical, single source of truth for "editable" — also imported by
+# inbox_to_schema.py for build_origin_index(), which must stay scoped to
+# exactly these files.
+#
+# VENDORED_MODULE_FILES are the locally-vendored chemdcat-ap files. Classes/
+# slots defined here (e.g. ChemicalReaction, Reactor) are loaded so that
+# is_a-inheritance resolution (get_all_class_slots, get_subclasses) can see
+# them, but they are NOT editable via the Excel inbox workflow — contributors
+# only ever see them as inherited, read-only reference rows.
+#
+# ALL_MODULE_FILES is what actually gets merged into the in-memory schema
+# dict used for slot/class resolution and rendering.
+EDITABLE_MODULE_FILES = [
     "coremeta4cat.yaml",           # load first: generic stubs get overwritten by subprofiles
     "coremeta4cat_common.yaml",
     "coremeta4cat_synthesis_ap.yaml",
@@ -15,6 +30,15 @@ MODULE_FILES = [
     "coremeta4cat_reaction_ap.yaml",
     "coremeta4cat_simulation_ap.yaml",
 ]
+
+VENDORED_MODULE_FILES = [
+    "chem_dcat_ap.yaml",
+    "chemical_reaction_ap.yaml",
+    "chemical_entities_ap.yaml",
+    "material_entities_ap.yaml",
+]
+
+ALL_MODULE_FILES = EDITABLE_MODULE_FILES + VENDORED_MODULE_FILES
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -77,7 +101,7 @@ def merge_schemas(modules: List[dict]) -> dict:
 def load_merged_schema(schema_dir: str) -> dict:
     schema_dir_path = Path(schema_dir)
     modules = []
-    for filename in MODULE_FILES:
+    for filename in ALL_MODULE_FILES:
         full_path = schema_dir_path / filename
         print(f"  Loading: {full_path}")
         modules.append(load_yaml_file(str(full_path)))
@@ -87,13 +111,49 @@ def load_merged_schema(schema_dir: str) -> dict:
     return merged
 
 
+def build_origin_index(schema_dir) -> tuple[dict, dict]:
+    """
+    Return (slot_origin, class_origin): maps each slot/class name to the
+    editable-module YAML file that defines it.
+
+    Only scans EDITABLE_MODULE_FILES (never the vendored chemdcat-ap files),
+    so a name's presence here is exactly the "is this editable via the Excel
+    inbox workflow" predicate, used consistently by both schema_to_excel.py
+    (to render inherited/vendored rows as read-only) and inbox_to_schema.py
+    (to decide what can be modified or deleted).
+    """
+    schema_dir_path = Path(schema_dir)
+    slot_origin:  dict = {}
+    class_origin: dict = {}
+
+    for fname in EDITABLE_MODULE_FILES:
+        fpath = schema_dir_path / fname
+        doc = load_yaml_file(str(fpath))
+        for name in (doc.get("slots") or {}):
+            slot_origin[name] = fpath
+        for name in (doc.get("classes") or {}):
+            class_origin[name] = fpath
+
+    return slot_origin, class_origin
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Mixin-aware slot resolution
 # ─────────────────────────────────────────────────────────────────────────────
 
 def get_all_class_slots(schema: dict, class_name: str,
                         _seen: Optional[Set[str]] = None) -> List[str]:
-    """Return all slots on a class including those contributed by mixins."""
+    """Return all slots on a class, including those inherited via is_a and
+    those contributed by mixins.
+
+    is_a resolution climbs into the merged schema (which now also includes
+    the vendored chemdcat-ap modules, see ALL_MODULE_FILES) and stops
+    silently at any class name not present there -- e.g. an external,
+    unvendored dcat-ap-plus root like EvaluatedActivity or Device. That
+    class is simply treated as an inheritance root with no further slots
+    to add, mirroring how an unknown mixin name already degrades
+    gracefully today.
+    """
     if _seen is None:
         _seen = set()
     if class_name in _seen:
@@ -101,6 +161,12 @@ def get_all_class_slots(schema: dict, class_name: str,
     _seen.add(class_name)
     class_def   = schema.get("classes", {}).get(class_name, {})
     own_slots   = class_def.get("slots", []) or []
+
+    parent_name  = class_def.get("is_a")
+    parent_slots: List[str] = []
+    if parent_name and parent_name in schema.get("classes", {}):
+        parent_slots = get_all_class_slots(schema, parent_name, _seen.copy())
+
     mixin_names = class_def.get("mixins", []) or []
     mixin_slots: List[str] = []
     for mixin_name in mixin_names:
@@ -108,31 +174,49 @@ def get_all_class_slots(schema: dict, class_name: str,
             if s not in mixin_slots:
                 mixin_slots.append(s)
     combined = list(own_slots)
+    for s in parent_slots:
+        if s not in combined:
+            combined.append(s)
     for s in mixin_slots:
         if s not in combined:
             combined.append(s)
     return combined
 
 
-def get_class_ranged_slot_usage(schema: dict, class_name: str) -> List[tuple]:
+def get_class_ranged_slot_usage(schema: dict, class_name: str,
+                                exclude: Optional[Set[str]] = None) -> List[tuple]:
     """
     Return (slot_name, synthetic_slot_def) pairs for every slot_usage entry
     whose range points to a class defined in the merged schema.
 
-    These are the 'gateway' slots that expand into nested class/subclass docs:
-      Synthesis      → realized_plan:PreparationMethod, had_input_entity:Precursor, had_output_entity:CatalystSample
+    These are the 'gateway' slots that expand into nested class/subclass docs
+    for slot_usage entries that narrow an inherited slot NOT otherwise reachable
+    via the class's own/inherited `slots:` lists (get_all_class_slots):
+      Synthesis        → realized_plan:PreparationMethod, had_input_entity:Precursor, had_output_entity:CatalystSample
       Characterization → realized_plan:CharacterizationTechnique
-      Reaction       → carried_out_by:ReactorDesignType, product_identification_method:ProductIdentificationMethod
-      Simulation     → realized_plan:SimulationMethod
+      Simulation       → realized_plan:SimulationMethod
+
+    `exclude` should be the set of slot names already covered by
+    get_all_class_slots() for this class -- any slot_usage entry for a name
+    already in that set is skipped here, since it will already be rendered
+    (with the slot_usage-narrowed cardinality/range applied via
+    get_slot_cardinality/format_slot_markdown) as part of the regular slot
+    list. Without this check, a slot that is both explicitly listed in a
+    class's `slots:` and separately narrowed via `slot_usage` with a
+    class-valued range (e.g. Reaction's product_identification_method) would
+    be rendered twice under the same name.
     """
     classes    = schema.get("classes", {})
     slots_dict = schema.get("slots", {})
     class_def  = classes.get(class_name, {})
     slot_usage = class_def.get("slot_usage", {}) or {}
+    exclude    = exclude or set()
 
     result = []
     for su_name, su_def in slot_usage.items():
         if not su_def:
+            continue
+        if su_name in exclude:
             continue
         rng = su_def.get("range")
         if not rng or rng not in classes:
@@ -216,20 +300,49 @@ def get_slot_cardinality(schema: dict, class_name: str,
 
 def format_class_markdown(schema: dict, class_name: str, level: int = 3,
                           processed_classes: Optional[Set[str]] = None,
-                          parent_class: Optional[str] = None) -> str:
+                          parent_class: Optional[str] = None,
+                          rendered: Optional[dict] = None) -> str:
+    """Render a class as a <details> block.
+
+    `rendered` is a page-wide (not per-branch) name -> anchor-id map, shared
+    across the whole recursive walk for one output page. A class that is
+    reached from multiple slots/paths (e.g. Temperature, Pressure,
+    ChemicalEntity -- common once CatalyticReaction inherits ChemicalReaction's
+    full slot set) is fully expanded only the first time; later occurrences
+    link back to that first rendering instead of re-expanding its entire slot
+    subtree again, which would otherwise multiply page size with every
+    additional path that reaches the same shared class.
+    """
     if processed_classes is None:
         processed_classes = set()
     if class_name in processed_classes:
         return ""
     processed_classes.add(class_name)
+    if rendered is None:
+        rendered = {}
 
     class_def   = schema.get("classes", {}).get(class_name, {})
     description = class_def.get("description", "No description available")
     class_uri   = class_def.get("class_uri", "")
     is_abstract = class_def.get("abstract", False)
 
+    if class_name in rendered:
+        anchor = rendered[class_name]
+        md  = '<details markdown="1">\n'
+        md += f'<summary><strong>{snake_to_readable(class_name)}</strong></summary>\n\n'
+        md += f"**Description:** {description}\n\n"
+        if class_uri:
+            md += f"**CURIE:** [`{class_uri}`]({expand_curie(schema, class_uri)})\n\n"
+        md += (f"*Full field list already shown [earlier on this page](#{anchor}) "
+               f"-- this class is reached from multiple fields.*\n\n")
+        md += "</details>\n\n"
+        return md
+
+    anchor = f"schema-class-{class_name}"
+    rendered[class_name] = anchor
+
     open_attr = " open" if level == 3 else ""
-    md  = f'<details markdown="1"{open_attr}>\n'
+    md  = f'<details markdown="1"{open_attr} id="{anchor}">\n'
     md += f'<summary><strong>{snake_to_readable(class_name)}</strong></summary>\n\n'
     if is_abstract:
         md += "**Abstract Class**\n\n"
@@ -244,7 +357,7 @@ def format_class_markdown(schema: dict, class_name: str, level: int = 3,
         for slot_name in slots:
             slot_details = get_slot_details(schema, slot_name)
             md += format_slot_markdown(schema, slot_name, slot_details, level + 2,
-                                       processed_classes.copy(), class_name)
+                                       processed_classes.copy(), class_name, rendered)
 
     md += (f"<p>\n      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new"
            f"?template=term_improvement.yaml&title=Term%20Feedback:%20{class_name}"
@@ -256,9 +369,12 @@ def format_class_markdown(schema: dict, class_name: str, level: int = 3,
 
 def format_slot_markdown(schema: dict, slot_name: str, slot_details: dict,
                          level: int = 3, processed_classes: Optional[Set[str]] = None,
-                         parent_class: Optional[str] = None) -> str:
+                         parent_class: Optional[str] = None,
+                         rendered: Optional[dict] = None) -> str:
     if processed_classes is None:
         processed_classes = set()
+    if rendered is None:
+        rendered = {}
 
     description = slot_details.get("description", "No description available")
     range_type  = slot_details.get("range", "string")
@@ -285,14 +401,22 @@ def format_slot_markdown(schema: dict, slot_name: str, slot_details: dict,
     # If the range is a known schema class, expand it inline with all subclasses
     if is_class_in_schema(schema, range_type) and not is_mixin(schema, range_type):
         md += "**Data Type Class Details:**\n\n"
-        md += format_class_markdown(schema, range_type, level, processed_classes, None)
-        subclasses = get_subclasses(schema, range_type)
+        md += format_class_markdown(schema, range_type, level, processed_classes, None, rendered)
+        # Subclasses already fully rendered elsewhere on the page (tracked in
+        # `rendered`) are skipped here -- re-listing them adds an "already
+        # shown earlier" stub with nothing new to say. This matters for
+        # self-referential relations (e.g. has_reaction_step: range
+        # ChemicalReaction, whose only subclass is the page's own main class):
+        # without this filter every such slot would print a "Possible
+        # Subclasses" section whose sole entry immediately points back to the
+        # top of the page.
+        subclasses = [s for s in get_subclasses(schema, range_type) if s not in rendered]
         if subclasses:
             md += f"**Possible Subclasses / Enumerations of {snake_to_readable(range_type)}:**\n\n"
             for subclass in subclasses:
                 if subclass not in processed_classes:
                     md += format_class_markdown(schema, subclass, level + 1,
-                                                processed_classes, None)
+                                                processed_classes, None, rendered)
 
     md += (f"<p>\n  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new"
            f"?template=term_improvement.yaml&title=Term%20Feedback:%20{slot_name}"
@@ -381,18 +505,25 @@ def generate_markdown_for_main_class(schema: dict, main_class: str, output_file:
 
     # Slots section: direct/mixin slots first, then class-ranged slot_usage entries
     direct_slots    = get_all_class_slots(schema, main_class)
-    class_ranged_su = get_class_ranged_slot_usage(schema, main_class)
+    class_ranged_su = get_class_ranged_slot_usage(schema, main_class, exclude=set(direct_slots))
 
     if direct_slots or class_ranged_su:
         md += LEGEND + "\n## Slots\n\n"
         processed: Set[str] = set()
+        # Page-wide dedup map, shared across every slot on this page. Pre-seed
+        # with main_class itself pointing at the page title -- otherwise a
+        # self-referential slot (e.g. CatalyticReaction's inherited
+        # has_reaction_step: range ChemicalReaction, whose own subclasses
+        # include CatalyticReaction) would fully re-render this entire page
+        # nested inside itself.
+        rendered: dict = {main_class: display_name.lower().replace(" ", "-")}
         for slot_name in direct_slots:
             md += format_slot_markdown(schema, slot_name,
                                        get_slot_details(schema, slot_name),
-                                       3, processed.copy(), main_class)
+                                       3, processed.copy(), main_class, rendered)
         for slot_name, synthetic in class_ranged_su:
             md += format_slot_markdown(schema, slot_name, synthetic,
-                                       3, processed.copy(), main_class)
+                                       3, processed.copy(), main_class, rendered)
 
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(md)

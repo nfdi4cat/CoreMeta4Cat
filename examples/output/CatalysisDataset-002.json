@@ -1,0 +1,318 @@
+{
+  "id": "coremeta4cat:DS_002_DRM_NiO_CeO2",
+  "description": [
+    "Dataset covering the full lifecycle of a 15 wt% NiO/CeO2 dry reforming catalyst: (1) co-precipitation synthesis with precipitation parameters and calcination protocol; (2) XPS surface composition and oxidation state analysis; (3) H2-TPR reducibility profiling; (4) catalytic performance in CH4+CO2 dry reforming at 600-800 deg C over 20 h; (5) ReaxFF molecular dynamics of the Ni/CeO2(111) interface at 800 deg C to rationalise metal-support interaction."
+  ],
+  "title": [
+    "NiO/CeO2 dry methane reforming catalyst: co-precipitation synthesis, multi-technique characterization, catalytic performance, and computational interface study"
+  ],
+  "was_generated_by": [
+    {
+      "id": "coremeta4cat:SYNTH_002_NiO_CeO2",
+      "had_input_entity": [
+        {
+          "id": "coremeta4cat:PREC_004_Ni_NO3_6H2O",
+          "title": "nickel(II) nitrate hexahydrate (Sigma-Aldrich, purity 99%)",
+          "precursor_quantity": [
+            {
+              "value": 8.72,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
+              "unit": "https://qudt.org/vocab/unit/GM"
+            }
+          ]
+        },
+        {
+          "id": "coremeta4cat:PREC_005_Ce_NO3_6H2O",
+          "title": "cerium(III) nitrate hexahydrate (Sigma-Aldrich, purity 99.5%)",
+          "precursor_quantity": [
+            {
+              "value": 13.03,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
+              "unit": "https://qudt.org/vocab/unit/GM"
+            }
+          ]
+        },
+        {
+          "id": "coremeta4cat:PREC_006_Na2CO3",
+          "title": "sodium carbonate precipitating agent (anhydrous, Sigma-Aldrich, purity 99.5%)",
+          "precursor_quantity": [
+            {
+              "value": 5.3,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
+              "unit": "https://qudt.org/vocab/unit/GM"
+            }
+          ]
+        }
+      ],
+      "had_output_entity": [
+        {
+          "id": "coremeta4cat:CAT_002_NiO_CeO2",
+          "title": "NiO/CeO2 dry reforming catalyst (calcined precursor)",
+          "description": "15 wt% NiO on CeO2 support, co-precipitated at pH 8.5, calcined 500 deg C / 4 h, sieved to 250-500 um"
+        }
+      ],
+      "realized_plan": {
+        "title": "co-precipitation",
+        "description": "aqueous solutions of Ni(NO3)2 (0.5 M) and Ce(NO3)3 (0.5 M) mixed in stoichiometric ratio; precipitant: 1 M Na2CO3 solution added dropwise at 2 mL/min; target pH 8.5 maintained by feedback addition; mixing: 600 rpm mechanical stirring at 60 deg C for 2 h; aging: 12 h at 60 deg C without stirring; filtration: vacuum filtration through Whatman grade 4 filter paper; washing: 5 successive deionized water washes until conductivity < 5 uS/cm (Na+ removal); drying: 120 deg C for 12 h in static air oven; calcination: 5 deg C/min ramp to 500 deg C, isothermal hold for 4 h in static air, natural cooling",
+        "id": "coremeta4cat:SYNTH_002_coprecipitation_method"
+      },
+      "activity_designator": "Synthesis",
+      "nominal_composition": [
+        "15 wt% NiO/CeO2"
+      ],
+      "catalyst_measured_properties": [
+        "BET surface area: 42 m2/g",
+        "NiO crystallite size: 8.4 nm (Scherrer, XRD)",
+        "Ni loading: 14.7 wt% (ICP-AES)",
+        "reducibility onset: 280 deg C, completion at 600 deg C (H2-TPR)"
+      ],
+      "storage_conditions": [
+        "sealed glass vial in desiccator, ambient temperature, protected from moisture"
+      ],
+      "solvent": [
+        {
+          "id": "https://pubchem.ncbi.nlm.nih.gov/compound/962",
+          "title": "deionized water (18.2 MOhm cm, MilliQ)"
+        }
+      ],
+      "has_sample_pretreatment": [
+        {
+          "value": "in situ reduction: 5 vol% H2/N2 at 700 deg C for 1 h (10 deg C/min ramp) before DRM tests"
+        }
+      ]
+    },
+    {
+      "id": "coremeta4cat:CHAR_003_XPS_NiO_CeO2",
+      "carried_out_by": [
+        {
+          "id": "coremeta4cat:DEV_003_Thermo_KAlpha_XPS",
+          "title": "Thermo Scientific K-Alpha+ XPS spectrometer"
+        },
+        {
+          "id": "coremeta4cat:DEV_004_AlKalpha_source",
+          "title": "Al K-alpha monochromatic X-ray source (1486.6 eV, 72 W)"
+        }
+      ],
+      "evaluated_entity": [
+        {
+          "id": "coremeta4cat:CAT_002_NiO_CeO2",
+          "title": "NiO/CeO2 dry reforming catalyst (calcined)",
+          "description": "15 wt% NiO on CeO2 support, calcined at 500 deg C"
+        }
+      ],
+      "realized_plan": {
+        "title": "X-ray photoelectron spectroscopy (XPS)",
+        "description": "monochromatic Al K-alpha (1486.6 eV); base pressure 5e-9 mbar; survey scan: 0-1350 eV, 1.0 eV step, 50 ms dwell, 3 scans, pass energy 200 eV; high-resolution regions: Ni 2p3/2 (845-895 eV), Ce 3d (875-935 eV), O 1s (525-540 eV), C 1s (280-295 eV); step size 0.1 eV, 20 scans each, pass energy 50 eV; spot size 400 um; lens mode: large area XL; charge compensation: dual-beam flood gun (1 eV electrons + 10 eV Ar+); binding energy scale calibrated to C 1s adventitious carbon at 284.8 eV; Shirley background subtraction; peak fitting: Voigt profiles (CasaXPS v2.3.25); atomic concentrations from Scofield sensitivity factors corrected for transmission function",
+        "id": "coremeta4cat:CHAR_003_XPS_method"
+      },
+      "activity_designator": "Characterization",
+      "sample_state": [
+        "powder"
+      ],
+      "sample_description": [
+        "NiO/CeO2 co-precipitated catalyst (SYNTH_002), calcined at 500 deg C, as-prepared (non-reduced), ca. 10 mg pressed into indium foil"
+      ],
+      "sample_preparation": [
+        "lightly pressed into indium foil to obtain flat surface; mounted on sample stub with copper tape; no Ar+ sputtering performed"
+      ],
+      "has_sample_pretreatment": [
+        {
+          "value": "outgassed in XPS load-lock chamber at < 1e-7 mbar for 12 h before transfer to analysis chamber (< 5e-9 mbar)"
+        }
+      ],
+      "detector_type": [
+        "128-channel 2D delay-line detector (DLD)"
+      ]
+    },
+    {
+      "id": "coremeta4cat:CHAR_004_TPR_NiO_CeO2",
+      "carried_out_by": [
+        {
+          "id": "coremeta4cat:DEV_005_Micromeritics_AutoChem",
+          "title": "Micromeritics AutoChem II 2920 chemisorption analyzer"
+        }
+      ],
+      "evaluated_entity": [
+        {
+          "id": "coremeta4cat:CAT_002_NiO_CeO2",
+          "title": "NiO/CeO2 dry reforming catalyst (calcined)",
+          "description": "15 wt% NiO on CeO2, calcined at 500 deg C / 4 h"
+        }
+      ],
+      "realized_plan": {
+        "title": "H2 temperature-programmed reduction (H2-TPR)",
+        "description": "reducing gas: 5 vol% H2/Ar, total flow 50 mL/min (calibrated Brooks MFC); temperature programme: 50 deg C to 900 deg C at 10 deg C/min; isothermal hold: 30 min at 900 deg C; H2O trap: molecular sieve 3A between reactor outlet and TCD to prevent TCD signal interference; baseline: Ar flow for 30 min at 50 deg C before switching to H2/Ar; H2 consumption quantified by integration of TCD signal, calibrated against CuO reference standard (99.9%, 10 mg, single reduction peak at 310 deg C); NiO reduction: expected peaks at 280-350 deg C (NiO weakly interacting with CeO2) and 400-600 deg C (NiO strongly interacting); CeO2 surface reduction: 600-900 deg C",
+        "id": "coremeta4cat:CHAR_004_TPR_method"
+      },
+      "activity_designator": "Characterization",
+      "sample_description": [
+        "NiO/CeO2 calcined at 500 deg C; 50 mg packed in quartz U-tube reactor (4 mm ID); quartz wool plugs above and below bed"
+      ],
+      "has_sample_pretreatment": [
+        {
+          "value": "oxidative pretreatment: 10 vol% O2/Ar (50 mL/min) at 300 deg C for 30 min; cool to 50 deg C under Ar purge"
+        }
+      ],
+      "detector_type": [
+        "thermal conductivity detector (TCD), Ar carrier gas reference channel"
+      ]
+    },
+    {
+      "id": "coremeta4cat:SIM_002_MD_Ni_CeO2_111",
+      "evaluated_entity": [
+        {
+          "id": "coremeta4cat:SLAB_002_CeO2_111_Ni13",
+          "title": "CeO2(111) surface slab with supported 13-atom Ni cluster",
+          "description": "6-layer CeO2(111) p(4x4) slab (256 CeO2 formula units, 768 atoms total); bottom 3 layers fixed during MD; 13-atom cuboctahedral Ni cluster adsorbed on three-fold hollow O site; 20 Ang vacuum layer; 3D periodic boundary conditions"
+        }
+      ],
+      "realized_plan": {
+        "title": "ReaxFF molecular dynamics (NVT, 800 deg C)",
+        "description": "force field: ReaxFF C/H/Ni/O parametrisation (van Duin et al. 2012, DOI: 10.1021/jp210484t); ensemble: NVT with Nose-Hoover thermostat (tau = 100 fs) at 800 deg C (1073 K); integration timestep: 0.5 fs; total simulation time: 1 ns (2,000,000 steps); equilibration phase: 200 ps (400,000 steps) discarded; production phase: 800 ps (1,600,000 steps) used for analysis; sampling interval: every 1000 steps (0.5 ps); bond order cutoff: C-O 0.3, Ni-O 0.3 (fix reax/c/bonds); radial distribution functions computed with OVITO using 0.05 Ang bin width; common-neighbour analysis (CNA) to track Ni cluster crystallographic ordering",
+        "id": "coremeta4cat:SIM_002_MD_method"
+      },
+      "activity_designator": "Simulation",
+      "software_package": [
+        "LAMMPS (29 Sep 2021 stable release, OpenMP build)",
+        "OVITO 3.7.11 (structure analysis, RDF, CNA, cluster tracking)"
+      ],
+      "calculated_property": [
+        {
+          "value": "1.52 J/m2",
+          "description": "CeO2(111) cleavage surface energy (clean slab without Ni cluster, computed from relaxed DFT-D3 reference at 0 K, used as force field validation benchmark)"
+        },
+        {
+          "value": "-1.83 eV/atom",
+          "description": "time-averaged Ni-CeO2 adhesion energy per Ni atom (13-atom cluster) relative to bulk Ni cohesive energy and clean CeO2(111) slab; computed from 800 ps production trajectory"
+        },
+        {
+          "value": "3.8 Ang",
+          "description": "first-shell Ni-O coordination distance at Ni cluster / CeO2 interface (peak of Ni-O radial distribution function, production trajectory average)"
+        },
+        {
+          "value": "0.42",
+          "description": "fraction of Ni atoms in direct contact with CeO2 surface (Ni-O bond order > 0.3) averaged over production trajectory; measures cluster wetting / spreading"
+        }
+      ]
+    }
+  ],
+  "is_about_entity": [
+    {
+      "id": "coremeta4cat:CAT_002_NiO_CeO2",
+      "title": "NiO/CeO2 dry reforming catalyst",
+      "description": "15 wt% NiO on CeO2 support, co-precipitated at pH 8.5, calcined 500 deg C / 4 h, active phase Ni0 formed by in situ reduction"
+    },
+    {
+      "id": "coremeta4cat:SLAB_002_CeO2_111_Ni13",
+      "title": "Ni13/CeO2(111) computational model",
+      "description": "13-atom cuboctahedral Ni cluster on 6-layer CeO2(111) p(4x4) periodic slab; ReaxFF MD model representing Ni/CeO2 metal-support interface"
+    }
+  ],
+  "is_about_activity": [
+    {
+      "id": "coremeta4cat:REAC_002_DRM_NiCeO2",
+      "title": [
+        "dry methane reforming catalytic activity test (600-800 deg C, 20 h)"
+      ],
+      "had_input_entity": [
+        {
+          "id": "coremeta4cat:FEED_004_CH4_DRM",
+          "title": "methane feed (99.995%, Linde)",
+          "description": "CH4 flow: 45 mL/min (STP); calibrated Brooks SLA5850 MFC"
+        },
+        {
+          "id": "coremeta4cat:FEED_005_CO2_DRM",
+          "title": "CO2 feed (99.998%, Linde)",
+          "description": "CO2 flow: 45 mL/min (STP); calibrated Brooks SLA5850 MFC"
+        },
+        {
+          "id": "coremeta4cat:FEED_006_N2_standard",
+          "title": "N2 internal standard (99.999%, Linde)",
+          "description": "N2 flow: 10 mL/min (STP); used as internal standard for GC molar balance"
+        }
+      ],
+      "used_reactant": [
+        {
+          "id": "https://pubchem.ncbi.nlm.nih.gov/compound/297",
+          "title": "CH4 (99.995% purity, Linde)"
+        },
+        {
+          "id": "https://pubchem.ncbi.nlm.nih.gov/compound/280",
+          "title": "CO2 (99.998% purity, Linde)"
+        },
+        {
+          "id": "https://pubchem.ncbi.nlm.nih.gov/compound/947",
+          "title": "N2 balance (99.999% purity, internal standard for GC quantification)"
+        }
+      ],
+      "used_catalyst": [
+        {
+          "id": "coremeta4cat:CAT_002_NiCeO2",
+          "title": "Ni/CeO2",
+          "description": "Ni0 after in situ reduction of NiO/CeO2"
+        }
+      ],
+      "used_reactor": [
+        {
+          "id": "coremeta4cat:REACT_003_FixedBed_DRM",
+          "title": "quartz fixed-bed plug-flow reactor (DRM)",
+          "description": "quartz tube reactor, 8 mm inner diameter, 30 cm length; catalyst bed: 200 mg NiO/CeO2 (250-500 um sieve fraction) diluted 1:2 (mass) with inert SiC chips (500 um); thermocouple inserted into catalyst bed centre; backpressure regulator at outlet (1 bar); reactor surrounded by ceramic-fibre furnace with PID temperature controller; mass flow controllers (Brooks SLA5850) for CH4, CO2, N2"
+        }
+      ],
+      "product_identification_method": [
+        {
+          "title": "online dual-column gas chromatography (TCD)",
+          "description": "Shimadzu GC-2014 with TCD detector (Ar carrier gas); column 1: HayeSep D (2 m x 1/8 in) for CO2, CH4 separation; column 2: Molecular Sieve 5A (2 m x 1/8 in) for CO, H2, N2, CH4 separation; 10-port Valco valve for column switching; oven temperature: 50 deg C isothermal; TCD temperature: 250 deg C; injection: automated gas sampling valve, 1 mL loop; analysis cycle: 10 min; calibration: certified gas standard (Air Liquide CRYSTAL mixture: H2 5%, CO 5%, CH4 5%, CO2 10%, N2 balance); CH4 conversion, CO2 conversion, H2/CO ratio, and carbon balance calculated from N2-normalised molar flows",
+          "id": "coremeta4cat:REAC_002_GC_method"
+        }
+      ],
+      "catalyst_quantity": [
+        {
+          "value": 0.2,
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
+          "unit": "https://qudt.org/vocab/unit/GM"
+        }
+      ],
+      "catalyst_type": [
+        "heterogeneous_catalysis"
+      ],
+      "catalyst_form": [
+        "supported"
+      ],
+      "reactor_temperature_range": [
+        {
+          "min_value": 600.0,
+          "max_value": 800.0,
+          "unit": "https://qudt.org/vocab/unit/DEG_C",
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature"
+        }
+      ],
+      "has_atmosphere": [
+        {
+          "value": "CH4/CO2/N2 = 45:45:10 vol%, total flow 100 mL/min (STP), GHSV = 30000 mL/(g*h)"
+        }
+      ],
+      "experiment_pressure": [
+        {
+          "value": 1.0,
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Pressure",
+          "unit": "https://qudt.org/vocab/unit/ATM"
+        }
+      ],
+      "feed_composition_range": [
+        {
+          "description": "stoichiometric DRM: CH4/CO2 = 1:1 (molar)"
+        },
+        {
+          "description": "CO2-rich condition: CH4/CO2 = 1:1.5 to suppress carbon deposition"
+        }
+      ],
+      "has_experiment_duration": {
+        "value": 20.0,
+        "has_quantity_type": "http://qudt.org/vocab/quantitykind/Time",
+        "unit": "https://qudt.org/vocab/unit/HR"
+      }
+    }
+  ],
+  "@type": "CatalysisDataset"
+}

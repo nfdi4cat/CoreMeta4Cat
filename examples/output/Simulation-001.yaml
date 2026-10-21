@@ -1,0 +1,22 @@
+id: coremeta4cat:SIM_001_DFT_Cu111_CO_ads
+evaluated_entity:
+- id: coremeta4cat:SLAB_001_Cu111
+  title: Cu(111) surface slab model
+  description: 4-layer Cu(111) p(3x3) slab, bottom 2 layers fixed, 15 Ang vacuum
+realized_plan:
+  title: periodic plane-wave DFT
+  description: PBE functional, PAW pseudopotentials, 400 eV cutoff, 4x4x1 Monkhorst-Pack
+    k-mesh, D3 dispersion correction, spin-unpolarized
+  id: coremeta4cat:SIM_001_DFT_method
+activity_designator: Simulation
+software_package:
+- VASP 6.3.0
+- VESTA 3.5.8 (structure visualization)
+calculated_property:
+- value: -0.67 eV
+  description: CO adsorption energy on hollow fcc site of Cu(111) relative to gas-phase
+    CO
+- value: 1.157 Ang
+  description: C-O bond length of adsorbed CO
+- value: 2.312 Ang
+  description: Cu-C bond length at hollow adsorption site

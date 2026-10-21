@@ -86,7 +86,7 @@ classes:
       (CoPrecipitation, DepositionPrecipitation).
     slots:
     - precipitating_agent
-    - has_concentration
+    - precipitating_concentration
     - has_ph_value
     - has_mixing_speed
     - has_mixing_duration
@@ -113,7 +113,7 @@ classes:
   # ==================== CORE SYNTHESIS CLASSES ====================
 
   Synthesis:
-    is_a: DataGeneratingActivity
+    is_a: CatalysisDataGeneratingActivity
     class_uri: OBI:0000070   # planned process
     description: |-
       A DataGeneratingActivity in which a catalyst is prepared.
@@ -154,6 +154,7 @@ classes:
         description: The PreparationMethod (protocol) realized in this Synthesis.
         range: PreparationMethod
         required: true
+        inlined: true
       storage_conditions:
         recommended: true
       carried_out_by:
@@ -175,8 +176,6 @@ classes:
     slot_usage:
       precursor_quantity:
         required: true
-
-        slot_uri: VOC4CAT:0008118
   CatalystSample:
     is_a: MaterialSample
     class_uri: OBI:0000747   # specimen — reuses MaterialSample class_uri; specific catalyst type via rdf_type
@@ -194,7 +193,7 @@ classes:
   # ==================== PREPARATION METHOD (Plan) ====================
 
   PreparationMethod:
-    is_a: Plan
+    is_a: CatalysisPlan
     class_uri: VOC4CAT:0007016 # protocol
     abstract: true
     description: |-
@@ -438,6 +437,7 @@ slots:
 
   nominal_composition:
     description: Nominal elemental or chemical composition of the catalyst (e.g. 5wt% Pt/Al2O3).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:nominal_composition
     multivalued: true
@@ -446,18 +446,21 @@ slots:
     description: |-
       Key measured properties of the resulting catalyst
       (e.g. BET surface area, sieve fraction, molar ratio).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:catalyst_measured_properties
     multivalued: true
 
   storage_conditions:
     description: Conditions under which the catalyst is stored (e.g. inert atmosphere, 4°C).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: VOC4CAT:0008105
     multivalued: true
 
   catalyst_support:
     description: Support material on which the active phase is deposited (e.g. Al2O3, SiO2).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: VOC4CAT:0008104
     multivalued: true
@@ -466,8 +469,9 @@ slots:
 
   precursor_quantity:
     description: Quantity of precursor used in synthesis.
+    is_a: has_mass
     range: Mass
-    slot_uri: coremeta4cat:precursor_quantity
+    slot_uri: VOC4CAT:0008118
     multivalued: true
     inlined_as_list: true
 
@@ -481,6 +485,7 @@ slots:
 
   impregnation_duration:
     description: Duration of the impregnation step.
+    is_a: has_duration
     range: Duration
     slot_uri: VOC4CAT:0008120
     multivalued: true
@@ -488,6 +493,7 @@ slots:
 
   impregnation_temperature:
     description: Temperature during the impregnation step.
+    is_a: has_temperature
     range: Temperature
     slot_uri: VOC4CAT:0008121
     multivalued: true
@@ -497,8 +503,17 @@ slots:
 
   precipitating_agent:
     description: Chemical agent used to induce precipitation (e.g. NaOH, NH3).
+    is_a: carried_out_by
     range: ChemicalEntity
     slot_uri: VOC4CAT:0008203
+    multivalued: true
+    inlined_as_list: true
+
+  precipitating_concentration:
+    description: Concentration of the precipitating agent/solution used to induce precipitation.
+    is_a: has_concentration
+    range: Concentration
+    slot_uri: VOC4CAT:0008125
     multivalued: true
     inlined_as_list: true
 
@@ -537,18 +552,21 @@ slots:
 
   order_of_addition:
     description: Order in which reagents or components are combined.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: VOC4CAT:0008128
     multivalued: true
 
   filtration:
     description: Filtration method used to separate the precipitate (e.g. vacuum filtration).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: VOC4CAT:0008129
     multivalued: true
 
   purification:
     description: Purification method applied after synthesis (e.g. washing, dialysis).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: VOC4CAT:0008130
     multivalued: true
@@ -557,6 +575,7 @@ slots:
 
   deposition_temperature:
     description: Temperature during the deposition step.
+    is_a: has_temperature
     range: Temperature
     slot_uri: coremeta4cat:deposition_temperature
     multivalued: true
@@ -564,6 +583,7 @@ slots:
 
   deposition_time:
     description: Duration of the deposition step.
+    is_a: has_duration
     range: Duration
     slot_uri: coremeta4cat:deposition_time
     multivalued: true
@@ -573,6 +593,7 @@ slots:
 
   synthesis_temperature:
     description: Temperature applied during the synthesis step.
+    is_a: has_temperature
     range: Temperature
     slot_uri: VOC4CAT:0000051
     multivalued: true
@@ -580,6 +601,7 @@ slots:
 
   synthesis_duration:
     description: Total duration of the synthesis step.
+    is_a: has_duration
     range: Duration
     slot_uri: VOC4CAT:0000050
     multivalued: true
@@ -587,6 +609,7 @@ slots:
 
   synthesis_pressure:
     description: Pressure applied during synthesis (e.g. in autoclave or plasma reactor).
+    is_a: has_pressure
     range: Pressure
     slot_uri: VOC4CAT:0000053
     multivalued: true
@@ -596,18 +619,21 @@ slots:
 
   hydrolysis_ratio:
     description: Molar ratio of water to alkoxide precursor used in hydrolysis.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:hydrolysis_ratio
     multivalued: true
 
   drying:
     description: Drying method used for the gel (e.g. supercritical drying, freeze drying).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:drying
     multivalued: true
 
   surfactant_template:
     description: Surfactant or structure-directing agent used as a template.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:surfactant_template
     multivalued: true
@@ -616,6 +642,7 @@ slots:
 
   filling_volume:
     description: Volume of solution relative to autoclave volume (filling degree).
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:filling_volume
     multivalued: true
@@ -624,12 +651,14 @@ slots:
 
   stirrer_type:
     description: Type of stirrer used (e.g. magnetic, mechanical, none).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: VOC4CAT:0008113
     multivalued: true
 
   cooling_rate:
     description: Rate at which the reactor is cooled after synthesis.
+    is_a: has_heating_rate
     range: HeatingRate
     slot_uri: coremeta4cat:cooling_rate
     multivalued: true
@@ -639,12 +668,14 @@ slots:
 
   plasma_type:
     description: Type of plasma used (e.g. DBD, microwave, RF plasma).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:plasma_type
     multivalued: true
 
   power_input:
     description: Power input to the plasma reactor or other energy source.
+    is_a: has_power
     range: PowerQuantity
     slot_uri: coremeta4cat:power_input
     multivalued: true
@@ -652,6 +683,7 @@ slots:
 
   exposure_time:
     description: Duration of plasma or other energy exposure.
+    is_a: has_duration
     range: Duration
     slot_uri: coremeta4cat:exposure_time
     multivalued: true
@@ -661,24 +693,28 @@ slots:
 
   fuel:
     description: Organic fuel used in combustion synthesis (e.g. urea, glycine).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:fuel
     multivalued: true
 
   oxidizer:
     description: Oxidizer used in combustion synthesis (e.g. metal nitrates).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:oxidizer
     multivalued: true
 
   fuel_to_oxidizer_ratio:
     description: Molar ratio of fuel to oxidizer.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:fuel_to_oxidizer_ratio
     multivalued: true
 
   set_temperature:
     description: Target temperature set for the combustion reaction.
+    is_a: has_temperature
     range: Temperature
     slot_uri: coremeta4cat:set_temperature
     multivalued: true
@@ -686,6 +722,7 @@ slots:
 
   post_treatment:
     description: Post-synthesis treatment applied to the combustion product.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:post_treatment
     multivalued: true
@@ -694,12 +731,14 @@ slots:
 
   substrate:
     description: Substrate material on which the ALD film is deposited.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: VOC4CAT:0000024
     multivalued: true
 
   pulse_time:
     description: Duration of the precursor pulse in each ALD cycle.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:pulse_time
     multivalued: true
@@ -708,6 +747,7 @@ slots:
 
   purging_duration:
     description: Duration of the purge step between ALD pulses.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: VOC4CAT:0000112
     multivalued: true
@@ -718,6 +758,7 @@ slots:
 
   power:
     description: Microwave power applied.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:power
     multivalued: true
@@ -726,6 +767,7 @@ slots:
 
   microwave_frequency:
     description: Frequency of microwave irradiation.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:microwave_frequency
     multivalued: true
@@ -736,6 +778,7 @@ slots:
 
   sonication_power:
     description: Acoustic power applied during sonication.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:sonication_power
     multivalued: true
@@ -744,6 +787,7 @@ slots:
 
   sonication_duration:
     description: Duration of ultrasonic irradiation.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:sonication_duration
     multivalued: true
@@ -754,24 +798,28 @@ slots:
 
   flame_type:
     description: Type of flame used in FSP (e.g. methane/oxygen, H2/O2).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:flame_type
     multivalued: true
 
   inlet_system:
     description: Configuration of the precursor inlet system.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:inlet_system
     multivalued: true
 
   flame_ring:
     description: Configuration of the supporting flame ring.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:flame_ring
     multivalued: true
 
   capillary_pressure:
     description: Pressure applied at the capillary nozzle during FSP.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:capillary_pressure
     multivalued: true
@@ -780,6 +828,7 @@ slots:
 
   fuel_dispersant_ratio:
     description: Volume ratio of fuel to dispersant used in FSP.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:fuel_dispersant_ratio
     multivalued: true
@@ -788,6 +837,7 @@ slots:
 
   vessel_volume:
     description: Volume of the milling vessel.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:vessel_volume
     multivalued: true
@@ -796,12 +846,14 @@ slots:
 
   size_and_material:
     description: Size and material of the milling vessel and components.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:size_and_material
     multivalued: true
 
   milling_speed:
     description: Rotational speed during milling.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:milling_speed
     multivalued: true
@@ -810,6 +862,7 @@ slots:
 
   milling_duration:
     description: Total duration of the milling process.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:milling_duration
     multivalued: true
@@ -818,12 +871,14 @@ slots:
 
   ball_material:
     description: Material of the milling balls (e.g. zirconia, stainless steel).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:ball_material
     multivalued: true
 
   ball_size:
     description: Diameter of the milling balls.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:ball_size
     multivalued: true
@@ -832,6 +887,7 @@ slots:
 
   ball_to_powder_ratio:
     description: Mass ratio of milling balls to powder charge.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:ball_to_powder_ratio
     multivalued: true
@@ -840,30 +896,35 @@ slots:
 
   reaction_vessel:
     description: Type of reaction vessel used (e.g. Schlenk flask, round-bottom flask).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:reaction_vessel
     multivalued: true
 
   mixing_device:
     description: Device used for mixing (e.g. magnetic stirrer, vortex mixer).
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:mixing_device
     multivalued: true
 
   crystallisation_solvents:
     description: Solvent(s) used for crystallisation.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:crystallisation_solvents
     multivalued: true
 
   precipitation_agent:
     description: Agent used to induce precipitation in molecular synthesis.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: VOC4CAT:0008203
     multivalued: true
 
   crystallisation_duration:
     description: Duration of the crystallisation step.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:crystallisation_duration
     multivalued: true
@@ -872,12 +933,14 @@ slots:
 
   purification_solvent:
     description: Solvent used for washing or recrystallisation during purification.
+    is_a: has_qualitative_attribute
     range: string
     slot_uri: coremeta4cat:purification_solvent
     multivalued: true
 
   temperature_ramp:
     description: Temperature ramp rate applied during drying or activation.
+    is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:temperature_ramp
     multivalued: true

@@ -1,0 +1,34 @@
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix VOC4CAT: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+coremeta4cat:SYNTH_001_Pt_Al2O3 a "Synthesis" ;
+    SIO:000008 [ a VOC4CAT:0000122 ;
+            prov:value "reduction in H2 at 400 deg C for 2 hours prior to catalytic testing" ] ;
+    prov:used coremeta4cat:PREC_001_H2PtCl6,
+        coremeta4cat:SYNTH_001_impregnation_method ;
+    coremeta4cat:catalyst_measured_properties "BET surface area: 185 m2/g, Pt particle size: 2.3 nm (TEM), Pt loading: 4.8 wt% (ICP-AES)" ;
+    coremeta4cat:nominal_composition "5 wt% Pt/Al2O3" ;
+    VOC4CAT:0007246 <https://pubchem.ncbi.nlm.nih.gov/compound/962> ;
+    VOC4CAT:0008104 "gamma-Al2O3, Sasol Puralox, 200 m2/g" ;
+    VOC4CAT:0008105 "stored in desiccator under argon atmosphere at room temperature" .
+
+<https://pubchem.ncbi.nlm.nih.gov/compound/962> a CHEBI:23367 ;
+    dcterms:title "deionized water" .
+
+coremeta4cat:PREC_001_H2PtCl6 a VOC4CAT:0007794 ;
+    dcterms:title "chloroplatinic acid hexahydrate" ;
+    VOC4CAT:0008118 [ a qudt:Quantity ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.0485"^^xsd:float ] .
+
+coremeta4cat:SYNTH_001_impregnation_method a VOC4CAT:0007016 ;
+    dcterms:description "incipient_wetness, 25 deg C, 12 h" ;
+    dcterms:title "incipient wetness impregnation" .
+

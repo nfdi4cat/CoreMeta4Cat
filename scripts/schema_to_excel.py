@@ -47,6 +47,7 @@ _ROOT = _HERE.parent
 sys.path.insert(0, str(_HERE))
 
 from generate_schema_docs import (  # noqa: E402
+    build_origin_index,
     get_all_class_slots,
     get_class_ranged_slot_usage,
     get_slot_details,
@@ -76,6 +77,14 @@ FONT_WHITE    = Font(color="FFFFFF", bold=True)
 
 FILL_CLASS    = PatternFill("solid", fgColor="D9D9D9")
 FONT_CLASS    = Font(bold=True, italic=True)
+
+# Rows inherited from a vendored chemdcat-ap class (e.g. ChemicalReaction's
+# used_reactant on CatalyticReaction) are shown for reference but are not
+# editable via the Excel inbox workflow -- styled distinctly so contributors
+# don't try to change them.
+FILL_INHERITED = PatternFill("solid", fgColor="F2F2F2")
+FONT_INHERITED = Font(italic=True, color="7F7F7F")
+FONT_INHERITED_CLASS = Font(bold=True, italic=True, color="7F7F7F")
 
 HEADERS = [
     "label",
@@ -125,9 +134,16 @@ def _write_data_headers(ws) -> None:
     ws.freeze_panes = "A2"
 
 
-def _append_row(ws, row_data: list, row_type: str, mro: str) -> None:
+def _append_row(ws, row_data: list, row_type: str, mro: str, owned: bool = True) -> None:
     ws.append(row_data)
-    if row_type == "class":
+    if not owned:
+        # Inherited from a vendored chemdcat-ap class -- reference-only,
+        # not modifiable via the Excel inbox workflow.
+        for cell in ws[ws.max_row]:
+            cell.fill = FILL_INHERITED
+            cell.font = FONT_INHERITED_CLASS if row_type == "class" else FONT_INHERITED
+            cell.alignment = Alignment(wrap_text=True, vertical="top")
+    elif row_type == "class":
         for cell in ws[ws.max_row]:
             cell.fill = FILL_CLASS
             cell.font = FONT_CLASS
@@ -189,7 +205,7 @@ def build_intro_sheet(wb: openpyxl.Workbook) -> None:
 
     _section(r, "About this workbook"); r += 1
     _row(r, "Project", "CoreMeta4Cat is a community-driven metadata initiative under NFDI4Cat that defines the minimum information required for reporting catalysis research data. It is built on the FAIR principles (Findable, Accessible, Interoperable, Reusable)."); r += 1
-    _row(r, "Purpose", "This workbook is a structured reference overview of the CoreMeta4Cat vocabulary hierarchy, organised by data class. It is NOT a data entry form. Use it as a lookup reference when designing or annotating your own data sheets."); r += 1
+    _row(r, "Purpose", "This workbook is both a structured reference of the CoreMeta4Cat vocabulary and the way to propose changes to it. Browse it as a lookup reference when designing or annotating your own data sheets -- or edit it and submit it as a pull request to propose new fields, classes, or corrections. See 'How to propose changes' below."); r += 1
     _row(r, "Ground truth", "The LinkML schema files in src/coremeta4cat/schema/ are the authoritative source. This workbook is generated automatically from the schema via: just schema-to-excel"); r += 1
     _row(r, "Source", "https://github.com/nfdi4cat/CoreMeta4Cat"); r += 1
     _blank(r); r += 1
@@ -202,6 +218,15 @@ def build_intro_sheet(wb: openpyxl.Workbook) -> None:
     _row(r, "Characterization", "Metadata fields for analytical characterization of catalysts."); r += 1
     _row(r, "Reaction", "Metadata fields for catalytic reaction testing and performance evaluation."); r += 1
     _row(r, "Simulation", "Metadata fields for computational / theoretical catalysis studies."); r += 1
+    _blank(r); r += 1
+
+    _section(r, "How to propose changes"); r += 1
+    _row(r, "1. Edit", "Download this file, edit the Synthesis / Characterization / Reaction / Simulation sheets directly. Do not rename sheets or change column headers -- the automated check requires exact names."); r += 1
+    _row(r, "2. Modify a field", "Edit an existing row's M/R/O, range, unit, uri, or description to propose a correction."); r += 1
+    _row(r, "3. Add a field", "Add a new row: give it a label, set type to 'slot', and set domain to the class it belongs to (leave empty for a top-level field). You can add a new slot and the new class it points to in the same submission -- both rows will be validated together."); r += 1
+    _row(r, "4. Submit", "Place the edited file at inbox/coremeta4cat_vocabulary.xlsx and open a pull request. An automated check validates the changes and reports any problems as a PR comment before a maintainer reviews it. See inbox/README.md for the full workflow."); r += 1
+    _row(r, "Read-only rows", "Rows shown in grey italics (see Legend) are inherited from chemdcat-ap, the chemistry model CoreMeta4Cat builds on. They are shown for reference but cannot be added, changed, or removed through this workflow."); r += 1
+    _row(r, "Shared fields", "Some fields (e.g. has_atmosphere) are defined once and reused across several classes -- editing one is a global change, not scoped to a single sheet section. The automated check will warn you and list every other class affected if this applies to your edit."); r += 1
     _blank(r); r += 1
 
     _section(r, "How to read the data sheets"); r += 1
@@ -279,6 +304,8 @@ def build_legend_sheet(wb: openpyxl.Workbook) -> None:
                "R", "Strongly encouraged. Omitting these fields significantly reduces the findability and reusability of the data."); r += 1
     _color_row(r, "Optional (O)", FILL_O_LEGEND, FONT_WHITE,
                "O", "Useful additional context. Provide if available; not required for a valid record."); r += 1
+    _color_row(r, "Inherited (read-only)", FILL_INHERITED, FONT_INHERITED,
+               "—", "Shown in grey italics: a field or class inherited from chemdcat-ap (the underlying chemistry data model CoreMeta4Cat is built on). These rows are for reference only — they cannot be added, changed, or removed via the Excel inbox workflow."); r += 1
     _blank(r); r += 1
 
     _section(r, "Column descriptions"); r += 1
@@ -307,7 +334,7 @@ def build_legend_sheet(wb: openpyxl.Workbook) -> None:
     _section(r, "Notes"); r += 1
     ws.row_dimensions[r].height = 32
     nc = ws.cell(row=r, column=1,
-                 value="This workbook is generated automatically from the LinkML schema. The schema is the authoritative source — do not edit this file manually. To regenerate: just schema-to-excel")
+                 value="This workbook is generated automatically from the LinkML schema (just schema-to-excel), so the schema is always the ground truth. You can still edit a downloaded copy to propose changes -- see 'How to propose changes' on the Introduction sheet -- your edits just don't change the schema until they're submitted, validated, and merged.")
     nc.alignment = Alignment(horizontal="left", vertical="center", wrap_text=True)
     ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=3)
 
@@ -383,21 +410,21 @@ def _collect_rows(
         uri  = slot_def.get("slot_uri", "")
         desc = slot_def.get("description", "")
         label = snake_to_readable(slot_name)
-        rows.append((label, "slot", parent_label, mro, range_type, multivalued, inlined_as_list, unit, uri, desc))
+        rows.append((label, "slot", parent_label, mro, range_type, multivalued, inlined_as_list, unit, uri, desc, slot_name))
 
         if range_type and range_type in classes and not is_mixin(schema, range_type):
             class_def   = classes[range_type]
             class_label = snake_to_readable(range_type)
             class_uri   = class_def.get("class_uri", "")
             class_desc  = class_def.get("description", "")
-            rows.append((class_label, "class", label, mro, "", "", "", "", class_uri, class_desc))
+            rows.append((class_label, "class", label, mro, "", "", "", "", class_uri, class_desc, range_type))
             _collect_rows(schema, range_type, class_label, context_class, seen, rows, depth + 1)
             for sub in get_subclasses(schema, range_type):
                 sub_def   = classes.get(sub, {})
                 sub_label = snake_to_readable(sub)
                 sub_uri   = sub_def.get("class_uri", "")
                 sub_desc  = sub_def.get("description", "")
-                rows.append((sub_label, "class", class_label, mro, "", "", "", "", sub_uri, sub_desc))
+                rows.append((sub_label, "class", class_label, mro, "", "", "", "", sub_uri, sub_desc, sub))
                 _collect_rows(schema, sub, sub_label, context_class, seen | {range_type}, rows, depth + 2)
 
     for su_name, synthetic in get_class_ranged_slot_usage(schema, class_name):
@@ -411,28 +438,42 @@ def _collect_rows(
         uri             = synthetic.get("slot_uri", "")
         desc            = synthetic.get("description", "")
         su_label = snake_to_readable(su_name)
-        rows.append((su_label, "slot", parent_label, mro, rng, multivalued, inlined_as_list, unit, uri, desc))
+        rows.append((su_label, "slot", parent_label, mro, rng, multivalued, inlined_as_list, unit, uri, desc, su_name))
         if rng and rng in classes and not is_mixin(schema, rng):
             class_def   = classes[rng]
             class_label = snake_to_readable(rng)
             class_uri   = class_def.get("class_uri", "")
             class_desc  = class_def.get("description", "")
-            rows.append((class_label, "class", su_label, mro, "", "", "", "", class_uri, class_desc))
+            rows.append((class_label, "class", su_label, mro, "", "", "", "", class_uri, class_desc, rng))
             _collect_rows(schema, rng, class_label, class_name, seen, rows, depth + 1)
             for sub in get_subclasses(schema, rng):
                 sub_def   = classes.get(sub, {})
                 sub_label = snake_to_readable(sub)
                 sub_uri   = sub_def.get("class_uri", "")
                 sub_desc  = sub_def.get("description", "")
-                rows.append((sub_label, "class", class_label, mro, "", "", "", "", sub_uri, sub_desc))
+                rows.append((sub_label, "class", class_label, mro, "", "", "", "", sub_uri, sub_desc, sub))
                 _collect_rows(schema, sub, sub_label, class_name, seen | {rng}, rows, depth + 2)
 
 
-def build_sheet(wb: openpyxl.Workbook, schema: dict, sheet_title: str, class_name: str | None = None) -> None:
+def build_sheet(
+    wb: openpyxl.Workbook,
+    schema: dict,
+    sheet_title: str,
+    class_name: str | None = None,
+    slot_origin: dict | None = None,
+    class_origin: dict | None = None,
+) -> None:
     if class_name is None:
         class_name = CLASS_MAP.get(sheet_title, sheet_title)
     ws = wb.create_sheet(title=sheet_title)
     _write_data_headers(ws)
+
+    # Ownership checking is opt-in: callers that don't pass slot_origin/
+    # class_origin (e.g. existing tests building a bare sheet) get today's
+    # exact appearance, with no row treated as "not owned."
+    check_ownership = slot_origin is not None or class_origin is not None
+    slot_origin  = slot_origin  or {}
+    class_origin = class_origin or {}
 
     rows: list = []
     _collect_rows(schema, class_name, "", class_name, set(), rows)
@@ -443,7 +484,10 @@ def build_sheet(wb: openpyxl.Workbook, schema: dict, sheet_title: str, class_nam
         if key in seen_labels:
             continue
         seen_labels.add(key)
-        _append_row(ws, list(row), row[1], row[3])
+        row_type, raw_name = row[1], row[10]
+        origin = slot_origin if row_type == "slot" else class_origin
+        owned = (raw_name in origin) if check_ownership else True
+        _append_row(ws, list(row[:10]), row_type, row[3], owned=owned)
 
     _auto_width(ws)
 
@@ -455,6 +499,7 @@ def build_sheet(wb: openpyxl.Workbook, schema: dict, sheet_title: str, class_nam
 def main(schema_dir: str, output_path: str) -> None:
     print(f"\nLoading CoreMeta4Cat modules from: {schema_dir}")
     schema = load_merged_schema(schema_dir)
+    slot_origin, class_origin = build_origin_index(schema_dir)
 
     wb = openpyxl.Workbook()
     wb.remove(wb.active)
@@ -470,7 +515,7 @@ def main(schema_dir: str, output_path: str) -> None:
 
     for sheet_title in ["Synthesis", "Characterization", "Reaction", "Simulation"]:
         print(f"  Building sheet: {sheet_title}")
-        build_sheet(wb, schema, sheet_title)
+        build_sheet(wb, schema, sheet_title, slot_origin=slot_origin, class_origin=class_origin)
 
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)

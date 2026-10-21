@@ -22,6 +22,7 @@ evaluated_entity:
     title: "Cu(111) surface slab model"
     description: "4-layer Cu(111) p(3x3) slab, bottom 2 layers fixed, 15 Ang vacuum"
 realized_plan:
+  id: "coremeta4cat:SIM_001_DFT_method"
   title: "periodic plane-wave DFT"
   description: "PBE functional, PAW pseudopotentials, 400 eV cutoff, 4x4x1 Monkhorst-Pack k-mesh, D3 dispersion correction, spin-unpolarized"
 calculated_property:
