@@ -5580,7 +5580,7 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`voc4cat:0008114`](voc4cat:0008114)
 
 **Schema Reference:** [has_stirring_speed](./elements/slots/has_stirring_speed.md)
 

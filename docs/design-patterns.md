@@ -126,7 +126,7 @@ Twenty-eight techniques are currently defined, organised into groups:
 Eight reactor design types are defined:
 `FixedBedReactor` · `CSTR` · `PlugFlowReactor` · `Autoclave` · `SlurryReactor` · `Microreactor` · `ElectrochemicalReactor` · `FluidizedBedReactor`
 
-??? info "Operando experiments"
+!!! info "Operando experiments"
     For in-situ or operando experiments (e.g. XRD measured while a reaction runs), the dataset carries **both** links simultaneously:
     ```yaml
     was_generated_by:
@@ -151,7 +151,7 @@ Twelve calculated property classes capture the type of computed output: `Electro
 
 ## Pattern 1: Classification via rdf\_type
 
-??? abstract "Pattern summary"
+!!! abstract "Pattern summary"
     Flexible, machine-actionable classification of datasets, activities, and entities using ontology terms — without creating a separate class for every possible value.
 
 Rather than defining a fixed class hierarchy for every type of catalysis or every synthesis method, CoreMeta4Cat uses a single `rdf_type` slot on each class to carry a controlled vocabulary term from Voc4Cat, CHMO, or another ontology. This keeps the schema compact while staying fully machine-actionable.
@@ -194,7 +194,7 @@ The allowed values for `rdf_type` on `CatalysisDataset` are defined in `Catalysi
 
 ## Pattern 2: Activities and Plans
 
-??? abstract "Pattern summary"
+!!! abstract "Pattern summary"
     A two-part structure separates *what was done* (the Activity) from *the protocol describing how to do it* (the Plan). This mirrors the PROV-O model and keeps the schema clean.
 
 Each data class that generates data follows this two-part structure:
@@ -247,7 +247,7 @@ This separation means a single `PreparationMethod` record could in principle be 
 
 ## Pattern 3: Mixin classes
 
-??? abstract "Pattern summary"
+!!! abstract "Pattern summary"
     Slot groups that are shared across multiple methods are factored into reusable mixin classes, so each slot is defined exactly once and inherited wherever needed.
 
 Many preparation methods share common process steps — drying, calcination, precipitation. Rather than repeating the same slots in every method class, CoreMeta4Cat uses **mixin classes** that bundle related slots:
@@ -276,7 +276,7 @@ In LinkML, a mixin class has no `class_uri` of its own and generates no independ
 
 ## Pattern 4: Shared slots in catcore\_common
 
-??? abstract "Pattern summary"
+!!! abstract "Pattern summary"
     Slots referenced by two or more subprofiles are declared once in `catcore_common.yaml` and imported by all subprofiles. This keeps the schema DRY (Don't Repeat Yourself).
 
 Some slots appear in multiple data classes — for example, `temperature` is relevant to Synthesis (calcination), Characterization (temperature-programmed experiments), and Reaction (reactor temperature). These shared slots live in `catcore_common.yaml`:
@@ -298,7 +298,7 @@ Slots that are exclusive to a single subprofile are declared in that subprofile 
 
 ## 🔬 Deep dive: The EvaluatedActivity distinction
 
-??? warning "Technical section"
+!!! warning "Technical section"
     This section is intended for schema developers and DCAT-AP-PLUS integrators. It is not required reading for data providers.
 
 One of the most important architectural decisions in CoreMeta4Cat is that **Reaction is not a `DataGeneratingActivity`**. Instead it is an `EvaluatedActivity`.

@@ -421,7 +421,7 @@ SomeConcreteClass:
 
 ## 🔬 Deep dive: Extending the import hierarchy
 
-??? warning "Technical section"
+!!! warning "Technical section"
     This section is for schema developers who need to introduce a new chemistry-layer or intermediate module between CoreMeta4Cat and DCAT-AP-PLUS. Most users extending the four data classes do not need this.
 
 CoreMeta4Cat sits at the top of a layered import chain:
