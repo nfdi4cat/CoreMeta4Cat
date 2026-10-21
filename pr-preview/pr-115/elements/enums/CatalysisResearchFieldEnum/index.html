@@ -282,6 +282,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../working-with-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../overview/" class="md-nav__link">
         
   
@@ -400,10 +427,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -421,8 +448,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -431,6 +458,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -670,6 +725,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -765,6 +831,11 @@
 <td>Electrocatalysis — catalysis of electrochemical reactions.</td>
 </tr>
 <tr>
+<td>photocatalysis</td>
+<td>VOC4CAT:0000001</td>
+<td>Photocatalysis — catalysis of a chemical reaction through the<br>absorption of sufficient light energy by a photocatalyst.</td>
+</tr>
+<tr>
 <td>hybrid_catalysis</td>
 <td>None</td>
 <td>Hybrid catalysis — combination of two or more catalytic approaches.</td>
@@ -773,6 +844,21 @@
 <td>other</td>
 <td>None</td>
 <td>Other catalysis research field not covered by the above terms.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../slots/catalyst_type/">catalyst_type</a></td>
+<td>The catalytic regime of the reaction (e.g. heterogeneous, homogeneous,<br>biocatalysis, electrocatalysis, photocatalysis). For the physical<br>form/presentation of the catalyst itself, use catalyst_form instead.<br><br>Deliberately kept <code>recommended</code> rather than <code>required</code> (see nfdi4cat/<br>CoreMeta4Cat#117): classification here can be genuinely disputed or<br>not yet covered by CatalysisResearchFieldEnum for a novel catalyst,<br>and forcing a value would push researchers into a premature or<br>contested classification rather than leaving the field unset until<br>consensus/vocabulary catches up. Open for discussion in a follow-up<br>issue if a different tradeoff is wanted. See also nfdi4cat/<br>CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +<br>catalyst_form) or PR #118's CatalystType class hierarchy should be<br>the long-term mechanism -- kept as two enums here because the<br>VOC4CAT terms show CatalystType conflates the regime axis<br>(Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form<br>axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical<br>VOC4CAT ids to catalyst_form's permissible values), which are<br>independent and often both apply to the same catalyst at once.</td>
 </tr>
 </tbody>
 </table>
@@ -811,6 +897,12 @@
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">electrocatalysis</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Electrocatalysis — catalysis of electrochemical reactions.</span>
 <span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0000216</span>
+<span class="w">  </span><span class="nt">photocatalysis</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">photocatalysis</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Photocatalysis</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">chemical</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">through</span><span class="nv"> </span><span class="s">the</span>
+
+<span class="w">      </span><span class="s">absorption</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">sufficient</span><span class="nv"> </span><span class="s">light</span><span class="nv"> </span><span class="s">energy</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">photocatalyst.&#39;</span>
+<span class="w">    </span><span class="nt">meaning</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0000001</span>
 <span class="w">  </span><span class="nt">hybrid_catalysis</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hybrid_catalysis</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hybrid catalysis — combination of two or more catalytic approaches.</span>

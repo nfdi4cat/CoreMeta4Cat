@@ -282,6 +282,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../working-with-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../overview/" class="md-nav__link">
         
   
@@ -400,10 +427,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -421,8 +448,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -431,6 +458,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -705,20 +760,27 @@ Reusable).</p>
 </li>
 <li>
 <p>The four CoreMeta4Cat pillars are modelled as DCAT-AP-PLUS Activity subclasses,
-  following the same pattern as NMRSpectroscopy (is_a: DataGeneratingActivity):</p>
-<p>Synthesis      --&gt; is_a: DataGeneratingActivity
+  following the same pattern as NMRSpectroscopy (is_a: DataGeneratingActivity).
+  Synthesis, Characterization, and Simulation specialize CatalysisDataGeneratingActivity
+  (is_a: DataGeneratingActivity) rather than DataGeneratingActivity directly -- this
+  coremeta4cat-owned intermediate adds a type designator (activity_designator) so that
+  was_generated_by (typed CatalysisDataGeneratingActivity) can hold any of the three and
+  still resolve to the right concrete Python class when loaded. Likewise, is_about_activity
+  is typed CatalyticReaction directly (not the wider EvaluatedActivity) so it needs no
+  designator at all:</p>
+<p>Synthesis      --&gt; is_a: CatalysisDataGeneratingActivity
                  Produces a catalyst (MaterialSample) as had_output_entity.
                  The PreparationMethod (protocol) is linked via realized_plan.</p>
-<p>Characterization --&gt; is_a: DataGeneratingActivity
+<p>Characterization --&gt; is_a: CatalysisDataGeneratingActivity
                    Produces measurement data about a catalyst or reaction.
                    The catalyst/sample is the evaluated_entity.
                    The CharacterizationTechnique is linked via realized_plan.</p>
-<p>Reaction       --&gt; is_a: EvaluatedActivity
+<p>Reaction       --&gt; is_a: CatalyticReaction (via ChemicalReaction, EvaluatedActivity)
                  The catalytic process being studied, NOT a data-generating
                  activity itself. Characterization datasets are about this.
                  Analogous to the reaction being observed in a reaction
                  monitoring dataset.</p>
-<p>Simulation     --&gt; is_a: DataGeneratingActivity
+<p>Simulation     --&gt; is_a: CatalysisDataGeneratingActivity
                  Generates computational data about a catalyst or reaction.
                  The SimulationMethod (protocol) is linked via realized_plan.
                  The simulation software is carried_out_by: Software.</p>

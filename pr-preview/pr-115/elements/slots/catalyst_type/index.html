@@ -282,6 +282,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../working-with-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../overview/" class="md-nav__link">
         
   
@@ -400,10 +427,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -421,8 +448,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -431,6 +458,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -751,8 +806,25 @@
 
 
 <h1 id="slot-catalyst_type">Slot: catalyst_type</h1>
-<p><em>Type of catalyst used (e.g. heterogeneous, homogeneous, biocatalyst).</em></p>
-<p><em>For heterogeneous catalysts, use voc4cat terms where available.</em></p>
+<p><em>The catalytic regime of the reaction (e.g. heterogeneous, homogeneous,</em></p>
+<p><em>biocatalysis, electrocatalysis, photocatalysis). For the physical</em></p>
+<p><em>form/presentation of the catalyst itself, use catalyst_form instead.</em></p>
+<p>__</p>
+<p><em>Deliberately kept <code>recommended</code> rather than <code>required</code> (see nfdi4cat/</em></p>
+<p><em>CoreMeta4Cat#117): classification here can be genuinely disputed or</em></p>
+<p><em>not yet covered by CatalysisResearchFieldEnum for a novel catalyst,</em></p>
+<p><em>and forcing a value would push researchers into a premature or</em></p>
+<p><em>contested classification rather than leaving the field unset until</em></p>
+<p><em>consensus/vocabulary catches up. Open for discussion in a follow-up</em></p>
+<p><em>issue if a different tradeoff is wanted. See also nfdi4cat/</em></p>
+<p><em>CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +</em></p>
+<p><em>catalyst_form) or PR #118's CatalystType class hierarchy should be</em></p>
+<p><em>the long-term mechanism -- kept as two enums here because the</em></p>
+<p><em>VOC4CAT terms show CatalystType conflates the regime axis</em></p>
+<p><em>(Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form</em></p>
+<p><em>axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical</em></p>
+<p><em>VOC4CAT ids to catalyst_form's permissible values), which are</em></p>
+<p><em>independent and often both apply to the same catalyst at once.</em></p>
 <p>URI: <a href="https://w3id.org/nfdi4cat/voc4cat_0007014">VOC4CAT:0007014</a>
 Alias: catalyst_type</p>
 <!-- no inheritance hierarchy -->
@@ -769,7 +841,7 @@ Alias: catalyst_type</p>
 <tbody>
 <tr>
 <td><a href="../../classes/CatalyticReaction/">CatalyticReaction</a></td>
-<td>An EvaluatedActivity representing the catalytic reaction being studied.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via carried_out_by as a Reactor (Device).<br>Reactants are linked via had_input_entity. The type of catalytic reaction<br>(e.g. ammonia synthesis, CO oxidation) is expressed via rdf_type using a<br>voc4cat or ChemO term.</td>
+<td>A ChemicalReaction (chemdcat-ap) specialization representing the<br>catalytic reaction being studied. Inherits the generic reaction slots<br>(starting materials, reactants, products, catalyst, solvent, reactor,<br>temperature, pressure, yield, reaction steps) from ChemicalReaction and<br>adds catalysis-specific operating-condition slots.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via the inherited used_reactor slot (is_a:<br>carried_out_by), narrowed here to require a ChemicalReactor instance<br>rather than touching the generic carried_out_by relation directly.<br>Reactants are linked via the inherited used_reactant slot (range:<br>Reagent) -- CatalyticReaction does not declare its own reactant slot.<br>The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)<br>is expressed via rdf_type using a voc4cat or ChemO term.</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -777,7 +849,7 @@ Alias: catalyst_type</p>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../../types/String/">String</a></p>
+<p>Range: <a href="../../enums/CatalysisResearchFieldEnum/">CatalysisResearchFieldEnum</a></p>
 </li>
 <li>
 <p>Multivalued: True</p>
@@ -813,16 +885,49 @@ Alias: catalyst_type</p>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_type</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Type</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">catalyst</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">heterogeneous,</span><span class="nv"> </span><span class="s">homogeneous,</span><span class="nv"> </span><span class="s">biocatalyst).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">regime</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">heterogeneous,</span><span class="nv"> </span><span class="s">homogeneous,</span>
 
-<span class="w">  </span><span class="s">For</span><span class="nv"> </span><span class="s">heterogeneous</span><span class="nv"> </span><span class="s">catalysts,</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">terms</span><span class="nv"> </span><span class="s">where</span><span class="nv"> </span><span class="s">available.&#39;</span>
+<span class="w">  </span><span class="s">biocatalysis,</span><span class="nv"> </span><span class="s">electrocatalysis,</span><span class="nv"> </span><span class="s">photocatalysis).</span><span class="nv"> </span><span class="s">For</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">physical</span>
+
+<span class="w">  </span><span class="s">form/presentation</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalyst</span><span class="nv"> </span><span class="s">itself,</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">catalyst_form</span><span class="nv"> </span><span class="s">instead.</span>
+
+
+<span class="w">  </span><span class="s">Deliberately</span><span class="nv"> </span><span class="s">kept</span><span class="nv"> </span><span class="s">`recommended`</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">`required`</span><span class="nv"> </span><span class="s">(see</span><span class="nv"> </span><span class="s">nfdi4cat/</span>
+
+<span class="w">  </span><span class="s">CoreMeta4Cat#117):</span><span class="nv"> </span><span class="s">classification</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">genuinely</span><span class="nv"> </span><span class="s">disputed</span><span class="nv"> </span><span class="s">or</span>
+
+<span class="w">  </span><span class="s">not</span><span class="nv"> </span><span class="s">yet</span><span class="nv"> </span><span class="s">covered</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">CatalysisResearchFieldEnum</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">novel</span><span class="nv"> </span><span class="s">catalyst,</span>
+
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">forcing</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">would</span><span class="nv"> </span><span class="s">push</span><span class="nv"> </span><span class="s">researchers</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">premature</span><span class="nv"> </span><span class="s">or</span>
+
+<span class="w">  </span><span class="s">contested</span><span class="nv"> </span><span class="s">classification</span><span class="nv"> </span><span class="s">rather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">leaving</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">unset</span><span class="nv"> </span><span class="s">until</span>
+
+<span class="w">  </span><span class="s">consensus/vocabulary</span><span class="nv"> </span><span class="s">catches</span><span class="nv"> </span><span class="s">up.</span><span class="nv"> </span><span class="s">Open</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">discussion</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">follow-up</span>
+
+<span class="w">  </span><span class="s">issue</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">tradeoff</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">wanted.</span><span class="nv"> </span><span class="s">See</span><span class="nv"> </span><span class="s">also</span><span class="nv"> </span><span class="s">nfdi4cat/</span>
+
+<span class="w">  </span><span class="s">CoreMeta4Cat#116</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">whether</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">two-slot</span><span class="nv"> </span><span class="s">design</span><span class="nv"> </span><span class="s">(catalyst_type</span><span class="nv"> </span><span class="s">+</span>
+
+<span class="w">  </span><span class="s">catalyst_form)</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">PR</span><span class="nv"> </span><span class="s">#118</span><span class="se">&#39;&#39;</span><span class="s">s</span><span class="nv"> </span><span class="s">CatalystType</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">hierarchy</span><span class="nv"> </span><span class="s">should</span><span class="nv"> </span><span class="s">be</span>
+
+<span class="w">  </span><span class="s">the</span><span class="nv"> </span><span class="s">long-term</span><span class="nv"> </span><span class="s">mechanism</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">kept</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">two</span><span class="nv"> </span><span class="s">enums</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">because</span><span class="nv"> </span><span class="s">the</span>
+
+<span class="w">  </span><span class="s">VOC4CAT</span><span class="nv"> </span><span class="s">terms</span><span class="nv"> </span><span class="s">show</span><span class="nv"> </span><span class="s">CatalystType</span><span class="nv"> </span><span class="s">conflates</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">regime</span><span class="nv"> </span><span class="s">axis</span>
+
+<span class="w">  </span><span class="s">(Heterogeneous/Homogeneous/Bio/Electro/Photo)</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">physical-form</span>
+
+<span class="w">  </span><span class="s">axis</span><span class="nv"> </span><span class="s">(ThinFilm/Bulk/Powdered/DepositedSample/Supported</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">identical</span>
+
+<span class="w">  </span><span class="s">VOC4CAT</span><span class="nv"> </span><span class="s">ids</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">catalyst_form</span><span class="se">&#39;&#39;</span><span class="s">s</span><span class="nv"> </span><span class="s">permissible</span><span class="nv"> </span><span class="s">values),</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">are</span>
+
+<span class="w">  </span><span class="s">independent</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">often</span><span class="nv"> </span><span class="s">both</span><span class="nv"> </span><span class="s">apply</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">catalyst</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">once.&#39;</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007014</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_type</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisResearchFieldEnum</span>
 <span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
