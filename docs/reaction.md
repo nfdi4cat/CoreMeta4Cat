@@ -103,17 +103,17 @@ issue if a different tradeoff is wanted. See also nfdi4cat/
 CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +
 catalyst_form) or PR #118's CatalystType class hierarchy should be
 the long-term mechanism -- kept as two enums here because the
-VOC4CAT terms show CatalystType conflates the regime axis
+voc4cat terms show CatalystType conflates the regime axis
 (Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form
 axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical
-VOC4CAT ids to catalyst_form's permissible values), which are
+voc4cat ids to catalyst_form's permissible values), which are
 independent and often both apply to the same catalyst at once.
 
 **Data Type:** CatalysisResearchFieldEnum
 
 **Cardinality:**  Recommended, Multivalued
 
-**CURIE:** [`VOC4CAT:0007014`](https://w3id.org/nfdi4cat/voc4cat_0007014)
+**CURIE:** [`voc4cat:0007014`](https://w3id.org/nfdi4cat/voc4cat_0007014)
 
 **Schema Reference:** [catalyst_type](./elements/slots/catalyst_type.md)
 
@@ -152,7 +152,7 @@ from catalyst_type (the catalytic regime).
 
 **Cardinality:**  Recommended
 
-**CURIE:** [`VOC4CAT:0007009`](https://w3id.org/nfdi4cat/voc4cat_0007009)
+**CURIE:** [`voc4cat:0007009`](https://w3id.org/nfdi4cat/voc4cat_0007009)
 
 **Schema Reference:** [reaction_name](./elements/slots/reaction_name.md)
 
@@ -173,7 +173,7 @@ For a single set-point, set min_value equal to max_value.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007032`](https://w3id.org/nfdi4cat/voc4cat_0007032)
+**CURIE:** [`voc4cat:0007032`](https://w3id.org/nfdi4cat/voc4cat_0007032)
 
 **Schema Reference:** [reactor_temperature_range](./elements/slots/reactor_temperature_range.md)
 
@@ -251,7 +251,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -281,7 +281,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **Description:** The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").
 
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 **Schema Reference:** [CalcinationGaseousEnvironment](./elements/classes/CalcinationGaseousEnvironment.md)
 
@@ -306,7 +306,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000118`](https://w3id.org/nfdi4cat/voc4cat_0000118)
+**CURIE:** [`voc4cat:0000118`](https://w3id.org/nfdi4cat/voc4cat_0000118)
 
 **Schema Reference:** [experiment_pressure](./elements/slots/experiment_pressure.md)
 
@@ -2941,7 +2941,7 @@ Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify
 reactor geometry and operating mode.
 Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).
 
-**CURIE:** [`VOC4CAT:0007018`](https://w3id.org/nfdi4cat/voc4cat_0007018)
+**CURIE:** [`voc4cat:0007018`](https://w3id.org/nfdi4cat/voc4cat_0007018)
 
 **Schema Reference:** [ChemicalReactor](./elements/classes/ChemicalReactor.md)
 
@@ -3157,7 +3157,7 @@ Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).
 **Description:** Electrochemical reactor used in electrocatalytic experiments, including
 H-cells, flow cells, and membrane electrode assemblies.
 
-**CURIE:** [`VOC4CAT:0000193`](https://w3id.org/nfdi4cat/voc4cat_0000193)
+**CURIE:** [`voc4cat:0000193`](https://w3id.org/nfdi4cat/voc4cat_0000193)
 
 **Schema Reference:** [ElectrochemicalReactor](./elements/classes/ElectrochemicalReactor.md)
 
@@ -3174,7 +3174,7 @@ positive electrode in a galvanic cell.
 
 **Cardinality:**  Recommended
 
-**CURIE:** [`VOC4CAT:0007254`](https://w3id.org/nfdi4cat/voc4cat_0007254)
+**CURIE:** [`voc4cat:0007254`](https://w3id.org/nfdi4cat/voc4cat_0007254)
 
 **Schema Reference:** [has_cathode](./elements/slots/has_cathode.md)
 
@@ -3195,7 +3195,7 @@ negative electrode in a galvanic cell.
 
 **Cardinality:**  Recommended
 
-**CURIE:** [`VOC4CAT:0007255`](https://w3id.org/nfdi4cat/voc4cat_0007255)
+**CURIE:** [`voc4cat:0007255`](https://w3id.org/nfdi4cat/voc4cat_0007255)
 
 **Schema Reference:** [has_anode](./elements/slots/has_anode.md)
 
@@ -3235,7 +3235,7 @@ electrode which is active.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0007258`](https://w3id.org/nfdi4cat/voc4cat_0007258)
+**CURIE:** [`voc4cat:0007258`](https://w3id.org/nfdi4cat/voc4cat_0007258)
 
 **Schema Reference:** [has_active_area](./elements/slots/has_active_area.md)
 
@@ -3272,7 +3272,7 @@ causing (or is caused by) chemical reactions.
 
 **Cardinality:**  Recommended
 
-**CURIE:** [`VOC4CAT:0007259`](https://w3id.org/nfdi4cat/voc4cat_0007259)
+**CURIE:** [`voc4cat:0007259`](https://w3id.org/nfdi4cat/voc4cat_0007259)
 
 **Schema Reference:** [faradaic_current](./elements/slots/faradaic_current.md)
 
@@ -3509,7 +3509,7 @@ causing (or is caused by) chemical reactions.
 **Description:** Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow
 reactor operating at steady state.
 
-**CURIE:** [`VOC4CAT:0007019`](https://w3id.org/nfdi4cat/voc4cat_0007019)
+**CURIE:** [`voc4cat:0007019`](https://w3id.org/nfdi4cat/voc4cat_0007019)
 
 **Schema Reference:** [CSTR](./elements/classes/CSTR.md)
 
@@ -3525,7 +3525,7 @@ revolutions per unit time (e.g. revolutions per minute).
 
 **Cardinality:**  Recommended
 
-**CURIE:** [`VOC4CAT:0008114`](https://w3id.org/nfdi4cat/voc4cat_0008114)
+**CURIE:** [`voc4cat:0008114`](https://w3id.org/nfdi4cat/voc4cat_0008114)
 
 **Schema Reference:** [stirring_rate](./elements/slots/stirring_rate.md)
 
@@ -3593,7 +3593,7 @@ of pipes and valves connected to the reactor is not included.
 
 **Cardinality:**  Recommended
 
-**CURIE:** [`VOC4CAT:0000153`](https://w3id.org/nfdi4cat/voc4cat_0000153)
+**CURIE:** [`voc4cat:0000153`](https://w3id.org/nfdi4cat/voc4cat_0000153)
 
 **Schema Reference:** [reactor_working_volume](./elements/slots/reactor_working_volume.md)
 
@@ -3661,7 +3661,7 @@ the opposite tip.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008115`](https://w3id.org/nfdi4cat/voc4cat_0008115)
+**CURIE:** [`voc4cat:0008115`](https://w3id.org/nfdi4cat/voc4cat_0008115)
 
 **Schema Reference:** [stirrer_diameter](./elements/slots/stirrer_diameter.md)
 
@@ -3697,7 +3697,7 @@ may use different equipment.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008113`](https://w3id.org/nfdi4cat/voc4cat_0008113)
+**CURIE:** [`voc4cat:0008113`](https://w3id.org/nfdi4cat/voc4cat_0008113)
 
 **Schema Reference:** [reactor_stirrer_type](./elements/slots/reactor_stirrer_type.md)
 
@@ -3917,7 +3917,7 @@ may use different equipment.
 **Description:** Plug flow reactor (PFR) — a tubular reactor in which reactant composition
 varies along the axis with no axial mixing.
 
-**CURIE:** [`VOC4CAT:0007102`](https://w3id.org/nfdi4cat/voc4cat_0007102)
+**CURIE:** [`voc4cat:0007102`](https://w3id.org/nfdi4cat/voc4cat_0007102)
 
 **Schema Reference:** [PlugFlowReactor](./elements/classes/PlugFlowReactor.md)
 
@@ -4045,7 +4045,7 @@ sample, typically reported as diameter or sieve fraction range.
 
 **Cardinality:**  Recommended
 
-**CURIE:** [`VOC4CAT:0008212`](https://w3id.org/nfdi4cat/voc4cat_0008212)
+**CURIE:** [`voc4cat:0008212`](https://w3id.org/nfdi4cat/voc4cat_0008212)
 
 **Schema Reference:** [catalyst_particle_size](./elements/slots/catalyst_particle_size.md)
 
@@ -4313,7 +4313,7 @@ from vessel_material, the material of the outer pressure vessel/shell.
 
 **Cardinality:**  Recommended
 
-**CURIE:** [`VOC4CAT:0000156`](https://w3id.org/nfdi4cat/voc4cat_0000156)
+**CURIE:** [`voc4cat:0000156`](https://w3id.org/nfdi4cat/voc4cat_0000156)
 
 **Schema Reference:** [reaction_chamber_material](./elements/slots/reaction_chamber_material.md)
 
@@ -4629,7 +4629,7 @@ sample, typically reported as diameter or sieve fraction range.
 
 **Cardinality:**  Recommended
 
-**CURIE:** [`VOC4CAT:0008212`](https://w3id.org/nfdi4cat/voc4cat_0008212)
+**CURIE:** [`voc4cat:0008212`](https://w3id.org/nfdi4cat/voc4cat_0008212)
 
 **Schema Reference:** [catalyst_particle_size](./elements/slots/catalyst_particle_size.md)
 
@@ -4965,7 +4965,7 @@ in revolutions per unit time.
 in the sub-millimetre range, enabling precise thermal control and rapid
 screening.
 
-**CURIE:** [`VOC4CAT:0000234`](https://w3id.org/nfdi4cat/voc4cat_0000234)
+**CURIE:** [`voc4cat:0000234`](https://w3id.org/nfdi4cat/voc4cat_0000234)
 
 **Schema Reference:** [Microreactor](./elements/classes/Microreactor.md)
 
@@ -5262,7 +5262,7 @@ sample, typically reported as diameter or sieve fraction range.
 
 **Cardinality:**  Recommended
 
-**CURIE:** [`VOC4CAT:0008212`](https://w3id.org/nfdi4cat/voc4cat_0008212)
+**CURIE:** [`voc4cat:0008212`](https://w3id.org/nfdi4cat/voc4cat_0008212)
 
 **Schema Reference:** [catalyst_particle_size](./elements/slots/catalyst_particle_size.md)
 
@@ -5325,7 +5325,7 @@ fixed bed reactor.
 
 **Cardinality:**  Recommended
 
-**CURIE:** [`VOC4CAT:0007021`](https://w3id.org/nfdi4cat/voc4cat_0007021)
+**CURIE:** [`voc4cat:0007021`](https://w3id.org/nfdi4cat/voc4cat_0007021)
 
 **Schema Reference:** [catalyst_bed_volume](./elements/slots/catalyst_bed_volume.md)
 
@@ -5358,7 +5358,7 @@ bed properties (e.g. improve heat/mass transfer, dilute activity).
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008218`](https://w3id.org/nfdi4cat/voc4cat_0008218)
+**CURIE:** [`voc4cat:0008218`](https://w3id.org/nfdi4cat/voc4cat_0008218)
 
 **Schema Reference:** [catalyst_dilution_material](./elements/slots/catalyst_dilution_material.md)
 
@@ -5378,7 +5378,7 @@ measured along the direction of flow.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008217`](https://w3id.org/nfdi4cat/voc4cat_0008217)
+**CURIE:** [`voc4cat:0008217`](https://w3id.org/nfdi4cat/voc4cat_0008217)
 
 **Schema Reference:** [catalyst_bed_height](./elements/slots/catalyst_bed_height.md)
 

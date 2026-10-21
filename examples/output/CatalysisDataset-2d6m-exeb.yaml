@@ -28,7 +28,7 @@ was_generated_by:
     title: gas chromatograph
     description: Instrument model not specified in the source dataset files.
   rdf_type:
-    id: VOC4CAT:0000130
+    id: voc4cat:0000130
     title: gas chromatography
   evaluated_entity:
   - id: coremeta4cat:CAT_2d6m-exeb_all
@@ -97,7 +97,7 @@ is_about_activity:
   - description: Related publication DOI
     notation: doi:10.1021/acs.iecr.1c00389
   rdf_type:
-    id: VOC4CAT:0007010
+    id: voc4cat:0007010
     title: CO methanation
   used_reactant:
   - id: coremeta4cat:REAC_2d6m-exeb_CO
@@ -245,7 +245,7 @@ is_about_activity:
   - description: Related publication DOI
     notation: doi:10.1021/acs.iecr.1c00389
   rdf_type:
-    id: VOC4CAT:0007011
+    id: voc4cat:0007011
     title: CO2 methanation
   used_reactant:
   - id: coremeta4cat:REAC_2d6m-exeb_CO2
@@ -471,7 +471,7 @@ is_about_activity:
   - description: Related publication DOI
     notation: doi:10.1021/acs.iecr.1c00389
   rdf_type:
-    id: VOC4CAT:0007010
+    id: voc4cat:0007010
     title: CO methanation
   used_reactant:
   - id: coremeta4cat:REAC_2d6m-exeb_CO_mixed
@@ -615,5 +615,5 @@ is_about_activity:
     description: ~100 kPa in all 4 runs
     unit: https://qudt.org/vocab/unit/KiloPA
 rdf_type:
-  id: VOC4CAT:0007001
+  id: voc4cat:0007001
   title: heterogeneous catalysis

@@ -51,14 +51,14 @@ version: 1.0.0
 
 prefixes:
   coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
-  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
+  dcatap_plus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   SIO: http://semanticscience.org/resource/SIO_
-  AFR: http://purl.allotrope.org/ontologies/result#AFR_
+  allotrope.result: http://purl.allotrope.org/ontologies/result#AFR_
 
 default_prefix: coremeta4cat
 default_range: string
@@ -113,7 +113,7 @@ classes:
     slot_usage:
       rdf_type:
         description: |-
-          The type of catalytic reaction as an ontology term (e.g. VOC4CAT:0007010
+          The type of catalytic reaction as an ontology term (e.g. voc4cat:0007010
           for a specific reaction type, or a ChemO/RXNO term).
 
           This is the sole reaction-type classification mechanism (DCAT-AP-PLUS
@@ -174,7 +174,7 @@ classes:
 
   ChemicalReactor:
     is_a: Reactor
-    class_uri: VOC4CAT:0007018
+    class_uri: voc4cat:0007018
     abstract: true
     description: |-
       Abstract Reactor (chemdcat-ap) subclass representing a catalytic reactor
@@ -192,7 +192,7 @@ classes:
 
   ElectrochemicalReactor:
     is_a: ChemicalReactor
-    class_uri: VOC4CAT:0000193
+    class_uri: voc4cat:0000193
     description: |-
       Electrochemical reactor used in electrocatalytic experiments, including
       H-cells, flow cells, and membrane electrode assemblies.
@@ -205,7 +205,7 @@ classes:
 
   CSTR:
     is_a: ChemicalReactor
-    class_uri: VOC4CAT:0007019
+    class_uri: voc4cat:0007019
     description: |-
       Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow
       reactor operating at steady state.
@@ -219,7 +219,7 @@ classes:
 
   PlugFlowReactor:
     is_a: ChemicalReactor
-    class_uri: VOC4CAT:0007102
+    class_uri: voc4cat:0007102
     description: |-
       Plug flow reactor (PFR) — a tubular reactor in which reactant composition
       varies along the axis with no axial mixing.
@@ -259,7 +259,7 @@ classes:
 
   Microreactor:
     is_a: ChemicalReactor
-    class_uri: VOC4CAT:0000234
+    class_uri: voc4cat:0000234
     description: |-
       Microreactor — a miniaturised flow reactor with characteristic dimensions
       in the sub-millimetre range, enabling precise thermal control and rapid
@@ -326,13 +326,13 @@ slots:
       CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +
       catalyst_form) or PR #118's CatalystType class hierarchy should be
       the long-term mechanism -- kept as two enums here because the
-      VOC4CAT terms show CatalystType conflates the regime axis
+      voc4cat terms show CatalystType conflates the regime axis
       (Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form
       axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical
-      VOC4CAT ids to catalyst_form's permissible values), which are
+      voc4cat ids to catalyst_form's permissible values), which are
       independent and often both apply to the same catalyst at once.
     range: CatalysisResearchFieldEnum
-    slot_uri: VOC4CAT:0007014
+    slot_uri: voc4cat:0007014
     recommended: true
     multivalued: true
 
@@ -351,7 +351,7 @@ slots:
       (desired) products (e.g. "ammonia synthesis", "Fischer-Tropsch synthesis").
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0007009
+    slot_uri: voc4cat:0007009
     recommended: true
 
   # ---- OperationParameters slots (flattened onto Reaction) ----
@@ -363,7 +363,7 @@ slots:
       For a single set-point, set min_value equal to max_value.
     is_a: has_quantitative_attribute
     range: QuantitativeRange
-    slot_uri: VOC4CAT:0007032
+    slot_uri: voc4cat:0007032
     multivalued: true
     inlined_as_list: true
 
@@ -371,7 +371,7 @@ slots:
     description: Total pressure in the reactor during the experiment.
     is_a: has_pressure
     range: Pressure
-    slot_uri: VOC4CAT:0000118
+    slot_uri: voc4cat:0000118
     multivalued: true
     inlined_as_list: true
 
@@ -395,7 +395,7 @@ slots:
       positive electrode in a galvanic cell.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0007254
+    slot_uri: voc4cat:0007254
     recommended: true
 
   has_anode:
@@ -405,7 +405,7 @@ slots:
       negative electrode in a galvanic cell.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0007255
+    slot_uri: voc4cat:0007255
     recommended: true
 
   cell_operating_mode:
@@ -422,7 +422,7 @@ slots:
       electrode which is active.
     is_a: has_quantitative_attribute
     range: Area
-    slot_uri: VOC4CAT:0007258
+    slot_uri: voc4cat:0007258
 
   faradaic_current:
     description: |-
@@ -430,7 +430,7 @@ slots:
       causing (or is caused by) chemical reactions.
     is_a: has_quantitative_attribute
     range: ElectricCurrent
-    slot_uri: VOC4CAT:0007259
+    slot_uri: voc4cat:0007259
     recommended: true
 
   # ---- CSTR-specific slots ----
@@ -441,7 +441,7 @@ slots:
       revolutions per unit time (e.g. revolutions per minute).
     is_a: has_angular_velocity
     range: AngularVelocity
-    slot_uri: VOC4CAT:0008114
+    slot_uri: voc4cat:0008114
     recommended: true
 
   residence_time:
@@ -458,7 +458,7 @@ slots:
       of pipes and valves connected to the reactor is not included.
     is_a: has_volume
     range: Volume
-    slot_uri: VOC4CAT:0000153
+    slot_uri: voc4cat:0000153
     recommended: true
 
   reactor_diameter:
@@ -473,7 +473,7 @@ slots:
       the opposite tip.
     is_a: has_length
     range: LengthQuantity
-    slot_uri: VOC4CAT:0008115
+    slot_uri: voc4cat:0008115
 
   reactor_stirrer_type:
     description: |-
@@ -484,7 +484,7 @@ slots:
       may use different equipment.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0008113
+    slot_uri: voc4cat:0008113
 
   # ---- PlugFlowReactor-specific slots ----
 
@@ -528,7 +528,7 @@ slots:
       sample, typically reported as diameter or sieve fraction range.
     is_a: has_length
     range: LengthQuantity
-    slot_uri: VOC4CAT:0008212
+    slot_uri: voc4cat:0008212
     recommended: true
 
   # ---- Autoclave-specific slots ----
@@ -548,7 +548,7 @@ slots:
       from vessel_material, the material of the outer pressure vessel/shell.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0000156
+    slot_uri: voc4cat:0000156
     recommended: true
 
   vessel_internal_volume:
@@ -646,7 +646,7 @@ slots:
       fixed bed reactor.
     is_a: has_volume
     range: Volume
-    slot_uri: VOC4CAT:0007021
+    slot_uri: voc4cat:0007021
     recommended: true
 
   catalyst_dilution_material:
@@ -655,7 +655,7 @@ slots:
       bed properties (e.g. improve heat/mass transfer, dilute activity).
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0008218
+    slot_uri: voc4cat:0008218
 
   catalyst_bed_height:
     description: |-
@@ -663,7 +663,7 @@ slots:
       measured along the direction of flow.
     is_a: has_length
     range: LengthQuantity
-    slot_uri: VOC4CAT:0008217
+    slot_uri: voc4cat:0008217
 
   # ---- FluidizedBedReactor-specific slots ----
 

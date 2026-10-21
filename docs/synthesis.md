@@ -81,7 +81,7 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **Cardinality:**  Recommended, Multivalued
 
-**CURIE:** [`VOC4CAT:0008105`](https://w3id.org/nfdi4cat/voc4cat_0008105)
+**CURIE:** [`voc4cat:0008105`](https://w3id.org/nfdi4cat/voc4cat_0008105)
 
 **Schema Reference:** [storage_conditions](./elements/slots/storage_conditions.md)
 
@@ -100,7 +100,7 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008104`](https://w3id.org/nfdi4cat/voc4cat_0008104)
+**CURIE:** [`voc4cat:0008104`](https://w3id.org/nfdi4cat/voc4cat_0008104)
 
 **Schema Reference:** [catalyst_support](./elements/slots/catalyst_support.md)
 
@@ -119,7 +119,7 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
+**CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
 **Schema Reference:** [solvent](./elements/slots/solvent.md)
 
@@ -385,7 +385,7 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 **Description:** A qualitative descriptor of the pre-treatment applied to a sample
 before a process or measurement (e.g. "reduction at 300 °C", "outgassing").
 
-**CURIE:** [`VOC4CAT:0000122`](https://w3id.org/nfdi4cat/voc4cat_0000122)
+**CURIE:** [`voc4cat:0000122`](https://w3id.org/nfdi4cat/voc4cat_0000122)
 
 **Schema Reference:** [SamplePretreatment](./elements/classes/SamplePretreatment.md)
 
@@ -443,7 +443,7 @@ automatically when a class is instantiated directly.
 **Description:** A MaterialSample that serves as input material in a catalyst Synthesis.
 Precursors are consumed or transformed during the preparation process.
 
-**CURIE:** [`VOC4CAT:0007794`](https://w3id.org/nfdi4cat/voc4cat_0007794)
+**CURIE:** [`voc4cat:0007794`](https://w3id.org/nfdi4cat/voc4cat_0007794)
 
 **Schema Reference:** [Precursor](./elements/classes/Precursor.md)
 
@@ -458,7 +458,7 @@ Precursors are consumed or transformed during the preparation process.
 
 **Cardinality:**  Mandatory, Multivalued
 
-**CURIE:** [`VOC4CAT:0008118`](https://w3id.org/nfdi4cat/voc4cat_0008118)
+**CURIE:** [`voc4cat:0008118`](https://w3id.org/nfdi4cat/voc4cat_0008118)
 
 **Schema Reference:** [precursor_quantity](./elements/slots/precursor_quantity.md)
 
@@ -748,7 +748,7 @@ Precursors are consumed or transformed during the preparation process.
 
 **Description:** A MaterialSample that is the product of a catalyst Synthesis.
 The specific type of catalyst (e.g. heterogeneous, supported metal)
-is expressed via rdf_type using a VOC4CAT term.
+is expressed via rdf_type using a voc4cat term.
 
 **CURIE:** [`OBI:0000747`](http://purl.obolibrary.org/obo/OBI_0000747)
 
@@ -1009,9 +1009,9 @@ method-specific parameters. Linked from Synthesis via realized_plan.
 
 The specific preparation method type should additionally be expressed
 via rdf_type on the Synthesis activity using a voc4cat term
-(e.g. VOC4CAT:0007016 for preparation method).
+(e.g. voc4cat:0007016 for preparation method).
 
-**CURIE:** [`VOC4CAT:0007016`](https://w3id.org/nfdi4cat/voc4cat_0007016)
+**CURIE:** [`voc4cat:0007016`](https://w3id.org/nfdi4cat/voc4cat_0007016)
 
 **Schema Reference:** [PreparationMethod](./elements/classes/PreparationMethod.md)
 
@@ -1048,7 +1048,7 @@ via rdf_type on the Synthesis activity using a voc4cat term
 **Description:** Catalyst preparation by impregnation: a solution of the active phase
 precursor is brought into contact with the support material.
 
-**CURIE:** [`VOC4CAT:0007028`](https://w3id.org/nfdi4cat/voc4cat_0007028)
+**CURIE:** [`voc4cat:0007028`](https://w3id.org/nfdi4cat/voc4cat_0007028)
 
 **Schema Reference:** [Impregnation](./elements/classes/Impregnation.md)
 
@@ -1063,7 +1063,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008119`](https://w3id.org/nfdi4cat/voc4cat_0008119)
+**CURIE:** [`voc4cat:0008119`](https://w3id.org/nfdi4cat/voc4cat_0008119)
 
 **Schema Reference:** [impregnation_type](./elements/slots/impregnation_type.md)
 
@@ -1082,7 +1082,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008120`](https://w3id.org/nfdi4cat/voc4cat_0008120)
+**CURIE:** [`voc4cat:0008120`](https://w3id.org/nfdi4cat/voc4cat_0008120)
 
 **Schema Reference:** [impregnation_duration](./elements/slots/impregnation_duration.md)
 
@@ -1118,7 +1118,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008121`](https://w3id.org/nfdi4cat/voc4cat_0008121)
+**CURIE:** [`voc4cat:0008121`](https://w3id.org/nfdi4cat/voc4cat_0008121)
 
 **Schema Reference:** [impregnation_temperature](./elements/slots/impregnation_temperature.md)
 
@@ -1167,7 +1167,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
+**CURIE:** [`voc4cat:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
 
 **Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
@@ -1186,7 +1186,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
+**CURIE:** [`voc4cat:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
 
 **Schema Reference:** [has_drying_temperature](./elements/slots/has_drying_temperature.md)
 
@@ -1218,7 +1218,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
+**CURIE:** [`voc4cat:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
 
 **Schema Reference:** [has_drying_duration](./elements/slots/has_drying_duration.md)
 
@@ -1250,7 +1250,7 @@ precursor is brought into contact with the support material.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
+**CURIE:** [`voc4cat:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
 
 **Schema Reference:** [has_drying_atmosphere](./elements/slots/has_drying_atmosphere.md)
 
@@ -1280,7 +1280,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **Description:** The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").
 
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 **Schema Reference:** [CalcinationGaseousEnvironment](./elements/classes/CalcinationGaseousEnvironment.md)
 
@@ -1384,7 +1384,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
+**CURIE:** [`voc4cat:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
 **Schema Reference:** [has_calcination_dwelling_time](./elements/slots/has_calcination_dwelling_time.md)
 
@@ -1416,7 +1416,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
+**CURIE:** [`voc4cat:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
 
 **Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
@@ -1447,7 +1447,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").
 
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 *Full field list already shown [earlier on this page](#schema-class-CalcinationGaseousEnvironment) -- this class is reached from multiple fields.*
 
@@ -1468,7 +1468,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
+**CURIE:** [`voc4cat:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
 
 **Schema Reference:** [has_calcination_heating_rate](./elements/slots/has_calcination_heating_rate.md)
 
@@ -1504,7 +1504,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
+**CURIE:** [`voc4cat:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
 **Schema Reference:** [has_calcination_gas_flow_rate](./elements/slots/has_calcination_gas_flow_rate.md)
 
@@ -1543,7 +1543,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** Catalyst preparation by co-precipitation: precursor salts are
 simultaneously precipitated from solution by a precipitating agent.
 
-**CURIE:** [`VOC4CAT:0007795`](https://w3id.org/nfdi4cat/voc4cat_0007795)
+**CURIE:** [`voc4cat:0007795`](https://w3id.org/nfdi4cat/voc4cat_0007795)
 
 **Schema Reference:** [CoPrecipitation](./elements/classes/CoPrecipitation.md)
 
@@ -1575,7 +1575,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008203`](https://w3id.org/nfdi4cat/voc4cat_0008203)
+**CURIE:** [`voc4cat:0008203`](https://w3id.org/nfdi4cat/voc4cat_0008203)
 
 **Schema Reference:** [precipitating_agent](./elements/slots/precipitating_agent.md)
 
@@ -1607,7 +1607,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008125`](https://w3id.org/nfdi4cat/voc4cat_0008125)
+**CURIE:** [`voc4cat:0008125`](https://w3id.org/nfdi4cat/voc4cat_0008125)
 
 **Schema Reference:** [precipitating_concentration](./elements/slots/precipitating_concentration.md)
 
@@ -1715,7 +1715,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008126`](https://w3id.org/nfdi4cat/voc4cat_0008126)
+**CURIE:** [`voc4cat:0008126`](https://w3id.org/nfdi4cat/voc4cat_0008126)
 
 **Schema Reference:** [has_mixing_duration](./elements/slots/has_mixing_duration.md)
 
@@ -1747,7 +1747,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008127`](https://w3id.org/nfdi4cat/voc4cat_0008127)
+**CURIE:** [`voc4cat:0008127`](https://w3id.org/nfdi4cat/voc4cat_0008127)
 
 **Schema Reference:** [has_mixing_temperature](./elements/slots/has_mixing_temperature.md)
 
@@ -1779,7 +1779,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008128`](https://w3id.org/nfdi4cat/voc4cat_0008128)
+**CURIE:** [`voc4cat:0008128`](https://w3id.org/nfdi4cat/voc4cat_0008128)
 
 **Schema Reference:** [order_of_addition](./elements/slots/order_of_addition.md)
 
@@ -1798,7 +1798,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008129`](https://w3id.org/nfdi4cat/voc4cat_0008129)
+**CURIE:** [`voc4cat:0008129`](https://w3id.org/nfdi4cat/voc4cat_0008129)
 
 **Schema Reference:** [filtration](./elements/slots/filtration.md)
 
@@ -1817,7 +1817,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008130`](https://w3id.org/nfdi4cat/voc4cat_0008130)
+**CURIE:** [`voc4cat:0008130`](https://w3id.org/nfdi4cat/voc4cat_0008130)
 
 **Schema Reference:** [purification](./elements/slots/purification.md)
 
@@ -1836,7 +1836,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008131`](https://w3id.org/nfdi4cat/voc4cat_0008131)
+**CURIE:** [`voc4cat:0008131`](https://w3id.org/nfdi4cat/voc4cat_0008131)
 
 **Schema Reference:** [has_aging_temperature](./elements/slots/has_aging_temperature.md)
 
@@ -1868,7 +1868,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008204`](https://w3id.org/nfdi4cat/voc4cat_0008204)
+**CURIE:** [`voc4cat:0008204`](https://w3id.org/nfdi4cat/voc4cat_0008204)
 
 **Schema Reference:** [has_aging_duration](./elements/slots/has_aging_duration.md)
 
@@ -1900,7 +1900,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
+**CURIE:** [`voc4cat:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
 
 **Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
@@ -1919,7 +1919,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
+**CURIE:** [`voc4cat:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
 
 **Schema Reference:** [has_drying_temperature](./elements/slots/has_drying_temperature.md)
 
@@ -1951,7 +1951,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
+**CURIE:** [`voc4cat:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
 
 **Schema Reference:** [has_drying_duration](./elements/slots/has_drying_duration.md)
 
@@ -1983,7 +1983,7 @@ simultaneously precipitated from solution by a precipitating agent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
+**CURIE:** [`voc4cat:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
 
 **Schema Reference:** [has_drying_atmosphere](./elements/slots/has_drying_atmosphere.md)
 
@@ -2055,7 +2055,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
+**CURIE:** [`voc4cat:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
 **Schema Reference:** [has_calcination_dwelling_time](./elements/slots/has_calcination_dwelling_time.md)
 
@@ -2087,7 +2087,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
+**CURIE:** [`voc4cat:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
 
 **Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
@@ -2118,7 +2118,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").
 
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 *Full field list already shown [earlier on this page](#schema-class-CalcinationGaseousEnvironment) -- this class is reached from multiple fields.*
 
@@ -2139,7 +2139,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
+**CURIE:** [`voc4cat:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
 
 **Schema Reference:** [has_calcination_heating_rate](./elements/slots/has_calcination_heating_rate.md)
 
@@ -2171,7 +2171,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
+**CURIE:** [`voc4cat:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
 **Schema Reference:** [has_calcination_gas_flow_rate](./elements/slots/has_calcination_gas_flow_rate.md)
 
@@ -2240,7 +2240,7 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008204`](https://w3id.org/nfdi4cat/voc4cat_0008204)
+**CURIE:** [`voc4cat:0008204`](https://w3id.org/nfdi4cat/voc4cat_0008204)
 
 **Schema Reference:** [has_aging_duration](./elements/slots/has_aging_duration.md)
 
@@ -2327,7 +2327,7 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
+**CURIE:** [`voc4cat:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
 
 **Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
@@ -2346,7 +2346,7 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
+**CURIE:** [`voc4cat:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
 
 **Schema Reference:** [has_drying_temperature](./elements/slots/has_drying_temperature.md)
 
@@ -2378,7 +2378,7 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
+**CURIE:** [`voc4cat:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
 
 **Schema Reference:** [has_drying_duration](./elements/slots/has_drying_duration.md)
 
@@ -2410,7 +2410,7 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
+**CURIE:** [`voc4cat:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
 
 **Schema Reference:** [has_drying_atmosphere](./elements/slots/has_drying_atmosphere.md)
 
@@ -2482,7 +2482,7 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008113`](https://w3id.org/nfdi4cat/voc4cat_0008113)
+**CURIE:** [`voc4cat:0008113`](https://w3id.org/nfdi4cat/voc4cat_0008113)
 
 **Schema Reference:** [stirrer_type](./elements/slots/stirrer_type.md)
 
@@ -2550,7 +2550,7 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
@@ -2582,7 +2582,7 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
@@ -2651,7 +2651,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -2789,7 +2789,7 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000053`](https://w3id.org/nfdi4cat/voc4cat_0000053)
+**CURIE:** [`voc4cat:0000053`](https://w3id.org/nfdi4cat/voc4cat_0000053)
 
 **Schema Reference:** [synthesis_pressure](./elements/slots/synthesis_pressure.md)
 
@@ -2838,7 +2838,7 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
@@ -2870,7 +2870,7 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
@@ -2935,7 +2935,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -3111,7 +3111,7 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
@@ -3143,7 +3143,7 @@ producing metal oxide catalysts in a single rapid step.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
@@ -3208,7 +3208,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -3260,7 +3260,7 @@ of active phase onto a substrate.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000024`](https://w3id.org/nfdi4cat/voc4cat_0000024)
+**CURIE:** [`voc4cat:0000024`](https://w3id.org/nfdi4cat/voc4cat_0000024)
 
 **Schema Reference:** [substrate](./elements/slots/substrate.md)
 
@@ -3300,7 +3300,7 @@ of active phase onto a substrate.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000112`](https://w3id.org/nfdi4cat/voc4cat_0000112)
+**CURIE:** [`voc4cat:0000112`](https://w3id.org/nfdi4cat/voc4cat_0000112)
 
 **Schema Reference:** [purging_duration](./elements/slots/purging_duration.md)
 
@@ -3321,7 +3321,7 @@ of active phase onto a substrate.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
+**CURIE:** [`voc4cat:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
 
 **Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
@@ -3520,7 +3520,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008203`](https://w3id.org/nfdi4cat/voc4cat_0008203)
+**CURIE:** [`voc4cat:0008203`](https://w3id.org/nfdi4cat/voc4cat_0008203)
 
 **Schema Reference:** [precipitating_agent](./elements/slots/precipitating_agent.md)
 
@@ -3552,7 +3552,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008125`](https://w3id.org/nfdi4cat/voc4cat_0008125)
+**CURIE:** [`voc4cat:0008125`](https://w3id.org/nfdi4cat/voc4cat_0008125)
 
 **Schema Reference:** [precipitating_concentration](./elements/slots/precipitating_concentration.md)
 
@@ -3648,7 +3648,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008126`](https://w3id.org/nfdi4cat/voc4cat_0008126)
+**CURIE:** [`voc4cat:0008126`](https://w3id.org/nfdi4cat/voc4cat_0008126)
 
 **Schema Reference:** [has_mixing_duration](./elements/slots/has_mixing_duration.md)
 
@@ -3680,7 +3680,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008127`](https://w3id.org/nfdi4cat/voc4cat_0008127)
+**CURIE:** [`voc4cat:0008127`](https://w3id.org/nfdi4cat/voc4cat_0008127)
 
 **Schema Reference:** [has_mixing_temperature](./elements/slots/has_mixing_temperature.md)
 
@@ -3712,7 +3712,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008128`](https://w3id.org/nfdi4cat/voc4cat_0008128)
+**CURIE:** [`voc4cat:0008128`](https://w3id.org/nfdi4cat/voc4cat_0008128)
 
 **Schema Reference:** [order_of_addition](./elements/slots/order_of_addition.md)
 
@@ -3731,7 +3731,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008129`](https://w3id.org/nfdi4cat/voc4cat_0008129)
+**CURIE:** [`voc4cat:0008129`](https://w3id.org/nfdi4cat/voc4cat_0008129)
 
 **Schema Reference:** [filtration](./elements/slots/filtration.md)
 
@@ -3750,7 +3750,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008130`](https://w3id.org/nfdi4cat/voc4cat_0008130)
+**CURIE:** [`voc4cat:0008130`](https://w3id.org/nfdi4cat/voc4cat_0008130)
 
 **Schema Reference:** [purification](./elements/slots/purification.md)
 
@@ -3769,7 +3769,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008131`](https://w3id.org/nfdi4cat/voc4cat_0008131)
+**CURIE:** [`voc4cat:0008131`](https://w3id.org/nfdi4cat/voc4cat_0008131)
 
 **Schema Reference:** [has_aging_temperature](./elements/slots/has_aging_temperature.md)
 
@@ -3801,7 +3801,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008204`](https://w3id.org/nfdi4cat/voc4cat_0008204)
+**CURIE:** [`voc4cat:0008204`](https://w3id.org/nfdi4cat/voc4cat_0008204)
 
 **Schema Reference:** [has_aging_duration](./elements/slots/has_aging_duration.md)
 
@@ -3833,7 +3833,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
+**CURIE:** [`voc4cat:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
 
 **Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
@@ -3852,7 +3852,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
+**CURIE:** [`voc4cat:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
 
 **Schema Reference:** [has_drying_temperature](./elements/slots/has_drying_temperature.md)
 
@@ -3884,7 +3884,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
+**CURIE:** [`voc4cat:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
 
 **Schema Reference:** [has_drying_duration](./elements/slots/has_drying_duration.md)
 
@@ -3916,7 +3916,7 @@ is precipitated directly onto the support surface.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
+**CURIE:** [`voc4cat:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
 
 **Schema Reference:** [has_drying_atmosphere](./elements/slots/has_drying_atmosphere.md)
 
@@ -3988,7 +3988,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
+**CURIE:** [`voc4cat:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
 **Schema Reference:** [has_calcination_dwelling_time](./elements/slots/has_calcination_dwelling_time.md)
 
@@ -4020,7 +4020,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
+**CURIE:** [`voc4cat:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
 
 **Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
@@ -4051,7 +4051,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").
 
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 *Full field list already shown [earlier on this page](#schema-class-CalcinationGaseousEnvironment) -- this class is reached from multiple fields.*
 
@@ -4072,7 +4072,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
+**CURIE:** [`voc4cat:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
 
 **Schema Reference:** [has_calcination_heating_rate](./elements/slots/has_calcination_heating_rate.md)
 
@@ -4104,7 +4104,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
+**CURIE:** [`voc4cat:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
 **Schema Reference:** [has_calcination_gas_flow_rate](./elements/slots/has_calcination_gas_flow_rate.md)
 
@@ -4213,7 +4213,7 @@ uniformly heat the reaction mixture.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
@@ -4245,7 +4245,7 @@ uniformly heat the reaction mixture.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
@@ -4310,7 +4310,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -4452,7 +4452,7 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
+**CURIE:** [`voc4cat:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
 
 **Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
@@ -4471,7 +4471,7 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
+**CURIE:** [`voc4cat:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
 
 **Schema Reference:** [has_drying_temperature](./elements/slots/has_drying_temperature.md)
 
@@ -4503,7 +4503,7 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
+**CURIE:** [`voc4cat:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
 
 **Schema Reference:** [has_drying_duration](./elements/slots/has_drying_duration.md)
 
@@ -4535,7 +4535,7 @@ reactions via acoustic cavitation.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
+**CURIE:** [`voc4cat:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
 
 **Schema Reference:** [has_drying_atmosphere](./elements/slots/has_drying_atmosphere.md)
 
@@ -4607,7 +4607,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
+**CURIE:** [`voc4cat:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
 **Schema Reference:** [has_calcination_dwelling_time](./elements/slots/has_calcination_dwelling_time.md)
 
@@ -4639,7 +4639,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
+**CURIE:** [`voc4cat:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
 
 **Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
@@ -4670,7 +4670,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").
 
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 *Full field list already shown [earlier on this page](#schema-class-CalcinationGaseousEnvironment) -- this class is reached from multiple fields.*
 
@@ -4691,7 +4691,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
+**CURIE:** [`voc4cat:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
 
 **Schema Reference:** [has_calcination_heating_rate](./elements/slots/has_calcination_heating_rate.md)
 
@@ -4723,7 +4723,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
+**CURIE:** [`voc4cat:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
 **Schema Reference:** [has_calcination_gas_flow_rate](./elements/slots/has_calcination_gas_flow_rate.md)
 
@@ -4758,7 +4758,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** Catalyst preparation by flame spray pyrolysis (FSP): a liquid precursor
 solution is atomised and combusted in a flame to produce nanoparticles.
 
-**CURIE:** [`VOC4CAT:0007031`](https://w3id.org/nfdi4cat/voc4cat_0007031)
+**CURIE:** [`voc4cat:0007031`](https://w3id.org/nfdi4cat/voc4cat_0007031)
 
 **Schema Reference:** [FlameSprayPyrolysis](./elements/classes/FlameSprayPyrolysis.md)
 
@@ -5165,7 +5165,7 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
@@ -5197,7 +5197,7 @@ combined with thermal treatment.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
@@ -5262,7 +5262,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -5313,7 +5313,7 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000053`](https://w3id.org/nfdi4cat/voc4cat_0000053)
+**CURIE:** [`voc4cat:0000053`](https://w3id.org/nfdi4cat/voc4cat_0000053)
 
 **Schema Reference:** [synthesis_pressure](./elements/slots/synthesis_pressure.md)
 
@@ -5362,7 +5362,7 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
+**CURIE:** [`voc4cat:0000051`](https://w3id.org/nfdi4cat/voc4cat_0000051)
 
 **Schema Reference:** [synthesis_temperature](./elements/slots/synthesis_temperature.md)
 
@@ -5394,7 +5394,7 @@ and deposited onto a substrate without passing through a liquid phase.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
+**CURIE:** [`voc4cat:0000050`](https://w3id.org/nfdi4cat/voc4cat_0000050)
 
 **Schema Reference:** [synthesis_duration](./elements/slots/synthesis_duration.md)
 
@@ -5459,7 +5459,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -5580,7 +5580,7 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`voc4cat:0008114`](https://w3id.org/nfdi4cat/voc4cat_0008114)
 
 **Schema Reference:** [has_stirring_speed](./elements/slots/has_stirring_speed.md)
 
@@ -5612,7 +5612,7 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008127`](https://w3id.org/nfdi4cat/voc4cat_0008127)
+**CURIE:** [`voc4cat:0008127`](https://w3id.org/nfdi4cat/voc4cat_0008127)
 
 **Schema Reference:** [has_mixing_temperature](./elements/slots/has_mixing_temperature.md)
 
@@ -5701,7 +5701,7 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008203`](https://w3id.org/nfdi4cat/voc4cat_0008203)
+**CURIE:** [`voc4cat:0008203`](https://w3id.org/nfdi4cat/voc4cat_0008203)
 
 **Schema Reference:** [precipitation_agent](./elements/slots/precipitation_agent.md)
 
@@ -5760,7 +5760,7 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
+**CURIE:** [`voc4cat:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
 
 **Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
@@ -5800,7 +5800,7 @@ chemistry routes, including crystallisation and purification steps.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -5850,7 +5850,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
+**CURIE:** [`voc4cat:0008122`](https://w3id.org/nfdi4cat/voc4cat_0008122)
 
 **Schema Reference:** [drying_device](./elements/slots/drying_device.md)
 
@@ -5869,7 +5869,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
+**CURIE:** [`voc4cat:0008207`](https://w3id.org/nfdi4cat/voc4cat_0008207)
 
 **Schema Reference:** [has_drying_temperature](./elements/slots/has_drying_temperature.md)
 
@@ -5901,7 +5901,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
+**CURIE:** [`voc4cat:0008206`](https://w3id.org/nfdi4cat/voc4cat_0008206)
 
 **Schema Reference:** [has_drying_duration](./elements/slots/has_drying_duration.md)
 
@@ -5933,7 +5933,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
+**CURIE:** [`voc4cat:0008208`](https://w3id.org/nfdi4cat/voc4cat_0008208)
 
 **Schema Reference:** [has_drying_atmosphere](./elements/slots/has_drying_atmosphere.md)
 
@@ -6040,7 +6040,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
+**CURIE:** [`voc4cat:0000060`](https://w3id.org/nfdi4cat/voc4cat_0000060)
 
 **Schema Reference:** [has_calcination_dwelling_time](./elements/slots/has_calcination_dwelling_time.md)
 
@@ -6072,7 +6072,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
+**CURIE:** [`voc4cat:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
 
 **Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
@@ -6103,7 +6103,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").
 
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 *Full field list already shown [earlier on this page](#schema-class-CalcinationGaseousEnvironment) -- this class is reached from multiple fields.*
 
@@ -6124,7 +6124,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
+**CURIE:** [`voc4cat:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
 
 **Schema Reference:** [has_calcination_heating_rate](./elements/slots/has_calcination_heating_rate.md)
 
@@ -6156,7 +6156,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
+**CURIE:** [`voc4cat:0000056`](https://w3id.org/nfdi4cat/voc4cat_0000056)
 
 **Schema Reference:** [has_calcination_gas_flow_rate](./elements/slots/has_calcination_gas_flow_rate.md)
 

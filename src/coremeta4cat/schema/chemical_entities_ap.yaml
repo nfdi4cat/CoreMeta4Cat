@@ -31,7 +31,7 @@ prefixes:
   AFX: http://purl.allotrope.org/ontologies/property#AFX_
   AFR: http://purl.allotrope.org/ontologies/result#AFR_
   CHEBI: http://purl.obolibrary.org/obo/CHEBI_
-  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
+  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
   EDAM: http://edamontology.org/data_
 default_prefix: chemical_entities_ap
 default_range: string
@@ -110,7 +110,7 @@ classes:
     exact_mappings:
       - EDAM:2140
       - NCIT:C41185
-      - VOC4CAT:0007244
+      - voc4cat:0007244
       - AFR:0002036
     narrow_mappings:
       - CHMO:0002822
