@@ -1271,13 +1271,15 @@
 </ul>
 <p>Eight reactor design types are defined:
 <code>FixedBedReactor</code> · <code>CSTR</code> · <code>PlugFlowReactor</code> · <code>Autoclave</code> · <code>SlurryReactor</code> · <code>Microreactor</code> · <code>ElectrochemicalReactor</code> · <code>FluidizedBedReactor</code></p>
-<p>??? info "Operando experiments"
-    For in-situ or operando experiments (e.g. XRD measured while a reaction runs), the dataset carries <strong>both</strong> links simultaneously:
-    <div class="highlight"><pre><span></span><code><span class="nt">was_generated_by</span><span class="p">:</span>
+<div class="admonition info">
+<p class="admonition-title">Operando experiments</p>
+<p>For in-situ or operando experiments (e.g. XRD measured while a reaction runs), the dataset carries <strong>both</strong> links simultaneously:
+<div class="highlight"><pre><span></span><code><span class="nt">was_generated_by</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characterization</span><span class="w">     </span><span class="c1"># PowderXRD — the process that made the data</span>
 <span class="nt">is_about_activity</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reaction</span><span class="w">             </span><span class="c1"># the catalytic process being monitored</span>
 </code></pre></div></p>
+</div>
 <h3 id="simulation">Simulation</h3>
 <p><strong>What it is:</strong> A computational study of a catalyst or catalytic mechanism. Simulation is a <code>DataGeneratingActivity</code> — it generates data computationally.</p>
 <p><strong>Key links:</strong></p>
@@ -1289,8 +1291,10 @@
 <p>Twelve calculated property classes capture the type of computed output: <code>ElectronicStructure</code>, <code>BandGap</code>, <code>ThermodynamicStability</code>, <code>PhononDispersion</code>, <code>Surfaces</code>, <code>GrainBoundaries</code>, <code>ElasticConstants</code>, <code>DielectricTensors</code>, <code>EquationsOfState</code>, <code>AqueousStability</code>, <code>Piezoelectricity</code>, <code>Ferroelectrics</code>.</p>
 <hr />
 <h2 id="pattern-1-classification-via-rdf_type">Pattern 1: Classification via rdf_type</h2>
-<p>??? abstract "Pattern summary"
-    Flexible, machine-actionable classification of datasets, activities, and entities using ontology terms — without creating a separate class for every possible value.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Pattern summary</p>
+<p>Flexible, machine-actionable classification of datasets, activities, and entities using ontology terms — without creating a separate class for every possible value.</p>
+</div>
 <p>Rather than defining a fixed class hierarchy for every type of catalysis or every synthesis method, CoreMeta4Cat uses a single <code>rdf_type</code> slot on each class to carry a controlled vocabulary term from Voc4Cat, CHMO, or another ontology. This keeps the schema compact while staying fully machine-actionable.</p>
 <p><strong>On CatalysisDataset</strong> — classify the catalysis research field:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">rdf_type</span><span class="p">:</span>
@@ -1317,8 +1321,10 @@
 <p>The allowed values for <code>rdf_type</code> on <code>CatalysisDataset</code> are defined in <code>CatalysisResearchFieldEnum</code> -- see the <a href="../catalysis-dataset/">CatalysisDataset</a> page for the full value table and a worked example combining multiple pillars into one dataset.</p>
 <hr />
 <h2 id="pattern-2-activities-and-plans">Pattern 2: Activities and Plans</h2>
-<p>??? abstract "Pattern summary"
-    A two-part structure separates <em>what was done</em> (the Activity) from <em>the protocol describing how to do it</em> (the Plan). This mirrors the PROV-O model and keeps the schema clean.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Pattern summary</p>
+<p>A two-part structure separates <em>what was done</em> (the Activity) from <em>the protocol describing how to do it</em> (the Plan). This mirrors the PROV-O model and keeps the schema clean.</p>
+</div>
 <p>Each data class that generates data follows this two-part structure:</p>
 <div class="highlight"><pre><span></span><code>Activity (what was done)        Plan (the protocol)
 ─────────────────────────       ───────────────────────────
@@ -1360,8 +1366,10 @@ Simulation             ──→      SimulationMethod
 </div>
 <hr />
 <h2 id="pattern-3-mixin-classes">Pattern 3: Mixin classes</h2>
-<p>??? abstract "Pattern summary"
-    Slot groups that are shared across multiple methods are factored into reusable mixin classes, so each slot is defined exactly once and inherited wherever needed.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Pattern summary</p>
+<p>Slot groups that are shared across multiple methods are factored into reusable mixin classes, so each slot is defined exactly once and inherited wherever needed.</p>
+</div>
 <p>Many preparation methods share common process steps — drying, calcination, precipitation. Rather than repeating the same slots in every method class, CoreMeta4Cat uses <strong>mixin classes</strong> that bundle related slots:</p>
 <table>
 <thead>
@@ -1432,8 +1440,10 @@ Simulation             ──→      SimulationMethod
 <p>In LinkML, a mixin class has no <code>class_uri</code> of its own and generates no independent node shape. It is a pure slot container, mixed in via the <code>mixins:</code> key on a concrete class.</p>
 <hr />
 <h2 id="pattern-4-shared-slots-in-catcore_common">Pattern 4: Shared slots in catcore_common</h2>
-<p>??? abstract "Pattern summary"
-    Slots referenced by two or more subprofiles are declared once in <code>catcore_common.yaml</code> and imported by all subprofiles. This keeps the schema DRY (Don't Repeat Yourself).</p>
+<div class="admonition abstract">
+<p class="admonition-title">Pattern summary</p>
+<p>Slots referenced by two or more subprofiles are declared once in <code>catcore_common.yaml</code> and imported by all subprofiles. This keeps the schema DRY (Don't Repeat Yourself).</p>
+</div>
 <p>Some slots appear in multiple data classes — for example, <code>temperature</code> is relevant to Synthesis (calcination), Characterization (temperature-programmed experiments), and Reaction (reactor temperature). These shared slots live in <code>catcore_common.yaml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># catcore_common.yaml — shared slots include:</span>
 <span class="l l-Scalar l-Scalar-Plain">atmosphere, temperature, flow_rate, heating_rate,</span>
@@ -1448,8 +1458,10 @@ Simulation             ──→      SimulationMethod
 </div>
 <hr />
 <h2 id="deep-dive-the-evaluatedactivity-distinction">🔬 Deep dive: The EvaluatedActivity distinction</h2>
-<p>??? warning "Technical section"
-    This section is intended for schema developers and DCAT-AP-PLUS integrators. It is not required reading for data providers.</p>
+<div class="admonition warning">
+<p class="admonition-title">Technical section</p>
+<p>This section is intended for schema developers and DCAT-AP-PLUS integrators. It is not required reading for data providers.</p>
+</div>
 <p>One of the most important architectural decisions in CoreMeta4Cat is that <strong>Reaction is not a <code>DataGeneratingActivity</code></strong>. Instead it is an <code>EvaluatedActivity</code>.</p>
 <p>In DCAT-AP-PLUS, the distinction is:</p>
 <table>
