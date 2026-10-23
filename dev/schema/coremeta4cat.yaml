@@ -1921,9 +1921,9 @@ slots:
     description: Molar ratio of water to alkoxide precursor used in hydrolysis.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:hydrolysis_ratio
+    - voc4cat:0008157
     is_a: has_quantitative_attribute
-    slot_uri: coremeta4cat:hydrolysis_ratio
+    slot_uri: voc4cat:0008157
     owner: SolGel
     domain_of:
     - SolGel
@@ -1954,9 +1954,9 @@ slots:
     description: Surfactant or structure-directing agent used as a template.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:surfactant_template
+    - voc4cat:0008147
     is_a: has_qualitative_attribute
-    slot_uri: coremeta4cat:surfactant_template
+    slot_uri: voc4cat:0008147
     owner: SolGel
     domain_of:
     - SolGel
@@ -1970,9 +1970,9 @@ slots:
     description: Volume of solution relative to autoclave volume (filling degree).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:filling_volume
+    - voc4cat:0008148
     is_a: has_quantitative_attribute
-    slot_uri: coremeta4cat:filling_volume
+    slot_uri: voc4cat:0008148
     owner: Solvothermal
     domain_of:
     - Solvothermal
@@ -2004,9 +2004,9 @@ slots:
     description: Rate at which the reactor is cooled after synthesis.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:cooling_rate
+    - voc4cat:0008149
     is_a: has_heating_rate
-    slot_uri: coremeta4cat:cooling_rate
+    slot_uri: voc4cat:0008149
     owner: Solvothermal
     domain_of:
     - Solvothermal
@@ -2021,9 +2021,9 @@ slots:
     description: Type of plasma used (e.g. DBD, microwave, RF plasma).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:plasma_type
+    - voc4cat:0008153
     is_a: has_qualitative_attribute
-    slot_uri: coremeta4cat:plasma_type
+    slot_uri: voc4cat:0008153
     owner: PlasmaAssisted
     domain_of:
     - PlasmaAssisted
@@ -2037,9 +2037,9 @@ slots:
     description: Power input to the plasma reactor or other energy source.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:power_input
+    - voc4cat:0008154
     is_a: has_power
-    slot_uri: coremeta4cat:power_input
+    slot_uri: voc4cat:0008154
     owner: PlasmaAssisted
     domain_of:
     - PlasmaAssisted
@@ -2054,9 +2054,9 @@ slots:
     description: Duration of plasma or other energy exposure.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:exposure_time
+    - voc4cat:0008155
     is_a: has_duration
-    slot_uri: coremeta4cat:exposure_time
+    slot_uri: voc4cat:0008155
     owner: PlasmaAssisted
     domain_of:
     - PlasmaAssisted
@@ -13985,7 +13985,7 @@ classes:
       properties or deposit active components.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:PlasmaAssisted
+    - voc4cat:0008152
     is_a: PreparationMethod
     mixins:
     - ThermalSynthesisMixin
@@ -14003,7 +14003,7 @@ classes:
     - synthesis_duration
     - has_vessel_type
     - has_atmosphere
-    class_uri: coremeta4cat:PlasmaAssisted
+    class_uri: voc4cat:0008152
   CombustionSynthesis:
     name: CombustionSynthesis
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CombustionSynthesis
@@ -14012,7 +14012,7 @@ classes:
       producing metal oxide catalysts in a single rapid step.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - coremeta4cat:CombustionSynthesis
+    - voc4cat:0008156
     is_a: PreparationMethod
     mixins:
     - ThermalSynthesisMixin
@@ -14031,7 +14031,7 @@ classes:
     - synthesis_duration
     - has_vessel_type
     - has_atmosphere
-    class_uri: coremeta4cat:CombustionSynthesis
+    class_uri: voc4cat:0008156
   AtomicLayerDeposition:
     name: AtomicLayerDeposition
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/AtomicLayerDeposition
@@ -19678,7 +19678,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-10-21T09:59:54'
+source_file_date: '2026-10-23T13:07:27'
 source_file_size: 7710
-generation_date: '2026-10-21T10:00:08'
+generation_date: '2026-10-23T13:07:46'
 
