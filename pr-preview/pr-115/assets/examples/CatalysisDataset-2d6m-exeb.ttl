@@ -57,40 +57,30 @@
 
 coremeta4cat:CAT_2d6m-exeb_Exp11 a SIO:010344 ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (Exp11_metadata.json: catalyst.specific_surface_area)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "1.826"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "Catalyst bed mass (Exp11_metadata.json: catalyst.mass)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
             qudt:unit <https://qudt.org/vocab/unit/GM> ;
             prov:value "0.15"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp11_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "220.0"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "Ni loading (Exp11_metadata.json: catalyst.metal_loading)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
             prov:value "5.0"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "Particle diameter (Exp11_metadata.json: catalyst.particles_mean_diameter)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
-            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
-            prov:value "220.0"^^xsd:float ] ;
+            dcterms:description "BET specific surface area (Exp11_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "1.826"^^xsd:float ] ;
     dcterms:title "5 wt% Ni/ZrO2 (Exp11)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
 coremeta4cat:CAT_2d6m-exeb_Exp12 a SIO:010344 ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "Ni loading (Exp12_metadata.json: catalyst.metal_loading)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "10.0"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "Particle diameter (Exp12_metadata.json: catalyst.particles_mean_diameter)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
-            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
-            prov:value "265.0"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "Catalyst bed mass (Exp12_metadata.json: catalyst.mass)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
             qudt:unit <https://qudt.org/vocab/unit/GM> ;
@@ -99,31 +89,41 @@ coremeta4cat:CAT_2d6m-exeb_Exp12 a SIO:010344 ;
             dcterms:description "BET specific surface area (Exp12_metadata.json: catalyst.specific_surface_area)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
             qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "3.06"^^xsd:float ] ;
+            prov:value "3.06"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp12_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "10.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp12_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "265.0"^^xsd:float ] ;
     dcterms:title "10 wt% Ni/ZrO2 (Exp12)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
 coremeta4cat:CAT_2d6m-exeb_Exp13 a SIO:010344 ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (Exp13_metadata.json: catalyst.specific_surface_area)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "3.06"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "Ni loading (Exp13_metadata.json: catalyst.metal_loading)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
             prov:value "10.0"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "Catalyst bed mass (Exp13_metadata.json: catalyst.mass)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
-            qudt:unit <https://qudt.org/vocab/unit/GM> ;
-            prov:value "0.05"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "Particle diameter (Exp13_metadata.json: catalyst.particles_mean_diameter)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
             qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
-            prov:value "265.0"^^xsd:float ] ;
+            prov:value "265.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp13_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "3.06"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp13_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.05"^^xsd:float ] ;
     dcterms:title "10 wt% Ni/ZrO2 (Exp13)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
@@ -134,6 +134,11 @@ coremeta4cat:CAT_2d6m-exeb_Exp14 a SIO:010344 ;
             qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
             prov:value "2.81"^^xsd:float ],
         [ a qudt:Quantity ;
+            dcterms:description "Particle diameter (Exp14_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "265.0"^^xsd:float ],
+        [ a qudt:Quantity ;
             dcterms:description "Catalyst bed mass (Exp14_metadata.json: catalyst.mass)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
             qudt:unit <https://qudt.org/vocab/unit/GM> ;
@@ -142,12 +147,7 @@ coremeta4cat:CAT_2d6m-exeb_Exp14 a SIO:010344 ;
             dcterms:description "Ni loading (Exp14_metadata.json: catalyst.metal_loading)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "10.0"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "Particle diameter (Exp14_metadata.json: catalyst.particles_mean_diameter)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
-            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
-            prov:value "265.0"^^xsd:float ] ;
+            prov:value "10.0"^^xsd:float ] ;
     dcterms:title "10 wt% Ni/SiO2 (Exp14)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
@@ -158,15 +158,15 @@ coremeta4cat:CAT_2d6m-exeb_Exp15 a SIO:010344 ;
             qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
             prov:value "750.0"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "Ni loading (Exp15_metadata.json: catalyst.metal_loading)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "20.0"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "Catalyst bed mass (Exp15_metadata.json: catalyst.mass)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
             qudt:unit <https://qudt.org/vocab/unit/GM> ;
-            prov:value "1.76"^^xsd:float ] ;
+            prov:value "1.76"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp15_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "20.0"^^xsd:float ] ;
     dcterms:title "20 wt% Ni/Al2O3 (Exp15)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
@@ -196,68 +196,68 @@ coremeta4cat:CAT_2d6m-exeb_Exp16 a SIO:010344 ;
 
 coremeta4cat:CAT_2d6m-exeb_Exp17 a SIO:010344 ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "Particle diameter (Exp17_metadata.json: catalyst.particles_mean_diameter)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
-            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
-            prov:value "335.0"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "Ni loading (Exp17_metadata.json: catalyst.metal_loading)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
             prov:value "10.0"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (Exp17_metadata.json: catalyst.specific_surface_area)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "3.84"^^xsd:float ],
+            dcterms:description "Particle diameter (Exp17_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "335.0"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "Catalyst bed mass (Exp17_metadata.json: catalyst.mass)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
             qudt:unit <https://qudt.org/vocab/unit/GM> ;
-            prov:value "1.2"^^xsd:float ] ;
+            prov:value "1.2"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp17_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "3.84"^^xsd:float ] ;
     dcterms:title "10 wt% Ni/MgAl2O4 (Exp17)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
 coremeta4cat:CAT_2d6m-exeb_Exp18 a SIO:010344 ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (Exp18_metadata.json: catalyst.specific_surface_area)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "1.1"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "Catalyst bed mass (Exp18_metadata.json: catalyst.mass)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
-            qudt:unit <https://qudt.org/vocab/unit/GM> ;
-            prov:value "0.18"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "Particle diameter (Exp18_metadata.json: catalyst.particles_mean_diameter)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
             qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
             prov:value "3000.0"^^xsd:float ],
         [ a qudt:Quantity ;
+            dcterms:description "BET specific surface area (Exp18_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "1.1"^^xsd:float ],
+        [ a qudt:Quantity ;
             dcterms:description "Ni loading (Exp18_metadata.json: catalyst.metal_loading)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "5.0"^^xsd:float ] ;
+            prov:value "5.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp18_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.18"^^xsd:float ] ;
     dcterms:title "5 wt% Ni/SiO2 (Exp18)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
 coremeta4cat:CAT_2d6m-exeb_Exp19 a SIO:010344 ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "Catalyst bed mass (Exp19_metadata.json: catalyst.mass)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
-            qudt:unit <https://qudt.org/vocab/unit/GM> ;
-            prov:value "0.15"^^xsd:float ],
+            dcterms:description "BET specific surface area (Exp19_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "14.0"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "Particle diameter (Exp19_metadata.json: catalyst.particles_mean_diameter)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
             qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
             prov:value "630.0"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (Exp19_metadata.json: catalyst.specific_surface_area)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "14.0"^^xsd:float ],
+            dcterms:description "Catalyst bed mass (Exp19_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.15"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "Ni loading (Exp19_metadata.json: catalyst.metal_loading)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
@@ -268,34 +268,34 @@ coremeta4cat:CAT_2d6m-exeb_Exp19 a SIO:010344 ;
 
 coremeta4cat:CAT_2d6m-exeb_Exp2 a SIO:010344 ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "Catalyst bed mass (Exp2_metadata.json: catalyst.mass)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
-            qudt:unit <https://qudt.org/vocab/unit/GM> ;
-            prov:value "0.5"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "Ni loading (Exp2_metadata.json: catalyst.metal_loading)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "20.0"^^xsd:float ],
+            dcterms:description "BET specific surface area (Exp2_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "14.0"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "Particle diameter (Exp2_metadata.json: catalyst.particles_mean_diameter)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
             qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
             prov:value "630.0"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (Exp2_metadata.json: catalyst.specific_surface_area)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "14.0"^^xsd:float ] ;
+            dcterms:description "Ni loading (Exp2_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "20.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp2_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.5"^^xsd:float ] ;
     dcterms:title "20 wt% Ni/Al2O3 (Exp2)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
 coremeta4cat:CAT_2d6m-exeb_Exp20 a SIO:010344 ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (Exp20_metadata.json: catalyst.specific_surface_area)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "0.897"^^xsd:float ],
+            dcterms:description "Catalyst bed mass (Exp20_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "0.15"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "Ni loading (Exp20_metadata.json: catalyst.metal_loading)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
@@ -307,44 +307,39 @@ coremeta4cat:CAT_2d6m-exeb_Exp20 a SIO:010344 ;
             qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
             prov:value "220.0"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "Catalyst bed mass (Exp20_metadata.json: catalyst.mass)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
-            qudt:unit <https://qudt.org/vocab/unit/GM> ;
-            prov:value "0.15"^^xsd:float ] ;
+            dcterms:description "BET specific surface area (Exp20_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "0.897"^^xsd:float ] ;
     dcterms:title "5 wt% Ni/Al2O3 (Exp20)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
 coremeta4cat:CAT_2d6m-exeb_Exp3 a SIO:010344 ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "Ni loading (Exp3_metadata.json: catalyst.metal_loading)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "20.0"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "Particle diameter (Exp3_metadata.json: catalyst.particles_mean_diameter)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
-            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
-            prov:value "375.0"^^xsd:float ],
+            dcterms:description "BET specific surface area (Exp3_metadata.json: catalyst.specific_surface_area)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+            prov:value "3.56"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "Catalyst bed mass (Exp3_metadata.json: catalyst.mass)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
             qudt:unit <https://qudt.org/vocab/unit/GM> ;
             prov:value "0.2"^^xsd:float ],
         [ a qudt:Quantity ;
-            dcterms:description "BET specific surface area (Exp3_metadata.json: catalyst.specific_surface_area)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
-            qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "3.56"^^xsd:float ] ;
+            dcterms:description "Particle diameter (Exp3_metadata.json: catalyst.particles_mean_diameter)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+            qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
+            prov:value "375.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp3_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "20.0"^^xsd:float ] ;
     dcterms:title "20 wt% Ni/Al2O3 (Exp3)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
 coremeta4cat:CAT_2d6m-exeb_Exp4 a SIO:010344 ;
     dcterms:relation [ a qudt:Quantity ;
-            dcterms:description "Ni loading (Exp4_metadata.json: catalyst.metal_loading)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "10.0"^^xsd:float ],
-        [ a qudt:Quantity ;
             dcterms:description "BET specific surface area (Exp4_metadata.json: catalyst.specific_surface_area)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
             qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
@@ -354,6 +349,11 @@ coremeta4cat:CAT_2d6m-exeb_Exp4 a SIO:010344 ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
             qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
             prov:value "265.0"^^xsd:float ],
+        [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp4_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "10.0"^^xsd:float ],
         [ a qudt:Quantity ;
             dcterms:description "Catalyst bed mass (Exp4_metadata.json: catalyst.mass)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
@@ -369,6 +369,11 @@ coremeta4cat:CAT_2d6m-exeb_Exp7 a SIO:010344 ;
             qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
             prov:value "10.0"^^xsd:float ],
         [ a qudt:Quantity ;
+            dcterms:description "Catalyst bed mass (Exp7_metadata.json: catalyst.mass)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+            qudt:unit <https://qudt.org/vocab/unit/GM> ;
+            prov:value "1.2"^^xsd:float ],
+        [ a qudt:Quantity ;
             dcterms:description "BET specific surface area (Exp7_metadata.json: catalyst.specific_surface_area)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
             qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
@@ -377,12 +382,7 @@ coremeta4cat:CAT_2d6m-exeb_Exp7 a SIO:010344 ;
             dcterms:description "Particle diameter (Exp7_metadata.json: catalyst.particles_mean_diameter)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
             qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
-            prov:value "335.0"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "Catalyst bed mass (Exp7_metadata.json: catalyst.mass)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
-            qudt:unit <https://qudt.org/vocab/unit/GM> ;
-            prov:value "1.2"^^xsd:float ] ;
+            prov:value "335.0"^^xsd:float ] ;
     dcterms:title "10 wt% Ni/MgAl2O4 (Exp7)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
@@ -393,6 +393,11 @@ coremeta4cat:CAT_2d6m-exeb_Exp8 a SIO:010344 ;
             qudt:unit <https://qudt.org/vocab/unit/MicroM> ;
             prov:value "375.0"^^xsd:float ],
         [ a qudt:Quantity ;
+            dcterms:description "Ni loading (Exp8_metadata.json: catalyst.metal_loading)" ;
+            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+            prov:value "20.0"^^xsd:float ],
+        [ a qudt:Quantity ;
             dcterms:description "Catalyst bed mass (Exp8_metadata.json: catalyst.mass)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
             qudt:unit <https://qudt.org/vocab/unit/GM> ;
@@ -401,12 +406,7 @@ coremeta4cat:CAT_2d6m-exeb_Exp8 a SIO:010344 ;
             dcterms:description "BET specific surface area (Exp8_metadata.json: catalyst.specific_surface_area)" ;
             qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
             qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
-            prov:value "3.56"^^xsd:float ],
-        [ a qudt:Quantity ;
-            dcterms:description "Ni loading (Exp8_metadata.json: catalyst.metal_loading)" ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-            qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-            prov:value "20.0"^^xsd:float ] ;
+            prov:value "3.56"^^xsd:float ] ;
     dcterms:title "20 wt% Ni/Al2O3 (Exp8)" ;
     SIO:000008 <http://purl.obolibrary.org/obo/PATO_0001736> .
 
