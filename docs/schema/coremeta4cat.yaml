@@ -145,7 +145,7 @@ subsets:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/DomainAgnosticCore
     description: The elements of this subset are considered the core layer of our
       DCAT-AP extension.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
 types:
   string:
     name: string
@@ -420,7 +420,8 @@ types:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Duration
     conforms_to: https://www.w3.org/TR/xmlschema11-2/#duration
     description: The datatype that represents durations of time.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
+    typeof: string
     base: str
     uri: xsd:duration
     pattern: -?P((([0-9]+Y([0-9]+M)?([0-9]+D)?|([0-9]+M)([0-9]+D)?|([0-9]+D))(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\.[0-9]+)?S)?|([0-9]+(\.[0-9]+)?S)))?)|(T(([0-9]+H)([0-9]+M)?([0-9]+(\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\.[0-9]+)?S)?|([0-9]+(\.[0-9]+)?S))))
@@ -429,7 +430,8 @@ types:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/HexBinary
     conforms_to: https://www.w3.org/TR/xmlschema11-2/#hexBinary
     description: The datatype that represents arbitrary hex-encoded binary data.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
+    typeof: string
     base: str
     uri: xsd:hexBinary
     pattern: ([0-9a-fA-F]{2})*
@@ -438,7 +440,8 @@ types:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/NonNegativeInteger
     conforms_to: https://www.w3.org/TR/xmlschema11-2/#nonNegativeInteger
     description: The datatype that represents non-negative integers.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
+    typeof: integer
     base: int
     uri: xsd:nonNegativeInteger
     pattern: ([\-+]?[0-9]+)
@@ -598,7 +601,7 @@ enums:
   DatasetThemes:
     name: DatasetThemes
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/DatasetThemes
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     see_also:
     - https://op.europa.eu/s/zXIN
     enum_uri: http://publications.europa.eu/resource/authority/data-theme
@@ -662,7 +665,7 @@ enums:
   TopLevelMediaTypes:
     name: TopLevelMediaTypes
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/TopLevelMediaTypes
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     enum_uri: iana:top-level-media-types
     permissible_values:
       application:
@@ -701,7 +704,7 @@ enums:
       define Activity subclasses, e.g. NMRSpectroscopy. seeAlso: https://github.com/linkml/linkml-model/blob/main/tests/input/examples/schema_definition-enum_bindings-1.yaml'
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     reachable_from:
       source_ontology: http://qudt.org/2.1/vocab/quantitykind
       source_nodes:
@@ -722,7 +725,7 @@ enums:
       define Activity subclasses, e.g. NMRSpectroscopy. seeAlso: https://github.com/linkml/linkml-model/blob/main/tests/input/examples/schema_definition-enum_bindings-1.yaml'
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     reachable_from:
       source_ontology: https://qudt.org/vocab/unit/
       source_nodes:
@@ -1049,9 +1052,9 @@ slots:
     description: Rotational speed of stirring or agitation.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - SIO:000008
+    - voc4cat:0008114
     is_a: has_angular_velocity
-    slot_uri: SIO:000008
+    slot_uri: voc4cat:0008114
     owner: MolecularSynthesis
     domain_of:
     - MolecularSynthesis
@@ -6628,7 +6631,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/access_URL
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:accessURL
     slot_uri: dcat:accessURL
@@ -6641,7 +6644,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/access_rights
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:accessRights
     slot_uri: dcterms:accessRights
@@ -6655,7 +6658,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/access_service
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:accessService
     slot_uri: dcat:accessService
@@ -6668,7 +6671,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/algorithm
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - spdx:algorithm
     slot_uri: spdx:algorithm
@@ -6681,7 +6684,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/applicable_legislation
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcatap:applicableLegislation
     slot_uri: dcatap:applicableLegislation
@@ -6698,7 +6701,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/application_profile
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:conformsTo
     slot_uri: dcterms:conformsTo
@@ -6711,7 +6714,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/availability
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcatap:availability
     slot_uri: dcatap:availability
@@ -6724,7 +6727,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/bbox
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:bbox
     slot_uri: dcat:bbox
@@ -6737,7 +6740,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/beginning
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - time:hasBeginning
     slot_uri: time:hasBeginning
@@ -6750,7 +6753,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/byte_size
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:byteSize
     slot_uri: dcat:byteSize
@@ -6766,7 +6769,7 @@ slots:
       disposition that was realized in the Activity.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasAssociatedWith
     slot_uri: prov:wasAssociatedWith
@@ -6783,7 +6786,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/catalogue
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:catalog
     slot_uri: dcat:catalog
@@ -6796,7 +6799,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/centroid
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:centroid
     slot_uri: dcat:centroid
@@ -6809,7 +6812,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/change_type
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:status
     slot_uri: adms:status
@@ -6822,7 +6825,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/checksum
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - spdx:checksum
     slot_uri: spdx:checksum
@@ -6835,7 +6838,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/checksum_value
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - spdx:checksumValue
     slot_uri: spdx:checksumValue
@@ -6848,7 +6851,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/compression_format
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:compressFormat
     slot_uri: dcat:compressFormat
@@ -6861,7 +6864,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/conforms_to
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:conformsTo
     slot_uri: dcterms:conformsTo
@@ -6875,7 +6878,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/contact_point
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:contactPoint
     slot_uri: dcat:contactPoint
@@ -6890,7 +6893,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/creator
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:creator
     slot_uri: dcterms:creator
@@ -6904,7 +6907,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/dataset_distribution
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:distribution
     slot_uri: dcat:distribution
@@ -6917,7 +6920,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/description
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:description
     slot_uri: dcterms:description
@@ -6966,7 +6969,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/documentation
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:page
     slot_uri: foaf:page
@@ -6981,7 +6984,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/download_URL
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:downloadURL
     slot_uri: dcat:downloadURL
@@ -6994,7 +6997,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/end
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - time:hasEnd
     slot_uri: time:hasEnd
@@ -7007,7 +7010,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/end_date
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:endDate
     slot_uri: dcat:endDate
@@ -7020,7 +7023,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/endpoint_URL
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:endpointURL
     slot_uri: dcat:endpointURL
@@ -7033,7 +7036,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/endpoint_description
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:endpointDescription
     slot_uri: dcat:endpointDescription
@@ -7048,7 +7051,7 @@ slots:
       produced information.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasInformedBy
     is_a: had_input_activity
@@ -7068,7 +7071,7 @@ slots:
       produced information.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     is_a: had_input_entity
@@ -7086,7 +7089,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/format
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:format
     slot_uri: dcterms:format
@@ -7100,7 +7103,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/frequency
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:accrualPeriodicity
     slot_uri: dcterms:accrualPeriodicity
@@ -7114,7 +7117,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/geographical_coverage
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:spatial
     slot_uri: dcterms:spatial
@@ -7129,7 +7132,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/geometry
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - locn:geometry
     slot_uri: locn:geometry
@@ -7144,7 +7147,7 @@ slots:
       by being causally via a shared participant.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasInformedBy
     slot_uri: prov:wasInformedBy
@@ -7163,7 +7166,7 @@ slots:
       that is to be changed, consumed or transformed.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     slot_uri: prov:used
@@ -7182,7 +7185,7 @@ slots:
       an Activity.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:generated
     slot_uri: prov:generated
@@ -7199,7 +7202,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/had_role
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:hadRole
     slot_uri: dcat:hadRole
@@ -7212,7 +7215,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_dataset
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:dataset
     slot_uri: dcat:dataset
@@ -7225,7 +7228,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_part
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:hasPart
     slot_uri: dcterms:hasPart
@@ -7242,7 +7245,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_policy
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - odrl:hasPolicy
     slot_uri: odrl:hasPolicy
@@ -7257,7 +7260,7 @@ slots:
       EvaluatedActivity or AgenticEntity
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:relation
     slot_uri: dcterms:relation
@@ -7278,7 +7281,7 @@ slots:
       EvaluatedActivity or AgenticEntity
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:relation
     slot_uri: dcterms:relation
@@ -7297,7 +7300,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_version
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:hasVersion
     slot_uri: dcat:hasVersion
@@ -7310,7 +7313,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/homepage
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:homepage
     slot_uri: foaf:homepage
@@ -7324,8 +7327,8 @@ slots:
     description: A slot to provide an URI for an entity within this schema.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
-    slot_uri: dcatapplus:id
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
+    slot_uri: dcatap_plus:id
     identifier: true
     owner: Resource
     domain_of:
@@ -7346,7 +7349,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/identifier
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:identifier
     slot_uri: dcterms:identifier
@@ -7359,7 +7362,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/in_series
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:inSeries
     slot_uri: dcat:inSeries
@@ -7373,7 +7376,7 @@ slots:
     description: A slot to provide the EvaluatedActivity a Dataset is about.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:subject
     exact_mappings:
@@ -7393,7 +7396,7 @@ slots:
     description: A slot to provide the EvaluatedEntity a Dataset is about.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:subject
     exact_mappings:
@@ -7412,7 +7415,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/is_referenced_by
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:isReferencedBy
     slot_uri: dcterms:isReferencedBy
@@ -7425,7 +7428,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/keyword
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:keyword
     slot_uri: dcat:keyword
@@ -7439,7 +7442,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/landing_page
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:landingPage
     slot_uri: dcat:landingPage
@@ -7453,7 +7456,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/language
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:language
     slot_uri: dcterms:language
@@ -7469,7 +7472,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/licence
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:license
     slot_uri: dcterms:license
@@ -7484,7 +7487,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/linked_schemas
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:conformsTo
     slot_uri: dcterms:conformsTo
@@ -7497,7 +7500,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/listing_date
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:issued
     slot_uri: dcterms:issued
@@ -7510,7 +7513,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/media_type
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:mediaType
     slot_uri: dcat:mediaType
@@ -7523,7 +7526,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/modification_date
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:modified
     slot_uri: dcterms:modified
@@ -7540,7 +7543,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/name
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:name
     slot_uri: foaf:name
@@ -7553,7 +7556,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/notation
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - skos:notation
     slot_uri: skos:notation
@@ -7567,7 +7570,7 @@ slots:
     description: The slot to specify the Surrounding in which an Activity took place.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:atLocation
     slot_uri: prov:atLocation
@@ -7582,7 +7585,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/other_identifier
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:identifier
     slot_uri: adms:identifier
@@ -7598,7 +7601,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/packaging_format
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:packageFormat
     slot_uri: dcat:packageFormat
@@ -7613,7 +7616,7 @@ slots:
       is physically or logically included.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:isPartOf
     slot_uri: dcterms:isPartOf
@@ -7629,7 +7632,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/preferred_label
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - skos:prefLabel
     slot_uri: skos:prefLabel
@@ -7642,7 +7645,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/primary_topic
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:primaryTopic
     slot_uri: foaf:primaryTopic
@@ -7655,7 +7658,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/provenance
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:provenance
     slot_uri: dcterms:provenance
@@ -7668,7 +7671,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/publisher
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:publisher
     slot_uri: dcterms:publisher
@@ -7684,7 +7687,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/qualified_attribution
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:qualifiedAttribution
     slot_uri: prov:qualifiedAttribution
@@ -7697,7 +7700,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/qualified_relation
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:qualifiedRelation
     slot_uri: dcat:qualifiedRelation
@@ -7712,7 +7715,7 @@ slots:
       entity.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - rdf:type
     slot_uri: rdf:type
@@ -7730,7 +7733,7 @@ slots:
       that was realized by an Activity.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     slot_uri: prov:used
@@ -7745,7 +7748,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/record
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:record
     slot_uri: dcat:record
@@ -7758,7 +7761,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/related_resource
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:relation
     slot_uri: dcterms:relation
@@ -7772,7 +7775,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/relation
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:relation
     slot_uri: dcterms:relation
@@ -7785,7 +7788,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/release_date
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:issued
     slot_uri: dcterms:issued
@@ -7801,7 +7804,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/rights
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:rights
     slot_uri: dcterms:rights
@@ -7815,7 +7818,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/sample
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:sample
     slot_uri: adms:sample
@@ -7828,7 +7831,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/serves_dataset
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:servesDataset
     slot_uri: dcat:servesDataset
@@ -7841,7 +7844,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/service
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:service
     slot_uri: dcat:service
@@ -7854,7 +7857,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/source
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:source
     slot_uri: dcterms:source
@@ -7867,7 +7870,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/source_metadata
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:source
     slot_uri: dcterms:source
@@ -7880,7 +7883,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/spatial_resolution
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:spatialResolutionInMeters
     slot_uri: dcat:spatialResolutionInMeters
@@ -7894,7 +7897,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/start_date
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:startDate
     slot_uri: dcat:startDate
@@ -7907,7 +7910,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/status
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:status
     slot_uri: adms:status
@@ -7920,7 +7923,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/temporal_coverage
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:temporal
     slot_uri: dcterms:temporal
@@ -7935,7 +7938,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/temporal_resolution
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:temporalResolution
     slot_uri: dcat:temporalResolution
@@ -7949,7 +7952,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/theme
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:theme
     slot_uri: dcat:theme
@@ -7963,7 +7966,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/themes
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:themeTaxonomy
     slot_uri: dcat:themeTaxonomy
@@ -7976,7 +7979,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:title
     slot_uri: dcterms:title
@@ -8026,7 +8029,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/type
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:type
     slot_uri: dcterms:type
@@ -8043,7 +8046,7 @@ slots:
     description: A slot to provide the literal value of an attribute.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:value
     slot_uri: prov:value
@@ -8057,7 +8060,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/version
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:version
     slot_uri: dcat:version
@@ -8070,7 +8073,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/version_notes
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:versionNotes
     slot_uri: adms:versionNotes
@@ -8083,7 +8086,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/was_generated_by
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasGeneratedBy
     slot_uri: prov:wasGeneratedBy
@@ -8483,7 +8486,7 @@ slots:
   definedTerm__from_CV:
     name: definedTerm__from_CV
     description: The URL of the controlled vocabulary.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - schema:inDefinedTermSet
     slot_uri: schema:inDefinedTermSet
@@ -8495,7 +8498,7 @@ slots:
   quantitativeAttribute__has_quantity_type:
     name: quantitativeAttribute__has_quantity_type
     description: The type of quality that is quantifiable according to the QUDT ontology.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - qudt:hasQuantityKind
     slot_uri: qudt:hasQuantityKind
@@ -8515,7 +8518,7 @@ slots:
     required: true
   quantitativeAttribute__unit:
     name: quantitativeAttribute__unit
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - qudt:unit
     slot_uri: qudt:unit
@@ -8542,7 +8545,7 @@ slots:
       classification of the dataset''s domain.'
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - rdf:type
     is_a: rdf_type
@@ -8571,7 +8574,7 @@ slots:
     description: 'The DataGeneratingActivity (Synthesis, Characterization, or Simulation)
 
       that produced this dataset.'
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasGeneratedBy
     is_a: was_generated_by
@@ -8597,7 +8600,7 @@ slots:
       catalytic performance measurements is about the Reaction being studied).'
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:subject
     exact_mappings:
@@ -8623,7 +8626,7 @@ slots:
       is about.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:subject
     exact_mappings:
@@ -8693,7 +8696,7 @@ slots:
     description: The Precursor(s) consumed during this Synthesis.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     is_a: had_input_entity
@@ -8717,7 +8720,7 @@ slots:
     description: The CatalystSample produced by this Synthesis.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:generated
     is_a: had_output_entity
@@ -8740,7 +8743,7 @@ slots:
     description: The PreparationMethod (protocol) realized in this Synthesis.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     is_a: realized_plan
@@ -8786,7 +8789,7 @@ slots:
       Provide a Device instance (e.g. rotary evaporator, autoclave, furnace).'
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasAssociatedWith
     is_a: carried_out_by
@@ -8859,7 +8862,7 @@ slots:
       Provide a Device instance (e.g. XRD diffractometer, TEM, NMR spectrometer).'
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasAssociatedWith
     is_a: carried_out_by
@@ -8883,7 +8886,7 @@ slots:
     description: The catalyst sample or material being characterized.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     is_a: evaluated_entity
@@ -8906,7 +8909,7 @@ slots:
     description: The CharacterizationTechnique (protocol) realized in this Characterization.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     is_a: realized_plan
@@ -8930,7 +8933,7 @@ slots:
       CHMO:0000158 (powder XRD), CHMO:0000404 (XPS), VOC4CAT:0000075 (SEM).'
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - rdf:type
     is_a: rdf_type
@@ -8969,7 +8972,7 @@ slots:
       discussion.'
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - rdf:type
     is_a: rdf_type
@@ -9073,7 +9076,7 @@ slots:
       machine-actionable classification of the simulation type.'
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - rdf:type
     is_a: rdf_type
@@ -9095,7 +9098,7 @@ slots:
     description: The SimulationMethod (protocol) realized in this Simulation.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     is_a: realized_plan
@@ -9117,7 +9120,7 @@ slots:
     description: The simulation software used, provided as a Software agent instance.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasAssociatedWith
     is_a: carried_out_by
@@ -9140,7 +9143,7 @@ slots:
     description: The catalyst model, surface slab, or molecule being simulated.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     is_a: evaluated_entity
@@ -9162,7 +9165,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/was_generated_by
     description: The slot to specify the SubstanceCharacterization activity that produced
       this dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasGeneratedBy
     is_a: was_generated_by
@@ -9184,7 +9187,7 @@ slots:
     description: The slot to specify the SubstanceSample this dataset is about.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:subject
     exact_mappings:
@@ -9208,7 +9211,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/was_generated_by
     description: The slot to specify the ReactionMonitoring activity that produced
       this dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasGeneratedBy
     is_a: was_generated_by
@@ -9230,7 +9233,7 @@ slots:
     description: The slot to specify the ChemicalReaction this dataset is about.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:subject
     exact_mappings:
@@ -9255,7 +9258,7 @@ slots:
     description: The slot to specify the SubstanceSample being characterized.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     is_a: evaluated_entity
@@ -9278,7 +9281,7 @@ slots:
     description: The slot to specify the ChemicalReaction being recorded.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasInformedBy
     is_a: evaluated_activity
@@ -9343,7 +9346,7 @@ slots:
     name: ChemicalReaction_related_resource
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/related_resource
     description: The slot to specify any Documents related to a ChemicalReaction.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:relation
     is_a: related_resource
@@ -9365,7 +9368,7 @@ slots:
     description: The slot to provide a title for the Activity.
     notes:
     - not in DCAT-AP
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:title
     is_a: title
@@ -9386,7 +9389,7 @@ slots:
     description: The slot to provide a description for the Activity.
     notes:
     - not in DCAT-AP
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:description
     is_a: description
@@ -9407,7 +9410,7 @@ slots:
     description: The slot to provide an Activity that is part of the Activity.
     notes:
     - not in DCAT-AP
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:hasPart
     is_a: has_part
@@ -9431,7 +9434,7 @@ slots:
     - not in DCAT-AP
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:isPartOf
     is_a: part_of
@@ -9453,7 +9456,7 @@ slots:
     description: The slot to provide a secondary identifier of the Activity.
     notes:
     - not in DCAT-AP
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:identifier
     is_a: other_identifier
@@ -9478,7 +9481,7 @@ slots:
     - not in DCAT-AP
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:relation
     is_a: has_qualitative_attribute
@@ -9504,7 +9507,7 @@ slots:
     - not in DCAT-AP
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:relation
     is_a: has_quantitative_attribute
@@ -9530,7 +9533,7 @@ slots:
     - not in DCAT-AP
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     is_a: had_input_entity
@@ -9556,7 +9559,7 @@ slots:
     - not in DCAT-AP
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:generated
     is_a: had_output_entity
@@ -9582,7 +9585,7 @@ slots:
     - not in DCAT-AP
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasInformedBy
     is_a: had_input_activity
@@ -9609,7 +9612,7 @@ slots:
     - not in DCAT-AP
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasAssociatedWith
     is_a: carried_out_by
@@ -9630,7 +9633,7 @@ slots:
     name: Agent_name
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/name
     description: A name of the agent.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:name
     is_a: name
@@ -9650,7 +9653,7 @@ slots:
     name: Agent_type
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/type
     description: The nature of the agent.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:type
     is_a: type
@@ -9673,7 +9676,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_part
     description: The slot to specify parts of an AgenticEntity that are themselves
       AgenticEntities.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:hasPart
     is_a: has_part
@@ -9698,7 +9701,7 @@ slots:
     - not in DCAT-AP
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:isPartOf
     is_a: part_of
@@ -9718,7 +9721,7 @@ slots:
     name: AgenticEntity_other_identifier
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/other_identifier
     description: A slot to provide a secondary identifier for an Instrument.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:identifier
     is_a: other_identifier
@@ -9740,7 +9743,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/was_generated_by
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasGeneratedBy
     is_a: was_generated_by
@@ -9760,7 +9763,7 @@ slots:
     name: AnalysisSourceData_was_generated_by
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/was_generated_by
     description: A slot to provide the Activity which created the AnalysisSourceData.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasGeneratedBy
     is_a: was_generated_by
@@ -9780,7 +9783,7 @@ slots:
     name: Catalogue_applicable_legislation
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/applicable_legislation
     description: The legislation that mandates the creation or management of the Catalog.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcatap:applicableLegislation
     is_a: applicable_legislation
@@ -9802,7 +9805,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/catalogue
     description: A catalogue whose contents are of interest in the context of this
       catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:catalog
     is_a: catalogue
@@ -9823,7 +9826,7 @@ slots:
     name: Catalogue_creator
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/creator
     description: An entity responsible for the creation of the catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:creator
     is_a: creator
@@ -9844,7 +9847,7 @@ slots:
     name: Catalogue_description
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/description
     description: A free-text account of the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:description
     is_a: description
@@ -9864,7 +9867,7 @@ slots:
     name: Catalogue_geographical_coverage
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/geographical_coverage
     description: A geographical area covered by the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:spatial
     is_a: geographical_coverage
@@ -9885,7 +9888,7 @@ slots:
     name: Catalogue_has_dataset
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_dataset
     description: A Dataset that is part of the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:dataset
     is_a: has_dataset
@@ -9906,7 +9909,7 @@ slots:
     name: Catalogue_has_part
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_part
     description: A related Catalogue that is part of the described Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:hasPart
     is_a: has_part
@@ -9927,7 +9930,7 @@ slots:
     name: Catalogue_homepage
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/homepage
     description: A web page that acts as the main page for the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:homepage
     is_a: homepage
@@ -9950,7 +9953,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/language
     description: A language used in the textual metadata describing titles, descriptions,
       etc. of the Datasets in the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:language
     is_a: language
@@ -9972,7 +9975,7 @@ slots:
     name: Catalogue_licence
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/licence
     description: A licence under which the Catalogue can be used or reused.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:license
     is_a: licence
@@ -9993,7 +9996,7 @@ slots:
     name: Catalogue_modification_date
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/modification_date
     description: The most recent date on which the Catalogue was modified.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:modified
     is_a: modification_date
@@ -10014,7 +10017,7 @@ slots:
     name: Catalogue_publisher
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/publisher
     description: An entity (organisation) responsible for making the Catalogue available.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:publisher
     is_a: publisher
@@ -10035,7 +10038,7 @@ slots:
     name: Catalogue_record
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/record
     description: A Catalogue Record that is part of the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:record
     is_a: record
@@ -10056,7 +10059,7 @@ slots:
     name: Catalogue_release_date
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/release_date
     description: The date of formal issuance (e.g., publication) of the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:issued
     is_a: release_date
@@ -10077,7 +10080,7 @@ slots:
     name: Catalogue_rights
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/rights
     description: A statement that specifies rights associated with the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:rights
     is_a: rights
@@ -10098,7 +10101,7 @@ slots:
     name: Catalogue_service
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/service
     description: A site or end-point (Data Service) that is listed in the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:service
     is_a: service
@@ -10119,7 +10122,7 @@ slots:
     name: Catalogue_temporal_coverage
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/temporal_coverage
     description: A temporal period that the Catalogue covers.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:temporal
     is_a: temporal_coverage
@@ -10141,7 +10144,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/themes
     description: A knowledge organization system used to classify the Resources that
       are in the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:themeTaxonomy
     is_a: themes
@@ -10163,7 +10166,7 @@ slots:
     name: Catalogue_title
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
     description: A name given to the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:title
     is_a: title
@@ -10184,7 +10187,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/application_profile
     description: An Application Profile that the Catalogued Resource&#39;s metadata
       conforms to.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:conformsTo
     is_a: application_profile
@@ -10207,7 +10210,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/change_type
     description: The status of the catalogue record in the context of editorial flow
       of the dataset and data service descriptions.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:status
     is_a: change_type
@@ -10230,7 +10233,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/description
     description: A free-text account of the record. This property can be repeated
       for parallel language versions of the description.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:description
     is_a: description
@@ -10251,7 +10254,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/language
     description: A language used in the textual metadata describing titles, descriptions,
       etc. of the Catalogued Resource.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:language
     is_a: language
@@ -10273,7 +10276,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/listing_date
     description: The date on which the description of the Resource was included in
       the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:issued
     is_a: listing_date
@@ -10295,7 +10298,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/modification_date
     description: The most recent date on which the Catalogue entry was changed or
       modified.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:modified
     is_a: modification_date
@@ -10315,7 +10318,7 @@ slots:
     name: CatalogueRecord_primary_topic
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/primary_topic
     description: A link to the Dataset, Data service or Catalog described in the record.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:primaryTopic
     is_a: primary_topic
@@ -10342,7 +10345,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/source_metadata
     description: The original metadata that was used in creating metadata for the
       Dataset, Data Service or Dataset Series.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:source
     is_a: source_metadata
@@ -10363,7 +10366,7 @@ slots:
     name: CatalogueRecord_title
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
     description: A name given to the Catalogue Record.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:title
     is_a: title
@@ -10383,7 +10386,7 @@ slots:
     name: Checksum_algorithm
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/algorithm
     description: The algorithm used to produce the subject Checksum.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - spdx:algorithm
     is_a: algorithm
@@ -10405,7 +10408,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/checksum_value
     description: A lower case hexadecimal encoded digest value produced using a specific
       algorithm.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - spdx:checksumValue
     is_a: checksum_value
@@ -10426,7 +10429,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/type
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:type
     is_a: type
@@ -10445,7 +10448,7 @@ slots:
     name: Concept_preferred_label
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/preferred_label
     description: A preferred label of the concept.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - skos:prefLabel
     is_a: preferred_label
@@ -10465,7 +10468,7 @@ slots:
     name: ConceptScheme_title
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
     description: A name of the concept scheme.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:title
     is_a: title
@@ -10487,7 +10490,7 @@ slots:
     description: A slot to provide the data that was analysed by the DataAnalysis.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:used
     is_a: evaluated_entity
@@ -10509,7 +10512,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/access_rights
     description: Information regarding access or restrictions based on privacy, security,
       or other policies.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:accessRights
     is_a: access_rights
@@ -10531,7 +10534,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/applicable_legislation
     description: The legislation that mandates the creation or management of the Data
       Service.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcatap:applicableLegislation
     is_a: applicable_legislation
@@ -10552,7 +10555,7 @@ slots:
     name: DataService_conforms_to
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/conforms_to
     description: An established (technical) standard to which the Data Service conforms.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:conformsTo
     is_a: conforms_to
@@ -10575,7 +10578,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/contact_point
     description: Contact information that can be used for sending comments about the
       Data Service.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:contactPoint
     is_a: contact_point
@@ -10597,7 +10600,7 @@ slots:
     name: DataService_description
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/description
     description: A free-text account of the Data Service.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:description
     is_a: description
@@ -10617,7 +10620,7 @@ slots:
     name: DataService_documentation
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/documentation
     description: A page or document about this Data Service
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:page
     is_a: documentation
@@ -10638,7 +10641,7 @@ slots:
     name: DataService_endpoint_URL
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/endpoint_URL
     description: The root location or primary endpoint of the service (an IRI).
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:endpointURL
     is_a: endpoint_URL
@@ -10660,7 +10663,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/endpoint_description
     description: A description of the services available via the end-points, including
       their operations, parameters etc.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:endpointDescription
     is_a: endpoint_description
@@ -10682,7 +10685,7 @@ slots:
     name: DataService_format
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/format
     description: The structure that can be returned by querying the endpointURL.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:format
     is_a: format
@@ -10703,7 +10706,7 @@ slots:
     name: DataService_keyword
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/keyword
     description: A keyword or tag describing the Data Service.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:keyword
     is_a: keyword
@@ -10725,7 +10728,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/landing_page
     description: A web page that provides access to the Data Service and/or additional
       information.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:landingPage
     is_a: landing_page
@@ -10746,7 +10749,7 @@ slots:
     name: DataService_licence
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/licence
     description: A licence under which the Data service is made available.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:license
     is_a: licence
@@ -10768,7 +10771,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/publisher
     description: An entity (organisation) responsible for making the Data Service
       available.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:publisher
     is_a: publisher
@@ -10790,7 +10793,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/serves_dataset
     description: This property refers to a collection of data that this data service
       can distribute.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:servesDataset
     is_a: serves_dataset
@@ -10811,7 +10814,7 @@ slots:
     name: DataService_theme
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/theme
     description: A category of the Data Service.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:theme
     is_a: theme
@@ -10833,7 +10836,7 @@ slots:
     name: DataService_title
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
     description: A name given to the Data Service.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:title
     is_a: title
@@ -10854,7 +10857,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/access_rights
     description: Information that indicates whether the Dataset is publicly accessible,
       has access restrictions or is not public.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:accessRights
     is_a: access_rights
@@ -10875,7 +10878,7 @@ slots:
     name: Dataset_applicable_legislation
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/applicable_legislation
     description: The legislation that mandates the creation or management of the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcatap:applicableLegislation
     is_a: applicable_legislation
@@ -10896,7 +10899,7 @@ slots:
     name: Dataset_conforms_to
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/conforms_to
     description: An implementing rule or other specification.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:conformsTo
     is_a: conforms_to
@@ -10918,7 +10921,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/contact_point
     description: Contact information that can be used for sending comments about the
       Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:contactPoint
     is_a: contact_point
@@ -10940,7 +10943,7 @@ slots:
     name: Dataset_creator
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/creator
     description: An entity responsible for producing the dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:creator
     is_a: creator
@@ -10961,7 +10964,7 @@ slots:
     name: Dataset_dataset_distribution
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/dataset_distribution
     description: An available Distribution for the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:distribution
     is_a: dataset_distribution
@@ -10982,7 +10985,7 @@ slots:
     name: Dataset_description
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/description
     description: A free-text account of the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:description
     is_a: description
@@ -11002,7 +11005,7 @@ slots:
     name: Dataset_documentation
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/documentation
     description: A page or document about this Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:page
     is_a: documentation
@@ -11023,7 +11026,7 @@ slots:
     name: Dataset_frequency
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/frequency
     description: The frequency at which the Dataset is updated.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:accrualPeriodicity
     is_a: frequency
@@ -11044,7 +11047,7 @@ slots:
     name: Dataset_geographical_coverage
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/geographical_coverage
     description: A geographic region that is covered by the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:spatial
     is_a: geographical_coverage
@@ -11066,7 +11069,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_version
     description: A related Dataset that is a version, edition, or adaptation of the
       described Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:hasVersion
     is_a: has_version
@@ -11088,7 +11091,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/identifier
     description: The main identifier for the Dataset, e.g. the URI or other unique
       identifier in the context of the Catalogue.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:identifier
     is_a: identifier
@@ -11108,7 +11111,7 @@ slots:
     name: Dataset_in_series
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/in_series
     description: A dataset series of which the dataset is part.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:inSeries
     is_a: in_series
@@ -11130,7 +11133,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/is_referenced_by
     description: A related resource, such as a publication, that references, cites,
       or otherwise points to the dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:isReferencedBy
     is_a: is_referenced_by
@@ -11151,7 +11154,7 @@ slots:
     name: Dataset_keyword
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/keyword
     description: A keyword or tag describing the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:keyword
     is_a: keyword
@@ -11173,7 +11176,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/landing_page
     description: A web page that provides access to the Dataset, its Distributions
       and/or additional information.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:landingPage
     is_a: landing_page
@@ -11194,7 +11197,7 @@ slots:
     name: Dataset_language
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/language
     description: A language of the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:language
     is_a: language
@@ -11215,7 +11218,7 @@ slots:
     name: Dataset_modification_date
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/modification_date
     description: The most recent date on which the Dataset was changed or modified.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:modified
     is_a: modification_date
@@ -11235,7 +11238,7 @@ slots:
     name: Dataset_other_identifier
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/other_identifier
     description: A secondary identifier of the Dataset
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:identifier
     is_a: other_identifier
@@ -11256,7 +11259,7 @@ slots:
     name: Dataset_provenance
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/provenance
     description: A statement about the lineage of a Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:provenance
     is_a: provenance
@@ -11277,7 +11280,7 @@ slots:
     name: Dataset_publisher
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/publisher
     description: An entity (organisation) responsible for making the Dataset available.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:publisher
     is_a: publisher
@@ -11298,7 +11301,7 @@ slots:
     name: Dataset_qualified_attribution
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/qualified_attribution
     description: An Agent having some form of responsibility for the resource.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:qualifiedAttribution
     is_a: qualified_attribution
@@ -11319,7 +11322,7 @@ slots:
     name: Dataset_qualified_relation
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/qualified_relation
     description: A description of a relationship with another resource.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:qualifiedRelation
     is_a: qualified_relation
@@ -11340,7 +11343,7 @@ slots:
     name: Dataset_related_resource
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/related_resource
     description: A related resource.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:relation
     is_a: related_resource
@@ -11361,7 +11364,7 @@ slots:
     name: Dataset_release_date
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/release_date
     description: The date of formal issuance (e.g., publication) of the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:issued
     is_a: release_date
@@ -11381,7 +11384,7 @@ slots:
     name: Dataset_sample
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/sample
     description: A sample distribution of the dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:sample
     is_a: sample
@@ -11402,7 +11405,7 @@ slots:
     name: Dataset_source
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/source
     description: A related Dataset from which the described Dataset is derived.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:source
     is_a: source
@@ -11424,7 +11427,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/spatial_resolution
     description: The minimum spatial separation resolvable in a dataset, measured
       in meters.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:spatialResolutionInMeters
     is_a: spatial_resolution
@@ -11444,7 +11447,7 @@ slots:
     name: Dataset_temporal_coverage
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/temporal_coverage
     description: A temporal period that the Dataset covers.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:temporal
     is_a: temporal_coverage
@@ -11465,7 +11468,7 @@ slots:
     name: Dataset_temporal_resolution
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/temporal_resolution
     description: The minimum time period resolvable in the dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:temporalResolution
     is_a: temporal_resolution
@@ -11485,7 +11488,7 @@ slots:
     name: Dataset_theme
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/theme
     description: A category of the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:theme
     is_a: theme
@@ -11507,7 +11510,7 @@ slots:
     name: Dataset_title
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
     description: A name given to the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:title
     is_a: title
@@ -11527,7 +11530,7 @@ slots:
     name: Dataset_type
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/type
     description: A type of the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:type
     is_a: type
@@ -11548,7 +11551,7 @@ slots:
     name: Dataset_version
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/version
     description: The version indicator (name or identifier) of a resource.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:version
     is_a: version
@@ -11569,7 +11572,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/version_notes
     description: A description of the differences between this version and a previous
       version of the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:versionNotes
     is_a: version_notes
@@ -11592,7 +11595,7 @@ slots:
       the creation of the dataset.
     notes:
     - stricter than DCAT-AP
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasGeneratedBy
     is_a: was_generated_by
@@ -11614,7 +11617,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/applicable_legislation
     description: The legislation that mandates the creation or management of the Dataset
       Series.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcatap:applicableLegislation
     is_a: applicable_legislation
@@ -11636,7 +11639,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/contact_point
     description: Contact information that can be used for sending comments about the
       Dataset Series.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:contactPoint
     is_a: contact_point
@@ -11657,7 +11660,7 @@ slots:
     name: DatasetSeries_description
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/description
     description: A free-text account of the Dataset Series.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:description
     is_a: description
@@ -11677,7 +11680,7 @@ slots:
     name: DatasetSeries_frequency
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/frequency
     description: The frequency at which the Dataset Series is updated.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:accrualPeriodicity
     is_a: frequency
@@ -11698,7 +11701,7 @@ slots:
     name: DatasetSeries_geographical_coverage
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/geographical_coverage
     description: A geographic region that is covered by the Dataset Series.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:spatial
     is_a: geographical_coverage
@@ -11719,7 +11722,7 @@ slots:
     name: DatasetSeries_modification_date
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/modification_date
     description: The most recent date on which the Dataset Series was changed or modified.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:modified
     is_a: modification_date
@@ -11740,7 +11743,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/publisher
     description: 'An entity (organisation) responsible for ensuring the coherency
       of the Dataset Series '
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:publisher
     is_a: publisher
@@ -11761,7 +11764,7 @@ slots:
     name: DatasetSeries_release_date
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/release_date
     description: The date of formal issuance (e.g., publication) of the Dataset Series.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:issued
     is_a: release_date
@@ -11781,7 +11784,7 @@ slots:
     name: DatasetSeries_temporal_coverage
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/temporal_coverage
     description: A temporal period that the Dataset Series covers.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:temporal
     is_a: temporal_coverage
@@ -11802,7 +11805,7 @@ slots:
     name: DatasetSeries_title
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
     description: A name given to the Dataset Series.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:title
     is_a: title
@@ -11823,7 +11826,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
     description: This slot is described in more detail within the class in which it
       is used.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - schema:name
     is_a: title
@@ -11840,7 +11843,7 @@ slots:
     name: Device_has_part
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_part
     description: The slot to specify parts of a Device that are themselves Devices.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:hasPart
     is_a: AgenticEntity_has_part
@@ -11860,7 +11863,7 @@ slots:
     name: Device_other_identifier
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/other_identifier
     description: A slot to provide a secondary identifier for a Device.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:identifier
     is_a: AgenticEntity_other_identifier
@@ -11881,7 +11884,7 @@ slots:
     name: Distribution_access_URL
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/access_URL
     description: A URL that gives access to a Distribution of the Dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:accessURL
     is_a: access_URL
@@ -11902,7 +11905,7 @@ slots:
     name: Distribution_access_service
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/access_service
     description: A data service that gives access to the distribution of the dataset.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:accessService
     is_a: access_service
@@ -11923,7 +11926,7 @@ slots:
     name: Distribution_applicable_legislation
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/applicable_legislation
     description: The legislation that mandates the creation or management of the Distribution.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcatap:applicableLegislation
     is_a: applicable_legislation
@@ -11945,7 +11948,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/availability
     description: An indication how long it is planned to keep the Distribution of
       the Dataset available.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcatap:availability
     is_a: availability
@@ -11967,7 +11970,7 @@ slots:
     name: Distribution_byte_size
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/byte_size
     description: The size of a Distribution in bytes.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:byteSize
     is_a: byte_size
@@ -11988,7 +11991,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/checksum
     description: A mechanism that can be used to verify that the contents of a distribution
       have not changed.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - spdx:checksum
     is_a: checksum
@@ -12010,7 +12013,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/compression_format
     description: The format of the file in which the data is contained in a compressed
       form, e.g. to reduce the size of the downloadable file.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:compressFormat
     is_a: compression_format
@@ -12031,7 +12034,7 @@ slots:
     name: Distribution_description
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/description
     description: A free-text account of the Distribution.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:description
     is_a: description
@@ -12052,7 +12055,7 @@ slots:
     name: Distribution_documentation
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/documentation
     description: A page or document about this Distribution.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:page
     is_a: documentation
@@ -12073,7 +12076,7 @@ slots:
     name: Distribution_download_URL
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/download_URL
     description: A URL that is a direct link to a downloadable file in a given format.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:downloadURL
     is_a: download_URL
@@ -12094,7 +12097,7 @@ slots:
     name: Distribution_format
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/format
     description: The file format of the Distribution.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:format
     is_a: format
@@ -12117,7 +12120,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_policy
     description: The policy expressing the rights associated with the distribution
       if using the [[ODRL]] vocabulary.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - odrl:hasPolicy
     is_a: has_policy
@@ -12138,7 +12141,7 @@ slots:
     name: Distribution_language
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/language
     description: A language used in the Distribution.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:language
     is_a: language
@@ -12159,7 +12162,7 @@ slots:
     name: Distribution_licence
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/licence
     description: A licence under which the Distribution is made available.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:license
     is_a: licence
@@ -12180,7 +12183,7 @@ slots:
     name: Distribution_linked_schemas
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/linked_schemas
     description: An established schema to which the described Distribution conforms.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:conformsTo
     is_a: linked_schemas
@@ -12202,7 +12205,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/media_type
     description: The media type of the Distribution as defined in the official register
       of media types managed by IANA.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:mediaType
     is_a: media_type
@@ -12223,7 +12226,7 @@ slots:
     name: Distribution_modification_date
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/modification_date
     description: The most recent date on which the Distribution was changed or modified.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:modified
     is_a: modification_date
@@ -12244,7 +12247,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/packaging_format
     description: The format of the file in which one or more data files are grouped
       together, e.g. to enable a set of related files to be downloaded together.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:packageFormat
     is_a: packaging_format
@@ -12265,7 +12268,7 @@ slots:
     name: Distribution_release_date
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/release_date
     description: The date of formal issuance (e.g., publication) of the Distribution.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:issued
     is_a: release_date
@@ -12285,7 +12288,7 @@ slots:
     name: Distribution_rights
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/rights
     description: A statement that specifies rights associated with the Distribution.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:rights
     is_a: rights
@@ -12307,7 +12310,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/spatial_resolution
     description: The minimum spatial separation resolvable in a dataset distribution,
       measured in meters.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:spatialResolutionInMeters
     is_a: spatial_resolution
@@ -12327,7 +12330,7 @@ slots:
     name: Distribution_status
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/status
     description: The status of the distribution in the context of maturity lifecycle.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:status
     is_a: status
@@ -12348,7 +12351,7 @@ slots:
     name: Distribution_temporal_resolution
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/temporal_resolution
     description: The minimum time period resolvable in the dataset distribution.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:temporalResolution
     is_a: temporal_resolution
@@ -12368,7 +12371,7 @@ slots:
     name: Distribution_title
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
     description: A name given to the Distribution.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:title
     is_a: title
@@ -12388,7 +12391,7 @@ slots:
     name: Entity_title
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
     description: The slot to provide a title for the Entity.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:title
     is_a: title
@@ -12405,7 +12408,7 @@ slots:
     name: Entity_description
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/description
     description: The slot to provide a description for the Entity.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:description
     is_a: description
@@ -12422,7 +12425,7 @@ slots:
     name: Entity_other_identifier
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/other_identifier
     description: A slot to provide a secondary identifier of the Entity.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:identifier
     is_a: other_identifier
@@ -12443,7 +12446,7 @@ slots:
     name: Entity_has_part
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_part
     description: A slot to provide a part of the Entity.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:hasPart
     is_a: has_part
@@ -12467,7 +12470,7 @@ slots:
     - not in DCAT-AP
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:isPartOf
     is_a: part_of
@@ -12487,7 +12490,7 @@ slots:
     name: EvaluatedActivity_other_identifier
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/other_identifier
     description: A slot to provide a secondary identifier of the EvaluatedActivity.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:identifier
     is_a: Activity_other_identifier
@@ -12508,7 +12511,7 @@ slots:
     name: EvaluatedEntity_title
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/title
     description: The slot to provide a title for the EvaluatedEntity.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:title
     is_a: Entity_title
@@ -12525,7 +12528,7 @@ slots:
     name: EvaluatedEntity_description
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/description
     description: The slot to provide a description for the EvaluatedEntity.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:description
     is_a: Entity_description
@@ -12542,7 +12545,7 @@ slots:
     name: EvaluatedEntity_was_generated_by
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/was_generated_by
     description: A slot to provide the Activity which created the EvaluatedEntity.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasGeneratedBy
     is_a: was_generated_by
@@ -12562,7 +12565,7 @@ slots:
     name: EvaluatedEntity_other_identifier
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/other_identifier
     description: A slot to provide a secondary identifier of the EvaluatedEntity.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:identifier
     is_a: Entity_other_identifier
@@ -12584,7 +12587,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/notation
     description: A string that is an identifier in the context of the identifier scheme
       referenced by its datatype.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - skos:notation
     is_a: notation
@@ -12605,7 +12608,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/type
     description: A type of licence, e.g. indicating 'public domain' or 'royalties
       required'.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:type
     is_a: type
@@ -12627,7 +12630,7 @@ slots:
     name: Location_bbox
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/bbox
     description: The geographic bounding box of a resource.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:bbox
     is_a: bbox
@@ -12648,7 +12651,7 @@ slots:
     name: Location_centroid
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/centroid
     description: The geographic center (centroid) of a resource.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:centroid
     is_a: centroid
@@ -12669,7 +12672,7 @@ slots:
     name: Location_geometry
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/geometry
     description: The corresponding geometry for a resource.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - locn:geometry
     is_a: geometry
@@ -12690,7 +12693,7 @@ slots:
     name: PeriodOfTime_beginning
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/beginning
     description: The beginning of a period or interval.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - time:hasBeginning
     is_a: beginning
@@ -12711,7 +12714,7 @@ slots:
     name: PeriodOfTime_end
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/end
     description: The end of a period or interval.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - time:hasEnd
     is_a: end
@@ -12732,7 +12735,7 @@ slots:
     name: PeriodOfTime_end_date
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/end_date
     description: The end of the period.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:endDate
     is_a: end_date
@@ -12753,7 +12756,7 @@ slots:
     name: PeriodOfTime_start_date
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/start_date
     description: The start of the period.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:startDate
     is_a: start_date
@@ -12776,7 +12779,7 @@ slots:
     description: The slot to provide the literal value of the QualitativeAttribute.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:value
     is_a: value
@@ -12796,7 +12799,7 @@ slots:
     description: The slot to provide the literal value of the QuantitativeAttribute.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:value
     is_a: value
@@ -12815,7 +12818,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/had_role
     description: A function of an entity or agent with respect to another entity or
       resource.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:hadRole
     is_a: had_role
@@ -12836,7 +12839,7 @@ slots:
     name: Relationship_relation
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/relation
     description: A resource related to the source resource.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:relation
     is_a: relation
@@ -12857,7 +12860,7 @@ slots:
     name: Software_has_part
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_part
     description: The slot to specify parts of a Software that are themselves Software.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:hasPart
     is_a: AgenticEntity_has_part
@@ -12877,7 +12880,7 @@ slots:
     name: Software_other_identifier
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/other_identifier
     description: A slot to provide a secondary identifier for a Software.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:identifier
     is_a: AgenticEntity_other_identifier
@@ -12899,7 +12902,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_part
     description: The slot to provide the parts of a ChemicalEntity that are themself
       chemical entities.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - BFO:0000051
     is_a: Entity_has_part
@@ -12922,7 +12925,7 @@ slots:
       branch.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - rdf:type
     is_a: rdf_type
@@ -12943,7 +12946,7 @@ slots:
     name: MaterialEntity_has_part
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/has_part
     description: The slot to provide the parts of a MaterialEntity.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - BFO:0000051
     is_a: Entity_has_part
@@ -16786,7 +16789,7 @@ classes:
       the DCAT-AP.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:Activity
     mixins:
@@ -16874,7 +16877,7 @@ classes:
     name: Agent
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Agent
     description: See [DCAT-AP specs:Agent](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Agent)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:Agent
     slots:
@@ -16905,7 +16908,7 @@ classes:
     description: An entity that is somehow responsible for an Activity to take place.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:Agent
     mixins:
@@ -16956,7 +16959,7 @@ classes:
       an AnalyticalDataset.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:Dataset
     is_a: Dataset
@@ -17013,7 +17016,7 @@ classes:
     description: Information that was evaluated within a DataAnalysis.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:Entity
     is_a: EvaluatedEntity
@@ -17042,7 +17045,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Any
     description: This abstract class is needed to create the union of Dataset, DatasetSeries,
       Catalogue and DataService for the range of the slot [primary_topic](https://nfdi-de.github.io/chem-dcat-ap/elements/primary_topic/).
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - linkml:Any
     slots:
@@ -17053,7 +17056,7 @@ classes:
     name: Attribution
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Attribution
     description: See [DCAT-AP specs:Attribution](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Attribution)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:Attribution
     is_a: SupportiveEntity
@@ -17065,7 +17068,7 @@ classes:
     name: Catalogue
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Catalogue
     description: See [DCAT-AP specs:Catalogue](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Catalogue)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:Catalog
     slots:
@@ -17256,7 +17259,7 @@ classes:
     name: CatalogueRecord
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/CatalogueRecord
     description: See [DCAT-AP specs:CatalogueRecord](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#CatalogueRecord)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:CatalogRecord
     slots:
@@ -17363,7 +17366,7 @@ classes:
     name: Checksum
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Checksum
     description: See [DCAT-AP specs:Checksum](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Checksum)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - spdx:Checksum
     slots:
@@ -17392,7 +17395,7 @@ classes:
     name: ChecksumAlgorithm
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/ChecksumAlgorithm
     description: See [DCAT-AP specs:ChecksumAlgorithm](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#ChecksumAlgorithm)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - spdx:ChecksumAlgorithm
     is_a: SupportiveEntity
@@ -17407,7 +17410,7 @@ classes:
       an additional rdf:type or dcterms:type assertion.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     abstract: true
     mixin: true
     slots:
@@ -17418,12 +17421,12 @@ classes:
         name: type
         range: DefinedTerm
         inlined: true
-    class_uri: dcatapplus:ClassifierMixin
+    class_uri: dcatap_plus:ClassifierMixin
   Concept:
     name: Concept
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Concept
     description: See [DCAT-AP specs:Concept](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Concept)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - skos:Concept
     is_a: SupportiveEntity
@@ -17445,7 +17448,7 @@ classes:
     name: ConceptScheme
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/ConceptScheme
     description: See [DCAT-AP specs:ConceptScheme](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#ConceptScheme)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - skos:ConceptScheme
     is_a: SupportiveEntity
@@ -17468,7 +17471,7 @@ classes:
     description: An Activity that evaluates the data produced by another Activity.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:Activity
     exact_mappings:
@@ -17510,7 +17513,7 @@ classes:
       (in form of a dataset) about another Activity or Entity.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:Activity
     is_a: Activity
@@ -17538,7 +17541,7 @@ classes:
     name: DataService
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/DataService
     description: See [DCAT-AP specs:DataService](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#DataService)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:DataService
     slots:
@@ -17708,7 +17711,7 @@ classes:
       available for access or download in one or more representations.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:Dataset
     slots:
@@ -18060,7 +18063,7 @@ classes:
     name: DatasetSeries
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/DatasetSeries
     description: See [DCAT-AP specs:DatasetSeries](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#DatasetSeries)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:DatasetSeries
     slots:
@@ -18169,7 +18172,7 @@ classes:
       class within this schema.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - schema:DefinedTerm
     slots:
@@ -18194,7 +18197,7 @@ classes:
       by means of its mechanical or electrical nature.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     aliases:
     - hardware instrument
     mappings:
@@ -18237,7 +18240,7 @@ classes:
     name: Distribution
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Distribution
     description: See [DCAT-AP specs:Distribution](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Distribution)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:Distribution
     slots:
@@ -18476,7 +18479,7 @@ classes:
     name: Document
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Document
     description: See [DCAT-AP specs:Document](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Document)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - foaf:Document
     is_a: SupportiveEntity
@@ -18492,7 +18495,7 @@ classes:
       fixed aspects; entities may be real or imaginary.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:Entity
     mixins:
@@ -18543,7 +18546,7 @@ classes:
     description: An activity or process that is being evaluated in a DataGeneratingActivity.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:Activity
     is_a: Activity
@@ -18577,7 +18580,7 @@ classes:
     description: An Entity that is being evaluated in a DataGeneratingActivity.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:Entity
     is_a: Entity
@@ -18618,7 +18621,7 @@ classes:
     name: Frequency
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Frequency
     description: See [DCAT-AP specs:Frequency](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Frequency)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:Frequency
     is_a: SupportiveEntity
@@ -18630,7 +18633,7 @@ classes:
     name: Geometry
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Geometry
     description: See [DCAT-AP specs:Geometry](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Geometry)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - locn:Geometry
     is_a: SupportiveEntity
@@ -18642,7 +18645,7 @@ classes:
     name: Identifier
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Identifier
     description: See [DCAT-AP specs:Identifier](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Identifier)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - adms:Identifier
     is_a: SupportiveEntity
@@ -18665,7 +18668,7 @@ classes:
     name: Kind
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Kind
     description: See [DCAT-AP specs:Kind](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Kind)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - vcard:Kind
     class_uri: vcard:Kind
@@ -18673,7 +18676,7 @@ classes:
     name: LegalResource
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/LegalResource
     description: See [DCAT-AP specs:LegalResource](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#LegalResource)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - eli:LegalResource
     is_a: SupportiveEntity
@@ -18686,7 +18689,7 @@ classes:
     name: LicenseDocument
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/LicenseDocument
     description: See [DCAT-AP specs:LicenseDocument](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#LicenseDocument)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:LicenseDocument
     is_a: SupportiveEntity
@@ -18711,7 +18714,7 @@ classes:
     name: LinguisticSystem
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/LinguisticSystem
     description: See [DCAT-AP specs:LinguisticSystem](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#LinguisticSystem)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:LinguisticSystem
     is_a: SupportiveEntity
@@ -18723,7 +18726,7 @@ classes:
     name: Location
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Location
     description: See [DCAT-AP specs:Location](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Location)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:Location
     slots:
@@ -18762,7 +18765,7 @@ classes:
     name: MediaType
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/MediaType
     description: See [DCAT-AP specs:MediaType](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#MediaType)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:MediaType
     is_a: SupportiveEntity
@@ -18774,7 +18777,7 @@ classes:
     name: MediaTypeOrExtent
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/MediaTypeOrExtent
     description: See [DCAT-AP specs:MediaTypeOrExtent](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#MediaTypeOrExtent)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:MediaTypeOrExtent
     is_a: SupportiveEntity
@@ -18786,7 +18789,7 @@ classes:
     name: PeriodOfTime
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/PeriodOfTime
     description: See [DCAT-AP specs:PeriodOfTime](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#PeriodOfTime)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:PeriodOfTime
     is_a: SupportiveEntity
@@ -18845,7 +18848,7 @@ classes:
         K, number of scans: 1024, Solvent : chloroform-D1 (CDCl3).'
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     aliases:
     - Plan Specification
     - Method
@@ -18864,7 +18867,7 @@ classes:
     name: Policy
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Policy
     description: See [DCAT-AP specs:Policy](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Policy)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - odrl:Policy
     is_a: SupportiveEntity
@@ -18876,7 +18879,7 @@ classes:
     name: ProvenanceStatement
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/ProvenanceStatement
     description: See [DCAT-AP specs:ProvenanceStatement](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#ProvenanceStatement)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:ProvenanceStatement
     is_a: SupportiveEntity
@@ -18891,7 +18894,7 @@ classes:
       or AgenticEntity.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:Entity
     mixins:
@@ -18915,7 +18918,7 @@ classes:
       Activity or AgenticEntity.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - qudt:Quantity
     mixins:
@@ -18969,7 +18972,7 @@ classes:
     name: Relationship
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Relationship
     description: See [DCAT-AP specs:Relationship](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Relationship)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:Relationship
     slots:
@@ -18998,7 +19001,7 @@ classes:
     name: Resource
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Resource
     description: See [DCAT-AP specs:Resource](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Resource)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - rdfs:Resource
     is_a: SupportiveEntity
@@ -19011,7 +19014,7 @@ classes:
     name: RightsStatement
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/RightsStatement
     description: See [DCAT-AP specs:RightsStatement](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#RightsStatement)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:RightsStatement
     is_a: SupportiveEntity
@@ -19023,7 +19026,7 @@ classes:
     name: Role
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Role
     description: See [DCAT-AP specs:Role](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Role)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcat:Role
     is_a: SupportiveEntity
@@ -19038,7 +19041,7 @@ classes:
       by or directly executed by a computer.
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:SoftwareAgent
     exact_mappings:
@@ -19075,7 +19078,7 @@ classes:
     name: Standard
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Standard
     description: See [DCAT-AP specs:Standard](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Standard)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - dcterms:Standard
     is_a: SupportiveEntity
@@ -19089,11 +19092,11 @@ classes:
     description: The supportive entities are supporting the main entities in the Application
       Profile. They are included in the Application Profile because they form the
       range of properties.
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     slots:
     - title
     - description
-    class_uri: dcatapplus:SupportiveEntity
+    class_uri: dcatap_plus:SupportiveEntity
   Surrounding:
     name: Surrounding
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Surrounding
@@ -19101,7 +19104,7 @@ classes:
       (e.g. a lab).
     in_subset:
     - domain_agnostic_core
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:Location
     mixins:
@@ -19116,7 +19119,7 @@ classes:
     name: TimeInstant
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/TimeInstant
     description: See [DCAT-AP specs:TimeInstant](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#TimeInstant)
-    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/
+    from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - time:Instant
     is_a: SupportiveEntity
@@ -19675,7 +19678,7 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.7.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-07-14T17:22:30'
+source_file_date: '2026-10-21T16:11:53'
 source_file_size: 7882
-generation_date: '2026-07-14T17:23:49'
+generation_date: '2026-10-21T16:15:06'
 
