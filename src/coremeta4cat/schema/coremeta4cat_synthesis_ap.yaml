@@ -261,7 +261,7 @@ classes:
 
   PlasmaAssisted:
     is_a: PreparationMethod
-    class_uri: coremeta4cat:PlasmaAssisted # maybe use http://purl.obolibrary.org/obo/MS_1000400
+    class_uri: voc4cat:0008152
     mixins:
     - ThermalSynthesisMixin
     description: |-
@@ -275,7 +275,7 @@ classes:
 
   CombustionSynthesis:
     is_a: PreparationMethod
-    class_uri: coremeta4cat:CombustionSynthesis # maybe use http://purl.obolibrary.org/obo/CHMO_0001473
+    class_uri: voc4cat:0008156
     mixins:
     - ThermalSynthesisMixin
     description: |-
@@ -621,7 +621,7 @@ slots:
     description: Molar ratio of water to alkoxide precursor used in hydrolysis.
     is_a: has_quantitative_attribute
     range: float
-    slot_uri: coremeta4cat:hydrolysis_ratio
+    slot_uri: voc4cat:0008157
     multivalued: true
 
   drying:
@@ -635,7 +635,7 @@ slots:
     description: Surfactant or structure-directing agent used as a template.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: coremeta4cat:surfactant_template
+    slot_uri: voc4cat:0008147
     multivalued: true
 
   # ---- Solvothermal-specific slots ----
@@ -644,7 +644,7 @@ slots:
     description: Volume of solution relative to autoclave volume (filling degree).
     is_a: has_quantitative_attribute
     range: float
-    slot_uri: coremeta4cat:filling_volume
+    slot_uri: voc4cat:0008148
     multivalued: true
     unit:
       ucum_code: mL
@@ -660,7 +660,7 @@ slots:
     description: Rate at which the reactor is cooled after synthesis.
     is_a: has_heating_rate
     range: HeatingRate
-    slot_uri: coremeta4cat:cooling_rate
+    slot_uri: voc4cat:0008149
     multivalued: true
     inlined_as_list: true
 
@@ -670,14 +670,14 @@ slots:
     description: Type of plasma used (e.g. DBD, microwave, RF plasma).
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: coremeta4cat:plasma_type
+    slot_uri: voc4cat:0008153
     multivalued: true
 
   power_input:
     description: Power input to the plasma reactor or other energy source.
     is_a: has_power
     range: PowerQuantity
-    slot_uri: coremeta4cat:power_input
+    slot_uri: voc4cat:0008154
     multivalued: true
     inlined_as_list: true
 
@@ -685,7 +685,7 @@ slots:
     description: Duration of plasma or other energy exposure.
     is_a: has_duration
     range: Duration
-    slot_uri: coremeta4cat:exposure_time
+    slot_uri: voc4cat:0008155
     multivalued: true
     inlined_as_list: true
 
