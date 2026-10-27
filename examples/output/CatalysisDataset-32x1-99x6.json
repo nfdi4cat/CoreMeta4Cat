@@ -4,7 +4,7 @@
     "Catalyst characterization (BET, ICP-AES, PXRD, DRIFT, IR) and catalytic testing data for a series of Pd/P catalysts (nominal 2 wt% Pd, 0-5 wt% P) on Al2O3 and SiO2 supports, investigating how phosphorus modification of the support tunes the Pd-catalyzed selective hydrogenation of cinnamyl alcohol (CAL) and citral. Catalytic performance was screened via Central Composite Design (Al2O3/CAL, 27 runs) and full-factorial designs (SiO2/CAL, Al2O3/citral, SiO2/citral; 9 runs each) varying temperature (30-70 C), pressure (1-9 bar), phosphorus loading, and reaction time. TEM is mentioned in the original repository description but no TEM data files are included in the deposited dataset."
   ],
   "title": [
-    "Support Engineering with Phosphorus: Tuning the Palladium-Catalyzed Selective Hydrogenation of Î±,Î²-Unsaturated Aldehydes"
+    "Support Engineering with Phosphorus: Tuning the Palladium-Catalyzed Selective Hydrogenation of α,β-Unsaturated Aldehydes"
   ],
   "was_generated_by": [
     {
@@ -28,7 +28,7 @@
         }
       ],
       "rdf_type": {
-        "id": "ENM:0000064",
+        "id": "enm:0000064",
         "title": "BET analysis"
       },
       "evaluated_entity": [
@@ -460,7 +460,7 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000260",
+        "id": "voc4cat:0000260",
         "title": "hydrogenation"
       },
       "used_reactant": [
@@ -688,7 +688,7 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000260",
+        "id": "voc4cat:0000260",
         "title": "hydrogenation"
       },
       "used_reactant": [
@@ -864,7 +864,7 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000260",
+        "id": "voc4cat:0000260",
         "title": "hydrogenation"
       },
       "used_reactant": [
@@ -1026,7 +1026,7 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000260",
+        "id": "voc4cat:0000260",
         "title": "hydrogenation"
       },
       "used_reactant": [
@@ -1176,7 +1176,7 @@
     }
   ],
   "rdf_type": {
-    "id": "VOC4CAT:0007001",
+    "id": "voc4cat:0007001",
     "title": "heterogeneous catalysis"
   },
   "@type": "CatalysisDataset"

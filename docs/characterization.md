@@ -79,7 +79,7 @@ The class follows a hierarchical structure in which selection of a characterizat
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFP:0001159`](http://purl.allotrope.org/ontologies/process#AFP_0001159)
+**CURIE:** [`allotrope.quality:0001159`](http://purl.allotrope.org/ontologies/quality#AFQ_0001159)
 
 **Schema Reference:** [sample_preparation](./elements/slots/sample_preparation.md)
 
@@ -110,7 +110,7 @@ The class follows a hierarchical structure in which selection of a characterizat
 **Description:** A qualitative descriptor of the pre-treatment applied to a sample
 before a process or measurement (e.g. "reduction at 300 °C", "outgassing").
 
-**CURIE:** [`VOC4CAT:0000122`](https://w3id.org/nfdi4cat/voc4cat_0000122)
+**CURIE:** [`voc4cat:0000122`](https://w3id.org/nfdi4cat/voc4cat_0000122)
 
 **Schema Reference:** [SamplePretreatment](./elements/classes/SamplePretreatment.md)
 
@@ -135,7 +135,7 @@ before a process or measurement (e.g. "reduction at 300 °C", "outgassing").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0000317`](http://purl.allotrope.org/ontologies/result#AFR_0000317)
+**CURIE:** [`allotrope.result:0000317`](http://purl.allotrope.org/ontologies/result#AFR_0000317)
 
 **Schema Reference:** [detector_type](./elements/slots/detector_type.md)
 
@@ -320,7 +320,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
+**CURIE:** [`allotrope.result:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
 
 **Schema Reference:** [step_size](./elements/slots/step_size.md)
 
@@ -351,7 +351,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** A qualitative descriptor of the operation mode of an instrument or
 process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
-**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 **Schema Reference:** [OperationMode](./elements/classes/OperationMode.md)
 
@@ -376,7 +376,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -406,7 +406,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **Description:** The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").
 
-**CURIE:** [`VOC4CAT:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
+**CURIE:** [`voc4cat:0000055`](https://w3id.org/nfdi4cat/voc4cat_0000055)
 
 **Schema Reference:** [CalcinationGaseousEnvironment](./elements/classes/CalcinationGaseousEnvironment.md)
 
@@ -700,7 +700,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Description:** X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.
 
-**CURIE:** [`VOC4CAT:0000286`](https://w3id.org/nfdi4cat/voc4cat_0000286)
+**CURIE:** [`voc4cat:0000286`](https://w3id.org/nfdi4cat/voc4cat_0000286)
 
 **Schema Reference:** [XRayAbsorptionSpectroscopy](./elements/classes/XRayAbsorptionSpectroscopy.md)
 
@@ -727,7 +727,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **Description:** A qualitative descriptor of the operation mode of an instrument or
 process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
-**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 *Full field list already shown [earlier on this page](#schema-class-OperationMode) -- this class is reached from multiple fields.*
 
@@ -786,7 +786,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
+**CURIE:** [`allotrope.result:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
 
 **Schema Reference:** [energy_resolution](./elements/slots/energy_resolution.md)
 
@@ -892,7 +892,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
+**CURIE:** [`voc4cat:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
 
 **Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
@@ -1073,7 +1073,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
+**CURIE:** [`allotrope.result:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
 
 **Schema Reference:** [step_size](./elements/slots/step_size.md)
 
@@ -1196,7 +1196,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -1488,7 +1488,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** A qualitative descriptor of the operation mode of an instrument or
 process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
-**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 *Full field list already shown [earlier on this page](#schema-class-OperationMode) -- this class is reached from multiple fields.*
 
@@ -1548,7 +1548,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
+**CURIE:** [`allotrope.result:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
 
 **Schema Reference:** [step_size](./elements/slots/step_size.md)
 
@@ -1599,7 +1599,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFP:0003721`](http://purl.allotrope.org/ontologies/process#AFP_0003721)
+**CURIE:** [`allotrope.quality:0003721`](http://purl.allotrope.org/ontologies/quality#AFQ_0003721)
 
 **Schema Reference:** [background_correction](./elements/slots/background_correction.md)
 
@@ -1637,7 +1637,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -1959,7 +1959,7 @@ surface species identification under reactive gas conditions.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -2105,7 +2105,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
+**CURIE:** [`allotrope.result:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
 
 **Schema Reference:** [step_size](./elements/slots/step_size.md)
 
@@ -2232,7 +2232,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Description:** Raman spectroscopy for vibrational and structural characterization.
 
-**CURIE:** [`VOC4CAT:0000069`](https://w3id.org/nfdi4cat/voc4cat_0000069)
+**CURIE:** [`voc4cat:0000069`](https://w3id.org/nfdi4cat/voc4cat_0000069)
 
 **Schema Reference:** [RamanSpectroscopy](./elements/classes/RamanSpectroscopy.md)
 
@@ -2247,7 +2247,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0001594`](http://purl.allotrope.org/ontologies/result#AFR_0001594)
+**CURIE:** [`allotrope.result:0001594`](http://purl.allotrope.org/ontologies/result#AFR_0001594)
 
 **Schema Reference:** [excitation_laser_wavelength](./elements/slots/excitation_laser_wavelength.md)
 
@@ -2279,7 +2279,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0001595`](http://purl.allotrope.org/ontologies/result#AFR_0001595)
+**CURIE:** [`allotrope.result:0001595`](http://purl.allotrope.org/ontologies/result#AFR_0001595)
 
 **Schema Reference:** [excitation_laser_power](./elements/slots/excitation_laser_power.md)
 
@@ -2315,7 +2315,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0002226`](http://purl.allotrope.org/ontologies/result#AFR_0002226)
+**CURIE:** [`allotrope.result:0002226`](http://purl.allotrope.org/ontologies/result#AFR_0002226)
 
 **Schema Reference:** [magnification_setting](./elements/slots/magnification_setting.md)
 
@@ -2385,7 +2385,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -2491,7 +2491,7 @@ Note: for detailed liquid-state NMR minimum information, the dedicated
 nmr_dcat_ap profile (MARGARITAS) should be used in combination with
 this subprofile.
 
-**CURIE:** [`VOC4CAT:0000073`](https://w3id.org/nfdi4cat/voc4cat_0000073)
+**CURIE:** [`voc4cat:0000073`](https://w3id.org/nfdi4cat/voc4cat_0000073)
 
 **Schema Reference:** [NMRSpectroscopy](./elements/classes/NMRSpectroscopy.md)
 
@@ -2525,7 +2525,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
+**CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
 **Schema Reference:** [solvent](./elements/slots/solvent.md)
 
@@ -2667,7 +2667,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -2719,7 +2719,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Description:** TEM for atomic-resolution imaging and diffraction of catalyst particles.
 
-**CURIE:** [`VOC4CAT:0000078`](https://w3id.org/nfdi4cat/voc4cat_0000078)
+**CURIE:** [`voc4cat:0000078`](https://w3id.org/nfdi4cat/voc4cat_0000078)
 
 **Schema Reference:** [TransmissionElectronMicroscopy](./elements/classes/TransmissionElectronMicroscopy.md)
 
@@ -2746,7 +2746,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **Description:** A qualitative descriptor of the operation mode of an instrument or
 process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
-**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 *Full field list already shown [earlier on this page](#schema-class-OperationMode) -- this class is reached from multiple fields.*
 
@@ -2839,7 +2839,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0002226`](http://purl.allotrope.org/ontologies/result#AFR_0002226)
+**CURIE:** [`allotrope.result:0002226`](http://purl.allotrope.org/ontologies/result#AFR_0002226)
 
 **Schema Reference:** [magnification_setting](./elements/slots/magnification_setting.md)
 
@@ -2860,7 +2860,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Description:** SEM for surface morphology and particle size/shape imaging.
 
-**CURIE:** [`VOC4CAT:0000075`](https://w3id.org/nfdi4cat/voc4cat_0000075)
+**CURIE:** [`voc4cat:0000075`](https://w3id.org/nfdi4cat/voc4cat_0000075)
 
 **Schema Reference:** [ScanningElectronMicroscopy](./elements/classes/ScanningElectronMicroscopy.md)
 
@@ -2983,7 +2983,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0002226`](http://purl.allotrope.org/ontologies/result#AFR_0002226)
+**CURIE:** [`allotrope.result:0002226`](http://purl.allotrope.org/ontologies/result#AFR_0002226)
 
 **Schema Reference:** [magnification_setting](./elements/slots/magnification_setting.md)
 
@@ -3031,7 +3031,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 **Description:** A qualitative descriptor of the operation mode of an instrument or
 process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
-**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 *Full field list already shown [earlier on this page](#schema-class-OperationMode) -- this class is reached from multiple fields.*
 
@@ -3052,7 +3052,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -3241,7 +3241,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
+**CURIE:** [`voc4cat:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
 
 **Schema Reference:** [has_heating_rate](./elements/slots/has_heating_rate.md)
 
@@ -3406,7 +3406,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
+**CURIE:** [`voc4cat:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
 
 **Schema Reference:** [has_heating_rate](./elements/slots/has_heating_rate.md)
 
@@ -3563,7 +3563,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
+**CURIE:** [`voc4cat:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
 
 **Schema Reference:** [has_heating_rate](./elements/slots/has_heating_rate.md)
 
@@ -3630,7 +3630,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **Description:** Brunauer-Emmett-Teller analysis for specific surface area and pore size distribution.
 
-**CURIE:** [`ENM:0000064`](http://purl.enanomapper.org/onto/0000064)
+**CURIE:** [`enm:0000064`](http://purl.enanomapper.org/onto/0000064)
 
 **Schema Reference:** [BET](./elements/classes/BET.md)
 
@@ -4025,7 +4025,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **Description:** UV-Vis spectroscopy for electronic transitions, band gap, and concentration determination.
 
-**CURIE:** [`VOC4CAT:0000079`](https://w3id.org/nfdi4cat/voc4cat_0000079)
+**CURIE:** [`voc4cat:0000079`](https://w3id.org/nfdi4cat/voc4cat_0000079)
 
 **Schema Reference:** [UVVisSpectroscopy](./elements/classes/UVVisSpectroscopy.md)
 
@@ -4079,7 +4079,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFQ:0000268`](http://purl.allotrope.org/ontologies/quality#AFQ_0000268)
+**CURIE:** [`allotrope.quality:0000268`](http://purl.allotrope.org/ontologies/quality#AFQ_0000268)
 
 **Schema Reference:** [path_length](./elements/slots/path_length.md)
 
@@ -4100,7 +4100,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
+**CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
 **Schema Reference:** [solvent](./elements/slots/solvent.md)
 
@@ -4242,7 +4242,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
+**CURIE:** [`allotrope.result:0000950`](http://purl.allotrope.org/ontologies/result#AFR_0000950)
 
 **Schema Reference:** [step_size](./elements/slots/step_size.md)
 
@@ -4310,7 +4310,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0002479`](http://purl.allotrope.org/ontologies/result#AFR_0002479)
+**CURIE:** [`allotrope.result:0002479`](http://purl.allotrope.org/ontologies/result#AFR_0002479)
 
 **Schema Reference:** [excitation_wavelength](./elements/slots/excitation_wavelength.md)
 
@@ -4497,7 +4497,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFR:0002479`](http://purl.allotrope.org/ontologies/result#AFR_0002479)
+**CURIE:** [`allotrope.result:0002479`](http://purl.allotrope.org/ontologies/result#AFR_0002479)
 
 **Schema Reference:** [excitation_wavelength](./elements/slots/excitation_wavelength.md)
 
@@ -4629,7 +4629,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007213`](https://w3id.org/nfdi4cat/voc4cat_0007213)
+**CURIE:** [`voc4cat:0007213`](https://w3id.org/nfdi4cat/voc4cat_0007213)
 
 **Schema Reference:** [scan_rate](./elements/slots/scan_rate.md)
 
@@ -4689,7 +4689,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007218`](https://w3id.org/nfdi4cat/voc4cat_0007218)
+**CURIE:** [`voc4cat:0007218`](https://w3id.org/nfdi4cat/voc4cat_0007218)
 
 **Schema Reference:** [step_size_potential](./elements/slots/step_size_potential.md)
 
@@ -4710,7 +4710,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`VOC4CAT:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
+**CURIE:** [`voc4cat:0008123`](https://w3id.org/nfdi4cat/voc4cat_0008123)
 
 **Schema Reference:** [number_of_cycles](./elements/slots/number_of_cycles.md)
 
@@ -4746,7 +4746,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007204`](https://w3id.org/nfdi4cat/voc4cat_0007204)
+**CURIE:** [`voc4cat:0007204`](https://w3id.org/nfdi4cat/voc4cat_0007204)
 
 **Schema Reference:** [reference_electrode](./elements/slots/reference_electrode.md)
 
@@ -4765,7 +4765,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007202`](https://w3id.org/nfdi4cat/voc4cat_0007202)
+**CURIE:** [`voc4cat:0007202`](https://w3id.org/nfdi4cat/voc4cat_0007202)
 
 **Schema Reference:** [working_electrode](./elements/slots/working_electrode.md)
 
@@ -4784,7 +4784,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007203`](https://w3id.org/nfdi4cat/voc4cat_0007203)
+**CURIE:** [`voc4cat:0007203`](https://w3id.org/nfdi4cat/voc4cat_0007203)
 
 **Schema Reference:** [counter_electrode](./elements/slots/counter_electrode.md)
 
@@ -4854,7 +4854,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -4955,7 +4955,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007239`](https://w3id.org/nfdi4cat/voc4cat_0007239)
+**CURIE:** [`voc4cat:0007239`](https://w3id.org/nfdi4cat/voc4cat_0007239)
 
 **Schema Reference:** [ac_frequency](./elements/slots/ac_frequency.md)
 
@@ -5031,7 +5031,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007204`](https://w3id.org/nfdi4cat/voc4cat_0007204)
+**CURIE:** [`voc4cat:0007204`](https://w3id.org/nfdi4cat/voc4cat_0007204)
 
 **Schema Reference:** [reference_electrode](./elements/slots/reference_electrode.md)
 
@@ -5050,7 +5050,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007202`](https://w3id.org/nfdi4cat/voc4cat_0007202)
+**CURIE:** [`voc4cat:0007202`](https://w3id.org/nfdi4cat/voc4cat_0007202)
 
 **Schema Reference:** [working_electrode](./elements/slots/working_electrode.md)
 
@@ -5069,7 +5069,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007203`](https://w3id.org/nfdi4cat/voc4cat_0007203)
+**CURIE:** [`voc4cat:0007203`](https://w3id.org/nfdi4cat/voc4cat_0007203)
 
 **Schema Reference:** [counter_electrode](./elements/slots/counter_electrode.md)
 
@@ -5139,7 +5139,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
+**CURIE:** [`voc4cat:0007809`](https://w3id.org/nfdi4cat/voc4cat_0007809)
 
 **Schema Reference:** [has_atmosphere](./elements/slots/has_atmosphere.md)
 
@@ -5221,7 +5221,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
+**CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
 **Schema Reference:** [solvent](./elements/slots/solvent.md)
 
@@ -5285,7 +5285,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0000176`](https://w3id.org/nfdi4cat/voc4cat_0000176)
+**CURIE:** [`voc4cat:0000176`](https://w3id.org/nfdi4cat/voc4cat_0000176)
 
 **Schema Reference:** [light_wavelength](./elements/slots/light_wavelength.md)
 
@@ -5514,7 +5514,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **Description:** A qualitative descriptor of the operation mode of an instrument or
 process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
-**CURIE:** [`VOC4CAT:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
+**CURIE:** [`voc4cat:0000108`](https://w3id.org/nfdi4cat/voc4cat_0000108)
 
 *Full field list already shown [earlier on this page](#schema-class-OperationMode) -- this class is reached from multiple fields.*
 
@@ -5599,7 +5599,7 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
+**CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
 **Schema Reference:** [solvent_composition](./elements/slots/solvent_composition.md)
 
@@ -5909,7 +5909,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
+**CURIE:** [`voc4cat:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
 
 **Schema Reference:** [heating_ramp](./elements/slots/heating_ramp.md)
 
@@ -6088,7 +6088,7 @@ applied (e.g. "isothermal", "ramp 5 °C/min to 500 °C, dwell 2 h").
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFRL:0000011`](http://purl.allotrope.org/ontologies/role#AFRL_0000011)
+**CURIE:** [`allotrope.role:0000011`](http://purl.allotrope.org/ontologies/role#AFRL_0000011)
 
 **Schema Reference:** [eluent](./elements/slots/eluent.md)
 
@@ -6267,7 +6267,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Description:** Size exclusion chromatography for molecular weight distribution determination.
 
-**CURIE:** [`AFP:0000843`](http://purl.allotrope.org/ontologies/process#AFP_0000843)
+**CURIE:** [`allotrope.quality:0000843`](http://purl.allotrope.org/ontologies/quality#AFQ_0000843)
 
 **Schema Reference:** [SizeExclusionChromatography](./elements/classes/SizeExclusionChromatography.md)
 
@@ -6369,7 +6369,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFRL:0000011`](http://purl.allotrope.org/ontologies/role#AFRL_0000011)
+**CURIE:** [`allotrope.role:0000011`](http://purl.allotrope.org/ontologies/role#AFRL_0000011)
 
 **Schema Reference:** [eluent](./elements/slots/eluent.md)
 
@@ -6626,7 +6626,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`AFRL:0000011`](http://purl.allotrope.org/ontologies/role#AFRL_0000011)
+**CURIE:** [`allotrope.role:0000011`](http://purl.allotrope.org/ontologies/role#AFRL_0000011)
 
 **Schema Reference:** [eluent](./elements/slots/eluent.md)
 

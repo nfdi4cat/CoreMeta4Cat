@@ -7,7 +7,7 @@
     "Catalyst characterization (BET, ICP-AES, PXRD, DRIFT, IR) and catalytic testing data for a series of Pd/P catalysts (nominal 2 wt% Pd, 0-5 wt% P) on Al2O3 and SiO2 supports, investigating how phosphorus modification of the support tunes the Pd-catalyzed selective hydrogenation of cinnamyl alcohol (CAL) and citral. Catalytic performance was screened via Central Composite Design (Al2O3/CAL, 27 runs) and full-factorial designs (SiO2/CAL, Al2O3/citral, SiO2/citral; 9 runs each) varying temperature (30-70 C), pressure (1-9 bar), phosphorus loading, and reaction time. TEM is mentioned in the original repository description but no TEM data files are included in the deposited dataset."
   ],
   "rdf_type": {
-    "id": "VOC4CAT:0007001",
+    "id": "voc4cat:0007001",
     "title": "heterogeneous catalysis"
   },
   "keyword": [
@@ -95,7 +95,7 @@
         "Brunauer-Emmett-Teller specific surface area determination for all 10 Pd/P-Al2O3 and Pd/P-SiO2 catalysts (0-5 wt% nominal P loading). Surface area ranged 72-126 m2/g, generally decreasing with increasing P loading (bet_results.txt)."
       ],
       "rdf_type": {
-        "id": "ENM:0000064",
+        "id": "enm:0000064",
         "title": "BET analysis"
       },
       "carried_out_by": [
@@ -455,7 +455,7 @@
         "Selective hydrogenation of cinnamyl alcohol (CAL) over 6 Pd/P/Al2O3 catalysts (P loading 0-5 wt%, ~2 wt% Pd) in a Central Composite Design (27 runs) exploring temperature, pressure, phosphorus loading, and time. An initial fixed-condition screening (50C/5bar/30min, hot-filtration leaching test) gave CAL conversion/HCAL yield of 32/30% (Pd/Al2O3) and 45/42% (Pd/3P/Al2O3). Conversion ranged 6-96%, yield 6-90% across the 27-run design (catalytic_data.xlsx, 'Pd-XPAl2O3_CCD_CAL')."
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000260",
+        "id": "voc4cat:0000260",
         "title": "hydrogenation"
       },
       "catalyst_type": [
@@ -683,7 +683,7 @@
         "Selective hydrogenation of cinnamyl alcohol (CAL) over 4 Pd/P/SiO2 catalysts (P loading 0-5 wt%, ~2 wt% Pd) in a full factorial design (9 runs) exploring temperature, pressure, phosphorus loading, and time. An initial fixed-condition screening (50C/5bar/30min, hot-filtration leaching test) gave CAL conversion/HCAL yield of 23/22% (Pd/SiO2) and 78/40% (Pd/3P/SiO2). Conversion ranged 12-100%, yield 9-56% across the 9-run design (catalytic_data.xlsx, 'Pd-XPSiO2_FF_CAL')."
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000260",
+        "id": "voc4cat:0000260",
         "title": "hydrogenation"
       },
       "catalyst_type": [
@@ -859,7 +859,7 @@
         "Selective hydrogenation of citral over 3 Pd/P/Al2O3 catalysts (1, 3, 5 wt% nominal P loading, ~2 wt% Pd) in a full factorial design (9 runs) exploring temperature, pressure, phosphorus loading, and time. Conversion ranged 15-85%, yield 15-65% across the 9-run design (catalytic_data.xlsx, 'Pd-XPAl2O3_FF_Citral')."
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000260",
+        "id": "voc4cat:0000260",
         "title": "hydrogenation"
       },
       "catalyst_type": [
@@ -1021,7 +1021,7 @@
         "Selective hydrogenation of citral over 3 Pd/P/SiO2 catalysts (1, 3, 5 wt% nominal P loading, ~2 wt% Pd) in a full factorial design (9 runs) exploring temperature, pressure, phosphorus loading, and time. Conversion ranged 11-100%, yield 11-84% across the 9-run design (catalytic_data.xlsx, 'Pd-XPSiO2_FF_Citral')."
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000260",
+        "id": "voc4cat:0000260",
         "title": "hydrogenation"
       },
       "catalyst_type": [

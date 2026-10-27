@@ -79,9 +79,9 @@ version: 1.0.0
 
 prefixes:
   coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
-  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
+  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
   chemdcatap: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  dcatap_plus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   dcat: http://www.w3.org/ns/dcat#
   dcterms: http://purl.org/dc/terms/
@@ -92,7 +92,7 @@ prefixes:
   SIO: http://semanticscience.org/resource/SIO_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   CHMO: http://purl.obolibrary.org/obo/CHMO_
-  ENM: http://purl.enanomapper.org/onto/
+  enm: http://purl.enanomapper.org/onto/
   CHEBI: http://purl.obolibrary.org/obo/CHEBI_
   RO: http://purl.obolibrary.org/obo/RO_
   RXNO: http://purl.obolibrary.org/obo/RXNO_
@@ -130,7 +130,7 @@ classes:
       term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).
       For example, a dataset from heterogeneous catalysis research would carry:
         rdf_type:
-          id: VOC4CAT:0007001
+          id: voc4cat:0007001
           title: "heterogeneous catalysis"
 
       The four CoreMeta4Cat minimum information pillars are linked via the slots

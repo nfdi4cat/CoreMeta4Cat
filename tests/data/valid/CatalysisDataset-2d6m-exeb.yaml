@@ -10,7 +10,7 @@ description:
   CO2 methanation (8 runs), and mixed CO/CO2 co-methanation (4 runs). Conversion was determined from outlet
   gas composition analysis. Related publication: DOI 10.1021/acs.iecr.1c00389.'
 rdf_type:
-  id: VOC4CAT:0007001
+  id: voc4cat:0007001
   title: heterogeneous catalysis
 keyword:
 - Chemistry
@@ -53,7 +53,7 @@ was_generated_by:
     CO/CO2 methanation: Exp11, 18, 19, 20). Dataset files do not name a specific instrument model; gas
     chromatography is the standard analytical method for this reaction class and is assumed here.'
   rdf_type:
-    id: VOC4CAT:0000130
+    id: voc4cat:0000130
     title: gas chromatography
   carried_out_by:
   - id: coremeta4cat:DEV_2d6m-exeb_GC
@@ -88,7 +88,7 @@ is_about_activity:
     runs: Exp2, Exp3, Exp4, Exp12 (Ni/Al2O3 x2, Ni/SiO2, Ni/ZrO2). Total pressure ~100-101.3 kPa in all
     four runs.'
   rdf_type:
-    id: VOC4CAT:0007010
+    id: voc4cat:0007010
     title: CO methanation
   catalyst_type:
   - heterogeneous_catalysis
@@ -233,7 +233,7 @@ is_about_activity:
     x2, Ni/ZrO2, Ni/SiO2). Total pressure ~100-101.3 kPa in all runs except Exp9 (800 kPa, an outlier
     within this series).'
   rdf_type:
-    id: VOC4CAT:0007011
+    id: voc4cat:0007011
     title: CO2 methanation
   catalyst_type:
   - heterogeneous_catalysis
@@ -455,7 +455,7 @@ is_about_activity:
     measured as a function of superficial velocity and temperature. Source runs: Exp11, Exp18, Exp19,
     Exp20. Total pressure ~100 kPa in all four runs.'
   rdf_type:
-    id: VOC4CAT:0007010
+    id: voc4cat:0007010
     title: CO methanation
   catalyst_type:
   - heterogeneous_catalysis

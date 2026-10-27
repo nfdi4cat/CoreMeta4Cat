@@ -381,7 +381,7 @@ is_about_activity:
     id: coremeta4cat:REAC_2d6m-exeb_CO_product_id
     title: CO conversion from outlet gas composition
   rdf_type:
-    id: VOC4CAT:0007010
+    id: voc4cat:0007010
     title: CO methanation
   reaction_name:
   - CO methanation
@@ -530,7 +530,7 @@ is_about_activity:
     id: coremeta4cat:REAC_2d6m-exeb_CO2_product_id
     title: CO2 conversion from outlet gas composition
   rdf_type:
-    id: VOC4CAT:0007011
+    id: voc4cat:0007011
     title: CO2 methanation
   reaction_name:
   - CO2 methanation
@@ -755,7 +755,7 @@ is_about_activity:
     id: coremeta4cat:REAC_2d6m-exeb_mixed_product_id
     title: CO and CO2 conversion from outlet gas composition
   rdf_type:
-    id: VOC4CAT:0007010
+    id: voc4cat:0007010
     title: CO methanation
   reaction_name:
   - CO/CO2 co-methanation
@@ -907,7 +907,7 @@ publisher:
   name:
   - NFDI4Cat Central Data Repository
 rdf_type:
-  id: VOC4CAT:0007001
+  id: voc4cat:0007001
   title: heterogeneous catalysis
 title:
 - 'Dataset for Publication: Reaction Kinetics of CO and CO2 Methanation over Nickel'
@@ -936,7 +936,7 @@ was_generated_by:
   - description: Related publication DOI
     notation: doi:10.1021/acs.iecr.1c00389
   rdf_type:
-    id: VOC4CAT:0000130
+    id: voc4cat:0000130
     title: gas chromatography
   realized_plan:
     description: Analytical protocol for determining reactant/product mole fractions
@@ -1016,7 +1016,7 @@ is_about_activity:
     id: coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_product_id
     title: Conversion/yield quantification
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   reaction_name:
   - selective hydrogenation of cinnamyl alcohol
@@ -1171,7 +1171,7 @@ is_about_activity:
     id: coremeta4cat:REAC_32x1-99x6_CAL_SiO2_product_id
     title: Conversion/yield quantification
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   reaction_name:
   - selective hydrogenation of cinnamyl alcohol
@@ -1290,7 +1290,7 @@ is_about_activity:
     id: coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_product_id
     title: Conversion/yield quantification
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   reaction_name:
   - selective hydrogenation of citral
@@ -1400,7 +1400,7 @@ is_about_activity:
     id: coremeta4cat:REAC_32x1-99x6_Citral_SiO2_product_id
     title: Conversion/yield quantification
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   reaction_name:
   - selective hydrogenation of citral
@@ -1508,12 +1508,12 @@ publisher:
   name:
   - NFDI4Cat Central Data Repository
 rdf_type:
-  id: VOC4CAT:0007001
+  id: voc4cat:0007001
   title: heterogeneous catalysis
 release_date: '2026-03-11'
 title:
 - "Support Engineering with Phosphorus: Tuning the Palladium-Catalyzed Selective Hydrogenation\
-  \ of \xCE\xB1,\xCE\xB2-Unsaturated Aldehydes"
+  \ of \u03B1,\u03B2-Unsaturated Aldehydes"
 was_generated_by:
 - activity_designator: Characterization
   carried_out_by:
@@ -1559,7 +1559,7 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
   rdf_type:
-    id: ENM:0000064
+    id: enm:0000064
     title: BET analysis
   realized_plan:
     description: Standard N2 physisorption at liquid-nitrogen temperature (-196C),
@@ -1820,7 +1820,7 @@ is_about_activity:
     id: coremeta4cat:REAC_arp5-s69r_Amino_product_id
     title: GC-MS product quantification
   rdf_type:
-    id: VOC4CAT:0000247
+    id: voc4cat:0000247
     title: carbonylation
   reaction_name:
   - Pd-catalyzed aminocarbonylation of iodobenzene
@@ -1891,7 +1891,7 @@ is_about_activity:
     id: coremeta4cat:REAC_arp5-s69r_Carbonylation_product_id
     title: GC-MS product quantification
   rdf_type:
-    id: VOC4CAT:0000247
+    id: voc4cat:0000247
     title: carbonylation
   reaction_name:
   - Pd-catalyzed alkoxycarbonylation of aryl iodides
@@ -1977,7 +1977,7 @@ is_about_activity:
     id: coremeta4cat:REAC_arp5-s69r_Phenoxy_product_id
     title: GC-MS product quantification
   rdf_type:
-    id: VOC4CAT:0000247
+    id: voc4cat:0000247
     title: carbonylation
   reaction_name:
   - Pd-catalyzed phenoxycarbonylation of iodobenzene
@@ -2041,7 +2041,7 @@ publisher:
   name:
   - NFDI4Cat Central Data Repository
 rdf_type:
-  id: VOC4CAT:0007001
+  id: voc4cat:0007001
   title: heterogeneous catalysis
 title:
 - Carbonylation catalysis of aryl halides through active-site engineering
@@ -2170,7 +2170,7 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
   rdf_type:
-    id: VOC4CAT:0000078
+    id: voc4cat:0000078
     title: transmission electron microscopy
   realized_plan:
     description: HRTEM (Digital Micrograph/Gatan) and HAADF-STEM/STEM-EDXS (TEM Imaging

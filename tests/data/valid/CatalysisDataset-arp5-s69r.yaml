@@ -13,7 +13,7 @@ description:
   STEM additionally covers a recycled/spent Pd3P/SiO2 sample recovered after catalytic testing; STEM method
   details are documented but no STEM image/data files are included in the deposited dataset.'
 rdf_type:
-  id: VOC4CAT:0007001
+  id: voc4cat:0007001
   title: heterogeneous catalysis
 keyword:
 - Chemistry
@@ -181,7 +181,7 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
   rdf_type:
-    id: VOC4CAT:0000078
+    id: voc4cat:0000078
     title: transmission electron microscopy
   activity_designator: Characterization
 - id: coremeta4cat:CHAR_arp5-s69r_XPS
@@ -223,7 +223,7 @@ is_about_activity:
     base) to form benzanilide, over Pd3P/SiO2. 3 runs at 100, 120, and 140 C (5 h, CO 10 bar); yield/conversion
     increased with temperature from 10% to 78%.
   rdf_type:
-    id: VOC4CAT:0000247
+    id: voc4cat:0000247
     title: carbonylation
   catalyst_type:
   - heterogeneous_catalysis
@@ -291,7 +291,7 @@ is_about_activity:
     for comparison. Conversion/yield ranged 7-100% across all 27 runs. Batch reactor, CO 6 bar, ethanol
     solvent (except S1 methanol, S2 isopropanol).
   rdf_type:
-    id: VOC4CAT:0000247
+    id: voc4cat:0000247
     title: carbonylation
   catalyst_type:
   - heterogeneous_catalysis
@@ -377,7 +377,7 @@ is_about_activity:
     base) to form phenyl benzoate, over Pd3P/SiO2. Single run: 100 C, 7 h, CO 6 bar, yield/conversion
     30%.'
   rdf_type:
-    id: VOC4CAT:0000247
+    id: voc4cat:0000247
     title: carbonylation
   catalyst_type:
   - heterogeneous_catalysis
