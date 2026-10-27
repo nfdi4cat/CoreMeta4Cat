@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +835,8 @@
 
 <h1 id="slot-dispersant">Slot: dispersant</h1>
 <p><em>Dispersant used (e.g. in DLS measurement or flame spray pyrolysis).</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/dispersant">coremeta4cat:dispersant</a>
-Alias: dispersant</p>
+<div>
+<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/dispersant">coremeta4cat:dispersant</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../carried_out_by/">carried_out_by</a><ul>
@@ -850,17 +867,51 @@ Alias: dispersant</p>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../classes/ChemicalEntity/">ChemicalEntity</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/ChemicalEntity/">ChemicalEntity</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/FlameSprayPyrolysis/">FlameSprayPyrolysis</a>, <a href="../../classes/DynamicLightScattering/">DynamicLightScattering</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="https://w3id.org/nfdi4cat/coremeta4cat/dispersant">coremeta4cat:dispersant</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -893,7 +944,6 @@ Alias: dispersant</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">carried_out_by</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:dispersant</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dispersant</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FlameSprayPyrolysis</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DynamicLightScattering</span>
@@ -904,12 +954,16 @@ Alias: dispersant</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

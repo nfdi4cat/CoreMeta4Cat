@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +835,8 @@
 
 <h1 id="slot-has_vessel_type">Slot: has_vessel_type</h1>
 <p><em>Type of reaction or synthesis vessel used.</em></p>
-<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a>
-Alias: has_vessel_type</p>
+<div>
+<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_qualitative_attribute/">has_qualitative_attribute</a><ul>
@@ -838,8 +855,8 @@ Alias: has_vessel_type</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/MicrowaveAssisted/">MicrowaveAssisted</a></td>
-<td>Catalyst preparation using microwave irradiation to rapidly and<br>uniformly heat the reaction mixture.</td>
+<td><a href="../../classes/ThermalSynthesisMixin/">ThermalSynthesisMixin</a></td>
+<td>Mixin providing thermal process parameters common to synthesis methods<br>carried out at elevated temperature in a closed vessel or reactor<br>(Solvothermal, PlasmaAssisted, CombustionSynthesis,<br>MicrowaveAssisted, MechanochemicalSynthesis, Sublimation).</td>
 <td>no</td>
 </tr>
 <tr>
@@ -848,18 +865,8 @@ Alias: has_vessel_type</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Sublimation/">Sublimation</a></td>
-<td>Catalyst preparation by sublimation: a solid precursor is vaporised<br>and deposited onto a substrate without passing through a liquid phase.</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../../classes/PlasmaAssisted/">PlasmaAssisted</a></td>
 <td>Catalyst preparation using plasma treatment to modify surface<br>properties or deposit active components.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MechanochemicalSynthesis/">MechanochemicalSynthesis</a></td>
-<td>Catalyst preparation by mechanical milling or grinding, optionally<br>combined with thermal treatment.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -868,24 +875,68 @@ Alias: has_vessel_type</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/ThermalSynthesisMixin/">ThermalSynthesisMixin</a></td>
-<td>Mixin providing thermal process parameters common to synthesis methods<br>carried out at elevated temperature in a closed vessel or reactor<br>(Solvothermal, PlasmaAssisted, CombustionSynthesis,<br>MicrowaveAssisted, MechanochemicalSynthesis, Sublimation).</td>
+<td><a href="../../classes/MicrowaveAssisted/">MicrowaveAssisted</a></td>
+<td>Catalyst preparation using microwave irradiation to rapidly and<br>uniformly heat the reaction mixture.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MechanochemicalSynthesis/">MechanochemicalSynthesis</a></td>
+<td>Catalyst preparation by mechanical milling or grinding, optionally<br>combined with thermal treatment.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Sublimation/">Sublimation</a></td>
+<td>Catalyst preparation by sublimation: a solid precursor is vaporised<br>and deposited onto a substrate without passing through a liquid phase.</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../classes/VesselType/">VesselType</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/VesselType/">VesselType</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/ThermalSynthesisMixin/">ThermalSynthesisMixin</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -918,7 +969,6 @@ Alias: has_vessel_type</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_vessel_type</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ThermalSynthesisMixin</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VesselType</span>
@@ -928,12 +978,16 @@ Alias: has_vessel_type</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

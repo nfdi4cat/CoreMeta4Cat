@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -819,8 +836,8 @@
 <h1 id="slot-catalyst_measured_properties">Slot: catalyst_measured_properties</h1>
 <p><em>Key measured properties of the resulting catalyst</em></p>
 <p><em>(e.g. BET surface area, sieve fraction, molar ratio).</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/catalyst_measured_properties">coremeta4cat:catalyst_measured_properties</a>
-Alias: catalyst_measured_properties</p>
+<div>
+<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/catalyst_measured_properties">coremeta4cat:catalyst_measured_properties</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_qualitative_attribute/">has_qualitative_attribute</a><ul>
@@ -840,23 +857,57 @@ Alias: catalyst_measured_properties</p>
 <tbody>
 <tr>
 <td><a href="../../classes/Synthesis/">Synthesis</a></td>
-<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
+<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
 <td>yes</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../types/String/">String</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../types/String/">String</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/Synthesis/">Synthesis</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="https://w3id.org/nfdi4cat/coremeta4cat/catalyst_measured_properties">coremeta4cat:catalyst_measured_properties</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -891,7 +942,6 @@ Alias: catalyst_measured_properties</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:catalyst_measured_properties</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_measured_properties</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Synthesis</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
@@ -901,12 +951,16 @@ Alias: catalyst_measured_properties</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

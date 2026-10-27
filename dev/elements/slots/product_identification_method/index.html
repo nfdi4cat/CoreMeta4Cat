@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -820,8 +837,8 @@
 <p><em>The analytical method used to identify and/or quantify reaction products.</em></p>
 <p><em>Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).</em></p>
 <p><em>The abstract stub ProductIdentificationMethod is retained for backward compatibility.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/product_identification_method">coremeta4cat:product_identification_method</a>
-Alias: product_identification_method</p>
+<div>
+<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/product_identification_method">coremeta4cat:product_identification_method</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../realized_plan/">realized_plan</a><ul>
@@ -847,17 +864,51 @@ Alias: product_identification_method</p>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../classes/ProductIdentificationMethod/">ProductIdentificationMethod</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Required: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/ProductIdentificationMethod/">ProductIdentificationMethod</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/CatalyticReaction/">CatalyticReaction</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="https://w3id.org/nfdi4cat/coremeta4cat/product_identification_method">coremeta4cat:product_identification_method</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Required</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -894,7 +945,6 @@ Alias: product_identification_method</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">realized_plan</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:product_identification_method</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">product_identification_method</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProductIdentificationMethod</span>
@@ -904,12 +954,16 @@ Alias: product_identification_method</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

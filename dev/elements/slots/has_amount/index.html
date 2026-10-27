@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +835,8 @@
 
 <h1 id="slot-has_amount">Slot: has_amount</h1>
 <p><em>The slot to provide the AmountConcentration of a ChemicalSubstance.</em></p>
-<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a>
-Alias: has_amount</p>
+<div>
+<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_quantitative_attribute/">has_quantitative_attribute</a><ul>
@@ -838,16 +855,6 @@ Alias: has_amount</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/DissolvingSubstance/">DissolvingSubstance</a></td>
-<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ChemicalSubstance.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PolymerSample/">PolymerSample</a></td>
-<td>A SubstanceSample derived from a Polymer.</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../../classes/ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a></td>
 <td>A LinkML mixin used to pass down properties common to all material entities that are described in a chemical context via being composed of chemical entities (e.g. atom, molecule, ion, ion pair, radical, complex, conformer etc., ) of the same type or of different types.</td>
 <td>no</td>
@@ -858,8 +865,8 @@ Alias: has_amount</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/SubstanceSample/">SubstanceSample</a></td>
-<td>A MaterialSample derived from a chemical substance that is of interest in an analytical procedure.</td>
+<td><a href="../../classes/DissolvingSubstance/">DissolvingSubstance</a></td>
+<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ChemicalSubstance.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -878,6 +885,16 @@ Alias: has_amount</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../../classes/SubstanceSample/">SubstanceSample</a></td>
+<td>A MaterialSample derived from a chemical substance that is of interest in an analytical procedure.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PolymerSample/">PolymerSample</a></td>
+<td>A SubstanceSample derived from a Polymer.</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../../classes/PolymerMixin/">PolymerMixin</a></td>
 <td>A LinkML mixin used to pass down properties common to all chemical substances that are composed of macromolecules of different kinds and which may be differentiated by composition, length, degree of branching etc..</td>
 <td>no</td>
@@ -885,17 +902,51 @@ Alias: has_amount</p>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../classes/AmountOfSubstance/">AmountOfSubstance</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/AmountOfSubstance/">AmountOfSubstance</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -928,7 +979,6 @@ Alias: has_amount</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_amount</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalSubstanceMixin</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AmountOfSubstance</span>
@@ -938,12 +988,16 @@ Alias: has_amount</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

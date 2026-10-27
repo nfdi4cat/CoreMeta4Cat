@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -819,8 +836,8 @@
 <h1 id="slot-k_point_mesh">Slot: k_point_mesh</h1>
 <p><em>Monkhorst-Pack k-point mesh used for Brillouin zone sampling</em></p>
 <p><em>(e.g. "4x4x1" for a surface slab, "8x8x8" for a bulk cell).</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/k_point_mesh">coremeta4cat:k_point_mesh</a>
-Alias: k_point_mesh</p>
+<div>
+<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/k_point_mesh">coremeta4cat:k_point_mesh</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_qualitative_attribute/">has_qualitative_attribute</a><ul>
@@ -839,21 +856,6 @@ Alias: k_point_mesh</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/EquationsOfState/">EquationsOfState</a></td>
-<td>Equation of state relating energy (or enthalpy) to volume, fitted to a<br>parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium<br>volume, bulk modulus, and its pressure derivative.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/BandGap/">BandGap</a></td>
-<td>Electronic band gap and its character (direct/indirect), with optional<br>many-body (GW) or excitonic corrections. Critical for photocatalyst<br>and semiconductor catalyst screening.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ElectronicStructure/">ElectronicStructure</a></td>
-<td>Electronic band structure and density of states, characterising the<br>electronic properties of a catalyst relevant to activity descriptors<br>(d-band centre, band gap, Fermi energy).</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../../classes/DFTSettingsMixin/">DFTSettingsMixin</a></td>
 <td>Mixin providing plane-wave DFT numerical settings shared by CalculatedProperty<br>subclasses that are computed with periodic DFT (DielectricTensors,<br>EquationsOfState, ElectronicStructure, BandGap).</td>
 <td>no</td>
@@ -863,20 +865,69 @@ Alias: k_point_mesh</p>
 <td>Dielectric tensor computed from density functional perturbation theory (DFPT).<br>Characterises the optical and static dielectric response of a material.</td>
 <td>no</td>
 </tr>
+<tr>
+<td><a href="../../classes/EquationsOfState/">EquationsOfState</a></td>
+<td>Equation of state relating energy (or enthalpy) to volume, fitted to a<br>parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium<br>volume, bulk modulus, and its pressure derivative.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ElectronicStructure/">ElectronicStructure</a></td>
+<td>Electronic band structure and density of states, characterising the<br>electronic properties of a catalyst relevant to activity descriptors<br>(d-band centre, band gap, Fermi energy).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/BandGap/">BandGap</a></td>
+<td>Electronic band gap and its character (direct/indirect), with optional<br>many-body (GW) or excitonic corrections. Critical for photocatalyst<br>and semiconductor catalyst screening.</td>
+<td>no</td>
+</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../types/String/">String</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../types/String/">String</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/DFTSettingsMixin/">DFTSettingsMixin</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="https://w3id.org/nfdi4cat/coremeta4cat/k_point_mesh">coremeta4cat:k_point_mesh</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -911,7 +962,6 @@ Alias: k_point_mesh</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:k_point_mesh</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">k_point_mesh</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DFTSettingsMixin</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
@@ -921,12 +971,16 @@ Alias: k_point_mesh</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

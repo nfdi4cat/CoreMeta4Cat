@@ -60,7 +60,7 @@ imports:
 - coremeta4cat_simulation_ap
 - chem_dcat_ap
 - chemical_reaction_ap
-- dcatapplus:latest/schema/dcat_ap_plus
+- dcatap_plus:latest/schema/dcat_ap_plus
 - chemical_entities_ap
 - material_entities_ap
 license: CC-BY-4.0
@@ -68,14 +68,14 @@ prefixes:
   coremeta4cat:
     prefix_prefix: coremeta4cat
     prefix_reference: https://w3id.org/nfdi4cat/coremeta4cat/
-  VOC4CAT:
-    prefix_prefix: VOC4CAT
+  voc4cat:
+    prefix_prefix: voc4cat
     prefix_reference: https://w3id.org/nfdi4cat/voc4cat_
   chemdcatap:
     prefix_prefix: chemdcatap
     prefix_reference: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-  dcatapplus:
-    prefix_prefix: dcatapplus
+  dcatap_plus:
+    prefix_prefix: dcatap_plus
     prefix_reference: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml:
     prefix_prefix: linkml
@@ -107,8 +107,8 @@ prefixes:
   CHMO:
     prefix_prefix: CHMO
     prefix_reference: http://purl.obolibrary.org/obo/CHMO_
-  ENM:
-    prefix_prefix: ENM
+  enm:
+    prefix_prefix: enm
     prefix_reference: http://purl.enanomapper.org/onto/
   CHEBI:
     prefix_prefix: CHEBI
@@ -153,8 +153,8 @@ types:
     description: A character string
     notes:
     - In RDF serializations, a slot with range of string is treated as a literal or
-      type xsd:string.   If you are authoring schemas in LinkML YAML, the type is
-      referenced with the lower case "string".
+      type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced
+      with the lower case "string".
     from_schema: https://w3id.org/linkml/types
     imported_from: linkml:types
     exact_mappings:
@@ -462,25 +462,25 @@ enums:
         text: heterogeneous_catalysis
         description: "Heterogeneous catalysis \u2014 catalyst and reactants are in\
           \ different phases."
-        meaning: VOC4CAT:0007001
+        meaning: voc4cat:0007001
       homogeneous_catalysis:
         text: homogeneous_catalysis
         description: "Homogeneous catalysis \u2014 catalyst and reactants are in the\
           \ same phase."
-        meaning: VOC4CAT:0000294
+        meaning: voc4cat:0000294
       biocatalysis:
         text: biocatalysis
         description: "Biocatalysis \u2014 use of enzymes or whole cells as catalysts."
-        meaning: VOC4CAT:0000204
+        meaning: voc4cat:0000204
       electrocatalysis:
         text: electrocatalysis
         description: "Electrocatalysis \u2014 catalysis of electrochemical reactions."
-        meaning: VOC4CAT:0000216
+        meaning: voc4cat:0000216
       photocatalysis:
         text: photocatalysis
         description: "Photocatalysis \u2014 catalysis of a chemical reaction through\
           \ the\nabsorption of sufficient light energy by a photocatalyst."
-        meaning: VOC4CAT:0000001
+        meaning: voc4cat:0000001
       hybrid_catalysis:
         text: hybrid_catalysis
         description: "Hybrid catalysis \u2014 combination of two or more catalytic\
@@ -553,26 +553,26 @@ enums:
         text: thin_film
         description: A catalyst introduced to the reaction chamber as a thin film
           on a substrate.
-        meaning: VOC4CAT:0000019
+        meaning: voc4cat:0000019
       bulk:
         text: bulk
         description: A catalyst that consists mainly of the active material throughout
           its volume.
-        meaning: VOC4CAT:0007015
+        meaning: voc4cat:0007015
       powdered:
         text: powdered
         description: A catalyst introduced to the reaction chamber as a loose powder.
-        meaning: VOC4CAT:0000017
+        meaning: voc4cat:0000017
       deposited_sample:
         text: deposited_sample
         description: A thin film of the catalyst deposited on a substrate for characterization
           purposes.
-        meaning: VOC4CAT:0000038
+        meaning: voc4cat:0000038
       supported:
         text: supported
         description: A catalyst where the active material is dispersed on a support
           material.
-        meaning: VOC4CAT:0007034
+        meaning: voc4cat:0007034
       other:
         text: other
         description: Other catalyst form not covered by the above terms.
@@ -589,7 +589,7 @@ enums:
         description: 'An electrochemical cell that converts chemical energy into
 
           electrical energy via a spontaneous reaction.'
-        meaning: VOC4CAT:0007256
+        meaning: voc4cat:0007256
       electrolytic:
         text: electrolytic
         description: 'An electrochemical cell that consumes electrical energy to drive
@@ -808,9 +808,9 @@ slots:
     description: Temperature ramp rate during a heating or cooling step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0008116
+    - voc4cat:0008116
     is_a: has_quantitative_attribute
-    slot_uri: VOC4CAT:0008116
+    slot_uri: voc4cat:0008116
     owner: TemperatureProgramMixin
     domain_of:
     - TemperatureProgramMixin
@@ -951,9 +951,9 @@ slots:
     description: Temperature applied during the drying step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0008207
+    - voc4cat:0008207
     is_a: has_temperature
-    slot_uri: VOC4CAT:0008207
+    slot_uri: voc4cat:0008207
     owner: DryingMixin
     domain_of:
     - DryingMixin
@@ -968,9 +968,9 @@ slots:
     description: Duration of the drying step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0008206
+    - voc4cat:0008206
     is_a: has_duration
-    slot_uri: VOC4CAT:0008206
+    slot_uri: voc4cat:0008206
     owner: DryingMixin
     domain_of:
     - DryingMixin
@@ -1003,9 +1003,9 @@ slots:
     description: Time held at the final calcination temperature.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0000060
+    - voc4cat:0000060
     is_a: has_duration
-    slot_uri: VOC4CAT:0000060
+    slot_uri: voc4cat:0000060
     owner: CalcinationMixin
     domain_of:
     - CalcinationMixin
@@ -1018,9 +1018,9 @@ slots:
     description: Temperature ramp rate during the calcination step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0008116
+    - voc4cat:0008116
     is_a: has_heating_rate
-    slot_uri: VOC4CAT:0008116
+    slot_uri: voc4cat:0008116
     owner: CalcinationMixin
     domain_of:
     - CalcinationMixin
@@ -1035,9 +1035,9 @@ slots:
     description: Gas flow rate maintained during calcination.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0000056
+    - voc4cat:0000056
     is_a: has_flow_rate
-    slot_uri: VOC4CAT:0000056
+    slot_uri: voc4cat:0000056
     owner: CalcinationMixin
     domain_of:
     - CalcinationMixin
@@ -1151,9 +1151,9 @@ slots:
     description: Gaseous environment or atmospheric conditions during a process.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0007809
+    - voc4cat:0007809
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0007809
+    slot_uri: voc4cat:0007809
     owner: CatalyticReaction
     domain_of:
     - ThermalSynthesisMixin
@@ -1178,9 +1178,9 @@ slots:
     description: Atmosphere maintained during the drying step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0008208
+    - voc4cat:0008208
     is_a: has_atmosphere
-    slot_uri: VOC4CAT:0008208
+    slot_uri: voc4cat:0008208
     owner: DryingMixin
     domain_of:
     - DryingMixin
@@ -1288,9 +1288,9 @@ slots:
       cycles).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0008123
+    - voc4cat:0008123
     is_a: has_quantitative_attribute
-    slot_uri: VOC4CAT:0008123
+    slot_uri: voc4cat:0008123
     owner: CyclicVoltammetry
     domain_of:
     - CalcinationMixin
@@ -1346,9 +1346,9 @@ slots:
     description: Device used for drying (e.g. oven, rotary evaporator).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0008122
+    - voc4cat:0008122
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0008122
+    slot_uri: voc4cat:0008122
     owner: DryingMixin
     domain_of:
     - DryingMixin
@@ -1362,9 +1362,9 @@ slots:
     description: Step size for a scan (angle, wavelength, energy, or potential).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - AFR:0000950
+    - allotrope.result:0000950
     is_a: has_quantitative_attribute
-    slot_uri: AFR:0000950
+    slot_uri: allotrope.result:0000950
     owner: PhotoluminescenceSpectroscopy
     domain_of:
     - PowderXRD
@@ -1419,9 +1419,9 @@ slots:
     description: Solvent used in a process or sample preparation.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - VOC4CAT:0007246
+    - voc4cat:0007246
     is_a: carried_out_by
-    slot_uri: VOC4CAT:0007246
+    slot_uri: voc4cat:0007246
     owner: DynamicLightScattering
     domain_of:
     - Synthesis
@@ -1574,9 +1574,9 @@ slots:
       \ 4\xB0C)."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008105
+    - voc4cat:0008105
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0008105
+    slot_uri: voc4cat:0008105
     owner: Synthesis
     domain_of:
     - Synthesis
@@ -1591,9 +1591,9 @@ slots:
       SiO2).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008104
+    - voc4cat:0008104
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0008104
+    slot_uri: voc4cat:0008104
     owner: Synthesis
     domain_of:
     - Synthesis
@@ -1607,9 +1607,9 @@ slots:
     description: Quantity of precursor used in synthesis.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008118
+    - voc4cat:0008118
     is_a: has_mass
-    slot_uri: VOC4CAT:0008118
+    slot_uri: voc4cat:0008118
     owner: Precursor
     domain_of:
     - Precursor
@@ -1624,8 +1624,8 @@ slots:
     description: Type of impregnation used (wet, dry, incipient wetness).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008119
-    slot_uri: VOC4CAT:0008119
+    - voc4cat:0008119
+    slot_uri: voc4cat:0008119
     owner: Impregnation
     domain_of:
     - Impregnation
@@ -1637,9 +1637,9 @@ slots:
     description: Duration of the impregnation step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008120
+    - voc4cat:0008120
     is_a: has_duration
-    slot_uri: VOC4CAT:0008120
+    slot_uri: voc4cat:0008120
     owner: Impregnation
     domain_of:
     - Impregnation
@@ -1653,9 +1653,9 @@ slots:
     description: Temperature during the impregnation step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008121
+    - voc4cat:0008121
     is_a: has_temperature
-    slot_uri: VOC4CAT:0008121
+    slot_uri: voc4cat:0008121
     owner: Impregnation
     domain_of:
     - Impregnation
@@ -1670,9 +1670,9 @@ slots:
     description: Chemical agent used to induce precipitation (e.g. NaOH, NH3).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008203
+    - voc4cat:0008203
     is_a: carried_out_by
-    slot_uri: VOC4CAT:0008203
+    slot_uri: voc4cat:0008203
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1688,9 +1688,9 @@ slots:
       precipitation.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008125
+    - voc4cat:0008125
     is_a: has_concentration
-    slot_uri: VOC4CAT:0008125
+    slot_uri: voc4cat:0008125
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1722,9 +1722,9 @@ slots:
     description: Duration of the mixing step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008126
+    - voc4cat:0008126
     is_a: has_duration
-    slot_uri: VOC4CAT:0008126
+    slot_uri: voc4cat:0008126
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1737,9 +1737,9 @@ slots:
     description: Temperature maintained during mixing.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008127
+    - voc4cat:0008127
     is_a: has_temperature
-    slot_uri: VOC4CAT:0008127
+    slot_uri: voc4cat:0008127
     owner: MolecularSynthesis
     domain_of:
     - PrecipitationMixin
@@ -1755,9 +1755,9 @@ slots:
     description: Temperature maintained during the aging step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008131
+    - voc4cat:0008131
     is_a: has_temperature
-    slot_uri: VOC4CAT:0008131
+    slot_uri: voc4cat:0008131
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1772,9 +1772,9 @@ slots:
     description: Duration of the aging step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008204
+    - voc4cat:0008204
     is_a: has_duration
-    slot_uri: VOC4CAT:0008204
+    slot_uri: voc4cat:0008204
     owner: SolGel
     domain_of:
     - PrecipitationMixin
@@ -1788,9 +1788,9 @@ slots:
     description: Order in which reagents or components are combined.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008128
+    - voc4cat:0008128
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0008128
+    slot_uri: voc4cat:0008128
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1804,9 +1804,9 @@ slots:
     description: Filtration method used to separate the precipitate (e.g. vacuum filtration).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008129
+    - voc4cat:0008129
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0008129
+    slot_uri: voc4cat:0008129
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1820,9 +1820,9 @@ slots:
     description: Purification method applied after synthesis (e.g. washing, dialysis).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008130
+    - voc4cat:0008130
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0008130
+    slot_uri: voc4cat:0008130
     owner: PrecipitationMixin
     domain_of:
     - PrecipitationMixin
@@ -1870,9 +1870,9 @@ slots:
     description: Temperature applied during the synthesis step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0000051
+    - voc4cat:0000051
     is_a: has_temperature
-    slot_uri: VOC4CAT:0000051
+    slot_uri: voc4cat:0000051
     owner: ThermalSynthesisMixin
     domain_of:
     - ThermalSynthesisMixin
@@ -1887,9 +1887,9 @@ slots:
     description: Total duration of the synthesis step.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0000050
+    - voc4cat:0000050
     is_a: has_duration
-    slot_uri: VOC4CAT:0000050
+    slot_uri: voc4cat:0000050
     owner: ThermalSynthesisMixin
     domain_of:
     - ThermalSynthesisMixin
@@ -1903,9 +1903,9 @@ slots:
     description: Pressure applied during synthesis (e.g. in autoclave or plasma reactor).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0000053
+    - voc4cat:0000053
     is_a: has_pressure
-    slot_uri: VOC4CAT:0000053
+    slot_uri: voc4cat:0000053
     owner: Sublimation
     domain_of:
     - PlasmaAssisted
@@ -1988,9 +1988,9 @@ slots:
     description: Type of stirrer used (e.g. magnetic, mechanical, none).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008113
+    - voc4cat:0008113
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0008113
+    slot_uri: voc4cat:0008113
     owner: Solvothermal
     domain_of:
     - Solvothermal
@@ -2151,9 +2151,9 @@ slots:
     description: Substrate material on which the ALD film is deposited.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0000024
+    - voc4cat:0000024
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0000024
+    slot_uri: voc4cat:0000024
     owner: AtomicLayerDeposition
     domain_of:
     - AtomicLayerDeposition
@@ -2185,9 +2185,9 @@ slots:
     description: Duration of the purge step between ALD pulses.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0000112
+    - voc4cat:0000112
     is_a: has_quantitative_attribute
-    slot_uri: VOC4CAT:0000112
+    slot_uri: voc4cat:0000112
     owner: AtomicLayerDeposition
     domain_of:
     - AtomicLayerDeposition
@@ -2525,9 +2525,9 @@ slots:
     description: Agent used to induce precipitation in molecular synthesis.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008203
+    - voc4cat:0008203
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0008203
+    slot_uri: voc4cat:0008203
     owner: MolecularSynthesis
     domain_of:
     - MolecularSynthesis
@@ -2622,9 +2622,9 @@ slots:
     description: Sample preparation steps applied immediately before measurement.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - AFP:0001159
+    - allotrope.quality:0001159
     is_a: has_qualitative_attribute
-    slot_uri: AFP:0001159
+    slot_uri: allotrope.quality:0001159
     owner: Characterization
     domain_of:
     - Characterization
@@ -2638,9 +2638,9 @@ slots:
     description: Type of detector used in the measurement.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - AFR:0000317
+    - allotrope.result:0000317
     is_a: has_qualitative_attribute
-    slot_uri: AFR:0000317
+    slot_uri: allotrope.result:0000317
     owner: Characterization
     domain_of:
     - Characterization
@@ -2738,9 +2738,9 @@ slots:
     description: Magnification setting used for imaging.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - AFR:0002226
+    - allotrope.result:0002226
     is_a: has_quantitative_attribute
-    slot_uri: AFR:0002226
+    slot_uri: allotrope.result:0002226
     owner: RamanSpectroscopy
     domain_of:
     - ElectronMicroscopyMixin
@@ -2828,9 +2828,9 @@ slots:
     description: Excitation wavelength used in photoluminescence measurement.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - AFR:0002479
+    - allotrope.result:0002479
     is_a: has_length
-    slot_uri: AFR:0002479
+    slot_uri: allotrope.result:0002479
     owner: PhotoluminescenceMixin
     domain_of:
     - PhotoluminescenceMixin
@@ -2878,9 +2878,9 @@ slots:
     description: Reference electrode used in electrochemical cell (e.g. Ag/AgCl, RHE).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - VOC4CAT:0007204
+    - voc4cat:0007204
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0007204
+    slot_uri: voc4cat:0007204
     owner: ElectrochemistryMixin
     domain_of:
     - ElectrochemistryMixin
@@ -2894,9 +2894,9 @@ slots:
     description: Working electrode used in electrochemical cell.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - VOC4CAT:0007202
+    - voc4cat:0007202
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0007202
+    slot_uri: voc4cat:0007202
     owner: ElectrochemistryMixin
     domain_of:
     - ElectrochemistryMixin
@@ -2910,9 +2910,9 @@ slots:
     description: Counter electrode used in electrochemical cell.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - VOC4CAT:0007203
+    - voc4cat:0007203
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0007203
+    slot_uri: voc4cat:0007203
     owner: ElectrochemistryMixin
     domain_of:
     - ElectrochemistryMixin
@@ -3061,9 +3061,9 @@ slots:
     description: Energy resolution of the spectrometer or monochromator.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - AFR:0000950
+    - allotrope.result:0000950
     is_a: has_energy
-    slot_uri: AFR:0000950
+    slot_uri: allotrope.result:0000950
     owner: XRayAbsorptionSpectroscopy
     domain_of:
     - XRayAbsorptionSpectroscopy
@@ -3211,9 +3211,9 @@ slots:
     description: Background correction method applied to IR spectra.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - AFP:0003721
+    - allotrope.quality:0003721
     is_a: has_qualitative_attribute
-    slot_uri: AFP:0003721
+    slot_uri: allotrope.quality:0003721
     owner: InfraredSpectroscopy
     domain_of:
     - InfraredSpectroscopy
@@ -3292,9 +3292,9 @@ slots:
     description: Wavelength of excitation laser used in Raman spectroscopy.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - AFR:0001594
+    - allotrope.result:0001594
     is_a: has_length
-    slot_uri: AFR:0001594
+    slot_uri: allotrope.result:0001594
     owner: RamanSpectroscopy
     domain_of:
     - RamanSpectroscopy
@@ -3309,9 +3309,9 @@ slots:
     description: Power of the excitation laser at the sample.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - AFR:0001595
+    - allotrope.result:0001595
     is_a: has_power
-    slot_uri: AFR:0001595
+    slot_uri: allotrope.result:0001595
     owner: RamanSpectroscopy
     domain_of:
     - RamanSpectroscopy
@@ -3627,9 +3627,9 @@ slots:
     description: Optical path length of the measurement cell.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - AFQ:0000268
+    - allotrope.quality:0000268
     is_a: has_quantitative_attribute
-    slot_uri: AFQ:0000268
+    slot_uri: allotrope.quality:0000268
     owner: UVVisSpectroscopy
     domain_of:
     - UVVisSpectroscopy
@@ -3712,9 +3712,9 @@ slots:
     description: Potential scan rate in cyclic voltammetry.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - VOC4CAT:0007213
+    - voc4cat:0007213
     is_a: has_quantitative_attribute
-    slot_uri: VOC4CAT:0007213
+    slot_uri: voc4cat:0007213
     owner: CyclicVoltammetry
     domain_of:
     - CyclicVoltammetry
@@ -3749,9 +3749,9 @@ slots:
     description: Potential step size in cyclic voltammetry.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - VOC4CAT:0007218
+    - voc4cat:0007218
     is_a: has_quantitative_attribute
-    slot_uri: VOC4CAT:0007218
+    slot_uri: voc4cat:0007218
     owner: CyclicVoltammetry
     domain_of:
     - CyclicVoltammetry
@@ -3784,9 +3784,9 @@ slots:
     description: Frequency of AC signal applied in impedance or conductivity measurement.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - VOC4CAT:0007239
+    - voc4cat:0007239
     is_a: has_quantitative_attribute
-    slot_uri: VOC4CAT:0007239
+    slot_uri: voc4cat:0007239
     owner: ConductivityMeasurement
     domain_of:
     - ConductivityMeasurement
@@ -3835,9 +3835,9 @@ slots:
     description: Wavelength of the laser used in DLS measurement.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - VOC4CAT:0000176
+    - voc4cat:0000176
     is_a: has_length
-    slot_uri: VOC4CAT:0000176
+    slot_uri: voc4cat:0000176
     owner: DynamicLightScattering
     domain_of:
     - DynamicLightScattering
@@ -3935,9 +3935,9 @@ slots:
     description: Solvent composition used for ESI spray solution.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - VOC4CAT:0007246
+    - voc4cat:0007246
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0007246
+    slot_uri: voc4cat:0007246
     owner: ElectroSprayIonizationMassSpectrometry
     domain_of:
     - ElectroSprayIonizationMassSpectrometry
@@ -4004,9 +4004,9 @@ slots:
     description: Temperature ramp rate in GC oven programme.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - VOC4CAT:0008116
+    - voc4cat:0008116
     is_a: has_heating_rate
-    slot_uri: VOC4CAT:0008116
+    slot_uri: voc4cat:0008116
     owner: GCMS
     domain_of:
     - GCMS
@@ -4087,9 +4087,9 @@ slots:
     description: Eluent or mobile phase used in chromatography.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - AFRL:0000011
+    - allotrope.role:0000011
     is_a: carried_out_by
-    slot_uri: AFRL:0000011
+    slot_uri: allotrope.role:0000011
     owner: ChromatographyMixin
     domain_of:
     - ChromatographyMixin
@@ -4194,19 +4194,19 @@ slots:
 
       the long-term mechanism -- kept as two enums here because the
 
-      VOC4CAT terms show CatalystType conflates the regime axis
+      voc4cat terms show CatalystType conflates the regime axis
 
       (Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form
 
       axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical
 
-      VOC4CAT ids to catalyst_form''s permissible values), which are
+      voc4cat ids to catalyst_form''s permissible values), which are
 
       independent and often both apply to the same catalyst at once.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0007014
-    slot_uri: VOC4CAT:0007014
+    - voc4cat:0007014
+    slot_uri: voc4cat:0007014
     owner: CatalyticReaction
     domain_of:
     - CatalyticReaction
@@ -4238,9 +4238,9 @@ slots:
       (desired) products (e.g. "ammonia synthesis", "Fischer-Tropsch synthesis").'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0007009
+    - voc4cat:0007009
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0007009
+    slot_uri: voc4cat:0007009
     owner: CatalyticReaction
     domain_of:
     - CatalyticReaction
@@ -4259,9 +4259,9 @@ slots:
       For a single set-point, set min_value equal to max_value.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0007032
+    - voc4cat:0007032
     is_a: has_quantitative_attribute
-    slot_uri: VOC4CAT:0007032
+    slot_uri: voc4cat:0007032
     owner: CatalyticReaction
     domain_of:
     - CatalyticReaction
@@ -4276,9 +4276,9 @@ slots:
     description: Total pressure in the reactor during the experiment.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0000118
+    - voc4cat:0000118
     is_a: has_pressure
-    slot_uri: VOC4CAT:0000118
+    slot_uri: voc4cat:0000118
     owner: CatalyticReaction
     domain_of:
     - CatalyticReaction
@@ -4319,9 +4319,9 @@ slots:
       positive electrode in a galvanic cell.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0007254
+    - voc4cat:0007254
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0007254
+    slot_uri: voc4cat:0007254
     owner: ElectrochemicalReactor
     domain_of:
     - ElectrochemicalReactor
@@ -4340,9 +4340,9 @@ slots:
       negative electrode in a galvanic cell.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0007255
+    - voc4cat:0007255
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0007255
+    slot_uri: voc4cat:0007255
     owner: ElectrochemicalReactor
     domain_of:
     - ElectrochemicalReactor
@@ -4373,9 +4373,9 @@ slots:
       electrode which is active.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0007258
+    - voc4cat:0007258
     is_a: has_quantitative_attribute
-    slot_uri: VOC4CAT:0007258
+    slot_uri: voc4cat:0007258
     owner: ElectrochemicalReactor
     domain_of:
     - ElectrochemicalReactor
@@ -4393,9 +4393,9 @@ slots:
       causing (or is caused by) chemical reactions.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0007259
+    - voc4cat:0007259
     is_a: has_quantitative_attribute
-    slot_uri: VOC4CAT:0007259
+    slot_uri: voc4cat:0007259
     owner: ElectrochemicalReactor
     domain_of:
     - ElectrochemicalReactor
@@ -4412,9 +4412,9 @@ slots:
       revolutions per unit time (e.g. revolutions per minute).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0008114
+    - voc4cat:0008114
     is_a: has_angular_velocity
-    slot_uri: VOC4CAT:0008114
+    slot_uri: voc4cat:0008114
     owner: CSTR
     domain_of:
     - CSTR
@@ -4447,9 +4447,9 @@ slots:
       of pipes and valves connected to the reactor is not included.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0000153
+    - voc4cat:0000153
     is_a: has_volume
-    slot_uri: VOC4CAT:0000153
+    slot_uri: voc4cat:0000153
     owner: CSTR
     domain_of:
     - CSTR
@@ -4483,9 +4483,9 @@ slots:
       the opposite tip.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0008115
+    - voc4cat:0008115
     is_a: has_length
-    slot_uri: VOC4CAT:0008115
+    slot_uri: voc4cat:0008115
     owner: CSTR
     domain_of:
     - CSTR
@@ -4509,9 +4509,9 @@ slots:
       may use different equipment.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0008113
+    - voc4cat:0008113
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0008113
+    slot_uri: voc4cat:0008113
     owner: CSTR
     domain_of:
     - CSTR
@@ -4602,9 +4602,9 @@ slots:
       sample, typically reported as diameter or sieve fraction range.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0008212
+    - voc4cat:0008212
     is_a: has_length
-    slot_uri: VOC4CAT:0008212
+    slot_uri: voc4cat:0008212
     owner: FixedBedReactor
     domain_of:
     - PlugFlowReactor
@@ -4641,9 +4641,9 @@ slots:
       from vessel_material, the material of the outer pressure vessel/shell.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0000156
+    - voc4cat:0000156
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0000156
+    slot_uri: voc4cat:0000156
     owner: Autoclave
     domain_of:
     - Autoclave
@@ -4836,9 +4836,9 @@ slots:
       fixed bed reactor.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0007021
+    - voc4cat:0007021
     is_a: has_volume
-    slot_uri: VOC4CAT:0007021
+    slot_uri: voc4cat:0007021
     owner: FixedBedReactor
     domain_of:
     - FixedBedReactor
@@ -4855,9 +4855,9 @@ slots:
       bed properties (e.g. improve heat/mass transfer, dilute activity).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0008218
+    - voc4cat:0008218
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0008218
+    slot_uri: voc4cat:0008218
     owner: FixedBedReactor
     domain_of:
     - FixedBedReactor
@@ -4873,9 +4873,9 @@ slots:
       measured along the direction of flow.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - VOC4CAT:0008217
+    - voc4cat:0008217
     is_a: has_length
-    slot_uri: VOC4CAT:0008217
+    slot_uri: voc4cat:0008217
     owner: FixedBedReactor
     domain_of:
     - FixedBedReactor
@@ -6315,9 +6315,9 @@ slots:
       calculated band gap.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
-    - VOC4CAT:0005056
+    - voc4cat:0005056
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0005056
+    slot_uri: voc4cat:0005056
     owner: BandGap
     domain_of:
     - BandGap
@@ -8509,9 +8509,7 @@ slots:
     range: DefinedTerm
     bindings:
     - range: QUDTQuantityKindEnum
-      obligation_level:
-        text: RECOMMENDED
-        description: The metadata element is recommended to be present in the model
+      obligation_level: &id001 RECOMMENDED
       binds_value_of: id
       description: Binds the type of a quantifiable attribute to a QUDT Quantity Kind
         instance from the QUDT Quantity Kind vocabulary.
@@ -8529,9 +8527,7 @@ slots:
     range: DefinedTerm
     bindings:
     - range: QUDTUnitEnum
-      obligation_level:
-        text: RECOMMENDED
-        description: The metadata element is recommended to be present in the model
+      obligation_level: &id002 RECOMMENDED
       binds_value_of: id
       description: Restricts the allowable defined terms to the QUDT Unit vocabulary.
     recommended: true
@@ -8560,9 +8556,7 @@ slots:
     range: DefinedTerm
     bindings:
     - range: CatalysisResearchFieldEnum
-      obligation_level:
-        text: RECOMMENDED
-        description: The metadata element is recommended to be present in the model
+      obligation_level: RECOMMENDED
       binds_value_of: id
       description: Classify the dataset by catalysis research field using voc4cat.
     recommended: true
@@ -8766,10 +8760,10 @@ slots:
       \ 4\xB0C)."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008105
+    - voc4cat:0008105
     is_a: storage_conditions
     domain: Synthesis
-    slot_uri: VOC4CAT:0008105
+    slot_uri: voc4cat:0008105
     alias: storage_conditions
     owner: Synthesis
     domain_of:
@@ -8812,10 +8806,10 @@ slots:
     description: Quantity of precursor used in synthesis.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     mappings:
-    - VOC4CAT:0008118
+    - voc4cat:0008118
     is_a: precursor_quantity
     domain: Precursor
-    slot_uri: VOC4CAT:0008118
+    slot_uri: voc4cat:0008118
     alias: precursor_quantity
     owner: Precursor
     domain_of:
@@ -8930,7 +8924,7 @@ slots:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/rdf_type
     description: 'The type of characterization technique as an ontology term, e.g.
 
-      CHMO:0000158 (powder XRD), CHMO:0000404 (XPS), VOC4CAT:0000075 (SEM).'
+      CHMO:0000158 (powder XRD), CHMO:0000404 (XPS), voc4cat:0000075 (SEM).'
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
@@ -8952,7 +8946,7 @@ slots:
   CatalyticReaction_rdf_type:
     name: CatalyticReaction_rdf_type
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/rdf_type
-    description: 'The type of catalytic reaction as an ontology term (e.g. VOC4CAT:0007010
+    description: 'The type of catalytic reaction as an ontology term (e.g. voc4cat:0007010
 
       for a specific reaction type, or a ChemO/RXNO term).
 
@@ -12996,12 +12990,12 @@ classes:
       \nThe catalysis research field is expressed via rdf_type using a voc4cat\nterm\
       \ from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).\nFor example,\
       \ a dataset from heterogeneous catalysis research would carry:\n  rdf_type:\n\
-      \    id: VOC4CAT:0007001\n    title: \"heterogeneous catalysis\"\n\nThe four\
+      \    id: voc4cat:0007001\n    title: \"heterogeneous catalysis\"\n\nThe four\
       \ CoreMeta4Cat minimum information pillars are linked via the slots\nbelow,\
       \ each pointing to the corresponding DataGeneratingActivity or\nEvaluatedActivity\
       \ subclass defined in the CoreMeta4Cat subprofile modules."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat
-    mappings:
+    exact_mappings:
     - dcat:Dataset
     is_a: Dataset
     mixins:
@@ -13057,10 +13051,7 @@ classes:
           classification of the dataset''s domain.'
         bindings:
         - range: CatalysisResearchFieldEnum
-          obligation_level:
-            text: RECOMMENDED
-            description: The metadata element is recommended to be present in the
-              model
+          obligation_level: RECOMMENDED
           binds_value_of: id
           description: Classify the dataset by catalysis research field using voc4cat.
         recommended: true
@@ -13198,7 +13189,7 @@ classes:
 
       interval rather than a point value. Provide the shared unit as a QUDT DefinedTerm.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     mixins:
     - ClassifierMixin
@@ -13242,7 +13233,7 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Duration
     description: A quantitative measure of elapsed time (duration of a process step).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0001309
@@ -13261,7 +13252,7 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/VolumeFlowRate
     description: Volume of fluid passing a given point per unit time.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0001574
@@ -13280,10 +13271,9 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/HeatingRate
     description: Rate of temperature change per unit time during a thermal ramp.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - qudt:Quantity
     exact_mappings:
-    - VOC4CAT:0008116
+    - qudt:Quantity
+    - voc4cat:0008116
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -13300,7 +13290,7 @@ classes:
     description: Rate of rotational motion, typically expressed in revolutions per
       minute.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0002154
@@ -13319,7 +13309,7 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/EnergyQuantity
     description: A quantitative measure of energy (eV, keV, kJ/mol, etc.).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0001021
@@ -13338,7 +13328,7 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ElectricPotential
     description: A quantitative measure of electric potential difference or voltage.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0001464
@@ -13358,7 +13348,7 @@ classes:
     description: A quantitative measure of electric current (e.g. faradaic current
       in an electrochemical cell).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     is_a: QuantitativeAttribute
     slots:
@@ -13375,7 +13365,7 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Area
     description: A quantitative measure of surface area (e.g. active electrode area).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     is_a: QuantitativeAttribute
     slots:
@@ -13392,7 +13382,7 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/PowerQuantity
     description: Rate of energy transfer per unit time (e.g. laser power in mW).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0001230
@@ -13411,7 +13401,7 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/LengthQuantity
     description: A quantitative measure of length or spatial dimension (nm, mm, cm).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0001708
@@ -13431,7 +13421,7 @@ classes:
     description: A quantitative measure of a plane angle (e.g. scattering angle in
       degrees).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     is_a: QuantitativeAttribute
     slots:
@@ -13448,7 +13438,7 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Wavenumber
     description: Reciprocal of wavelength; number of wave cycles per unit length (cm^-1).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     is_a: QuantitativeAttribute
     slots:
@@ -13465,7 +13455,7 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/MassToChargeRatio
     description: Ratio of mass to electric charge (m/z) in mass spectrometry.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     is_a: QuantitativeAttribute
     slots:
@@ -13484,7 +13474,7 @@ classes:
 
       conditions during a process (e.g. "air", "N2", "5% H2/Ar").'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - coremeta4cat:Atmosphere
     is_a: QualitativeAttribute
     slots:
@@ -13502,8 +13492,8 @@ classes:
 
       (e.g. "air", "N2", "10% O2/N2").'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0000055
+    exact_mappings:
+    - voc4cat:0000055
     is_a: Atmosphere
     slots:
     - title
@@ -13511,14 +13501,14 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
-    class_uri: VOC4CAT:0000055
+    class_uri: voc4cat:0000055
   HeatingProcedure:
     name: HeatingProcedure
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/HeatingProcedure
     description: "A qualitative descriptor of the thermal programme or heating procedure\n\
       applied (e.g. \"isothermal\", \"ramp 5 \xB0C/min to 500 \xB0C, dwell 2 h\")."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - coremeta4cat:HeatingProcedure
     is_a: QualitativeAttribute
     slots:
@@ -13535,8 +13525,8 @@ classes:
       before a process or measurement (e.g. \"reduction at 300 \xB0C\", \"outgassing\"\
       )."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0000122
+    exact_mappings:
+    - voc4cat:0000122
     is_a: QualitativeAttribute
     slots:
     - title
@@ -13544,7 +13534,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
-    class_uri: VOC4CAT:0000122
+    class_uri: voc4cat:0000122
   VesselType:
     name: VesselType
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/VesselType
@@ -13552,7 +13542,7 @@ classes:
 
       used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
+    exact_mappings:
     - coremeta4cat:VesselType
     is_a: QualitativeAttribute
     slots:
@@ -13570,8 +13560,8 @@ classes:
 
       process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - VOC4CAT:0000108
+    exact_mappings:
+    - voc4cat:0000108
     is_a: QualitativeAttribute
     slots:
     - title
@@ -13579,7 +13569,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
-    class_uri: VOC4CAT:0000108
+    class_uri: voc4cat:0000108
   DryingMixin:
     name: DryingMixin
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/DryingMixin
@@ -13679,11 +13669,11 @@ classes:
 
       The type of synthesis is further specified via rdf_type using an ontology
 
-      term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS
+      term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS
 
       Pattern 3.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - OBI:0000070
     is_a: CatalysisDataGeneratingActivity
     slots:
@@ -13759,8 +13749,8 @@ classes:
 
       Precursors are consumed or transformed during the preparation process.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
-    - VOC4CAT:0007794
+    exact_mappings:
+    - voc4cat:0007794
     is_a: MaterialSample
     slots:
     - id
@@ -13787,7 +13777,7 @@ classes:
       precursor_quantity:
         name: precursor_quantity
         required: true
-    class_uri: VOC4CAT:0007794
+    class_uri: voc4cat:0007794
   CatalystSample:
     name: CatalystSample
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CatalystSample
@@ -13795,9 +13785,9 @@ classes:
 
       The specific type of catalyst (e.g. heterogeneous, supported metal)
 
-      is expressed via rdf_type using a VOC4CAT term.'
+      is expressed via rdf_type using a voc4cat term.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - OBI:0000747
     is_a: MaterialSample
     slots:
@@ -13835,10 +13825,10 @@ classes:
       Concrete subclasses (Impregnation, CoPrecipitation, \u2026) specify the\nmethod-specific\
       \ parameters. Linked from Synthesis via realized_plan.\n\nThe specific preparation\
       \ method type should additionally be expressed\nvia rdf_type on the Synthesis\
-      \ activity using a voc4cat term\n(e.g. VOC4CAT:0007016 for preparation method)."
+      \ activity using a voc4cat term\n(e.g. voc4cat:0007016 for preparation method)."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
-    - VOC4CAT:0007016
+    exact_mappings:
+    - voc4cat:0007016
     is_a: CatalysisPlan
     abstract: true
     slots:
@@ -13847,7 +13837,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
-    class_uri: VOC4CAT:0007016
+    class_uri: voc4cat:0007016
   Impregnation:
     name: Impregnation
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Impregnation
@@ -13855,8 +13845,8 @@ classes:
 
       precursor is brought into contact with the support material.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
-    - VOC4CAT:0007028
+    exact_mappings:
+    - voc4cat:0007028
     is_a: PreparationMethod
     mixins:
     - DryingMixin
@@ -13880,7 +13870,7 @@ classes:
     - has_calcination_atmosphere
     - has_calcination_heating_rate
     - has_calcination_gas_flow_rate
-    class_uri: VOC4CAT:0007028
+    class_uri: voc4cat:0007028
   CoPrecipitation:
     name: CoPrecipitation
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CoPrecipitation
@@ -13888,8 +13878,8 @@ classes:
 
       simultaneously precipitated from solution by a precipitating agent.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
-    - VOC4CAT:0007795
+    exact_mappings:
+    - voc4cat:0007795
     is_a: PreparationMethod
     mixins:
     - PrecipitationMixin
@@ -13922,7 +13912,7 @@ classes:
     - has_calcination_atmosphere
     - has_calcination_heating_rate
     - has_calcination_gas_flow_rate
-    class_uri: VOC4CAT:0007795
+    class_uri: voc4cat:0007795
   SolGel:
     name: SolGel
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/SolGel
@@ -13930,7 +13920,7 @@ classes:
 
       of precursor molecules to form a colloidal network (gel).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - CHMO:0001313
     is_a: PreparationMethod
     mixins:
@@ -13958,7 +13948,7 @@ classes:
 
       sealed vessel using a non-aqueous solvent.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - CHMO:0001458
     is_a: PreparationMethod
     mixins:
@@ -13984,7 +13974,7 @@ classes:
 
       properties or deposit active components.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - voc4cat:0008152
     is_a: PreparationMethod
     mixins:
@@ -14011,7 +14001,7 @@ classes:
 
       producing metal oxide catalysts in a single rapid step.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - voc4cat:0008156
     is_a: PreparationMethod
     mixins:
@@ -14041,7 +14031,7 @@ classes:
 
       of active phase onto a substrate.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - CHMO:0001311
     is_a: PreparationMethod
     slots:
@@ -14064,7 +14054,7 @@ classes:
 
       is precipitated directly onto the support surface.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - coremeta4cat:DepositionPrecipitation
     is_a: PreparationMethod
     mixins:
@@ -14108,7 +14098,7 @@ classes:
 
       uniformly heat the reaction mixture.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - CHMO:0002906
     is_a: PreparationMethod
     mixins:
@@ -14133,7 +14123,7 @@ classes:
 
       reactions via acoustic cavitation.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - coremeta4cat:SonochemicalSynthesis
     is_a: PreparationMethod
     mixins:
@@ -14166,8 +14156,8 @@ classes:
 
       solution is atomised and combusted in a flame to produce nanoparticles.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
-    - VOC4CAT:0007031
+    exact_mappings:
+    - voc4cat:0007031
     is_a: PreparationMethod
     slots:
     - title
@@ -14184,7 +14174,7 @@ classes:
     - fuel_dispersant_ratio
     - filtration_device
     - filter_type
-    class_uri: VOC4CAT:0007031
+    class_uri: voc4cat:0007031
   MechanochemicalSynthesis:
     name: MechanochemicalSynthesis
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/MechanochemicalSynthesis
@@ -14192,7 +14182,7 @@ classes:
 
       combined with thermal treatment.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - coremeta4cat:MechanochemicalSynthesis
     is_a: PreparationMethod
     mixins:
@@ -14222,7 +14212,7 @@ classes:
 
       and deposited onto a substrate without passing through a liquid phase.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - coremeta4cat:Sublimation
     is_a: PreparationMethod
     mixins:
@@ -14246,7 +14236,7 @@ classes:
 
       chemistry routes, including crystallisation and purification steps.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - coremeta4cat:MolecularSynthesis
     is_a: PreparationMethod
     mixins:
@@ -14284,7 +14274,7 @@ classes:
 
       a perovskite oxide surface by reduction/oxidation cycling.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
-    mappings:
+    exact_mappings:
     - coremeta4cat:ExsolutionSynthesis
     is_a: PreparationMethod
     mixins:
@@ -14432,7 +14422,7 @@ classes:
       \ for powder XRD, CHMO:0000404 for XPS),\nfollowing DCAT-AP-PLUS Pattern 3 \u2014\
       \ exactly as NMRSpectroscopy uses\nrdf_type: CHMO:0000613."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - OBI:0000070
     is_a: CatalysisDataGeneratingActivity
     slots:
@@ -14488,7 +14478,7 @@ classes:
         description: 'The type of characterization technique as an ontology term,
           e.g.
 
-          CHMO:0000158 (powder XRD), CHMO:0000404 (XPS), VOC4CAT:0000075 (SEM).'
+          CHMO:0000158 (powder XRD), CHMO:0000404 (XPS), voc4cat:0000075 (SEM).'
         recommended: true
     class_uri: OBI:0000070
   CharacterizationTechnique:
@@ -14500,7 +14490,7 @@ classes:
 
       Linked from Characterization via realized_plan.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - OBI:0000272
     is_a: CatalysisPlan
     abstract: true
@@ -14517,7 +14507,7 @@ classes:
     description: Powder X-ray diffraction for phase identification and structural
       analysis.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000158
     is_a: CharacterizationTechnique
     mixins:
@@ -14543,7 +14533,7 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/SingleCrystalXRD
     description: Single crystal X-ray diffraction for structure determination.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000852
     is_a: CharacterizationTechnique
     mixins:
@@ -14564,8 +14554,8 @@ classes:
     description: X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and
       local structure analysis.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - VOC4CAT:0000286
+    exact_mappings:
+    - voc4cat:0000286
     is_a: CharacterizationTechnique
     mixins:
     - XRaySourceMixin
@@ -14587,14 +14577,14 @@ classes:
     - xray_source
     - monochromator
     - has_energy_range
-    class_uri: VOC4CAT:0000286
+    class_uri: voc4cat:0000286
   XPS:
     name: XPS
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/XPS
     description: X-ray photoelectron spectroscopy for surface elemental and chemical
       state analysis.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000404
     is_a: CharacterizationTechnique
     mixins:
@@ -14623,7 +14613,7 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/EDX
     description: Energy-dispersive X-ray spectroscopy for elemental mapping and quantification.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000309
     is_a: CharacterizationTechnique
     slots:
@@ -14643,7 +14633,7 @@ classes:
     description: Infrared spectroscopy (FTIR/ATR) for functional group and surface
       species identification.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000630
     is_a: CharacterizationTechnique
     slots:
@@ -14668,7 +14658,7 @@ classes:
 
       surface species identification under reactive gas conditions.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000645
     is_a: CharacterizationTechnique
     slots:
@@ -14694,8 +14684,8 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/RamanSpectroscopy
     description: Raman spectroscopy for vibrational and structural characterization.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - VOC4CAT:0000069
+    exact_mappings:
+    - voc4cat:0000069
     is_a: CharacterizationTechnique
     slots:
     - title
@@ -14711,7 +14701,7 @@ classes:
     - has_atmosphere
     - has_temperature
     - filter_or_grating
-    class_uri: VOC4CAT:0000069
+    class_uri: voc4cat:0000069
   NMRSpectroscopy:
     name: NMRSpectroscopy
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/NMRSpectroscopy
@@ -14723,8 +14713,8 @@ classes:
 
       this subprofile.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - VOC4CAT:0000073
+    exact_mappings:
+    - voc4cat:0000073
     is_a: CharacterizationTechnique
     slots:
     - title
@@ -14740,14 +14730,14 @@ classes:
     - nmr_sample_tube
     - number_of_scans
     - has_atmosphere
-    class_uri: VOC4CAT:0000073
+    class_uri: voc4cat:0000073
   TransmissionElectronMicroscopy:
     name: TransmissionElectronMicroscopy
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/TransmissionElectronMicroscopy
     description: TEM for atomic-resolution imaging and diffraction of catalyst particles.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - VOC4CAT:0000078
+    exact_mappings:
+    - voc4cat:0000078
     is_a: CharacterizationTechnique
     mixins:
     - ElectronMicroscopyMixin
@@ -14761,14 +14751,14 @@ classes:
     - gun_type
     - acceleration_voltage
     - magnification_setting
-    class_uri: VOC4CAT:0000078
+    class_uri: voc4cat:0000078
   ScanningElectronMicroscopy:
     name: ScanningElectronMicroscopy
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ScanningElectronMicroscopy
     description: SEM for surface morphology and particle size/shape imaging.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - VOC4CAT:0000075
+    exact_mappings:
+    - voc4cat:0000075
     is_a: CharacterizationTechnique
     mixins:
     - ElectronMicroscopyMixin
@@ -14783,14 +14773,14 @@ classes:
     - gun_type
     - acceleration_voltage
     - magnification_setting
-    class_uri: VOC4CAT:0000075
+    class_uri: voc4cat:0000075
   Thermogravimetry:
     name: Thermogravimetry
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Thermogravimetry
     description: Thermogravimetric analysis (TGA/DTG) for mass loss, decomposition,
       and oxidation state characterization.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000690
     is_a: CharacterizationTechnique
     mixins:
@@ -14816,7 +14806,7 @@ classes:
     description: Temperature-programmed reduction for reducibility and metal-support
       interaction characterization.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0002908
     is_a: CharacterizationTechnique
     mixins:
@@ -14838,7 +14828,7 @@ classes:
     description: Temperature-programmed oxidation for coke quantification and reoxidation
       characterization.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0002907
     is_a: CharacterizationTechnique
     mixins:
@@ -14860,8 +14850,8 @@ classes:
     description: Brunauer-Emmett-Teller analysis for specific surface area and pore
       size distribution.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - ENM:0000064
+    exact_mappings:
+    - enm:0000064
     is_a: CharacterizationTechnique
     slots:
     - title
@@ -14874,14 +14864,14 @@ classes:
     - measurement_temperature
     - pore_size_distribution_method
     - has_sample_mass
-    class_uri: ENM:0000064
+    class_uri: enm:0000064
   ICPAES:
     name: ICPAES
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ICPAES
     description: Inductively coupled plasma atomic emission spectroscopy for bulk
       elemental composition.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000267
     is_a: CharacterizationTechnique
     slots:
@@ -14901,7 +14891,7 @@ classes:
     description: Combustion elemental analysis (CHNS/O) for carbon, hydrogen, nitrogen,
       sulfur content.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0001075
     is_a: CharacterizationTechnique
     slots:
@@ -14920,8 +14910,8 @@ classes:
     description: UV-Vis spectroscopy for electronic transitions, band gap, and concentration
       determination.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - VOC4CAT:0000079
+    exact_mappings:
+    - voc4cat:0000079
     is_a: CharacterizationTechnique
     slots:
     - title
@@ -14933,13 +14923,13 @@ classes:
     - path_length
     - solvent
     - has_concentration
-    class_uri: VOC4CAT:0000079
+    class_uri: voc4cat:0000079
   PhotoluminescenceSpectroscopy:
     name: PhotoluminescenceSpectroscopy
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/PhotoluminescenceSpectroscopy
     description: Photoluminescence spectroscopy for defect and charge carrier characterization.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000773
     is_a: CharacterizationTechnique
     mixins:
@@ -14965,7 +14955,7 @@ classes:
     description: Time-resolved photoluminescence for charge carrier lifetime and recombination
       dynamics.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0001917
     is_a: CharacterizationTechnique
     mixins:
@@ -14989,7 +14979,7 @@ classes:
     description: Cyclic voltammetry for electrochemical activity, redox potential,
       and capacitance characterization.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000025
     is_a: CharacterizationTechnique
     mixins:
@@ -15018,7 +15008,7 @@ classes:
     description: Electrical conductivity measurement for ionic and electronic transport
       characterization.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000010
     is_a: CharacterizationTechnique
     mixins:
@@ -15047,7 +15037,7 @@ classes:
     description: Dynamic light scattering for hydrodynamic particle size distribution
       in suspension.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000167
     is_a: CharacterizationTechnique
     slots:
@@ -15071,7 +15061,7 @@ classes:
     description: Electrospray ionisation mass spectrometry for molecular mass and
       identity determination.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000482
     is_a: CharacterizationTechnique
     mixins:
@@ -15097,7 +15087,7 @@ classes:
     description: Gas chromatography-mass spectrometry for volatile compound identification
       and quantification.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000497
     is_a: CharacterizationTechnique
     mixins:
@@ -15132,8 +15122,8 @@ classes:
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/SizeExclusionChromatography
     description: Size exclusion chromatography for molecular weight distribution determination.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
-    - AFP:0000843
+    exact_mappings:
+    - allotrope.quality:0000843
     is_a: CharacterizationTechnique
     mixins:
     - ChromatographyMixin
@@ -15151,14 +15141,14 @@ classes:
     - has_injection_volume
     - external_standard
     - internal_standard
-    class_uri: AFP:0000843
+    class_uri: allotrope.quality:0000843
   HighPerformanceLiquidChromatographyMassSpectrometry:
     name: HighPerformanceLiquidChromatographyMassSpectrometry
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/HighPerformanceLiquidChromatographyMassSpectrometry
     description: High-performance liquid chromatography-mass spectrometry for compound
       identification and quantification.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
-    mappings:
+    exact_mappings:
     - CHMO:0000796
     is_a: CharacterizationTechnique
     mixins:
@@ -15241,7 +15231,7 @@ classes:
     slot_usage:
       rdf_type:
         name: rdf_type
-        description: 'The type of catalytic reaction as an ontology term (e.g. VOC4CAT:0007010
+        description: 'The type of catalytic reaction as an ontology term (e.g. voc4cat:0007010
 
           for a specific reaction type, or a ChemO/RXNO term).
 
@@ -15317,7 +15307,7 @@ classes:
 
       persistent id.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    mappings:
+    exact_mappings:
     - OBI:0000272
     is_a: CatalysisPlan
     slots:
@@ -15340,8 +15330,8 @@ classes:
       \ geometry and operating mode.\nLinked from Reaction via used_reactor (restricted\
       \ to range: ChemicalReactor)."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    mappings:
-    - VOC4CAT:0007018
+    exact_mappings:
+    - voc4cat:0007018
     is_a: Reactor
     abstract: true
     slots:
@@ -15362,7 +15352,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
-    class_uri: VOC4CAT:0007018
+    class_uri: voc4cat:0007018
   ElectrochemicalReactor:
     name: ElectrochemicalReactor
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ElectrochemicalReactor
@@ -15370,8 +15360,8 @@ classes:
 
       H-cells, flow cells, and membrane electrode assemblies.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    mappings:
-    - VOC4CAT:0000193
+    exact_mappings:
+    - voc4cat:0000193
     is_a: ChemicalReactor
     slots:
     - id
@@ -15396,15 +15386,15 @@ classes:
     - cell_operating_mode
     - has_active_area
     - faradaic_current
-    class_uri: VOC4CAT:0000193
+    class_uri: voc4cat:0000193
   CSTR:
     name: CSTR
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CSTR
     description: "Continuous stirred tank reactor (CSTR) \u2014 a well-mixed, continuous-flow\n\
       reactor operating at steady state."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    mappings:
-    - VOC4CAT:0007019
+    exact_mappings:
+    - voc4cat:0007019
     is_a: ChemicalReactor
     slots:
     - id
@@ -15430,15 +15420,15 @@ classes:
     - reactor_diameter
     - stirrer_diameter
     - reactor_stirrer_type
-    class_uri: VOC4CAT:0007019
+    class_uri: voc4cat:0007019
   PlugFlowReactor:
     name: PlugFlowReactor
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/PlugFlowReactor
     description: "Plug flow reactor (PFR) \u2014 a tubular reactor in which reactant\
       \ composition\nvaries along the axis with no axial mixing."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    mappings:
-    - VOC4CAT:0007102
+    exact_mappings:
+    - voc4cat:0007102
     is_a: ChemicalReactor
     slots:
     - id
@@ -15464,14 +15454,14 @@ classes:
     - number_of_tubes
     - tube_material
     - catalyst_particle_size
-    class_uri: VOC4CAT:0007102
+    class_uri: voc4cat:0007102
   Autoclave:
     name: Autoclave
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Autoclave
     description: "Autoclave reactor \u2014 a sealed pressure vessel for batch reactions\
       \ at\nelevated temperature and/or pressure."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    mappings:
+    exact_mappings:
     - NCIT:C93052
     is_a: ChemicalReactor
     slots:
@@ -15504,7 +15494,7 @@ classes:
     description: "Slurry reactor \u2014 a three-phase reactor in which catalyst particles\
       \ are\nsuspended in a liquid phase through which gas is bubbled."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    mappings:
+    exact_mappings:
     - coremeta4cat:SlurryReactor
     is_a: ChemicalReactor
     slots:
@@ -15538,8 +15528,8 @@ classes:
       \ dimensions\nin the sub-millimetre range, enabling precise thermal control\
       \ and rapid\nscreening."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    mappings:
-    - VOC4CAT:0000234
+    exact_mappings:
+    - voc4cat:0000234
     is_a: ChemicalReactor
     slots:
     - id
@@ -15562,14 +15552,14 @@ classes:
     - channel_material
     - channel_dimensions
     - number_of_channels
-    class_uri: VOC4CAT:0000234
+    class_uri: voc4cat:0000234
   FixedBedReactor:
     name: FixedBedReactor
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/FixedBedReactor
     description: "Fixed bed reactor \u2014 a tubular reactor packed with a stationary\
       \ catalyst bed.\nThe most common reactor type in heterogeneous catalysis testing."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    mappings:
+    exact_mappings:
     - coremeta4cat:FixedBedReactor
     is_a: ChemicalReactor
     slots:
@@ -15602,7 +15592,7 @@ classes:
     description: "Fluidized bed reactor \u2014 a reactor in which the catalyst particles\
       \ are\nsuspended in an upward-flowing gas or liquid stream."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    mappings:
+    exact_mappings:
     - coremeta4cat:FluidizedBedReactor
     is_a: ChemicalReactor
     slots:
@@ -15682,7 +15672,7 @@ classes:
 
       NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - NCIT:C48936
     is_a: CatalysisDataGeneratingActivity
     slots:
@@ -15747,7 +15737,7 @@ classes:
 
       Linked from Simulation via realized_plan.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - OBI:0000272
     is_a: CatalysisPlan
     abstract: true
@@ -15765,7 +15755,7 @@ classes:
       \ calculating\nthe electronic structure of atoms, molecules, and periodic solids.\n\
       The most widely used ab initio method in computational catalysis."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:DFT
     is_a: SimulationMethod
     slots:
@@ -15788,7 +15778,7 @@ classes:
       \ time evolution\nof a system of interacting particles by integrating the equations\
       \ of motion.\nUsed to study diffusion, reaction kinetics, and thermal properties."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - NCIT:C18097
     is_a: SimulationMethod
     slots:
@@ -15810,7 +15800,7 @@ classes:
       \ integrates\nelementary reaction steps and their rate constants to predict\
       \ catalytic\nactivity and selectivity under reaction conditions."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:Microkinetics
     is_a: SimulationMethod
     slots:
@@ -15834,7 +15824,7 @@ classes:
       \ (e.g. Metropolis). Used for adsorption isotherms, phase diagrams,\nand lattice-based\
       \ kinetics."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:MonteCarlo
     is_a: SimulationMethod
     slots:
@@ -15863,7 +15853,7 @@ classes:
 
       Linked from Simulation via the calculated_property slot.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - IAO:0000109
     is_a: QualitativeAttribute
     abstract: true
@@ -15884,7 +15874,7 @@ classes:
 
       stability and predict synthesis feasibility.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:ThermodynamicStability
     is_a: CalculatedProperty
     slots:
@@ -15907,7 +15897,7 @@ classes:
 
       piezoelectric tensor. Relevant for piezocatalysis applications.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:Piezoelectricity
     is_a: CalculatedProperty
     slots:
@@ -15929,7 +15919,7 @@ classes:
 
       including bulk modulus, shear modulus, and Young''s modulus.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:ElasticConstants
     is_a: CalculatedProperty
     slots:
@@ -15953,7 +15943,7 @@ classes:
 
       Central to heterogeneous catalysis modelling.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:Surfaces
     is_a: CalculatedProperty
     slots:
@@ -15976,7 +15966,7 @@ classes:
 
       Characterises the optical and static dielectric response of a material.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:DielectricTensors
     is_a: CalculatedProperty
     mixins:
@@ -16005,7 +15995,7 @@ classes:
 
       and dynamical stability (imaginary modes).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:PhononDispersion
     is_a: CalculatedProperty
     mixins:
@@ -16033,7 +16023,7 @@ classes:
 
       volume, bulk modulus, and its pressure derivative.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:EquationsOfState
     is_a: CalculatedProperty
     mixins:
@@ -16065,7 +16055,7 @@ classes:
 
       stability screening.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:AqueousStability
     is_a: CalculatedProperty
     mixins:
@@ -16093,7 +16083,7 @@ classes:
 
       sintering, and charge/defect segregation.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:GrainBoundaries
     is_a: CalculatedProperty
     mixins:
@@ -16124,7 +16114,7 @@ classes:
 
       (d-band centre, band gap, Fermi energy).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:ElectronicStructure
     is_a: CalculatedProperty
     mixins:
@@ -16155,7 +16145,7 @@ classes:
 
       ferroelectric-photocatalyst design.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:Ferroelectrics
     is_a: CalculatedProperty
     mixins:
@@ -16184,7 +16174,7 @@ classes:
 
       and semiconductor catalyst screening.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
-    mappings:
+    exact_mappings:
     - coremeta4cat:BandGap
     is_a: CalculatedProperty
     mixins:
@@ -16219,7 +16209,7 @@ classes:
       should define their own Dataset subclasses, potentially using the DCAT-AP+ DataAnalysis/AnalysisDataset
       chain instead of reusing this class.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-    mappings:
+    exact_mappings:
     - dcat:Dataset
     is_a: Dataset
     slots:
@@ -16287,7 +16277,7 @@ classes:
       evaluation should define their own Dataset subclasses, potentially using the
       DCAT-AP+ DataAnalysis/AnalysisDataset chain instead of reusing this class.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-    mappings:
+    exact_mappings:
     - dcat:Dataset
     is_a: Dataset
     slots:
@@ -16354,7 +16344,7 @@ classes:
       should define their own DataGeneratingActivity subclasses and use the DCAT-AP+
       DataAnalysis chain to separate raw measurement from derived results.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-    mappings:
+    exact_mappings:
     - prov:Activity
     broad_mappings:
     - OBI:0000070
@@ -16397,7 +16387,7 @@ classes:
       subclasses and use the DCAT-AP+ DataAnalysis chain to separate raw data from
       derived results.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-    mappings:
+    exact_mappings:
     - prov:Activity
     is_a: DataGeneratingActivity
     slots:
@@ -16433,7 +16423,7 @@ classes:
     description: A facility that provides controlled conditions in which scientific
       or technological research, experiments, and measurement may be performed.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-    mappings:
+    exact_mappings:
     - ENVO:01001405
     is_a: Surrounding
     slots:
@@ -16448,9 +16438,8 @@ classes:
     description: A process that leads to the transformation of one set of chemical
       substances to another and that is the subject matter of a DataGeneratingActivity.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
-    mappings:
-    - SIO:010345
     exact_mappings:
+    - SIO:010345
     - MOP:0000543
     - REX:0000002
     - AFP:0003711
@@ -16507,7 +16496,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/StartingMaterial
     description: A ChemicalSubstance with that has a starting material role in a synthesis.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
-    mappings:
+    exact_mappings:
     - PROCO:0000029
     is_a: MaterialEntity
     mixins:
@@ -16544,10 +16533,9 @@ classes:
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
     aliases:
     - solvent
-    mappings:
-    - SIO:010417
     exact_mappings:
-    - VOC4CAT:0007246
+    - SIO:010417
+    - voc4cat:0007246
     - NCIT:C45790
     is_a: AgenticEntity
     mixins:
@@ -16581,11 +16569,10 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/Reagent
     description: A ChemicalSubstance that is consumed or transformed in a ChemicalReaction.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
-    mappings:
-    - SIO:010411
     exact_mappings:
+    - SIO:010411
     - NCIT:C802
-    - VOC4CAT:0000101
+    - voc4cat:0000101
     close_mappings:
     - OBI:0001879
     - PROCO:0000029
@@ -16621,8 +16608,9 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/ChemicalProduct
     description: A chemical substance that is produced by a ChemicalReaction.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
-    mappings:
+    exact_mappings:
     - NCIT:C48810
+    - voc4cat:0000194
     close_mappings:
     - ENVO:2000000
     is_a: MaterialEntity
@@ -16657,10 +16645,10 @@ classes:
     description: A ChemicalSubstance or MaterialEntity that initiates or accelerates
       a ChemicalReaction without itself being affected.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
-    mappings:
-    - SIO:010344
     exact_mappings:
-    - VOC4CAT:0000194
+    - SIO:010344
+    - voc4cat:0000194
+    - NCIT:C48810
     close_mappings:
     - CHEBI:35223
     is_a: AgenticEntity
@@ -16696,10 +16684,9 @@ classes:
     description: A reactor is a container for controlling a biological or chemical
       reaction or process.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
-    mappings:
-    - AFE:0000153
     exact_mappings:
-    - VOC4CAT:0007017
+    - AFE:0000153
+    - voc4cat:0007017
     is_a: Device
     mixins:
     - MaterialisticMixin
@@ -16730,10 +16717,9 @@ classes:
       A fully reacts to B without side-reactions, the yield of product B is 1 (or
       100 %).
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
-    mappings:
-    - CHMO:0002855
     exact_mappings:
-    - VOC4CAT:0005005
+    - CHMO:0002855
+    - voc4cat:0005005
     is_a: QuantitativeAttribute
     slots:
     - title
@@ -16750,7 +16736,7 @@ classes:
     description: A dimensionless ratio that quantifies the stoichiometric proportion
       of a chemical substance relative to a reference substance in a chemical reaction.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     is_a: QuantitativeAttribute
     slots:
@@ -16768,7 +16754,7 @@ classes:
     description: A dimensionless ratio that quantifies the stoichiometric proportion
       of a chemical substance relative to a reference substance in a chemical reaction.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/reaction/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     is_a: QuantitativeAttribute
     slots:
@@ -16790,7 +16776,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - prov:Activity
     mixins:
     - ClassifierMixin
@@ -16878,7 +16864,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Agent
     description: See [DCAT-AP specs:Agent](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Agent)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - foaf:Agent
     slots:
     - Agent_name
@@ -16909,7 +16895,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - prov:Agent
     mixins:
     - ClassifierMixin
@@ -16960,7 +16946,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcat:Dataset
     is_a: Dataset
     slots:
@@ -17017,7 +17003,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - prov:Entity
     is_a: EvaluatedEntity
     slots:
@@ -17046,7 +17032,7 @@ classes:
     description: This abstract class is needed to create the union of Dataset, DatasetSeries,
       Catalogue and DataService for the range of the slot [primary_topic](https://nfdi-de.github.io/chem-dcat-ap/elements/primary_topic/).
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - linkml:Any
     slots:
     - title
@@ -17057,7 +17043,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Attribution
     description: See [DCAT-AP specs:Attribution](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Attribution)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - prov:Attribution
     is_a: SupportiveEntity
     slots:
@@ -17069,7 +17055,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Catalogue
     description: See [DCAT-AP specs:Catalogue](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Catalogue)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcat:Catalog
     slots:
     - Catalogue_applicable_legislation
@@ -17260,7 +17246,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/CatalogueRecord
     description: See [DCAT-AP specs:CatalogueRecord](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#CatalogueRecord)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcat:CatalogRecord
     slots:
     - CatalogueRecord_application_profile
@@ -17367,7 +17353,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Checksum
     description: See [DCAT-AP specs:Checksum](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Checksum)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - spdx:Checksum
     slots:
     - Checksum_algorithm
@@ -17396,7 +17382,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/ChecksumAlgorithm
     description: See [DCAT-AP specs:ChecksumAlgorithm](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#ChecksumAlgorithm)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - spdx:ChecksumAlgorithm
     is_a: SupportiveEntity
     slots:
@@ -17427,7 +17413,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Concept
     description: See [DCAT-AP specs:Concept](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Concept)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - skos:Concept
     is_a: SupportiveEntity
     slots:
@@ -17449,7 +17435,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/ConceptScheme
     description: See [DCAT-AP specs:ConceptScheme](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#ConceptScheme)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - skos:ConceptScheme
     is_a: SupportiveEntity
     slots:
@@ -17472,9 +17458,8 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
-    - prov:Activity
     exact_mappings:
+    - prov:Activity
     - OBI:0200000
     close_mappings:
     - NCIT:C25391
@@ -17514,7 +17499,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - prov:Activity
     is_a: Activity
     slots:
@@ -17542,7 +17527,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/DataService
     description: See [DCAT-AP specs:DataService](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#DataService)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcat:DataService
     slots:
     - DataService_access_rights
@@ -17712,7 +17697,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcat:Dataset
     slots:
     - Dataset_access_rights
@@ -18064,7 +18049,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/DatasetSeries
     description: See [DCAT-AP specs:DatasetSeries](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#DatasetSeries)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcat:DatasetSeries
     slots:
     - DatasetSeries_applicable_legislation
@@ -18173,7 +18158,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - schema:DefinedTerm
     slots:
     - id
@@ -18200,9 +18185,8 @@ classes:
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     aliases:
     - hardware instrument
-    mappings:
-    - prov:Agent
     exact_mappings:
+    - prov:Agent
     - epos:Equipment
     - OBI:0000968
     - http://purl.obolibrary.org/obo/NCIT_C62103
@@ -18241,7 +18225,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Distribution
     description: See [DCAT-AP specs:Distribution](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Distribution)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcat:Distribution
     slots:
     - Distribution_access_URL
@@ -18480,7 +18464,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Document
     description: See [DCAT-AP specs:Document](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Document)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - foaf:Document
     is_a: SupportiveEntity
     slots:
@@ -18496,7 +18480,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - prov:Entity
     mixins:
     - ClassifierMixin
@@ -18547,7 +18531,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - prov:Activity
     is_a: Activity
     slots:
@@ -18581,7 +18565,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - prov:Entity
     is_a: Entity
     slots:
@@ -18622,7 +18606,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Frequency
     description: See [DCAT-AP specs:Frequency](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Frequency)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcterms:Frequency
     is_a: SupportiveEntity
     slots:
@@ -18634,7 +18618,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Geometry
     description: See [DCAT-AP specs:Geometry](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Geometry)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - locn:Geometry
     is_a: SupportiveEntity
     slots:
@@ -18646,7 +18630,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Identifier
     description: See [DCAT-AP specs:Identifier](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Identifier)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - adms:Identifier
     is_a: SupportiveEntity
     slots:
@@ -18669,7 +18653,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Kind
     description: See [DCAT-AP specs:Kind](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Kind)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - vcard:Kind
     class_uri: vcard:Kind
   LegalResource:
@@ -18677,7 +18661,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/LegalResource
     description: See [DCAT-AP specs:LegalResource](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#LegalResource)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - eli:LegalResource
     is_a: SupportiveEntity
     slots:
@@ -18690,7 +18674,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/LicenseDocument
     description: See [DCAT-AP specs:LicenseDocument](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#LicenseDocument)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcterms:LicenseDocument
     is_a: SupportiveEntity
     slots:
@@ -18715,7 +18699,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/LinguisticSystem
     description: See [DCAT-AP specs:LinguisticSystem](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#LinguisticSystem)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcterms:LinguisticSystem
     is_a: SupportiveEntity
     slots:
@@ -18727,7 +18711,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Location
     description: See [DCAT-AP specs:Location](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Location)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcterms:Location
     slots:
     - Location_bbox
@@ -18766,7 +18750,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/MediaType
     description: See [DCAT-AP specs:MediaType](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#MediaType)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcterms:MediaType
     is_a: SupportiveEntity
     slots:
@@ -18778,7 +18762,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/MediaTypeOrExtent
     description: See [DCAT-AP specs:MediaTypeOrExtent](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#MediaTypeOrExtent)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcterms:MediaTypeOrExtent
     is_a: SupportiveEntity
     slots:
@@ -18790,7 +18774,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/PeriodOfTime
     description: See [DCAT-AP specs:PeriodOfTime](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#PeriodOfTime)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcterms:PeriodOfTime
     is_a: SupportiveEntity
     slots:
@@ -18853,7 +18837,7 @@ classes:
     - Plan Specification
     - Method
     - Procedure
-    mappings:
+    exact_mappings:
     - prov:Plan
     mixins:
     - ClassifierMixin
@@ -18868,7 +18852,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Policy
     description: See [DCAT-AP specs:Policy](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Policy)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - odrl:Policy
     is_a: SupportiveEntity
     slots:
@@ -18880,7 +18864,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/ProvenanceStatement
     description: See [DCAT-AP specs:ProvenanceStatement](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#ProvenanceStatement)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcterms:ProvenanceStatement
     is_a: SupportiveEntity
     slots:
@@ -18895,7 +18879,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - prov:Entity
     mixins:
     - ClassifierMixin
@@ -18919,7 +18903,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     mixins:
     - ClassifierMixin
@@ -18946,10 +18930,7 @@ classes:
         range: DefinedTerm
         bindings:
         - range: QUDTQuantityKindEnum
-          obligation_level:
-            text: RECOMMENDED
-            description: The metadata element is recommended to be present in the
-              model
+          obligation_level: *id001
           binds_value_of: id
           description: Binds the type of a quantifiable attribute to a QUDT Quantity
             Kind instance from the QUDT Quantity Kind vocabulary.
@@ -18960,10 +18941,7 @@ classes:
         range: DefinedTerm
         bindings:
         - range: QUDTUnitEnum
-          obligation_level:
-            text: RECOMMENDED
-            description: The metadata element is recommended to be present in the
-              model
+          obligation_level: *id002
           binds_value_of: id
           description: Restricts the allowable defined terms to the QUDT Unit vocabulary.
         recommended: true
@@ -18973,7 +18951,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Relationship
     description: See [DCAT-AP specs:Relationship](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Relationship)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcat:Relationship
     slots:
     - Relationship_had_role
@@ -19002,7 +18980,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Resource
     description: See [DCAT-AP specs:Resource](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Resource)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - rdfs:Resource
     is_a: SupportiveEntity
     slots:
@@ -19015,7 +18993,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/RightsStatement
     description: See [DCAT-AP specs:RightsStatement](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#RightsStatement)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcterms:RightsStatement
     is_a: SupportiveEntity
     slots:
@@ -19027,7 +19005,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Role
     description: See [DCAT-AP specs:Role](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Role)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcat:Role
     is_a: SupportiveEntity
     slots:
@@ -19042,9 +19020,8 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
-    - prov:SoftwareAgent
     exact_mappings:
+    - prov:SoftwareAgent
     - schema:SoftwareApplication
     is_a: AgenticEntity
     slots:
@@ -19079,7 +19056,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/Standard
     description: See [DCAT-AP specs:Standard](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#Standard)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - dcterms:Standard
     is_a: SupportiveEntity
     slots:
@@ -19105,7 +19082,7 @@ classes:
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - prov:Location
     mixins:
     - ClassifierMixin
@@ -19120,7 +19097,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/TimeInstant
     description: See [DCAT-AP specs:TimeInstant](https://semiceu.github.io/DCAT-AP/releases/3.0.0/#TimeInstant)
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
-    mappings:
+    exact_mappings:
     - time:Instant
     is_a: SupportiveEntity
     slots:
@@ -19135,7 +19112,7 @@ classes:
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
     aliases:
     - analyte
-    mappings:
+    exact_mappings:
     - SIO:001378
     is_a: MaterialSample
     mixins:
@@ -19173,7 +19150,7 @@ classes:
     - Find a better mapping, as it is currently mapped to same ontology class as its
       parent.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
-    mappings:
+    exact_mappings:
     - SIO:001378
     is_a: SubstanceSample
     mixins:
@@ -19212,7 +19189,7 @@ classes:
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
     aliases:
     - molecular entity
-    mappings:
+    exact_mappings:
     - CHEBI:23367
     is_a: Entity
     slots:
@@ -19248,7 +19225,7 @@ classes:
     description: An Entity constituting the smallest component of a chemical element
       having the chemical properties of the element.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
-    mappings:
+    exact_mappings:
     - CHEBI:33250
     is_a: Entity
     slots:
@@ -19275,7 +19252,7 @@ classes:
     description: A Mass (physical quality) that quantifies the mass of a homogeneous
       ChemicalSubstance containing 6.02 x 10^23 atoms or molecules.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
-    mappings:
+    exact_mappings:
     - AFR:0002409
     close_mappings:
     - PATO:0001681
@@ -19295,12 +19272,11 @@ classes:
     description: A QuantitativeAttribute of a ChemicalSubstance that represents the
       amount of a constituent divided by the volume of the mixture.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
-    mappings:
-    - CHMO:0002820
     exact_mappings:
+    - CHMO:0002820
     - EDAM:2140
     - NCIT:C41185
-    - VOC4CAT:0007244
+    - voc4cat:0007244
     - AFR:0002036
     close_mappings:
     - PATO:0000033
@@ -19323,7 +19299,7 @@ classes:
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
     aliases:
     - SubstanceAmount
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0000070
@@ -19341,9 +19317,8 @@ classes:
     name: PHValue
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/PHValue
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
-    mappings:
-    - SIO:001089
     exact_mappings:
+    - SIO:001089
     - NCIT:C45997
     - AFR:0001142
     close_mappings:
@@ -19362,7 +19337,7 @@ classes:
     name: InChIKey
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/InChIKey
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
-    mappings:
+    exact_mappings:
     - CHEMINF:000059
     is_a: QualitativeAttribute
     slots:
@@ -19377,7 +19352,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/InChi
     description: A structure descriptor which conforms to the InChI format specification.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
-    mappings:
+    exact_mappings:
     - CHEMINF:000113
     is_a: QualitativeAttribute
     slots:
@@ -19394,7 +19369,7 @@ classes:
       by its chemical symbol and indicates the number of atoms of each element found
       in each discrete molecule of that compound.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
-    mappings:
+    exact_mappings:
     - CHEMINF:000042
     is_a: QualitativeAttribute
     slots:
@@ -19411,7 +19386,7 @@ classes:
       recommendations for chemical nomenclature set out by the International Union
       of Pure and Applied Chemistry (IUPAC).
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
-    mappings:
+    exact_mappings:
     - CHEMINF:000107
     is_a: QualitativeAttribute
     slots:
@@ -19427,7 +19402,7 @@ classes:
     description: A structure descriptor that denotes a molecular structure as a graph
       and conforms to the SMILES format specification.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/entity/
-    mappings:
+    exact_mappings:
     - CHEMINF:000018
     is_a: QualitativeAttribute
     slots:
@@ -19508,7 +19483,7 @@ classes:
     description: A material is an Entity that has some portion of matter as proper
       part.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/materials/
-    mappings:
+    exact_mappings:
     - BFO:0000040
     is_a: Entity
     mixins:
@@ -19547,11 +19522,10 @@ classes:
     description: A Sample that was derived from a previous MaterialSample or some
       other kind of MaterialEntity.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/materials/
-    mappings:
-    - OBI:0000747
     exact_mappings:
+    - OBI:0000747
     - SIO:001050
-    - VOC4CAT:0005056
+    - voc4cat:0005056
     is_a: EvaluatedEntity
     mixins:
     - MaterialisticMixin
@@ -19587,7 +19561,7 @@ classes:
     description: A physical quantity that quantitatively expresses the attribute of
       hotness or coldness.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/materials/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0000146
@@ -19606,7 +19580,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/materials/Mass
     description: The strength of a body's gravitational attraction to other bodies.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/materials/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0000125
@@ -19625,7 +19599,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/materials/Volume
     description: A measure of regions in three-dimensional space.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/materials/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0000918
@@ -19644,7 +19618,7 @@ classes:
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/materials/Density
     description: A measure of the mass per unit volume of a substance.
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/materials/
-    mappings:
+    exact_mappings:
     - SIO:001406
     close_mappings:
     - PATO:0001019
@@ -19662,7 +19636,7 @@ classes:
     name: Pressure
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/materials/Pressure
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus/materials/
-    mappings:
+    exact_mappings:
     - qudt:Quantity
     close_mappings:
     - PATO:0001025
@@ -19676,9 +19650,8 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     class_uri: qudt:Quantity
-metamodel_version: 1.7.0
+metamodel_version: 1.12.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-10-23T13:07:27'
-source_file_size: 7710
-generation_date: '2026-10-23T13:07:46'
+source_file_date: '2026-10-27T10:48:29'
+source_file_size: 7711
 

@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +835,8 @@
 
 <h1 id="slot-energy_cutoff">Slot: energy_cutoff</h1>
 <p><em>Plane-wave kinetic energy cutoff for the basis set expansion.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/energy_cutoff">coremeta4cat:energy_cutoff</a>
-Alias: energy_cutoff</p>
+<div>
+<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/energy_cutoff">coremeta4cat:energy_cutoff</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_quantitative_attribute/">has_quantitative_attribute</a><ul>
@@ -838,8 +855,18 @@ Alias: energy_cutoff</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../../classes/DFTSettingsMixin/">DFTSettingsMixin</a></td>
+<td>Mixin providing plane-wave DFT numerical settings shared by CalculatedProperty<br>subclasses that are computed with periodic DFT (DielectricTensors,<br>EquationsOfState, ElectronicStructure, BandGap).</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../../classes/DFT/">DFT</a></td>
 <td>Density functional theory — a quantum mechanical method for calculating<br>the electronic structure of atoms, molecules, and periodic solids.<br>The most widely used ab initio method in computational catalysis.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/DielectricTensors/">DielectricTensors</a></td>
+<td>Dielectric tensor computed from density functional perturbation theory (DFPT).<br>Characterises the optical and static dielectric response of a material.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -848,39 +875,72 @@ Alias: energy_cutoff</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/BandGap/">BandGap</a></td>
-<td>Electronic band gap and its character (direct/indirect), with optional<br>many-body (GW) or excitonic corrections. Critical for photocatalyst<br>and semiconductor catalyst screening.</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../../classes/ElectronicStructure/">ElectronicStructure</a></td>
 <td>Electronic band structure and density of states, characterising the<br>electronic properties of a catalyst relevant to activity descriptors<br>(d-band centre, band gap, Fermi energy).</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/DFTSettingsMixin/">DFTSettingsMixin</a></td>
-<td>Mixin providing plane-wave DFT numerical settings shared by CalculatedProperty<br>subclasses that are computed with periodic DFT (DielectricTensors,<br>EquationsOfState, ElectronicStructure, BandGap).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/DielectricTensors/">DielectricTensors</a></td>
-<td>Dielectric tensor computed from density functional perturbation theory (DFPT).<br>Characterises the optical and static dielectric response of a material.</td>
+<td><a href="../../classes/BandGap/">BandGap</a></td>
+<td>Electronic band gap and its character (direct/indirect), with optional<br>many-body (GW) or excitonic corrections. Critical for photocatalyst<br>and semiconductor catalyst screening.</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../types/Float/">Float</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../types/Float/">Float</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/DFTSettingsMixin/">DFTSettingsMixin</a>, <a href="../../classes/DFT/">DFT</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="https://w3id.org/nfdi4cat/coremeta4cat/energy_cutoff">coremeta4cat:energy_cutoff</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Additional Constraints</summary>
+**Unit:**
+
+| Property | Value |
+| --- | --- |
+| ucum_code | eV |
+
+</details>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -913,7 +973,6 @@ Alias: energy_cutoff</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:energy_cutoff</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">energy_cutoff</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DFTSettingsMixin</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DFT</span>
@@ -926,12 +985,16 @@ Alias: energy_cutoff</p>
 <span class="w">  </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eV</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

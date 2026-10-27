@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +835,8 @@
 
 <h1 id="slot-has_experiment_duration">Slot: has_experiment_duration</h1>
 <p><em>Total duration of the experiment or measurement run.</em></p>
-<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a>
-Alias: has_experiment_duration</p>
+<div>
+<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_duration/">has_duration</a><ul>
@@ -838,21 +855,41 @@ Alias: has_experiment_duration</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/CatalyticReaction/">CatalyticReaction</a></td>
-<td>A ChemicalReaction (chemdcat-ap) specialization representing the<br>catalytic reaction being studied. Inherits the generic reaction slots<br>(starting materials, reactants, products, catalyst, solvent, reactor,<br>temperature, pressure, yield, reaction steps) from ChemicalReaction and<br>adds catalysis-specific operating-condition slots.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via the inherited used_reactor slot (is_a:<br>carried_out_by), narrowed here to require a ChemicalReactor instance<br>rather than touching the generic carried_out_by relation directly.<br>Reactants are linked via the inherited used_reactant slot (range:<br>Reagent) -- CatalyticReaction does not declare its own reactant slot.<br>The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)<br>is expressed via rdf_type using a voc4cat or ChemO term.</td>
+<td><a href="../../classes/PowderXRD/">PowderXRD</a></td>
+<td>Powder X-ray diffraction for phase identification and structural analysis.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/PowderXRD/">PowderXRD</a></td>
-<td>Powder X-ray diffraction for phase identification and structural analysis.</td>
+<td><a href="../../classes/CatalyticReaction/">CatalyticReaction</a></td>
+<td>A ChemicalReaction (chemdcat-ap) specialization representing the<br>catalytic reaction being studied. Inherits the generic reaction slots<br>(starting materials, reactants, products, catalyst, solvent, reactor,<br>temperature, pressure, yield, reaction steps) from ChemicalReaction and<br>adds catalysis-specific operating-condition slots.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via the inherited used_reactor slot (is_a:<br>carried_out_by), narrowed here to require a ChemicalReactor instance<br>rather than touching the generic carried_out_by relation directly.<br>Reactants are linked via the inherited used_reactant slot (range:<br>Reagent) -- CatalyticReaction does not declare its own reactant slot.<br>The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)<br>is expressed via rdf_type using a voc4cat or ChemO term.</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>Range: <a href="../../classes/Duration/">Duration</a></li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/Duration/">Duration</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/PowderXRD/">PowderXRD</a>, <a href="../../classes/CatalyticReaction/">CatalyticReaction</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -885,19 +922,22 @@ Alias: has_experiment_duration</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_duration</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_experiment_duration</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PowderXRD</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Duration</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -819,8 +836,8 @@
 <h1 id="slot-catalyst_particle_size">Slot: catalyst_particle_size</h1>
 <p><em>A measure of the characteristic linear dimension of a particle in a</em></p>
 <p><em>sample, typically reported as diameter or sieve fraction range.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/voc4cat_0008212">VOC4CAT:0008212</a>
-Alias: catalyst_particle_size</p>
+<div>
+<p>URI: <a href="https://w3id.org/nfdi4cat/voc4cat_0008212">voc4cat:0008212</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_quantitative_attribute/">has_quantitative_attribute</a><ul>
@@ -842,8 +859,8 @@ Alias: catalyst_particle_size</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/FixedBedReactor/">FixedBedReactor</a></td>
-<td>Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.<br>The most common reactor type in heterogeneous catalysis testing.</td>
+<td><a href="../../classes/PlugFlowReactor/">PlugFlowReactor</a></td>
+<td>Plug flow reactor (PFR) — a tubular reactor in which reactant composition<br>varies along the axis with no axial mixing.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -852,24 +869,58 @@ Alias: catalyst_particle_size</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/PlugFlowReactor/">PlugFlowReactor</a></td>
-<td>Plug flow reactor (PFR) — a tubular reactor in which reactant composition<br>varies along the axis with no axial mixing.</td>
+<td><a href="../../classes/FixedBedReactor/">FixedBedReactor</a></td>
+<td>Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.<br>The most common reactor type in heterogeneous catalysis testing.</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../classes/LengthQuantity/">LengthQuantity</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/LengthQuantity/">LengthQuantity</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/PlugFlowReactor/">PlugFlowReactor</a>, <a href="../../classes/SlurryReactor/">SlurryReactor</a>, <a href="../../classes/FixedBedReactor/">FixedBedReactor</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="https://w3id.org/nfdi4cat/voc4cat_0008212">voc4cat:0008212</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -886,7 +937,7 @@ Alias: catalyst_particle_size</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>VOC4CAT:0008212</td>
+<td>voc4cat:0008212</td>
 </tr>
 <tr>
 <td>native</td>
@@ -903,8 +954,7 @@ Alias: catalyst_particle_size</p>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_length</span>
-<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0008212</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">catalyst_particle_size</span>
+<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0008212</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PlugFlowReactor</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SlurryReactor</span>
@@ -916,12 +966,16 @@ Alias: catalyst_particle_size</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

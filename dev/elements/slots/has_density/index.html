@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +835,8 @@
 
 <h1 id="slot-has_density">Slot: has_density</h1>
 <p><em>The slot to provide the Density of a MaterialEntity.</em></p>
-<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a>
-Alias: has_density</p>
+<div>
+<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_quantitative_attribute/">has_quantitative_attribute</a><ul>
@@ -838,33 +855,8 @@ Alias: has_density</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/ElectrochemicalReactor/">ElectrochemicalReactor</a></td>
-<td>Electrochemical reactor used in electrocatalytic experiments, including<br>H-cells, flow cells, and membrane electrode assemblies.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a></td>
-<td>A LinkML mixin used to pass down properties common to all material entities that are described in a chemical context via being composed of chemical entities (e.g. atom, molecule, ion, ion pair, radical, complex, conformer etc., ) of the same type or of different types.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MaterialEntity/">MaterialEntity</a></td>
-<td>A material is an Entity that has some portion of matter as proper part.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Reagent/">Reagent</a></td>
-<td>A ChemicalSubstance that is consumed or transformed in a ChemicalReaction.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ChemicalReactor/">ChemicalReactor</a></td>
-<td>Abstract Reactor (chemdcat-ap) subclass representing a catalytic reactor<br>vessel.<br><br>Reactor is more specific than the general Device (AgenticEntity): it restricts<br>the used_reactor relation (is_a: carried_out_by) on Reaction to dedicated<br>reactor equipment. This semantic distinction separates analytical<br>instruments (Device) from reaction vessels (Reactor). ChemicalReactor<br>further specializes chemdcat-ap's generic Reactor for catalysis use cases.<br><br>Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify<br>reactor geometry and operating mode.<br>Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PlugFlowReactor/">PlugFlowReactor</a></td>
-<td>Plug flow reactor (PFR) — a tubular reactor in which reactant composition<br>varies along the axis with no axial mixing.</td>
+<td><a href="../../classes/MaterialisticMixin/">MaterialisticMixin</a></td>
+<td>A LinkML mixin used to pass down properties common to all material entities. It is needed for example to have MaterialSample have the same properties as MaterialEntity, although it is defined as a subclass of EvaluatedEntity.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -873,48 +865,8 @@ Alias: has_density</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/FluidizedBedReactor/">FluidizedBedReactor</a></td>
-<td>Fluidized bed reactor — a reactor in which the catalyst particles are<br>suspended in an upward-flowing gas or liquid stream.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Autoclave/">Autoclave</a></td>
-<td>Autoclave reactor — a sealed pressure vessel for batch reactions at<br>elevated temperature and/or pressure.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PolymerSample/">PolymerSample</a></td>
-<td>A SubstanceSample derived from a Polymer.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/SlurryReactor/">SlurryReactor</a></td>
-<td>Slurry reactor — a three-phase reactor in which catalyst particles are<br>suspended in a liquid phase through which gas is bubbled.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/SubstanceSample/">SubstanceSample</a></td>
-<td>A MaterialSample derived from a chemical substance that is of interest in an analytical procedure.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/FixedBedReactor/">FixedBedReactor</a></td>
-<td>Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.<br>The most common reactor type in heterogeneous catalysis testing.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/CSTR/">CSTR</a></td>
-<td>Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow<br>reactor operating at steady state.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/MaterialSample/">MaterialSample</a></td>
-<td>A Sample that was derived from a previous MaterialSample or some other kind of MaterialEntity.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/PolymerMixin/">PolymerMixin</a></td>
-<td>A LinkML mixin used to pass down properties common to all chemical substances that are composed of macromolecules of different kinds and which may be differentiated by composition, length, degree of branching etc..</td>
+<td><a href="../../classes/CatalystSample/">CatalystSample</a></td>
+<td>A MaterialSample that is the product of a catalyst Synthesis.<br>The specific type of catalyst (e.g. heterogeneous, supported metal)<br>is expressed via rdf_type using a voc4cat term.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -923,8 +875,13 @@ Alias: has_density</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/CatalystSample/">CatalystSample</a></td>
-<td>A MaterialSample that is the product of a catalyst Synthesis.<br>The specific type of catalyst (e.g. heterogeneous, supported metal)<br>is expressed via rdf_type using a VOC4CAT term.</td>
+<td><a href="../../classes/DissolvingSubstance/">DissolvingSubstance</a></td>
+<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ChemicalSubstance.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Reagent/">Reagent</a></td>
+<td>A ChemicalSubstance that is consumed or transformed in a ChemicalReaction.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -938,13 +895,38 @@ Alias: has_density</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/DissolvingSubstance/">DissolvingSubstance</a></td>
-<td>A liquid ChemicalSubstance that dissolves or that is capable of dissolving a ChemicalSubstance.</td>
+<td><a href="../../classes/Reactor/">Reactor</a></td>
+<td>A reactor is a container for controlling a biological or chemical reaction or process.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/MaterialisticMixin/">MaterialisticMixin</a></td>
-<td>A LinkML mixin used to pass down properties common to all material entities. It is needed for example to have MaterialSample have the same properties as MaterialEntity, although it is defined as a subclass of EvaluatedEntity.</td>
+<td><a href="../../classes/ChemicalReactor/">ChemicalReactor</a></td>
+<td>Abstract Reactor (chemdcat-ap) subclass representing a catalytic reactor<br>vessel.<br><br>Reactor is more specific than the general Device (AgenticEntity): it restricts<br>the used_reactor relation (is_a: carried_out_by) on Reaction to dedicated<br>reactor equipment. This semantic distinction separates analytical<br>instruments (Device) from reaction vessels (Reactor). ChemicalReactor<br>further specializes chemdcat-ap's generic Reactor for catalysis use cases.<br><br>Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify<br>reactor geometry and operating mode.<br>Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ElectrochemicalReactor/">ElectrochemicalReactor</a></td>
+<td>Electrochemical reactor used in electrocatalytic experiments, including<br>H-cells, flow cells, and membrane electrode assemblies.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/CSTR/">CSTR</a></td>
+<td>Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow<br>reactor operating at steady state.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PlugFlowReactor/">PlugFlowReactor</a></td>
+<td>Plug flow reactor (PFR) — a tubular reactor in which reactant composition<br>varies along the axis with no axial mixing.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/Autoclave/">Autoclave</a></td>
+<td>Autoclave reactor — a sealed pressure vessel for batch reactions at<br>elevated temperature and/or pressure.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/SlurryReactor/">SlurryReactor</a></td>
+<td>Slurry reactor — a three-phase reactor in which catalyst particles are<br>suspended in a liquid phase through which gas is bubbled.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -953,24 +935,93 @@ Alias: has_density</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Reactor/">Reactor</a></td>
-<td>A reactor is a container for controlling a biological or chemical reaction or process.</td>
+<td><a href="../../classes/FixedBedReactor/">FixedBedReactor</a></td>
+<td>Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.<br>The most common reactor type in heterogeneous catalysis testing.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/FluidizedBedReactor/">FluidizedBedReactor</a></td>
+<td>Fluidized bed reactor — a reactor in which the catalyst particles are<br>suspended in an upward-flowing gas or liquid stream.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/SubstanceSample/">SubstanceSample</a></td>
+<td>A MaterialSample derived from a chemical substance that is of interest in an analytical procedure.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PolymerSample/">PolymerSample</a></td>
+<td>A SubstanceSample derived from a Polymer.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ChemicalSubstanceMixin/">ChemicalSubstanceMixin</a></td>
+<td>A LinkML mixin used to pass down properties common to all material entities that are described in a chemical context via being composed of chemical entities (e.g. atom, molecule, ion, ion pair, radical, complex, conformer etc., ) of the same type or of different types.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/PolymerMixin/">PolymerMixin</a></td>
+<td>A LinkML mixin used to pass down properties common to all chemical substances that are composed of macromolecules of different kinds and which may be differentiated by composition, length, degree of branching etc..</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MaterialEntity/">MaterialEntity</a></td>
+<td>A material is an Entity that has some portion of matter as proper part.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/MaterialSample/">MaterialSample</a></td>
+<td>A Sample that was derived from a previous MaterialSample or some other kind of MaterialEntity.</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../classes/Density/">Density</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/Density/">Density</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/MaterialisticMixin/">MaterialisticMixin</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -1003,7 +1054,6 @@ Alias: has_density</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_quantitative_attribute</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_density</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MaterialisticMixin</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Density</span>
@@ -1013,12 +1063,16 @@ Alias: has_density</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

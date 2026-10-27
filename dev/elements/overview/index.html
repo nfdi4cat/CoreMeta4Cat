@@ -1018,7 +1018,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Synthesis/">Synthesis</a></td>
-<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
+<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DataAnalysis/">DataAnalysis</a></td>
@@ -1150,7 +1150,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalysisDataset/">CatalysisDataset</a></td>
-<td>A dcat:Dataset that contains research data in the field of catalysis.<br><br>The catalysis research field is expressed via rdf_type using a voc4cat<br>term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).<br>For example, a dataset from heterogeneous catalysis research would carry:<br>  rdf_type:<br>    id: VOC4CAT:0007001<br>    title: "heterogeneous catalysis"<br><br>The four CoreMeta4Cat minimum information pillars are linked via the slots<br>below, each pointing to the corresponding DataGeneratingActivity or<br>EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.</td>
+<td>A dcat:Dataset that contains research data in the field of catalysis.<br><br>The catalysis research field is expressed via rdf_type using a voc4cat<br>term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).<br>For example, a dataset from heterogeneous catalysis research would carry:<br>  rdf_type:<br>    id: voc4cat:0007001<br>    title: "heterogeneous catalysis"<br><br>The four CoreMeta4Cat minimum information pillars are linked via the slots<br>below, each pointing to the corresponding DataGeneratingActivity or<br>EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ReactionMonitoringDataset/">ReactionMonitoringDataset</a></td>
@@ -1218,7 +1218,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalystSample/">CatalystSample</a></td>
-<td>A MaterialSample that is the product of a catalyst Synthesis.<br>The specific type of catalyst (e.g. heterogeneous, supported metal)<br>is expressed via rdf_type using a VOC4CAT term.</td>
+<td>A MaterialSample that is the product of a catalyst Synthesis.<br>The specific type of catalyst (e.g. heterogeneous, supported metal)<br>is expressed via rdf_type using a voc4cat term.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Precursor/">Precursor</a></td>
@@ -1402,7 +1402,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PreparationMethod/">PreparationMethod</a></td>
-<td>An abstract Plan describing the protocol used to prepare a catalyst.<br>Concrete subclasses (Impregnation, CoPrecipitation, …) specify the<br>method-specific parameters. Linked from Synthesis via realized_plan.<br><br>The specific preparation method type should additionally be expressed<br>via rdf_type on the Synthesis activity using a voc4cat term<br>(e.g. VOC4CAT:0007016 for preparation method).</td>
+<td>An abstract Plan describing the protocol used to prepare a catalyst.<br>Concrete subclasses (Impregnation, CoPrecipitation, …) specify the<br>method-specific parameters. Linked from Synthesis via realized_plan.<br><br>The specific preparation method type should additionally be expressed<br>via rdf_type on the Synthesis activity using a voc4cat term<br>(e.g. voc4cat:0007016 for preparation method).</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/AtomicLayerDeposition/">AtomicLayerDeposition</a></td>
@@ -2041,7 +2041,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td><a href="../slots/catalyst_type/">catalyst_type</a></td>
-<td>The catalytic regime of the reaction (e.g. heterogeneous, homogeneous,<br>biocatalysis, electrocatalysis, photocatalysis). For the physical<br>form/presentation of the catalyst itself, use catalyst_form instead.<br><br>Deliberately kept <code>recommended</code> rather than <code>required</code> (see nfdi4cat/<br>CoreMeta4Cat#117): classification here can be genuinely disputed or<br>not yet covered by CatalysisResearchFieldEnum for a novel catalyst,<br>and forcing a value would push researchers into a premature or<br>contested classification rather than leaving the field unset until<br>consensus/vocabulary catches up. Open for discussion in a follow-up<br>issue if a different tradeoff is wanted. See also nfdi4cat/<br>CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +<br>catalyst_form) or PR #118's CatalystType class hierarchy should be<br>the long-term mechanism -- kept as two enums here because the<br>VOC4CAT terms show CatalystType conflates the regime axis<br>(Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form<br>axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical<br>VOC4CAT ids to catalyst_form's permissible values), which are<br>independent and often both apply to the same catalyst at once.</td>
+<td>The catalytic regime of the reaction (e.g. heterogeneous, homogeneous,<br>biocatalysis, electrocatalysis, photocatalysis). For the physical<br>form/presentation of the catalyst itself, use catalyst_form instead.<br><br>Deliberately kept <code>recommended</code> rather than <code>required</code> (see nfdi4cat/<br>CoreMeta4Cat#117): classification here can be genuinely disputed or<br>not yet covered by CatalysisResearchFieldEnum for a novel catalyst,<br>and forcing a value would push researchers into a premature or<br>contested classification rather than leaving the field unset until<br>consensus/vocabulary catches up. Open for discussion in a follow-up<br>issue if a different tradeoff is wanted. See also nfdi4cat/<br>CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +<br>catalyst_form) or PR #118's CatalystType class hierarchy should be<br>the long-term mechanism -- kept as two enums here because the<br>voc4cat terms show CatalystType conflates the regime axis<br>(Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form<br>axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical<br>voc4cat ids to catalyst_form's permissible values), which are<br>independent and often both apply to the same catalyst at once.</td>
 </tr>
 <tr>
 <td><a href="../slots/cell_operating_mode/">cell_operating_mode</a></td>
@@ -3813,7 +3813,7 @@ slots and enums) and the four subprofile modules.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../subsets/DomainAgnosticCore/">DomainAgnosticCore</a></td>
+<td><a href="../subsets/domain_agnostic_core/">domain_agnostic_core</a></td>
 <td>The elements of this subset are considered the core layer of our DCAT-AP extension.</td>
 </tr>
 </tbody>

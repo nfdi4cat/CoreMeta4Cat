@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +835,8 @@
 
 <h1 id="slot-electrolyte_concentration">Slot: electrolyte_concentration</h1>
 <p><em>Concentration of the electrolyte.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/electrolyte_concentration">coremeta4cat:electrolyte_concentration</a>
-Alias: electrolyte_concentration</p>
+<div>
+<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/electrolyte_concentration">coremeta4cat:electrolyte_concentration</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_quantitative_attribute/">has_quantitative_attribute</a><ul>
@@ -841,6 +858,11 @@ Alias: electrolyte_concentration</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="../../classes/ElectrochemistryMixin/">ElectrochemistryMixin</a></td>
+<td>Mixin providing electrochemical cell parameters shared by<br>electrochemical characterization techniques (CyclicVoltammetry,<br>ConductivityMeasurement).</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../../classes/CyclicVoltammetry/">CyclicVoltammetry</a></td>
 <td>Cyclic voltammetry for electrochemical activity, redox potential, and capacitance characterization.</td>
 <td>no</td>
@@ -850,25 +872,54 @@ Alias: electrolyte_concentration</p>
 <td>Electrical conductivity measurement for ionic and electronic transport characterization.</td>
 <td>no</td>
 </tr>
-<tr>
-<td><a href="../../classes/ElectrochemistryMixin/">ElectrochemistryMixin</a></td>
-<td>Mixin providing electrochemical cell parameters shared by<br>electrochemical characterization techniques (CyclicVoltammetry,<br>ConductivityMeasurement).</td>
-<td>no</td>
-</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../classes/Concentration/">Concentration</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/Concentration/">Concentration</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/ElectrochemistryMixin/">ElectrochemistryMixin</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="https://w3id.org/nfdi4cat/coremeta4cat/electrolyte_concentration">coremeta4cat:electrolyte_concentration</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -901,7 +952,6 @@ Alias: electrolyte_concentration</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_concentration</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:electrolyte_concentration</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">electrolyte_concentration</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ElectrochemistryMixin</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concentration</span>
@@ -911,12 +961,16 @@ Alias: electrolyte_concentration</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

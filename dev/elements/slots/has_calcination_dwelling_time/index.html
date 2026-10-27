@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +835,8 @@
 
 <h1 id="slot-has_calcination_dwelling_time">Slot: has_calcination_dwelling_time</h1>
 <p><em>Time held at the final calcination temperature.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/voc4cat_0000060">VOC4CAT:0000060</a>
-Alias: has_calcination_dwelling_time</p>
+<div>
+<p>URI: <a href="https://w3id.org/nfdi4cat/voc4cat_0000060">voc4cat:0000060</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_duration/">has_duration</a><ul>
@@ -838,18 +855,8 @@ Alias: has_calcination_dwelling_time</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/CoPrecipitation/">CoPrecipitation</a></td>
-<td>Catalyst preparation by co-precipitation: precursor salts are<br>simultaneously precipitated from solution by a precipitating agent.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/SonochemicalSynthesis/">SonochemicalSynthesis</a></td>
-<td>Catalyst preparation using ultrasonic irradiation to drive chemical<br>reactions via acoustic cavitation.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/DepositionPrecipitation/">DepositionPrecipitation</a></td>
-<td>Catalyst preparation by deposition-precipitation: the active phase<br>is precipitated directly onto the support surface.</td>
+<td><a href="../../classes/CalcinationMixin/">CalcinationMixin</a></td>
+<td>Mixin providing calcination step parameters. Used by preparation methods<br>that include a thermal calcination step<br>(Impregnation, CoPrecipitation, DepositionPrecipitation,<br>SonochemicalSynthesis, ExsolutionSynthesis).</td>
 <td>no</td>
 </tr>
 <tr>
@@ -858,21 +865,51 @@ Alias: has_calcination_dwelling_time</p>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/ExsolutionSynthesis/">ExsolutionSynthesis</a></td>
-<td>Catalyst preparation by exsolution: metal nanoparticles are grown on<br>a perovskite oxide surface by reduction/oxidation cycling.</td>
+<td><a href="../../classes/CoPrecipitation/">CoPrecipitation</a></td>
+<td>Catalyst preparation by co-precipitation: precursor salts are<br>simultaneously precipitated from solution by a precipitating agent.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/CalcinationMixin/">CalcinationMixin</a></td>
-<td>Mixin providing calcination step parameters. Used by preparation methods<br>that include a thermal calcination step<br>(Impregnation, CoPrecipitation, DepositionPrecipitation,<br>SonochemicalSynthesis, ExsolutionSynthesis).</td>
+<td><a href="../../classes/DepositionPrecipitation/">DepositionPrecipitation</a></td>
+<td>Catalyst preparation by deposition-precipitation: the active phase<br>is precipitated directly onto the support surface.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/SonochemicalSynthesis/">SonochemicalSynthesis</a></td>
+<td>Catalyst preparation using ultrasonic irradiation to drive chemical<br>reactions via acoustic cavitation.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ExsolutionSynthesis/">ExsolutionSynthesis</a></td>
+<td>Catalyst preparation by exsolution: metal nanoparticles are grown on<br>a perovskite oxide surface by reduction/oxidation cycling.</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>Range: <a href="../../classes/Duration/">Duration</a></li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/Duration/">Duration</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/CalcinationMixin/">CalcinationMixin</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="https://w3id.org/nfdi4cat/voc4cat_0000060">voc4cat:0000060</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -889,7 +926,7 @@ Alias: has_calcination_dwelling_time</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>VOC4CAT:0000060</td>
+<td>voc4cat:0000060</td>
 </tr>
 <tr>
 <td>native</td>
@@ -904,19 +941,22 @@ Alias: has_calcination_dwelling_time</p>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_duration</span>
-<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0000060</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_calcination_dwelling_time</span>
+<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0000060</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalcinationMixin</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Duration</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

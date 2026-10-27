@@ -877,7 +877,7 @@
 <p><strong>Description:</strong> Conditions under which the catalyst is stored (e.g. inert atmosphere, 4°C).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008105"><code>VOC4CAT:0008105</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008105"><code>voc4cat:0008105</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/storage_conditions/">storage_conditions</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20storage_conditions target="_blank" class="md-button md-button--primary">
@@ -890,7 +890,7 @@
 <p><strong>Description:</strong> Support material on which the active phase is deposited (e.g. Al2O3, SiO2).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008104"><code>VOC4CAT:0008104</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008104"><code>voc4cat:0008104</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_support/">catalyst_support</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_support target="_blank" class="md-button md-button--primary">
@@ -903,7 +903,7 @@
 <p><strong>Description:</strong> Solvent used in a process or sample preparation.</p>
 <p><strong>Data Type:</strong> ChemicalEntity</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007246"><code>VOC4CAT:0007246</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007246"><code>voc4cat:0007246</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/solvent/">solvent</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-ChemicalEntity" open="open">
@@ -1086,7 +1086,7 @@
 <summary><strong>SamplePretreatment</strong></summary>
 <p><strong>Description:</strong> A qualitative descriptor of the pre-treatment applied to a sample
 before a process or measurement (e.g. "reduction at 300 °C", "outgassing").</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000122"><code>VOC4CAT:0000122</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000122"><code>voc4cat:0000122</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/SamplePretreatment/">SamplePretreatment</a></p>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SamplePretreatment target="_blank" class="md-button md-button--primary">
@@ -1128,7 +1128,7 @@ automatically when a class is instantiated directly.</p>
 <summary><strong>Precursor</strong></summary>
 <p><strong>Description:</strong> A MaterialSample that serves as input material in a catalyst Synthesis.
 Precursors are consumed or transformed during the preparation process.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007794"><code>VOC4CAT:0007794</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007794"><code>voc4cat:0007794</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/Precursor/">Precursor</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -1136,7 +1136,7 @@ Precursors are consumed or transformed during the preparation process.</p>
 <p><strong>Description:</strong> Quantity of precursor used in synthesis.</p>
 <p><strong>Data Type:</strong> Mass</p>
 <p><strong>Cardinality:</strong>  Mandatory, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008118"><code>VOC4CAT:0008118</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008118"><code>voc4cat:0008118</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/precursor_quantity/">precursor_quantity</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-Mass">
@@ -1338,7 +1338,7 @@ Precursors are consumed or transformed during the preparation process.</p>
 <summary><strong>CatalystSample</strong></summary>
 <p><strong>Description:</strong> A MaterialSample that is the product of a catalyst Synthesis.
 The specific type of catalyst (e.g. heterogeneous, supported metal)
-is expressed via rdf_type using a VOC4CAT term.</p>
+is expressed via rdf_type using a voc4cat term.</p>
 <p><strong>CURIE:</strong> <a href="http://purl.obolibrary.org/obo/OBI_0000747"><code>OBI:0000747</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/CatalystSample/">CatalystSample</a></p>
 <p><strong>Slots</strong></p>
@@ -1508,8 +1508,8 @@ Concrete subclasses (Impregnation, CoPrecipitation, …) specify the
 method-specific parameters. Linked from Synthesis via realized_plan.</p>
 <p>The specific preparation method type should additionally be expressed
 via rdf_type on the Synthesis activity using a voc4cat term
-(e.g. VOC4CAT:0007016 for preparation method).</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007016"><code>VOC4CAT:0007016</code></a></p>
+(e.g. voc4cat:0007016 for preparation method).</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007016"><code>voc4cat:0007016</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/PreparationMethod/">PreparationMethod</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -1535,7 +1535,7 @@ via rdf_type on the Synthesis activity using a voc4cat term
 <summary><strong>Impregnation</strong></summary>
 <p><strong>Description:</strong> Catalyst preparation by impregnation: a solution of the active phase
 precursor is brought into contact with the support material.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007028"><code>VOC4CAT:0007028</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007028"><code>voc4cat:0007028</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/Impregnation/">Impregnation</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -1543,7 +1543,7 @@ precursor is brought into contact with the support material.</p>
 <p><strong>Description:</strong> Type of impregnation used (wet, dry, incipient wetness).</p>
 <p><strong>Data Type:</strong> ImpregnationTypeEnum</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008119"><code>VOC4CAT:0008119</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008119"><code>voc4cat:0008119</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/impregnation_type/">impregnation_type</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20impregnation_type target="_blank" class="md-button md-button--primary">
@@ -1556,7 +1556,7 @@ precursor is brought into contact with the support material.</p>
 <p><strong>Description:</strong> Duration of the impregnation step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008120"><code>VOC4CAT:0008120</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008120"><code>voc4cat:0008120</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/impregnation_duration/">impregnation_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-Duration">
@@ -1581,7 +1581,7 @@ precursor is brought into contact with the support material.</p>
 <p><strong>Description:</strong> Temperature during the impregnation step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008121"><code>VOC4CAT:0008121</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008121"><code>voc4cat:0008121</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/impregnation_temperature/">impregnation_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -1613,7 +1613,7 @@ precursor is brought into contact with the support material.</p>
 <p><strong>Description:</strong> Device used for drying (e.g. oven, rotary evaporator).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>VOC4CAT:0008122</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>voc4cat:0008122</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/drying_device/">drying_device</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
@@ -1626,7 +1626,7 @@ precursor is brought into contact with the support material.</p>
 <p><strong>Description:</strong> Temperature applied during the drying step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>VOC4CAT:0008207</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>voc4cat:0008207</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_temperature/">has_drying_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -1646,7 +1646,7 @@ precursor is brought into contact with the support material.</p>
 <p><strong>Description:</strong> Duration of the drying step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>VOC4CAT:0008206</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>voc4cat:0008206</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_duration/">has_drying_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -1666,7 +1666,7 @@ precursor is brought into contact with the support material.</p>
 <p><strong>Description:</strong> Atmosphere maintained during the drying step.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>VOC4CAT:0008208</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>voc4cat:0008208</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_atmosphere/">has_drying_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-Atmosphere">
@@ -1686,7 +1686,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").</p>
 <summary><strong>CalcinationGaseousEnvironment</strong></summary>
 <p><strong>Description:</strong> The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>VOC4CAT:0000055</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>voc4cat:0000055</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/CalcinationGaseousEnvironment/">CalcinationGaseousEnvironment</a></p>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalcinationGaseousEnvironment target="_blank" class="md-button md-button--primary">
@@ -1761,7 +1761,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Time held at the final calcination temperature.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000060"><code>VOC4CAT:0000060</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000060"><code>voc4cat:0000060</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_dwelling_time/">has_calcination_dwelling_time</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -1781,7 +1781,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).</p>
 <p><strong>Data Type:</strong> integer</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>VOC4CAT:0008123</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>voc4cat:0008123</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_cycles/">number_of_cycles</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
@@ -1801,7 +1801,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <summary><strong>CalcinationGaseousEnvironment</strong></summary>
 <p><strong>Description:</strong> The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>VOC4CAT:0000055</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>voc4cat:0000055</code></a></p>
 <p><em>Full field list already shown <a href="#schema-class-CalcinationGaseousEnvironment">earlier on this page</a> -- this class is reached from multiple fields.</em></p>
 </details>
 <p>
@@ -1815,7 +1815,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Temperature ramp rate during the calcination step.</p>
 <p><strong>Data Type:</strong> HeatingRate</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008116"><code>VOC4CAT:0008116</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008116"><code>voc4cat:0008116</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_heating_rate/">has_calcination_heating_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-HeatingRate">
@@ -1840,7 +1840,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Gas flow rate maintained during calcination.</p>
 <p><strong>Data Type:</strong> VolumeFlowRate</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000056"><code>VOC4CAT:0000056</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000056"><code>voc4cat:0000056</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_gas_flow_rate/">has_calcination_gas_flow_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-VolumeFlowRate">
@@ -1870,7 +1870,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <summary><strong>CoPrecipitation</strong></summary>
 <p><strong>Description:</strong> Catalyst preparation by co-precipitation: precursor salts are
 simultaneously precipitated from solution by a precipitating agent.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007795"><code>VOC4CAT:0007795</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007795"><code>voc4cat:0007795</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/CoPrecipitation/">CoPrecipitation</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -1890,7 +1890,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Chemical agent used to induce precipitation (e.g. NaOH, NH3).</p>
 <p><strong>Data Type:</strong> ChemicalEntity</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008203"><code>VOC4CAT:0008203</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008203"><code>voc4cat:0008203</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/precipitating_agent/">precipitating_agent</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -1910,7 +1910,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Concentration of the precipitating agent/solution used to induce precipitation.</p>
 <p><strong>Data Type:</strong> Concentration</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008125"><code>VOC4CAT:0008125</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008125"><code>voc4cat:0008125</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/precipitating_concentration/">precipitating_concentration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-Concentration">
@@ -1985,7 +1985,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Duration of the mixing step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008126"><code>VOC4CAT:0008126</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008126"><code>voc4cat:0008126</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_mixing_duration/">has_mixing_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2005,7 +2005,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Temperature maintained during mixing.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008127"><code>VOC4CAT:0008127</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008127"><code>voc4cat:0008127</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_mixing_temperature/">has_mixing_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2025,7 +2025,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Order in which reagents or components are combined.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008128"><code>VOC4CAT:0008128</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008128"><code>voc4cat:0008128</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/order_of_addition/">order_of_addition</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20order_of_addition target="_blank" class="md-button md-button--primary">
@@ -2038,7 +2038,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Filtration method used to separate the precipitate (e.g. vacuum filtration).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008129"><code>VOC4CAT:0008129</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008129"><code>voc4cat:0008129</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/filtration/">filtration</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filtration target="_blank" class="md-button md-button--primary">
@@ -2051,7 +2051,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Purification method applied after synthesis (e.g. washing, dialysis).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008130"><code>VOC4CAT:0008130</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008130"><code>voc4cat:0008130</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/purification/">purification</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20purification target="_blank" class="md-button md-button--primary">
@@ -2064,7 +2064,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Temperature maintained during the aging step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008131"><code>VOC4CAT:0008131</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008131"><code>voc4cat:0008131</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_aging_temperature/">has_aging_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2084,7 +2084,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Duration of the aging step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008204"><code>VOC4CAT:0008204</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008204"><code>voc4cat:0008204</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_aging_duration/">has_aging_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2104,7 +2104,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Device used for drying (e.g. oven, rotary evaporator).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>VOC4CAT:0008122</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>voc4cat:0008122</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/drying_device/">drying_device</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
@@ -2117,7 +2117,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Temperature applied during the drying step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>VOC4CAT:0008207</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>voc4cat:0008207</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_temperature/">has_drying_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2137,7 +2137,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Duration of the drying step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>VOC4CAT:0008206</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>voc4cat:0008206</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_duration/">has_drying_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2157,7 +2157,7 @@ simultaneously precipitated from solution by a precipitating agent.</p>
 <p><strong>Description:</strong> Atmosphere maintained during the drying step.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>VOC4CAT:0008208</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>voc4cat:0008208</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_atmosphere/">has_drying_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2204,7 +2204,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Time held at the final calcination temperature.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000060"><code>VOC4CAT:0000060</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000060"><code>voc4cat:0000060</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_dwelling_time/">has_calcination_dwelling_time</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2224,7 +2224,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).</p>
 <p><strong>Data Type:</strong> integer</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>VOC4CAT:0008123</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>voc4cat:0008123</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_cycles/">number_of_cycles</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
@@ -2244,7 +2244,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <summary><strong>CalcinationGaseousEnvironment</strong></summary>
 <p><strong>Description:</strong> The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>VOC4CAT:0000055</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>voc4cat:0000055</code></a></p>
 <p><em>Full field list already shown <a href="#schema-class-CalcinationGaseousEnvironment">earlier on this page</a> -- this class is reached from multiple fields.</em></p>
 </details>
 <p>
@@ -2258,7 +2258,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Temperature ramp rate during the calcination step.</p>
 <p><strong>Data Type:</strong> HeatingRate</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008116"><code>VOC4CAT:0008116</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008116"><code>voc4cat:0008116</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_heating_rate/">has_calcination_heating_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2278,7 +2278,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Gas flow rate maintained during calcination.</p>
 <p><strong>Data Type:</strong> VolumeFlowRate</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000056"><code>VOC4CAT:0000056</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000056"><code>voc4cat:0000056</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_gas_flow_rate/">has_calcination_gas_flow_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2311,7 +2311,7 @@ of precursor molecules to form a colloidal network (gel).</p>
 <p><strong>Description:</strong> Molar ratio of water to alkoxide precursor used in hydrolysis.</p>
 <p><strong>Data Type:</strong> float</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="voc4cat:0008157"><code>voc4cat:0008157</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008157"><code>voc4cat:0008157</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/hydrolysis_ratio/">hydrolysis_ratio</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20hydrolysis_ratio target="_blank" class="md-button md-button--primary">
@@ -2324,7 +2324,7 @@ of precursor molecules to form a colloidal network (gel).</p>
 <p><strong>Description:</strong> Duration of the aging step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008204"><code>VOC4CAT:0008204</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008204"><code>voc4cat:0008204</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_aging_duration/">has_aging_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2357,7 +2357,7 @@ of precursor molecules to form a colloidal network (gel).</p>
 <p><strong>Description:</strong> Surfactant or structure-directing agent used as a template.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="voc4cat:0008147"><code>voc4cat:0008147</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008147"><code>voc4cat:0008147</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/surfactant_template/">surfactant_template</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20surfactant_template target="_blank" class="md-button md-button--primary">
@@ -2382,7 +2382,7 @@ of precursor molecules to form a colloidal network (gel).</p>
 <p><strong>Description:</strong> Device used for drying (e.g. oven, rotary evaporator).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>VOC4CAT:0008122</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>voc4cat:0008122</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/drying_device/">drying_device</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
@@ -2395,7 +2395,7 @@ of precursor molecules to form a colloidal network (gel).</p>
 <p><strong>Description:</strong> Temperature applied during the drying step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>VOC4CAT:0008207</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>voc4cat:0008207</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_temperature/">has_drying_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2415,7 +2415,7 @@ of precursor molecules to form a colloidal network (gel).</p>
 <p><strong>Description:</strong> Duration of the drying step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>VOC4CAT:0008206</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>voc4cat:0008206</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_duration/">has_drying_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2435,7 +2435,7 @@ of precursor molecules to form a colloidal network (gel).</p>
 <p><strong>Description:</strong> Atmosphere maintained during the drying step.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>VOC4CAT:0008208</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>voc4cat:0008208</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_atmosphere/">has_drying_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2469,7 +2469,7 @@ sealed vessel using a non-aqueous solvent.</p>
 <p><strong>Description:</strong> Volume of solution relative to autoclave volume (filling degree).</p>
 <p><strong>Data Type:</strong> float</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="voc4cat:0008148"><code>voc4cat:0008148</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008148"><code>voc4cat:0008148</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/filling_volume/">filling_volume</a></p>
 <p><strong>Unit:</strong> mL</p>
 <p>
@@ -2483,7 +2483,7 @@ sealed vessel using a non-aqueous solvent.</p>
 <p><strong>Description:</strong> Type of stirrer used (e.g. magnetic, mechanical, none).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008113"><code>VOC4CAT:0008113</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008113"><code>voc4cat:0008113</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/stirrer_type/">stirrer_type</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20stirrer_type target="_blank" class="md-button md-button--primary">
@@ -2496,7 +2496,7 @@ sealed vessel using a non-aqueous solvent.</p>
 <p><strong>Description:</strong> Rate at which the reactor is cooled after synthesis.</p>
 <p><strong>Data Type:</strong> HeatingRate</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="voc4cat:0008149"><code>voc4cat:0008149</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008149"><code>voc4cat:0008149</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/cooling_rate/">cooling_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2528,7 +2528,7 @@ sealed vessel using a non-aqueous solvent.</p>
 <p><strong>Description:</strong> Temperature applied during the synthesis step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>VOC4CAT:0000051</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>voc4cat:0000051</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_temperature/">synthesis_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2548,7 +2548,7 @@ sealed vessel using a non-aqueous solvent.</p>
 <p><strong>Description:</strong> Total duration of the synthesis step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>VOC4CAT:0000050</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>voc4cat:0000050</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_duration/">synthesis_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2594,7 +2594,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").</p>
 <p><strong>Description:</strong> Gaseous environment or atmospheric conditions during a process.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>VOC4CAT:0007809</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>voc4cat:0007809</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_atmosphere/">has_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2620,7 +2620,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").</p>
 <summary><strong>PlasmaAssisted</strong></summary>
 <p><strong>Description:</strong> Catalyst preparation using plasma treatment to modify surface
 properties or deposit active components.</p>
-<p><strong>CURIE:</strong> <a href="voc4cat:0008152"><code>voc4cat:0008152</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008152"><code>voc4cat:0008152</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/PlasmaAssisted/">PlasmaAssisted</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -2628,7 +2628,7 @@ properties or deposit active components.</p>
 <p><strong>Description:</strong> Type of plasma used (e.g. DBD, microwave, RF plasma).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="voc4cat:0008153"><code>voc4cat:0008153</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008153"><code>voc4cat:0008153</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/plasma_type/">plasma_type</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plasma_type target="_blank" class="md-button md-button--primary">
@@ -2641,7 +2641,7 @@ properties or deposit active components.</p>
 <p><strong>Description:</strong> Power input to the plasma reactor or other energy source.</p>
 <p><strong>Data Type:</strong> PowerQuantity</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="voc4cat:0008154"><code>voc4cat:0008154</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008154"><code>voc4cat:0008154</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/power_input/">power_input</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-PowerQuantity">
@@ -2666,7 +2666,7 @@ properties or deposit active components.</p>
 <p><strong>Description:</strong> Duration of plasma or other energy exposure.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="voc4cat:0008155"><code>voc4cat:0008155</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008155"><code>voc4cat:0008155</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/exposure_time/">exposure_time</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2686,7 +2686,7 @@ properties or deposit active components.</p>
 <p><strong>Description:</strong> Pressure applied during synthesis (e.g. in autoclave or plasma reactor).</p>
 <p><strong>Data Type:</strong> Pressure</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000053"><code>VOC4CAT:0000053</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000053"><code>voc4cat:0000053</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_pressure/">synthesis_pressure</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2718,7 +2718,7 @@ properties or deposit active components.</p>
 <p><strong>Description:</strong> Temperature applied during the synthesis step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>VOC4CAT:0000051</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>voc4cat:0000051</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_temperature/">synthesis_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2738,7 +2738,7 @@ properties or deposit active components.</p>
 <p><strong>Description:</strong> Total duration of the synthesis step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>VOC4CAT:0000050</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>voc4cat:0000050</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_duration/">synthesis_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2779,7 +2779,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").</p>
 <p><strong>Description:</strong> Gaseous environment or atmospheric conditions during a process.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>VOC4CAT:0007809</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>voc4cat:0007809</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_atmosphere/">has_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2805,7 +2805,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").</p>
 <summary><strong>CombustionSynthesis</strong></summary>
 <p><strong>Description:</strong> Catalyst preparation by combustion of a fuel/oxidizer mixture,
 producing metal oxide catalysts in a single rapid step.</p>
-<p><strong>CURIE:</strong> <a href="voc4cat:0008156"><code>voc4cat:0008156</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008156"><code>voc4cat:0008156</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/CombustionSynthesis/">CombustionSynthesis</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -2897,7 +2897,7 @@ producing metal oxide catalysts in a single rapid step.</p>
 <p><strong>Description:</strong> Temperature applied during the synthesis step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>VOC4CAT:0000051</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>voc4cat:0000051</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_temperature/">synthesis_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2917,7 +2917,7 @@ producing metal oxide catalysts in a single rapid step.</p>
 <p><strong>Description:</strong> Total duration of the synthesis step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>VOC4CAT:0000050</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>voc4cat:0000050</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_duration/">synthesis_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2958,7 +2958,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").</p>
 <p><strong>Description:</strong> Gaseous environment or atmospheric conditions during a process.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>VOC4CAT:0007809</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>voc4cat:0007809</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_atmosphere/">has_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -2993,7 +2993,7 @@ of active phase onto a substrate.</p>
 <p><strong>Description:</strong> Substrate material on which the ALD film is deposited.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000024"><code>VOC4CAT:0000024</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000024"><code>voc4cat:0000024</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/substrate/">substrate</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20substrate target="_blank" class="md-button md-button--primary">
@@ -3020,7 +3020,7 @@ of active phase onto a substrate.</p>
 <p><strong>Description:</strong> Duration of the purge step between ALD pulses.</p>
 <p><strong>Data Type:</strong> float</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000112"><code>VOC4CAT:0000112</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000112"><code>voc4cat:0000112</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/purging_duration/">purging_duration</a></p>
 <p><strong>Unit:</strong> s</p>
 <p>
@@ -3034,7 +3034,7 @@ of active phase onto a substrate.</p>
 <p><strong>Description:</strong> Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).</p>
 <p><strong>Data Type:</strong> integer</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>VOC4CAT:0008123</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>voc4cat:0008123</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_cycles/">number_of_cycles</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
@@ -3164,7 +3164,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Chemical agent used to induce precipitation (e.g. NaOH, NH3).</p>
 <p><strong>Data Type:</strong> ChemicalEntity</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008203"><code>VOC4CAT:0008203</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008203"><code>voc4cat:0008203</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/precipitating_agent/">precipitating_agent</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3184,7 +3184,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Concentration of the precipitating agent/solution used to induce precipitation.</p>
 <p><strong>Data Type:</strong> Concentration</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008125"><code>VOC4CAT:0008125</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008125"><code>voc4cat:0008125</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/precipitating_concentration/">precipitating_concentration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3244,7 +3244,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Duration of the mixing step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008126"><code>VOC4CAT:0008126</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008126"><code>voc4cat:0008126</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_mixing_duration/">has_mixing_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3264,7 +3264,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Temperature maintained during mixing.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008127"><code>VOC4CAT:0008127</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008127"><code>voc4cat:0008127</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_mixing_temperature/">has_mixing_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3284,7 +3284,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Order in which reagents or components are combined.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008128"><code>VOC4CAT:0008128</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008128"><code>voc4cat:0008128</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/order_of_addition/">order_of_addition</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20order_of_addition target="_blank" class="md-button md-button--primary">
@@ -3297,7 +3297,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Filtration method used to separate the precipitate (e.g. vacuum filtration).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008129"><code>VOC4CAT:0008129</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008129"><code>voc4cat:0008129</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/filtration/">filtration</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20filtration target="_blank" class="md-button md-button--primary">
@@ -3310,7 +3310,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Purification method applied after synthesis (e.g. washing, dialysis).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008130"><code>VOC4CAT:0008130</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008130"><code>voc4cat:0008130</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/purification/">purification</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20purification target="_blank" class="md-button md-button--primary">
@@ -3323,7 +3323,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Temperature maintained during the aging step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008131"><code>VOC4CAT:0008131</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008131"><code>voc4cat:0008131</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_aging_temperature/">has_aging_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3343,7 +3343,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Duration of the aging step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008204"><code>VOC4CAT:0008204</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008204"><code>voc4cat:0008204</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_aging_duration/">has_aging_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3363,7 +3363,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Device used for drying (e.g. oven, rotary evaporator).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>VOC4CAT:0008122</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>voc4cat:0008122</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/drying_device/">drying_device</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
@@ -3376,7 +3376,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Temperature applied during the drying step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>VOC4CAT:0008207</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>voc4cat:0008207</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_temperature/">has_drying_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3396,7 +3396,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Duration of the drying step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>VOC4CAT:0008206</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>voc4cat:0008206</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_duration/">has_drying_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3416,7 +3416,7 @@ is precipitated directly onto the support surface.</p>
 <p><strong>Description:</strong> Atmosphere maintained during the drying step.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>VOC4CAT:0008208</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>voc4cat:0008208</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_atmosphere/">has_drying_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3463,7 +3463,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Time held at the final calcination temperature.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000060"><code>VOC4CAT:0000060</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000060"><code>voc4cat:0000060</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_dwelling_time/">has_calcination_dwelling_time</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3483,7 +3483,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).</p>
 <p><strong>Data Type:</strong> integer</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>VOC4CAT:0008123</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>voc4cat:0008123</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_cycles/">number_of_cycles</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
@@ -3503,7 +3503,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <summary><strong>CalcinationGaseousEnvironment</strong></summary>
 <p><strong>Description:</strong> The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>VOC4CAT:0000055</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>voc4cat:0000055</code></a></p>
 <p><em>Full field list already shown <a href="#schema-class-CalcinationGaseousEnvironment">earlier on this page</a> -- this class is reached from multiple fields.</em></p>
 </details>
 <p>
@@ -3517,7 +3517,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Temperature ramp rate during the calcination step.</p>
 <p><strong>Data Type:</strong> HeatingRate</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008116"><code>VOC4CAT:0008116</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008116"><code>voc4cat:0008116</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_heating_rate/">has_calcination_heating_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3537,7 +3537,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Gas flow rate maintained during calcination.</p>
 <p><strong>Data Type:</strong> VolumeFlowRate</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000056"><code>VOC4CAT:0000056</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000056"><code>voc4cat:0000056</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_gas_flow_rate/">has_calcination_gas_flow_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3610,7 +3610,7 @@ uniformly heat the reaction mixture.</p>
 <p><strong>Description:</strong> Temperature applied during the synthesis step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>VOC4CAT:0000051</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>voc4cat:0000051</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_temperature/">synthesis_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3630,7 +3630,7 @@ uniformly heat the reaction mixture.</p>
 <p><strong>Description:</strong> Total duration of the synthesis step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>VOC4CAT:0000050</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>voc4cat:0000050</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_duration/">synthesis_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3671,7 +3671,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").</p>
 <p><strong>Description:</strong> Gaseous environment or atmospheric conditions during a process.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>VOC4CAT:0007809</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>voc4cat:0007809</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_atmosphere/">has_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3765,7 +3765,7 @@ reactions via acoustic cavitation.</p>
 <p><strong>Description:</strong> Device used for drying (e.g. oven, rotary evaporator).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>VOC4CAT:0008122</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>voc4cat:0008122</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/drying_device/">drying_device</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
@@ -3778,7 +3778,7 @@ reactions via acoustic cavitation.</p>
 <p><strong>Description:</strong> Temperature applied during the drying step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>VOC4CAT:0008207</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>voc4cat:0008207</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_temperature/">has_drying_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3798,7 +3798,7 @@ reactions via acoustic cavitation.</p>
 <p><strong>Description:</strong> Duration of the drying step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>VOC4CAT:0008206</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>voc4cat:0008206</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_duration/">has_drying_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3818,7 +3818,7 @@ reactions via acoustic cavitation.</p>
 <p><strong>Description:</strong> Atmosphere maintained during the drying step.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>VOC4CAT:0008208</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>voc4cat:0008208</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_atmosphere/">has_drying_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3865,7 +3865,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Time held at the final calcination temperature.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000060"><code>VOC4CAT:0000060</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000060"><code>voc4cat:0000060</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_dwelling_time/">has_calcination_dwelling_time</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3885,7 +3885,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).</p>
 <p><strong>Data Type:</strong> integer</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>VOC4CAT:0008123</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>voc4cat:0008123</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_cycles/">number_of_cycles</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
@@ -3905,7 +3905,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <summary><strong>CalcinationGaseousEnvironment</strong></summary>
 <p><strong>Description:</strong> The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>VOC4CAT:0000055</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>voc4cat:0000055</code></a></p>
 <p><em>Full field list already shown <a href="#schema-class-CalcinationGaseousEnvironment">earlier on this page</a> -- this class is reached from multiple fields.</em></p>
 </details>
 <p>
@@ -3919,7 +3919,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Temperature ramp rate during the calcination step.</p>
 <p><strong>Data Type:</strong> HeatingRate</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008116"><code>VOC4CAT:0008116</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008116"><code>voc4cat:0008116</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_heating_rate/">has_calcination_heating_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3939,7 +3939,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Gas flow rate maintained during calcination.</p>
 <p><strong>Data Type:</strong> VolumeFlowRate</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000056"><code>VOC4CAT:0000056</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000056"><code>voc4cat:0000056</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_gas_flow_rate/">has_calcination_gas_flow_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3964,7 +3964,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <summary><strong>FlameSprayPyrolysis</strong></summary>
 <p><strong>Description:</strong> Catalyst preparation by flame spray pyrolysis (FSP): a liquid precursor
 solution is atomised and combusted in a flame to produce nanoparticles.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007031"><code>VOC4CAT:0007031</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007031"><code>voc4cat:0007031</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/FlameSprayPyrolysis/">FlameSprayPyrolysis</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -4236,7 +4236,7 @@ combined with thermal treatment.</p>
 <p><strong>Description:</strong> Temperature applied during the synthesis step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>VOC4CAT:0000051</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>voc4cat:0000051</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_temperature/">synthesis_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4256,7 +4256,7 @@ combined with thermal treatment.</p>
 <p><strong>Description:</strong> Total duration of the synthesis step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>VOC4CAT:0000050</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>voc4cat:0000050</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_duration/">synthesis_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4297,7 +4297,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").</p>
 <p><strong>Description:</strong> Gaseous environment or atmospheric conditions during a process.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>VOC4CAT:0007809</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>voc4cat:0007809</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_atmosphere/">has_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4331,7 +4331,7 @@ and deposited onto a substrate without passing through a liquid phase.</p>
 <p><strong>Description:</strong> Pressure applied during synthesis (e.g. in autoclave or plasma reactor).</p>
 <p><strong>Data Type:</strong> Pressure</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000053"><code>VOC4CAT:0000053</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000053"><code>voc4cat:0000053</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_pressure/">synthesis_pressure</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4363,7 +4363,7 @@ and deposited onto a substrate without passing through a liquid phase.</p>
 <p><strong>Description:</strong> Temperature applied during the synthesis step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>VOC4CAT:0000051</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000051"><code>voc4cat:0000051</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_temperature/">synthesis_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4383,7 +4383,7 @@ and deposited onto a substrate without passing through a liquid phase.</p>
 <p><strong>Description:</strong> Total duration of the synthesis step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>VOC4CAT:0000050</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000050"><code>voc4cat:0000050</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/synthesis_duration/">synthesis_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4424,7 +4424,7 @@ used (e.g. "autoclave", "round-bottom flask", "Schlenk tube").</p>
 <p><strong>Description:</strong> Gaseous environment or atmospheric conditions during a process.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>VOC4CAT:0007809</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>voc4cat:0007809</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_atmosphere/">has_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4504,7 +4504,7 @@ chemistry routes, including crystallisation and purification steps.</p>
 <p><strong>Description:</strong> Rotational speed of stirring or agitation.</p>
 <p><strong>Data Type:</strong> AngularVelocity</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="voc4cat:0008114"><code>voc4cat:0008114</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008114"><code>voc4cat:0008114</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_stirring_speed/">has_stirring_speed</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4524,7 +4524,7 @@ chemistry routes, including crystallisation and purification steps.</p>
 <p><strong>Description:</strong> Temperature maintained during mixing.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008127"><code>VOC4CAT:0008127</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008127"><code>voc4cat:0008127</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_mixing_temperature/">has_mixing_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4583,7 +4583,7 @@ chemistry routes, including crystallisation and purification steps.</p>
 <p><strong>Description:</strong> Agent used to induce precipitation in molecular synthesis.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008203"><code>VOC4CAT:0008203</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008203"><code>voc4cat:0008203</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/precipitation_agent/">precipitation_agent</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20precipitation_agent target="_blank" class="md-button md-button--primary">
@@ -4623,7 +4623,7 @@ chemistry routes, including crystallisation and purification steps.</p>
 <p><strong>Description:</strong> Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).</p>
 <p><strong>Data Type:</strong> integer</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>VOC4CAT:0008123</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>voc4cat:0008123</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_cycles/">number_of_cycles</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
@@ -4650,7 +4650,7 @@ chemistry routes, including crystallisation and purification steps.</p>
 <p><strong>Description:</strong> Gaseous environment or atmospheric conditions during a process.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>VOC4CAT:0007809</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>voc4cat:0007809</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_atmosphere/">has_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4683,7 +4683,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").</p>
 <p><strong>Description:</strong> Device used for drying (e.g. oven, rotary evaporator).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>VOC4CAT:0008122</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008122"><code>voc4cat:0008122</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/drying_device/">drying_device</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20drying_device target="_blank" class="md-button md-button--primary">
@@ -4696,7 +4696,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").</p>
 <p><strong>Description:</strong> Temperature applied during the drying step.</p>
 <p><strong>Data Type:</strong> Temperature</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>VOC4CAT:0008207</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008207"><code>voc4cat:0008207</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_temperature/">has_drying_temperature</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4716,7 +4716,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").</p>
 <p><strong>Description:</strong> Duration of the drying step.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>VOC4CAT:0008206</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008206"><code>voc4cat:0008206</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_duration/">has_drying_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4736,7 +4736,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").</p>
 <p><strong>Description:</strong> Atmosphere maintained during the drying step.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>VOC4CAT:0008208</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008208"><code>voc4cat:0008208</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_drying_atmosphere/">has_drying_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4808,7 +4808,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Time held at the final calcination temperature.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000060"><code>VOC4CAT:0000060</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000060"><code>voc4cat:0000060</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_dwelling_time/">has_calcination_dwelling_time</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4828,7 +4828,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).</p>
 <p><strong>Data Type:</strong> integer</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>VOC4CAT:0008123</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008123"><code>voc4cat:0008123</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_cycles/">number_of_cycles</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_cycles target="_blank" class="md-button md-button--primary">
@@ -4848,7 +4848,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <summary><strong>CalcinationGaseousEnvironment</strong></summary>
 <p><strong>Description:</strong> The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>VOC4CAT:0000055</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>voc4cat:0000055</code></a></p>
 <p><em>Full field list already shown <a href="#schema-class-CalcinationGaseousEnvironment">earlier on this page</a> -- this class is reached from multiple fields.</em></p>
 </details>
 <p>
@@ -4862,7 +4862,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Temperature ramp rate during the calcination step.</p>
 <p><strong>Data Type:</strong> HeatingRate</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008116"><code>VOC4CAT:0008116</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008116"><code>voc4cat:0008116</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_heating_rate/">has_calcination_heating_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4882,7 +4882,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Gas flow rate maintained during calcination.</p>
 <p><strong>Data Type:</strong> VolumeFlowRate</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000056"><code>VOC4CAT:0000056</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000056"><code>voc4cat:0000056</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_calcination_gas_flow_rate/">has_calcination_gas_flow_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>

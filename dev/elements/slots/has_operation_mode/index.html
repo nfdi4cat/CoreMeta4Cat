@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +835,8 @@
 
 <h1 id="slot-has_operation_mode">Slot: has_operation_mode</h1>
 <p><em>Operation mode of an instrument or process.</em></p>
-<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a>
-Alias: has_operation_mode</p>
+<div>
+<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_qualitative_attribute/">has_qualitative_attribute</a><ul>
@@ -838,18 +855,13 @@ Alias: has_operation_mode</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/TransmissionElectronMicroscopy/">TransmissionElectronMicroscopy</a></td>
-<td>TEM for atomic-resolution imaging and diffraction of catalyst particles.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/ElectroSprayIonizationMassSpectrometry/">ElectroSprayIonizationMassSpectrometry</a></td>
-<td>Electrospray ionisation mass spectrometry for molecular mass and identity determination.</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../../classes/PowderXRD/">PowderXRD</a></td>
 <td>Powder X-ray diffraction for phase identification and structural analysis.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/XRayAbsorptionSpectroscopy/">XRayAbsorptionSpectroscopy</a></td>
+<td>X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -858,29 +870,68 @@ Alias: has_operation_mode</p>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../../classes/TransmissionElectronMicroscopy/">TransmissionElectronMicroscopy</a></td>
+<td>TEM for atomic-resolution imaging and diffraction of catalyst particles.</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../../classes/Thermogravimetry/">Thermogravimetry</a></td>
 <td>Thermogravimetric analysis (TGA/DTG) for mass loss, decomposition, and oxidation state characterization.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/XRayAbsorptionSpectroscopy/">XRayAbsorptionSpectroscopy</a></td>
-<td>X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.</td>
+<td><a href="../../classes/ElectroSprayIonizationMassSpectrometry/">ElectroSprayIonizationMassSpectrometry</a></td>
+<td>Electrospray ionisation mass spectrometry for molecular mass and identity determination.</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../classes/OperationMode/">OperationMode</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/OperationMode/">OperationMode</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/PowderXRD/">PowderXRD</a>, <a href="../../classes/XRayAbsorptionSpectroscopy/">XRayAbsorptionSpectroscopy</a>, <a href="../../classes/InfraredSpectroscopy/">InfraredSpectroscopy</a>, <a href="../../classes/TransmissionElectronMicroscopy/">TransmissionElectronMicroscopy</a>, <a href="../../classes/Thermogravimetry/">Thermogravimetry</a>, <a href="../../classes/ElectroSprayIonizationMassSpectrometry/">ElectroSprayIonizationMassSpectrometry</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -913,7 +964,6 @@ Alias: has_operation_mode</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_operation_mode</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PowderXRD</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">XRayAbsorptionSpectroscopy</span>
@@ -928,12 +978,16 @@ Alias: has_operation_mode</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 
