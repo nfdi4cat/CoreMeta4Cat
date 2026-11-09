@@ -81,6 +81,10 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/AdsorptionEnergetics/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/Agent/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
@@ -186,6 +190,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CatalystSample/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/CatalyticDescriptors/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -358,6 +366,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ElectroSprayIonizationMassSpectrometry/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ElectrochemicalFreeEnergy/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -701,6 +713,10 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ReactionEnergetics/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/ReactionMonitoring/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
@@ -853,6 +869,10 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/TransitionState/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/classes/TransmissionElectronMicroscopy/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
@@ -981,11 +1001,23 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/adsorbate/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/adsorbate_gas/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/adsorption_energy/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/adsorption_gas/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/adsorption_site/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -1014,6 +1046,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/application_profile/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/applied_potential/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -1062,6 +1098,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/beginning/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/bep_relation/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -1261,6 +1301,10 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/d_band_center/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/dataset_distribution/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
@@ -1282,6 +1326,14 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/description/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/descriptor_type/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/descriptor_value/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -1337,6 +1389,10 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/electrode_potential_model/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/electrolyte_composition/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
@@ -1346,6 +1402,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/element_analyzed/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/elementary_step/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -1385,7 +1445,15 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/energy_correction_type/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/energy_cutoff/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/energy_reference/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -1481,6 +1549,10 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/final_state/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/final_temperature/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
@@ -1518,6 +1590,14 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/formation_energy/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/forward_activation_energy/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/free_energy_temperature/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -1889,6 +1969,10 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/imaginary_frequency/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/imaginary_modes/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
@@ -1918,6 +2002,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/inchikey/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/initial_state/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -2010,6 +2098,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/light_wavelength/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/limiting_potential/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -2133,6 +2225,10 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/number_of_images/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/number_of_scans/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
@@ -2225,7 +2321,15 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/potential_determining_step/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/potential_range/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/potential_reference_scale/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -2321,6 +2425,14 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reaction_energy/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reaction_free_energy/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reaction_name/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
@@ -2393,6 +2505,10 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reverse_activation_energy/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/rights/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
@@ -2422,6 +2538,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/sampling_interval/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/scaling_relation/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -2661,6 +2781,10 @@
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/theoretical_overpotential/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/title/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
@@ -2674,6 +2798,14 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/trace_ion_detection/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/ts_search_method/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/ts_verification_method/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>
@@ -2762,6 +2894,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/young_modulus/</loc>
+         <lastmod>2026-11-09</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/zero_point_energy_correction/</loc>
          <lastmod>2026-11-09</lastmod>
     </url>
     <url>

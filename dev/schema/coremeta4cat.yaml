@@ -761,6 +761,355 @@ enums:
           electricity, often found in high-energy environments such as stars or lightning.
         meaning: PATO:0015012
 slots:
+  adsorbate:
+    name: adsorbate
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/adsorbate
+    description: Chemical identity of the adsorbed species (e.g. "CO", "OH", "CH3",
+      "N2H"). Use a chemical formula or SMILES.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:adsorbate
+    slot_uri: coremeta4cat:adsorbate
+    range: string
+    recommended: true
+    multivalued: true
+  adsorption_site:
+    name: adsorption_site
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/adsorption_site
+    description: Adsorption site of the adsorbate (e.g. top, bridge, fcc hollow, hcp
+      hollow, step edge, oxygen vacancy, single-atom site).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:adsorption_site
+    slot_uri: coremeta4cat:adsorption_site
+    range: string
+    recommended: true
+    multivalued: true
+  adsorption_energy:
+    name: adsorption_energy
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/adsorption_energy
+    description: Adsorption energy, E_ads = E(slab+adsorbate) - E(slab) - E(reference
+      species). Negative values indicate exothermic binding.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:adsorption_energy
+    slot_uri: coremeta4cat:adsorption_energy
+    range: float
+    recommended: true
+    multivalued: true
+    unit:
+      ucum_code: eV
+  energy_reference:
+    name: energy_reference
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/energy_reference
+    description: Reference species and states used to compute relative energies (e.g.
+      "CO(g)", "1/2 H2(g)", "H2O(g) and H2(g)").
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:energy_reference
+    slot_uri: coremeta4cat:energy_reference
+    range: string
+    recommended: true
+    multivalued: true
+  energy_correction_type:
+    name: energy_correction_type
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/energy_correction_type
+    description: "Level at which the reported energies are given: electronic energy\
+      \ (\u0394E), zero-point-energy corrected, enthalpy, or Gibbs free energy (\u0394\
+      G). For free energies, state the temperature and pressures used."
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:energy_correction_type
+    slot_uri: coremeta4cat:energy_correction_type
+    range: string
+    multivalued: true
+  zero_point_energy_correction:
+    name: zero_point_energy_correction
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/zero_point_energy_correction
+    description: Zero-point energy correction applied to the reported energy.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:zero_point_energy_correction
+    slot_uri: coremeta4cat:zero_point_energy_correction
+    range: float
+    multivalued: true
+    unit:
+      ucum_code: eV
+  elementary_step:
+    name: elementary_step
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/elementary_step
+    description: Elementary reaction step written as an equation, with * denoting
+      a free surface site (e.g. "CO* + O* -> CO2(g) + 2*").
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:elementary_step
+    slot_uri: coremeta4cat:elementary_step
+    range: string
+    recommended: true
+    multivalued: true
+  initial_state:
+    name: initial_state
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/initial_state
+    description: Description of the initial-state configuration of the elementary
+      step.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:initial_state
+    slot_uri: coremeta4cat:initial_state
+    range: string
+    multivalued: true
+  final_state:
+    name: final_state
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/final_state
+    description: Description of the final-state configuration of the elementary step.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:final_state
+    slot_uri: coremeta4cat:final_state
+    range: string
+    multivalued: true
+  reaction_energy:
+    name: reaction_energy
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/reaction_energy
+    description: "Reaction energy of the elementary step, \u0394E = E(final state)\
+      \ - E(initial state)."
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:reaction_energy
+    slot_uri: coremeta4cat:reaction_energy
+    range: float
+    recommended: true
+    multivalued: true
+    unit:
+      ucum_code: eV
+  reaction_free_energy:
+    name: reaction_free_energy
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/reaction_free_energy
+    description: "Gibbs free energy change of the elementary step, \u0394G, including\
+      \ ZPE, enthalpic and entropic corrections at the stated temperature and pressures."
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:reaction_free_energy
+    slot_uri: coremeta4cat:reaction_free_energy
+    range: float
+    multivalued: true
+    unit:
+      ucum_code: eV
+  free_energy_temperature:
+    name: free_energy_temperature
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/free_energy_temperature
+    description: Temperature at which free energy corrections were evaluated.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:free_energy_temperature
+    slot_uri: coremeta4cat:free_energy_temperature
+    range: float
+    multivalued: true
+    unit:
+      ucum_code: K
+  forward_activation_energy:
+    name: forward_activation_energy
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/forward_activation_energy
+    description: Activation energy of the forward step, E_a = E(transition state)
+      - E(initial state).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:forward_activation_energy
+    slot_uri: coremeta4cat:forward_activation_energy
+    range: float
+    recommended: true
+    multivalued: true
+    unit:
+      ucum_code: eV
+  reverse_activation_energy:
+    name: reverse_activation_energy
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/reverse_activation_energy
+    description: Activation energy of the reverse step, E(transition state) - E(final
+      state).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:reverse_activation_energy
+    slot_uri: coremeta4cat:reverse_activation_energy
+    range: float
+    multivalued: true
+    unit:
+      ucum_code: eV
+  ts_search_method:
+    name: ts_search_method
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ts_search_method
+    description: Method used to locate the transition state (e.g. NEB, CI-NEB, dimer
+      method, growing string method, constrained optimisation).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:ts_search_method
+    slot_uri: coremeta4cat:ts_search_method
+    range: string
+    recommended: true
+    multivalued: true
+  number_of_images:
+    name: number_of_images
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/number_of_images
+    description: Number of intermediate images used in a NEB or string calculation.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:number_of_images
+    slot_uri: coremeta4cat:number_of_images
+    range: integer
+    multivalued: true
+  imaginary_frequency:
+    name: imaginary_frequency
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/imaginary_frequency
+    description: Imaginary vibrational frequency associated with the reaction coordinate
+      at the transition state.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:imaginary_frequency
+    slot_uri: coremeta4cat:imaginary_frequency
+    range: float
+    multivalued: true
+    unit:
+      ucum_code: cm-1
+  ts_verification_method:
+    name: ts_verification_method
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ts_verification_method
+    description: Method used to verify the transition state (e.g. vibrational analysis
+      showing a single imaginary mode, intrinsic reaction coordinate (IRC)).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:ts_verification_method
+    slot_uri: coremeta4cat:ts_verification_method
+    range: string
+    multivalued: true
+  electrode_potential_model:
+    name: electrode_potential_model
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/electrode_potential_model
+    description: Model used to treat the electrode potential (e.g. computational hydrogen
+      electrode, constant-potential / grand-canonical DFT).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:electrode_potential_model
+    slot_uri: coremeta4cat:electrode_potential_model
+    range: string
+    recommended: true
+    multivalued: true
+  potential_reference_scale:
+    name: potential_reference_scale
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/potential_reference_scale
+    description: Reference scale of the reported potentials (e.g. RHE, SHE).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:potential_reference_scale
+    slot_uri: coremeta4cat:potential_reference_scale
+    range: string
+    multivalued: true
+  applied_potential:
+    name: applied_potential
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/applied_potential
+    description: Electrode potential at which free energies were evaluated.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:applied_potential
+    slot_uri: coremeta4cat:applied_potential
+    range: float
+    multivalued: true
+    unit:
+      ucum_code: V
+  limiting_potential:
+    name: limiting_potential
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/limiting_potential
+    description: Highest (least negative) potential at which all electrochemical steps
+      are exergonic.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:limiting_potential
+    slot_uri: coremeta4cat:limiting_potential
+    range: float
+    recommended: true
+    multivalued: true
+    unit:
+      ucum_code: V
+  theoretical_overpotential:
+    name: theoretical_overpotential
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/theoretical_overpotential
+    description: Difference between the equilibrium potential of the reaction and
+      the limiting potential.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:theoretical_overpotential
+    slot_uri: coremeta4cat:theoretical_overpotential
+    range: float
+    multivalued: true
+    unit:
+      ucum_code: V
+  potential_determining_step:
+    name: potential_determining_step
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/potential_determining_step
+    description: Elementary step that determines the limiting potential.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:potential_determining_step
+    slot_uri: coremeta4cat:potential_determining_step
+    range: string
+    multivalued: true
+  descriptor_type:
+    name: descriptor_type
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/descriptor_type
+    description: Type of activity descriptor (e.g. d-band centre, adsorption energy
+      of a key intermediate, generalised coordination number, O p-band centre).
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:descriptor_type
+    slot_uri: coremeta4cat:descriptor_type
+    range: string
+    recommended: true
+    multivalued: true
+  descriptor_value:
+    name: descriptor_value
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/descriptor_value
+    description: Value of the descriptor; state the unit together with the descriptor
+      type.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:descriptor_value
+    slot_uri: coremeta4cat:descriptor_value
+    range: float
+    recommended: true
+    multivalued: true
+  d_band_center:
+    name: d_band_center
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/d_band_center
+    description: Centre of the d-band projected density of states, relative to the
+      Fermi level.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:d_band_center
+    slot_uri: coremeta4cat:d_band_center
+    range: float
+    multivalued: true
+    unit:
+      ucum_code: eV
+  scaling_relation:
+    name: scaling_relation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/scaling_relation
+    description: "Linear scaling relation between adsorption energies (e.g. \"\u0394\
+      E_OH = 0.50 \u0394E_O + 0.10 eV\")."
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:scaling_relation
+    slot_uri: coremeta4cat:scaling_relation
+    range: string
+    multivalued: true
+  bep_relation:
+    name: bep_relation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/bep_relation
+    description: "Br\xF8nsted\u2013Evans\u2013Polanyi relation between activation\
+      \ energies and reaction energies (slope and intercept)."
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - coremeta4cat:bep_relation
+    slot_uri: coremeta4cat:bep_relation
+    range: string
+    multivalued: true
   activity_designator:
     name: activity_designator
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/activity_designator
@@ -5259,6 +5608,9 @@ slots:
     name: activation_energy
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/activation_energy
     description: Activation energy for each elementary step in the reaction mechanism.
+      Used here as an input parameter of the microkinetic model; where the barrier
+      was computed, report it via the TransitionState calculated property and reference
+      it here.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
     - coremeta4cat:activation_energy
@@ -6315,9 +6667,9 @@ slots:
       calculated band gap.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
-    - voc4cat:0005056
+    - VOC4CAT:0005056
     is_a: has_qualitative_attribute
-    slot_uri: voc4cat:0005056
+    slot_uri: VOC4CAT:0005056
     owner: BandGap
     domain_of:
     - BandGap
@@ -16199,6 +16551,88 @@ classes:
     - convergence_criteria
     - k_point_mesh
     class_uri: coremeta4cat:BandGap
+  AdsorptionEnergetics:
+    name: AdsorptionEnergetics
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/AdsorptionEnergetics
+    description: Adsorption energetics of a species on a catalyst surface or site,
+      computed from periodic slab or cluster models. Essential for constructing reaction
+      energy profiles and identifying activity descriptors.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
+    exact_mappings:
+    - coremeta4cat:AdsorptionEnergetics
+    is_a: CalculatedProperty
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: coremeta4cat:AdsorptionEnergetics
+  ReactionEnergetics:
+    name: ReactionEnergetics
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ReactionEnergetics
+    description: Thermochemistry of an elementary reaction step on a catalyst, given
+      as the energy difference between its initial and final states.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
+    exact_mappings:
+    - coremeta4cat:ReactionEnergetics
+    is_a: CalculatedProperty
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: coremeta4cat:ReactionEnergetics
+  TransitionState:
+    name: TransitionState
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/TransitionState
+    description: Transition state of an elementary reaction step and its activation
+      barrier, located by a transition state search method.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
+    exact_mappings:
+    - coremeta4cat:TransitionState
+    is_a: CalculatedProperty
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: coremeta4cat:TransitionState
+  ElectrochemicalFreeEnergy:
+    name: ElectrochemicalFreeEnergy
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ElectrochemicalFreeEnergy
+    description: Potential-dependent free energetics of electrocatalytic reactions,
+      e.g. from the computational hydrogen electrode, yielding limiting potentials
+      and theoretical overpotentials.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
+    exact_mappings:
+    - coremeta4cat:ElectrochemicalFreeEnergy
+    is_a: CalculatedProperty
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: coremeta4cat:ElectrochemicalFreeEnergy
+  CatalyticDescriptors:
+    name: CatalyticDescriptors
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CatalyticDescriptors
+    description: Computed descriptors that correlate with catalytic activity or selectivity,
+      such as d-band centres or linear scaling relations.
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
+    exact_mappings:
+    - coremeta4cat:CatalyticDescriptors
+    is_a: CalculatedProperty
+    slots:
+    - title
+    - description
+    - QualitativeAttribute_value
+    - ClassifierMixin_type
+    - rdf_type
+    class_uri: coremeta4cat:CatalyticDescriptors
   SubstanceSampleCharacterizationDataset:
     name: SubstanceSampleCharacterizationDataset
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/SubstanceSampleCharacterizationDataset
@@ -19652,6 +20086,6 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.12.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-11-09T15:29:47'
-source_file_size: 7711
+source_file_date: '2026-11-09T15:43:30'
+source_file_size: 14797
 
