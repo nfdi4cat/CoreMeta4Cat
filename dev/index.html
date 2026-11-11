@@ -290,6 +290,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#not-sure-where-to-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not sure where to start?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -399,17 +410,6 @@
     <span class="md-ellipsis">
       
         Interactive diagram
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Schema
       
     </span>
   </a>
@@ -890,6 +890,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#not-sure-where-to-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Not sure where to start?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1005,17 +1016,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Schema
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1037,47 +1037,34 @@
 
 
 <h1 id="coremeta4cat">CoreMeta4Cat</h1>
-<p><strong>CoreMeta4Cat</strong> is a community-driven metadata initiative under <a href="https://nfdi4cat.org">NFDI4Cat</a> that defines the minimum information required for reporting catalysis research data. Built on the <a href="https://www.go-fair.org/fair-principles/">FAIR principles</a> — <strong>F</strong>indable, <strong>A</strong>ccessible, <strong>I</strong>nteroperable, and <strong>R</strong>eusable — it provides a shared language for researchers to describe, share, and discover catalysis datasets across institutions and disciplines.</p>
+<p>If you are a catalysis researcher, you have probably faced this at some point: you finish a project, archive your data, and six months later — or six years later — someone (including yourself) needs to make sense of it. What reactor was used? What were the exact feed conditions? What does "T" mean in this column? CoreMeta4Cat exists to prevent that problem by defining, in plain language, what information a catalysis dataset needs to include to be understood and reused by others.</p>
+<p><strong>CoreMeta4Cat</strong> is a community-driven metadata standard under <a href="https://nfdi4cat.org">NFDI4Cat</a> that defines the minimum information required for reporting catalysis research data. Built on the <a href="https://www.go-fair.org/fair-principles/">FAIR principles</a> — <strong>F</strong>indable, <strong>A</strong>ccessible, <strong>I</strong>nteroperable, and <strong>R</strong>eusable — it provides a shared language for researchers to describe, share, and discover catalysis datasets across institutions and disciplines.</p>
 <p>The model draws its terminology from <a href="https://nfdi4cat.github.io/voc4cat/">Voc4Cat</a>, NFDI4Cat's controlled vocabulary for catalysis, ensuring standardized semantic representation. Fields are classified as <strong>Mandatory</strong>, <strong>Recommended</strong>, or <strong>Optional</strong>, helping users meet minimum quality thresholds while leaving room for richer annotation.</p>
 <blockquote>
 <p>CoreMeta4Cat is a living standard. Community feedback — submitted via the <strong>Submit Term Feedback</strong> button — continuously shapes the addition, revision, and removal of data fields.</p>
 </blockquote>
-<div style="text-align: center; margin: 1.5rem 0;">
-  <img src="./images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat model overview" style="width: 60%; border-radius: 8px;">
-</div>
-
+<p><img alt="CoreMeta4Cat model overview" src="images/CoreMeta4Cat_Picture.png" /></p>
+<hr />
+<h2 id="not-sure-where-to-start">Not sure where to start?</h2>
+<p>The most up-to-date list of CoreMeta4Cat metadata fields for all four data classes — Synthesis, Characterization, Reaction, and Simulation — is available as a structured Excel workbook:</p>
+<p><a href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/assets/coremeta4cat_vocabulary.xlsx">⬇ Download the metadata list</a></p>
+<p>We are currently developing a user-friendly <strong>Metadata Checker</strong> tool that will make this process even easier — upload your dataset and the tool will automatically identify which required fields are present, which are missing, and give you a plain-language gap report with a downloadable template to act on. No schema knowledge required. The tool will be available here soon.</p>
+<hr />
 <h2 id="getting-started">Getting Started</h2>
 <p>Choose the approach that fits your workflow. Both paths are fully compatible with the CoreMeta4Cat standard.</p>
-<div class="grid">
-<!-- Card 1: just text -->
-<div class="card" style="border: 1px solid #d0d7de; border-radius: 8px; padding: 1.5rem; background: #f6f8fa;">
 <h2 id="excel-template">Excel Template</h2>
 <p>The quickest way to get started. Download the pre-structured Excel template, fill in your metadata fields, and submit or archive your dataset — no technical setup required.</p>
 <p><strong>Best for:</strong> Lab researchers, one-off submissions, teams new to structured metadata.</p>
-<p><a href="getting-started/#level-1-the-vocabulary-reference-workbook">→ head over to getting started </a></p>
-</div>
-<!-- Card 2: text + nested 2x2 grid -->
-<div class="card" style="border: 1px solid #d0d7de; border-radius: 8px; padding: 1.5rem; background: #f6f8fa;">
+<p><a href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/getting-started/#level-1-the-vocabulary-reference-workbook">→ head over to getting started</a></p>
 <h2 id="linkml-schema">LinkML Schema</h2>
 <p>Semantically enrich your data using the CoreMeta4Cat LinkML schema. Ideal for programmatic workflows, repository integration, and FAIR-compliant data pipelines.</p>
-<div class="grid cards" style="color: #1a1a2e; background: #eef2fb; font-size: 0.9rem;">
 <ul>
-<li>
-<p><strong><a href="#synthesis"><img src="./images/Synthesis.svg" width="30"> Synthesis</a></strong></p>
-</li>
-<li>
-<p><strong><a href="#characterization"><img src="./images/Characterization.svg" width="30"> Characterization</a></strong></p>
-</li>
-<li>
-<p><strong><a href="#reaction"><img src="./images/Reaction.svg" width="30"> Reaction</a></strong></p>
-</li>
-<li>
-<p><strong><a href="#simulation"><img src="./images/Simulation.svg" width="30"> Simulation</a></strong></p>
-</li>
+<li><strong><a href="#synthesis"><img alt="" src="images/Synthesis.svg" /> Synthesis</a></strong></li>
+<li><strong><a href="#characterization"><img alt="" src="images/Characterization.svg" /> Characterization</a></strong></li>
+<li><strong><a href="#reaction"><img alt="" src="images/Reaction.svg" /> Reaction</a></strong></li>
+<li><strong><a href="#simulation"><img alt="" src="images/Simulation.svg" /> Simulation</a></strong></li>
 </ul>
-</div>
-</div>
-</div>
+<hr />
 <h2 id="model-structure">Model Structure</h2>
 <p>CoreMeta4Cat is organized in two concentric layers. The <strong>Inner CoreMeta4Cat</strong> captures the essential metadata every catalysis dataset must provide. The <strong>Expanded CoreMeta4Cat</strong> adds four domain-specific groups covering the full research lifecycle.</p>
 <h3 id="inner-coremeta4cat">Inner CoreMeta4Cat</h3>
@@ -1113,49 +1100,22 @@
 </tr>
 </tbody>
 </table>
-<h2 id="synthesis"><a href="synthesis/">Synthesis</a></h2>
-<div style="text-align: center;">
-    <a href="synthesis">
-    <img src="./images/Synthesis.svg" alt="Synthesis logo" style="width: 50%;">
-    </a>
-</div>
-
+<hr />
+<h2 id="synthesis"><a href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/synthesis/">Synthesis</a></h2>
+<p><a href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/synthesis"><img alt="Synthesis logo" src="images/Synthesis.svg" /></a></p>
 <p>The Synthesis metadata group defines the minimal information required to document how a catalyst is produced. It includes synthesis type, chemical components, process conditions, and preparative steps. As synthesis is fundamental to catalysis, these metadata help ensure reproducibility and provide context for how catalyst structure and performance arise from preparation methods.</p>
-<h2 id="characterization"><a href="characterization/">Characterization</a></h2>
-<div style="text-align: center;">
-    <a href="characterization">
-    <img src="./images/Characterization.svg" alt="Characterization logo" style="width: 50%;">
-    </a>
-</div>
+<h2 id="characterization"><a href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/characterization/">Characterization</a></h2>
+<p><a href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/characterization"><img alt="Characterization logo" src="images/Characterization.svg" /></a></p>
 <p>The Characterization metadata group specifies the information needed to describe the physical and chemical nature of a catalyst. It covers equipment, techniques, sample preparation, and detailed method-specific parameters (e.g., XRD, XAS, IR, Raman, NMR, GC-MS, TEM). By standardizing reporting across many analytical methods, it ensures catalyst properties are consistently documented and interpretable.</p>
-<h2 id="reaction"><a href="reaction/">Reaction</a></h2>
-<div style="text-align: center;">
-    <a href="reaction">
-    <img src="./images/Reaction.svg" alt="Reaction logo" style="width: 50%;">
-    </a>
-</div>
-
+<h2 id="reaction"><a href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/reaction/">Reaction</a></h2>
+<p><a href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/reaction"><img alt="Reaction logo" src="images/Reaction.svg" /></a></p>
 <p>The Reaction metadata group defines the minimum information required to describe the catalytic reaction under study and to evaluate catalyst performance. It captures essential parameters such as catalyst quantity, reactor design, reactants, operating conditions (temperature, pressure, atmosphere, feed composition), and product identification methods. These details ensure that catalytic experiments are transparent, comparable, and reproducible.</p>
-<h2 id="simulation"><a href="simulation/">Simulation</a></h2>
-<div style="text-align: center;">
-    <a href="simulation">
-    <img src="./images/Simulation.svg" alt="Simulation logo" style="width: 50%;">
-    </a>
-</div>
-
+<h2 id="simulation"><a href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/simulation/">Simulation</a></h2>
+<p><a href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/simulation"><img alt="Simulation logo" src="images/Simulation.svg" /></a></p>
 <p>The Simulation metadata group specifies the essential information for reporting catalysis-related computational studies. It includes software used, simulation methods (DFT, molecular dynamics, microkinetics, Monte Carlo), conditions, and calculated properties such as thermodynamic stability, electronic structure, or kinetic parameters. These metadata ensure that theoretical insights are transparent, reproducible, and aligned with experimental research.</p>
+<hr />
 <h2 id="interactive-diagram">Interactive diagram</h2>
-<p><iframe
-    src="assets/metadata_coremeta4cat_overview.html"
-    width="100%"
-    height= "455vh"
-    style="border: 2px solid #5C88DA; background-color: #F0F8FF;
-    "
-    allowfullscreen
-></iframe>
-</p>
-<h2 id="schema">Schema</h2>
-<p>The <a href="elements/overview/">Schema documentation</a> for the metadata model written in LinkML Format can be found <a href="elements/overview/">here</a></p>
+<p><a href="assets/metadata_coremeta4cat_overview.html">→ Explore the interactive metadata overview</a></p>
 
 
 

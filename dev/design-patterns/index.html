@@ -6,8 +6,6 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="How CoreMeta4Cat is structured and why">
-      
       
       
         <link rel="canonical" href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/design-patterns/">
@@ -424,15 +422,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-four-pillars" class="md-nav__link">
+  <a href="#the-four-data-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The four pillars
+        The four data classes
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="The four pillars">
+    <nav class="md-nav" aria-label="The four data classes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -518,10 +516,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pattern-4-shared-slots-in-coremeta4cat_common" class="md-nav__link">
+  <a href="#pattern-4-shared-slots-in-catcore_common" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pattern 4: Shared slots in coremeta4cat_common
+        Pattern 4: Shared slots in catcore_common
       
     </span>
   </a>
@@ -949,15 +947,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-four-pillars" class="md-nav__link">
+  <a href="#the-four-data-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The four pillars
+        The four data classes
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="The four pillars">
+    <nav class="md-nav" aria-label="The four data classes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1043,10 +1041,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pattern-4-shared-slots-in-coremeta4cat_common" class="md-nav__link">
+  <a href="#pattern-4-shared-slots-in-catcore_common" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pattern 4: Shared slots in coremeta4cat_common
+        Pattern 4: Shared slots in catcore_common
       
     </span>
   </a>
@@ -1107,12 +1105,8 @@
 
 
 <h1 id="design-patterns">Design Patterns</h1>
-<p>This page explains the key structural decisions behind CoreMeta4Cat — how the four pillars are modelled, how they connect to a dataset, and what design patterns make the schema extensible and machine-actionable.</p>
-<div style="text-align: center;">
-    <a>
-    <img src="../images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
-    </a>
-</div>
+<p>This page explains the key structural decisions behind CoreMeta4Cat — how the four data classes are modelled, how they connect to a dataset, and what design patterns make the schema extensible and machine-actionable.</p>
+<p><img alt="CoreMeta4Cat logo" src="../images/CoreMeta4Cat_Picture.png" /></p>
 <hr />
 <h2 id="reading-guide">Reading guide</h2>
 <p>This page is written in three tiers. Most users only need the first two.</p>
@@ -1128,7 +1122,7 @@
 <tr>
 <td><strong>Overview</strong></td>
 <td>Everyone — data providers, repository managers</td>
-<td><a href="#the-entry-point-catalysisdataset">The entry point</a>, <a href="#the-four-pillars">The four pillars</a></td>
+<td><a href="#the-entry-point-catalysisdataset">The entry point</a>, <a href="#the-four-data-classes">The four data classes</a></td>
 </tr>
 <tr>
 <td><strong>Pattern explanations</strong></td>
@@ -1144,7 +1138,7 @@
 </table>
 <hr />
 <h2 id="the-entry-point-catalysisdataset">The entry point: CatalysisDataset</h2>
-<p>Every CoreMeta4Cat record starts with a <strong><code>CatalysisDataset</code></strong>. This is a <code>dcat:Dataset</code> — fully compatible with plain DCAT and DCAT-AP — extended with four additional link slots that connect to the four CoreMeta4Cat pillars.</p>
+<p>Every CoreMeta4Cat record starts with a <strong><code>CatalysisDataset</code></strong>. This is a <code>dcat:Dataset</code> — fully compatible with plain DCAT and DCAT-AP — extended with four additional link slots that connect to the four CoreMeta4Cat data classes.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:dataset-001</span>
 <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span><span class="w">                  </span><span class="c1"># → dcat:Dataset</span>
 
@@ -1153,7 +1147,7 @@
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007001</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;heterogeneous</span><span class="nv"> </span><span class="s">catalysis&quot;</span>
 
-<span class="c1"># Layer 2: links to the four pillars</span>
+<span class="c1"># Layer 2: links to the four data classes</span>
 <span class="nt">was_generated_by</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:synthesis-001</span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Synthesis</span>
@@ -1176,8 +1170,8 @@
 <li><code>is_about_entity</code> links to the <strong>catalyst sample or material</strong> the dataset concerns.</li>
 </ul>
 <hr />
-<h2 id="the-four-pillars">The four pillars</h2>
-<p>The four CoreMeta4Cat pillars — <strong>Synthesis</strong>, <strong>Characterization</strong>, <strong>Reaction</strong>, and <strong>Simulation</strong> — are the core of the metadata model. Each is a separate class, defined in its own subprofile module, and linked from the <code>CatalysisDataset</code> via the slots above.</p>
+<h2 id="the-four-data-classes">The four data classes</h2>
+<p>The four CoreMeta4Cat data classes — <strong>Synthesis</strong>, <strong>Characterization</strong>, <strong>Reaction</strong>, and <strong>Simulation</strong> — are the core of the metadata model. Each is a separate class, defined in its own subprofile module, and linked from the <code>CatalysisDataset</code> via the slots above.</p>
 <div class="highlight"><pre><span></span><code>coremeta4cat.yaml  (aggregator + CatalysisDataset)
   ├── coremeta4cat_common.yaml          (shared slots and enumerations)
   ├── coremeta4cat_synthesis_ap.yaml    (Synthesis + 12 preparation methods)
@@ -1193,27 +1187,13 @@
 <li><code>had_input_entity</code> → <code>Precursor</code> instances (the starting materials)</li>
 <li><code>had_output_entity</code> → <code>CatalystSample</code> (the resulting catalyst)</li>
 </ul>
-<p><strong>Twelve preparation methods</strong> are currently defined, each as a concrete <code>PreparationMethod</code> subclass:</p>
-<div class="grid cards">
+<p>Twelve preparation methods are currently defined, each as a concrete <code>PreparationMethod</code> subclass:</p>
 <ul>
-<li>
-<p><strong>Wet chemistry</strong></p>
-<p>Impregnation, Co-Precipitation, Deposition-Precipitation, Sol-Gel, Molecular Synthesis</p>
-</li>
-<li>
-<p><strong>Thermal / gas-phase</strong></p>
-<p>Solvothermal, Combustion Synthesis, Flame Spray Pyrolysis, Sublimation, Plasma-Assisted</p>
-</li>
-<li>
-<p><strong>Mechanical / energy-assisted</strong></p>
-<p>Mechanochemical Synthesis, Microwave-Assisted, Sonochemical Synthesis</p>
-</li>
-<li>
-<p><strong>Surface / thin-film</strong></p>
-<p>Atomic Layer Deposition, Exsolution Synthesis</p>
-</li>
+<li><strong>Wet chemistry:</strong> Impregnation, Co-Precipitation, Deposition-Precipitation, Sol-Gel, Molecular Synthesis</li>
+<li><strong>Thermal / gas-phase:</strong> Solvothermal, Combustion Synthesis, Flame Spray Pyrolysis, Sublimation, Plasma-Assisted</li>
+<li><strong>Mechanical / energy-assisted:</strong> Mechanochemical Synthesis, Microwave-Assisted, Sonochemical Synthesis</li>
+<li><strong>Surface / thin-film:</strong> Atomic Layer Deposition, Exsolution Synthesis</li>
 </ul>
-</div>
 <h3 id="characterization">Characterization</h3>
 <p><strong>What it is:</strong> The measurement of a catalyst or catalytic system using an analytical technique. Characterization is also a <code>DataGeneratingActivity</code> — it produces measurement data.</p>
 <p><strong>Key links:</strong></p>
@@ -1222,7 +1202,7 @@
 <li><code>realized_plan</code> → a <code>CharacterizationTechnique</code> subclass (the measurement protocol)</li>
 <li><code>carried_out_by</code> → the instrument (<code>Device</code>) performing the measurement</li>
 </ul>
-<p><strong>Twenty-eight techniques</strong> are currently defined, organised into groups:</p>
+<p>Twenty-eight techniques are currently defined, organised into groups:</p>
 <table>
 <thead>
 <tr>
@@ -1289,8 +1269,8 @@
 <li><code>used_reactant</code> (<code>is_a: had_input_entity</code>) → the reactant feeds</li>
 <li><code>product_identification_method</code> → a <code>CharacterizationTechnique</code> used for product analysis</li>
 </ul>
-<p><strong>Eight reactor design types</strong> are defined, all specializing chemdcat-ap's generic <code>Reactor</code> class via the abstract <code>ChemicalReactor</code>:</p>
-<p><code>FixedBedReactor</code> · <code>CSTR</code> · <code>PlugFlowReactor</code> · <code>Autoclave</code> · <code>SlurryReactor</code> · <code>Microreactor</code> · <code>ElectrochemicalReactor</code> · <code>FluidizedBedReactor</code></p>
+<p>Eight reactor design types are defined:
+<code>FixedBedReactor</code> · <code>CSTR</code> · <code>PlugFlowReactor</code> · <code>Autoclave</code> · <code>SlurryReactor</code> · <code>Microreactor</code> · <code>ElectrochemicalReactor</code> · <code>FluidizedBedReactor</code></p>
 <div class="admonition info">
 <p class="admonition-title">Operando experiments</p>
 <p>For in-situ or operando experiments (e.g. XRD measured while a reaction runs), the dataset carries <strong>both</strong> links simultaneously:
@@ -1308,7 +1288,7 @@
 <li><code>carried_out_by</code> → a <code>Software</code> agent (the simulation package)</li>
 <li><code>evaluated_entity</code> → the catalyst model or structure being simulated</li>
 </ul>
-<p><strong>Twelve calculated property classes</strong> capture the type of computed output: <code>ElectronicStructure</code>, <code>BandGap</code>, <code>ThermodynamicStability</code>, <code>PhononDispersion</code>, <code>Surfaces</code>, <code>GrainBoundaries</code>, <code>ElasticConstants</code>, <code>DielectricTensors</code>, <code>EquationsOfState</code>, <code>AqueousStability</code>, <code>Piezoelectricity</code>, <code>Ferroelectrics</code>.</p>
+<p>Twelve calculated property classes capture the type of computed output: <code>ElectronicStructure</code>, <code>BandGap</code>, <code>ThermodynamicStability</code>, <code>PhononDispersion</code>, <code>Surfaces</code>, <code>GrainBoundaries</code>, <code>ElasticConstants</code>, <code>DielectricTensors</code>, <code>EquationsOfState</code>, <code>AqueousStability</code>, <code>Piezoelectricity</code>, <code>Ferroelectrics</code>.</p>
 <hr />
 <h2 id="pattern-1-classification-via-rdf_type">Pattern 1: Classification via rdf_type</h2>
 <div class="admonition abstract">
@@ -1345,7 +1325,7 @@
 <p class="admonition-title">Pattern summary</p>
 <p>A two-part structure separates <em>what was done</em> (the Activity) from <em>the protocol describing how to do it</em> (the Plan). This mirrors the PROV-O model and keeps the schema clean.</p>
 </div>
-<p>Each pillar that generates data follows this two-part structure:</p>
+<p>Each data class that generates data follows this two-part structure:</p>
 <div class="highlight"><pre><span></span><code>Activity (what was done)        Plan (the protocol)
 ─────────────────────────       ───────────────────────────
 Synthesis              ──→      PreparationMethod
@@ -1422,7 +1402,7 @@ Simulation             ──→      SimulationMethod
 </tr>
 </tbody>
 </table>
-<p>The same pattern is used in the <strong>Characterization</strong> subprofile for analytical techniques:</p>
+<p>The same pattern is used in the Characterization subprofile for analytical techniques:</p>
 <table>
 <thead>
 <tr>
@@ -1459,17 +1439,17 @@ Simulation             ──→      SimulationMethod
 </table>
 <p>In LinkML, a mixin class has no <code>class_uri</code> of its own and generates no independent node shape. It is a pure slot container, mixed in via the <code>mixins:</code> key on a concrete class.</p>
 <hr />
-<h2 id="pattern-4-shared-slots-in-coremeta4cat_common">Pattern 4: Shared slots in coremeta4cat_common</h2>
+<h2 id="pattern-4-shared-slots-in-catcore_common">Pattern 4: Shared slots in catcore_common</h2>
 <div class="admonition abstract">
 <p class="admonition-title">Pattern summary</p>
-<p>Slots referenced by two or more subprofiles are declared once in <code>coremeta4cat_common.yaml</code> and imported by all subprofiles. This keeps the schema DRY (Don't Repeat Yourself) -- but it also means editing one changes it everywhere it's used, not just in the context you had in mind. See the warning below.</p>
+<p>Slots referenced by two or more subprofiles are declared once in <code>catcore_common.yaml</code> and imported by all subprofiles. This keeps the schema DRY (Don't Repeat Yourself).</p>
 </div>
-<p>Some slots appear in multiple pillars — for example, <code>has_atmosphere</code> is relevant to Synthesis (e.g. <code>MolecularSynthesis</code>), Characterization (e.g. <code>InfraredSpectroscopy</code>, <code>NMRSpectroscopy</code>), and Reaction (<code>CatalyticReaction</code>). These shared slots live in <code>coremeta4cat_common.yaml</code>:</p>
-<div class="highlight"><pre><span></span><code>coremeta4cat_common.yaml — shared slots include:
-  has_atmosphere, solvent, has_experiment_duration,
-  has_heating_rate, has_operation_mode, has_energy,
-  number_of_scans, resolution, step_size, carrier_gas,
-  has_sample_mass, has_calcination_*, has_drying_*, ...
+<p>Some slots appear in multiple data classes — for example, <code>temperature</code> is relevant to Synthesis (calcination), Characterization (temperature-programmed experiments), and Reaction (reactor temperature). These shared slots live in <code>catcore_common.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># catcore_common.yaml — shared slots include:</span>
+<span class="l l-Scalar l-Scalar-Plain">atmosphere, temperature, flow_rate, heating_rate,</span>
+<span class="l l-Scalar l-Scalar-Plain">equipment, sample_mass, stirring_speed, stirring_duration,</span>
+<span class="l l-Scalar l-Scalar-Plain">drying_*, calcination_*, concentration, solvent,</span>
+<span class="l l-Scalar l-Scalar-Plain">experiment_duration, step_size, resolution, ...</span>
 </code></pre></div>
 <p>Slots that are exclusive to a single subprofile are declared in that subprofile file only. Physical quantity slots that belong to chemdcat-ap's own material/chemistry model (e.g. <code>has_temperature</code>, <code>has_pressure</code>) live further down the import chain, in <code>material_entities_ap.yaml</code> — see <a href="#pattern-5-specializing-chemdcat-ap-inheritance">Pattern 5</a>.</p>
 <div class="admonition warning">
@@ -1584,9 +1564,6 @@ SlurryReactor, Microreactor, ElectrochemicalReactor, FluidizedBedReactor
 
 
 
-
-  
-  
 
 
 
