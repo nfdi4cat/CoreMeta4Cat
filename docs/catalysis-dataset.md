@@ -5,7 +5,7 @@ description: The entry-point class, its global classification enum, and how to c
 
 # CatalysisDataset
 
-`CatalysisDataset` is the entry point for every CoreMeta4Cat record. It is a `dcat:Dataset` -- fully compatible with plain DCAT and DCAT-AP -- extended with a global classification field and four link slots that connect to the [four CoreMeta4Cat pillars](design-patterns.md#the-four-pillars): [Synthesis](synthesis.md), [Characterization](characterization.md), [Reaction](reaction.md), and [Simulation](simulation.md).
+`CatalysisDataset` is the entry point for every CoreMeta4Cat record. It is a `dcat:Dataset` -- fully compatible with plain DCAT and DCAT-AP -- extended with a global classification field and four link slots that connect to the [four CoreMeta4Cat pillars](design-patterns.md#the-four-data-classes): [Synthesis](synthesis.md), [Characterization](characterization.md), [Reaction](reaction.md), and [Simulation](simulation.md).
 
 This page is the reference for `CatalysisDataset` itself: its fields, the `CatalysisResearchFieldEnum` classification vocabulary, and a worked example of combining several pillars into a single dataset. For the conceptual background on *why* it's structured this way, see [Design Patterns: The entry point](design-patterns.md#the-entry-point-catalysisdataset) and [Pattern 1: Classification via rdf_type](design-patterns.md#pattern-1-classification-via-rdf_type).
 
