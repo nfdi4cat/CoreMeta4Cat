@@ -900,14 +900,14 @@ issue if a different tradeoff is wanted. See also nfdi4cat/
 CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +
 catalyst_form) or PR #118's CatalystType class hierarchy should be
 the long-term mechanism -- kept as two enums here because the
-VOC4CAT terms show CatalystType conflates the regime axis
+voc4cat terms show CatalystType conflates the regime axis
 (Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form
 axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical
-VOC4CAT ids to catalyst_form's permissible values), which are
+voc4cat ids to catalyst_form's permissible values), which are
 independent and often both apply to the same catalyst at once.</p>
 <p><strong>Data Type:</strong> CatalysisResearchFieldEnum</p>
 <p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007014"><code>VOC4CAT:0007014</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007014"><code>voc4cat:0007014</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_type/">catalyst_type</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_type target="_blank" class="md-button md-button--primary">
@@ -935,7 +935,7 @@ from catalyst_type (the catalytic regime).</p>
 (desired) products (e.g. "ammonia synthesis", "Fischer-Tropsch synthesis").</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007009"><code>VOC4CAT:0007009</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007009"><code>voc4cat:0007009</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/reaction_name/">reaction_name</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reaction_name target="_blank" class="md-button md-button--primary">
@@ -950,7 +950,7 @@ QuantitativeRange with min_value and max_value (unit_code: "Cel").
 For a single set-point, set min_value equal to max_value.</p>
 <p><strong>Data Type:</strong> QuantitativeRange</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007032"><code>VOC4CAT:0007032</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007032"><code>voc4cat:0007032</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/reactor_temperature_range/">reactor_temperature_range</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-QuantitativeRange" open="open">
@@ -1005,7 +1005,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Gaseous environment or atmospheric conditions during a process.</p>
 <p><strong>Data Type:</strong> Atmosphere</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>VOC4CAT:0007809</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007809"><code>voc4cat:0007809</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_atmosphere/">has_atmosphere</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-Atmosphere" open="open">
@@ -1025,7 +1025,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").</p>
 <summary><strong>CalcinationGaseousEnvironment</strong></summary>
 <p><strong>Description:</strong> The specific gaseous environment maintained during a calcination step
 (e.g. "air", "N2", "10% O2/N2").</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>VOC4CAT:0000055</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000055"><code>voc4cat:0000055</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/CalcinationGaseousEnvironment/">CalcinationGaseousEnvironment</a></p>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalcinationGaseousEnvironment target="_blank" class="md-button md-button--primary">
@@ -1044,7 +1044,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").</p>
 <p><strong>Description:</strong> Total pressure in the reactor during the experiment.</p>
 <p><strong>Data Type:</strong> Pressure</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000118"><code>VOC4CAT:0000118</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000118"><code>voc4cat:0000118</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/experiment_pressure/">experiment_pressure</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-Pressure" open="open">
@@ -2767,7 +2767,7 @@ further specializes chemdcat-ap's generic Reactor for catalysis use cases.</p>
 <p>Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify
 reactor geometry and operating mode.
 Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007018"><code>VOC4CAT:0007018</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007018"><code>voc4cat:0007018</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/ChemicalReactor/">ChemicalReactor</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -2906,7 +2906,7 @@ Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).</p
 <summary><strong>ElectrochemicalReactor</strong></summary>
 <p><strong>Description:</strong> Electrochemical reactor used in electrocatalytic experiments, including
 H-cells, flow cells, and membrane electrode assemblies.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000193"><code>VOC4CAT:0000193</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000193"><code>voc4cat:0000193</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/ElectrochemicalReactor/">ElectrochemicalReactor</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -2916,7 +2916,7 @@ the negative electrode in an electrolytic cell, while it is the
 positive electrode in a galvanic cell.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007254"><code>VOC4CAT:0007254</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007254"><code>voc4cat:0007254</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_cathode/">has_cathode</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_cathode target="_blank" class="md-button md-button--primary">
@@ -2931,7 +2931,7 @@ the positive electrode in an electrolytic cell, while it is the
 negative electrode in a galvanic cell.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007255"><code>VOC4CAT:0007255</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007255"><code>voc4cat:0007255</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_anode/">has_anode</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20has_anode target="_blank" class="md-button md-button--primary">
@@ -2959,7 +2959,7 @@ of energy conversion.</p>
 electrode which is active.</p>
 <p><strong>Data Type:</strong> Area</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007258"><code>VOC4CAT:0007258</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007258"><code>voc4cat:0007258</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_active_area/">has_active_area</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-Area">
@@ -2985,7 +2985,7 @@ electrode which is active.</p>
 causing (or is caused by) chemical reactions.</p>
 <p><strong>Data Type:</strong> ElectricCurrent</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007259"><code>VOC4CAT:0007259</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007259"><code>voc4cat:0007259</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/faradaic_current/">faradaic_current</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-ElectricCurrent">
@@ -3141,7 +3141,7 @@ causing (or is caused by) chemical reactions.</p>
 <summary><strong>CSTR</strong></summary>
 <p><strong>Description:</strong> Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow
 reactor operating at steady state.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007019"><code>VOC4CAT:0007019</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007019"><code>voc4cat:0007019</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/CSTR/">CSTR</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -3150,7 +3150,7 @@ reactor operating at steady state.</p>
 revolutions per unit time (e.g. revolutions per minute).</p>
 <p><strong>Data Type:</strong> AngularVelocity</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008114"><code>VOC4CAT:0008114</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008114"><code>voc4cat:0008114</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/stirring_rate/">stirring_rate</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-AngularVelocity">
@@ -3196,7 +3196,7 @@ exiting.</p>
 of pipes and valves connected to the reactor is not included.</p>
 <p><strong>Data Type:</strong> Volume</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000153"><code>VOC4CAT:0000153</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000153"><code>voc4cat:0000153</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/reactor_working_volume/">reactor_working_volume</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3242,7 +3242,7 @@ distance across the rotating blade or mixing head from one tip to
 the opposite tip.</p>
 <p><strong>Data Type:</strong> LengthQuantity</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008115"><code>VOC4CAT:0008115</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008115"><code>voc4cat:0008115</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/stirrer_diameter/">stirrer_diameter</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3266,7 +3266,7 @@ shaft) stirrer. Distinct from the synthesis-context stirrer_type slot
 may use different equipment.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008113"><code>VOC4CAT:0008113</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008113"><code>voc4cat:0008113</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/reactor_stirrer_type/">reactor_stirrer_type</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_stirrer_type target="_blank" class="md-button md-button--primary">
@@ -3410,7 +3410,7 @@ may use different equipment.</p>
 <summary><strong>PlugFlowReactor</strong></summary>
 <p><strong>Description:</strong> Plug flow reactor (PFR) — a tubular reactor in which reactant composition
 varies along the axis with no axial mixing.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007102"><code>VOC4CAT:0007102</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007102"><code>voc4cat:0007102</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/PlugFlowReactor/">PlugFlowReactor</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -3494,7 +3494,7 @@ downflow, horizontal).</p>
 sample, typically reported as diameter or sieve fraction range.</p>
 <p><strong>Data Type:</strong> LengthQuantity</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008212"><code>VOC4CAT:0008212</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008212"><code>voc4cat:0008212</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_particle_size/">catalyst_particle_size</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -3668,7 +3668,7 @@ stirring, mechanical overhead stirring, rocking, none).</p>
 from vessel_material, the material of the outer pressure vessel/shell.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000156"><code>VOC4CAT:0000156</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000156"><code>voc4cat:0000156</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/reaction_chamber_material/">reaction_chamber_material</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reaction_chamber_material target="_blank" class="md-button md-button--primary">
@@ -3874,7 +3874,7 @@ suspended in a liquid phase through which gas is bubbled.</p>
 sample, typically reported as diameter or sieve fraction range.</p>
 <p><strong>Data Type:</strong> LengthQuantity</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008212"><code>VOC4CAT:0008212</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008212"><code>voc4cat:0008212</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_particle_size/">catalyst_particle_size</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4097,7 +4097,7 @@ in revolutions per unit time.</p>
 <p><strong>Description:</strong> Microreactor — a miniaturised flow reactor with characteristic dimensions
 in the sub-millimetre range, enabling precise thermal control and rapid
 screening.</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000234"><code>VOC4CAT:0000234</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000234"><code>voc4cat:0000234</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/Microreactor/">Microreactor</a></p>
 <p><strong>Slots</strong></p>
 <details>
@@ -4289,7 +4289,7 @@ The most common reactor type in heterogeneous catalysis testing.</p>
 sample, typically reported as diameter or sieve fraction range.</p>
 <p><strong>Data Type:</strong> LengthQuantity</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008212"><code>VOC4CAT:0008212</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008212"><code>voc4cat:0008212</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_particle_size/">catalyst_particle_size</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4329,7 +4329,7 @@ sample, typically reported as diameter or sieve fraction range.</p>
 fixed bed reactor.</p>
 <p><strong>Data Type:</strong> Volume</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007021"><code>VOC4CAT:0007021</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007021"><code>voc4cat:0007021</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_bed_volume/">catalyst_bed_volume</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>
@@ -4350,7 +4350,7 @@ fixed bed reactor.</p>
 bed properties (e.g. improve heat/mass transfer, dilute activity).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008218"><code>VOC4CAT:0008218</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008218"><code>voc4cat:0008218</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_dilution_material/">catalyst_dilution_material</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_dilution_material target="_blank" class="md-button md-button--primary">
@@ -4364,7 +4364,7 @@ bed properties (e.g. improve heat/mass transfer, dilute activity).</p>
 measured along the direction of flow.</p>
 <p><strong>Data Type:</strong> LengthQuantity</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008217"><code>VOC4CAT:0008217</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008217"><code>voc4cat:0008217</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_bed_height/">catalyst_bed_height</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details>

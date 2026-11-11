@@ -1018,7 +1018,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Synthesis/">Synthesis</a></td>
-<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
+<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DataAnalysis/">DataAnalysis</a></td>
@@ -1150,7 +1150,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalysisDataset/">CatalysisDataset</a></td>
-<td>A dcat:Dataset that contains research data in the field of catalysis.<br><br>The catalysis research field is expressed via rdf_type using a voc4cat<br>term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).<br>For example, a dataset from heterogeneous catalysis research would carry:<br>  rdf_type:<br>    id: VOC4CAT:0007001<br>    title: "heterogeneous catalysis"<br><br>The four CoreMeta4Cat minimum information pillars are linked via the slots<br>below, each pointing to the corresponding DataGeneratingActivity or<br>EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.</td>
+<td>A dcat:Dataset that contains research data in the field of catalysis.<br><br>The catalysis research field is expressed via rdf_type using a voc4cat<br>term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).<br>For example, a dataset from heterogeneous catalysis research would carry:<br>  rdf_type:<br>    id: voc4cat:0007001<br>    title: "heterogeneous catalysis"<br><br>The four CoreMeta4Cat minimum information pillars are linked via the slots<br>below, each pointing to the corresponding DataGeneratingActivity or<br>EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ReactionMonitoringDataset/">ReactionMonitoringDataset</a></td>
@@ -1218,7 +1218,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalystSample/">CatalystSample</a></td>
-<td>A MaterialSample that is the product of a catalyst Synthesis.<br>The specific type of catalyst (e.g. heterogeneous, supported metal)<br>is expressed via rdf_type using a VOC4CAT term.</td>
+<td>A MaterialSample that is the product of a catalyst Synthesis.<br>The specific type of catalyst (e.g. heterogeneous, supported metal)<br>is expressed via rdf_type using a voc4cat term.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Precursor/">Precursor</a></td>
@@ -1402,7 +1402,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/PreparationMethod/">PreparationMethod</a></td>
-<td>An abstract Plan describing the protocol used to prepare a catalyst.<br>Concrete subclasses (Impregnation, CoPrecipitation, …) specify the<br>method-specific parameters. Linked from Synthesis via realized_plan.<br><br>The specific preparation method type should additionally be expressed<br>via rdf_type on the Synthesis activity using a voc4cat term<br>(e.g. VOC4CAT:0007016 for preparation method).</td>
+<td>An abstract Plan describing the protocol used to prepare a catalyst.<br>Concrete subclasses (Impregnation, CoPrecipitation, …) specify the<br>method-specific parameters. Linked from Synthesis via realized_plan.<br><br>The specific preparation method type should additionally be expressed<br>via rdf_type on the Synthesis activity using a voc4cat term<br>(e.g. voc4cat:0007016 for preparation method).</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/AtomicLayerDeposition/">AtomicLayerDeposition</a></td>
@@ -1509,6 +1509,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Abstract QualitativeAttribute representing a property computed by a<br>Simulation. Concrete subclasses carry the property-specific output<br>values and the computational settings used to produce them.<br>Linked from Simulation via the calculated_property slot.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/AdsorptionEnergetics/">AdsorptionEnergetics</a></td>
+<td>Adsorption energetics of a species on a catalyst surface or site, computed from periodic slab or cluster models. Essential for constructing reaction energy profiles and identifying activity descriptors.</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/AqueousStability/">AqueousStability</a></td>
 <td>Electrochemical (Pourbaix) stability of a catalyst in aqueous solution as<br>a function of pH and electrode potential. Critical for electrocatalyst<br>stability screening.</td>
 </tr>
@@ -1517,12 +1521,20 @@ slots and enums) and the four subprofile modules.</p>
 <td>Electronic band gap and its character (direct/indirect), with optional<br>many-body (GW) or excitonic corrections. Critical for photocatalyst<br>and semiconductor catalyst screening.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalyticDescriptors/">CatalyticDescriptors</a></td>
+<td>Computed descriptors that correlate with catalytic activity or selectivity, such as d-band centres or linear scaling relations.</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DielectricTensors/">DielectricTensors</a></td>
 <td>Dielectric tensor computed from density functional perturbation theory (DFPT).<br>Characterises the optical and static dielectric response of a material.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElasticConstants/">ElasticConstants</a></td>
 <td>Elastic mechanical properties of a material derived from the elastic tensor,<br>including bulk modulus, shear modulus, and Young's modulus.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElectrochemicalFreeEnergy/">ElectrochemicalFreeEnergy</a></td>
+<td>Potential-dependent free energetics of electrocatalytic reactions, e.g. from the computational hydrogen electrode, yielding limiting potentials and theoretical overpotentials.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ElectronicStructure/">ElectronicStructure</a></td>
@@ -1549,12 +1561,20 @@ slots and enums) and the four subprofile modules.</p>
 <td>Piezoelectric response of a non-centrosymmetric material, described by the<br>piezoelectric tensor. Relevant for piezocatalysis applications.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ReactionEnergetics/">ReactionEnergetics</a></td>
+<td>Thermochemistry of an elementary reaction step on a catalyst, given as the energy difference between its initial and final states.</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Surfaces/">Surfaces</a></td>
 <td>Surface properties of a catalyst computed from a periodic slab model,<br>including surface energy, Miller index, slab thickness, and vacuum spacing.<br>Central to heterogeneous catalysis modelling.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ThermodynamicStability/">ThermodynamicStability</a></td>
 <td>Thermodynamic stability of a material or phase, characterised by formation<br>energy, convex hull distance, and competing phases. Used to screen catalyst<br>stability and predict synthesis feasibility.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/TransitionState/">TransitionState</a></td>
+<td>Transition state of an elementary reaction step and its activation barrier, located by a transition state search method.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/HeatingProcedure/">HeatingProcedure</a></td>
@@ -1861,19 +1881,31 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td><a href="../slots/activation_energy/">activation_energy</a></td>
-<td>Activation energy for each elementary step in the reaction mechanism.</td>
+<td>Activation energy for each elementary step in the reaction mechanism. Used here as an input parameter of the microkinetic model; where the barrier was computed, report it via the TransitionState calculated property and reference it here.</td>
 </tr>
 <tr>
 <td><a href="../slots/activity_designator/">activity_designator</a></td>
 <td>Internal type designator for CatalysisDataGeneratingActivity subclasses<br>(Synthesis, Characterization, Simulation). Only needs to be set by hand<br>when nesting one of these inside another object's was_generated_by list<br>(e.g. in a combined CatalysisDataset file) -- LinkML fills it in<br>automatically when a class is instantiated directly.</td>
 </tr>
 <tr>
+<td><a href="../slots/adsorbate/">adsorbate</a></td>
+<td>Chemical identity of the adsorbed species (e.g. "CO", "OH", "CH3", "N2H"). Use a chemical formula or SMILES.</td>
+</tr>
+<tr>
 <td><a href="../slots/adsorbate_gas/">adsorbate_gas</a></td>
 <td>Adsorbate gas used in BET surface area measurement (e.g. N2, Ar).</td>
 </tr>
 <tr>
+<td><a href="../slots/adsorption_energy/">adsorption_energy</a></td>
+<td>Adsorption energy, E_ads = E(slab+adsorbate) - E(slab) - E(reference species). Negative values indicate exothermic binding.</td>
+</tr>
+<tr>
 <td><a href="../slots/adsorption_gas/">adsorption_gas</a></td>
 <td>Probe gas adsorbed during in-situ DRIFTS measurement.</td>
+</tr>
+<tr>
+<td><a href="../slots/adsorption_site/">adsorption_site</a></td>
+<td>Adsorption site of the adsorbate (e.g. top, bridge, fcc hollow, hcp hollow, step edge, oxygen vacancy, single-atom site).</td>
 </tr>
 <tr>
 <td><a href="../slots/agitation_sparging_rate/">agitation_sparging_rate</a></td>
@@ -1902,6 +1934,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/application_profile/">application_profile</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
+</tr>
+<tr>
+<td><a href="../slots/applied_potential/">applied_potential</a></td>
+<td>Electrode potential at which free energies were evaluated.</td>
 </tr>
 <tr>
 <td><a href="../slots/availability/">availability</a></td>
@@ -1950,6 +1986,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/beginning/">beginning</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
+</tr>
+<tr>
+<td><a href="../slots/bep_relation/">bep_relation</a></td>
+<td>Brønsted–Evans–Polanyi relation between activation energies and reaction energies (slope and intercept).</td>
 </tr>
 <tr>
 <td><a href="../slots/born_effective_charges/">born_effective_charges</a></td>
@@ -2041,7 +2081,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td><a href="../slots/catalyst_type/">catalyst_type</a></td>
-<td>The catalytic regime of the reaction (e.g. heterogeneous, homogeneous,<br>biocatalysis, electrocatalysis, photocatalysis). For the physical<br>form/presentation of the catalyst itself, use catalyst_form instead.<br><br>Deliberately kept <code>recommended</code> rather than <code>required</code> (see nfdi4cat/<br>CoreMeta4Cat#117): classification here can be genuinely disputed or<br>not yet covered by CatalysisResearchFieldEnum for a novel catalyst,<br>and forcing a value would push researchers into a premature or<br>contested classification rather than leaving the field unset until<br>consensus/vocabulary catches up. Open for discussion in a follow-up<br>issue if a different tradeoff is wanted. See also nfdi4cat/<br>CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +<br>catalyst_form) or PR #118's CatalystType class hierarchy should be<br>the long-term mechanism -- kept as two enums here because the<br>VOC4CAT terms show CatalystType conflates the regime axis<br>(Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form<br>axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical<br>VOC4CAT ids to catalyst_form's permissible values), which are<br>independent and often both apply to the same catalyst at once.</td>
+<td>The catalytic regime of the reaction (e.g. heterogeneous, homogeneous,<br>biocatalysis, electrocatalysis, photocatalysis). For the physical<br>form/presentation of the catalyst itself, use catalyst_form instead.<br><br>Deliberately kept <code>recommended</code> rather than <code>required</code> (see nfdi4cat/<br>CoreMeta4Cat#117): classification here can be genuinely disputed or<br>not yet covered by CatalysisResearchFieldEnum for a novel catalyst,<br>and forcing a value would push researchers into a premature or<br>contested classification rather than leaving the field unset until<br>consensus/vocabulary catches up. Open for discussion in a follow-up<br>issue if a different tradeoff is wanted. See also nfdi4cat/<br>CoreMeta4Cat#116 on whether this two-slot design (catalyst_type +<br>catalyst_form) or PR #118's CatalystType class hierarchy should be<br>the long-term mechanism -- kept as two enums here because the<br>voc4cat terms show CatalystType conflates the regime axis<br>(Heterogeneous/Homogeneous/Bio/Electro/Photo) with the physical-form<br>axis (ThinFilm/Bulk/Powdered/DepositedSample/Supported -- identical<br>voc4cat ids to catalyst_form's permissible values), which are<br>independent and often both apply to the same catalyst at once.</td>
 </tr>
 <tr>
 <td><a href="../slots/cell_operating_mode/">cell_operating_mode</a></td>
@@ -2148,6 +2188,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Solvent(s) used for crystallisation.</td>
 </tr>
 <tr>
+<td><a href="../slots/d_band_center/">d_band_center</a></td>
+<td>Centre of the d-band projected density of states, relative to the Fermi level.</td>
+</tr>
+<tr>
 <td><a href="../slots/dataset_distribution/">dataset_distribution</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
@@ -2170,6 +2214,14 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/description/">description</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
+</tr>
+<tr>
+<td><a href="../slots/descriptor_type/">descriptor_type</a></td>
+<td>Type of activity descriptor (e.g. d-band centre, adsorption energy of a key intermediate, generalised coordination number, O p-band centre).</td>
+</tr>
+<tr>
+<td><a href="../slots/descriptor_value/">descriptor_value</a></td>
+<td>Value of the descriptor; state the unit together with the descriptor type.</td>
 </tr>
 <tr>
 <td><a href="../slots/detection_limit/">detection_limit</a></td>
@@ -2224,6 +2276,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Configuration of electrodes used in conductivity measurement (e.g. 2-probe, 4-probe).</td>
 </tr>
 <tr>
+<td><a href="../slots/electrode_potential_model/">electrode_potential_model</a></td>
+<td>Model used to treat the electrode potential (e.g. computational hydrogen electrode, constant-potential / grand-canonical DFT).</td>
+</tr>
+<tr>
 <td><a href="../slots/electrolyte_composition/">electrolyte_composition</a></td>
 <td>Chemical composition of the electrolyte solution.</td>
 </tr>
@@ -2234,6 +2290,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/element_analyzed/">element_analyzed</a></td>
 <td>Chemical element analysed (e.g. Fe, Cu, Pt).</td>
+</tr>
+<tr>
+<td><a href="../slots/elementary_step/">elementary_step</a></td>
+<td>Elementary reaction step written as an equation, with * denoting a free surface site (e.g. "CO<em> + O</em> -&gt; CO2(g) + 2*").</td>
 </tr>
 <tr>
 <td><a href="../slots/elements_analyzed/">elements_analyzed</a></td>
@@ -2272,8 +2332,16 @@ slots and enums) and the four subprofile modules.</p>
 <td>Distance above the convex hull of stable phases (thermodynamic stability<br>metric). Zero for phases on the hull; positive values indicate metastability.</td>
 </tr>
 <tr>
+<td><a href="../slots/energy_correction_type/">energy_correction_type</a></td>
+<td>Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.</td>
+</tr>
+<tr>
 <td><a href="../slots/energy_cutoff/">energy_cutoff</a></td>
 <td>Plane-wave kinetic energy cutoff for the basis set expansion.</td>
+</tr>
+<tr>
+<td><a href="../slots/energy_reference/">energy_reference</a></td>
+<td>Reference species and states used to compute relative energies (e.g. "CO(g)", "1/2 H2(g)", "H2O(g) and H2(g)").</td>
 </tr>
 <tr>
 <td><a href="../slots/energy_resolution/">energy_resolution</a></td>
@@ -2368,6 +2436,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Device used for filtration.</td>
 </tr>
 <tr>
+<td><a href="../slots/final_state/">final_state</a></td>
+<td>Description of the final-state configuration of the elementary step.</td>
+</tr>
+<tr>
 <td><a href="../slots/final_temperature/">final_temperature</a></td>
 <td>Final temperature at the end of a thermal analysis run.</td>
 </tr>
@@ -2406,6 +2478,14 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/formation_energy/">formation_energy</a></td>
 <td>Formation energy per atom relative to elemental reference states.</td>
+</tr>
+<tr>
+<td><a href="../slots/forward_activation_energy/">forward_activation_energy</a></td>
+<td>Activation energy of the forward step, E_a = E(transition state) - E(initial state).</td>
+</tr>
+<tr>
+<td><a href="../slots/free_energy_temperature/">free_energy_temperature</a></td>
+<td>Temperature at which free energy corrections were evaluated.</td>
 </tr>
 <tr>
 <td><a href="../slots/frequency/">frequency</a></td>
@@ -2776,6 +2856,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Spatial resolution of SEM images.</td>
 </tr>
 <tr>
+<td><a href="../slots/imaginary_frequency/">imaginary_frequency</a></td>
+<td>Imaginary vibrational frequency associated with the reaction coordinate at the transition state.</td>
+</tr>
+<tr>
 <td><a href="../slots/imaginary_modes/">imaginary_modes</a></td>
 <td>Whether imaginary (soft) phonon modes are present in the dispersion.<br>Imaginary modes indicate dynamical instability of the structure.</td>
 </tr>
@@ -2806,6 +2890,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/inchikey/">inchikey</a></td>
 <td>The slot to provide the InChiKey of a ChemicalEntity.</td>
+</tr>
+<tr>
+<td><a href="../slots/initial_state/">initial_state</a></td>
+<td>Description of the initial-state configuration of the elementary step.</td>
 </tr>
 <tr>
 <td><a href="../slots/initial_temperature/">initial_temperature</a></td>
@@ -2898,6 +2986,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/light_wavelength/">light_wavelength</a></td>
 <td>Wavelength of the laser used in DLS measurement.</td>
+</tr>
+<tr>
+<td><a href="../slots/limiting_potential/">limiting_potential</a></td>
+<td>Highest (least negative) potential at which all electrochemical steps are exergonic.</td>
 </tr>
 <tr>
 <td><a href="../slots/linked_schemas/">linked_schemas</a></td>
@@ -3020,6 +3112,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).</td>
 </tr>
 <tr>
+<td><a href="../slots/number_of_images/">number_of_images</a></td>
+<td>Number of intermediate images used in a NEB or string calculation.</td>
+</tr>
+<tr>
 <td><a href="../slots/number_of_scans/">number_of_scans</a></td>
 <td>Number of scans or accumulations recorded.</td>
 </tr>
@@ -3112,8 +3208,16 @@ slots and enums) and the four subprofile modules.</p>
 <td>Post-synthesis treatment applied to the combustion product.</td>
 </tr>
 <tr>
+<td><a href="../slots/potential_determining_step/">potential_determining_step</a></td>
+<td>Elementary step that determines the limiting potential.</td>
+</tr>
+<tr>
 <td><a href="../slots/potential_range/">potential_range</a></td>
 <td>Electrode potential range covered in the Pourbaix diagram<br>(e.g. "-2 to +2 V vs SHE").</td>
+</tr>
+<tr>
+<td><a href="../slots/potential_reference_scale/">potential_reference_scale</a></td>
+<td>Reference scale of the reported potentials (e.g. RHE, SHE).</td>
 </tr>
 <tr>
 <td><a href="../slots/power/">power</a></td>
@@ -3208,6 +3312,14 @@ slots and enums) and the four subprofile modules.</p>
 <td>Material used for the construction of the inner reaction chamber<br>(the surface in direct contact with the reaction mixture). Distinct<br>from vessel_material, the material of the outer pressure vessel/shell.</td>
 </tr>
 <tr>
+<td><a href="../slots/reaction_energy/">reaction_energy</a></td>
+<td>Reaction energy of the elementary step, ΔE = E(final state) - E(initial state).</td>
+</tr>
+<tr>
+<td><a href="../slots/reaction_free_energy/">reaction_free_energy</a></td>
+<td>Gibbs free energy change of the elementary step, ΔG, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.</td>
+</tr>
+<tr>
 <td><a href="../slots/reaction_name/">reaction_name</a></td>
 <td>A name for the catalytic reaction which assigns the reactants and<br>(desired) products (e.g. "ammonia synthesis", "Fischer-Tropsch synthesis").</td>
 </tr>
@@ -3280,6 +3392,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Resolution of a measurement or detector.</td>
 </tr>
 <tr>
+<td><a href="../slots/reverse_activation_energy/">reverse_activation_energy</a></td>
+<td>Activation energy of the reverse step, E(transition state) - E(final state).</td>
+</tr>
+<tr>
 <td><a href="../slots/rights/">rights</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
@@ -3310,6 +3426,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/sampling_interval/">sampling_interval</a></td>
 <td>Interval between successive MC snapshots used for property averaging.</td>
+</tr>
+<tr>
+<td><a href="../slots/scaling_relation/">scaling_relation</a></td>
+<td>Linear scaling relation between adsorption energies (e.g. "ΔE_OH = 0.50 ΔE_O + 0.10 eV").</td>
 </tr>
 <tr>
 <td><a href="../slots/scan_potential_range/">scan_potential_range</a></td>
@@ -3548,6 +3668,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
 <tr>
+<td><a href="../slots/theoretical_overpotential/">theoretical_overpotential</a></td>
+<td>Difference between the equilibrium potential of the reaction and the limiting potential.</td>
+</tr>
+<tr>
 <td><a href="../slots/title/">title</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
@@ -3562,6 +3686,14 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/trace_ion_detection/">trace_ion_detection</a></td>
 <td>Trace ion detection setting or threshold.</td>
+</tr>
+<tr>
+<td><a href="../slots/ts_search_method/">ts_search_method</a></td>
+<td>Method used to locate the transition state (e.g. NEB, CI-NEB, dimer method, growing string method, constrained optimisation).</td>
+</tr>
+<tr>
+<td><a href="../slots/ts_verification_method/">ts_verification_method</a></td>
+<td>Method used to verify the transition state (e.g. vibrational analysis showing a single imaginary mode, intrinsic reaction coordinate (IRC)).</td>
 </tr>
 <tr>
 <td><a href="../slots/tube_internal_diameter/">tube_internal_diameter</a></td>
@@ -3650,6 +3782,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/young_modulus/">young_modulus</a></td>
 <td>Young's modulus (stiffness under uniaxial tension or compression).</td>
+</tr>
+<tr>
+<td><a href="../slots/zero_point_energy_correction/">zero_point_energy_correction</a></td>
+<td>Zero-point energy correction applied to the reported energy.</td>
 </tr>
 </tbody>
 </table>
@@ -3813,7 +3949,7 @@ slots and enums) and the four subprofile modules.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../subsets/DomainAgnosticCore/">DomainAgnosticCore</a></td>
+<td><a href="../subsets/domain_agnostic_core/">domain_agnostic_core</a></td>
 <td>The elements of this subset are considered the core layer of our DCAT-AP extension.</td>
 </tr>
 </tbody>

@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +835,8 @@
 
 <h1 id="slot-vessel_internal_volume">Slot: vessel_internal_volume</h1>
 <p><em>The internal (working) volume of the autoclave vessel.</em></p>
-<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/slot/vessel_internal_volume">coremeta4cat:slot/vessel_internal_volume</a>
-Alias: vessel_internal_volume</p>
+<div>
+<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/slot/vessel_internal_volume">coremeta4cat:slot/vessel_internal_volume</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_quantitative_attribute/">has_quantitative_attribute</a><ul>
@@ -848,17 +865,47 @@ Alias: vessel_internal_volume</p>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../classes/Volume/">Volume</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/Volume/">Volume</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/Autoclave/">Autoclave</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -890,7 +937,6 @@ Alias: vessel_internal_volume</p>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_volume</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vessel_internal_volume</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Volume</span>
@@ -900,12 +946,16 @@ Alias: vessel_internal_volume</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

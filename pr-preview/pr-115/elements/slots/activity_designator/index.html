@@ -733,6 +733,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -811,10 +828,9 @@
 <p><em>when nesting one of these inside another object's was_generated_by list</em></p>
 <p><em>(e.g. in a combined CatalysisDataset file) -- LinkML fills it in</em></p>
 <p><em>automatically when a class is instantiated directly.</em></p>
-<p>URI: <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">rdf:type</a>
-Alias: activity_designator</p>
+<div>
+<p>URI: <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">rdf:type</a></p>
 <!-- no inheritance hierarchy -->
-
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -832,7 +848,7 @@ Alias: activity_designator</p>
 </tr>
 <tr>
 <td><a href="../../classes/Synthesis/">Synthesis</a></td>
-<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
+<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
 <td>no</td>
 </tr>
 <tr>
@@ -848,9 +864,47 @@ Alias: activity_designator</p>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>Range: <a href="../../types/String/">String</a></li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../types/String/">String</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/CatalysisDataGeneratingActivity/">CatalysisDataGeneratingActivity</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">rdf:type</a></td>
+</tr>
+<tr>
+<td>### Slot Characteristics</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Designates Type</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -891,18 +945,21 @@ Alias: activity_designator</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf:type</span>
 <span class="nt">designates_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">activity_designator</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataGeneratingActivity</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

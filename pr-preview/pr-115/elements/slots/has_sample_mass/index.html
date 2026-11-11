@@ -744,6 +744,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type-and-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type and Range
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -818,8 +835,8 @@
 
 <h1 id="slot-has_sample_mass">Slot: has_sample_mass</h1>
 <p><em>Mass of the sample used in a process or measurement.</em></p>
-<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a>
-Alias: has_sample_mass</p>
+<div>
+<p>URI: <a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></p>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../has_quantitative_attribute/">has_quantitative_attribute</a><ul>
@@ -841,29 +858,63 @@ Alias: has_sample_mass</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/BET/">BET</a></td>
-<td>Brunauer-Emmett-Teller analysis for specific surface area and pore size distribution.</td>
+<td><a href="../../classes/Thermogravimetry/">Thermogravimetry</a></td>
+<td>Thermogravimetric analysis (TGA/DTG) for mass loss, decomposition, and oxidation state characterization.</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../../classes/Thermogravimetry/">Thermogravimetry</a></td>
-<td>Thermogravimetric analysis (TGA/DTG) for mass loss, decomposition, and oxidation state characterization.</td>
+<td><a href="../../classes/BET/">BET</a></td>
+<td>Brunauer-Emmett-Teller analysis for specific surface area and pore size distribution.</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
-<ul>
-<li>
-<p>Range: <a href="../../classes/Mass/">Mass</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
-</ul>
+<h3 id="type-and-range">Type and Range</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range</td>
+<td><a href="../../classes/Mass/">Mass</a></td>
+</tr>
+<tr>
+<td>Domain Of</td>
+<td><a href="../../classes/Thermogravimetry/">Thermogravimetry</a>, <a href="../../classes/BET/">BET</a></td>
+</tr>
+<tr>
+<td>Slot URI</td>
+<td><a href="http://semanticscience.org/resource/SIO_000008">SIO:000008</a></td>
+</tr>
+<tr>
+<td>### Cardinality and Requirements</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recommended</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Multivalued</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -896,7 +947,6 @@ Alias: has_sample_mass</p>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_mass</span>
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SIO:000008</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_sample_mass</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Thermogravimetry</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BET</span>
@@ -907,12 +957,16 @@ Alias: has_sample_mass</p>
 <span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
+</div>
 
 
 
 
 
 
+
+  
+  
 
 
 

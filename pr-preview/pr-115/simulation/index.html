@@ -1364,11 +1364,11 @@ Distinct from the electronic k-point mesh.</p>
 </p>
 </details>
 <details>
-<summary><strong>imaginary modes</strong> (Optional)</summary>
+<summary><strong>imaginary modes</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Whether imaginary (soft) phonon modes are present in the dispersion.
 Imaginary modes indicate dynamical instability of the structure.</p>
 <p><strong>Data Type:</strong> boolean</p>
-<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/imaginary_modes"><code>coremeta4cat:imaginary_modes</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/imaginary_modes/">imaginary_modes</a></p>
 <p>
@@ -1833,11 +1833,11 @@ electronic properties of a catalyst relevant to activity descriptors
 </p>
 </details>
 <details>
-<summary><strong>spin polarized</strong> (Optional)</summary>
+<summary><strong>spin polarized</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Whether the electronic structure calculation is spin-polarized
 (accounts for spin-up and spin-down electrons separately).</p>
 <p><strong>Data Type:</strong> boolean</p>
-<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/spin_polarized"><code>coremeta4cat:spin_polarized</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/spin_polarized/">spin_polarized</a></p>
 <p>
@@ -2089,7 +2089,7 @@ and semiconductor catalyst screening.</p>
 calculated band gap.</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0005056"><code>VOC4CAT:0005056</code></a></p>
+<p><strong>CURIE:</strong> <a href="VOC4CAT:0005056"><code>VOC4CAT:0005056</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/material_sample/">material_sample</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_sample target="_blank" class="md-button md-button--primary">
@@ -2154,11 +2154,11 @@ surface slab, defect supercell).</p>
 </p>
 </details>
 <details>
-<summary><strong>gw hybrid correction</strong> (Optional)</summary>
+<summary><strong>gw hybrid correction</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Whether a many-body GW correction or hybrid functional (e.g. HSE06)
 was applied to correct the DFT band gap underestimation.</p>
 <p><strong>Data Type:</strong> boolean</p>
-<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/gw_hybrid_correction"><code>coremeta4cat:gw_hybrid_correction</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/gw_hybrid_correction/">gw_hybrid_correction</a></p>
 <p>
@@ -2254,6 +2254,61 @@ geometry optimisation (e.g. energy &lt; 1e-5 eV, forces &lt; 0.02 eV/A).</p>
 </details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20BandGap target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details id="schema-class-AdsorptionEnergetics">
+<summary><strong>AdsorptionEnergetics</strong></summary>
+<p><strong>Description:</strong> Adsorption energetics of a species on a catalyst surface or site, computed from periodic slab or cluster models. Essential for constructing reaction energy profiles and identifying activity descriptors.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/AdsorptionEnergetics"><code>coremeta4cat:AdsorptionEnergetics</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/AdsorptionEnergetics/">AdsorptionEnergetics</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20AdsorptionEnergetics target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details id="schema-class-ReactionEnergetics">
+<summary><strong>ReactionEnergetics</strong></summary>
+<p><strong>Description:</strong> Thermochemistry of an elementary reaction step on a catalyst, given as the energy difference between its initial and final states.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/ReactionEnergetics"><code>coremeta4cat:ReactionEnergetics</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/ReactionEnergetics/">ReactionEnergetics</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ReactionEnergetics target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details id="schema-class-TransitionState">
+<summary><strong>TransitionState</strong></summary>
+<p><strong>Description:</strong> Transition state of an elementary reaction step and its activation barrier, located by a transition state search method.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/TransitionState"><code>coremeta4cat:TransitionState</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/TransitionState/">TransitionState</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20TransitionState target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details id="schema-class-ElectrochemicalFreeEnergy">
+<summary><strong>ElectrochemicalFreeEnergy</strong></summary>
+<p><strong>Description:</strong> Potential-dependent free energetics of electrocatalytic reactions, e.g. from the computational hydrogen electrode, yielding limiting potentials and theoretical overpotentials.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/ElectrochemicalFreeEnergy"><code>coremeta4cat:ElectrochemicalFreeEnergy</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/ElectrochemicalFreeEnergy/">ElectrochemicalFreeEnergy</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectrochemicalFreeEnergy target="_blank" class="md-button md-button--primary">
+        💡 Submit Term Feedback
+      </a>
+    </p>
+</details>
+<details id="schema-class-CatalyticDescriptors">
+<summary><strong>CatalyticDescriptors</strong></summary>
+<p><strong>Description:</strong> Computed descriptors that correlate with catalytic activity or selectivity, such as d-band centres or linear scaling relations.</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/CatalyticDescriptors"><code>coremeta4cat:CatalyticDescriptors</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/classes/CatalyticDescriptors/">CatalyticDescriptors</a></p>
+<p>
+      <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CatalyticDescriptors target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
       </a>
     </p>
@@ -2381,11 +2436,11 @@ U value (e.g. "Fe d: U=4.0 eV, J=0.0 eV").</p>
 </p>
 </details>
 <details>
-<summary><strong>spin polarization</strong> (Optional)</summary>
+<summary><strong>spin polarization</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Whether spin polarization (collinear magnetism) is included in the DFT
 calculation. Set to true for systems containing magnetic elements.</p>
 <p><strong>Data Type:</strong> boolean</p>
-<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/spin_polarization"><code>coremeta4cat:spin_polarization</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/spin_polarization/">spin_polarization</a></p>
 <p>
@@ -2491,10 +2546,10 @@ thermodynamic quantities are conserved.</p>
 </p>
 </details>
 <details>
-<summary><strong>number of atoms</strong> (Optional)</summary>
+<summary><strong>number of atoms</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Number of atoms in the simulation cell or supercell.</p>
 <p><strong>Data Type:</strong> integer</p>
-<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/number_of_atoms"><code>coremeta4cat:number_of_atoms</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_atoms/">number_of_atoms</a></p>
 <p>
@@ -2617,7 +2672,7 @@ stiff ODE solver, steady-state Newton method).</p>
 </details>
 <details>
 <summary><strong>activation energy</strong> (Optional, Multivalued)</summary>
-<p><strong>Description:</strong> Activation energy for each elementary step in the reaction mechanism.</p>
+<p><strong>Description:</strong> Activation energy for each elementary step in the reaction mechanism. Used here as an input parameter of the microkinetic model; where the barrier was computed, report it via the TransitionState calculated property and reference it here.</p>
 <p><strong>Data Type:</strong> float</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/activation_energy"><code>coremeta4cat:activation_energy</code></a></p>
@@ -2670,10 +2725,10 @@ and lattice-based kinetics.</p>
 </p>
 </details>
 <details>
-<summary><strong>number of steps</strong> (Optional)</summary>
+<summary><strong>number of steps</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Total number of Monte Carlo moves or trial configurations generated.</p>
 <p><strong>Data Type:</strong> integer</p>
-<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/number_of_steps"><code>coremeta4cat:number_of_steps</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_steps/">number_of_steps</a></p>
 <p>
@@ -2731,10 +2786,10 @@ Kawasaki, heat-bath algorithm).</p>
 </p>
 </details>
 <details>
-<summary><strong>equilibration steps</strong> (Optional)</summary>
+<summary><strong>equilibration steps</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Number of MC steps used for equilibration before data collection begins.</p>
 <p><strong>Data Type:</strong> integer</p>
-<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/equilibration_steps"><code>coremeta4cat:equilibration_steps</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/equilibration_steps/">equilibration_steps</a></p>
 <p>
@@ -2744,10 +2799,10 @@ Kawasaki, heat-bath algorithm).</p>
 </p>
 </details>
 <details>
-<summary><strong>sampling interval</strong> (Optional)</summary>
+<summary><strong>sampling interval</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Interval between successive MC snapshots used for property averaging.</p>
 <p><strong>Data Type:</strong> integer</p>
-<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/sampling_interval"><code>coremeta4cat:sampling_interval</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/sampling_interval/">sampling_interval</a></p>
 <p>

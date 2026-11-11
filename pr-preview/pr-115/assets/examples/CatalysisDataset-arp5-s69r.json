@@ -7,7 +7,7 @@
     "Catalyst characterization (PXRD, DRIFT, CO chemisorption, XPS, STEM) and catalytic testing data for Pd3P/SiO2 (a phosphorus-modified palladium phosphide catalyst, internal code ARNE01) compared against an unmodified Pd/SiO2 reference (ARNE02), for Pd-catalyzed carbonylation reactions of aryl iodides. 31 batch reactor runs span three reaction types: alkoxycarbonylation (27 runs; mainly iodobenzene + ethanol -> ethyl benzoate, exploring reaction time, base, temperature, and substrate/nucleophile scope), phenoxycarbonylation (1 run, phenol nucleophile), and aminocarbonylation (3 runs, aniline nucleophile, 100-140 C). PXRD additionally covers two further Pd3P/SiO2 loading variants (1 wt% and 10 wt% Pd), and STEM additionally covers a recycled/spent Pd3P/SiO2 sample recovered after catalytic testing; STEM method details are documented but no STEM image/data files are included in the deposited dataset."
   ],
   "rdf_type": {
-    "id": "VOC4CAT:0007001",
+    "id": "voc4cat:0007001",
     "title": "heterogeneous catalysis"
   },
   "keyword": [
@@ -277,7 +277,7 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000078",
+        "id": "voc4cat:0000078",
         "title": "transmission electron microscopy"
       },
       "activity_designator": "Characterization"
@@ -339,7 +339,7 @@
         "Pd-catalyzed aminocarbonylation of iodobenzene with aniline as the nucleophile (in toluene, triethylamine base) to form benzanilide, over Pd3P/SiO2. 3 runs at 100, 120, and 140 C (5 h, CO 10 bar); yield/conversion increased with temperature from 10% to 78%."
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000247",
+        "id": "voc4cat:0000247",
         "title": "carbonylation"
       },
       "catalyst_type": [
@@ -437,7 +437,7 @@
         "Pd-catalyzed alkoxycarbonylation (CO insertion + alcohol trapping) of aryl iodides to form aryl esters, mainly iodobenzene + ethanol -> ethyl benzoate. 24 runs used Pd3P/SiO2 (ARNE01), exploring reaction time (5 min - 3 h, series A), base screening (triethylamine, sodium acetate, potassium hydroxide, potassium carbonate, or no base, series B), temperature-time kinetics grid (60-80 C x 0.5-1 h, series k), and substrate/nucleophile scope (methanol, isopropanol, and aryl iodide substrates bromoiodobenzene/iodotoluene/iodoanisole, series S1-S5). 3 further runs (series C) repeated the time-course on Pd/SiO2 (ARNE02, P-free reference) for comparison. Conversion/yield ranged 7-100% across all 27 runs. Batch reactor, CO 6 bar, ethanol solvent (except S1 methanol, S2 isopropanol)."
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000247",
+        "id": "voc4cat:0000247",
         "title": "carbonylation"
       },
       "catalyst_type": [
@@ -562,7 +562,7 @@
         "Pd-catalyzed phenoxycarbonylation of iodobenzene with phenol as the nucleophile (in toluene, triethylamine base) to form phenyl benzoate, over Pd3P/SiO2. Single run: 100 C, 7 h, CO 6 bar, yield/conversion 30%."
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000247",
+        "id": "voc4cat:0000247",
         "title": "carbonylation"
       },
       "catalyst_type": [
