@@ -1,17 +1,9 @@
----
-title: Design Patterns
-description: How CoreMeta4Cat is structured and why
----
-
 # Design Patterns
 
-This page explains the key structural decisions behind CoreMeta4Cat — how the four pillars are modelled, how they connect to a dataset, and what design patterns make the schema extensible and machine-actionable.
+This page explains the key structural decisions behind CoreMeta4Cat — how the four data classes are modelled, how they connect to a dataset, and what design patterns make the schema extensible and machine-actionable.
 
-<div style="text-align: center;">
-    <a>
-    <img src="../images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
-    </a>
-</div>
+![CoreMeta4Cat logo](images/CoreMeta4Cat_Picture.png)
+
 ---
 
 ## Reading guide
@@ -20,7 +12,7 @@ This page is written in three tiers. Most users only need the first two.
 
 | Tier | Who it's for | Sections |
 |---|---|---|
-| **Overview** | Everyone — data providers, repository managers | [The entry point](#the-entry-point-catalysisdataset), [The four pillars](#the-four-pillars) |
+| **Overview** | Everyone — data providers, repository managers | [The entry point](#the-entry-point-catalysisdataset), [The four data classes](#the-four-data-classes) |
 | **Pattern explanations** | Users who want to understand how to navigate or extend the schema | [Classification pattern](#pattern-1-classification-via-rdf_type), [Activity pattern](#pattern-2-activities-and-plans), [Mixin pattern](#pattern-3-mixin-classes) |
 | **Technical depth** | Schema developers and DCAT-AP-PLUS integrators | [Sections marked with 🔬](#deep-dive-the-evaluatedactivity-distinction) |
 
@@ -28,7 +20,7 @@ This page is written in three tiers. Most users only need the first two.
 
 ## The entry point: CatalysisDataset
 
-Every CoreMeta4Cat record starts with a **`CatalysisDataset`**. This is a `dcat:Dataset` — fully compatible with plain DCAT and DCAT-AP — extended with four additional link slots that connect to the four CoreMeta4Cat pillars.
+Every CoreMeta4Cat record starts with a **`CatalysisDataset`**. This is a `dcat:Dataset` — fully compatible with plain DCAT and DCAT-AP — extended with four additional link slots that connect to the four CoreMeta4Cat data classes.
 
 ```yaml
 id: ex:dataset-001
@@ -39,7 +31,7 @@ rdf_type:
   id: voc4cat:0007001
   title: "heterogeneous catalysis"
 
-# Layer 2: links to the four pillars
+# Layer 2: links to the four data classes
 was_generated_by:
   - id: ex:synthesis-001
     type: Synthesis
@@ -64,9 +56,9 @@ The key points here are:
 
 ---
 
-## The four pillars
+## The four data classes
 
-The four CoreMeta4Cat pillars — **Synthesis**, **Characterization**, **Reaction**, and **Simulation** — are the core of the metadata model. Each is a separate class, defined in its own subprofile module, and linked from the `CatalysisDataset` via the slots above.
+The four CoreMeta4Cat data classes — **Synthesis**, **Characterization**, **Reaction**, and **Simulation** — are the core of the metadata model. Each is a separate class, defined in its own subprofile module, and linked from the `CatalysisDataset` via the slots above.
 
 ```
 coremeta4cat.yaml  (aggregator + CatalysisDataset)
@@ -87,27 +79,12 @@ coremeta4cat.yaml  (aggregator + CatalysisDataset)
 - `had_input_entity` → `Precursor` instances (the starting materials)
 - `had_output_entity` → `CatalystSample` (the resulting catalyst)
 
-**Twelve preparation methods** are currently defined, each as a concrete `PreparationMethod` subclass:
+Twelve preparation methods are currently defined, each as a concrete `PreparationMethod` subclass:
 
-<div class="grid cards" markdown>
-
--   **Wet chemistry**
-
-    Impregnation, Co-Precipitation, Deposition-Precipitation, Sol-Gel, Molecular Synthesis
-
--   **Thermal / gas-phase**
-
-    Solvothermal, Combustion Synthesis, Flame Spray Pyrolysis, Sublimation, Plasma-Assisted
-
--   **Mechanical / energy-assisted**
-
-    Mechanochemical Synthesis, Microwave-Assisted, Sonochemical Synthesis
-
--   **Surface / thin-film**
-
-    Atomic Layer Deposition, Exsolution Synthesis
-
-</div>
+- **Wet chemistry:** Impregnation, Co-Precipitation, Deposition-Precipitation, Sol-Gel, Molecular Synthesis
+- **Thermal / gas-phase:** Solvothermal, Combustion Synthesis, Flame Spray Pyrolysis, Sublimation, Plasma-Assisted
+- **Mechanical / energy-assisted:** Mechanochemical Synthesis, Microwave-Assisted, Sonochemical Synthesis
+- **Surface / thin-film:** Atomic Layer Deposition, Exsolution Synthesis
 
 ### Characterization
 
@@ -119,7 +96,7 @@ coremeta4cat.yaml  (aggregator + CatalysisDataset)
 - `realized_plan` → a `CharacterizationTechnique` subclass (the measurement protocol)
 - `carried_out_by` → the instrument (`Device`) performing the measurement
 
-**Twenty-eight techniques** are currently defined, organised into groups:
+Twenty-eight techniques are currently defined, organised into groups:
 
 | Group | Techniques |
 |---|---|
@@ -146,8 +123,7 @@ coremeta4cat.yaml  (aggregator + CatalysisDataset)
 - `used_reactant` (`is_a: had_input_entity`) → the reactant feeds
 - `product_identification_method` → a `CharacterizationTechnique` used for product analysis
 
-**Eight reactor design types** are defined, all specializing chemdcat-ap's generic `Reactor` class via the abstract `ChemicalReactor`:
-
+Eight reactor design types are defined:
 `FixedBedReactor` · `CSTR` · `PlugFlowReactor` · `Autoclave` · `SlurryReactor` · `Microreactor` · `ElectrochemicalReactor` · `FluidizedBedReactor`
 
 !!! info "Operando experiments"
@@ -169,11 +145,11 @@ coremeta4cat.yaml  (aggregator + CatalysisDataset)
 - `carried_out_by` → a `Software` agent (the simulation package)
 - `evaluated_entity` → the catalyst model or structure being simulated
 
-**Twelve calculated property classes** capture the type of computed output: `ElectronicStructure`, `BandGap`, `ThermodynamicStability`, `PhononDispersion`, `Surfaces`, `GrainBoundaries`, `ElasticConstants`, `DielectricTensors`, `EquationsOfState`, `AqueousStability`, `Piezoelectricity`, `Ferroelectrics`.
+Twelve calculated property classes capture the type of computed output: `ElectronicStructure`, `BandGap`, `ThermodynamicStability`, `PhononDispersion`, `Surfaces`, `GrainBoundaries`, `ElasticConstants`, `DielectricTensors`, `EquationsOfState`, `AqueousStability`, `Piezoelectricity`, `Ferroelectrics`.
 
 ---
 
-## Pattern 1: Classification via rdf_type
+## Pattern 1: Classification via rdf\_type
 
 !!! abstract "Pattern summary"
     Flexible, machine-actionable classification of datasets, activities, and entities using ontology terms — without creating a separate class for every possible value.
@@ -221,7 +197,7 @@ The allowed values for `rdf_type` on `CatalysisDataset` are defined in `Catalysi
 !!! abstract "Pattern summary"
     A two-part structure separates *what was done* (the Activity) from *the protocol describing how to do it* (the Plan). This mirrors the PROV-O model and keeps the schema clean.
 
-Each pillar that generates data follows this two-part structure:
+Each data class that generates data follows this two-part structure:
 
 ```
 Activity (what was done)        Plan (the protocol)
@@ -283,7 +259,7 @@ Many preparation methods share common process steps — drying, calcination, pre
 | `PrecipitationMixin` | `precipitating_agent`, `synthesis_ph`, `mixing_rate`, `mixing_time`, `mixing_temperature`, `order_of_addition`, `aging_temperature`, `aging_time` | CoPrecipitation, DepositionPrecipitation |
 | `ThermalSynthesisMixin` | `synthesis_temperature`, `synthesis_duration`, `equipment`, `vessel_type`, `atmosphere` | Solvothermal, PlasmaAssisted, CombustionSynthesis, MicrowaveAssisted, MechanochemicalSynthesis, Sublimation |
 
-The same pattern is used in the **Characterization** subprofile for analytical techniques:
+The same pattern is used in the Characterization subprofile for analytical techniques:
 
 | Mixin | Used by |
 |---|---|
@@ -298,19 +274,19 @@ In LinkML, a mixin class has no `class_uri` of its own and generates no independ
 
 ---
 
-## Pattern 4: Shared slots in coremeta4cat_common
+## Pattern 4: Shared slots in catcore\_common
 
 !!! abstract "Pattern summary"
-    Slots referenced by two or more subprofiles are declared once in `coremeta4cat_common.yaml` and imported by all subprofiles. This keeps the schema DRY (Don't Repeat Yourself) -- but it also means editing one changes it everywhere it's used, not just in the context you had in mind. See the warning below.
+    Slots referenced by two or more subprofiles are declared once in `catcore_common.yaml` and imported by all subprofiles. This keeps the schema DRY (Don't Repeat Yourself).
 
-Some slots appear in multiple pillars — for example, `has_atmosphere` is relevant to Synthesis (e.g. `MolecularSynthesis`), Characterization (e.g. `InfraredSpectroscopy`, `NMRSpectroscopy`), and Reaction (`CatalyticReaction`). These shared slots live in `coremeta4cat_common.yaml`:
+Some slots appear in multiple data classes — for example, `temperature` is relevant to Synthesis (calcination), Characterization (temperature-programmed experiments), and Reaction (reactor temperature). These shared slots live in `catcore_common.yaml`:
 
-```
-coremeta4cat_common.yaml — shared slots include:
-  has_atmosphere, solvent, has_experiment_duration,
-  has_heating_rate, has_operation_mode, has_energy,
-  number_of_scans, resolution, step_size, carrier_gas,
-  has_sample_mass, has_calcination_*, has_drying_*, ...
+```yaml
+# catcore_common.yaml — shared slots include:
+atmosphere, temperature, flow_rate, heating_rate,
+equipment, sample_mass, stirring_speed, stirring_duration,
+drying_*, calcination_*, concentration, solvent,
+experiment_duration, step_size, resolution, ...
 ```
 
 Slots that are exclusive to a single subprofile are declared in that subprofile file only. Physical quantity slots that belong to chemdcat-ap's own material/chemistry model (e.g. `has_temperature`, `has_pressure`) live further down the import chain, in `material_entities_ap.yaml` — see [Pattern 5](#pattern-5-specializing-chemdcat-ap-inheritance).

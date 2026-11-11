@@ -7,6 +7,8 @@ description: Adopt CoreMeta4Cat at your own pace — from annotated spreadsheets
 
 Adopting a new metadata standard does not have to mean changing how you work overnight. CoreMeta4Cat is designed to be useful at every stage of the journey — including if you stay with spreadsheets permanently. This page explains a pragmatic, low-barrier path towards semantically richer catalysis data, regardless of whether you use an Electronic Lab Notebook, a data management platform, or simply Excel.
 
+> **Want to check your dataset right away?** Download the [CoreMeta4Cat metadata list](https://nfdi4cat.github.io/CoreMeta4Cat/latest/assets/coremeta4cat_vocabulary.xlsx) to see which fields apply to your data class. A user-friendly **Metadata Checker** tool that does this automatically is coming soon — no schema knowledge required.
+
 <div style="text-align: center;">
     <a>
     <img src="../images/CoreMeta4Cat_Picture.png" alt="CoreMeta4Cat logo" style="width: 40%;">
