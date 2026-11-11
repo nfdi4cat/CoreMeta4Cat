@@ -30,13 +30,25 @@ These rules apply when extending any part of CoreMeta4Cat.
 | New mixin (slot group) | *(no parent — mixin: true)* | Appropriate subprofile |
 | New shared slot | *(no class — top-level slot)* | `coremeta4cat_common.yaml` |
 
-**Rule 3 — Register an ontology term.** Every new class should have a `class_uri:` pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, …). If no suitable term exists yet, use a provisional catcore-prefixed URI (`catcore:MyNewClass`) and open a Voc4Cat issue to request a proper term.
+**Rule 3 — Register an ontology term.** Every new class should have a `class_uri:` pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, …). If no suitable term exists yet, use a provisional coremeta4cat-prefixed URI (`coremeta4cat:MyNewClass`) and open a Voc4Cat issue to request a proper term.
 
-**Rule 4 — Declare slots in the right file.** Slots used by exactly one class go in that class's subprofile file. Slots shared by two or more classes go in `catcore_common.yaml`.
+**Rule 4 — Declare slots in the right file.** Slots used by exactly one class go in that class's subprofile file. Slots shared by two or more classes go in `coremeta4cat_common.yaml`.
 
 **Rule 5 — Apply existing mixins before adding new slots.** If your new class needs drying, calcination, precipitation, or thermal process parameters, apply the appropriate mixin rather than redeclaring those slots. Only add method-specific slots beyond what the mixin provides.
 
 **Rule 6 — Mark obligation levels.** Every slot in a new class should have either `required: true` (Mandatory), `recommended: true` (Recommended), or neither (Optional). Do not leave obligations implicit.
+
+**Rule 7 — Follow the naming conventions.** Schema element names are turned into Python class names, JSON Schema definitions and URIs, so they cannot contain spaces or hyphens. CoreMeta4Cat follows the standard LinkML conventions:
+
+| Element | Convention | Examples |
+|---|---|---|
+| Classes | PascalCase: every word capitalised, no separator | `SolGel`, `FixedBedReactor`, `CatalysisDataset` |
+| Mixins | PascalCase, ending in `Mixin` | `DryingMixin`, `CalcinationMixin` |
+| Enums | PascalCase, ending in `Enum` | `CatalysisResearchFieldEnum` |
+| Slots | snake_case: lowercase, words joined by `_` | `impregnation_temperature`, `catalyst_support` |
+| Enum values | snake_case | `heterogeneous_catalysis` |
+
+Established abbreviations keep their usual capitals inside a class name (`XPS`, `DFT`, `NMRSpectroscopy`, `UVVisSpectroscopy`). Multi-word terms are joined rather than hyphenated: the sol-gel method is the class `SolGel`, where the capital G keeps "sol" and "gel" visibly apart. Put the human-readable spelling in the `description`; the ontology term in `class_uri` carries the official label. `just lint` runs the LinkML linter, which warns about names that break these conventions.
 
 ---
 

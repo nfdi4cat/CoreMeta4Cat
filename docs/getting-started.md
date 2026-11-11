@@ -88,6 +88,9 @@ A `class`-type row (also shown in grey, but bold rather than plain italic) means
   <img src="../images/workbook-sample.png" alt="Excerpt from the Synthesis sheet of the CoreMeta4Cat vocabulary workbook, showing all ten columns and the M/R/O/Inherited colour coding" style="max-width: 100%; border: 1px solid #ccc;">
 </div>
 
+!!! info "Why labels look like `SolGel` or `impregnation_temperature`"
+    Labels are the schema's machine-readable names, which cannot contain spaces or hyphens. Classes (structured records such as a preparation method) are written in PascalCase, e.g. `SolGel` for the sol-gel method, and fields in snake_case, e.g. `impregnation_temperature`. The `description` column gives the plain-language meaning. See [How to Extend: Rule 7](how-to-extend.md#general-rules) for the full conventions.
+
 ### Proposing a change: the inbox workflow in detail
 
 The workbook is also the mechanism for proposing changes to the vocabulary — no coding required. This section goes into more detail than the [Contributing guide](contributing.md); read that page for the short version.
