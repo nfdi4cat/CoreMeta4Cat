@@ -1290,10 +1290,48 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Rule 3 — Register an ontology term.</strong> Every new class should have a <code>class_uri:</code> pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, …). If no suitable term exists yet, use a provisional catcore-prefixed URI (<code>catcore:MyNewClass</code>) and open a Voc4Cat issue to request a proper term.</p>
-<p><strong>Rule 4 — Declare slots in the right file.</strong> Slots used by exactly one class go in that class's subprofile file. Slots shared by two or more classes go in <code>catcore_common.yaml</code>.</p>
+<p><strong>Rule 3 — Register an ontology term.</strong> Every new class should have a <code>class_uri:</code> pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, …). If no suitable term exists yet, use a provisional coremeta4cat-prefixed URI (<code>coremeta4cat:MyNewClass</code>) and open a Voc4Cat issue to request a proper term.</p>
+<p><strong>Rule 4 — Declare slots in the right file.</strong> Slots used by exactly one class go in that class's subprofile file. Slots shared by two or more classes go in <code>coremeta4cat_common.yaml</code>.</p>
 <p><strong>Rule 5 — Apply existing mixins before adding new slots.</strong> If your new class needs drying, calcination, precipitation, or thermal process parameters, apply the appropriate mixin rather than redeclaring those slots. Only add method-specific slots beyond what the mixin provides.</p>
 <p><strong>Rule 6 — Mark obligation levels.</strong> Every slot in a new class should have either <code>required: true</code> (Mandatory), <code>recommended: true</code> (Recommended), or neither (Optional). Do not leave obligations implicit.</p>
+<p><strong>Rule 7 — Follow the naming conventions.</strong> Schema element names are turned into Python class names, JSON Schema definitions and URIs, so they cannot contain spaces or hyphens. CoreMeta4Cat follows the standard LinkML conventions:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Convention</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classes</td>
+<td>PascalCase: every word capitalised, no separator</td>
+<td><code>SolGel</code>, <code>FixedBedReactor</code>, <code>CatalysisDataset</code></td>
+</tr>
+<tr>
+<td>Mixins</td>
+<td>PascalCase, ending in <code>Mixin</code></td>
+<td><code>DryingMixin</code>, <code>CalcinationMixin</code></td>
+</tr>
+<tr>
+<td>Enums</td>
+<td>PascalCase, ending in <code>Enum</code></td>
+<td><code>CatalysisResearchFieldEnum</code></td>
+</tr>
+<tr>
+<td>Slots</td>
+<td>snake_case: lowercase, words joined by <code>_</code></td>
+<td><code>impregnation_temperature</code>, <code>catalyst_support</code></td>
+</tr>
+<tr>
+<td>Enum values</td>
+<td>snake_case</td>
+<td><code>heterogeneous_catalysis</code></td>
+</tr>
+</tbody>
+</table>
+<p>Established abbreviations keep their usual capitals inside a class name (<code>XPS</code>, <code>DFT</code>, <code>NMRSpectroscopy</code>, <code>UVVisSpectroscopy</code>). Multi-word terms are joined rather than hyphenated: the sol-gel method is the class <code>SolGel</code>, where the capital G keeps "sol" and "gel" visibly apart. Put the human-readable spelling in the <code>description</code>; the ontology term in <code>class_uri</code> carries the official label. <code>just lint</code> runs the LinkML linter, which warns about names that break these conventions.</p>
 <hr />
 <h2 id="adding-a-preparation-method">Adding a preparation method</h2>
 <p>New catalyst synthesis routes are added to <code>coremeta4cat_synthesis_ap.yaml</code> as <code>PreparationMethod</code> subclasses.</p>

@@ -1255,6 +1255,10 @@ Level 4 ──► Validate records against the full CoreMeta4Cat schema
   <img src="../images/workbook-sample.png" alt="Excerpt from the Synthesis sheet of the CoreMeta4Cat vocabulary workbook, showing all ten columns and the M/R/O/Inherited colour coding" style="max-width: 100%; border: 1px solid #ccc;">
 </div>
 
+<div class="admonition info">
+<p class="admonition-title">Why labels look like <code>SolGel</code> or <code>impregnation_temperature</code></p>
+<p>Labels are the schema's machine-readable names, which cannot contain spaces or hyphens. Classes (structured records such as a preparation method) are written in PascalCase, e.g. <code>SolGel</code> for the sol-gel method, and fields in snake_case, e.g. <code>impregnation_temperature</code>. The <code>description</code> column gives the plain-language meaning. See <a href="../how-to-extend/#general-rules">How to Extend: Rule 7</a> for the full conventions.</p>
+</div>
 <h3 id="proposing-a-change-the-inbox-workflow-in-detail">Proposing a change: the inbox workflow in detail</h3>
 <p>The workbook is also the mechanism for proposing changes to the vocabulary — no coding required. This section goes into more detail than the <a href="../contributing/">Contributing guide</a>; read that page for the short version.</p>
 <ol>
