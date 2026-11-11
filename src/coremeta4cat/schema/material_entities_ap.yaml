@@ -7,7 +7,7 @@ description: |-
 license: CC-BY 4.0
 prefixes:
   material_entities_ap: https://w3id.org/nfdi-de/dcat-ap-plus/materials/
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  dcatap_plus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
@@ -28,12 +28,12 @@ prefixes:
   AFE: http://purl.allotrope.org/ontologies/equipment#AFE_
   AFRL: http://purl.allotrope.org/ontologies/role#AFRL_
   AFP: http://purl.allotrope.org/ontologies/process#AFP_
-  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
+  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
 default_prefix: material_entities_ap
 default_range: string
 imports:
   - linkml:types
-  - dcatapplus:latest/schema/dcat_ap_plus
+  - dcatap_plus:latest/schema/dcat_ap_plus
 
 classes:
   MaterialisticMixin:
@@ -78,7 +78,7 @@ classes:
         description: The slot to specify the MaterialEntity or MaterialSample from which the MaterialSample was created.
     exact_mappings:
       - SIO:001050
-      - VOC4CAT:0005056
+      - voc4cat:0005056
 
   Temperature:
     is_a: QuantitativeAttribute

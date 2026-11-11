@@ -1,4 +1,3 @@
----
 id: https://w3id.org/nfdi4cat/coremeta4cat
 name: coremeta4cat-metadata
 title: CoreMeta4cat Metadata Reference Model
@@ -79,9 +78,9 @@ version: 1.0.0
 
 prefixes:
   coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
-  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
+  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
   chemdcatap: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  dcatap_plus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   dcat: http://www.w3.org/ns/dcat#
   dcterms: http://purl.org/dc/terms/
@@ -92,7 +91,7 @@ prefixes:
   SIO: http://semanticscience.org/resource/SIO_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   CHMO: http://purl.obolibrary.org/obo/CHMO_
-  ENM: http://purl.enanomapper.org/onto/
+  enm: http://purl.enanomapper.org/onto/
   CHEBI: http://purl.obolibrary.org/obo/CHEBI_
   RO: http://purl.obolibrary.org/obo/RO_
   RXNO: http://purl.obolibrary.org/obo/RXNO_
@@ -107,12 +106,12 @@ default_prefix: coremeta4cat
 default_range: string
 
 imports:
-  - linkml:types
-  - coremeta4cat_common
-  - coremeta4cat_synthesis_ap
-  - coremeta4cat_characterization_ap
-  - coremeta4cat_reaction_ap
-  - coremeta4cat_simulation_ap
+- linkml:types
+- coremeta4cat_common
+- coremeta4cat_synthesis_ap
+- coremeta4cat_characterization_ap
+- coremeta4cat_reaction_ap
+- coremeta4cat_simulation_ap
 
 # ==================== ENTRY POINT: CATALYSIS DATASET ====================
 
@@ -122,7 +121,7 @@ classes:
     is_a: Dataset
     class_uri: dcat:Dataset
     mixins:
-      - ClassifierMixin
+    - ClassifierMixin
     description: |-
       A dcat:Dataset that contains research data in the field of catalysis.
 
@@ -130,7 +129,7 @@ classes:
       term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).
       For example, a dataset from heterogeneous catalysis research would carry:
         rdf_type:
-          id: VOC4CAT:0007001
+          id: voc4cat:0007001
           title: "heterogeneous catalysis"
 
       The four CoreMeta4Cat minimum information pillars are linked via the slots
@@ -144,10 +143,10 @@ classes:
           classification of the dataset's domain.
         recommended: true
         bindings:
-          - binds_value_of: id
-            range: CatalysisResearchFieldEnum
-            obligation_level: RECOMMENDED
-            description: Classify the dataset by catalysis research field using voc4cat.
+        - binds_value_of: id
+          range: CatalysisResearchFieldEnum
+          obligation_level: RECOMMENDED
+          description: Classify the dataset by catalysis research field using voc4cat.
       was_generated_by:
         description: |-
           The DataGeneratingActivity (Synthesis, Characterization, or Simulation)
@@ -171,3 +170,185 @@ classes:
         recommended: true
         multivalued: true
         inlined_as_list: true
+slots:
+  adsorbate:
+    description: Chemical identity of the adsorbed species (e.g. "CO", "OH", "CH3", "N2H"). Use a chemical formula or SMILES.
+    range: string
+    slot_uri: coremeta4cat:adsorbate
+    recommended: true
+    multivalued: true
+  adsorption_site:
+    description: Adsorption site of the adsorbate (e.g. top, bridge, fcc hollow, hcp hollow, step edge, oxygen vacancy, single-atom site).
+    range: string
+    slot_uri: coremeta4cat:adsorption_site
+    recommended: true
+    multivalued: true
+  adsorption_energy:
+    description: Adsorption energy, E_ads = E(slab+adsorbate) - E(slab) - E(reference species). Negative values indicate exothermic binding.
+    range: float
+    slot_uri: coremeta4cat:adsorption_energy
+    recommended: true
+    multivalued: true
+    unit:
+      ucum_code: eV
+  energy_reference:
+    description: Reference species and states used to compute relative energies (e.g. "CO(g)", "1/2 H2(g)", "H2O(g) and H2(g)").
+    range: string
+    slot_uri: coremeta4cat:energy_reference
+    recommended: true
+    multivalued: true
+  energy_correction_type:
+    description: 'Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.'
+    range: string
+    slot_uri: coremeta4cat:energy_correction_type
+    multivalued: true
+  zero_point_energy_correction:
+    description: Zero-point energy correction applied to the reported energy.
+    range: float
+    slot_uri: coremeta4cat:zero_point_energy_correction
+    multivalued: true
+    unit:
+      ucum_code: eV
+  elementary_step:
+    description: Elementary reaction step written as an equation, with * denoting a free surface site (e.g. "CO* + O* -> CO2(g) + 2*").
+    range: string
+    slot_uri: coremeta4cat:elementary_step
+    recommended: true
+    multivalued: true
+  initial_state:
+    description: Description of the initial-state configuration of the elementary step.
+    range: string
+    slot_uri: coremeta4cat:initial_state
+    multivalued: true
+  final_state:
+    description: Description of the final-state configuration of the elementary step.
+    range: string
+    slot_uri: coremeta4cat:final_state
+    multivalued: true
+  reaction_energy:
+    description: Reaction energy of the elementary step, ΔE = E(final state) - E(initial state).
+    range: float
+    slot_uri: coremeta4cat:reaction_energy
+    recommended: true
+    multivalued: true
+    unit:
+      ucum_code: eV
+  reaction_free_energy:
+    description: Gibbs free energy change of the elementary step, ΔG, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.
+    range: float
+    slot_uri: coremeta4cat:reaction_free_energy
+    multivalued: true
+    unit:
+      ucum_code: eV
+  free_energy_temperature:
+    description: Temperature at which free energy corrections were evaluated.
+    range: float
+    slot_uri: coremeta4cat:free_energy_temperature
+    multivalued: true
+    unit:
+      ucum_code: K
+  forward_activation_energy:
+    description: Activation energy of the forward step, E_a = E(transition state) - E(initial state).
+    range: float
+    slot_uri: coremeta4cat:forward_activation_energy
+    recommended: true
+    multivalued: true
+    unit:
+      ucum_code: eV
+  reverse_activation_energy:
+    description: Activation energy of the reverse step, E(transition state) - E(final state).
+    range: float
+    slot_uri: coremeta4cat:reverse_activation_energy
+    multivalued: true
+    unit:
+      ucum_code: eV
+  ts_search_method:
+    description: Method used to locate the transition state (e.g. NEB, CI-NEB, dimer method, growing string method, constrained optimisation).
+    range: string
+    slot_uri: coremeta4cat:ts_search_method
+    recommended: true
+    multivalued: true
+  number_of_images:
+    description: Number of intermediate images used in a NEB or string calculation.
+    range: integer
+    slot_uri: coremeta4cat:number_of_images
+    multivalued: true
+  imaginary_frequency:
+    description: Imaginary vibrational frequency associated with the reaction coordinate at the transition state.
+    range: float
+    slot_uri: coremeta4cat:imaginary_frequency
+    multivalued: true
+    unit:
+      ucum_code: cm-1
+  ts_verification_method:
+    description: Method used to verify the transition state (e.g. vibrational analysis showing a single imaginary mode, intrinsic reaction coordinate (IRC)).
+    range: string
+    slot_uri: coremeta4cat:ts_verification_method
+    multivalued: true
+  electrode_potential_model:
+    description: Model used to treat the electrode potential (e.g. computational hydrogen electrode, constant-potential / grand-canonical DFT).
+    range: string
+    slot_uri: coremeta4cat:electrode_potential_model
+    recommended: true
+    multivalued: true
+  potential_reference_scale:
+    description: Reference scale of the reported potentials (e.g. RHE, SHE).
+    range: string
+    slot_uri: coremeta4cat:potential_reference_scale
+    multivalued: true
+  applied_potential:
+    description: Electrode potential at which free energies were evaluated.
+    range: float
+    slot_uri: coremeta4cat:applied_potential
+    multivalued: true
+    unit:
+      ucum_code: V
+  limiting_potential:
+    description: Highest (least negative) potential at which all electrochemical steps are exergonic.
+    range: float
+    slot_uri: coremeta4cat:limiting_potential
+    recommended: true
+    multivalued: true
+    unit:
+      ucum_code: V
+  theoretical_overpotential:
+    description: Difference between the equilibrium potential of the reaction and the limiting potential.
+    range: float
+    slot_uri: coremeta4cat:theoretical_overpotential
+    multivalued: true
+    unit:
+      ucum_code: V
+  potential_determining_step:
+    description: Elementary step that determines the limiting potential.
+    range: string
+    slot_uri: coremeta4cat:potential_determining_step
+    multivalued: true
+  descriptor_type:
+    description: Type of activity descriptor (e.g. d-band centre, adsorption energy of a key intermediate, generalised coordination number, O p-band centre).
+    range: string
+    slot_uri: coremeta4cat:descriptor_type
+    recommended: true
+    multivalued: true
+  descriptor_value:
+    description: Value of the descriptor; state the unit together with the descriptor type.
+    range: float
+    slot_uri: coremeta4cat:descriptor_value
+    recommended: true
+    multivalued: true
+  d_band_center:
+    description: Centre of the d-band projected density of states, relative to the Fermi level.
+    range: float
+    slot_uri: coremeta4cat:d_band_center
+    multivalued: true
+    unit:
+      ucum_code: eV
+  scaling_relation:
+    description: Linear scaling relation between adsorption energies (e.g. "ΔE_OH = 0.50 ΔE_O + 0.10 eV").
+    range: string
+    slot_uri: coremeta4cat:scaling_relation
+    multivalued: true
+  bep_relation:
+    description: Brønsted–Evans–Polanyi relation between activation energies and reaction energies (slope and intercept).
+    range: string
+    slot_uri: coremeta4cat:bep_relation
+    multivalued: true

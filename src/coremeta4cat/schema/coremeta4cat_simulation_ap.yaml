@@ -1,4 +1,3 @@
----
 id: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
 name: coremeta4cat-simulation-ap
 title: CoreMeta4cat Simulation Application Profile
@@ -41,14 +40,14 @@ version: 1.0.0
 
 prefixes:
   coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
-  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
+  dcatap_plus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   SIO: http://semanticscience.org/resource/SIO_
-  AFR: http://purl.allotrope.org/ontologies/result#AFR_
+  allotrope.result: http://purl.allotrope.org/ontologies/result#AFR_
   APOLLO_SV: http://purl.obolibrary.org/obo/APOLLO_SV_
   IAO: http://purl.obolibrary.org/obo/IAO_
 
@@ -56,8 +55,8 @@ default_prefix: coremeta4cat
 default_range: string
 
 imports:
-  - linkml:types
-  - coremeta4cat_common   # shared slots (temperature, pressure, …) + enums
+- linkml:types
+- coremeta4cat_common     # shared slots (temperature, pressure, …) + enums
 
 # ==================== MIXINS ====================
 
@@ -72,8 +71,8 @@ classes:
       AqueousStability, GrainBoundaries, ElectronicStructure, Ferroelectrics,
       BandGap).
     slots:
-      - material_composition
-      - crystal_structure
+    - material_composition
+    - crystal_structure
 
   DFTSettingsMixin:
     mixin: true
@@ -82,9 +81,9 @@ classes:
       subclasses that are computed with periodic DFT (DielectricTensors,
       EquationsOfState, ElectronicStructure, BandGap).
     slots:
-      - energy_cutoff
-      - convergence_criteria
-      - k_point_mesh
+    - energy_cutoff
+    - convergence_criteria
+    - k_point_mesh
 
   # ==================== SIMULATION (DataGeneratingActivity) ====================
 
@@ -103,8 +102,8 @@ classes:
       The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,
       NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.
     slots:
-      - software_package
-      - calculated_property
+    - software_package
+    - calculated_property
     slot_usage:
       rdf_type:
         description: |-
@@ -152,12 +151,12 @@ classes:
       the electronic structure of atoms, molecules, and periodic solids.
       The most widely used ab initio method in computational catalysis.
     slots:
-      - exchange_correlation_functional
-      - energy_cutoff
-      - convergence_criteria
-      - dft_u_parameters
-      - spin_polarization
-      - total_energy_per_atom
+    - exchange_correlation_functional
+    - energy_cutoff
+    - convergence_criteria
+    - dft_u_parameters
+    - spin_polarization
+    - total_energy_per_atom
 
   MolecularDynamics:
     is_a: SimulationMethod
@@ -167,11 +166,11 @@ classes:
       of a system of interacting particles by integrating the equations of motion.
       Used to study diffusion, reaction kinetics, and thermal properties.
     slots:
-      - force_field
-      - simulation_timestep
-      - simulation_time
-      - ensemble_type
-      - number_of_atoms
+    - force_field
+    - simulation_timestep
+    - simulation_time
+    - ensemble_type
+    - number_of_atoms
 
   Microkinetics:
     is_a: SimulationMethod
@@ -181,12 +180,12 @@ classes:
       elementary reaction steps and their rate constants to predict catalytic
       activity and selectivity under reaction conditions.
     slots:
-      - rate_constants
-      - solver_type
-      - has_temperature
-      - has_pressure
-      - surface_coverage
-      - activation_energy
+    - rate_constants
+    - solver_type
+    - has_temperature
+    - has_pressure
+    - surface_coverage
+    - activation_energy
 
   MonteCarlo:
     is_a: SimulationMethod
@@ -197,13 +196,13 @@ classes:
       criterion (e.g. Metropolis). Used for adsorption isotherms, phase diagrams,
       and lattice-based kinetics.
     slots:
-      - interaction_potential
-      - number_of_steps
-      - has_temperature
-      - lattice_size_type
-      - acceptance_criteria
-      - equilibration_steps
-      - sampling_interval
+    - interaction_potential
+    - number_of_steps
+    - has_temperature
+    - lattice_size_type
+    - acceptance_criteria
+    - equilibration_steps
+    - sampling_interval
 
   # ==================== CALCULATED PROPERTIES ====================
 
@@ -225,11 +224,11 @@ classes:
       energy, convex hull distance, and competing phases. Used to screen catalyst
       stability and predict synthesis feasibility.
     slots:
-      - formation_energy
-      - reference_energies
-      - energy_above_hull
-      - phase_diagram_type
-      - competing_phases
+    - formation_energy
+    - reference_energies
+    - energy_above_hull
+    - phase_diagram_type
+    - competing_phases
 
   Piezoelectricity:
     is_a: CalculatedProperty
@@ -238,10 +237,10 @@ classes:
       Piezoelectric response of a non-centrosymmetric material, described by the
       piezoelectric tensor. Relevant for piezocatalysis applications.
     slots:
-      - piezoelectric_tensor
-      - crystal_symmetry
-      - strain_applied
-      - ionic_electronic_contributions
+    - piezoelectric_tensor
+    - crystal_symmetry
+    - strain_applied
+    - ionic_electronic_contributions
 
   ElasticConstants:
     is_a: CalculatedProperty
@@ -250,11 +249,11 @@ classes:
       Elastic mechanical properties of a material derived from the elastic tensor,
       including bulk modulus, shear modulus, and Young's modulus.
     slots:
-      - elastic_tensor
-      - bulk_modulus
-      - shear_modulus
-      - poisson_ratio
-      - young_modulus
+    - elastic_tensor
+    - bulk_modulus
+    - shear_modulus
+    - poisson_ratio
+    - young_modulus
 
   Surfaces:
     is_a: CalculatedProperty
@@ -264,145 +263,165 @@ classes:
       including surface energy, Miller index, slab thickness, and vacuum spacing.
       Central to heterogeneous catalysis modelling.
     slots:
-      - surface_energy
-      - miller_indices
-      - slab_thickness
-      - vacuum_spacing
-      - surface_termination_method
+    - surface_energy
+    - miller_indices
+    - slab_thickness
+    - vacuum_spacing
+    - surface_termination_method
 
   DielectricTensors:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:DielectricTensors
     mixins:
-      - MaterialDescriptorMixin
-      - DFTSettingsMixin
+    - MaterialDescriptorMixin
+    - DFTSettingsMixin
     description: |-
       Dielectric tensor computed from density functional perturbation theory (DFPT).
       Characterises the optical and static dielectric response of a material.
     slots:
-      - dielectric_tensor
-      - born_effective_charges
+    - dielectric_tensor
+    - born_effective_charges
 
   PhononDispersion:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:PhononDispersion
     mixins:
-      - MaterialDescriptorMixin
+    - MaterialDescriptorMixin
     description: |-
       Phonon dispersion relations computed from interatomic force constants,
       providing access to vibrational frequencies, thermodynamic quantities,
       and dynamical stability (imaginary modes).
     slots:
-      - force_constant_method
-      - kq_point_mesh
-      - smearing_parameter
-      - imaginary_modes
+    - force_constant_method
+    - kq_point_mesh
+    - smearing_parameter
+    - imaginary_modes
 
   EquationsOfState:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:EquationsOfState
     mixins:
-      - MaterialDescriptorMixin
-      - DFTSettingsMixin
+    - MaterialDescriptorMixin
+    - DFTSettingsMixin
     description: |-
       Equation of state relating energy (or enthalpy) to volume, fitted to a
       parametric model (e.g. Birch-Murnaghan). Used to extract equilibrium
       volume, bulk modulus, and its pressure derivative.
     slots:
-      - fit_method
-      - bulk_modulus
-      - pressure_derivative
-      - fit_residuals
+    - fit_method
+    - bulk_modulus
+    - pressure_derivative
+    - fit_residuals
 
   AqueousStability:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:AqueousStability
     mixins:
-      - MaterialDescriptorMixin
+    - MaterialDescriptorMixin
     description: |-
       Electrochemical (Pourbaix) stability of a catalyst in aqueous solution as
       a function of pH and electrode potential. Critical for electrocatalyst
       stability screening.
     slots:
-      - ph_range
-      - potential_range
-      - solvation_model
-      - ionic_strength
-      - has_temperature
+    - ph_range
+    - potential_range
+    - solvation_model
+    - ionic_strength
+    - has_temperature
 
   GrainBoundaries:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:GrainBoundaries
     mixins:
-      - MaterialDescriptorMixin
+    - MaterialDescriptorMixin
     description: |-
       Grain boundary structure and energetics from atomistic simulation.
       Relevant for understanding polycrystalline catalyst behaviour,
       sintering, and charge/defect segregation.
     slots:
-      - grain_boundary_plane
-      - misorientation_angle
-      - grain_boundary_energy
-      - simulation_cell_size
-      - gb_excess_volume
-      - gb_structural_units
-      - charge_defect_segregation
+    - grain_boundary_plane
+    - misorientation_angle
+    - grain_boundary_energy
+    - simulation_cell_size
+    - gb_excess_volume
+    - gb_structural_units
+    - charge_defect_segregation
 
   ElectronicStructure:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:ElectronicStructure
     mixins:
-      - MaterialDescriptorMixin
-      - DFTSettingsMixin
+    - MaterialDescriptorMixin
+    - DFTSettingsMixin
     description: |-
       Electronic band structure and density of states, characterising the
       electronic properties of a catalyst relevant to activity descriptors
       (d-band centre, band gap, Fermi energy).
     slots:
-      - smearing_method
-      - spin_polarized
-      - band_path
-      - fermi_energy
+    - smearing_method
+    - spin_polarized
+    - band_path
+    - fermi_energy
 
   Ferroelectrics:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:Ferroelectrics
     mixins:
-      - MaterialDescriptorMixin
+    - MaterialDescriptorMixin
     description: |-
       Ferroelectric properties computed from DFT, including spontaneous
       polarization, switching barrier, and coercive field. Relevant for
       ferroelectric-photocatalyst design.
     slots:
-      - polarization_direction
-      - spontaneous_polarization
-      - reference_structure
-      - switching_barrier
-      - coercive_field
-      - temperature_dependence
+    - polarization_direction
+    - spontaneous_polarization
+    - reference_structure
+    - switching_barrier
+    - coercive_field
+    - temperature_dependence
 
   BandGap:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:BandGap
     mixins:
-      - MaterialDescriptorMixin
-      - DFTSettingsMixin
+    - MaterialDescriptorMixin
+    - DFTSettingsMixin
     description: |-
       Electronic band gap and its character (direct/indirect), with optional
       many-body (GW) or excitonic corrections. Critical for photocatalyst
       and semiconductor catalyst screening.
     slots:
-      - material_sample
-      - structure_model
-      - smearing_broadening
-      - direct_indirect
-      - experimental_reference
-      - gw_hybrid_correction
-      - excitonic_correction
+    - material_sample
+    - structure_model
+    - smearing_broadening
+    - direct_indirect
+    - experimental_reference
+    - gw_hybrid_correction
+    - excitonic_correction
 
 # ==================== SLOTS ====================
 # Shared slots (temperature, pressure, …) are inherited from coremeta4cat_common.
 
+  AdsorptionEnergetics:
+    is_a: CalculatedProperty
+    class_uri: coremeta4cat:AdsorptionEnergetics
+    description: Adsorption energetics of a species on a catalyst surface or site, computed from periodic slab or cluster models. Essential for constructing reaction energy profiles and identifying activity descriptors.
+  ReactionEnergetics:
+    is_a: CalculatedProperty
+    class_uri: coremeta4cat:ReactionEnergetics
+    description: Thermochemistry of an elementary reaction step on a catalyst, given as the energy difference between its initial and final states.
+  TransitionState:
+    is_a: CalculatedProperty
+    class_uri: coremeta4cat:TransitionState
+    description: Transition state of an elementary reaction step and its activation barrier, located by a transition state search method.
+  ElectrochemicalFreeEnergy:
+    is_a: CalculatedProperty
+    class_uri: coremeta4cat:ElectrochemicalFreeEnergy
+    description: Potential-dependent free energetics of electrocatalytic reactions, e.g. from the computational hydrogen electrode, yielding limiting potentials and theoretical overpotentials.
+  CatalyticDescriptors:
+    is_a: CalculatedProperty
+    class_uri: coremeta4cat:CatalyticDescriptors
+    description: Computed descriptors that correlate with catalytic activity or selectivity, such as d-band centres or linear scaling relations.
 slots:
 
   # ---- Simulation-level slots ----
@@ -474,6 +493,7 @@ slots:
     range: boolean
     slot_uri: coremeta4cat:spin_polarization
 
+    multivalued: true
   total_energy_per_atom:
     description: Total DFT ground-state energy divided by number of atoms in the unit cell.
     is_a: has_quantitative_attribute
@@ -529,6 +549,7 @@ slots:
 
   # ---- Microkinetics method slots ----
 
+    multivalued: true
   rate_constants:
     description: |-
       Rate constants or Arrhenius parameters (pre-exponential factor and
@@ -555,7 +576,7 @@ slots:
     multivalued: true
 
   activation_energy:
-    description: Activation energy for each elementary step in the reaction mechanism.
+    description: Activation energy for each elementary step in the reaction mechanism. Used here as an input parameter of the microkinetic model; where the barrier was computed, report it via the TransitionState calculated property and reference it here.
     is_a: has_quantitative_attribute
     range: float
     slot_uri: coremeta4cat:activation_energy
@@ -578,6 +599,7 @@ slots:
     range: integer
     slot_uri: coremeta4cat:number_of_steps
 
+    multivalued: true
   lattice_size_type:
     description: |-
       Lattice geometry and dimensions used in lattice-based MC (e.g.
@@ -602,6 +624,7 @@ slots:
     range: integer
     slot_uri: coremeta4cat:equilibration_steps
 
+    multivalued: true
   sampling_interval:
     description: Interval between successive MC snapshots used for property averaging.
     is_a: has_quantitative_attribute
@@ -610,6 +633,7 @@ slots:
 
   # ---- MaterialDescriptorMixin slots ----
 
+    multivalued: true
   material_composition:
     description: |-
       Chemical composition of the simulated material (e.g. "Fe2O3", "Pt/CeO2").
@@ -874,6 +898,7 @@ slots:
 
   # ---- EquationsOfState slots ----
 
+    multivalued: true
   fit_method:
     description: |-
       Parametric model used to fit the energy-volume curve
@@ -1015,6 +1040,7 @@ slots:
     range: boolean
     slot_uri: coremeta4cat:spin_polarized
 
+    multivalued: true
   band_path:
     description: |-
       High-symmetry k-path through the Brillouin zone used to plot the
@@ -1142,6 +1168,7 @@ slots:
     range: boolean
     slot_uri: coremeta4cat:gw_hybrid_correction
 
+    multivalued: true
   excitonic_correction:
     description: |-
       Excitonic correction (from Bethe-Salpeter equation) applied to the

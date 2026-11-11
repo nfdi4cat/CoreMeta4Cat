@@ -1828,7 +1828,7 @@ calculated band gap.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0005056`](https://w3id.org/nfdi4cat/voc4cat_0005056)
+**CURIE:** [`voc4cat:0005056`](https://w3id.org/nfdi4cat/voc4cat_0005056)
 
 **Schema Reference:** [material_sample](./elements/slots/material_sample.md)
 

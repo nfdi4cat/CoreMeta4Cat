@@ -1,54 +1,52 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix RO: <http://purl.obolibrary.org/obo/RO_> .
-@prefix SIO: <http://semanticscience.org/resource/SIO_> .
-@prefix VOC4CAT: <https://w3id.org/nfdi4cat/voc4cat_> .
-@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-coremeta4cat:REAC_001_CO2_hydrogenation a coremeta4cat:CatalyticReaction ;
-    RO:0004009 <https://pubchem.ncbi.nlm.nih.gov/compound/280>,
-        <https://pubchem.ncbi.nlm.nih.gov/compound/783> ;
-    prov:used coremeta4cat:FEED_001_CO2_H2 ;
-    prov:wasAssociatedWith coremeta4cat:REACT_001_FixedBed ;
-    coremeta4cat:catalyst_form VOC4CAT:0007034 ;
-    coremeta4cat:catalyst_quantity [ a qudt:Quantity ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
-            qudt:unit <https://qudt.org/vocab/unit/GM> ;
-            prov:value "0.5"^^xsd:float ] ;
-    coremeta4cat:feed_composition_range [ a qudt:Quantity ;
-            dcterms:description "H2/CO2 = 3:1, CO2 concentration 20 vol%" ] ;
-    coremeta4cat:product_identification_method coremeta4cat:REAC_001_GC_method ;
-    VOC4CAT:0000118 [ a qudt:Quantity ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
-            qudt:unit <https://qudt.org/vocab/unit/BAR> ;
-            prov:value "50.0"^^xsd:float ] ;
-    VOC4CAT:0007014 VOC4CAT:0007001 ;
-    VOC4CAT:0007032 [ a qudt:Quantity ;
-            qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
-            qudt:unit <https://qudt.org/vocab/unit/DEG_C> ;
-            coremeta4cat:maxValue "300.0"^^xsd:float ;
-            coremeta4cat:minValue "200.0"^^xsd:float ] ;
-    VOC4CAT:0007809 [ a coremeta4cat:Atmosphere ;
-            prov:value "H2/CO2 = 3:1 (molar), GHSV = 10000 mL/(g*h)" ] .
-
-<https://pubchem.ncbi.nlm.nih.gov/compound/280> a SIO:010411 ;
-    dcterms:title "CO2 (99.998% purity, 20 vol% in H2)" .
-
-<https://pubchem.ncbi.nlm.nih.gov/compound/783> a SIO:010411 ;
-    dcterms:title "H2 (99.999% purity)" .
-
-coremeta4cat:FEED_001_CO2_H2 a prov:Entity ;
-    dcterms:description "H2/CO2 molar ratio 3:1, total flow 100 mL/min" ;
-    dcterms:title "CO2/H2 feed gas mixture" .
-
-coremeta4cat:REACT_001_FixedBed a VOC4CAT:0007018 ;
-    dcterms:description "10 mm inner diameter, 30 cm length, 0.5 g catalyst diluted with SiC" ;
-    dcterms:title "stainless steel fixed-bed plug-flow reactor" .
-
-coremeta4cat:REAC_001_GC_method a OBI:0000272 ;
-    dcterms:description "GC (Agilent 7890B) with TCD and FID detectors; columns: Molecular Sieve 5A and Poraplot Q; products: MeOH, CO, CH4, H2O quantified" ;
-    dcterms:title "online gas chromatography" .
-
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+<https://pubchem.ncbi.nlm.nih.gov/compound/280> dcterms:title "CO2 (99.998% purity, 20 vol% in H2)" ;
+	a SIO:010411 .
+<https://pubchem.ncbi.nlm.nih.gov/compound/783> dcterms:title "H2 (99.999% purity)" ;
+	a SIO:010411 .
+coremeta4cat:FEED_001_CO2_H2 dcterms:description "H2/CO2 molar ratio 3:1, total flow 100 mL/min" ;
+	dcterms:title "CO2/H2 feed gas mixture" ;
+	a prov:Entity .
+coremeta4cat:REACT_001_FixedBed dcterms:description "10 mm inner diameter, 30 cm length, 0.5 g catalyst diluted with SiC" ;
+	dcterms:title "stainless steel fixed-bed plug-flow reactor" ;
+	a voc4cat:0007018 .
+coremeta4cat:REAC_001_CO2_hydrogenation RO:0004009 <https://pubchem.ncbi.nlm.nih.gov/compound/280> , <https://pubchem.ncbi.nlm.nih.gov/compound/783> ;
+	a coremeta4cat:CatalyticReaction ;
+	prov:used coremeta4cat:FEED_001_CO2_H2 ;
+	prov:wasAssociatedWith coremeta4cat:REACT_001_FixedBed ;
+	coremeta4cat:catalyst_form voc4cat:0007034 ;
+	coremeta4cat:catalyst_quantity _:c14n0 ;
+	coremeta4cat:feed_composition_range _:c14n4 ;
+	coremeta4cat:product_identification_method coremeta4cat:REAC_001_GC_method ;
+	voc4cat:0000118 _:c14n2 ;
+	voc4cat:0007014 voc4cat:0007001 ;
+	voc4cat:0007032 _:c14n1 ;
+	voc4cat:0007809 _:c14n3 .
+coremeta4cat:REAC_001_GC_method dcterms:description "GC (Agilent 7890B) with TCD and FID detectors; columns: Molecular Sieve 5A and Poraplot Q; products: MeOH, CO, CH4, H2O quantified" ;
+	dcterms:title "online gas chromatography" ;
+	a OBI:0000272 .
+_:c14n0 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+	qudt:unit <https://qudt.org/vocab/unit/GM> ;
+	a qudt:Quantity ;
+	prov:value "0.5"^^xsd:float .
+_:c14n1 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/DEG_C> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "300.0"^^xsd:float ;
+	coremeta4cat:minValue "200.0"^^xsd:float .
+_:c14n2 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "50.0"^^xsd:float .
+_:c14n3 a coremeta4cat:Atmosphere ;
+	prov:value "H2/CO2 = 3:1 (molar), GHSV = 10000 mL/(g*h)" .
+_:c14n4 dcterms:description "H2/CO2 = 3:1, CO2 concentration 20 vol%" ;
+	a qudt:Quantity .

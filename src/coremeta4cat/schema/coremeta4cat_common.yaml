@@ -29,9 +29,9 @@ version: 1.0.0
 
 prefixes:
   coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
-  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
+  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
   chemdcatap: https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  dcatap_plus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   dcterms: http://purl.org/dc/terms/
   prov: http://www.w3.org/ns/prov#
@@ -40,8 +40,8 @@ prefixes:
   OBI: http://purl.obolibrary.org/obo/OBI_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   SIO: http://semanticscience.org/resource/SIO_
-  AFR: http://purl.allotrope.org/ontologies/result#AFR_
-  AFP: http://purl.allotrope.org/ontologies/process#AFP_
+  allotrope.result: http://purl.allotrope.org/ontologies/result#AFR_
+  allotrope.process: http://purl.allotrope.org/ontologies/process#AFP_
   qudt: http://qudt.org/schema/qudt/
   PATO: http://purl.obolibrary.org/obo/PATO_
 
@@ -157,7 +157,7 @@ classes:
     class_uri: qudt:Quantity
     description: Rate of temperature change per unit time during a thermal ramp.
     exact_mappings:
-    - VOC4CAT:0008116
+    - voc4cat:0008116
 
   AngularVelocity:
     is_a: QuantitativeAttribute
@@ -233,7 +233,7 @@ classes:
 
   CalcinationGaseousEnvironment:
     is_a: Atmosphere
-    class_uri: VOC4CAT:0000055
+    class_uri: voc4cat:0000055
     description: |-
       The specific gaseous environment maintained during a calcination step
       (e.g. "air", "N2", "10% O2/N2").
@@ -247,7 +247,7 @@ classes:
 
   SamplePretreatment:
     is_a: QualitativeAttribute
-    class_uri: VOC4CAT:0000122
+    class_uri: voc4cat:0000122
     description: |-
       A qualitative descriptor of the pre-treatment applied to a sample
       before a process or measurement (e.g. "reduction at 300 °C", "outgassing").
@@ -261,7 +261,7 @@ classes:
 
   OperationMode:
     is_a: QualitativeAttribute
-    class_uri: VOC4CAT:0000108
+    class_uri: voc4cat:0000108
     description: |-
       A qualitative descriptor of the operation mode of an instrument or
       process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
@@ -297,7 +297,7 @@ slots:
 
   has_heating_rate:
     is_a: has_quantitative_attribute
-    slot_uri: VOC4CAT:0008116
+    slot_uri: voc4cat:0008116
     range: HeatingRate
     description: Temperature ramp rate during a heating or cooling step.
 
@@ -360,13 +360,13 @@ slots:
 
   has_drying_temperature:
     is_a: has_temperature
-    slot_uri: VOC4CAT:0008207
+    slot_uri: voc4cat:0008207
     range: Temperature
     description: Temperature applied during the drying step.
 
   has_drying_duration:
     is_a: has_duration
-    slot_uri: VOC4CAT:0008206
+    slot_uri: voc4cat:0008206
     range: Duration
     description: Duration of the drying step.
 
@@ -384,19 +384,19 @@ slots:
 
   has_calcination_dwelling_time:
     is_a: has_duration
-    slot_uri: VOC4CAT:0000060
+    slot_uri: voc4cat:0000060
     range: Duration
     description: Time held at the final calcination temperature.
 
   has_calcination_heating_rate:
     is_a: has_heating_rate
-    slot_uri: VOC4CAT:0008116
+    slot_uri: voc4cat:0008116
     range: HeatingRate
     description: Temperature ramp rate during the calcination step.
 
   has_calcination_gas_flow_rate:
     is_a: has_flow_rate
-    slot_uri: VOC4CAT:0000056
+    slot_uri: voc4cat:0000056
     range: VolumeFlowRate
     description: Gas flow rate maintained during calcination.
 
@@ -442,7 +442,7 @@ slots:
 
   has_atmosphere:
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0007809
+    slot_uri: voc4cat:0007809
     range: Atmosphere
     description: Gaseous environment or atmospheric conditions during a process.
     multivalued: true
@@ -450,7 +450,7 @@ slots:
 
   has_drying_atmosphere:
     is_a: has_atmosphere
-    slot_uri: VOC4CAT:0008208
+    slot_uri: voc4cat:0008208
     range: Atmosphere
     description: Atmosphere maintained during the drying step.
     multivalued: true
@@ -508,7 +508,7 @@ slots:
     description: Number of repeated cycles in a process (e.g. ALD cycles, impregnation cycles).
     is_a: has_quantitative_attribute
     range: integer
-    slot_uri: VOC4CAT:0008123
+    slot_uri: voc4cat:0008123
 
   carrier_gas:
     description: Carrier gas used in a process (e.g. in GC analysis or ALD deposition).
@@ -533,7 +533,7 @@ slots:
     description: Device used for drying (e.g. oven, rotary evaporator).
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0008122
+    slot_uri: voc4cat:0008122
     multivalued: true
 
   # ---- Measurement / analytical slots ----
@@ -543,7 +543,7 @@ slots:
     description: Step size for a scan (angle, wavelength, energy, or potential).
     is_a: has_quantitative_attribute
     range: float
-    slot_uri: AFR:0000950
+    slot_uri: allotrope.result:0000950
     multivalued: true
 
   resolution:
@@ -563,7 +563,7 @@ slots:
     description: Solvent used in a process or sample preparation.
     is_a: carried_out_by
     range: ChemicalEntity
-    slot_uri: VOC4CAT:0007246
+    slot_uri: voc4cat:0007246
     multivalued: true
     inlined_as_list: true
 
@@ -622,21 +622,21 @@ enums:
     permissible_values:
       heterogeneous_catalysis:
         description: Heterogeneous catalysis — catalyst and reactants are in different phases.
-        meaning: VOC4CAT:0007001
+        meaning: voc4cat:0007001
       homogeneous_catalysis:
         description: Homogeneous catalysis — catalyst and reactants are in the same phase.
-        meaning: VOC4CAT:0000294
+        meaning: voc4cat:0000294
       biocatalysis:
         description: Biocatalysis — use of enzymes or whole cells as catalysts.
-        meaning: VOC4CAT:0000204
+        meaning: voc4cat:0000204
       electrocatalysis:
         description: Electrocatalysis — catalysis of electrochemical reactions.
-        meaning: VOC4CAT:0000216
+        meaning: voc4cat:0000216
       photocatalysis:
         description: |-
           Photocatalysis — catalysis of a chemical reaction through the
           absorption of sufficient light energy by a photocatalyst.
-        meaning: VOC4CAT:0000001
+        meaning: voc4cat:0000001
       hybrid_catalysis:
         description: Hybrid catalysis — combination of two or more catalytic approaches.
       other:
@@ -682,19 +682,19 @@ enums:
     permissible_values:
       thin_film:
         description: A catalyst introduced to the reaction chamber as a thin film on a substrate.
-        meaning: VOC4CAT:0000019
+        meaning: voc4cat:0000019
       bulk:
         description: A catalyst that consists mainly of the active material throughout its volume.
-        meaning: VOC4CAT:0007015
+        meaning: voc4cat:0007015
       powdered:
         description: A catalyst introduced to the reaction chamber as a loose powder.
-        meaning: VOC4CAT:0000017
+        meaning: voc4cat:0000017
       deposited_sample:
         description: A thin film of the catalyst deposited on a substrate for characterization purposes.
-        meaning: VOC4CAT:0000038
+        meaning: voc4cat:0000038
       supported:
         description: A catalyst where the active material is dispersed on a support material.
-        meaning: VOC4CAT:0007034
+        meaning: voc4cat:0007034
       other:
         description: Other catalyst form not covered by the above terms.
 
@@ -707,7 +707,7 @@ enums:
         description: |-
           An electrochemical cell that converts chemical energy into
           electrical energy via a spontaneous reaction.
-        meaning: VOC4CAT:0007256
+        meaning: voc4cat:0007256
       electrolytic:
         description: |-
           An electrochemical cell that consumes electrical energy to drive

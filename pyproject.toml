@@ -11,16 +11,16 @@ authors = [
 license = "MIT"
 license-files = ["LICENSE"]
 readme = "README.md"
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10,<4.0"
 dynamic = ["version"]
 
 dependencies = [
-  "linkml-runtime >=1.9.4",
+  "linkml-runtime >=1.12.1",
 ]
 
 [dependency-groups]
 dev = [
-    "linkml>=1.9.3",
+    "linkml>=1.12.1",
     "mike>=2.0",
     "mkdocs-material>=8.2.8",
     "mkdocs-mermaid2-plugin>=1.2.3",

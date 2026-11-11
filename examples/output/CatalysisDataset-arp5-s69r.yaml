@@ -128,7 +128,7 @@ was_generated_by:
       EDX detector, Schottky field emission gun, 200 kV high tension, magnification
       160-800 kx.
   rdf_type:
-    id: VOC4CAT:0000078
+    id: voc4cat:0000078
     title: transmission electron microscopy
   evaluated_entity:
   - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
@@ -239,7 +239,7 @@ is_about_activity:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
   rdf_type:
-    id: VOC4CAT:0000247
+    id: voc4cat:0000247
     title: carbonylation
   used_reactant:
   - id: coremeta4cat:REAC_arp5-s69r_CO
@@ -309,7 +309,7 @@ is_about_activity:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
   rdf_type:
-    id: VOC4CAT:0000247
+    id: voc4cat:0000247
     title: carbonylation
   used_reactant:
   - id: coremeta4cat:REAC_arp5-s69r_CO
@@ -396,7 +396,7 @@ is_about_activity:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
   rdf_type:
-    id: VOC4CAT:0000247
+    id: voc4cat:0000247
     title: carbonylation
   used_reactant:
   - id: coremeta4cat:REAC_arp5-s69r_CO
@@ -450,5 +450,5 @@ is_about_activity:
     description: Initial CO pressure
     unit: https://qudt.org/vocab/unit/BAR
 rdf_type:
-  id: VOC4CAT:0007001
+  id: voc4cat:0007001
   title: heterogeneous catalysis

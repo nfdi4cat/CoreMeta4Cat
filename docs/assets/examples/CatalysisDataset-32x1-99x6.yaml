@@ -12,7 +12,7 @@ description:
   C), pressure (1-9 bar), phosphorus loading, and reaction time. TEM is mentioned in the original repository
   description but no TEM data files are included in the deposited dataset.
 rdf_type:
-  id: VOC4CAT:0007001
+  id: voc4cat:0007001
   title: heterogeneous catalysis
 keyword:
 - Chemistry
@@ -64,7 +64,7 @@ was_generated_by:
     (0-5 wt% nominal P loading). Surface area ranged 72-126 m2/g, generally decreasing with increasing
     P loading (bet_results.txt).
   rdf_type:
-    id: ENM:0000064
+    id: enm:0000064
     title: BET analysis
   carried_out_by:
   - id: coremeta4cat:DEV_32x1-99x6_BET
@@ -300,7 +300,7 @@ is_about_activity:
     CAL conversion/HCAL yield of 32/30% (Pd/Al2O3) and 45/42% (Pd/3P/Al2O3). Conversion ranged 6-96%,
     yield 6-90% across the 27-run design (catalytic_data.xlsx, 'Pd-XPAl2O3_CCD_CAL').
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   catalyst_type:
   - heterogeneous_catalysis
@@ -453,7 +453,7 @@ is_about_activity:
     conversion/HCAL yield of 23/22% (Pd/SiO2) and 78/40% (Pd/3P/SiO2). Conversion ranged 12-100%, yield
     9-56% across the 9-run design (catalytic_data.xlsx, 'Pd-XPSiO2_FF_CAL').
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   catalyst_type:
   - heterogeneous_catalysis
@@ -570,7 +570,7 @@ is_about_activity:
     Pd) in a full factorial design (9 runs) exploring temperature, pressure, phosphorus loading, and time.
     Conversion ranged 15-85%, yield 15-65% across the 9-run design (catalytic_data.xlsx, 'Pd-XPAl2O3_FF_Citral').
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   catalyst_type:
   - heterogeneous_catalysis
@@ -678,7 +678,7 @@ is_about_activity:
     Pd) in a full factorial design (9 runs) exploring temperature, pressure, phosphorus loading, and time.
     Conversion ranged 11-100%, yield 11-84% across the 9-run design (catalytic_data.xlsx, 'Pd-XPSiO2_FF_Citral').
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   catalyst_type:
   - heterogeneous_catalysis

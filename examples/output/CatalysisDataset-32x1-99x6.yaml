@@ -11,7 +11,7 @@ description:
   deposited dataset.
 title:
 - 'Support Engineering with Phosphorus: Tuning the Palladium-Catalyzed Selective Hydrogenation
-  of Î±,Î²-Unsaturated Aldehydes'
+  of α,β-Unsaturated Aldehydes'
 was_generated_by:
 - id: coremeta4cat:CHAR_32x1-99x6_BET
   title:
@@ -27,7 +27,7 @@ was_generated_by:
     title: BET surface area analyser
     description: Instrument model not specified in the source dataset files.
   rdf_type:
-    id: ENM:0000064
+    id: enm:0000064
     title: BET analysis
   evaluated_entity:
   - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
@@ -309,7 +309,7 @@ is_about_activity:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_substrate
@@ -464,7 +464,7 @@ is_about_activity:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_CAL_SiO2_substrate
@@ -583,7 +583,7 @@ is_about_activity:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_substrate
@@ -693,7 +693,7 @@ is_about_activity:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
   rdf_type:
-    id: VOC4CAT:0000260
+    id: voc4cat:0000260
     title: hydrogenation
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_Citral_SiO2_substrate
@@ -793,5 +793,5 @@ is_about_activity:
     description: Maximum pressure in the design space
     unit: https://qudt.org/vocab/unit/BAR
 rdf_type:
-  id: VOC4CAT:0007001
+  id: voc4cat:0007001
   title: heterogeneous catalysis

@@ -163,7 +163,7 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000078",
+        "id": "voc4cat:0000078",
         "title": "transmission electron microscopy"
       },
       "evaluated_entity": [
@@ -344,7 +344,7 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000247",
+        "id": "voc4cat:0000247",
         "title": "carbonylation"
       },
       "used_reactant": [
@@ -442,7 +442,7 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000247",
+        "id": "voc4cat:0000247",
         "title": "carbonylation"
       },
       "used_reactant": [
@@ -567,7 +567,7 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000247",
+        "id": "voc4cat:0000247",
         "title": "carbonylation"
       },
       "used_reactant": [
@@ -653,7 +653,7 @@
     }
   ],
   "rdf_type": {
-    "id": "VOC4CAT:0007001",
+    "id": "voc4cat:0007001",
     "title": "heterogeneous catalysis"
   },
   "@type": "CatalysisDataset"

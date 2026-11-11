@@ -25,16 +25,16 @@ version: 1.0.0
 
 prefixes:
   coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
-  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
+  dcatap_plus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
   CHEBI: http://purl.obolibrary.org/obo/CHEBI_
   BFO: http://purl.obolibrary.org/obo/BFO_
   SIO: http://semanticscience.org/resource/SIO_
-  AFR: http://purl.allotrope.org/ontologies/result#AFR_
-  AFP: http://purl.allotrope.org/ontologies/process#AFP_
+  allotrope.result: http://purl.allotrope.org/ontologies/result#AFR_
+  allotrope.process: http://purl.allotrope.org/ontologies/process#AFP_
 
 default_prefix: coremeta4cat
 default_range: string
@@ -124,7 +124,7 @@ classes:
       had_output_entity.
 
       The type of synthesis is further specified via rdf_type using an ontology
-      term (e.g. a VOC4CAT preparation method term), following DCAT-AP-PLUS
+      term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS
       Pattern 3.
     slots:
     - nominal_composition
@@ -167,7 +167,7 @@ classes:
 
   Precursor:
     is_a: MaterialSample
-    class_uri: VOC4CAT:0007794 # precursor
+    class_uri: voc4cat:0007794 # precursor
     description: |-
       A MaterialSample that serves as input material in a catalyst Synthesis.
       Precursors are consumed or transformed during the preparation process.
@@ -182,7 +182,7 @@ classes:
     description: |-
       A MaterialSample that is the product of a catalyst Synthesis.
       The specific type of catalyst (e.g. heterogeneous, supported metal)
-      is expressed via rdf_type using a VOC4CAT term.
+      is expressed via rdf_type using a voc4cat term.
     slot_usage:
       derived_from:
         description: |-
@@ -194,7 +194,7 @@ classes:
 
   PreparationMethod:
     is_a: CatalysisPlan
-    class_uri: VOC4CAT:0007016 # protocol
+    class_uri: voc4cat:0007016 # protocol
     abstract: true
     description: |-
       An abstract Plan describing the protocol used to prepare a catalyst.
@@ -203,13 +203,13 @@ classes:
 
       The specific preparation method type should additionally be expressed
       via rdf_type on the Synthesis activity using a voc4cat term
-      (e.g. VOC4CAT:0007016 for preparation method).
+      (e.g. voc4cat:0007016 for preparation method).
 
   # ---- Concrete preparation method subclasses ----
 
   Impregnation:
     is_a: PreparationMethod
-    class_uri: VOC4CAT:0007028
+    class_uri: voc4cat:0007028
     mixins:
     - DryingMixin
     - CalcinationMixin
@@ -223,7 +223,7 @@ classes:
 
   CoPrecipitation:
     is_a: PreparationMethod
-    class_uri: VOC4CAT:0007795
+    class_uri: voc4cat:0007795
     mixins:
     - PrecipitationMixin
     - DryingMixin
@@ -345,7 +345,7 @@ classes:
 
   FlameSprayPyrolysis:
     is_a: PreparationMethod
-    class_uri: VOC4CAT:0007031
+    class_uri: voc4cat:0007031
     description: |-
       Catalyst preparation by flame spray pyrolysis (FSP): a liquid precursor
       solution is atomised and combusted in a flame to produce nanoparticles.
@@ -455,14 +455,14 @@ slots:
     description: Conditions under which the catalyst is stored (e.g. inert atmosphere, 4°C).
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0008105
+    slot_uri: voc4cat:0008105
     multivalued: true
 
   catalyst_support:
     description: Support material on which the active phase is deposited (e.g. Al2O3, SiO2).
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0008104
+    slot_uri: voc4cat:0008104
     multivalued: true
 
   # ---- Precursor slots ----
@@ -471,7 +471,7 @@ slots:
     description: Quantity of precursor used in synthesis.
     is_a: has_mass
     range: Mass
-    slot_uri: VOC4CAT:0008118
+    slot_uri: voc4cat:0008118
     multivalued: true
     inlined_as_list: true
 
@@ -480,14 +480,14 @@ slots:
   impregnation_type:
     description: Type of impregnation used (wet, dry, incipient wetness).
     range: ImpregnationTypeEnum
-    slot_uri: VOC4CAT:0008119
+    slot_uri: voc4cat:0008119
     multivalued: true
 
   impregnation_duration:
     description: Duration of the impregnation step.
     is_a: has_duration
     range: Duration
-    slot_uri: VOC4CAT:0008120
+    slot_uri: voc4cat:0008120
     multivalued: true
     inlined_as_list: true
 
@@ -495,7 +495,7 @@ slots:
     description: Temperature during the impregnation step.
     is_a: has_temperature
     range: Temperature
-    slot_uri: VOC4CAT:0008121
+    slot_uri: voc4cat:0008121
     multivalued: true
     inlined_as_list: true
 
@@ -505,7 +505,7 @@ slots:
     description: Chemical agent used to induce precipitation (e.g. NaOH, NH3).
     is_a: carried_out_by
     range: ChemicalEntity
-    slot_uri: VOC4CAT:0008203
+    slot_uri: voc4cat:0008203
     multivalued: true
     inlined_as_list: true
 
@@ -513,7 +513,7 @@ slots:
     description: Concentration of the precipitating agent/solution used to induce precipitation.
     is_a: has_concentration
     range: Concentration
-    slot_uri: VOC4CAT:0008125
+    slot_uri: voc4cat:0008125
     multivalued: true
     inlined_as_list: true
 
@@ -528,25 +528,25 @@ slots:
 
   has_mixing_duration:
     is_a: has_duration
-    slot_uri: VOC4CAT:0008126
+    slot_uri: voc4cat:0008126
     range: Duration
     description: Duration of the mixing step.
 
   has_mixing_temperature:
     is_a: has_temperature
-    slot_uri: VOC4CAT:0008127
+    slot_uri: voc4cat:0008127
     range: Temperature
     description: Temperature maintained during mixing.
 
   has_aging_temperature:
     is_a: has_temperature
-    slot_uri: VOC4CAT:0008131
+    slot_uri: voc4cat:0008131
     range: Temperature
     description: Temperature maintained during the aging step.
 
   has_aging_duration:
     is_a: has_duration
-    slot_uri: VOC4CAT:0008204
+    slot_uri: voc4cat:0008204
     range: Duration
     description: Duration of the aging step.
 
@@ -554,21 +554,21 @@ slots:
     description: Order in which reagents or components are combined.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0008128
+    slot_uri: voc4cat:0008128
     multivalued: true
 
   filtration:
     description: Filtration method used to separate the precipitate (e.g. vacuum filtration).
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0008129
+    slot_uri: voc4cat:0008129
     multivalued: true
 
   purification:
     description: Purification method applied after synthesis (e.g. washing, dialysis).
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0008130
+    slot_uri: voc4cat:0008130
     multivalued: true
 
   # ---- DepositionPrecipitation-specific slots ----
@@ -595,7 +595,7 @@ slots:
     description: Temperature applied during the synthesis step.
     is_a: has_temperature
     range: Temperature
-    slot_uri: VOC4CAT:0000051
+    slot_uri: voc4cat:0000051
     multivalued: true
     inlined_as_list: true
 
@@ -603,7 +603,7 @@ slots:
     description: Total duration of the synthesis step.
     is_a: has_duration
     range: Duration
-    slot_uri: VOC4CAT:0000050
+    slot_uri: voc4cat:0000050
     multivalued: true
     inlined_as_list: true
 
@@ -611,7 +611,7 @@ slots:
     description: Pressure applied during synthesis (e.g. in autoclave or plasma reactor).
     is_a: has_pressure
     range: Pressure
-    slot_uri: VOC4CAT:0000053
+    slot_uri: voc4cat:0000053
     multivalued: true
     inlined_as_list: true
 
@@ -653,7 +653,7 @@ slots:
     description: Type of stirrer used (e.g. magnetic, mechanical, none).
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0008113
+    slot_uri: voc4cat:0008113
     multivalued: true
 
   cooling_rate:
@@ -733,7 +733,7 @@ slots:
     description: Substrate material on which the ALD film is deposited.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0000024
+    slot_uri: voc4cat:0000024
     multivalued: true
 
   pulse_time:
@@ -749,7 +749,7 @@ slots:
     description: Duration of the purge step between ALD pulses.
     is_a: has_quantitative_attribute
     range: float
-    slot_uri: VOC4CAT:0000112
+    slot_uri: voc4cat:0000112
     multivalued: true
     unit:
       ucum_code: s
@@ -919,7 +919,7 @@ slots:
     description: Agent used to induce precipitation in molecular synthesis.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0008203
+    slot_uri: voc4cat:0008203
     multivalued: true
 
   crystallisation_duration:

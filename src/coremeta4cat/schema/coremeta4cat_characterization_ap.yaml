@@ -29,18 +29,18 @@ version: 1.0.0
 
 prefixes:
   coremeta4cat: https://w3id.org/nfdi4cat/coremeta4cat/
-  VOC4CAT: https://w3id.org/nfdi4cat/voc4cat_
-  dcatapplus: https://w3id.org/nfdi-de/dcat-ap-plus/
+  voc4cat: https://w3id.org/nfdi4cat/voc4cat_
+  dcatap_plus: https://w3id.org/nfdi-de/dcat-ap-plus/
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
   CHMO: http://purl.obolibrary.org/obo/CHMO_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
-  AFR: http://purl.allotrope.org/ontologies/result#AFR_
-  AFP: http://purl.allotrope.org/ontologies/process#AFP_
-  AFQ: http://purl.allotrope.org/ontologies/quality#AFQ_
-  AFRL: http://purl.allotrope.org/ontologies/role#AFRL_
-  ENM: http://purl.enanomapper.org/onto/
+  allotrope.result: http://purl.allotrope.org/ontologies/result#AFR_
+  allotrope.process: http://purl.allotrope.org/ontologies/process#AFP_
+  allotrope.quality: http://purl.allotrope.org/ontologies/quality#AFQ_
+  allotrope.role: http://purl.allotrope.org/ontologies/role#AFRL_
+  enm: http://purl.enanomapper.org/onto/
 
 default_prefix: coremeta4cat
 default_range: string
@@ -190,7 +190,7 @@ classes:
       rdf_type:
         description: |-
           The type of characterization technique as an ontology term, e.g.
-          CHMO:0000158 (powder XRD), CHMO:0000404 (XPS), VOC4CAT:0000075 (SEM).
+          CHMO:0000158 (powder XRD), CHMO:0000404 (XPS), voc4cat:0000075 (SEM).
         recommended: true
 
   # ==================== CHARACTERIZATION TECHNIQUE (Plan) ====================
@@ -234,7 +234,7 @@ classes:
 
   XRayAbsorptionSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: VOC4CAT:0000286
+    class_uri: voc4cat:0000286
     mixins:
     - XRaySourceMixin
     - EnergyRangeMixin
@@ -312,7 +312,7 @@ classes:
 
   RamanSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: VOC4CAT:0000069
+    class_uri: voc4cat:0000069
     description: Raman spectroscopy for vibrational and structural characterization.
     slots:
     - excitation_laser_wavelength
@@ -328,7 +328,7 @@ classes:
 
   NMRSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: VOC4CAT:0000073
+    class_uri: voc4cat:0000073
     description: |-
       Nuclear magnetic resonance spectroscopy for structure elucidation.
       Note: for detailed liquid-state NMR minimum information, the dedicated
@@ -348,7 +348,7 @@ classes:
 
   TransmissionElectronMicroscopy:
     is_a: CharacterizationTechnique
-    class_uri: VOC4CAT:0000078
+    class_uri: voc4cat:0000078
     mixins:
     - ElectronMicroscopyMixin
     description: TEM for atomic-resolution imaging and diffraction of catalyst particles.
@@ -357,7 +357,7 @@ classes:
 
   ScanningElectronMicroscopy:
     is_a: CharacterizationTechnique
-    class_uri: VOC4CAT:0000075
+    class_uri: voc4cat:0000075
     mixins:
     - ElectronMicroscopyMixin
     description: SEM for surface morphology and particle size/shape imaging.
@@ -402,7 +402,7 @@ classes:
 
   BET:
     is_a: CharacterizationTechnique
-    class_uri: ENM:0000064
+    class_uri: enm:0000064
     description: Brunauer-Emmett-Teller analysis for specific surface area and pore size distribution.
     slots:
     - adsorbate_gas
@@ -436,7 +436,7 @@ classes:
 
   UVVisSpectroscopy:
     is_a: CharacterizationTechnique
-    class_uri: VOC4CAT:0000079
+    class_uri: voc4cat:0000079
     description: UV-Vis spectroscopy for electronic transitions, band gap, and concentration determination.
     slots:
     - wavelength_range
@@ -548,7 +548,7 @@ classes:
 
   SizeExclusionChromatography:
     is_a: CharacterizationTechnique
-    class_uri: AFP:0000843
+    class_uri: allotrope.quality:0000843
     mixins:
     - ChromatographyMixin
     description: Size exclusion chromatography for molecular weight distribution determination.
@@ -601,14 +601,14 @@ slots:
     description: Sample preparation steps applied immediately before measurement.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: AFP:0001159
+    slot_uri: allotrope.quality:0001159
     multivalued: true
 
   detector_type:
     description: Type of detector used in the measurement.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: AFR:0000317
+    slot_uri: allotrope.result:0000317
     multivalued: true
 
   # ---- X-ray source / optics (XRaySourceMixin) ----
@@ -659,7 +659,7 @@ slots:
     description: Magnification setting used for imaging.
     is_a: has_quantitative_attribute
     range: float
-    slot_uri: AFR:0002226
+    slot_uri: allotrope.result:0002226
     multivalued: true
 
   # ---- Temperature programme (TemperatureProgramMixin) ----
@@ -706,7 +706,7 @@ slots:
     description: Excitation wavelength used in photoluminescence measurement.
     is_a: has_length
     range: LengthQuantity
-    slot_uri: AFR:0002479
+    slot_uri: allotrope.result:0002479
     multivalued: true
     inlined_as_list: true
 
@@ -731,21 +731,21 @@ slots:
     description: Reference electrode used in electrochemical cell (e.g. Ag/AgCl, RHE).
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0007204
+    slot_uri: voc4cat:0007204
     multivalued: true
 
   working_electrode:
     description: Working electrode used in electrochemical cell.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0007202
+    slot_uri: voc4cat:0007202
     multivalued: true
 
   counter_electrode:
     description: Counter electrode used in electrochemical cell.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0007203
+    slot_uri: voc4cat:0007203
     multivalued: true
 
   electrolyte_composition:
@@ -816,7 +816,7 @@ slots:
     description: Energy resolution of the spectrometer or monochromator.
     is_a: has_energy
     range: EnergyQuantity
-    slot_uri: AFR:0000950
+    slot_uri: allotrope.result:0000950
     multivalued: true
     inlined_as_list: true
 
@@ -892,7 +892,7 @@ slots:
     description: Background correction method applied to IR spectra.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: AFP:0003721
+    slot_uri: allotrope.quality:0003721
     multivalued: true
 
   adsorption_gas:
@@ -930,7 +930,7 @@ slots:
     description: Wavelength of excitation laser used in Raman spectroscopy.
     is_a: has_length
     range: LengthQuantity
-    slot_uri: AFR:0001594
+    slot_uri: allotrope.result:0001594
     multivalued: true
     inlined_as_list: true
 
@@ -938,7 +938,7 @@ slots:
     description: Power of the excitation laser at the sample.
     is_a: has_power
     range: PowerQuantity
-    slot_uri: AFR:0001595
+    slot_uri: allotrope.result:0001595
     multivalued: true
     inlined_as_list: true
 
@@ -1096,7 +1096,7 @@ slots:
     description: Optical path length of the measurement cell.
     is_a: has_quantitative_attribute
     range: float
-    slot_uri: AFQ:0000268
+    slot_uri: allotrope.quality:0000268
     multivalued: true
     unit:
       ucum_code: cm
@@ -1138,7 +1138,7 @@ slots:
     description: Potential scan rate in cyclic voltammetry.
     is_a: has_quantitative_attribute
     range: float
-    slot_uri: VOC4CAT:0007213
+    slot_uri: voc4cat:0007213
     multivalued: true
     unit:
       ucum_code: mV/s
@@ -1157,7 +1157,7 @@ slots:
     description: Potential step size in cyclic voltammetry.
     is_a: has_quantitative_attribute
     range: float
-    slot_uri: VOC4CAT:0007218
+    slot_uri: voc4cat:0007218
     multivalued: true
     unit:
       ucum_code: mV
@@ -1175,7 +1175,7 @@ slots:
     description: Frequency of AC signal applied in impedance or conductivity measurement.
     is_a: has_quantitative_attribute
     range: float
-    slot_uri: VOC4CAT:0007239
+    slot_uri: voc4cat:0007239
     multivalued: true
     unit:
       ucum_code: Hz
@@ -1200,7 +1200,7 @@ slots:
     description: Wavelength of the laser used in DLS measurement.
     is_a: has_length
     range: LengthQuantity
-    slot_uri: VOC4CAT:0000176
+    slot_uri: voc4cat:0000176
     multivalued: true
     inlined_as_list: true
 
@@ -1249,7 +1249,7 @@ slots:
     description: Solvent composition used for ESI spray solution.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0007246
+    slot_uri: voc4cat:0007246
     multivalued: true
 
   # ---- GC-MS-specific ----
@@ -1283,7 +1283,7 @@ slots:
     description: Temperature ramp rate in GC oven programme.
     is_a: has_heating_rate
     range: HeatingRate
-    slot_uri: VOC4CAT:0008116
+    slot_uri: voc4cat:0008116
     multivalued: true
     inlined_as_list: true
 
@@ -1323,7 +1323,7 @@ slots:
     description: Eluent or mobile phase used in chromatography.
     is_a: carried_out_by
     range: ChemicalEntity
-    slot_uri: AFRL:0000011
+    slot_uri: allotrope.role:0000011
     multivalued: true
     inlined_as_list: true
 
