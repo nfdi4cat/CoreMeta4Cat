@@ -470,3 +470,287 @@ def test_non_shared_slot_edit_does_not_warn_about_sharing(indexes):
         if d.level == "warning" and "global definition" in d.message
     ]
     assert not shared_warnings
+
+
+# ── new class + its slots in the same submission (PR #157 regression) ────────
+#
+# PR #157 added five new CalculatedProperty subclasses together with their
+# slots via the inbox. The classes were written to coremeta4cat_simulation_ap
+# .yaml (their parent's module), but every new slot whose domain was one of
+# those new classes fell back to coremeta4cat.yaml: the definitions landed
+# there as orphaned global slots and were never attached to the classes.
+# Existing slots reused on the new classes (e.g. miller indices) were dropped
+# without any message, and the report still claimed success. These tests pin
+# the fix. All names are synthetic so they stay "new" whatever lands later.
+
+_SIM_FILE  = "coremeta4cat_simulation_ap.yaml"
+_MAIN_FILE = "coremeta4cat.yaml"
+
+
+def _class_row(label: str, parent: str) -> dict:
+    row = _slot_row(label, domain=parent)
+    row["type"] = "class"
+    return row
+
+
+def _tmp_schema(tmp_path, monkeypatch) -> Path:
+    """Copy the schema into tmp_path and point the pipeline at the copy."""
+    dst = tmp_path / "schema"
+    dst.mkdir()
+    for f in _SCHEMA.glob("*.yaml"):
+        shutil.copy(f, dst / f.name)
+    monkeypatch.setattr(ib, "SCHEMA_DIR", dst)
+    return dst
+
+
+def _plan_in(schema_dir: Path, excel_data):
+    """Plan against a (tmp) schema dir; returns (changes, reporter)."""
+    schema = load_merged_schema(str(schema_dir))
+    slot_origin, class_origin = ib.build_origin_index(schema_dir)
+    label_to_slot, label_to_class = ib.build_label_index(schema)
+    reporter = ib.Reporter()
+    changes = ib.plan_changes(
+        schema, excel_data, label_to_slot, label_to_class,
+        slot_origin, class_origin, reporter,
+    )
+    return changes, reporter
+
+
+def _additions(changes, names):
+    """Only the additions for our synthetic names -- a partial workbook would
+    otherwise flag every other slot of the sheet's class for deletion."""
+    return [
+        c for c in changes
+        if c["type"] in ("class_add", "slot_add", "slot_attach") and c["name"] in names
+    ]
+
+
+def _class_slots(schema_dir: Path, filename: str, class_name: str) -> list:
+    doc = ib._load_yaml(schema_dir / filename)
+    cls = (doc.get("classes") or {}).get(class_name) or {}
+    return list(cls.get("slots") or [])
+
+
+def _defined_slots(schema_dir: Path, filename: str) -> set:
+    return set((ib._load_yaml(schema_dir / filename).get("slots") or {}))
+
+
+def test_new_slots_on_new_class_land_in_the_class_module(tmp_path, monkeypatch):
+    """New slots whose domain is a class added in the same workbook are
+    defined in the module of that class and listed in its slots: -- not
+    orphaned in coremeta4cat.yaml."""
+    dst = _tmp_schema(tmp_path, monkeypatch)
+    excel = {"Simulation": [
+        _class_row("QaProbeEnergetics", "CalculatedProperty"),
+        _slot_row("qa probe adsorbate", domain="QaProbeEnergetics", mro="R"),
+        _slot_row("qa probe energy", domain="QaProbeEnergetics",
+                  range_="float", unit="eV"),
+    ]}
+    names = {"QaProbeEnergetics", "qa_probe_adsorbate", "qa_probe_energy"}
+
+    changes, reporter = _plan_in(dst, excel)
+    assert not reporter.has_errors
+    adds = _additions(changes, names)
+    assert {Path(c["_target"]).name for c in adds} == {_SIM_FILE}
+
+    ib.apply_changes(adds, reporter)
+    ib.verify_applied(adds, reporter)
+    assert not reporter.has_errors, [d.message for d in reporter._diags if d.level == "error"]
+
+    assert _class_slots(dst, _SIM_FILE, "QaProbeEnergetics") == [
+        "qa_probe_adsorbate", "qa_probe_energy",
+    ]
+    assert {"qa_probe_adsorbate", "qa_probe_energy"} <= _defined_slots(dst, _SIM_FILE)
+    assert not ({"qa_probe_adsorbate", "qa_probe_energy"} & _defined_slots(dst, _MAIN_FILE))
+
+
+def test_existing_slot_on_new_class_is_attached(tmp_path, monkeypatch):
+    """An existing slot listed on a new class is attached to it; a differing
+    M/R/O is scoped to that class via slot_usage, the shared definition stays."""
+    dst = _tmp_schema(tmp_path, monkeypatch)
+    schema = load_merged_schema(str(dst))
+    glob = schema["slots"]["miller_indices"]
+    assert not glob.get("required"), "precondition: miller_indices is not mandatory"
+
+    excel = {"Simulation": [
+        _class_row("QaProbeSurfaceThing", "CalculatedProperty"),
+        _slot_row("miller indices", domain="QaProbeSurfaceThing", mro="M",
+                  multivalued="yes" if glob.get("multivalued") else ""),
+    ]}
+    changes, reporter = _plan_in(dst, excel)
+    assert not reporter.has_errors
+    attaches = [c for c in changes if c["type"] == "slot_attach"]
+    assert len(attaches) == 1
+    assert attaches[0]["name"] == "miller_indices"
+    assert attaches[0]["schema_class"] == "QaProbeSurfaceThing"
+    assert Path(attaches[0]["_target"]).name == _SIM_FILE
+
+    adds = _additions(changes, {"QaProbeSurfaceThing", "miller_indices"})
+    ib.apply_changes(adds, reporter)
+    ib.verify_applied(adds, reporter)
+    assert not reporter.has_errors
+
+    doc = ib._load_yaml(dst / _SIM_FILE)
+    cls = doc["classes"]["QaProbeSurfaceThing"]
+    assert list(cls["slots"]) == ["miller_indices"]
+    assert cls["slot_usage"]["miller_indices"]["required"] is True
+    assert not doc["slots"]["miller_indices"].get("required")  # shared def untouched
+
+
+def test_existing_slot_already_on_class_is_not_attached(indexes):
+    """Rows for slots a class already has (own list, inheritance, mixin) are
+    never planned as attachments."""
+    excel = {"Simulation": [
+        _slot_row("material composition", domain="BandGap"),  # via MaterialDescriptorMixin
+        _slot_row("miller indices", domain="Surfaces"),       # own slots: list
+    ]}
+    changes, _ = _plan(indexes, excel)
+    assert not [c for c in changes if c["type"] == "slot_attach"]
+
+
+def test_same_new_slot_on_two_new_classes_is_defined_once(tmp_path, monkeypatch):
+    """A new field listed on two new classes gets one definition and is
+    attached to both classes."""
+    dst = _tmp_schema(tmp_path, monkeypatch)
+    excel = {"Simulation": [
+        _class_row("QaProbeStepA", "CalculatedProperty"),
+        _slot_row("qa probe shared step", domain="QaProbeStepA", mro="R"),
+        _class_row("QaProbeStepB", "CalculatedProperty"),
+        _slot_row("qa probe shared step", domain="QaProbeStepB", mro="R"),
+    ]}
+    names = {"QaProbeStepA", "QaProbeStepB", "qa_probe_shared_step"}
+    changes, reporter = _plan_in(dst, excel)
+    assert not reporter.has_errors
+    adds = _additions(changes, names)
+    assert [c["type"] for c in adds if c["name"] == "qa_probe_shared_step"] == [
+        "slot_add", "slot_attach",
+    ]
+
+    ib.apply_changes(adds, reporter)
+    ib.verify_applied(adds, reporter)
+    assert not reporter.has_errors
+    assert _class_slots(dst, _SIM_FILE, "QaProbeStepA") == ["qa_probe_shared_step"]
+    assert _class_slots(dst, _SIM_FILE, "QaProbeStepB") == ["qa_probe_shared_step"]
+
+
+def test_same_new_slot_with_conflicting_definition_is_an_error(indexes):
+    """The same new field with different definition values in two rows is
+    rejected -- a field has a single shared definition."""
+    excel = {"Simulation": [
+        _class_row("QaProbeStepA", "CalculatedProperty"),
+        _slot_row("qa probe shared step", domain="QaProbeStepA", range_="string"),
+        _class_row("QaProbeStepB", "CalculatedProperty"),
+        _slot_row("qa probe shared step", domain="QaProbeStepB", range_="float"),
+    ]}
+    _, reporter = _plan(indexes, excel)
+    errors = [d for d in reporter._diags if d.level == "error"]
+    assert errors and "range" in errors[0].message
+
+
+def test_slot_rows_before_class_row_still_attach(tmp_path, monkeypatch):
+    """Row order does not matter: slot rows above their new class's row are
+    still attached (class_add is applied first)."""
+    dst = _tmp_schema(tmp_path, monkeypatch)
+    excel = {"Simulation": [
+        _slot_row("qa probe early field", domain="QaProbeLateClass"),
+        _slot_row("miller indices", domain="QaProbeLateClass"),
+        _class_row("QaProbeLateClass", "CalculatedProperty"),
+    ]}
+    names = {"QaProbeLateClass", "qa_probe_early_field", "miller_indices"}
+    changes, reporter = _plan_in(dst, excel)
+    assert not reporter.has_errors
+    adds = _additions(changes, names)
+    ib.apply_changes(adds, reporter)
+    ib.verify_applied(adds, reporter)
+    assert not reporter.has_errors
+    assert _class_slots(dst, _SIM_FILE, "QaProbeLateClass") == [
+        "qa_probe_early_field", "miller_indices",
+    ]
+
+
+def test_new_slot_on_class_with_new_parent_targets_ancestor_module(indexes):
+    """A slot on a new class whose parent is ALSO new resolves to the module
+    of the nearest existing ancestor."""
+    excel = {"Simulation": [
+        _class_row("QaProbeParentProp", "CalculatedProperty"),
+        _class_row("QaProbeChildProp", "QaProbeParentProp"),
+        _slot_row("qa probe child field", domain="QaProbeChildProp"),
+    ]}
+    changes, reporter = _plan(indexes, excel)
+    assert not reporter.has_errors
+    targets = {
+        c["name"]: Path(c["_target"]).name
+        for c in changes if c["type"] in ("class_add", "slot_add")
+    }
+    assert targets == {
+        "QaProbeParentProp":    _SIM_FILE,
+        "QaProbeChildProp":     _SIM_FILE,
+        "qa_probe_child_field": _SIM_FILE,
+    }
+
+
+def test_slot_add_into_wrong_module_fails_loudly(tmp_path, monkeypatch):
+    """If a slot cannot be attached because its class is not in the target
+    module, apply reports an error instead of writing an orphaned slot and
+    claiming success."""
+    dst = _tmp_schema(tmp_path, monkeypatch)
+    before = _defined_slots(dst, _MAIN_FILE)
+    change = {
+        "type": "slot_add", "name": "qa_probe_orphan", "label": "qa probe orphan",
+        "schema_class": "Surfaces", "range": "string", "mro": "O",
+        "description": "", "uri": "", "multivalued": False,
+        "inlined_as_list": False, "unit": "",
+        "_target": dst / _MAIN_FILE,   # Surfaces lives in the simulation module
+    }
+    reporter = ib.Reporter()
+    ib.apply_changes([change], reporter)
+
+    assert reporter.has_errors
+    assert not reporter._applied
+    assert _defined_slots(dst, _MAIN_FILE) == before
+
+
+def test_verify_applied_flags_additions_that_did_not_land(tmp_path, monkeypatch):
+    """The post-apply check reports additions that are not in the schema."""
+    _tmp_schema(tmp_path, monkeypatch)
+    reporter = ib.Reporter()
+    ib.verify_applied(
+        [{"type": "slot_attach", "name": "qa_probe_missing", "schema_class": "Surfaces"},
+         {"type": "class_add", "name": "QaProbeMissingClass"}],
+        reporter,
+    )
+    contexts = {d.context for d in reporter._diags if d.level == "error"}
+    assert contexts == {"slot `qa_probe_missing`", "class `QaProbeMissingClass`"}
+
+
+def test_generated_workbook_plans_no_additions(tmp_path):
+    """Regression guard for the attach logic: the workbook generated from the
+    current schema must not plan any addition (no false attachments of the
+    structural/inherited display rows)."""
+    import openpyxl
+    from schema_to_excel import (
+        build_catcore_sheet, build_intro_sheet, build_legend_sheet, build_sheet,
+    )
+
+    schema = load_merged_schema(str(_SCHEMA))
+    wb = openpyxl.Workbook()
+    wb.remove(wb.active)
+    build_intro_sheet(wb)
+    build_legend_sheet(wb)
+    build_catcore_sheet(wb, schema)
+    for sheet_title in ib.CLASS_MAP:
+        build_sheet(wb, schema, sheet_title)
+    path = tmp_path / "generated.xlsx"
+    wb.save(str(path))
+
+    reporter = ib.Reporter()
+    sheets = ib.validate_structure(path, reporter)
+    assert sheets is not None
+    slot_origin, class_origin = ib.build_origin_index(_SCHEMA)
+    label_to_slot, label_to_class = ib.build_label_index(schema)
+    changes = ib.plan_changes(
+        schema, ib.parse_excel(sheets), label_to_slot, label_to_class,
+        slot_origin, class_origin, reporter,
+    )
+    assert not reporter.has_errors
+    assert not [c for c in changes if c["type"] in ("class_add", "slot_add", "slot_attach")]
