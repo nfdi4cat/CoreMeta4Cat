@@ -406,22 +406,68 @@ classes:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:AdsorptionEnergetics
     description: Adsorption energetics of a species on a catalyst surface or site, computed from periodic slab or cluster models. Essential for constructing reaction energy profiles and identifying activity descriptors.
+    slots:
+    - adsorbate
+    - adsorption_site
+    - adsorption_energy
+    - energy_reference
+    - energy_correction_type
+    - zero_point_energy_correction
+    - surface_coverage
+    - miller_indices
+    - material_composition
   ReactionEnergetics:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:ReactionEnergetics
     description: Thermochemistry of an elementary reaction step on a catalyst, given as the energy difference between its initial and final states.
+    slots:
+    - elementary_step
+    - initial_state
+    - final_state
+    - reaction_energy
+    - reaction_free_energy
+    - free_energy_temperature
+    - energy_correction_type
+    - miller_indices
+    - material_composition
   TransitionState:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:TransitionState
     description: Transition state of an elementary reaction step and its activation barrier, located by a transition state search method.
+    slots:
+    - elementary_step
+    - forward_activation_energy
+    - reverse_activation_energy
+    - ts_search_method
+    - number_of_images
+    - imaginary_frequency
+    - ts_verification_method
+    - energy_correction_type
+    - miller_indices
+    - material_composition
   ElectrochemicalFreeEnergy:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:ElectrochemicalFreeEnergy
     description: Potential-dependent free energetics of electrocatalytic reactions, e.g. from the computational hydrogen electrode, yielding limiting potentials and theoretical overpotentials.
+    slots:
+    - electrode_potential_model
+    - potential_reference_scale
+    - applied_potential
+    - limiting_potential
+    - theoretical_overpotential
+    - potential_determining_step
+    - solvation_model
+    - material_composition
   CatalyticDescriptors:
     is_a: CalculatedProperty
     class_uri: coremeta4cat:CatalyticDescriptors
     description: Computed descriptors that correlate with catalytic activity or selectivity, such as d-band centres or linear scaling relations.
+    slots:
+    - descriptor_type
+    - descriptor_value
+    - d_band_center
+    - scaling_relation
+    - bep_relation
 slots:
 
   # ---- Simulation-level slots ----
