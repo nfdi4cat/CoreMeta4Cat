@@ -861,6 +861,26 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../../classes/AdsorptionEnergetics/">AdsorptionEnergetics</a></td>
+<td>Adsorption energetics of a species on a catalyst surface or site, computed from periodic slab or cluster models. Essential for constructing reaction energy profiles and identifying activity descriptors.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ReactionEnergetics/">ReactionEnergetics</a></td>
+<td>Thermochemistry of an elementary reaction step on a catalyst, given as the energy difference between its initial and final states.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/TransitionState/">TransitionState</a></td>
+<td>Transition state of an elementary reaction step and its activation barrier, located by a transition state search method.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ElectrochemicalFreeEnergy/">ElectrochemicalFreeEnergy</a></td>
+<td>Potential-dependent free energetics of electrocatalytic reactions, e.g. from the computational hydrogen electrode, yielding limiting potentials and theoretical overpotentials.</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../../classes/DielectricTensors/">DielectricTensors</a></td>
 <td>Dielectric tensor computed from density functional perturbation theory (DFPT).<br>Characterises the optical and static dielectric response of a material.</td>
 <td>no</td>
@@ -918,7 +938,7 @@
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../../classes/MaterialDescriptorMixin/">MaterialDescriptorMixin</a></td>
+<td><a href="../../classes/MaterialDescriptorMixin/">MaterialDescriptorMixin</a>, <a href="../../classes/AdsorptionEnergetics/">AdsorptionEnergetics</a>, <a href="../../classes/ReactionEnergetics/">ReactionEnergetics</a>, <a href="../../classes/TransitionState/">TransitionState</a>, <a href="../../classes/ElectrochemicalFreeEnergy/">ElectrochemicalFreeEnergy</a></td>
 </tr>
 <tr>
 <td>Slot URI</td>
@@ -984,6 +1004,10 @@
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:material_composition</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MaterialDescriptorMixin</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AdsorptionEnergetics</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReactionEnergetics</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TransitionState</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ElectrochemicalFreeEnergy</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>

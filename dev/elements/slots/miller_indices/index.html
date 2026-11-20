@@ -859,6 +859,21 @@
 <td>Surface properties of a catalyst computed from a periodic slab model,<br>including surface energy, Miller index, slab thickness, and vacuum spacing.<br>Central to heterogeneous catalysis modelling.</td>
 <td>no</td>
 </tr>
+<tr>
+<td><a href="../../classes/AdsorptionEnergetics/">AdsorptionEnergetics</a></td>
+<td>Adsorption energetics of a species on a catalyst surface or site, computed from periodic slab or cluster models. Essential for constructing reaction energy profiles and identifying activity descriptors.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/ReactionEnergetics/">ReactionEnergetics</a></td>
+<td>Thermochemistry of an elementary reaction step on a catalyst, given as the energy difference between its initial and final states.</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../../classes/TransitionState/">TransitionState</a></td>
+<td>Transition state of an elementary reaction step and its activation barrier, located by a transition state search method.</td>
+<td>no</td>
+</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
@@ -877,7 +892,7 @@
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../../classes/Surfaces/">Surfaces</a></td>
+<td><a href="../../classes/Surfaces/">Surfaces</a>, <a href="../../classes/AdsorptionEnergetics/">AdsorptionEnergetics</a>, <a href="../../classes/ReactionEnergetics/">ReactionEnergetics</a>, <a href="../../classes/TransitionState/">TransitionState</a></td>
 </tr>
 <tr>
 <td>Slot URI</td>
@@ -942,6 +957,9 @@
 <span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:miller_indices</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Surfaces</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AdsorptionEnergetics</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReactionEnergetics</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TransitionState</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>

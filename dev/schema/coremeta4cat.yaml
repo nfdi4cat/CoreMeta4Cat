@@ -770,6 +770,9 @@ slots:
     mappings:
     - coremeta4cat:adsorbate
     slot_uri: coremeta4cat:adsorbate
+    owner: AdsorptionEnergetics
+    domain_of:
+    - AdsorptionEnergetics
     range: string
     recommended: true
     multivalued: true
@@ -782,6 +785,9 @@ slots:
     mappings:
     - coremeta4cat:adsorption_site
     slot_uri: coremeta4cat:adsorption_site
+    owner: AdsorptionEnergetics
+    domain_of:
+    - AdsorptionEnergetics
     range: string
     recommended: true
     multivalued: true
@@ -794,6 +800,9 @@ slots:
     mappings:
     - coremeta4cat:adsorption_energy
     slot_uri: coremeta4cat:adsorption_energy
+    owner: AdsorptionEnergetics
+    domain_of:
+    - AdsorptionEnergetics
     range: float
     recommended: true
     multivalued: true
@@ -808,6 +817,9 @@ slots:
     mappings:
     - coremeta4cat:energy_reference
     slot_uri: coremeta4cat:energy_reference
+    owner: AdsorptionEnergetics
+    domain_of:
+    - AdsorptionEnergetics
     range: string
     recommended: true
     multivalued: true
@@ -821,6 +833,11 @@ slots:
     mappings:
     - coremeta4cat:energy_correction_type
     slot_uri: coremeta4cat:energy_correction_type
+    owner: TransitionState
+    domain_of:
+    - AdsorptionEnergetics
+    - ReactionEnergetics
+    - TransitionState
     range: string
     multivalued: true
   zero_point_energy_correction:
@@ -831,6 +848,9 @@ slots:
     mappings:
     - coremeta4cat:zero_point_energy_correction
     slot_uri: coremeta4cat:zero_point_energy_correction
+    owner: AdsorptionEnergetics
+    domain_of:
+    - AdsorptionEnergetics
     range: float
     multivalued: true
     unit:
@@ -844,6 +864,10 @@ slots:
     mappings:
     - coremeta4cat:elementary_step
     slot_uri: coremeta4cat:elementary_step
+    owner: TransitionState
+    domain_of:
+    - ReactionEnergetics
+    - TransitionState
     range: string
     recommended: true
     multivalued: true
@@ -856,6 +880,9 @@ slots:
     mappings:
     - coremeta4cat:initial_state
     slot_uri: coremeta4cat:initial_state
+    owner: ReactionEnergetics
+    domain_of:
+    - ReactionEnergetics
     range: string
     multivalued: true
   final_state:
@@ -866,6 +893,9 @@ slots:
     mappings:
     - coremeta4cat:final_state
     slot_uri: coremeta4cat:final_state
+    owner: ReactionEnergetics
+    domain_of:
+    - ReactionEnergetics
     range: string
     multivalued: true
   reaction_energy:
@@ -877,6 +907,9 @@ slots:
     mappings:
     - coremeta4cat:reaction_energy
     slot_uri: coremeta4cat:reaction_energy
+    owner: ReactionEnergetics
+    domain_of:
+    - ReactionEnergetics
     range: float
     recommended: true
     multivalued: true
@@ -891,6 +924,9 @@ slots:
     mappings:
     - coremeta4cat:reaction_free_energy
     slot_uri: coremeta4cat:reaction_free_energy
+    owner: ReactionEnergetics
+    domain_of:
+    - ReactionEnergetics
     range: float
     multivalued: true
     unit:
@@ -903,6 +939,9 @@ slots:
     mappings:
     - coremeta4cat:free_energy_temperature
     slot_uri: coremeta4cat:free_energy_temperature
+    owner: ReactionEnergetics
+    domain_of:
+    - ReactionEnergetics
     range: float
     multivalued: true
     unit:
@@ -916,6 +955,9 @@ slots:
     mappings:
     - coremeta4cat:forward_activation_energy
     slot_uri: coremeta4cat:forward_activation_energy
+    owner: TransitionState
+    domain_of:
+    - TransitionState
     range: float
     recommended: true
     multivalued: true
@@ -930,6 +972,9 @@ slots:
     mappings:
     - coremeta4cat:reverse_activation_energy
     slot_uri: coremeta4cat:reverse_activation_energy
+    owner: TransitionState
+    domain_of:
+    - TransitionState
     range: float
     multivalued: true
     unit:
@@ -943,6 +988,9 @@ slots:
     mappings:
     - coremeta4cat:ts_search_method
     slot_uri: coremeta4cat:ts_search_method
+    owner: TransitionState
+    domain_of:
+    - TransitionState
     range: string
     recommended: true
     multivalued: true
@@ -954,6 +1002,9 @@ slots:
     mappings:
     - coremeta4cat:number_of_images
     slot_uri: coremeta4cat:number_of_images
+    owner: TransitionState
+    domain_of:
+    - TransitionState
     range: integer
     multivalued: true
   imaginary_frequency:
@@ -965,6 +1016,9 @@ slots:
     mappings:
     - coremeta4cat:imaginary_frequency
     slot_uri: coremeta4cat:imaginary_frequency
+    owner: TransitionState
+    domain_of:
+    - TransitionState
     range: float
     multivalued: true
     unit:
@@ -978,6 +1032,9 @@ slots:
     mappings:
     - coremeta4cat:ts_verification_method
     slot_uri: coremeta4cat:ts_verification_method
+    owner: TransitionState
+    domain_of:
+    - TransitionState
     range: string
     multivalued: true
   electrode_potential_model:
@@ -989,6 +1046,9 @@ slots:
     mappings:
     - coremeta4cat:electrode_potential_model
     slot_uri: coremeta4cat:electrode_potential_model
+    owner: ElectrochemicalFreeEnergy
+    domain_of:
+    - ElectrochemicalFreeEnergy
     range: string
     recommended: true
     multivalued: true
@@ -1000,6 +1060,9 @@ slots:
     mappings:
     - coremeta4cat:potential_reference_scale
     slot_uri: coremeta4cat:potential_reference_scale
+    owner: ElectrochemicalFreeEnergy
+    domain_of:
+    - ElectrochemicalFreeEnergy
     range: string
     multivalued: true
   applied_potential:
@@ -1010,6 +1073,9 @@ slots:
     mappings:
     - coremeta4cat:applied_potential
     slot_uri: coremeta4cat:applied_potential
+    owner: ElectrochemicalFreeEnergy
+    domain_of:
+    - ElectrochemicalFreeEnergy
     range: float
     multivalued: true
     unit:
@@ -1023,6 +1089,9 @@ slots:
     mappings:
     - coremeta4cat:limiting_potential
     slot_uri: coremeta4cat:limiting_potential
+    owner: ElectrochemicalFreeEnergy
+    domain_of:
+    - ElectrochemicalFreeEnergy
     range: float
     recommended: true
     multivalued: true
@@ -1037,6 +1106,9 @@ slots:
     mappings:
     - coremeta4cat:theoretical_overpotential
     slot_uri: coremeta4cat:theoretical_overpotential
+    owner: ElectrochemicalFreeEnergy
+    domain_of:
+    - ElectrochemicalFreeEnergy
     range: float
     multivalued: true
     unit:
@@ -1049,6 +1121,9 @@ slots:
     mappings:
     - coremeta4cat:potential_determining_step
     slot_uri: coremeta4cat:potential_determining_step
+    owner: ElectrochemicalFreeEnergy
+    domain_of:
+    - ElectrochemicalFreeEnergy
     range: string
     multivalued: true
   descriptor_type:
@@ -1060,6 +1135,9 @@ slots:
     mappings:
     - coremeta4cat:descriptor_type
     slot_uri: coremeta4cat:descriptor_type
+    owner: CatalyticDescriptors
+    domain_of:
+    - CatalyticDescriptors
     range: string
     recommended: true
     multivalued: true
@@ -1072,6 +1150,9 @@ slots:
     mappings:
     - coremeta4cat:descriptor_value
     slot_uri: coremeta4cat:descriptor_value
+    owner: CatalyticDescriptors
+    domain_of:
+    - CatalyticDescriptors
     range: float
     recommended: true
     multivalued: true
@@ -1084,6 +1165,9 @@ slots:
     mappings:
     - coremeta4cat:d_band_center
     slot_uri: coremeta4cat:d_band_center
+    owner: CatalyticDescriptors
+    domain_of:
+    - CatalyticDescriptors
     range: float
     multivalued: true
     unit:
@@ -1097,6 +1181,9 @@ slots:
     mappings:
     - coremeta4cat:scaling_relation
     slot_uri: coremeta4cat:scaling_relation
+    owner: CatalyticDescriptors
+    domain_of:
+    - CatalyticDescriptors
     range: string
     multivalued: true
   bep_relation:
@@ -1108,6 +1195,9 @@ slots:
     mappings:
     - coremeta4cat:bep_relation
     slot_uri: coremeta4cat:bep_relation
+    owner: CatalyticDescriptors
+    domain_of:
+    - CatalyticDescriptors
     range: string
     multivalued: true
   activity_designator:
@@ -5597,9 +5687,10 @@ slots:
     - coremeta4cat:surface_coverage
     is_a: has_quantitative_attribute
     slot_uri: coremeta4cat:surface_coverage
-    owner: Microkinetics
+    owner: AdsorptionEnergetics
     domain_of:
     - Microkinetics
+    - AdsorptionEnergetics
     range: float
     recommended: true
     multivalued: true
@@ -5738,9 +5829,13 @@ slots:
     - coremeta4cat:material_composition
     is_a: has_qualitative_attribute
     slot_uri: coremeta4cat:material_composition
-    owner: MaterialDescriptorMixin
+    owner: ElectrochemicalFreeEnergy
     domain_of:
     - MaterialDescriptorMixin
+    - AdsorptionEnergetics
+    - ReactionEnergetics
+    - TransitionState
+    - ElectrochemicalFreeEnergy
     range: string
     recommended: true
     multivalued: true
@@ -6061,9 +6156,12 @@ slots:
     - coremeta4cat:miller_indices
     is_a: has_qualitative_attribute
     slot_uri: coremeta4cat:miller_indices
-    owner: Surfaces
+    owner: TransitionState
     domain_of:
     - Surfaces
+    - AdsorptionEnergetics
+    - ReactionEnergetics
+    - TransitionState
     range: string
     recommended: true
     multivalued: true
@@ -6329,9 +6427,10 @@ slots:
     - coremeta4cat:solvation_model
     is_a: has_qualitative_attribute
     slot_uri: coremeta4cat:solvation_model
-    owner: AqueousStability
+    owner: ElectrochemicalFreeEnergy
     domain_of:
     - AqueousStability
+    - ElectrochemicalFreeEnergy
     range: string
     recommended: true
     multivalued: true
@@ -16567,6 +16666,15 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - adsorbate
+    - adsorption_site
+    - adsorption_energy
+    - energy_reference
+    - energy_correction_type
+    - zero_point_energy_correction
+    - surface_coverage
+    - miller_indices
+    - material_composition
     class_uri: coremeta4cat:AdsorptionEnergetics
   ReactionEnergetics:
     name: ReactionEnergetics
@@ -16583,6 +16691,15 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - elementary_step
+    - initial_state
+    - final_state
+    - reaction_energy
+    - reaction_free_energy
+    - free_energy_temperature
+    - energy_correction_type
+    - miller_indices
+    - material_composition
     class_uri: coremeta4cat:ReactionEnergetics
   TransitionState:
     name: TransitionState
@@ -16599,6 +16716,16 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - elementary_step
+    - forward_activation_energy
+    - reverse_activation_energy
+    - ts_search_method
+    - number_of_images
+    - imaginary_frequency
+    - ts_verification_method
+    - energy_correction_type
+    - miller_indices
+    - material_composition
     class_uri: coremeta4cat:TransitionState
   ElectrochemicalFreeEnergy:
     name: ElectrochemicalFreeEnergy
@@ -16616,6 +16743,14 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - electrode_potential_model
+    - potential_reference_scale
+    - applied_potential
+    - limiting_potential
+    - theoretical_overpotential
+    - potential_determining_step
+    - solvation_model
+    - material_composition
     class_uri: coremeta4cat:ElectrochemicalFreeEnergy
   CatalyticDescriptors:
     name: CatalyticDescriptors
@@ -16632,6 +16767,11 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - descriptor_type
+    - descriptor_value
+    - d_band_center
+    - scaling_relation
+    - bep_relation
     class_uri: coremeta4cat:CatalyticDescriptors
   SubstanceSampleCharacterizationDataset:
     name: SubstanceSampleCharacterizationDataset
@@ -20086,6 +20226,6 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.12.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-11-11T09:50:59'
+source_file_date: '2026-11-20T15:35:59'
 source_file_size: 14797
 

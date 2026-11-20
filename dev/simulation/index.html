@@ -2263,6 +2263,127 @@ geometry optimisation (e.g. energy &lt; 1e-5 eV, forces &lt; 0.02 eV/A).</p>
 <p><strong>Description:</strong> Adsorption energetics of a species on a catalyst surface or site, computed from periodic slab or cluster models. Essential for constructing reaction energy profiles and identifying activity descriptors.</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/AdsorptionEnergetics"><code>coremeta4cat:AdsorptionEnergetics</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/AdsorptionEnergetics/">AdsorptionEnergetics</a></p>
+<p><strong>Slots</strong></p>
+<details>
+<summary><strong>adsorbate</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Chemical identity of the adsorbed species (e.g. "CO", "OH", "CH3", "N2H"). Use a chemical formula or SMILES.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/adsorbate"><code>coremeta4cat:adsorbate</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/adsorbate/">adsorbate</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20adsorbate target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>adsorption site</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Adsorption site of the adsorbate (e.g. top, bridge, fcc hollow, hcp hollow, step edge, oxygen vacancy, single-atom site).</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/adsorption_site"><code>coremeta4cat:adsorption_site</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/adsorption_site/">adsorption_site</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20adsorption_site target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>adsorption energy</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Adsorption energy, E_ads = E(slab+adsorbate) - E(slab) - E(reference species). Negative values indicate exothermic binding.</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/adsorption_energy"><code>coremeta4cat:adsorption_energy</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/adsorption_energy/">adsorption_energy</a></p>
+<p><strong>Unit:</strong> eV</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20adsorption_energy target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>energy reference</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Reference species and states used to compute relative energies (e.g. "CO(g)", "1/2 H2(g)", "H2O(g) and H2(g)").</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/energy_reference"><code>coremeta4cat:energy_reference</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/energy_reference/">energy_reference</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_reference target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>energy correction type</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/energy_correction_type"><code>coremeta4cat:energy_correction_type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/energy_correction_type/">energy_correction_type</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_correction_type target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>zero point energy correction</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Zero-point energy correction applied to the reported energy.</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/zero_point_energy_correction"><code>coremeta4cat:zero_point_energy_correction</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/zero_point_energy_correction/">zero_point_energy_correction</a></p>
+<p><strong>Unit:</strong> eV</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20zero_point_energy_correction target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>surface coverage</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Surface coverage of adsorbed species (fraction of surface sites occupied).</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/surface_coverage"><code>coremeta4cat:surface_coverage</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/surface_coverage/">surface_coverage</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20surface_coverage target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>miller indices</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Miller indices of the modelled surface facet (e.g. "(111)", "(110)", "(100)").</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/miller_indices"><code>coremeta4cat:miller_indices</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/miller_indices/">miller_indices</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20miller_indices target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>material composition</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Chemical composition of the simulated material (e.g. "Fe2O3", "Pt/CeO2").
+Use empirical formula or SMILES for molecular systems.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/material_composition"><code>coremeta4cat:material_composition</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/material_composition/">material_composition</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20AdsorptionEnergetics target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -2274,6 +2395,128 @@ geometry optimisation (e.g. energy &lt; 1e-5 eV, forces &lt; 0.02 eV/A).</p>
 <p><strong>Description:</strong> Thermochemistry of an elementary reaction step on a catalyst, given as the energy difference between its initial and final states.</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/ReactionEnergetics"><code>coremeta4cat:ReactionEnergetics</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/ReactionEnergetics/">ReactionEnergetics</a></p>
+<p><strong>Slots</strong></p>
+<details>
+<summary><strong>elementary step</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Elementary reaction step written as an equation, with * denoting a free surface site (e.g. "CO<em> + O</em> -&gt; CO2(g) + 2*").</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/elementary_step"><code>coremeta4cat:elementary_step</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/elementary_step/">elementary_step</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20elementary_step target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>initial state</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Description of the initial-state configuration of the elementary step.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/initial_state"><code>coremeta4cat:initial_state</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/initial_state/">initial_state</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20initial_state target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>final state</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Description of the final-state configuration of the elementary step.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/final_state"><code>coremeta4cat:final_state</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/final_state/">final_state</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20final_state target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>reaction energy</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Reaction energy of the elementary step, ΔE = E(final state) - E(initial state).</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/reaction_energy"><code>coremeta4cat:reaction_energy</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/reaction_energy/">reaction_energy</a></p>
+<p><strong>Unit:</strong> eV</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reaction_energy target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>reaction free energy</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Gibbs free energy change of the elementary step, ΔG, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/reaction_free_energy"><code>coremeta4cat:reaction_free_energy</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/reaction_free_energy/">reaction_free_energy</a></p>
+<p><strong>Unit:</strong> eV</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reaction_free_energy target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>free energy temperature</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Temperature at which free energy corrections were evaluated.</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/free_energy_temperature"><code>coremeta4cat:free_energy_temperature</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/free_energy_temperature/">free_energy_temperature</a></p>
+<p><strong>Unit:</strong> K</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20free_energy_temperature target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>energy correction type</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/energy_correction_type"><code>coremeta4cat:energy_correction_type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/energy_correction_type/">energy_correction_type</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_correction_type target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>miller indices</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Miller indices of the modelled surface facet (e.g. "(111)", "(110)", "(100)").</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/miller_indices"><code>coremeta4cat:miller_indices</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/miller_indices/">miller_indices</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20miller_indices target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>material composition</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Chemical composition of the simulated material (e.g. "Fe2O3", "Pt/CeO2").
+Use empirical formula or SMILES for molecular systems.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/material_composition"><code>coremeta4cat:material_composition</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/material_composition/">material_composition</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ReactionEnergetics target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -2285,6 +2528,141 @@ geometry optimisation (e.g. energy &lt; 1e-5 eV, forces &lt; 0.02 eV/A).</p>
 <p><strong>Description:</strong> Transition state of an elementary reaction step and its activation barrier, located by a transition state search method.</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/TransitionState"><code>coremeta4cat:TransitionState</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/TransitionState/">TransitionState</a></p>
+<p><strong>Slots</strong></p>
+<details>
+<summary><strong>elementary step</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Elementary reaction step written as an equation, with * denoting a free surface site (e.g. "CO<em> + O</em> -&gt; CO2(g) + 2*").</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/elementary_step"><code>coremeta4cat:elementary_step</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/elementary_step/">elementary_step</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20elementary_step target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>forward activation energy</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Activation energy of the forward step, E_a = E(transition state) - E(initial state).</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/forward_activation_energy"><code>coremeta4cat:forward_activation_energy</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/forward_activation_energy/">forward_activation_energy</a></p>
+<p><strong>Unit:</strong> eV</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20forward_activation_energy target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>reverse activation energy</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Activation energy of the reverse step, E(transition state) - E(final state).</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/reverse_activation_energy"><code>coremeta4cat:reverse_activation_energy</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/reverse_activation_energy/">reverse_activation_energy</a></p>
+<p><strong>Unit:</strong> eV</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reverse_activation_energy target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>ts search method</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Method used to locate the transition state (e.g. NEB, CI-NEB, dimer method, growing string method, constrained optimisation).</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/ts_search_method"><code>coremeta4cat:ts_search_method</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/ts_search_method/">ts_search_method</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ts_search_method target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>number of images</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Number of intermediate images used in a NEB or string calculation.</p>
+<p><strong>Data Type:</strong> integer</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/number_of_images"><code>coremeta4cat:number_of_images</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/number_of_images/">number_of_images</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_images target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>imaginary frequency</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Imaginary vibrational frequency associated with the reaction coordinate at the transition state.</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/imaginary_frequency"><code>coremeta4cat:imaginary_frequency</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/imaginary_frequency/">imaginary_frequency</a></p>
+<p><strong>Unit:</strong> cm-1</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20imaginary_frequency target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>ts verification method</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Method used to verify the transition state (e.g. vibrational analysis showing a single imaginary mode, intrinsic reaction coordinate (IRC)).</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/ts_verification_method"><code>coremeta4cat:ts_verification_method</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/ts_verification_method/">ts_verification_method</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ts_verification_method target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>energy correction type</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/energy_correction_type"><code>coremeta4cat:energy_correction_type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/energy_correction_type/">energy_correction_type</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20energy_correction_type target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>miller indices</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Miller indices of the modelled surface facet (e.g. "(111)", "(110)", "(100)").</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/miller_indices"><code>coremeta4cat:miller_indices</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/miller_indices/">miller_indices</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20miller_indices target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>material composition</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Chemical composition of the simulated material (e.g. "Fe2O3", "Pt/CeO2").
+Use empirical formula or SMILES for molecular systems.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/material_composition"><code>coremeta4cat:material_composition</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/material_composition/">material_composition</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20TransitionState target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -2296,6 +2674,116 @@ geometry optimisation (e.g. energy &lt; 1e-5 eV, forces &lt; 0.02 eV/A).</p>
 <p><strong>Description:</strong> Potential-dependent free energetics of electrocatalytic reactions, e.g. from the computational hydrogen electrode, yielding limiting potentials and theoretical overpotentials.</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/ElectrochemicalFreeEnergy"><code>coremeta4cat:ElectrochemicalFreeEnergy</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/ElectrochemicalFreeEnergy/">ElectrochemicalFreeEnergy</a></p>
+<p><strong>Slots</strong></p>
+<details>
+<summary><strong>electrode potential model</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Model used to treat the electrode potential (e.g. computational hydrogen electrode, constant-potential / grand-canonical DFT).</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/electrode_potential_model"><code>coremeta4cat:electrode_potential_model</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/electrode_potential_model/">electrode_potential_model</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20electrode_potential_model target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>potential reference scale</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Reference scale of the reported potentials (e.g. RHE, SHE).</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/potential_reference_scale"><code>coremeta4cat:potential_reference_scale</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/potential_reference_scale/">potential_reference_scale</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20potential_reference_scale target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>applied potential</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Electrode potential at which free energies were evaluated.</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/applied_potential"><code>coremeta4cat:applied_potential</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/applied_potential/">applied_potential</a></p>
+<p><strong>Unit:</strong> V</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20applied_potential target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>limiting potential</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Highest (least negative) potential at which all electrochemical steps are exergonic.</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/limiting_potential"><code>coremeta4cat:limiting_potential</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/limiting_potential/">limiting_potential</a></p>
+<p><strong>Unit:</strong> V</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20limiting_potential target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>theoretical overpotential</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Difference between the equilibrium potential of the reaction and the limiting potential.</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/theoretical_overpotential"><code>coremeta4cat:theoretical_overpotential</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/theoretical_overpotential/">theoretical_overpotential</a></p>
+<p><strong>Unit:</strong> V</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20theoretical_overpotential target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>potential determining step</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Elementary step that determines the limiting potential.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/potential_determining_step"><code>coremeta4cat:potential_determining_step</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/potential_determining_step/">potential_determining_step</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20potential_determining_step target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>solvation model</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Implicit solvation model used to account for aqueous environment
+(e.g. VASPsol, SCCS/Environ, COSMO).</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/solvation_model"><code>coremeta4cat:solvation_model</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/solvation_model/">solvation_model</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20solvation_model target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>material composition</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Chemical composition of the simulated material (e.g. "Fe2O3", "Pt/CeO2").
+Use empirical formula or SMILES for molecular systems.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/material_composition"><code>coremeta4cat:material_composition</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/material_composition/">material_composition</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectrochemicalFreeEnergy target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -2307,6 +2795,73 @@ geometry optimisation (e.g. energy &lt; 1e-5 eV, forces &lt; 0.02 eV/A).</p>
 <p><strong>Description:</strong> Computed descriptors that correlate with catalytic activity or selectivity, such as d-band centres or linear scaling relations.</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/CatalyticDescriptors"><code>coremeta4cat:CatalyticDescriptors</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/CatalyticDescriptors/">CatalyticDescriptors</a></p>
+<p><strong>Slots</strong></p>
+<details>
+<summary><strong>descriptor type</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Type of activity descriptor (e.g. d-band centre, adsorption energy of a key intermediate, generalised coordination number, O p-band centre).</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/descriptor_type"><code>coremeta4cat:descriptor_type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/descriptor_type/">descriptor_type</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20descriptor_type target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>descriptor value</strong> (Recommended, Multivalued)</summary>
+<p><strong>Description:</strong> Value of the descriptor; state the unit together with the descriptor type.</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/descriptor_value"><code>coremeta4cat:descriptor_value</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/descriptor_value/">descriptor_value</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20descriptor_value target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>d band center</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Centre of the d-band projected density of states, relative to the Fermi level.</p>
+<p><strong>Data Type:</strong> float</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/d_band_center"><code>coremeta4cat:d_band_center</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/d_band_center/">d_band_center</a></p>
+<p><strong>Unit:</strong> eV</p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20d_band_center target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>scaling relation</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Linear scaling relation between adsorption energies (e.g. "ΔE_OH = 0.50 ΔE_O + 0.10 eV").</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/scaling_relation"><code>coremeta4cat:scaling_relation</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/scaling_relation/">scaling_relation</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20scaling_relation target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>bep relation</strong> (Optional, Multivalued)</summary>
+<p><strong>Description:</strong> Brønsted–Evans–Polanyi relation between activation energies and reaction energies (slope and intercept).</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/bep_relation"><code>coremeta4cat:bep_relation</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/bep_relation/">bep_relation</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bep_relation target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CatalyticDescriptors target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
