@@ -22,7 +22,7 @@ dependencies = [
 dev = [
     "linkml>=1.12.1",
     "mike>=2.0",
-    "mkdocs-material>=8.2.8",
+    "mkdocs-material>=9.7.7",
     "mkdocs-mermaid2-plugin>=1.2.3",
     "jupyter>=1.0.0",
     "mknotebooks>= 0.8.0",
@@ -75,6 +75,12 @@ extend-exclude = [
 ]
 
 [tool.uv]
+# Every patched soupsieve release (>=2.8.4, pulled in by beautifulsoup4 via
+# nbconvert / mkdocs-mermaid2-plugin) requires Python >=3.11.5. Without this,
+# uv forks the lock and falls back to beautifulsoup4 4.6.3 (2018) on
+# 3.11.0-3.11.4. This only narrows the dev lockfile; the published package's
+# requires-python is unchanged.
+environments = ["python_full_version >= '3.11.5'"]
 constraint-dependencies = [
     # GitPython security fixes
     "GitPython>=3.2.1",
@@ -93,4 +99,20 @@ constraint-dependencies = [
     # Parser and web server security fixes
     "mistune>=3.4.0",
     "tornado>=6.6.1",
+
+    # HTML/CSS parsing and sanitising (via beautifulsoup4 / nbconvert)
+    "soupsieve>=4.0.0",
+    "bleach>=6.4.0",
+
+    # Docs toolchain (via mkdocs-material / mkdocs-mermaid2-plugin)
+    "pymdown-extensions>=11.0.1",
+    "pygments>=2.20.0",
+    "setuptools>=84.1.0",
+
+    # HTTP stack
+    "requests>=2.33.0",
+    "idna>=3.15",
+
+    # Test tooling (via prefixcommons -> pytest-logging)
+    "pytest>=9.0.3",
 ]
