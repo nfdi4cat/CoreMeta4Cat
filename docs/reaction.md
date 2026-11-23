@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Reaction
 
 !!! note "Schema class name"
@@ -7,14 +12,15 @@ The Reaction data class defines metadata required to document catalytic testing 
 
 Core fields include reactor design type, operational parameters, and product identification and quantification methods. The class also specifies metadata required to report and evaluate catalyst performance metrics, enabling structured comparison across experimental studies.
 
-<iframe
-    src="../assets/metadata_reaction_hierarchy.html"
-    width="100%"
-    height= "470vh"
-    style="border: 2px solid #5C88DA; background-color: #F0F8FF;
-    "
-    allowfullscreen
-></iframe><details markdown="1"><summary markdown="1"> **Legend** </summary>
+<div class="cm4c-classmap" data-root="CatalyticReaction"
+     data-src="../assets/schema_graph.json"
+     data-sunburst="../assets/metadata_reaction_hierarchy.html"
+     data-site="../"
+     data-elements="../elements/classes/">
+<p>The interactive class map needs JavaScript. The full field list follows below.</p>
+</div>
+
+<details markdown="1"><summary markdown="1"> **Legend** </summary>
 
 - **Description:**A short description for Comprehension purposes
 

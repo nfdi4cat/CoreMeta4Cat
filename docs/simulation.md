@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Simulation
 
 The Simulation data class captures metadata describing theoretical and computational studies in catalysis. It documents methodological background, computational settings, and modeling approaches required to interpret simulation results.
@@ -6,14 +11,15 @@ Computational approaches are organized under the parent field simulation method,
 
 **CURIE:** [`NCIT:C48936`](NCIT:C48936)
 
-<iframe
-    src="../assets/metadata_simulation_hierarchy.html"
-    width="100%"
-    height= "470vh"
-    style="border: 2px solid #5C88DA; background-color: #F0F8FF;
-    "
-    allowfullscreen
-></iframe><details markdown="1"><summary markdown="1"> **Legend** </summary>
+<div class="cm4c-classmap" data-root="Simulation"
+     data-src="../assets/schema_graph.json"
+     data-sunburst="../assets/metadata_simulation_hierarchy.html"
+     data-site="../"
+     data-elements="../elements/classes/">
+<p>The interactive class map needs JavaScript. The full field list follows below.</p>
+</div>
+
+<details markdown="1"><summary markdown="1"> **Legend** </summary>
 
 - **Description:**A short description for Comprehension purposes
 

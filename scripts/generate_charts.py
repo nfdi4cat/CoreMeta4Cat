@@ -47,13 +47,9 @@ from generate_schema_docs import (  # noqa: E402
 # Visual design — matches the original Excel-based charts
 # ─────────────────────────────────────────────────────────────────────────────
 
-BASE_COLORS: dict[str, dict[str, str]] = {
-    "synthesis":        {"M": "#d73027", "R": "#f46d43", "O": "#fdae61"},
-    "characterization": {"M": "#4575b4", "R": "#74add1", "O": "#abd9e9"},
-    "reaction":         {"M": "#1a9850", "R": "#66bd63", "O": "#a6d96a"},
-    "simulation":       {"M": "#984ea3", "R": "#b358cb", "O": "#e082ea"},
-    "coremeta4cat":     {"M": "#e66101", "R": "#fdb863", "O": "#fddbc7"},
-}
+# Palette per data class (Mandatory / Recommended / Optional), shared with the
+# class map on the data-class pages -- defined once in schema_graph.py.
+from schema_graph import BASE_COLORS  # noqa: E402
 
 # Maps schema class names to their simplified display names used in charts and docs.
 # Needed where the schema uses a fully qualified name to avoid clashes with
@@ -277,6 +273,12 @@ def build_sunburst_chart(schema: dict, class_name: str) -> str:
         width: 100%;
         height: 100vh;
     }}
+    /* to_html wraps the chart in a plain <div>; without a height the chart
+       falls back to Plotly's default 450 px instead of filling the window
+       (or the frame it is shown in on the data-class pages) */
+    .chart-container > div {{
+        height: 100%;
+    }}
   </style>
 </head>
 <body>
@@ -360,6 +362,12 @@ def build_overview_chart(schema: dict) -> str:
     .chart-container {{
         width: 100%;
         height: 100vh;
+    }}
+    /* to_html wraps the chart in a plain <div>; without a height the chart
+       falls back to Plotly's default 450 px instead of filling the window
+       (or the frame it is shown in on the data-class pages) */
+    .chart-container > div {{
+        height: 100%;
     }}
   </style>
 </head>

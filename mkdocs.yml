@@ -62,6 +62,10 @@ exclude_docs: |
 
 extra_css:
   - stylesheets//no-details-box.css
+  - stylesheets/schema_classmap.css
+
+extra_javascript:
+  - javascripts/schema_classmap.js
 
 site_url: https://nfdi4cat.github.io/CoreMeta4Cat
 repo_url: https://github.com/nfdi4cat/CoreMeta4Cat

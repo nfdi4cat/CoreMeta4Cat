@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Synthesis
 
 The Synthesis data class captures metadata required to document catalyst preparation procedures in a structured and reproducible manner. It defines the minimum information necessary to describe synthesis routes and their relevant parameters.
@@ -7,14 +12,15 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **CURIE:** [`OBI:0000070`](OBI:0000070)
 
-<iframe
-    src="../assets/metadata_synthesis_hierarchy.html"
-    width="100%"
-    height= "470vh"
-    style="border: 2px solid #5C88DA; background-color: #F0F8FF;
-    "
-    allowfullscreen
-></iframe><details markdown="1"><summary markdown="1"> **Legend** </summary>
+<div class="cm4c-classmap" data-root="Synthesis"
+     data-src="../assets/schema_graph.json"
+     data-sunburst="../assets/metadata_synthesis_hierarchy.html"
+     data-site="../"
+     data-elements="../elements/classes/">
+<p>The interactive class map needs JavaScript. The full field list follows below.</p>
+</div>
+
+<details markdown="1"><summary markdown="1"> **Legend** </summary>
 
 - **Description:**A short description for Comprehension purposes
 

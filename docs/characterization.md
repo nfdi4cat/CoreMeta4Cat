@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Characterization
 
 The Characterization data class documents experimental techniques used to determine structural, electronic, compositional, and physicochemical properties of catalysts. It captures both measurement parameters and relevant contextual information required for interpretation and comparison.
@@ -6,14 +11,15 @@ The class follows a hierarchical structure in which selection of a characterizat
 
 **CURIE:** [`OBI:0000070`](OBI:0000070)
 
-<iframe
-    src="../assets/metadata_characterization_hierarchy.html"
-    width="100%"
-    height= "470vh"
-    style="border: 2px solid #5C88DA; background-color: #F0F8FF;
-    "
-    allowfullscreen
-></iframe><details markdown="1"><summary markdown="1"> **Legend** </summary>
+<div class="cm4c-classmap" data-root="Characterization"
+     data-src="../assets/schema_graph.json"
+     data-sunburst="../assets/metadata_characterization_hierarchy.html"
+     data-site="../"
+     data-elements="../elements/classes/">
+<p>The interactive class map needs JavaScript. The full field list follows below.</p>
+</div>
+
+<details markdown="1"><summary markdown="1"> **Legend** </summary>
 
 - **Description:**A short description for Comprehension purposes
 
