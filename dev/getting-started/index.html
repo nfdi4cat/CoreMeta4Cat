@@ -1380,9 +1380,10 @@ Level 4 ──► Validate records against the full CoreMeta4Cat schema
 <h3 id="proposing-a-change-the-inbox-workflow-in-detail">Proposing a change: the inbox workflow in detail</h3>
 <p>The workbook is also the mechanism for proposing changes to the vocabulary — no coding required. This section goes into more detail than the <a href="../contributing/">Contributing guide</a>; read that page for the short version.</p>
 <ol>
-<li><strong>Download</strong> the workbook using the button above. Don't create a new workbook from scratch — always start from the current generated file, since the automated check compares your edits against the live schema.</li>
+<li><strong>Download</strong> the workbook using the button above. Don't create a new workbook from scratch — always start from a generated file: it keeps a hidden copy of how it looked when it was generated, so the automated check can tell exactly which rows you changed and applies only those.</li>
 <li><strong>Edit the <code>Synthesis</code>, <code>Characterization</code>, <code>Reaction</code>, or <code>Simulation</code> sheet directly.</strong><ul>
-<li>To correct an existing field: change its <code>M / R / O</code>, <code>range</code>, <code>unit</code>, <code>uri</code>, or <code>description</code> cell.</li>
+<li>To correct an existing field: change its <code>M / R / O</code>, <code>range</code>, <code>multivalued</code>, <code>unit</code>, <code>uri</code>, or <code>description</code> cell. An <code>M / R / O</code> change applies to that row's class only.</li>
+<li>To remove a field from a class: delete its row.</li>
 <li>To add a new field: add a new row with a <code>label</code>, set <code>type</code> to <code>slot</code>, and set <code>domain</code> to the class it belongs to (leave <code>domain</code> empty for a top-level field).</li>
 <li>To add a new field that needs a brand-new class (e.g. a field whose <code>range</code> doesn't exist yet): add both the new <code>slot</code> row and the new <code>class</code> row in the same submission — they're validated together.</li>
 <li>Don't touch the grey inherited rows, don't rename sheets, and don't rename or remove column headers — the automated check matches on exact names.</li>
@@ -1422,6 +1423,31 @@ Level 4 ──► Validate records against the full CoreMeta4Cat schema
 <td>❌ <em>Unknown range <code>Concentraton</code>. This type is not a recognized primitive or schema class.</em></td>
 <td>The <code>range</code> cell references a type that doesn't exist (often a typo, or a new class you forgot to add as its own row).</td>
 <td>Use an existing primitive (<code>string</code>, <code>float</code>, <code>integer</code>, <code>boolean</code>) or class name, or add the new class as its own row in the same submission.</td>
+</tr>
+<tr>
+<td>❌ <em>This workbook was made from an older template: it has no hidden <code>_baseline</code> sheet …</em></td>
+<td>The file was downloaded before the check started recording what you changed, or the hidden sheet was removed.</td>
+<td>Download the current workbook and copy your edits into it.</td>
+</tr>
+<tr>
+<td>❌ <em>The URI <code>VOC4CAT:0005056</code> uses the prefix <code>VOC4CAT:</code>, which the schema does not declare. Did you mean <code>voc4cat:</code>?</em></td>
+<td>The <code>uri</code> cell uses a prefix the schema doesn't know (prefixes are case-sensitive).</td>
+<td>Use one of the schema's prefixes, or a full <code>https://</code> IRI.</td>
+</tr>
+<tr>
+<td>❌ <em>The unit <code>2026-01-02 00:00:00</code> looks like a date …</em></td>
+<td>Excel converted what you typed in the <code>unit</code> cell (e.g. <code>1/2</code>).</td>
+<td>Format the cell as Text and enter the UCUM code again (e.g. <code>Cel</code>, <code>mol/L</code>).</td>
+</tr>
+<tr>
+<td>⚠️ <em>Not applied: <code>has_temperature</code> is inherited from a chemdcat-ap base class and is read-only here …</em></td>
+<td>You edited a grey, read-only row.</td>
+<td>Open an issue, or ask a maintainer to change it in the schema directly.</td>
+</tr>
+<tr>
+<td>⚠️ <em>Conflict: the description of … was also changed in the schema after you downloaded the workbook …</em></td>
+<td>Someone changed the same cell on <code>main</code> after your download; your value was applied.</td>
+<td>Check that your value is still what you want.</td>
 </tr>
 <tr>
 <td>⚠️ <em>Range changed: <code>string</code> → <code>Mass</code>. This structural change may invalidate existing data files.</em></td>

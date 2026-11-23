@@ -1056,7 +1056,7 @@
 <ul>
 <li><strong>As a reference</strong> — browse it to look up existing fields while designing or annotating your own data sheets.</li>
 <li>
-<p><strong>To propose a change</strong> — edit a downloaded copy (correct a description, adjust M/R/O, add a new field or class — you can add a new field and the new class it points to in the same submission) and submit it as a pull request:</p>
+<p><strong>To propose a change</strong> — edit a downloaded copy of the <a href="https://nfdi4cat.github.io/CoreMeta4Cat/dev/assets/coremeta4cat_vocabulary.xlsx">current (dev) workbook</a> (correct a description, adjust M/R/O, add or remove a field or class — you can add a new field and the new class it points to in the same submission) and submit it as a pull request:</p>
 <ol>
 <li>Edit the <code>Synthesis</code>, <code>Characterization</code>, <code>Reaction</code>, or <code>Simulation</code> sheet directly. Don't rename sheets or change column headers.</li>
 <li>Place the edited file at <code>inbox/coremeta4cat_vocabulary.xlsx</code> in a new branch and open a pull request.</li>
@@ -1065,8 +1065,8 @@
 </ol>
 </li>
 </ul>
-<p>See <a href="https://github.com/nfdi4cat/CoreMeta4Cat/blob/main/inbox/README.md"><code>inbox/README.md</code></a> in the repository for the full workflow.</p>
-<p>Rows shown in grey italics in the workbook are inherited from chemdcat-ap, the underlying chemistry model — they're shown for reference but can't be changed through this workflow; open an issue instead.</p>
+<p>Only the rows you change are applied: the workbook keeps a hidden copy of how it looked when you downloaded it, so changes merged in the meantime are never reverted. See <a href="https://github.com/nfdi4cat/CoreMeta4Cat/blob/main/inbox/README.md"><code>inbox/README.md</code></a> in the repository for the full workflow.</p>
+<p>Rows shown in grey italics in the workbook are inherited from chemdcat-ap, the underlying chemistry model — they're shown for reference but can't be changed through this workflow (edits to them are reported, not applied); open an issue instead.</p>
 <p>The schema is the authoritative source — the workbook is generated from it automatically, so any of your edits are proposals until they're validated and merged, not immediate changes.</p>
 <hr />
 <h2 id="contribute-code-or-schema-changes">Contribute code or schema changes</h2>
