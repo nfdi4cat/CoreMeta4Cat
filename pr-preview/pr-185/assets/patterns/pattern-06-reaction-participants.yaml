@@ -1,0 +1,61 @@
+id: coremeta4cat:REAC_b74m-m6rp_NH3_decomposition
+reaction_name:
+- thermocatalytic ammonia decomposition
+title:
+- NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)
+rdf_type:
+  id: VOC4CAT:0007001
+  title: heterogeneous catalysis
+catalyst_type:
+- heterogeneous_catalysis
+catalyst_form:
+- supported
+used_catalyst:
+- id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
+  title: 0.5Ru/1Ba/Ni-BCZY
+  has_quantitative_attribute:
+  - value: 0.5
+    has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+    unit: https://qudt.org/vocab/unit/PERCENT
+    description: Ru, nominal
+  - value: 1.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+    unit: https://qudt.org/vocab/unit/PERCENT
+    description: Ba, nominal
+- id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY
+  title: 0.5Ru/0.5Ba/Ni-BCZY
+  has_quantitative_attribute:
+  - value: 0.5
+    has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+    unit: https://qudt.org/vocab/unit/PERCENT
+    description: Ru, nominal
+  - value: 0.5
+    has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+    unit: https://qudt.org/vocab/unit/PERCENT
+    description: Ba, nominal
+used_reactant:
+- id: coremeta4cat:REAC_b74m-m6rp_NH3
+  title: ammonia
+  rdf_type:
+    id: CHEBI:16134
+    title: ammonia
+- id: coremeta4cat:REAC_b74m-m6rp_Ar
+  title: argon (balance)
+  rdf_type:
+    id: CHEBI:49475
+    title: argon atom
+generated_product:
+- id: coremeta4cat:PROD_b74m-m6rp_N2
+  title: dinitrogen
+  rdf_type:
+    id: CHEBI:17997
+    title: dinitrogen
+- id: coremeta4cat:PROD_b74m-m6rp_H2
+  title: dihydrogen
+  rdf_type:
+    id: CHEBI:18276
+    title: dihydrogen
+used_reactor:
+- id: coremeta4cat:REAC_b74m-m6rp_reactor
+  reactor_designator: coremeta4cat:FixedBedReactor
+  title: quartz glass tubular packed-bed reactor
