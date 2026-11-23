@@ -11,9 +11,10 @@
 #   4. This workflow runs three dependent jobs:
 #        a. Job 1 (apply-inbox): Applies the changes to the schema YAML files.
 #           Saves the modified schema and apply report as CI artifacts.
-#        b. Job 2 (validate-schema, matrix 3.9–3.13): Validates the modified
-#           schema on each supported Python version.  Appears as five individual
-#           check runs in the PR — same visibility as main.yaml tests.
+#        b. Job 2 (validate-schema): Validates the modified schema on every
+#           released Python version allowed by requires-python in main's
+#           pyproject.toml (matrix built by the python-matrix job).  Each version
+#           appears as its own check run in the PR — same visibility as main.yaml.
 #        c. Job 3 (finish): Runs a round-trip check (inbox Excel vs the updated
 #           schema YAMLs), posts a detailed PR comment, then on success commits
 #           the schema changes back to the branch and removes the inbox file.
@@ -185,9 +186,104 @@ jobs:
   # ══════════════════════════════════════════════════════════════════════════════
   # Job 2 — Validate the modified schema on every supported Python version
   # ══════════════════════════════════════════════════════════════════════════════
+
+  # ── Generate Python version matrix from main's pyproject.toml ─────────────
+  python-matrix:
+    name: Generate Python version matrix
+    runs-on: ubuntu-latest
+    permissions: {}
+
+    outputs:
+      versions: ${{ steps.python.outputs.versions }}
+
+    steps:
+      # `ref: main` is deliberate here (unlike main.yaml): under
+      # pull_request_target only main is trusted, validate-schema tests main's
+      # project, and inbox-only PRs don't change pyproject.toml.
+      - name: Check out main branch
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: false
+
+      # Pin the interpreter for this script (tomllib needs >= 3.11) instead
+      # of relying on whatever Python the runner image ships.
+      - name: Set up Python
+        uses: actions/setup-python@v7.1.0
+        with:
+          python-version: "3.13"
+
+      - name: Install packaging
+        run: python -m pip install packaging
+
+      # Keep this script identical to the copy in main.yaml.
+      - name: Extract supported Python versions
+        id: python
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import tomllib
+          import urllib.request
+          from pathlib import Path
+
+          from packaging.specifiers import SpecifierSet
+          from packaging.version import Version
+
+          # Same manifest actions/setup-python installs from, so the matrix
+          # only contains versions that exist and can be installed.
+          MANIFEST_URL = (
+              "https://raw.githubusercontent.com/actions/python-versions/"
+              "main/versions-manifest.json"
+          )
+
+          with Path("pyproject.toml").open("rb") as f:
+              requires_python = SpecifierSet(
+                  tomllib.load(f)["project"]["requires-python"]
+              )
+
+          with urllib.request.urlopen(MANIFEST_URL, timeout=30) as response:
+              manifest = json.load(response)
+
+          # Group stable Linux CPython 3.x releases by minor version.
+          releases: dict[tuple[int, int], list[Version]] = {}
+          for entry in manifest:
+              if not entry["stable"]:
+                  continue
+              if not any(f["platform"] == "linux" for f in entry["files"]):
+                  continue
+              version = Version(entry["version"])
+              if version.major == 3:
+                  key = (version.major, version.minor)
+                  releases.setdefault(key, []).append(version)
+
+          # A minor version counts as supported if any released patch
+          # satisfies requires-python (">=3.10.4" still keeps 3.10).
+          versions = [
+              f"{major}.{minor}"
+              for (major, minor), patches in sorted(releases.items())
+              if any(patch in requires_python for patch in patches)
+          ]
+
+          if not versions:
+              raise SystemExit(
+                  "No released Python versions satisfy "
+                  f"requires-python {requires_python}"
+              )
+
+          print(f"requires-python {requires_python} -> {versions}")
+
+          # The heredoc is quoted ('PY'), so the shell does not expand
+          # $GITHUB_OUTPUT here -- read it from the environment instead.
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"versions={json.dumps(versions)}\n")
+              out.write(f"latest={versions[-1]}\n")
+          PY
+
   validate-schema:
     name: Validate schema (Python ${{ matrix.python-version }})
-    needs: apply-inbox
+    needs: [apply-inbox, python-matrix]
     if: >
       !github.event.pull_request.merged &&
       needs.apply-inbox.outputs.inbox_present == 'true' &&
@@ -198,7 +294,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13"]
+        python-version: ${{ fromJSON(needs.python-matrix.outputs.versions) }}
       fail-fast: false
 
     steps:
@@ -404,13 +500,13 @@ jobs:
               const icon = testResult === "success" ? "✅"
                          : testResult === "failure" ? "❌" : "⏭️";
               const msg  = testResult === "success"
-                ? "All LinkML validation checks passed on Python 3.9 – 3.13."
+                ? "All LinkML validation checks passed on the supported Python versions."
                 : testResult === "failure"
                   ? "**LinkML validation failed on one or more Python versions.** "
                     + "See the individual *Validate schema (Python …)* check runs for details."
                   : "Schema validation was skipped or cancelled.";
               sections.push(
-                `### ${icon} Schema validation (\`just test\`, Python 3.9 – 3.13)`, "",
+                `### ${icon} Schema validation (\`just test\`, supported Python versions)`, "",
                 msg, ""
               );
             }
@@ -474,9 +570,12 @@ jobs:
       # ── Gate / commit ─────────────────────────────────────────────────────────
 
       - name: Fail on errors (after comment posted)
+        # `!= 'success'` rather than `== 'failure'`: if python-matrix fails,
+        # validate-schema is *skipped*, the comment reports failure and nothing
+        # is committed — the finish job must not show green in that case.
         if: >
           needs.apply-inbox.outputs.apply_status == 'errors' ||
-          needs.validate-schema.result == 'failure'
+          needs.validate-schema.result != 'success'
         run: |
           echo "::error::Inbox processing failed. See the PR comment for details."
           exit 1

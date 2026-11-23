@@ -236,7 +236,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                            'prefix_reference': 'http://www.w3.org/2004/02/skos/core#'},
                   'voc4cat': {'prefix_prefix': 'voc4cat',
                               'prefix_reference': 'https://w3id.org/nfdi4cat/voc4cat_'}},
-     'source_file': 'src\\coremeta4cat\\schema\\coremeta4cat.yaml',
+     'source_file': 'src/coremeta4cat/schema/coremeta4cat.yaml',
      'title': 'CoreMeta4cat Metadata Reference Model'} )
 
 class CatalysisResearchFieldEnum(str, Enum):
