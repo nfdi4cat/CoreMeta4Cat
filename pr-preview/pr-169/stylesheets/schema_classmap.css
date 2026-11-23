@@ -120,7 +120,10 @@
 .cm4c-views button { padding: 0.3em 0.85em; border: 0; border-right: 1px solid var(--cm4c-line-strong); background: var(--cm4c-bg); cursor: pointer; }
 .cm4c-views button:last-child { border-right: 0; }
 .cm4c-views button[aria-pressed="true"] { background: var(--cm4c-accent-soft); color: var(--cm4c-accent); font-weight: 700; }
-.cm4c-chart iframe { display: block; width: 100%; height: min(78vh, 760px); min-height: 460px; border: 1px solid var(--cm4c-line-strong); border-radius: 6px; background: #ffffff; }
+/* The chart is a circle, so the frame takes the full content width and is as
+   tall as it is wide, but never taller than the window below the site
+   header: the whole chart stays visible without scrolling. */
+.cm4c-chart iframe { display: block; box-sizing: border-box; width: 100%; aspect-ratio: 1 / 1; height: auto; max-height: calc(100vh - 4.5rem); min-height: 460px; border: 1px solid var(--cm4c-line-strong); border-radius: 6px; background: #ffffff; }
 .cm4c-open { display: block; padding: 0 0.85em 0.6em; color: var(--cm4c-accent); font-size: 0.88em; }
 .cm4c-muted { color: var(--cm4c-muted); }
 .cm4c-classmap .cm4c-pad { padding: 0 0.85em 0.7em; font-size: 0.9em; }
