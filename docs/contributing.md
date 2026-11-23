@@ -34,16 +34,16 @@ Download the [vocabulary reference workbook](https://nfdi4cat.github.io/CoreMeta
 You can use it two ways:
 
 - **As a reference** — browse it to look up existing fields while designing or annotating your own data sheets.
-- **To propose a change** — edit a downloaded copy (correct a description, adjust M/R/O, add a new field or class — you can add a new field and the new class it points to in the same submission) and submit it as a pull request:
+- **To propose a change** — edit a downloaded copy of the [current (dev) workbook](https://nfdi4cat.github.io/CoreMeta4Cat/dev/assets/coremeta4cat_vocabulary.xlsx) (correct a description, adjust M/R/O, add or remove a field or class — you can add a new field and the new class it points to in the same submission) and submit it as a pull request:
 
     1. Edit the `Synthesis`, `Characterization`, `Reaction`, or `Simulation` sheet directly. Don't rename sheets or change column headers.
     2. Place the edited file at `inbox/coremeta4cat_vocabulary.xlsx` in a new branch and open a pull request.
     3. An automated check validates the workbook and posts the results as a comment on your PR — including any errors to fix and warnings to review (e.g. if a field you changed is shared across multiple classes, it lists every other class your edit also affects).
     4. If validation passes, a maintainer reviews and merges; the schema updates automatically.
 
-  See [`inbox/README.md`](https://github.com/nfdi4cat/CoreMeta4Cat/blob/main/inbox/README.md) in the repository for the full workflow.
+  Only the rows you change are applied: the workbook keeps a hidden copy of how it looked when you downloaded it, so changes merged in the meantime are never reverted. See [`inbox/README.md`](https://github.com/nfdi4cat/CoreMeta4Cat/blob/main/inbox/README.md) in the repository for the full workflow.
 
-Rows shown in grey italics in the workbook are inherited from chemdcat-ap, the underlying chemistry model — they're shown for reference but can't be changed through this workflow; open an issue instead.
+Rows shown in grey italics in the workbook are inherited from chemdcat-ap, the underlying chemistry model — they're shown for reference but can't be changed through this workflow (edits to them are reported, not applied); open an issue instead.
 
 The schema is the authoritative source — the workbook is generated from it automatically, so any of your edits are proposals until they're validated and merged, not immediate changes.
 
