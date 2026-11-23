@@ -85,7 +85,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                     'CatalysisDataset.\n'
                     '  The catalysis research field is expressed via rdf_type '
                     '(ClassifierMixin,\n'
-                    '  Pattern 3) using voc4cat terms â€” analogous to how '
+                    '  Pattern 3) using voc4cat terms — analogous to how '
                     'NMRSpectroscopy uses\n'
                     '  rdf_type: CHMO:0000613 to classify the measurement type.\n'
                     '\n'
@@ -159,24 +159,24 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                     '\n'
                     'Full import hierarchy:\n'
                     '```\n'
-                    '  coremeta4cat.yaml  (this file â€” aggregator + '
+                    '  coremeta4cat.yaml  (this file — aggregator + '
                     'CatalysisDataset entry point)\n'
                     '    +-- coremeta4cat_common.yaml         (shared slots, '
                     'enums)\n'
                     '          +-- chem_dcat_ap          (SubstanceSample, '
-                    'ChemicalSubstance, â€¦)\n'
+                    'ChemicalSubstance, …)\n'
                     '                +-- chemical_reaction_ap\n'
                     '                      +-- chemical_entities_ap\n'
                     '                            +-- material_entities_ap\n'
                     '                                  +-- dcat_ap_plus  '
                     '(DCAT-AP-PLUS base)\n'
-                    '    +-- coremeta4cat_synthesis_ap         (Step 3 â€” '
+                    '    +-- coremeta4cat_synthesis_ap         (Step 3 — '
                     'Synthesis, PreparationMethod, mixins)\n'
-                    '    +-- coremeta4cat_characterization_ap  (Step 4 â€” '
+                    '    +-- coremeta4cat_characterization_ap  (Step 4 — '
                     'Characterization, 24 techniques, mixins)\n'
-                    '    +-- coremeta4cat_reaction_ap          (Step 5 â€” Reaction, '
+                    '    +-- coremeta4cat_reaction_ap          (Step 5 — Reaction, '
                     '8 Reactor subclasses)\n'
-                    '    +-- coremeta4cat_simulation_ap        (Step 6 â€” '
+                    '    +-- coremeta4cat_simulation_ap        (Step 6 — '
                     'Simulation, 4 methods, 12 properties, mixins)\n'
                     '```',
      'id': 'https://w3id.org/nfdi4cat/coremeta4cat',
@@ -236,7 +236,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                            'prefix_reference': 'http://www.w3.org/2004/02/skos/core#'},
                   'voc4cat': {'prefix_prefix': 'voc4cat',
                               'prefix_reference': 'https://w3id.org/nfdi4cat/voc4cat_'}},
-     'source_file': 'src/coremeta4cat/schema/coremeta4cat.yaml',
+     'source_file': 'src\\coremeta4cat\\schema\\coremeta4cat.yaml',
      'title': 'CoreMeta4cat Metadata Reference Model'} )
 
 class CatalysisResearchFieldEnum(str, Enum):
@@ -248,28 +248,28 @@ following DCAT-AP-PLUS Pattern 3 (Flexible classification).
     """
     heterogeneous_catalysis = "heterogeneous_catalysis"
     """
-    Heterogeneous catalysis â€” catalyst and reactants are in different phases.
+    Heterogeneous catalysis — catalyst and reactants are in different phases.
     """
     homogeneous_catalysis = "homogeneous_catalysis"
     """
-    Homogeneous catalysis â€” catalyst and reactants are in the same phase.
+    Homogeneous catalysis — catalyst and reactants are in the same phase.
     """
     biocatalysis = "biocatalysis"
     """
-    Biocatalysis â€” use of enzymes or whole cells as catalysts.
+    Biocatalysis — use of enzymes or whole cells as catalysts.
     """
     electrocatalysis = "electrocatalysis"
     """
-    Electrocatalysis â€” catalysis of electrochemical reactions.
+    Electrocatalysis — catalysis of electrochemical reactions.
     """
     photocatalysis = "photocatalysis"
     """
-    Photocatalysis â€” catalysis of a chemical reaction through the
+    Photocatalysis — catalysis of a chemical reaction through the
     absorption of sufficient light energy by a photocatalyst.
     """
     hybrid_catalysis = "hybrid_catalysis"
     """
-    Hybrid catalysis â€” combination of two or more catalytic approaches.
+    Hybrid catalysis — combination of two or more catalytic approaches.
     """
     other = "other"
     """
@@ -283,15 +283,15 @@ class ImpregnationTypeEnum(str, Enum):
     """
     wet_impregnation = "wet_impregnation"
     """
-    Wet impregnation â€” excess solution is used to impregnate the support.
+    Wet impregnation — excess solution is used to impregnate the support.
     """
     dry_impregnation = "dry_impregnation"
     """
-    Dry impregnation â€” solution volume equals the pore volume of the support.
+    Dry impregnation — solution volume equals the pore volume of the support.
     """
     incipient_wetness = "incipient_wetness"
     """
-    Incipient wetness impregnation â€” synonym for dry impregnation.
+    Incipient wetness impregnation — synonym for dry impregnation.
     """
     other = "other"
     """
@@ -2331,7 +2331,7 @@ class Synthesis(CatalysisDataGeneratingActivity):
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:catalyst_measured_properties'} })
-    storage_conditions: Optional[list[str]] = Field(default=None, description="""Conditions under which the catalyst is stored (e.g. inert atmosphere, 4Â°C).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'],
+    storage_conditions: Optional[list[str]] = Field(default=None, description="""Conditions under which the catalyst is stored (e.g. inert atmosphere, 4°C).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'voc4cat:0008105'} })
@@ -2525,7 +2525,7 @@ class Characterization(CatalysisDataGeneratingActivity):
 
     The specific technique type is expressed via rdf_type using an ontology
     term (e.g. CHMO:0000158 for powder XRD, CHMO:0000404 for XPS),
-    following DCAT-AP-PLUS Pattern 3 â€” exactly as NMRSpectroscopy uses
+    following DCAT-AP-PLUS Pattern 3 — exactly as NMRSpectroscopy uses
     rdf_type: CHMO:0000613.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000070',
@@ -5140,7 +5140,7 @@ class CatalyticReaction(ChemicalReaction):
     temperature, pressure, yield, reaction steps) from ChemicalReaction and
     adds catalysis-specific operating-condition slots.
 
-    Reaction is NOT a DataGeneratingActivity â€” it is the catalytic process
+    Reaction is NOT a DataGeneratingActivity — it is the catalytic process
     being observed, not the process that generates the dataset. A CatalysisDataset
     is linked to the Reaction it is about via is_about_activity.
 
@@ -6056,7 +6056,7 @@ class CatalysisPlan(Plan):
 class PreparationMethod(CatalysisPlan):
     """
     An abstract Plan describing the protocol used to prepare a catalyst.
-    Concrete subclasses (Impregnation, CoPrecipitation, â€¦) specify the
+    Concrete subclasses (Impregnation, CoPrecipitation, …) specify the
     method-specific parameters. Linked from Synthesis via realized_plan.
 
     The specific preparation method type should additionally be expressed
@@ -6521,7 +6521,7 @@ class SolGel(PreparationMethod, DryingMixin):
     hydrolysis_ratio: Optional[list[float]] = Field(default=None, description="""Molar ratio of water to alkoxide precursor used in hydrolysis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolGel'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:hydrolysis_ratio'} })
+         'slot_uri': 'voc4cat:0008157'} })
     has_aging_duration: Optional[Duration] = Field(default=None, description="""Duration of the aging step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrecipitationMixin', 'SolGel'],
          'is_a': 'has_duration',
          'slot_uri': 'voc4cat:0008204'} })
@@ -6532,7 +6532,7 @@ class SolGel(PreparationMethod, DryingMixin):
     surfactant_template: Optional[list[str]] = Field(default=None, description="""Surfactant or structure-directing agent used as a template.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SolGel'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:surfactant_template'} })
+         'slot_uri': 'voc4cat:0008147'} })
     drying_device: Optional[list[str]] = Field(default=None, description="""Device used for drying (e.g. oven, rotary evaporator).""", json_schema_extra = { "linkml_meta": {'domain_of': ['DryingMixin'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
@@ -6656,7 +6656,7 @@ class Solvothermal(PreparationMethod, ThermalSynthesisMixin):
     filling_volume: Optional[list[float]] = Field(default=None, description="""Volume of solution relative to autoclave volume (filling degree).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Solvothermal'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:filling_volume',
+         'slot_uri': 'voc4cat:0008148',
          'unit': {'ucum_code': 'mL'}} })
     stirrer_type: Optional[list[str]] = Field(default=None, description="""Type of stirrer used (e.g. magnetic, mechanical, none).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Solvothermal'],
          'is_a': 'has_qualitative_attribute',
@@ -6665,7 +6665,7 @@ class Solvothermal(PreparationMethod, ThermalSynthesisMixin):
     cooling_rate: Optional[list[HeatingRate]] = Field(default=None, description="""Rate at which the reactor is cooled after synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Solvothermal'],
          'is_a': 'has_heating_rate',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:cooling_rate'} })
+         'slot_uri': 'voc4cat:0008149'} })
     synthesis_temperature: Optional[list[Temperature]] = Field(default=None, description="""Temperature applied during the synthesis step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThermalSynthesisMixin'],
          'is_a': 'has_temperature',
          'recommended': True,
@@ -6792,21 +6792,21 @@ class PlasmaAssisted(PreparationMethod, ThermalSynthesisMixin):
     Catalyst preparation using plasma treatment to modify surface
     properties or deposit active components.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:PlasmaAssisted',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0008152',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['ThermalSynthesisMixin']})
 
     plasma_type: Optional[list[str]] = Field(default=None, description="""Type of plasma used (e.g. DBD, microwave, RF plasma).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:plasma_type'} })
+         'slot_uri': 'voc4cat:0008153'} })
     power_input: Optional[list[PowerQuantity]] = Field(default=None, description="""Power input to the plasma reactor or other energy source.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'],
          'is_a': 'has_power',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:power_input'} })
+         'slot_uri': 'voc4cat:0008154'} })
     exposure_time: Optional[list[Duration]] = Field(default=None, description="""Duration of plasma or other energy exposure.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted'],
          'is_a': 'has_duration',
-         'slot_uri': 'coremeta4cat:exposure_time'} })
+         'slot_uri': 'voc4cat:0008155'} })
     synthesis_pressure: Optional[list[Pressure]] = Field(default=None, description="""Pressure applied during synthesis (e.g. in autoclave or plasma reactor).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlasmaAssisted', 'Sublimation'],
          'is_a': 'has_pressure',
          'recommended': True,
@@ -6937,7 +6937,7 @@ class CombustionSynthesis(PreparationMethod, ThermalSynthesisMixin):
     Catalyst preparation by combustion of a fuel/oxidizer mixture,
     producing metal oxide catalysts in a single rapid step.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:CombustionSynthesis',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0008156',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'mixins': ['ThermalSynthesisMixin']})
 
@@ -9905,10 +9905,10 @@ class NMRSpectroscopy(CharacterizationTechnique):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000073',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    nucleus: Optional[list[str]] = Field(default=None, description="""NMR-active nucleus observed (e.g. 1H, 13C, 31P).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
+    acquisition_nucleus: list[str] = Field(default=..., description="""NMR-active nucleus observed (e.g. 1H, 13C, 31P).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:nucleus'} })
+         'slot_uri': 'NMR:1400083'} })
     solvent: Optional[list[ChemicalEntity]] = Field(default=None, description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
                        'NMRSpectroscopy',
                        'UVVisSpectroscopy',
@@ -9949,7 +9949,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
     nmr_sample_tube: Optional[list[str]] = Field(default=None, description="""NMR sample tube type (e.g. 5mm standard, Shigemi tube).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:nmr_sample_tube'} })
+         'slot_uri': 'NMR:1400132'} })
     number_of_scans: Optional[list[int]] = Field(default=None, description="""Number of scans or accumulations recorded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS',
                        'InfraredSpectroscopy',
                        'DRIFTS',
@@ -13071,7 +13071,7 @@ class CalcinationGaseousEnvironment(Atmosphere):
 class HeatingProcedure(QualitativeAttribute):
     """
     A qualitative descriptor of the thermal programme or heating procedure
-    applied (e.g. \"isothermal\", \"ramp 5 Â°C/min to 500 Â°C, dwell 2 h\").
+    applied (e.g. \"isothermal\", \"ramp 5 °C/min to 500 °C, dwell 2 h\").
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:HeatingProcedure',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
@@ -13167,7 +13167,7 @@ class HeatingProcedure(QualitativeAttribute):
 class SamplePretreatment(QualitativeAttribute):
     """
     A qualitative descriptor of the pre-treatment applied to a sample
-    before a process or measurement (e.g. \"reduction at 300 Â°C\", \"outgassing\").
+    before a process or measurement (e.g. \"reduction at 300 °C\", \"outgassing\").
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000122',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
@@ -18954,7 +18954,7 @@ class ChemicalReactor(Reactor):
     instruments (Device) from reaction vessels (Reactor). ChemicalReactor
     further specializes chemdcat-ap's generic Reactor for catalysis use cases.
 
-    Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, â€¦) specify
+    Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify
     reactor geometry and operating mode.
     Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).
     """
@@ -19318,7 +19318,7 @@ causing (or is caused by) chemical reactions.""", json_schema_extra = { "linkml_
 
 class CSTR(ChemicalReactor):
     """
-    Continuous stirred tank reactor (CSTR) â€” a well-mixed, continuous-flow
+    Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow
     reactor operating at steady state.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0007019',
@@ -19513,7 +19513,7 @@ may use different equipment.""", json_schema_extra = { "linkml_meta": {'domain_o
 
 class PlugFlowReactor(ChemicalReactor):
     """
-    Plug flow reactor (PFR) â€” a tubular reactor in which reactant composition
+    Plug flow reactor (PFR) — a tubular reactor in which reactant composition
     varies along the axis with no axial mixing.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0007102',
@@ -19698,7 +19698,7 @@ sample, typically reported as diameter or sieve fraction range.""", json_schema_
 
 class Autoclave(ChemicalReactor):
     """
-    Autoclave reactor â€” a sealed pressure vessel for batch reactions at
+    Autoclave reactor — a sealed pressure vessel for batch reactions at
     elevated temperature and/or pressure.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NCIT:C93052',
@@ -19884,7 +19884,7 @@ start to end of the reaction step.""", json_schema_extra = { "linkml_meta": {'do
 
 class SlurryReactor(ChemicalReactor):
     """
-    Slurry reactor â€” a three-phase reactor in which catalyst particles are
+    Slurry reactor — a three-phase reactor in which catalyst particles are
     suspended in a liquid phase through which gas is bubbled.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:SlurryReactor',
@@ -20071,7 +20071,7 @@ in revolutions per unit time.""", json_schema_extra = { "linkml_meta": {'domain_
 
 class Microreactor(ChemicalReactor):
     """
-    Microreactor â€” a miniaturised flow reactor with characteristic dimensions
+    Microreactor — a miniaturised flow reactor with characteristic dimensions
     in the sub-millimetre range, enabling precise thermal control and rapid
     screening.
     """
@@ -20248,7 +20248,7 @@ channels.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microreactor'
 
 class FixedBedReactor(ChemicalReactor):
     """
-    Fixed bed reactor â€” a tubular reactor packed with a stationary catalyst bed.
+    Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.
     The most common reactor type in heterogeneous catalysis testing.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:FixedBedReactor',
@@ -20437,7 +20437,7 @@ measured along the direction of flow.""", json_schema_extra = { "linkml_meta": {
 
 class FluidizedBedReactor(ChemicalReactor):
     """
-    Fluidized bed reactor â€” a reactor in which the catalyst particles are
+    Fluidized bed reactor — a reactor in which the catalyst particles are
     suspended in an upward-flowing gas or liquid stream.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:FluidizedBedReactor',
@@ -24322,7 +24322,11 @@ class MaterialDescriptorMixin(ConfiguredBaseModel):
          'mixin': True})
 
     material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
-Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
@@ -24690,7 +24694,7 @@ class SimulationMethod(CatalysisPlan):
 
 class DFT(SimulationMethod):
     """
-    Density functional theory â€” a quantum mechanical method for calculating
+    Density functional theory — a quantum mechanical method for calculating
     the electronic structure of atoms, molecules, and periodic solids.
     The most widely used ab initio method in computational catalysis.
     """
@@ -24825,7 +24829,7 @@ calculation. Set to true for systems containing magnetic elements.""", json_sche
 
 class MolecularDynamics(SimulationMethod):
     """
-    Molecular dynamics simulation â€” a method for computing the time evolution
+    Molecular dynamics simulation — a method for computing the time evolution
     of a system of interacting particles by integrating the equations of motion.
     Used to study diffusion, reaction kinetics, and thermal properties.
     """
@@ -24954,7 +24958,7 @@ thermodynamic quantities are conserved.""", json_schema_extra = { "linkml_meta":
 
 class Microkinetics(SimulationMethod):
     """
-    Microkinetic modelling â€” a mean-field kinetic approach that integrates
+    Microkinetic modelling — a mean-field kinetic approach that integrates
     elementary reaction steps and their rate constants to predict catalytic
     activity and selectivity under reaction conditions.
     """
@@ -24996,11 +25000,11 @@ stiff ODE solver, steady-state Newton method).""", json_schema_extra = { "linkml
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    surface_coverage: Optional[list[float]] = Field(default=None, description="""Surface coverage of adsorbed species (fraction of surface sites occupied).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'],
+    surface_coverage: Optional[list[float]] = Field(default=None, description="""Surface coverage of adsorbed species (fraction of surface sites occupied).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics', 'AdsorptionEnergetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:surface_coverage'} })
-    activation_energy: Optional[list[float]] = Field(default=None, description="""Activation energy for each elementary step in the reaction mechanism.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'],
+    activation_energy: Optional[list[float]] = Field(default=None, description="""Activation energy for each elementary step in the reaction mechanism. Used here as an input parameter of the microkinetic model; where the barrier was computed, report it via the TransitionState calculated property and reference it here.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:activation_energy',
@@ -25103,7 +25107,7 @@ stiff ODE solver, steady-state Newton method).""", json_schema_extra = { "linkml
 
 class MonteCarlo(SimulationMethod):
     """
-    Monte Carlo simulation â€” a stochastic method that samples configuration
+    Monte Carlo simulation — a stochastic method that samples configuration
     space using random moves accepted or rejected according to a statistical
     criterion (e.g. Metropolis). Used for adsorption isotherms, phase diagrams,
     and lattice-based kinetics.
@@ -25724,7 +25728,10 @@ A lower value indicates a more stable surface facet.""", json_schema_extra = { "
          'recommended': True,
          'slot_uri': 'coremeta4cat:surface_energy',
          'unit': {'ucum_code': 'J/m2'}} })
-    miller_indices: Optional[list[str]] = Field(default=None, description="""Miller indices of the modelled surface facet (e.g. \"(111)\", \"(110)\", \"(100)\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces'],
+    miller_indices: Optional[list[str]] = Field(default=None, description="""Miller indices of the modelled surface facet (e.g. \"(111)\", \"(110)\", \"(100)\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:miller_indices'} })
@@ -25852,7 +25859,11 @@ the polarization changes with atomic displacements.""", json_schema_extra = { "l
          'recommended': True,
          'slot_uri': 'coremeta4cat:born_effective_charges'} })
     material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
-Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
@@ -25995,7 +26006,11 @@ Imaginary modes indicate dynamical instability of the structure.""", json_schema
          'recommended': True,
          'slot_uri': 'coremeta4cat:imaginary_modes'} })
     material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
-Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
@@ -26121,7 +26136,11 @@ class EquationsOfState(CalculatedProperty, DFTSettingsMixin, MaterialDescriptorM
          'recommended': True,
          'slot_uri': 'coremeta4cat:fit_residuals'} })
     material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
-Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
@@ -26253,7 +26272,7 @@ class AqueousStability(CalculatedProperty, MaterialDescriptorMixin):
          'recommended': True,
          'slot_uri': 'coremeta4cat:potential_range'} })
     solvation_model: Optional[list[str]] = Field(default=None, description="""Implicit solvation model used to account for aqueous environment
-(e.g. VASPsol, SCCS/Environ, COSMO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability'],
+(e.g. VASPsol, SCCS/Environ, COSMO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability', 'ElectrochemicalFreeEnergy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:solvation_model'} })
@@ -26284,7 +26303,11 @@ class AqueousStability(CalculatedProperty, MaterialDescriptorMixin):
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
     material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
-Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
@@ -26426,7 +26449,11 @@ at the grain boundary (e.g. segregation energy per defect type).""", json_schema
          'recommended': True,
          'slot_uri': 'coremeta4cat:charge_defect_segregation'} })
     material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
-Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
@@ -26554,7 +26581,11 @@ band structure (e.g. \"Gamma-X-M-Gamma-R\" for cubic, following SeeK-path conven
          'slot_uri': 'coremeta4cat:fermi_energy',
          'unit': {'ucum_code': 'eV'}} })
     material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
-Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
@@ -26706,7 +26737,11 @@ polarization endpoint in the Berry-phase polarization calculation.""", json_sche
          'recommended': True,
          'slot_uri': 'coremeta4cat:temperature_dependence'} })
     material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
-Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
@@ -26850,7 +26885,11 @@ optical band gap.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandG
          'slot_uri': 'coremeta4cat:excitonic_correction',
          'unit': {'ucum_code': 'eV'}} })
     material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
-Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin'],
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
@@ -26874,6 +26913,632 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_sche
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: str = Field(default=..., description="""The slot to provide the literal value of the QualitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class AdsorptionEnergetics(CalculatedProperty):
+    """
+    Adsorption energetics of a species on a catalyst surface or site, computed from periodic slab or cluster models. Essential for constructing reaction energy profiles and identifying activity descriptors.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:AdsorptionEnergetics',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
+
+    adsorbate: Optional[list[str]] = Field(default=None, description="""Chemical identity of the adsorbed species (e.g. \"CO\", \"OH\", \"CH3\", \"N2H\"). Use a chemical formula or SMILES.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:adsorbate'} })
+    adsorption_site: Optional[list[str]] = Field(default=None, description="""Adsorption site of the adsorbate (e.g. top, bridge, fcc hollow, hcp hollow, step edge, oxygen vacancy, single-atom site).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:adsorption_site'} })
+    adsorption_energy: Optional[list[float]] = Field(default=None, description="""Adsorption energy, E_ads = E(slab+adsorbate) - E(slab) - E(reference species). Negative values indicate exothermic binding.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:adsorption_energy',
+         'unit': {'ucum_code': 'eV'}} })
+    energy_reference: Optional[list[str]] = Field(default=None, description="""Reference species and states used to compute relative energies (e.g. \"CO(g)\", \"1/2 H2(g)\", \"H2O(g) and H2(g)\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:energy_reference'} })
+    energy_correction_type: Optional[list[str]] = Field(default=None, description="""Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics', 'ReactionEnergetics', 'TransitionState'],
+         'slot_uri': 'coremeta4cat:energy_correction_type'} })
+    zero_point_energy_correction: Optional[list[float]] = Field(default=None, description="""Zero-point energy correction applied to the reported energy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics'],
+         'slot_uri': 'coremeta4cat:zero_point_energy_correction',
+         'unit': {'ucum_code': 'eV'}} })
+    surface_coverage: Optional[list[float]] = Field(default=None, description="""Surface coverage of adsorbed species (fraction of surface sites occupied).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microkinetics', 'AdsorptionEnergetics'],
+         'is_a': 'has_quantitative_attribute',
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:surface_coverage'} })
+    miller_indices: Optional[list[str]] = Field(default=None, description="""Miller indices of the modelled surface facet (e.g. \"(111)\", \"(110)\", \"(100)\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:miller_indices'} })
+    material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:material_composition'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: str = Field(default=..., description="""The slot to provide the literal value of the QualitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class ReactionEnergetics(CalculatedProperty):
+    """
+    Thermochemistry of an elementary reaction step on a catalyst, given as the energy difference between its initial and final states.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:ReactionEnergetics',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
+
+    elementary_step: Optional[list[str]] = Field(default=None, description="""Elementary reaction step written as an equation, with * denoting a free surface site (e.g. \"CO* + O* -> CO2(g) + 2*\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics', 'TransitionState'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:elementary_step'} })
+    initial_state: Optional[list[str]] = Field(default=None, description="""Description of the initial-state configuration of the elementary step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'], 'slot_uri': 'coremeta4cat:initial_state'} })
+    final_state: Optional[list[str]] = Field(default=None, description="""Description of the final-state configuration of the elementary step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'], 'slot_uri': 'coremeta4cat:final_state'} })
+    reaction_energy: Optional[list[float]] = Field(default=None, description="""Reaction energy of the elementary step, Delta_E = E(final state) - E(initial state).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:reaction_energy',
+         'unit': {'ucum_code': 'eV'}} })
+    reaction_free_energy: Optional[list[float]] = Field(default=None, description="""Gibbs free energy change of the elementary step, Delta_G, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'],
+         'slot_uri': 'coremeta4cat:reaction_free_energy',
+         'unit': {'ucum_code': 'eV'}} })
+    free_energy_temperature: Optional[list[float]] = Field(default=None, description="""Temperature at which free energy corrections were evaluated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'],
+         'slot_uri': 'coremeta4cat:free_energy_temperature',
+         'unit': {'ucum_code': 'K'}} })
+    energy_correction_type: Optional[list[str]] = Field(default=None, description="""Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics', 'ReactionEnergetics', 'TransitionState'],
+         'slot_uri': 'coremeta4cat:energy_correction_type'} })
+    miller_indices: Optional[list[str]] = Field(default=None, description="""Miller indices of the modelled surface facet (e.g. \"(111)\", \"(110)\", \"(100)\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:miller_indices'} })
+    material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:material_composition'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: str = Field(default=..., description="""The slot to provide the literal value of the QualitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class TransitionState(CalculatedProperty):
+    """
+    Transition state of an elementary reaction step and its activation barrier, located by a transition state search method.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:TransitionState',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
+
+    elementary_step: Optional[list[str]] = Field(default=None, description="""Elementary reaction step written as an equation, with * denoting a free surface site (e.g. \"CO* + O* -> CO2(g) + 2*\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics', 'TransitionState'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:elementary_step'} })
+    forward_activation_energy: Optional[list[float]] = Field(default=None, description="""Activation energy of the forward step, E_a = E(transition state) - E(initial state).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TransitionState'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:forward_activation_energy',
+         'unit': {'ucum_code': 'eV'}} })
+    reverse_activation_energy: Optional[list[float]] = Field(default=None, description="""Activation energy of the reverse step, E(transition state) - E(final state).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TransitionState'],
+         'slot_uri': 'coremeta4cat:reverse_activation_energy',
+         'unit': {'ucum_code': 'eV'}} })
+    ts_search_method: Optional[list[str]] = Field(default=None, description="""Method used to locate the transition state (e.g. NEB, CI-NEB, dimer method, growing string method, constrained optimisation).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TransitionState'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:ts_search_method'} })
+    number_of_images: Optional[list[int]] = Field(default=None, description="""Number of intermediate images used in a NEB or string calculation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TransitionState'], 'slot_uri': 'coremeta4cat:number_of_images'} })
+    imaginary_frequency: Optional[list[float]] = Field(default=None, description="""Imaginary vibrational frequency associated with the reaction coordinate at the transition state.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TransitionState'],
+         'slot_uri': 'coremeta4cat:imaginary_frequency',
+         'unit': {'ucum_code': 'cm-1'}} })
+    ts_verification_method: Optional[list[str]] = Field(default=None, description="""Method used to verify the transition state (e.g. vibrational analysis showing a single imaginary mode, intrinsic reaction coordinate (IRC)).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TransitionState'],
+         'slot_uri': 'coremeta4cat:ts_verification_method'} })
+    energy_correction_type: Optional[list[str]] = Field(default=None, description="""Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics', 'ReactionEnergetics', 'TransitionState'],
+         'slot_uri': 'coremeta4cat:energy_correction_type'} })
+    miller_indices: Optional[list[str]] = Field(default=None, description="""Miller indices of the modelled surface facet (e.g. \"(111)\", \"(110)\", \"(100)\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:miller_indices'} })
+    material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:material_composition'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: str = Field(default=..., description="""The slot to provide the literal value of the QualitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class ElectrochemicalFreeEnergy(CalculatedProperty):
+    """
+    Potential-dependent free energetics of electrocatalytic reactions, e.g. from the computational hydrogen electrode, yielding limiting potentials and theoretical overpotentials.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:ElectrochemicalFreeEnergy',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
+
+    electrode_potential_model: Optional[list[str]] = Field(default=None, description="""Model used to treat the electrode potential (e.g. computational hydrogen electrode, constant-potential / grand-canonical DFT).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemicalFreeEnergy'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:electrode_potential_model'} })
+    potential_reference_scale: Optional[list[str]] = Field(default=None, description="""Reference scale of the reported potentials (e.g. RHE, SHE).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemicalFreeEnergy'],
+         'slot_uri': 'coremeta4cat:potential_reference_scale'} })
+    applied_potential: Optional[list[float]] = Field(default=None, description="""Electrode potential at which free energies were evaluated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemicalFreeEnergy'],
+         'slot_uri': 'coremeta4cat:applied_potential',
+         'unit': {'ucum_code': 'V'}} })
+    limiting_potential: Optional[list[float]] = Field(default=None, description="""Highest (least negative) potential at which all electrochemical steps are exergonic.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemicalFreeEnergy'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:limiting_potential',
+         'unit': {'ucum_code': 'V'}} })
+    theoretical_overpotential: Optional[list[float]] = Field(default=None, description="""Difference between the equilibrium potential of the reaction and the limiting potential.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemicalFreeEnergy'],
+         'slot_uri': 'coremeta4cat:theoretical_overpotential',
+         'unit': {'ucum_code': 'V'}} })
+    potential_determining_step: Optional[list[str]] = Field(default=None, description="""Elementary step that determines the limiting potential.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ElectrochemicalFreeEnergy'],
+         'slot_uri': 'coremeta4cat:potential_determining_step'} })
+    solvation_model: Optional[list[str]] = Field(default=None, description="""Implicit solvation model used to account for aqueous environment
+(e.g. VASPsol, SCCS/Environ, COSMO).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AqueousStability', 'ElectrochemicalFreeEnergy'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:solvation_model'} })
+    material_composition: Optional[list[str]] = Field(default=None, description="""Chemical composition of the simulated material (e.g. \"Fe2O3\", \"Pt/CeO2\").
+Use empirical formula or SMILES for molecular systems.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialDescriptorMixin',
+                       'AdsorptionEnergetics',
+                       'ReactionEnergetics',
+                       'TransitionState',
+                       'ElectrochemicalFreeEnergy'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:material_composition'} })
+    title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'DefinedTerm',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:title'} })
+    description: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
+                       'Activity',
+                       'AgenticEntity',
+                       'Any',
+                       'Attribution',
+                       'Catalogue',
+                       'CatalogueRecord',
+                       'ChecksumAlgorithm',
+                       'Concept',
+                       'ConceptScheme',
+                       'DataService',
+                       'Dataset',
+                       'DatasetSeries',
+                       'Distribution',
+                       'Document',
+                       'Entity',
+                       'Frequency',
+                       'Geometry',
+                       'Identifier',
+                       'LegalResource',
+                       'LicenseDocument',
+                       'LinguisticSystem',
+                       'MediaType',
+                       'MediaTypeOrExtent',
+                       'PeriodOfTime',
+                       'Plan',
+                       'Policy',
+                       'ProvenanceStatement',
+                       'QualitativeAttribute',
+                       'QuantitativeAttribute',
+                       'Resource',
+                       'RightsStatement',
+                       'Role',
+                       'Standard',
+                       'SupportiveEntity',
+                       'Surrounding',
+                       'TimeInstant'],
+         'slot_uri': 'dcterms:description'} })
+    value: str = Field(default=..., description="""The slot to provide the literal value of the QualitativeAttribute.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QualitativeAttribute', 'QuantitativeAttribute'],
+         'in_subset': ['domain_agnostic_core'],
+         'slot_uri': 'prov:value'} })
+    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
+         'slot_uri': 'dcterms:type'} })
+    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+         'in_subset': ['domain_agnostic_core'],
+         'recommended': True,
+         'slot_uri': 'rdf:type'} })
+
+
+class CatalyticDescriptors(CalculatedProperty):
+    """
+    Computed descriptors that correlate with catalytic activity or selectivity, such as d-band centres or linear scaling relations.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:CatalyticDescriptors',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
+
+    descriptor_type: Optional[list[str]] = Field(default=None, description="""Type of activity descriptor (e.g. d-band centre, adsorption energy of a key intermediate, generalised coordination number, O p-band centre).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:descriptor_type'} })
+    descriptor_value: Optional[list[float]] = Field(default=None, description="""Value of the descriptor; state the unit together with the descriptor type.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'],
+         'recommended': True,
+         'slot_uri': 'coremeta4cat:descriptor_value'} })
+    d_band_center: Optional[list[float]] = Field(default=None, description="""Centre of the d-band projected density of states, relative to the Fermi level.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'],
+         'slot_uri': 'coremeta4cat:d_band_center',
+         'unit': {'ucum_code': 'eV'}} })
+    scaling_relation: Optional[list[str]] = Field(default=None, description="""Linear scaling relation between adsorption energies (e.g. \"Delta_E_OH = 0.50 Delta_E_O + 0.10 eV\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'],
+         'slot_uri': 'coremeta4cat:scaling_relation'} })
+    bep_relation: Optional[list[str]] = Field(default=None, description="""Brønsted–Evans–Polanyi relation between activation energies and reaction energies (slope and intercept).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'], 'slot_uri': 'coremeta4cat:bep_relation'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27413,4 +28078,9 @@ GrainBoundaries.model_rebuild()
 ElectronicStructure.model_rebuild()
 Ferroelectrics.model_rebuild()
 BandGap.model_rebuild()
+AdsorptionEnergetics.model_rebuild()
+ReactionEnergetics.model_rebuild()
+TransitionState.model_rebuild()
+ElectrochemicalFreeEnergy.model_rebuild()
+CatalyticDescriptors.model_rebuild()
 CatalysisDataset.model_rebuild()

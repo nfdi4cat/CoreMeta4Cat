@@ -566,6 +566,7 @@ slots:
     slot_uri: voc4cat:0007246
     multivalued: true
     inlined_as_list: true
+    recommended: true
 
   external_standard:
     description: External standard used for quantification or calibration.

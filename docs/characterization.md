@@ -2498,32 +2498,32 @@ this subprofile.
 **Slots**
 
 <details markdown="1">
-<summary><strong>nucleus</strong> (Optional, Multivalued)</summary>
+<summary><strong>acquisition nucleus</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** NMR-active nucleus observed (e.g. 1H, 13C, 31P).
 
 **Data Type:** string
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Mandatory, Multivalued
 
-**CURIE:** [`coremeta4cat:nucleus`](https://w3id.org/nfdi4cat/coremeta4cat/nucleus)
+**CURIE:** [`NMR:1400083`](http://nmrML.org/nmrCV#NMR:1400083)
 
-**Schema Reference:** [nucleus](./elements/slots/nucleus.md)
+**Schema Reference:** [acquisition_nucleus](./elements/slots/acquisition_nucleus.md)
 
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20nucleus target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20acquisition_nucleus target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
 
 <details markdown="1">
-<summary><strong>solvent</strong> (Optional, Multivalued)</summary>
+<summary><strong>solvent</strong> (Recommended, Multivalued)</summary>
 
 **Description:** Solvent used in a process or sample preparation.
 
 **Data Type:** ChemicalEntity
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Recommended, Multivalued
 
 **CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
@@ -2629,7 +2629,7 @@ this subprofile.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`coremeta4cat:nmr_sample_tube`](https://w3id.org/nfdi4cat/coremeta4cat/nmr_sample_tube)
+**CURIE:** [`NMR:1400132`](http://nmrML.org/nmrCV#NMR:1400132)
 
 **Schema Reference:** [nmr_sample_tube](./elements/slots/nmr_sample_tube.md)
 
@@ -4092,13 +4092,13 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 </p></details>
 
 <details markdown="1">
-<summary><strong>solvent</strong> (Optional, Multivalued)</summary>
+<summary><strong>solvent</strong> (Recommended, Multivalued)</summary>
 
 **Description:** Solvent used in a process or sample preparation.
 
 **Data Type:** ChemicalEntity
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Recommended, Multivalued
 
 **CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
@@ -5213,13 +5213,13 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **Slots**
 
 <details markdown="1">
-<summary><strong>solvent</strong> (Optional, Multivalued)</summary>
+<summary><strong>solvent</strong> (Recommended, Multivalued)</summary>
 
 **Description:** Solvent used in a process or sample preparation.
 
 **Data Type:** ChemicalEntity
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Recommended, Multivalued
 
 **CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 
