@@ -139,7 +139,7 @@ classes:
           Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).
           The abstract stub ProductIdentificationMethod is retained for backward compatibility.
         range: ProductIdentificationMethod
-        required: true
+        recommended: true
         multivalued: true
         inlined_as_list: true
       has_reaction_step:
@@ -176,6 +176,8 @@ classes:
     is_a: Reactor
     class_uri: voc4cat:0007018
     abstract: true
+    slots:
+    - reactor_designator
     description: |-
       Abstract Reactor (chemdcat-ap) subclass representing a catalytic reactor
       vessel.
@@ -188,6 +190,8 @@ classes:
 
       Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify
       reactor geometry and operating mode.
+      A reactor that uses fields of its subclass declares the subclass with
+      reactor_designator (its class_uri, e.g. coremeta4cat:FixedBedReactor).
       Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).
 
   ElectrochemicalReactor:
@@ -697,6 +701,6 @@ slots:
     is_a: realized_plan
     range: ProductIdentificationMethod
     slot_uri: coremeta4cat:product_identification_method
-    required: true
+    recommended: true
     multivalued: true
     inlined_as_list: true

@@ -175,7 +175,7 @@ classes:
     - precursor_quantity
     slot_usage:
       precursor_quantity:
-        required: true
+        recommended: true
   CatalystSample:
     is_a: MaterialSample
     class_uri: OBI:0000747   # specimen — reuses MaterialSample class_uri; specific catalyst type via rdf_type

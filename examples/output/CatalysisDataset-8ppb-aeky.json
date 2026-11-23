@@ -1,0 +1,229 @@
+{
+  "id": "hdl:21.11165/4cat/8ppb-aeky",
+  "description": [
+    "Computational part of Weigmann et al., ACS Catal. (2025): protein preparation of the Ruegeria sp. amine transaminase variant 3FCR-4M, induced-fit docking of the PLP-bound substrate (S)-1-(2-chlorophenyl)ethanamine, Desmond molecular dynamics of the complex in 3FCR-4M and the mutants S19V/P423F (4M-N15) and G151A/P423F (4M-N16), and Prime MM/GBSA relative binding free energies. All results are in 17 software archives (about 33 GB). The enzyme kinetics and preparative reactions of the article are not part of this dataset."
+  ],
+  "title": [
+    "Datasets for Publication: Navigating the Sequence-Function Landscape: AI-Driven Discovery of Unseen and SynergisticMutations in an Amine Transaminase - Molecular Dynamic Simulations"
+  ],
+  "was_generated_by": [
+    {
+      "id": "coremeta4cat:SIM_8ppb-aeky_MD",
+      "title": [
+        "Molecular dynamics of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16"
+      ],
+      "description": [
+        "Desmond molecular dynamics of the docked substrate-cofactor complex in 3FCR-4M and the mutants S19V/P423F (4M-N15, deposit M1) and G151A/P423F (4M-N16, deposit M2), run to investigate why these mutations change the kinetic parameters. Each variant has a system setup, a minimisation, an equilibration and a production run (12 archives, about 32 GB). The production runs extend beyond 100 ns; trajectories were analysed with the Simulation Interaction Diagram and in-house scripts using the Schrodinger Python API, and frames after 100 ns were used for MM/GBSA."
+      ],
+      "other_identifier": [
+        {
+          "notation": "https://hdl.handle.net/21.11165/4cat/8ppb-aeky"
+        }
+      ],
+      "evaluated_entity": [
+        {
+          "id": "coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex",
+          "title": "3FCR-4M with cofactor-bound substrate 2a"
+        },
+        {
+          "id": "coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M1_complex",
+          "title": "4M-N15 = 3FCR-4M-S19V/P423F (deposit M1) with cofactor-bound substrate 2a"
+        },
+        {
+          "id": "coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M2_complex",
+          "title": "4M-N16 = 3FCR-4M-G151A/P423F (deposit M2) with cofactor-bound substrate 2a"
+        }
+      ],
+      "realized_plan": {
+        "title": "molecular dynamics: setup, minimisation, equilibration, production",
+        "description": "Force field, water model, ensemble, temperature, timestep and simulation length are in the article's SI and the Desmond configuration files inside the archives; neither was read.",
+        "id": "coremeta4cat:SIM_8ppb-aeky_MD_method",
+        "plan_designator": "NCIT:C18097"
+      },
+      "activity_designator": "Simulation",
+      "software_package": [
+        "Desmond (Schrodinger suite)",
+        "Simulation Interaction Diagram and Schrodinger Python API, analysis"
+      ]
+    },
+    {
+      "id": "coremeta4cat:SIM_8ppb-aeky_MMGBSA",
+      "title": [
+        "MM/GBSA binding free energy of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16"
+      ],
+      "description": [
+        "Prime MM/GBSA end-point calculations of the binding free energy of the cofactor-bound substrate 2a ((S)-1-(2-chlorophenyl)ethanamine bound to PLP) in 3FCR-4M and the mutants S19V/P423F (4M-N15, deposit M1) and G151A/P423F (4M-N16, deposit M2). Frames taken from the molecular dynamics runs after 100 ns, every 200th frame, both binding sites of the dimer, giving 50 absolute values per complex. Relative values are the mean of each mutant minus the mean of 3FCR-4M. The article reports them as consistent in magnitude and trend with the experimentally determined KM values."
+      ],
+      "other_identifier": [
+        {
+          "notation": "https://hdl.handle.net/21.11165/4cat/8ppb-aeky"
+        }
+      ],
+      "evaluated_entity": [
+        {
+          "id": "coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex",
+          "title": "3FCR-4M with cofactor-bound substrate 2a"
+        },
+        {
+          "id": "coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M1_complex",
+          "title": "4M-N15 = 3FCR-4M-S19V/P423F (deposit M1) with cofactor-bound substrate 2a"
+        },
+        {
+          "id": "coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M2_complex",
+          "title": "4M-N16 = 3FCR-4M-G151A/P423F (deposit M2) with cofactor-bound substrate 2a"
+        }
+      ],
+      "realized_plan": {
+        "title": "MM/GBSA end-point free energy on MD frames",
+        "description": "Minimization approach, VSGB solvation model, OPLS4 force field; residues within 5 A of the ligands flexible; frames after 100 ns, every 200th frame; both binding sites of the dimer.",
+        "id": "coremeta4cat:SIM_8ppb-aeky_MMGBSA_method",
+        "plan_designator": "OBI:0000272"
+      },
+      "activity_designator": "Simulation",
+      "software_package": [
+        "Prime MM-GBSA (Schrodinger suite)"
+      ],
+      "calculated_property": [
+        {
+          "value": "-1.86 kcal/mol",
+          "description": "Relative binding free energy (ddG) of 4M-N15 (S19V/P423F) vs. 3FCR-4M"
+        },
+        {
+          "value": "-1.11 kcal/mol",
+          "description": "Relative binding free energy (ddG) of 4M-N16 (G151A/P423F) vs. 3FCR-4M"
+        }
+      ]
+    },
+    {
+      "id": "coremeta4cat:SIM_8ppb-aeky_induced_fit_docking",
+      "title": [
+        "Induced-fit docking of the substrate-cofactor complex into 3FCR-4M"
+      ],
+      "description": [
+        "Induced-fit docking with Glide to predict the initial binding mode of the cofactor-bound substrate in 3FCR-4M, the starting structure for molecular dynamics. The substrate is 2a, (S)-1-(2-chlorophenyl)ethanamine, bound to pyridoxal 5'-phosphate (PLP); the article shows the resulting poses as \"substrate-cofactor complexes ((S)-2)\" (Figure 4). \"CPEA\" in the archive name is taken to abbreviate this amine."
+      ],
+      "other_identifier": [
+        {
+          "notation": "https://hdl.handle.net/21.11165/4cat/8ppb-aeky"
+        }
+      ],
+      "evaluated_entity": [
+        {
+          "id": "coremeta4cat:ENZ_8ppb-aeky_3FCR-4M",
+          "title": "amine transaminase 3FCR-4M (Ruegeria sp., PDB 3FCR, Y59W/Y87F/Y152F/T231A)"
+        },
+        {
+          "id": "coremeta4cat:LIG_8ppb-aeky_2a_PLP",
+          "title": "(S)-1-(2-chlorophenyl)ethanamine bound to pyridoxal 5'-phosphate"
+        }
+      ],
+      "realized_plan": {
+        "title": "induced-fit ligand docking",
+        "description": "Glide Induced Fit; settings in the article's SI, not read from the archive.",
+        "id": "coremeta4cat:SIM_8ppb-aeky_induced_fit_docking_method",
+        "plan_designator": "OBI:0000272"
+      },
+      "activity_designator": "Simulation",
+      "software_package": [
+        "Glide, Induced Fit docking protocol (Schrodinger suite)"
+      ]
+    },
+    {
+      "id": "coremeta4cat:SIM_8ppb-aeky_protein_preparation",
+      "title": [
+        "Protein preparation of the amine transaminase variant 3FCR-4M"
+      ],
+      "description": [
+        "Preparation of the initial structure of 3FCR-4M for docking and molecular dynamics with the Protein Preparation Wizard. 3FCR-4M is the amine transaminase from Ruegeria sp. (PDB 3FCR) with the four mutations Y59W, Y87F, Y152F and T231A. The file descriptions of the deposit spell it 3CFR; the file names and the article use 3FCR."
+      ],
+      "other_identifier": [
+        {
+          "notation": "https://hdl.handle.net/21.11165/4cat/8ppb-aeky"
+        }
+      ],
+      "evaluated_entity": [
+        {
+          "id": "coremeta4cat:ENZ_8ppb-aeky_3FCR-4M",
+          "title": "amine transaminase 3FCR-4M (Ruegeria sp., PDB 3FCR, Y59W/Y87F/Y152F/T231A)"
+        }
+      ],
+      "realized_plan": {
+        "title": "protein structure preparation",
+        "description": "Protein Preparation Wizard workflow; settings in the article's SI, not read from the archive.",
+        "id": "coremeta4cat:SIM_8ppb-aeky_protein_preparation_method",
+        "plan_designator": "OBI:0000272"
+      },
+      "activity_designator": "Simulation",
+      "software_package": [
+        "Protein Preparation Wizard (Schrodinger suite)"
+      ]
+    }
+  ],
+  "creator": [
+    {
+      "name": [
+        "Doerr, Mark"
+      ]
+    },
+    {
+      "name": [
+        "Weigmann, Konstantin"
+      ]
+    },
+    {
+      "name": [
+        "Schulig, Lukas"
+      ]
+    }
+  ],
+  "dataset_distribution": [
+    {
+      "access_URL": [
+        {
+          "title": "Repository landing page",
+          "id": "https://hdl.handle.net/21.11165/4cat/8ppb-aeky"
+        }
+      ],
+      "licence": {
+        "title": "CC BY 4.0",
+        "id": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    }
+  ],
+  "is_referenced_by": [
+    {
+      "title": "Weigmann et al., ACS Catal. (2025), doi:10.1021/acscatal.5c04248",
+      "id": "https://doi.org/10.1021/acscatal.5c04248"
+    }
+  ],
+  "keyword": [
+    "biocatalysis",
+    "amine transaminase",
+    "molecular dynamics",
+    "MM/GBSA",
+    "docking",
+    "protein engineering"
+  ],
+  "other_identifier": [
+    {
+      "notation": "https://hdl.handle.net/21.11165/4cat/8ppb-aeky"
+    }
+  ],
+  "publisher": {
+    "name": [
+      "NFDI4Cat Central Data Repository"
+    ]
+  },
+  "is_about_entity": [
+    {
+      "id": "coremeta4cat:ENZ_8ppb-aeky_all",
+      "title": "Amine transaminase 3FCR-4M and two mutants with the PLP-bound substrate 2a",
+      "description": "3FCR-4M (Y59W/Y87F/Y152F/T231A), 4M-N15 (S19V/P423F), 4M-N16 (G151A/P423F). See was_generated_by for detail."
+    }
+  ],
+  "rdf_type": {
+    "id": "VOC4CAT:0000204",
+    "title": "biocatalysis"
+  },
+  "@type": "CatalysisDataset"
+}

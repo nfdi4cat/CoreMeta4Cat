@@ -10,7 +10,8 @@
   "realized_plan": {
     "title": "ReaxFF molecular dynamics (NVT, 800 deg C)",
     "description": "force field: ReaxFF C/H/Ni/O parametrisation (van Duin et al. 2012, DOI: 10.1021/jp210484t); ensemble: NVT with Nose-Hoover thermostat (tau = 100 fs) at 800 deg C (1073 K); integration timestep: 0.5 fs; total simulation time: 1 ns (2,000,000 steps); equilibration phase: 200 ps (400,000 steps) discarded; production phase: 800 ps (1,600,000 steps) used for analysis; sampling interval: every 1000 steps (0.5 ps); bond order cutoff: C-O 0.3, Ni-O 0.3 (fix reax/c/bonds); radial distribution functions computed with OVITO using 0.05 Ang bin width; common-neighbour analysis (CNA) to track Ni cluster crystallographic ordering",
-    "id": "coremeta4cat:SIM_002_MD_method"
+    "id": "coremeta4cat:SIM_002_MD_method",
+    "plan_designator": "OBI:0000272"
   },
   "activity_designator": "Simulation",
   "software_package": [

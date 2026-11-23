@@ -489,7 +489,7 @@ slots:
     is_a: had_output_entity
     range: CalculatedProperty
     slot_uri: coremeta4cat:calculated_property
-    required: true
+    recommended: true
     multivalued: true
     inlined_as_list: true
 

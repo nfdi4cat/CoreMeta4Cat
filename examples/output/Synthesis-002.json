@@ -45,7 +45,8 @@
   "realized_plan": {
     "title": "co-precipitation",
     "description": "aqueous solutions of Ni(NO3)2 (0.5 M) and Ce(NO3)3 (0.5 M) mixed in stoichiometric ratio; precipitant: 1 M Na2CO3 solution added dropwise at 2 mL/min; target pH 8.5 maintained by feedback addition; mixing: 600 rpm mechanical stirring at 60 deg C for 2 h; aging: 12 h at 60 deg C without stirring; filtration: vacuum filtration through Whatman grade 4 filter paper; washing: 5 successive deionized water washes until conductivity < 5 uS/cm (Na+ removal); drying: 120 deg C for 12 h in static air oven; calcination: 5 deg C/min ramp to 500 deg C, isothermal hold for 4 h in static air, natural cooling",
-    "id": "coremeta4cat:SYNTH_002_coprecipitation_method"
+    "id": "coremeta4cat:SYNTH_002_coprecipitation_method",
+    "plan_designator": "voc4cat:0007016"
   },
   "activity_designator": "Synthesis",
   "nominal_composition": [

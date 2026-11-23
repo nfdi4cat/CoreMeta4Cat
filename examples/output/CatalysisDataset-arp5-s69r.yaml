@@ -39,6 +39,7 @@ was_generated_by:
     description: CO pulses at room temperature; peak areas integrated to determine
       total CO uptake.
     id: coremeta4cat:CHAR_arp5-s69r_COChemisorption_method
+    plan_designator: OBI:0000272
   activity_designator: Characterization
 - id: coremeta4cat:CHAR_arp5-s69r_DRIFT
   title:
@@ -71,6 +72,7 @@ was_generated_by:
     description: Reflectance mode; scanner velocity 20 kHz; aperture 6 mm; MIR source,
       KBr beamsplitter.
     id: coremeta4cat:CHAR_arp5-s69r_DRIFT_method
+    plan_designator: OBI:0000272
   activity_designator: Characterization
 - id: coremeta4cat:CHAR_arp5-s69r_PXRD
   title:
@@ -108,6 +110,7 @@ was_generated_by:
     description: Transmission geometry, air atmosphere, ambient temperature; software
       INSTPAR.
     id: coremeta4cat:CHAR_arp5-s69r_PXRD_method
+    plan_designator: OBI:0000272
   activity_designator: Characterization
 - id: coremeta4cat:CHAR_arp5-s69r_STEM
   title:
@@ -146,6 +149,7 @@ was_generated_by:
     description: HRTEM (Digital Micrograph/Gatan) and HAADF-STEM/STEM-EDXS (TEM Imaging
       and Microscopy/FEI, Esprit/Bruker); Cliff-Lorimer quantification for EDXS.
     id: coremeta4cat:CHAR_arp5-s69r_STEM_method
+    plan_designator: OBI:0000272
   activity_designator: Characterization
 - id: coremeta4cat:CHAR_arp5-s69r_XPS
   title:
@@ -174,6 +178,7 @@ was_generated_by:
     title: XPS core-level measurement method
     description: Pd 3d scans for both catalysts; P 2p scan additionally for Pd3P/SiO2.
     id: coremeta4cat:CHAR_arp5-s69r_XPS_method
+    plan_designator: OBI:0000272
   activity_designator: Characterization
 creator:
 - name:
@@ -271,10 +276,7 @@ is_about_activity:
     title: Parr 5500 series compact reactor
     description: Batch autoclave, cylindrical stainless steel reaction chamber (25
       mL, 25.4 x 50.8 mm ID), overhead stirrer at 1000 rpm, electric heating.
-  product_identification_method:
-  - title: GC-MS product quantification
-    description: Gas chromatography-mass spectrometry with n-decane internal standard.
-    id: coremeta4cat:REAC_arp5-s69r_Amino_product_id
+    reactor_designator: voc4cat:0007018
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:
@@ -292,6 +294,11 @@ is_about_activity:
     has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
     description: Initial CO pressure, constant across the 3 runs
     unit: https://qudt.org/vocab/unit/BAR
+  product_identification_method:
+  - title: GC-MS product quantification
+    description: Gas chromatography-mass spectrometry with n-decane internal standard.
+    id: coremeta4cat:REAC_arp5-s69r_Amino_product_id
+    plan_designator: OBI:0000272
 - id: coremeta4cat:REAC_arp5-s69r_Carbonylation
   title:
   - Alkoxycarbonylation of aryl iodides over Pd3P/SiO2 and Pd/SiO2 (27 runs)
@@ -364,11 +371,7 @@ is_about_activity:
     title: Parr 5500 series compact reactor
     description: Batch autoclave, cylindrical stainless steel reaction chamber (25
       mL, 25.4 x 50.8 mm ID), overhead stirrer at 1000 rpm, electric heating.
-  product_identification_method:
-  - title: GC-MS product quantification
-    description: Gas chromatography-mass spectrometry with n-decane internal standard;
-      conversion/yield/selectivity computed from GC-MS peak areas.
-    id: coremeta4cat:REAC_arp5-s69r_Carbonylation_product_id
+    reactor_designator: voc4cat:0007018
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:
@@ -386,6 +389,12 @@ is_about_activity:
     has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
     description: Initial CO pressure, constant across all 27 runs
     unit: https://qudt.org/vocab/unit/BAR
+  product_identification_method:
+  - title: GC-MS product quantification
+    description: Gas chromatography-mass spectrometry with n-decane internal standard;
+      conversion/yield/selectivity computed from GC-MS peak areas.
+    id: coremeta4cat:REAC_arp5-s69r_Carbonylation_product_id
+    plan_designator: OBI:0000272
 - id: coremeta4cat:REAC_arp5-s69r_Phenoxycarbonylation
   title:
   - Phenoxycarbonylation of iodobenzene over Pd3P/SiO2 (1 run)
@@ -428,10 +437,7 @@ is_about_activity:
     title: Parr 5500 series compact reactor
     description: Batch autoclave, cylindrical stainless steel reaction chamber (25
       mL, 25.4 x 50.8 mm ID), overhead stirrer at 1000 rpm, electric heating.
-  product_identification_method:
-  - title: GC-MS product quantification
-    description: Gas chromatography-mass spectrometry with n-decane internal standard.
-    id: coremeta4cat:REAC_arp5-s69r_Phenoxy_product_id
+    reactor_designator: voc4cat:0007018
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:
@@ -449,6 +455,11 @@ is_about_activity:
     has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
     description: Initial CO pressure
     unit: https://qudt.org/vocab/unit/BAR
+  product_identification_method:
+  - title: GC-MS product quantification
+    description: Gas chromatography-mass spectrometry with n-decane internal standard.
+    id: coremeta4cat:REAC_arp5-s69r_Phenoxy_product_id
+    plan_designator: OBI:0000272
 rdf_type:
   id: voc4cat:0007001
   title: heterogeneous catalysis

@@ -21,14 +21,8 @@
     {
       "id": "coremeta4cat:REACT_001_FixedBed",
       "title": "stainless steel fixed-bed plug-flow reactor",
-      "description": "10 mm inner diameter, 30 cm length, 0.5 g catalyst diluted with SiC"
-    }
-  ],
-  "product_identification_method": [
-    {
-      "title": "online gas chromatography",
-      "description": "GC (Agilent 7890B) with TCD and FID detectors; columns: Molecular Sieve 5A and Poraplot Q; products: MeOH, CO, CH4, H2O quantified",
-      "id": "coremeta4cat:REAC_001_GC_method"
+      "description": "10 mm inner diameter, 30 cm length, 0.5 g catalyst diluted with SiC",
+      "reactor_designator": "voc4cat:0007018"
     }
   ],
   "catalyst_quantity": [
@@ -67,6 +61,14 @@
   "feed_composition_range": [
     {
       "description": "H2/CO2 = 3:1, CO2 concentration 20 vol%"
+    }
+  ],
+  "product_identification_method": [
+    {
+      "title": "online gas chromatography",
+      "description": "GC (Agilent 7890B) with TCD and FID detectors; columns: Molecular Sieve 5A and Poraplot Q; products: MeOH, CO, CH4, H2O quantified",
+      "id": "coremeta4cat:REAC_001_GC_method",
+      "plan_designator": "OBI:0000272"
     }
   ],
   "@type": "CatalyticReaction"

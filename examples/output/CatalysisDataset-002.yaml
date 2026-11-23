@@ -47,6 +47,7 @@ was_generated_by:
       deg C for 12 h in static air oven; calcination: 5 deg C/min ramp to 500 deg
       C, isothermal hold for 4 h in static air, natural cooling'
     id: coremeta4cat:SYNTH_002_coprecipitation_method
+    plan_designator: voc4cat:0007016
   activity_designator: Synthesis
   nominal_composition:
   - 15 wt% NiO/CeO2
@@ -85,6 +86,7 @@ was_generated_by:
       (CasaXPS v2.3.25); atomic concentrations from Scofield sensitivity factors corrected
       for transmission function'
     id: coremeta4cat:CHAR_003_XPS_method
+    plan_designator: OBI:0000272
   activity_designator: Characterization
   sample_state:
   - powder
@@ -119,6 +121,7 @@ was_generated_by:
       (NiO weakly interacting with CeO2) and 400-600 deg C (NiO strongly interacting);
       CeO2 surface reduction: 600-900 deg C'
     id: coremeta4cat:CHAR_004_TPR_method
+    plan_designator: OBI:0000272
   activity_designator: Characterization
   sample_description:
   - NiO/CeO2 calcined at 500 deg C; 50 mg packed in quartz U-tube reactor (4 mm ID);
@@ -146,6 +149,7 @@ was_generated_by:
       radial distribution functions computed with OVITO using 0.05 Ang bin width;
       common-neighbour analysis (CNA) to track Ni cluster crystallographic ordering'
     id: coremeta4cat:SIM_002_MD_method
+    plan_designator: OBI:0000272
   activity_designator: Simulation
   software_package:
   - LAMMPS (29 Sep 2021 stable release, OpenMP build)
@@ -210,17 +214,7 @@ is_about_activity:
       regulator at outlet (1 bar); reactor surrounded by ceramic-fibre furnace with
       PID temperature controller; mass flow controllers (Brooks SLA5850) for CH4,
       CO2, N2'
-  product_identification_method:
-  - title: online dual-column gas chromatography (TCD)
-    description: 'Shimadzu GC-2014 with TCD detector (Ar carrier gas); column 1: HayeSep
-      D (2 m x 1/8 in) for CO2, CH4 separation; column 2: Molecular Sieve 5A (2 m
-      x 1/8 in) for CO, H2, N2, CH4 separation; 10-port Valco valve for column switching;
-      oven temperature: 50 deg C isothermal; TCD temperature: 250 deg C; injection:
-      automated gas sampling valve, 1 mL loop; analysis cycle: 10 min; calibration:
-      certified gas standard (Air Liquide CRYSTAL mixture: H2 5%, CO 5%, CH4 5%, CO2
-      10%, N2 balance); CH4 conversion, CO2 conversion, H2/CO ratio, and carbon balance
-      calculated from N2-normalised molar flows'
-    id: coremeta4cat:REAC_002_GC_method
+    reactor_designator: voc4cat:0007018
   catalyst_quantity:
   - value: 0.2
     has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
@@ -247,3 +241,15 @@ is_about_activity:
     value: 20.0
     has_quantity_type: http://qudt.org/vocab/quantitykind/Time
     unit: https://qudt.org/vocab/unit/HR
+  product_identification_method:
+  - title: online dual-column gas chromatography (TCD)
+    description: 'Shimadzu GC-2014 with TCD detector (Ar carrier gas); column 1: HayeSep
+      D (2 m x 1/8 in) for CO2, CH4 separation; column 2: Molecular Sieve 5A (2 m
+      x 1/8 in) for CO, H2, N2, CH4 separation; 10-port Valco valve for column switching;
+      oven temperature: 50 deg C isothermal; TCD temperature: 250 deg C; injection:
+      automated gas sampling valve, 1 mL loop; analysis cycle: 10 min; calibration:
+      certified gas standard (Air Liquide CRYSTAL mixture: H2 5%, CO 5%, CH4 5%, CO2
+      10%, N2 balance); CH4 conversion, CO2 conversion, H2/CO ratio, and carbon balance
+      calculated from N2-normalised molar flows'
+    id: coremeta4cat:REAC_002_GC_method
+    plan_designator: OBI:0000272

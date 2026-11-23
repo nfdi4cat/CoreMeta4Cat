@@ -10,7 +10,8 @@
   "realized_plan": {
     "title": "periodic plane-wave DFT",
     "description": "PBE functional, PAW pseudopotentials, 400 eV cutoff, 4x4x1 Monkhorst-Pack k-mesh, D3 dispersion correction, spin-unpolarized",
-    "id": "coremeta4cat:SIM_001_DFT_method"
+    "id": "coremeta4cat:SIM_001_DFT_method",
+    "plan_designator": "OBI:0000272"
   },
   "activity_designator": "Simulation",
   "software_package": [

@@ -1937,8 +1937,8 @@ class Simulation(CatalysisDataGeneratingActivity):
 
     id: Union[str, SimulationId] = None
     software_package: Union[str, list[str]] = None
-    calculated_property: Union[Union[dict, "CalculatedProperty"], list[Union[dict, "CalculatedProperty"]]] = None
     realized_plan: Union[dict, "SimulationMethod"] = None
+    calculated_property: Optional[Union[Union[dict, "CalculatedProperty"], list[Union[dict, "CalculatedProperty"]]]] = empty_list()
     rdf_type: Optional[Union[dict, "DefinedTerm"]] = None
     carried_out_by: Optional[Union[dict[Union[str, AgenticEntityId], Union[dict, AgenticEntity]], list[Union[dict, AgenticEntity]]]] = empty_dict()
     evaluated_entity: Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]] = empty_dict()
@@ -1955,14 +1955,12 @@ class Simulation(CatalysisDataGeneratingActivity):
             self.software_package = [self.software_package] if self.software_package is not None else []
         self.software_package = [v if isinstance(v, str) else str(v) for v in self.software_package]
 
-        if self._is_empty(self.calculated_property):
-            self.MissingRequiredField("calculated_property")
-        self._normalize_inlined_as_list(slot_name="calculated_property", slot_type=CalculatedProperty, key_name="value", keyed=False)
-
         if self._is_empty(self.realized_plan):
             self.MissingRequiredField("realized_plan")
         if not isinstance(self.realized_plan, SimulationMethod):
             self.realized_plan = SimulationMethod(**as_dict(self.realized_plan))
+
+        self._normalize_inlined_as_list(slot_name="calculated_property", slot_type=CalculatedProperty, key_name="value", keyed=False)
 
         if self.rdf_type is not None and not isinstance(self.rdf_type, DefinedTerm):
             self.rdf_type = DefinedTerm(**as_dict(self.rdf_type))
@@ -2663,6 +2661,8 @@ class ChemicalReactor(Reactor):
 
     Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify
     reactor geometry and operating mode.
+    A reactor that uses fields of its subclass declares the subclass with
+    reactor_designator (its class_uri, e.g. coremeta4cat:FixedBedReactor).
     Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).
     """
     _inherited_slots: ClassVar[list[str]] = []
@@ -2673,6 +2673,38 @@ class ChemicalReactor(Reactor):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ChemicalReactor
 
     id: Union[str, ChemicalReactorId] = None
+    reactor_designator: Optional[Union[str, URIorCURIE]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        self.reactor_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
+
+        super().__post_init__(**kwargs)
+
+
+    def __new__(cls, *args, **kwargs):
+
+        type_designator = "reactor_designator"
+        if not type_designator in kwargs:
+            return super().__new__(cls,*args,**kwargs)
+        else:
+            type_designator_value = kwargs[type_designator]
+            target_cls = cls._class_for("class_class_curie", type_designator_value)
+
+
+            if target_cls is None:
+                target_cls = cls._class_for("class_class_uri", type_designator_value)
+
+
+            if target_cls is None:
+                target_cls = cls._class_for("class_model_uri", type_designator_value)
+
+
+            if target_cls is None:
+                raise ValueError(f"Wrong type designator value: class {cls.__name__} "
+                                 f"has no subclass with ['class_class_curie', 'class_class_uri', 'class_model_uri']='{kwargs[type_designator]}'")
+            return super().__new__(target_cls,*args,**kwargs)
+
+
 
 @dataclass(repr=False)
 class ElectrochemicalReactor(ChemicalReactor):
@@ -2716,6 +2748,7 @@ class ElectrochemicalReactor(ChemicalReactor):
         self._normalize_inlined_as_list(slot_name="faradaic_current", slot_type=ElectricCurrent, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.reactor_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -2761,6 +2794,7 @@ class CSTR(ChemicalReactor):
         self.reactor_stirrer_type = [v if isinstance(v, str) else str(v) for v in self.reactor_stirrer_type]
 
         super().__post_init__(**kwargs)
+        self.reactor_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -2809,6 +2843,7 @@ class PlugFlowReactor(ChemicalReactor):
         self._normalize_inlined_as_list(slot_name="catalyst_particle_size", slot_type=LengthQuantity, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.reactor_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -2855,6 +2890,7 @@ class Autoclave(ChemicalReactor):
             self.batch_duration = Duration(**as_dict(self.batch_duration))
 
         super().__post_init__(**kwargs)
+        self.reactor_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -2898,6 +2934,7 @@ class SlurryReactor(ChemicalReactor):
         self._normalize_inlined_as_list(slot_name="agitation_speed", slot_type=AngularVelocity, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.reactor_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -2936,6 +2973,7 @@ class Microreactor(ChemicalReactor):
         self.number_of_channels = [v if isinstance(v, int) else int(v) for v in self.number_of_channels]
 
         super().__post_init__(**kwargs)
+        self.reactor_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -2977,6 +3015,7 @@ class FixedBedReactor(ChemicalReactor):
         self._normalize_inlined_as_list(slot_name="catalyst_bed_height", slot_type=LengthQuantity, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.reactor_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -3016,6 +3055,7 @@ class FluidizedBedReactor(ChemicalReactor):
         self.bubble_size_distribution = [v if isinstance(v, str) else str(v) for v in self.bubble_size_distribution]
 
         super().__post_init__(**kwargs)
+        self.reactor_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -3307,7 +3347,6 @@ class CatalyticReaction(ChemicalReaction):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CatalyticReaction
 
     id: Union[str, CatalyticReactionId] = None
-    product_identification_method: Union[dict[Union[str, ProductIdentificationMethodId], Union[dict, "ProductIdentificationMethod"]], list[Union[dict, "ProductIdentificationMethod"]]] = empty_dict()
     used_reactor: Union[dict[Union[str, ChemicalReactorId], Union[dict, ChemicalReactor]], list[Union[dict, ChemicalReactor]]] = empty_dict()
     catalyst_quantity: Optional[Union[Union[dict, "Mass"], list[Union[dict, "Mass"]]]] = empty_list()
     catalyst_type: Optional[Union[Union[str, "CatalysisResearchFieldEnum"], list[Union[str, "CatalysisResearchFieldEnum"]]]] = empty_list()
@@ -3318,6 +3357,7 @@ class CatalyticReaction(ChemicalReaction):
     experiment_pressure: Optional[Union[Union[dict, "Pressure"], list[Union[dict, "Pressure"]]]] = empty_list()
     feed_composition_range: Optional[Union[Union[dict, QuantitativeRange], list[Union[dict, QuantitativeRange]]]] = empty_list()
     has_experiment_duration: Optional[Union[dict, "Duration"]] = None
+    product_identification_method: Optional[Union[dict[Union[str, ProductIdentificationMethodId], Union[dict, "ProductIdentificationMethod"]], list[Union[dict, "ProductIdentificationMethod"]]]] = empty_dict()
     rdf_type: Optional[Union[dict, DefinedTerm]] = None
     has_reaction_step: Optional[Union[dict[Union[str, CatalyticReactionId], Union[dict, "CatalyticReaction"]], list[Union[dict, "CatalyticReaction"]]]] = empty_dict()
 
@@ -3326,10 +3366,6 @@ class CatalyticReaction(ChemicalReaction):
             self.MissingRequiredField("id")
         if not isinstance(self.id, CatalyticReactionId):
             self.id = CatalyticReactionId(self.id)
-
-        if self._is_empty(self.product_identification_method):
-            self.MissingRequiredField("product_identification_method")
-        self._normalize_inlined_as_list(slot_name="product_identification_method", slot_type=ProductIdentificationMethod, key_name="id", keyed=True)
 
         if self._is_empty(self.used_reactor):
             self.MissingRequiredField("used_reactor")
@@ -3363,6 +3399,8 @@ class CatalyticReaction(ChemicalReaction):
 
         if self.has_experiment_duration is not None and not isinstance(self.has_experiment_duration, Duration):
             self.has_experiment_duration = Duration(**as_dict(self.has_experiment_duration))
+
+        self._normalize_inlined_as_list(slot_name="product_identification_method", slot_type=ProductIdentificationMethod, key_name="id", keyed=True)
 
         if self.rdf_type is not None and not isinstance(self.rdf_type, DefinedTerm):
             self.rdf_type = DefinedTerm(**as_dict(self.rdf_type))
@@ -3521,6 +3559,10 @@ class CatalysisPlan(Plan):
     reuse the same protocol), so id is added once here rather than
     repeated on each of PreparationMethod, CharacterizationTechnique,
     SimulationMethod, and ProductIdentificationMethod individually.
+
+    It also adds a type designator (plan_designator) so that a plan can
+    declare which concrete subclass it is (e.g. CoPrecipitation, TPR, DFT)
+    and use that subclass's fields.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -3530,6 +3572,7 @@ class CatalysisPlan(Plan):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CatalysisPlan
 
     id: Union[str, CatalysisPlanId] = None
+    plan_designator: Optional[Union[str, URIorCURIE]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -3537,7 +3580,34 @@ class CatalysisPlan(Plan):
         if not isinstance(self.id, CatalysisPlanId):
             self.id = CatalysisPlanId(self.id)
 
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
+
         super().__post_init__(**kwargs)
+
+
+    def __new__(cls, *args, **kwargs):
+
+        type_designator = "plan_designator"
+        if not type_designator in kwargs:
+            return super().__new__(cls,*args,**kwargs)
+        else:
+            type_designator_value = kwargs[type_designator]
+            target_cls = cls._class_for("class_class_curie", type_designator_value)
+
+
+            if target_cls is None:
+                target_cls = cls._class_for("class_class_uri", type_designator_value)
+
+
+            if target_cls is None:
+                target_cls = cls._class_for("class_model_uri", type_designator_value)
+
+
+            if target_cls is None:
+                raise ValueError(f"Wrong type designator value: class {cls.__name__} "
+                                 f"has no subclass with ['class_class_curie', 'class_class_uri', 'class_model_uri']='{kwargs[type_designator]}'")
+            return super().__new__(target_cls,*args,**kwargs)
+
 
 
 @dataclass(repr=False)
@@ -3559,6 +3629,12 @@ class PreparationMethod(CatalysisPlan):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PreparationMethod
 
     id: Union[str, PreparationMethodId] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+
+        super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
+
 
 @dataclass(repr=False)
 class Impregnation(PreparationMethod):
@@ -3631,6 +3707,7 @@ class Impregnation(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_calcination_gas_flow_rate", slot_type=VolumeFlowRate, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -3734,6 +3811,7 @@ class CoPrecipitation(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_calcination_gas_flow_rate", slot_type=VolumeFlowRate, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -3792,6 +3870,7 @@ class SolGel(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_drying_atmosphere", slot_type=Atmosphere, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -3841,6 +3920,7 @@ class Solvothermal(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_atmosphere", slot_type=Atmosphere, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -3891,6 +3971,7 @@ class PlasmaAssisted(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_atmosphere", slot_type=Atmosphere, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -3950,6 +4031,7 @@ class CombustionSynthesis(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_atmosphere", slot_type=Atmosphere, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4001,6 +4083,7 @@ class AtomicLayerDeposition(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="carrier_gas", slot_type=ChemicalEntity, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4110,6 +4193,7 @@ class DepositionPrecipitation(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_calcination_gas_flow_rate", slot_type=VolumeFlowRate, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4156,6 +4240,7 @@ class MicrowaveAssisted(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_atmosphere", slot_type=Atmosphere, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4231,6 +4316,7 @@ class SonochemicalSynthesis(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_calcination_gas_flow_rate", slot_type=VolumeFlowRate, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4296,6 +4382,7 @@ class FlameSprayPyrolysis(PreparationMethod):
         self.filter_type = [v if isinstance(v, str) else str(v) for v in self.filter_type]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4367,6 +4454,7 @@ class MechanochemicalSynthesis(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_atmosphere", slot_type=Atmosphere, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4406,6 +4494,7 @@ class Sublimation(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_atmosphere", slot_type=Atmosphere, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4508,6 +4597,7 @@ class MolecularSynthesis(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_drying_atmosphere", slot_type=Atmosphere, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4555,6 +4645,7 @@ class ExsolutionSynthesis(PreparationMethod):
         self._normalize_inlined_as_list(slot_name="has_calcination_gas_flow_rate", slot_type=VolumeFlowRate, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4572,6 +4663,12 @@ class CharacterizationTechnique(CatalysisPlan):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CharacterizationTechnique
 
     id: Union[str, CharacterizationTechniqueId] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+
+        super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
+
 
 @dataclass(repr=False)
 class PowderXRD(CharacterizationTechnique):
@@ -4630,6 +4727,7 @@ class PowderXRD(CharacterizationTechnique):
         self.monochromator = [v if isinstance(v, str) else str(v) for v in self.monochromator]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4666,6 +4764,7 @@ class SingleCrystalXRD(CharacterizationTechnique):
         self.monochromator = [v if isinstance(v, str) else str(v) for v in self.monochromator]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4738,6 +4837,7 @@ class XRayAbsorptionSpectroscopy(CharacterizationTechnique):
         self.has_energy_range = [v if isinstance(v, QuantitativeRange) else QuantitativeRange(**as_dict(v)) for v in self.has_energy_range]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4808,6 +4908,7 @@ class XPS(CharacterizationTechnique):
         self.has_energy_range = [v if isinstance(v, QuantitativeRange) else QuantitativeRange(**as_dict(v)) for v in self.has_energy_range]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4847,6 +4948,7 @@ class EDX(CharacterizationTechnique):
         self.calibration_method = [v if isinstance(v, str) else str(v) for v in self.calibration_method]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4899,6 +5001,7 @@ class InfraredSpectroscopy(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="has_atmosphere", slot_type=Atmosphere, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -4970,6 +5073,7 @@ class DRIFTS(CharacterizationTechnique):
         self.number_of_scans = [v if isinstance(v, int) else int(v) for v in self.number_of_scans]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5024,6 +5128,7 @@ class RamanSpectroscopy(CharacterizationTechnique):
         self.filter_or_grating = [v if isinstance(v, str) else str(v) for v in self.filter_or_grating]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5086,6 +5191,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="has_atmosphere", slot_type=Atmosphere, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5125,6 +5231,7 @@ class TransmissionElectronMicroscopy(CharacterizationTechnique):
         self.magnification_setting = [v if isinstance(v, float) else float(v) for v in self.magnification_setting]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5171,6 +5278,7 @@ class ScanningElectronMicroscopy(CharacterizationTechnique):
         self.magnification_setting = [v if isinstance(v, float) else float(v) for v in self.magnification_setting]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5220,6 +5328,7 @@ class Thermogravimetry(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="has_heating_procedure", slot_type=HeatingProcedure, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5259,6 +5368,7 @@ class TPR(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="has_heating_procedure", slot_type=HeatingProcedure, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5298,6 +5408,7 @@ class TPO(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="has_heating_procedure", slot_type=HeatingProcedure, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5340,6 +5451,7 @@ class BET(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="has_sample_mass", slot_type=Mass, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5383,6 +5495,7 @@ class ICPAES(CharacterizationTechnique):
         self.matrix_effect_correction = [v if isinstance(v, str) else str(v) for v in self.matrix_effect_correction]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5417,6 +5530,7 @@ class ElementalAnalysis(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="carrier_gas", slot_type=ChemicalEntity, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5456,6 +5570,7 @@ class UVVisSpectroscopy(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="has_concentration", slot_type=Concentration, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5512,6 +5627,7 @@ class PhotoluminescenceSpectroscopy(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="has_temperature", slot_type=Temperature, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5559,6 +5675,7 @@ class PhotoluminescenceLifetime(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="has_temperature", slot_type=Temperature, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5631,6 +5748,7 @@ class CyclicVoltammetry(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="has_temperature", slot_type=Temperature, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5703,6 +5821,7 @@ class ConductivityMeasurement(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="has_temperature", slot_type=Temperature, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5752,6 +5871,7 @@ class DynamicLightScattering(CharacterizationTechnique):
         self._normalize_inlined_as_list(slot_name="measurement_duration", slot_type=Duration, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5803,6 +5923,7 @@ class ElectroSprayIonizationMassSpectrometry(CharacterizationTechnique):
         self.has_mz_range = [v if isinstance(v, QuantitativeRange) else QuantitativeRange(**as_dict(v)) for v in self.has_mz_range]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5897,6 +6018,7 @@ class GCMS(CharacterizationTechnique):
         self.has_mz_range = [v if isinstance(v, QuantitativeRange) else QuantitativeRange(**as_dict(v)) for v in self.has_mz_range]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -5952,6 +6074,7 @@ class SizeExclusionChromatography(CharacterizationTechnique):
         self.internal_standard = [v if isinstance(v, str) else str(v) for v in self.internal_standard]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6012,6 +6135,7 @@ class HighPerformanceLiquidChromatographyMassSpectrometry(CharacterizationTechni
         self.internal_standard = [v if isinstance(v, str) else str(v) for v in self.internal_standard]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6043,6 +6167,7 @@ class ProductIdentificationMethod(CatalysisPlan):
             self.id = ProductIdentificationMethodId(self.id)
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6060,6 +6185,12 @@ class SimulationMethod(CatalysisPlan):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.SimulationMethod
 
     id: Union[str, SimulationMethodId] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+
+        super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
+
 
 @dataclass(repr=False)
 class DFT(SimulationMethod):
@@ -6114,6 +6245,7 @@ class DFT(SimulationMethod):
         self.total_energy_per_atom = [v if isinstance(v, float) else float(v) for v in self.total_energy_per_atom]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6164,6 +6296,7 @@ class MolecularDynamics(SimulationMethod):
         self.number_of_atoms = [v if isinstance(v, int) else int(v) for v in self.number_of_atoms]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6215,6 +6348,7 @@ class Microkinetics(SimulationMethod):
         self.activation_energy = [v if isinstance(v, float) else float(v) for v in self.activation_energy]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6274,6 +6408,7 @@ class MonteCarlo(SimulationMethod):
         self.sampling_interval = [v if isinstance(v, int) else int(v) for v in self.sampling_interval]
 
         super().__post_init__(**kwargs)
+        self.plan_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -8960,7 +9095,7 @@ class Precursor(MaterialSample):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Precursor
 
     id: Union[str, PrecursorId] = None
-    precursor_quantity: Union[Union[dict, "Mass"], list[Union[dict, "Mass"]]] = None
+    precursor_quantity: Optional[Union[Union[dict, "Mass"], list[Union[dict, "Mass"]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -8968,8 +9103,6 @@ class Precursor(MaterialSample):
         if not isinstance(self.id, PrecursorId):
             self.id = PrecursorId(self.id)
 
-        if self._is_empty(self.precursor_quantity):
-            self.MissingRequiredField("precursor_quantity")
         self._normalize_inlined_as_list(slot_name="precursor_quantity", slot_type=Mass, key_name="value", keyed=False)
 
         super().__post_init__(**kwargs)
@@ -9584,6 +9717,12 @@ slots.bep_relation = Slot(uri=COREMETA4CAT.bep_relation, name="bep_relation", cu
 
 slots.activity_designator = Slot(uri=RDF.type, name="activity_designator", curie=RDF.curie('type'),
                    model_uri=COREMETA4CAT.activity_designator, domain=None, range=Optional[str])
+
+slots.plan_designator = Slot(uri=RDF.type, name="plan_designator", curie=RDF.curie('type'),
+                   model_uri=COREMETA4CAT.plan_designator, domain=None, range=Optional[Union[str, URIorCURIE]])
+
+slots.reactor_designator = Slot(uri=RDF.type, name="reactor_designator", curie=RDF.curie('type'),
+                   model_uri=COREMETA4CAT.reactor_designator, domain=None, range=Optional[Union[str, URIorCURIE]])
 
 slots.has_flow_rate = Slot(uri=SIO['000008'], name="has_flow_rate", curie=SIO.curie('000008'),
                    model_uri=COREMETA4CAT.has_flow_rate, domain=None, range=Optional[Union[Union[dict, VolumeFlowRate], list[Union[dict, VolumeFlowRate]]]])
@@ -10315,13 +10454,13 @@ slots.bubble_size_distribution = Slot(uri=COREMETA4CAT.bubble_size_distribution,
                    model_uri=COREMETA4CAT.bubble_size_distribution, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.product_identification_method = Slot(uri=COREMETA4CAT.product_identification_method, name="product_identification_method", curie=COREMETA4CAT.curie('product_identification_method'),
-                   model_uri=COREMETA4CAT.product_identification_method, domain=None, range=Union[dict[Union[str, ProductIdentificationMethodId], Union[dict, ProductIdentificationMethod]], list[Union[dict, ProductIdentificationMethod]]])
+                   model_uri=COREMETA4CAT.product_identification_method, domain=None, range=Optional[Union[dict[Union[str, ProductIdentificationMethodId], Union[dict, ProductIdentificationMethod]], list[Union[dict, ProductIdentificationMethod]]]])
 
 slots.software_package = Slot(uri=COREMETA4CAT.software_package, name="software_package", curie=COREMETA4CAT.curie('software_package'),
                    model_uri=COREMETA4CAT.software_package, domain=None, range=Union[str, list[str]])
 
 slots.calculated_property = Slot(uri=COREMETA4CAT.calculated_property, name="calculated_property", curie=COREMETA4CAT.curie('calculated_property'),
-                   model_uri=COREMETA4CAT.calculated_property, domain=None, range=Union[Union[dict, CalculatedProperty], list[Union[dict, CalculatedProperty]]])
+                   model_uri=COREMETA4CAT.calculated_property, domain=None, range=Optional[Union[Union[dict, CalculatedProperty], list[Union[dict, CalculatedProperty]]]])
 
 slots.exchange_correlation_functional = Slot(uri=COREMETA4CAT.exchange_correlation_functional, name="exchange_correlation_functional", curie=COREMETA4CAT.curie('exchange_correlation_functional'),
                    model_uri=COREMETA4CAT.exchange_correlation_functional, domain=None, range=Optional[Union[str, list[str]]])
@@ -10993,7 +11132,7 @@ slots.Synthesis_carried_out_by = Slot(uri=PROV.wasAssociatedWith, name="Synthesi
                    model_uri=COREMETA4CAT.Synthesis_carried_out_by, domain=Synthesis, range=Optional[Union[dict[Union[str, DeviceId], Union[dict, "Device"]], list[Union[dict, "Device"]]]])
 
 slots.Precursor_precursor_quantity = Slot(uri=VOC4CAT['0008118'], name="Precursor_precursor_quantity", curie=VOC4CAT.curie('0008118'),
-                   model_uri=COREMETA4CAT.Precursor_precursor_quantity, domain=Precursor, range=Union[Union[dict, "Mass"], list[Union[dict, "Mass"]]])
+                   model_uri=COREMETA4CAT.Precursor_precursor_quantity, domain=Precursor, range=Optional[Union[Union[dict, "Mass"], list[Union[dict, "Mass"]]]])
 
 slots.CatalystSample_derived_from = Slot(uri=PROV.wasDerivedFrom, name="CatalystSample_derived_from", curie=PROV.curie('wasDerivedFrom'),
                    model_uri=COREMETA4CAT.CatalystSample_derived_from, domain=CatalystSample, range=Optional[Union[dict, MaterialSample]])
@@ -11017,7 +11156,7 @@ slots.CatalyticReaction_used_reactor = Slot(uri=PROV.wasAssociatedWith, name="Ca
                    model_uri=COREMETA4CAT.CatalyticReaction_used_reactor, domain=CatalyticReaction, range=Union[dict[Union[str, ChemicalReactorId], Union[dict, ChemicalReactor]], list[Union[dict, ChemicalReactor]]])
 
 slots.CatalyticReaction_product_identification_method = Slot(uri=COREMETA4CAT.product_identification_method, name="CatalyticReaction_product_identification_method", curie=COREMETA4CAT.curie('product_identification_method'),
-                   model_uri=COREMETA4CAT.CatalyticReaction_product_identification_method, domain=CatalyticReaction, range=Union[dict[Union[str, ProductIdentificationMethodId], Union[dict, "ProductIdentificationMethod"]], list[Union[dict, "ProductIdentificationMethod"]]])
+                   model_uri=COREMETA4CAT.CatalyticReaction_product_identification_method, domain=CatalyticReaction, range=Optional[Union[dict[Union[str, ProductIdentificationMethodId], Union[dict, "ProductIdentificationMethod"]], list[Union[dict, "ProductIdentificationMethod"]]]])
 
 slots.CatalyticReaction_has_reaction_step = Slot(uri=BFO['0000051'], name="CatalyticReaction_has_reaction_step", curie=BFO.curie('0000051'),
                    model_uri=COREMETA4CAT.CatalyticReaction_has_reaction_step, domain=CatalyticReaction, range=Optional[Union[dict[Union[str, CatalyticReactionId], Union[dict, "CatalyticReaction"]], list[Union[dict, "CatalyticReaction"]]]])

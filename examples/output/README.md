@@ -1750,6 +1750,909 @@ was_generated_by:
   - Powder XRD phase analysis (10 catalysts)
 
 ```
+## CatalysisDataset-6mxw-xsrd
+### Input
+```yaml
+creator:
+- name:
+  - Weber, Sebastian
+dataset_distribution:
+- access_URL:
+  - id: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+    title: Repository landing page
+  licence:
+    id: https://creativecommons.org/licenses/by/4.0/
+    title: CC BY 4.0
+description:
+- 'Data from Weber et al., ACS Catal. 2025, 15, 18857: DFT and machine-learned-potential
+  (EquiformerV2/OCP, MACE-MPA-0) binding energies of OH and CO used to screen active
+  phases; nominal and XRF compositions of 76 co-precipitated Cu-Ga-Al hydrotalcite-like
+  precursors; the 13 compositions of the initial activity screening; calcination temperatures
+  of the seven optimized catalysts; and the 17-condition test protocol for CO2/CO
+  hydrogenation to methanol and dimethyl ether at 80 bar in a 16-fold fixed-bed reactor.
+  Catalytic results (conversions, yields) and further characterization (PXRD, N2 sorption,
+  TPR, N2O-RFC, TEM) are reported in the article but not deposited.'
+id: hdl:21.11165/4cat/6mxw-xsrd
+is_about_activity:
+- catalyst_form:
+  - bulk
+  catalyst_type:
+  - heterogeneous_catalysis
+  description:
+  - 'Gas-phase testing of the first-generation (Cu0.465Ga0.07Al0.465, calcined at
+    500, 600 and 700 C) and second-generation (Cu0.85Al0.15 with 1 wt% Ga, two calcination
+    steps) catalysts under all 17 conditions of the test protocol: 80 bar, 225-300
+    C, GHSV 3000 and 6000 h-1, CO2 13-27.1 vol%, CO 0-15.8 vol%, H2 36.7-76 vol%,
+    5 vol% Ar, balance N2 (0-26.7 vol%), H2/COx 1.2-4. Pretreatment: 2 h at 300 C
+    and 20 bar under 10 vol% Ar in N2 (GHSV 6000 h-1, 48 L/h), then in-situ reduction
+    in the syngas feed. Products are methanol and dimethyl ether, with methane as
+    a minor by-product. Conversions and yields are reported in the article''s figures
+    only; they are not deposited.'
+  experiment_pressure:
+  - description: Constant across all 17 conditions
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    value: 80.0
+  feed_composition_range:
+  - description: CO2 in the feed
+    has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFraction
+    max_value: 27.1
+    min_value: 13.0
+    unit: https://qudt.org/vocab/unit/PERCENT
+  - description: CO in the feed
+    has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFraction
+    max_value: 15.8
+    min_value: 0.0
+    unit: https://qudt.org/vocab/unit/PERCENT
+  - description: H2 in the feed
+    has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFraction
+    max_value: 76.0
+    min_value: 36.7
+    unit: https://qudt.org/vocab/unit/PERCENT
+  - description: Ar in the feed
+    has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFraction
+    max_value: 5.0
+    min_value: 5.0
+    unit: https://qudt.org/vocab/unit/PERCENT
+  - description: N2 balance, computed as 100 minus the listed components
+    has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFraction
+    max_value: 26.7
+    min_value: 0.0
+    unit: https://qudt.org/vocab/unit/PERCENT
+  generated_product:
+  - id: coremeta4cat:PROD_6mxw-xsrd_MeOH
+    rdf_type:
+      id: CHEBI:17790
+      title: methanol
+    title: methanol
+  - id: coremeta4cat:PROD_6mxw-xsrd_DME
+    rdf_type:
+      id: CHEBI:28887
+      title: methoxymethane
+    title: dimethyl ether
+  - id: coremeta4cat:PROD_6mxw-xsrd_CH4
+    rdf_type:
+      id: CHEBI:16183
+      title: methane
+    title: methane (by-product)
+  id: coremeta4cat:REAC_6mxw-xsrd_CO2_hydrogenation
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  reaction_name:
+  - hydrogenation of CO2/CO to methanol and dimethyl ether
+  reactor_temperature_range:
+  - description: 225-300 C (article Table 1)
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    max_value: 573.15
+    min_value: 498.15
+    unit: https://qudt.org/vocab/unit/K
+  title:
+  - CO2/CO hydrogenation over optimized Cu-Ga-Al mixed metal oxides (17 conditions,
+    7 catalysts)
+  used_catalyst:
+  - description: First generation, calcined at 500 C
+    id: coremeta4cat:CAT_6mxw-xsrd_G1_500
+    title: Cu0.465Ga0.07Al0.465(500)
+  - description: First generation, calcined at 600 C
+    id: coremeta4cat:CAT_6mxw-xsrd_G1_600
+    title: Cu0.465Ga0.07Al0.465(600)
+  - description: First generation, calcined at 700 C
+    id: coremeta4cat:CAT_6mxw-xsrd_G1_700
+    title: Cu0.465Ga0.07Al0.465(700)
+  - description: Second generation; Cu0.85Al0.1(...) in the deposited sample names
+    id: coremeta4cat:CAT_6mxw-xsrd_G2_450_250
+    title: Cu0.85Al0.15(450)-1wt.%Ga(250)
+  - description: Second generation
+    id: coremeta4cat:CAT_6mxw-xsrd_G2_450_350
+    title: Cu0.85Al0.15(450)-1wt.%Ga(350)
+  - description: Second generation
+    id: coremeta4cat:CAT_6mxw-xsrd_G2_550_250
+    title: Cu0.85Al0.15(550)-1wt.%Ga(250)
+  - description: Second generation
+    id: coremeta4cat:CAT_6mxw-xsrd_G2_550_350
+    title: Cu0.85Al0.15(550)-1wt.%Ga(350)
+  used_reactant:
+  - id: coremeta4cat:REAC_6mxw-xsrd_CO2
+    rdf_type:
+      id: CHEBI:16526
+      title: carbon dioxide
+    title: carbon dioxide
+  - id: coremeta4cat:REAC_6mxw-xsrd_CO
+    rdf_type:
+      id: CHEBI:17245
+      title: carbon monoxide
+    title: carbon monoxide
+  - id: coremeta4cat:REAC_6mxw-xsrd_H2
+    rdf_type:
+      id: CHEBI:18276
+      title: dihydrogen
+    title: dihydrogen
+  - description: 5 vol% in every feed
+    id: coremeta4cat:REAC_6mxw-xsrd_Ar
+    rdf_type:
+      id: CHEBI:49475
+      title: argon atom
+    title: argon
+  - description: Balance gas (article, Table 1 footnote)
+    id: coremeta4cat:REAC_6mxw-xsrd_N2
+    rdf_type:
+      id: CHEBI:17997
+      title: dinitrogen
+    title: dinitrogen
+  used_reactor:
+  - catalyst_bed_diameter:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: https://qudt.org/vocab/unit/MilliM
+      value: 4.5
+    catalyst_bed_volume:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Volume
+      unit: https://qudt.org/vocab/unit/MilliL
+      value: 0.5
+    description: Stainless steel 1.4571 tubes, 4.5 mm inner diameter, 290 mm long;
+      0.5 mL catalyst, sieve fraction 250-315 um (tablets pressed at 9 t, crushed
+      and sieved), pre- and post-bed of corundum.
+    id: coremeta4cat:REAC_6mxw-xsrd_reactor
+    reactor_designator: coremeta4cat:FixedBedReactor
+    title: 16-fold parallel fixed-bed reactor system (hte GmbH)
+- catalyst_form:
+  - bulk
+  catalyst_type:
+  - heterogeneous_catalysis
+  description:
+  - 'Initial activity screening of 13 compositions calcined at 600 C (Cu 0.15-0.6,
+    Al 0-0.78, Ga 0-0.6 metal fractions) under conditions 1-8 of the test protocol:
+    80 bar, 225-300 C, GHSV 3000 h-1 (condition 1: 6000 h-1), CO2 13-27.1 vol%, CO
+    0-15.8 vol%, H2 63.3-76 vol%, 5 vol% Ar, N2 balance. Same 16-fold fixed-bed reactor
+    and pretreatment as the optimized catalysts. The highest combined MeOH + DME yields
+    were found for Cu0.40Ga0.07Al0.53 and Cu0.33Ga0.07Al0.60 (article, section 3.3);
+    yields are not deposited.'
+  experiment_pressure:
+  - has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    value: 80.0
+  feed_composition_range:
+  - description: CO2 in the feed
+    has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFraction
+    max_value: 27.1
+    min_value: 13.0
+    unit: https://qudt.org/vocab/unit/PERCENT
+  - description: CO in the feed
+    has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFraction
+    max_value: 15.8
+    min_value: 0.0
+    unit: https://qudt.org/vocab/unit/PERCENT
+  - description: H2 in the feed
+    has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFraction
+    max_value: 76.0
+    min_value: 63.3
+    unit: https://qudt.org/vocab/unit/PERCENT
+  generated_product:
+  - id: coremeta4cat:PROD_6mxw-xsrd_MeOH
+    rdf_type:
+      id: CHEBI:17790
+      title: methanol
+    title: methanol
+  - id: coremeta4cat:PROD_6mxw-xsrd_DME
+    rdf_type:
+      id: CHEBI:28887
+      title: methoxymethane
+    title: dimethyl ether
+  - id: coremeta4cat:PROD_6mxw-xsrd_CH4
+    rdf_type:
+      id: CHEBI:16183
+      title: methane
+    title: methane (by-product, yield below 2%)
+  id: coremeta4cat:REAC_6mxw-xsrd_screening
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  reaction_name:
+  - hydrogenation of CO2/CO to methanol and dimethyl ether
+  reactor_temperature_range:
+  - description: 225-300 C, conditions 1-8
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    max_value: 573.15
+    min_value: 498.15
+    unit: https://qudt.org/vocab/unit/K
+  title:
+  - Activity screening of 13 Cu-Ga-Al mixed metal oxides for CO2/CO hydrogenation
+    (8 conditions)
+  used_catalyst:
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.15Ga0.07Al0.78
+    title: Cu0.15Ga0.07Al0.78 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.25Ga0.07Al0.68
+    title: Cu0.25Ga0.07Al0.68 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.25Ga0.25Al0.50
+    title: Cu0.25Ga0.25Al0.50 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.25Ga0.50Al0.25
+    title: Cu0.25Ga0.50Al0.25 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.33Ga0.07Al0.60
+    title: Cu0.33Ga0.07Al0.60 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_Cu0.33Ga0.33Al0.33
+    title: Cu0.33Ga0.33Al0.33 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.33Ga0.60Al0.07
+    title: Cu0.33Ga0.60Al0.07 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.40Ga0.07Al0.53
+    title: Cu0.40Ga0.07Al0.53 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.40Ga0.20Al0.40
+    title: Cu0.40Ga0.20Al0.40 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.50Ga0.25Al0.25
+    title: Cu0.50Ga0.25Al0.25 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.60Al0.40
+    title: Cu0.60Al0.40 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.60Ga0.20Al0.20
+    title: Cu0.60Ga0.20Al0.20 (600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_S_Cu0.60Ga0.40
+    title: Cu0.60Ga0.40 (600)
+  used_reactant:
+  - id: coremeta4cat:REAC_6mxw-xsrd_CO2
+    rdf_type:
+      id: CHEBI:16526
+      title: carbon dioxide
+    title: carbon dioxide
+  - id: coremeta4cat:REAC_6mxw-xsrd_CO
+    rdf_type:
+      id: CHEBI:17245
+      title: carbon monoxide
+    title: carbon monoxide
+  - id: coremeta4cat:REAC_6mxw-xsrd_H2
+    rdf_type:
+      id: CHEBI:18276
+      title: dihydrogen
+    title: dihydrogen
+  - id: coremeta4cat:REAC_6mxw-xsrd_Ar
+    rdf_type:
+      id: CHEBI:49475
+      title: argon atom
+    title: argon
+  - id: coremeta4cat:REAC_6mxw-xsrd_N2
+    rdf_type:
+      id: CHEBI:17997
+      title: dinitrogen
+    title: dinitrogen (balance)
+  used_reactor:
+  - catalyst_bed_diameter:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: https://qudt.org/vocab/unit/MilliM
+      value: 4.5
+    catalyst_bed_volume:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Volume
+      unit: https://qudt.org/vocab/unit/MilliL
+      value: 0.5
+    description: 'As for the optimized catalysts: 4.5 mm inner diameter, 0.5 mL catalyst,
+      250-315 um.'
+    id: coremeta4cat:REAC_6mxw-xsrd_reactor
+    reactor_designator: coremeta4cat:FixedBedReactor
+    title: 16-fold parallel fixed-bed reactor system (hte GmbH)
+is_about_entity:
+- description: 76 HTC precursors characterized by XRF; 13 screening catalysts and
+    7 optimized catalysts tested; 17 doped oxide sites (DFT) and 37 intermetallic
+    and elemental compositions (machine-learned potentials). See was_generated_by
+    and is_about_activity for detail.
+  id: coremeta4cat:CAT_6mxw-xsrd_all
+  title: Cu-Ga-Al mixed metal oxides and computational surface models
+is_referenced_by:
+- id: https://doi.org/10.1021/acscatal.5c03876
+  title: Weber et al., ACS Catal. 2025, 15, 18857-18876
+keyword:
+- CO2 hydrogenation
+- mixed-metal-oxide catalyst
+- machine learning
+- machine learning interatomic potentials
+- density functional theory
+- reaction mechanism
+other_identifier:
+- notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+publisher:
+  name:
+  - NFDI4Cat Central Data Repository
+rdf_type:
+  id: VOC4CAT:0007001
+  title: heterogeneous catalysis
+title:
+- Copper Gallium Aluminum Mixed Metal Oxides as Alternative Catalyst Candidates for
+  Efficient Conversion of Carbon Dioxide to Methanol and Dimethyl Ether
+was_generated_by:
+- activity_designator: Synthesis
+  catalyst_measured_properties:
+  - No measured properties of these three samples are deposited; the article reports
+    XRD, N2 sorption, TPR, N2O-RFC and TEM results for the first generation in figures
+    and the SI.
+  had_input_entity:
+  - id: coremeta4cat:PREC_6mxw-xsrd_CuNO3
+    title: "copper(II) nitrate trihydrate, Cu(NO3)2\xB73H2O (Sigma-Aldrich, 98.8%)"
+  - id: coremeta4cat:PREC_6mxw-xsrd_AlNO3
+    title: "aluminium nitrate nonahydrate, Al(NO3)3\xB79H2O (Sigma-Aldrich, 99.9%)"
+  - id: coremeta4cat:PREC_6mxw-xsrd_GaNO3
+    title: "gallium(III) nitrate hydrate, Ga(NO3)3\xB7xH2O (Sigma-Aldrich, 99.9%)"
+  had_output_entity:
+  - id: coremeta4cat:CAT_6mxw-xsrd_G1_500
+    title: Cu0.465Ga0.07Al0.465(500)
+  - id: coremeta4cat:CAT_6mxw-xsrd_G1_600
+    title: Cu0.465Ga0.07Al0.465(600)
+  - id: coremeta4cat:CAT_6mxw-xsrd_G1_700
+    title: Cu0.465Ga0.07Al0.465(700)
+  id: coremeta4cat:SYN_6mxw-xsrd_gen1
+  nominal_composition:
+  - Cu0.465Ga0.07Al0.465 (metal fractions Cu 0.465, Al 0.465, Ga 0.07)
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  realized_plan:
+    description: Same route as the library (precipitant 1.6 M NaOH / 0.2 M Na2CO3,
+      pH 9, ageing 2 h at 65 C, freeze-drying, see the library-example record). One
+      precursor batch, calcined 4 h at 4 C/min in clean dry air at 500, 600 or 700
+      C.
+    has_calcination_atmosphere:
+    - value: clean dry air
+    has_calcination_dwelling_time:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 4
+    has_calcination_heating_rate:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+      value: 4
+    has_calcination_temperature_range:
+    - description: 500, 600 and 700 C, one sample each
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      max_value: 973.15
+      min_value: 773.15
+      unit: https://qudt.org/vocab/unit/K
+    id: coremeta4cat:SYN_6mxw-xsrd_gen1_method
+    plan_designator: voc4cat:0007795
+    title: automated co-precipitation at pH 9, ageing, freeze-drying, calcination
+      at 500/600/700 C
+  title:
+  - Cu0.465Ga0.07Al0.465 mixed metal oxide, three calcination temperatures
+- activity_designator: Synthesis
+  catalyst_measured_properties:
+  - No measured properties of the intermediate oxides are deposited.
+  had_input_entity:
+  - id: coremeta4cat:PREC_6mxw-xsrd_CuNO3
+    title: "copper(II) nitrate trihydrate, Cu(NO3)2\xB73H2O (Sigma-Aldrich, 98.8%)"
+  - id: coremeta4cat:PREC_6mxw-xsrd_AlNO3
+    title: "aluminium nitrate nonahydrate, Al(NO3)3\xB79H2O (Sigma-Aldrich, 99.9%)"
+  had_output_entity:
+  - id: coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450
+    title: Cu0.85Al0.15 oxide calcined at 450 C
+  - id: coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550
+    title: Cu0.85Al0.15 oxide calcined at 550 C
+  id: coremeta4cat:SYN_6mxw-xsrd_gen2_step1
+  nominal_composition:
+  - Cu0.85Al0.15 (metal fractions Cu 0.85, Al 0.15)
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  realized_plan:
+    description: Same route as the library (precipitant 1.6 M NaOH / 0.2 M Na2CO3,
+      pH 9, ageing 2 h at 65 C, freeze-drying, see Synthesis-6mxw-xsrd-library-example.yaml).
+      Calcined 4 h at 4 C/min in clean dry air at 450 or 550 C (Tcalc,1).
+    has_calcination_atmosphere:
+    - value: clean dry air
+    has_calcination_dwelling_time:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 4
+    has_calcination_heating_rate:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+      value: 4
+    has_calcination_temperature_range:
+    - description: 450 or 550 C
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      max_value: 823.15
+      min_value: 723.15
+      unit: https://qudt.org/vocab/unit/K
+    id: coremeta4cat:SYN_6mxw-xsrd_gen2_step1_method
+    plan_designator: voc4cat:0007795
+    title: automated co-precipitation at pH 9, ageing, freeze-drying, calcination
+      at 450/550 C
+  title:
+  - Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C
+- activity_designator: Synthesis
+  catalyst_measured_properties:
+  - No measured properties of these four samples are deposited.
+  had_input_entity:
+  - id: coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450
+    title: Cu0.85Al0.15 oxide calcined at 450 C (output of step 1)
+  - id: coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550
+    title: Cu0.85Al0.15 oxide calcined at 550 C (output of step 1)
+  - id: coremeta4cat:PREC_6mxw-xsrd_GaNO3
+    title: "gallium(III) nitrate hydrate, Ga(NO3)3\xB7xH2O (Sigma-Aldrich, 99.9%),\
+      \ aqueous solution"
+  had_output_entity:
+  - id: coremeta4cat:CAT_6mxw-xsrd_G2_450_250
+    title: Cu0.85Al0.15(450)-1wt.%Ga(250)
+  - id: coremeta4cat:CAT_6mxw-xsrd_G2_450_350
+    title: Cu0.85Al0.15(450)-1wt.%Ga(350)
+  - id: coremeta4cat:CAT_6mxw-xsrd_G2_550_250
+    title: Cu0.85Al0.15(550)-1wt.%Ga(250)
+  - id: coremeta4cat:CAT_6mxw-xsrd_G2_550_350
+    title: Cu0.85Al0.15(550)-1wt.%Ga(350)
+  id: coremeta4cat:SYN_6mxw-xsrd_gen2_step2
+  nominal_composition:
+  - Cu0.85Al0.15 mixed oxide with 1 wt% Ga (target loading)
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  realized_plan:
+    description: Aqueous Ga(NO3)3 to a target of 1 wt% Ga, drying at 80 C, calcination
+      4 h at 4 C/min in clean dry air at 250 or 350 C (Tcalc,2).
+    has_calcination_atmosphere:
+    - value: clean dry air
+    has_calcination_dwelling_time:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 4
+    has_calcination_heating_rate:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+      value: 4
+    has_calcination_temperature_range:
+    - description: 250 or 350 C
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      max_value: 623.15
+      min_value: 523.15
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_temperature:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+      value: 353.15
+    id: coremeta4cat:SYN_6mxw-xsrd_gen2_step2_method
+    impregnation_type:
+    - incipient_wetness
+    plan_designator: voc4cat:0007028
+    title: incipient wetness impregnation with Ga(NO3)3, drying, calcination at 250/350
+      C
+  title:
+  - 1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at
+    250 or 350 C
+- activity_designator: Synthesis
+  catalyst_measured_properties:
+  - 'XRF of the HTC precursor: Cu 0.42, Al 0.22, Ga 0.36 (metal fractions; nominal
+    0.33/0.33/0.34)'
+  had_input_entity:
+  - id: coremeta4cat:PREC_6mxw-xsrd_CuNO3
+    precursor_quantity:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/GM
+      value: 5.25
+    title: "copper(II) nitrate trihydrate, Cu(NO3)2\xB73H2O (Sigma-Aldrich, 98.8%)"
+  - id: coremeta4cat:PREC_6mxw-xsrd_AlNO3
+    precursor_quantity:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/GM
+      value: 8.37
+    title: "aluminium nitrate nonahydrate, Al(NO3)3\xB79H2O (Sigma-Aldrich, 99.9%)"
+  - description: Water content x not stated.
+    id: coremeta4cat:PREC_6mxw-xsrd_GaNO3
+    precursor_quantity:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/GM
+      value: 8.92
+    title: "gallium(III) nitrate hydrate, Ga(NO3)3\xB7xH2O (Sigma-Aldrich, 99.9%)"
+  had_output_entity:
+  - description: One of the 13 screening samples (calcined at 600 C).
+    id: coremeta4cat:CAT_6mxw-xsrd_Cu0.33Ga0.33Al0.33
+    title: Cu0.33Ga0.33Al0.33 mixed metal oxide
+  id: coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4
+  nominal_composition:
+  - CuAlGaO4 (metal fractions Cu 0.33, Al 0.33, Ga 0.33)
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  realized_plan:
+    description: Metal nitrate solution fed at 1.6 mL/min into a glass reactor prefilled
+      with 200 mL water, overhead stirrer at 500 rpm, ambient temperature; precipitant
+      dosed to hold pH 9 +- 0.1. Suspension aged 2 h at 65 C at 500 rpm, cooled, filtered,
+      washed to pH 7 +- 0.3, freeze-dried at -10 C and 3 mbar for 12 h to the HTC
+      precursor. Calcination 4 h at 4 C/min in clean dry air; the library was calcined
+      at 400, 500, 600, 700 and 900 C, the screening samples at 600 C. In-house computer-controlled
+      precipitation plant.
+    drying_device:
+    - freeze dryer (-10 C, 3 mbar)
+    filtration:
+    - suction filter
+    has_aging_duration:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 2
+    has_aging_temperature:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+      value: 338.15
+    has_calcination_atmosphere:
+    - value: clean dry air
+    has_calcination_dwelling_time:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 4
+    has_calcination_heating_rate:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+      value: 4
+    has_calcination_temperature_range:
+    - description: 400-900 C across the library; screening samples at 600 C
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      max_value: 1173.15
+      min_value: 673.15
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 12
+    has_drying_temperature:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+      value: 263.15
+    has_mixing_speed:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/AngularVelocity
+      unit: https://qudt.org/vocab/unit/REV-PER-MIN
+      value: 500
+    has_ph_value:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/PH
+      unit: https://qudt.org/vocab/unit/PH
+      value: 9.0
+    id: coremeta4cat:SYN_6mxw-xsrd_coprecipitation_method
+    order_of_addition:
+    - metal nitrate solution pumped into prefilled water; precipitant added to keep
+      pH 9
+    plan_designator: voc4cat:0007795
+    precipitating_agent:
+    - id: CHEBI:32145
+      title: sodium hydroxide
+    - id: CHEBI:29377
+      title: sodium carbonate
+    precipitating_concentration:
+    - description: NaOH
+      has_quantity_type: http://qudt.org/vocab/quantitykind/AmountOfSubstanceConcentration
+      unit: https://qudt.org/vocab/unit/MOL-PER-L
+      value: 1.6
+    - description: Na2CO3
+      has_quantity_type: http://qudt.org/vocab/quantitykind/AmountOfSubstanceConcentration
+      unit: https://qudt.org/vocab/unit/MOL-PER-L
+      value: 0.2
+    purification:
+    - washed with deionised water until pH 7 +- 0.3
+    title: automated co-precipitation at constant pH, ageing, freeze-drying, calcination
+  solvent:
+  - id: coremeta4cat:SOLV_6mxw-xsrd_water
+    title: deionised water (150 mL for the metal nitrates; reactor prefilled with
+      200 mL)
+  title:
+  - Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination
+- activity_designator: Characterization
+  carried_out_by:
+  - description: Rh X-ray tube; ESPRIT software (article, section 2.1.4).
+    id: coremeta4cat:DEV_6mxw-xsrd_XRF
+    title: Bruker M4 TORNADO micro-XRF spectrometer
+  description:
+  - X-ray fluorescence analysis of 76 Cu-Ga-Al compositions spanning the Cu/Al/Ga
+    ternary (Cu 0-1, Al 0-1, Ga 0-1, metal fractions normalised to 1), including the
+    three single-metal end members. According to the article (section 3.2), XRF was
+    measured on the freeze-dried hydrotalcite-like (HTC) precursors, i.e. before calcination.
+    Measured Cu, Al and Ga fractions are reported next to the nominal fractions.
+  evaluated_entity:
+  - description: Co-precipitated, freeze-dried HTC precursors of the Cu-Ga-Al mixed
+      metal oxides; individual samples are identified only by their composition, not
+      by a sample ID.
+    id: coremeta4cat:CAT_6mxw-xsrd_HTC_library
+    title: Cu-Ga-Al hydrotalcite-like precursor library (76 compositions)
+  id: coremeta4cat:CHAR_6mxw-xsrd_XRF
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  rdf_type:
+    id: VOC4CAT:0000067
+    title: X-ray fluorescence
+  realized_plan:
+    description: Elemental composition by the fundamental parameter method in ESPRIT;
+      metal fractions of Cu, Al and Ga normalised to their sum. Sample preparation
+      and measurement conditions are not stated in the main text of the article.
+    id: coremeta4cat:CHAR_6mxw-xsrd_XRF_method
+    title: XRF determination of Cu, Al and Ga metal fractions
+  title:
+  - XRF elemental analysis (76 Cu-Ga-Al hydrotalcite-like precursors)
+- activity_designator: Simulation
+  calculated_property:
+  - description: OH binding energy; range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu
+      highest); reference state not defined in the main text
+    value: -1.87 to 1.41 eV (17 sites)
+  - description: CO binding energy; range over all sites (Ga2O3-Ru lowest, pristine
+      Ga2O3 highest); referenced to gas-phase CO
+    value: -2.20 to 0.51 eV (17 sites)
+  description:
+  - 'Density functional theory binding energies of OH and CO at 17 sites: pristine
+    CuGa2O4 and CuGa2O4 doped with Al, Co, Cu, Ge, In, Ni or Sn, and pristine Ga2O3
+    and Ga2O3 doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr. Site notation in the source
+    file is <host>-<dopant>, e.g. CuGa2O4-Co. Part of the theory-based prediction
+    that led to the Cu-Ga-Al system (article, section 3.1).'
+  evaluated_entity:
+  - description: Dopants Al, Co, Cu, Ge, In, Ni, Sn. Facet and slab model are in the
+      article's SI.
+    id: coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites
+    title: CuGa2O4 surface models, pristine and with 7 dopants
+  - description: Dopants Al, Pd, Pt, Rh, Ru, Sn, Zn, Zr. Facet, polymorph and slab
+      model are in the article's SI.
+    id: coremeta4cat:SLAB_6mxw-xsrd_Ga2O3_sites
+    title: Ga2O3 surface models, pristine and with 8 dopants
+  id: coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  rdf_type:
+    id: VOC4CAT:0000215
+    title: density functional theory
+  realized_plan:
+    description: Vienna Ab initio Simulation Package with the PBE functional and projector
+      augmented waves. The article uses PBE-D3 when verifying the machine-learned
+      potentials; whether D3 was applied for this table is not stated in the main
+      text. Cut-off, k-points and convergence criteria are in the SI.
+    exchange_correlation_functional:
+    - PBE
+    id: coremeta4cat:SIM_6mxw-xsrd_DFT_method
+    plan_designator: coremeta4cat:DFT
+    title: periodic DFT, PBE, PAW
+  software_package:
+  - VASP
+  - Atomic Simulation Environment (ASE), structure generation
+  - pymatgen, structure generation
+  title:
+  - DFT binding energies of OH and CO at 17 oxide surface sites
+- activity_designator: Simulation
+  calculated_property:
+  - description: OH binding energy; range over all compositions (Al4Cu9 lowest, Fe
+      and GaNi3 highest)
+    value: -1.50 to 2.91 eV (31 compositions)
+  - description: CO binding energy; range over all compositions (Ir lowest, Fe highest)
+    value: -2.51 to 1.14 eV (31 compositions)
+  description:
+  - Binding energies of OH and CO computed with the MACE-MPA-0 machine-learned interatomic
+    potential for 31 elemental and intermetallic compositions, as a second model next
+    to the OCP screening; both serve as prescreening and sampling for DFT calculations,
+    with DFT verification at the PBE-D3 level (Weber et al., ACS Catal. 2025, Table
+    2 and section 3.1). Surface facets, adsorption sites and the reference states
+    of the binding energies are in the article's SI, not in the main text.
+  evaluated_entity:
+  - description: Ag9In4, Al, Al4Cu9, CuFe3, Co, CoGa3, CoIn3, CoMn3, Cu, Cu3Ga, Cu3Mn,
+      Cu3Rh, Cu7In3, Cu9Ga4, CuGa2, CuNi, Fe, FeNi, Ga3Ni5, GaMn, GaNi3, In, InRh,
+      InSb, Ir, Mn, Ni, Pd, Rh, Sn, Zn. All 31 were also computed with the OCP model,
+      partly under a different spelling of the formula. Facets and slab models not
+      stated.
+    id: coremeta4cat:SLAB_6mxw-xsrd_MACE_compositions
+    title: 31 elemental and intermetallic surface models
+  id: coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  realized_plan:
+    description: Single-point or relaxation protocol, adsorbate placement and reference
+      energies not stated in the deposited files.
+    id: coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE_method
+    title: machine-learned interatomic potential (MACE-MPA-0)
+  software_package:
+  - MACE-MPA-0 foundation model (article, Table 2)
+  title:
+  - MACE-MPA-0 binding-energy screening of OH and CO (31 compositions)
+- activity_designator: Simulation
+  calculated_property:
+  - description: OH binding energy; range over all compositions (InSb lowest, Pd highest)
+    value: -5.35 to 0.79 eV (37 compositions)
+  - description: CO binding energy; range over all compositions (InSb lowest, Al highest)
+    value: -5.12 to -0.13 eV (37 compositions)
+  description:
+  - Binding energies of OH and CO computed with an Open Catalyst Project (OCP) machine-learned
+    interatomic potential for 37 elemental and intermetallic compositions, as prescreening
+    and sampling for DFT calculations (article, Table 2). Surface facets, adsorption
+    sites and the reference states of the binding energies are in the article's SI,
+    not in the main text.
+  evaluated_entity:
+  - description: Al, Al4Cu9, Co, Cu, Cu3Rh, CuNi, Fe, Fe3Cu, FeNi, Ga2Cu, Ga3Co, Ga3Ni5,
+      Ga4Cu9, GaCu3, GaNi3, In, In3Co, In3Cu7, In3Ga, In4Ag9, InRh, InSb, Ir, Mn,
+      Mn3Co, Mn3In, MnCu3, MnGa, Ni, Pd, Rh, Sn, Zn, Zn2Pd, Zn3Sn, ZnGa3, ZnIn3. Facets
+      and slab models not stated.
+    id: coremeta4cat:SLAB_6mxw-xsrd_OCP_compositions
+    title: 37 elemental and intermetallic surface models
+  id: coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  realized_plan:
+    description: Single-point or relaxation protocol, adsorbate placement and reference
+      energies not stated in the deposited files.
+    id: coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP_method
+    title: machine-learned interatomic potential (OCP model)
+  software_package:
+  - EquiformerV2-31M-S2EF-OC20-All+MD (Open Catalyst Project); inferred from article
+    Table 2
+  title:
+  - OCP binding-energy screening of OH and CO (37 compositions)
+
+```
+## CatalysisDataset-8ppb-aeky
+### Input
+```yaml
+creator:
+- name:
+  - Doerr, Mark
+- name:
+  - Weigmann, Konstantin
+- name:
+  - Schulig, Lukas
+dataset_distribution:
+- access_URL:
+  - id: https://hdl.handle.net/21.11165/4cat/8ppb-aeky
+    title: Repository landing page
+  licence:
+    id: https://creativecommons.org/licenses/by/4.0/
+    title: CC BY 4.0
+description:
+- 'Computational part of Weigmann et al., ACS Catal. (2025): protein preparation of
+  the Ruegeria sp. amine transaminase variant 3FCR-4M, induced-fit docking of the
+  PLP-bound substrate (S)-1-(2-chlorophenyl)ethanamine, Desmond molecular dynamics
+  of the complex in 3FCR-4M and the mutants S19V/P423F (4M-N15) and G151A/P423F (4M-N16),
+  and Prime MM/GBSA relative binding free energies. All results are in 17 software
+  archives (about 33 GB). The enzyme kinetics and preparative reactions of the article
+  are not part of this dataset.'
+id: hdl:21.11165/4cat/8ppb-aeky
+is_about_entity:
+- description: 3FCR-4M (Y59W/Y87F/Y152F/T231A), 4M-N15 (S19V/P423F), 4M-N16 (G151A/P423F).
+    See was_generated_by for detail.
+  id: coremeta4cat:ENZ_8ppb-aeky_all
+  title: Amine transaminase 3FCR-4M and two mutants with the PLP-bound substrate 2a
+is_referenced_by:
+- id: https://doi.org/10.1021/acscatal.5c04248
+  title: Weigmann et al., ACS Catal. (2025), doi:10.1021/acscatal.5c04248
+keyword:
+- biocatalysis
+- amine transaminase
+- molecular dynamics
+- MM/GBSA
+- docking
+- protein engineering
+other_identifier:
+- notation: https://hdl.handle.net/21.11165/4cat/8ppb-aeky
+publisher:
+  name:
+  - NFDI4Cat Central Data Repository
+rdf_type:
+  id: VOC4CAT:0000204
+  title: biocatalysis
+title:
+- 'Datasets for Publication: Navigating the Sequence-Function Landscape: AI-Driven
+  Discovery of Unseen and SynergisticMutations in an Amine Transaminase - Molecular
+  Dynamic Simulations'
+was_generated_by:
+- activity_designator: Simulation
+  description:
+  - Desmond molecular dynamics of the docked substrate-cofactor complex in 3FCR-4M
+    and the mutants S19V/P423F (4M-N15, deposit M1) and G151A/P423F (4M-N16, deposit
+    M2), run to investigate why these mutations change the kinetic parameters. Each
+    variant has a system setup, a minimisation, an equilibration and a production
+    run (12 archives, about 32 GB). The production runs extend beyond 100 ns; trajectories
+    were analysed with the Simulation Interaction Diagram and in-house scripts using
+    the Schrodinger Python API, and frames after 100 ns were used for MM/GBSA.
+  evaluated_entity:
+  - id: coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex
+    title: 3FCR-4M with cofactor-bound substrate 2a
+  - id: coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M1_complex
+    title: 4M-N15 = 3FCR-4M-S19V/P423F (deposit M1) with cofactor-bound substrate
+      2a
+  - id: coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M2_complex
+    title: 4M-N16 = 3FCR-4M-G151A/P423F (deposit M2) with cofactor-bound substrate
+      2a
+  id: coremeta4cat:SIM_8ppb-aeky_MD
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/8ppb-aeky
+  realized_plan:
+    description: Force field, water model, ensemble, temperature, timestep and simulation
+      length are in the article's SI and the Desmond configuration files inside the
+      archives; neither was read.
+    id: coremeta4cat:SIM_8ppb-aeky_MD_method
+    plan_designator: NCIT:C18097
+    title: 'molecular dynamics: setup, minimisation, equilibration, production'
+  software_package:
+  - Desmond (Schrodinger suite)
+  - Simulation Interaction Diagram and Schrodinger Python API, analysis
+  title:
+  - Molecular dynamics of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16
+- activity_designator: Simulation
+  calculated_property:
+  - description: Relative binding free energy (ddG) of 4M-N15 (S19V/P423F) vs. 3FCR-4M
+    value: -1.86 kcal/mol
+  - description: Relative binding free energy (ddG) of 4M-N16 (G151A/P423F) vs. 3FCR-4M
+    value: -1.11 kcal/mol
+  description:
+  - Prime MM/GBSA end-point calculations of the binding free energy of the cofactor-bound
+    substrate 2a ((S)-1-(2-chlorophenyl)ethanamine bound to PLP) in 3FCR-4M and the
+    mutants S19V/P423F (4M-N15, deposit M1) and G151A/P423F (4M-N16, deposit M2).
+    Frames taken from the molecular dynamics runs after 100 ns, every 200th frame,
+    both binding sites of the dimer, giving 50 absolute values per complex. Relative
+    values are the mean of each mutant minus the mean of 3FCR-4M. The article reports
+    them as consistent in magnitude and trend with the experimentally determined KM
+    values.
+  evaluated_entity:
+  - id: coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex
+    title: 3FCR-4M with cofactor-bound substrate 2a
+  - id: coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M1_complex
+    title: 4M-N15 = 3FCR-4M-S19V/P423F (deposit M1) with cofactor-bound substrate
+      2a
+  - id: coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M2_complex
+    title: 4M-N16 = 3FCR-4M-G151A/P423F (deposit M2) with cofactor-bound substrate
+      2a
+  id: coremeta4cat:SIM_8ppb-aeky_MMGBSA
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/8ppb-aeky
+  realized_plan:
+    description: Minimization approach, VSGB solvation model, OPLS4 force field; residues
+      within 5 A of the ligands flexible; frames after 100 ns, every 200th frame;
+      both binding sites of the dimer.
+    id: coremeta4cat:SIM_8ppb-aeky_MMGBSA_method
+    title: MM/GBSA end-point free energy on MD frames
+  software_package:
+  - Prime MM-GBSA (Schrodinger suite)
+  title:
+  - MM/GBSA binding free energy of the substrate-cofactor complex in 3FCR-4M, 4M-N15
+    and 4M-N16
+- activity_designator: Simulation
+  description:
+  - Induced-fit docking with Glide to predict the initial binding mode of the cofactor-bound
+    substrate in 3FCR-4M, the starting structure for molecular dynamics. The substrate
+    is 2a, (S)-1-(2-chlorophenyl)ethanamine, bound to pyridoxal 5'-phosphate (PLP);
+    the article shows the resulting poses as "substrate-cofactor complexes ((S)-2)"
+    (Figure 4). "CPEA" in the archive name is taken to abbreviate this amine.
+  evaluated_entity:
+  - id: coremeta4cat:ENZ_8ppb-aeky_3FCR-4M
+    title: amine transaminase 3FCR-4M (Ruegeria sp., PDB 3FCR, Y59W/Y87F/Y152F/T231A)
+  - id: coremeta4cat:LIG_8ppb-aeky_2a_PLP
+    title: (S)-1-(2-chlorophenyl)ethanamine bound to pyridoxal 5'-phosphate
+  id: coremeta4cat:SIM_8ppb-aeky_induced_fit_docking
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/8ppb-aeky
+  realized_plan:
+    description: Glide Induced Fit; settings in the article's SI, not read from the
+      archive.
+    id: coremeta4cat:SIM_8ppb-aeky_induced_fit_docking_method
+    title: induced-fit ligand docking
+  software_package:
+  - Glide, Induced Fit docking protocol (Schrodinger suite)
+  title:
+  - Induced-fit docking of the substrate-cofactor complex into 3FCR-4M
+- activity_designator: Simulation
+  description:
+  - Preparation of the initial structure of 3FCR-4M for docking and molecular dynamics
+    with the Protein Preparation Wizard. 3FCR-4M is the amine transaminase from Ruegeria
+    sp. (PDB 3FCR) with the four mutations Y59W, Y87F, Y152F and T231A. The file descriptions
+    of the deposit spell it 3CFR; the file names and the article use 3FCR.
+  evaluated_entity:
+  - id: coremeta4cat:ENZ_8ppb-aeky_3FCR-4M
+    title: amine transaminase 3FCR-4M (Ruegeria sp., PDB 3FCR, Y59W/Y87F/Y152F/T231A)
+  id: coremeta4cat:SIM_8ppb-aeky_protein_preparation
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/8ppb-aeky
+  realized_plan:
+    description: Protein Preparation Wizard workflow; settings in the article's SI,
+      not read from the archive.
+    id: coremeta4cat:SIM_8ppb-aeky_protein_preparation_method
+    title: protein structure preparation
+  software_package:
+  - Protein Preparation Wizard (Schrodinger suite)
+  title:
+  - Protein preparation of the amine transaminase variant 3FCR-4M
+
+```
 ## CatalysisDataset-arp5-s69r
 ### Input
 ```yaml
@@ -2207,6 +3110,442 @@ was_generated_by:
     title: XPS core-level measurement method
   title:
   - X-ray photoelectron spectroscopy (2 catalysts, Pd 3d and P 2p)
+
+```
+## CatalysisDataset-b74m-m6rp
+### Input
+```yaml
+creator:
+- name:
+  - Davari, Sadaf
+- name:
+  - Chacko, Rinu
+- name:
+  - Bastek, Tim
+- name:
+  - Lott, Patrick
+- name:
+  - Dailly, Julian
+- name:
+  - Angeli, Sofia
+- name:
+  - Deutschmann, Olaf
+dataset_distribution:
+- access_URL:
+  - id: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+    title: Repository landing page
+  licence:
+    id: https://creativecommons.org/licenses/by/4.0/
+    title: CC BY 4.0
+description:
+- 'Data from Davari et al., Appl. Catal. A 708 (2025) 120571: H2-TPR of the Ni-BCZY
+  cermet; NH3 decomposition light-off curves of six Ru/Ba catalysts on Ni-BCZY, Ni-YSZ
+  and YSZ at 500-3000 ppm NH3 in a packed bed (1 bar, GHSV 50,000 h-1); and DETCHEM
+  microkinetic packed-bed simulations: comparison with the experiments for literature
+  and optimized parameters, axial and surface-coverage profiles, turnover frequencies,
+  and variation of inlet NH3, GHSV and pressure. File names follow the figures of
+  a version of the article; from Fig6 on they do not match the published figure numbers.'
+id: hdl:21.11165/4cat/b74m-m6rp
+is_about_activity:
+- catalyst_form:
+  - supported
+  catalyst_quantity:
+  - description: Catalyst granulate per test, mixed with 700 mg silica
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+    unit: https://qudt.org/vocab/unit/MilliGM
+    value: 300
+  catalyst_type:
+  - heterogeneous_catalysis
+  description:
+  - 'Thermocatalytic decomposition of ammonia (2 NH3 -> N2 + 3 H2) measured as light-off
+    curves in a packed bed: NH3 in Ar at 1 bar, GHSV 50,000 h-1, temperature ramped
+    from 473 to 873 K at 2 K/min, after 1.5 h pretreatment at 873 K in 5% H2/Ar and
+    1 h Ar purge at 473 K. Six catalysts at 1000 ppm NH3 (Fig. 2); 0.5Ru/1Ba/Ni-BCZY
+    and Ni-BCZY also at 500 and 3000 ppm (Fig. 3 and simulation comparisons). Article
+    Table 3 gives T10/T50: Ni-BCZY 656/717 K, 1Ru/Ni-BCZY 621/675 K, 0.5Ru/1Ba/Ni-BCZY
+    615/675 K, 0.5Ru/0.5Ba/Ni-BCZY 621/676 K, 1Ru/1Ba/YSZ 536/589 K, 1Ru/1Ba/Ni-YSZ
+    621/688 K. The deposited curve for 0.5Ru/0.5Ba/Ni-BCZY is unreadable (lost decimal
+    separators); its T10/T50 survive only in the article.'
+  experiment_pressure:
+  - has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+    unit: https://qudt.org/vocab/unit/BAR
+    value: 1.0
+  feed_composition_range:
+  - description: NH3 at the inlet (500, 1000, 3000 ppm), balance Ar
+    has_quantity_type: http://qudt.org/vocab/quantitykind/MoleFraction
+    max_value: 3000.0
+    min_value: 500.0
+    unit: https://qudt.org/vocab/unit/PPM
+  generated_product:
+  - id: coremeta4cat:PROD_b74m-m6rp_N2
+    rdf_type:
+      id: CHEBI:17997
+      title: dinitrogen
+    title: dinitrogen
+  - id: coremeta4cat:PROD_b74m-m6rp_H2
+    rdf_type:
+      id: CHEBI:18276
+      title: dihydrogen
+    title: dihydrogen
+  id: coremeta4cat:REAC_b74m-m6rp_NH3_decomposition
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+  product_identification_method:
+  - description: MKS Instruments MG2030 FTIR spectrometer, continuous analysis of
+      the effluent gas
+    id: coremeta4cat:REAC_b74m-m6rp_FTIR
+    title: online FTIR gas analysis
+  rdf_type:
+    id: VOC4CAT:0007001
+    title: heterogeneous catalysis
+  reaction_name:
+  - thermocatalytic ammonia decomposition
+  reactor_temperature_range:
+  - description: Ramp 473-873 K at 2 K/min; deposited inlet temperature 200-601 C
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    max_value: 873.15
+    min_value: 473.15
+    unit: https://qudt.org/vocab/unit/K
+  title:
+  - NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts,
+    3 inlet concentrations)
+  used_catalyst:
+  - description: 0.5 wt% Ru and 1 wt% Ba on crushed Ni-BCZY cermet; 500, 1000, 3000
+      ppm NH3
+    has_quantitative_attribute:
+    - description: Ru, nominal
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: https://qudt.org/vocab/unit/PERCENT
+      value: 0.5
+    - description: Ba, nominal
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: https://qudt.org/vocab/unit/PERCENT
+      value: 1.0
+    id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
+    title: 0.5Ru/1Ba/Ni-BCZY
+  - description: 1000 ppm NH3; the deposited file lost its decimal separators
+    has_quantitative_attribute:
+    - description: Ru, nominal
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: https://qudt.org/vocab/unit/PERCENT
+      value: 0.5
+    - description: Ba, nominal
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: https://qudt.org/vocab/unit/PERCENT
+      value: 0.5
+    id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY
+    title: 0.5Ru/0.5Ba/Ni-BCZY
+  - description: 1000 ppm NH3
+    has_quantitative_attribute:
+    - description: Ru, nominal
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: https://qudt.org/vocab/unit/PERCENT
+      value: 1.0
+    id: coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY
+    title: 1Ru/Ni-BCZY
+  - description: Bare cermet (NiO:BCZY811 = 60:40 by weight before reduction); 500,
+      1000, 3000 ppm NH3
+    id: coremeta4cat:CAT_b74m-m6rp_Ni-BCZY
+    title: Ni-BCZY cermet
+  - description: 1000 ppm NH3
+    has_quantitative_attribute:
+    - description: Ru, nominal
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: https://qudt.org/vocab/unit/PERCENT
+      value: 1.0
+    - description: Ba, nominal
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: https://qudt.org/vocab/unit/PERCENT
+      value: 1.0
+    id: coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ
+    title: 1Ru/1Ba/Ni-YSZ
+  - description: 1000 ppm NH3; Ni-free YSZ support
+    has_quantitative_attribute:
+    - description: Ru, nominal
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: https://qudt.org/vocab/unit/PERCENT
+      value: 1.0
+    - description: Ba, nominal
+      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+      unit: https://qudt.org/vocab/unit/PERCENT
+      value: 1.0
+    id: coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ
+    title: 1Ru/1Ba/YSZ
+  used_reactant:
+  - id: coremeta4cat:REAC_b74m-m6rp_NH3
+    rdf_type:
+      id: CHEBI:16134
+      title: ammonia
+    title: ammonia
+  - id: coremeta4cat:REAC_b74m-m6rp_Ar
+    rdf_type:
+      id: CHEBI:49475
+      title: argon atom
+    title: argon (balance)
+  used_reactor:
+  - catalyst_bed_diameter:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: https://qudt.org/vocab/unit/CentiM
+      value: 0.8
+    catalyst_bed_height:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+      unit: https://qudt.org/vocab/unit/CentiM
+      value: 1.2
+    catalyst_dilution_material:
+    - silica particles, 700 mg, 120-250 um
+    description: 0.8 cm inner diameter, 100 cm long, in a furnace; bed fixed by quartz
+      wool, about 1.2 cm long; catalyst and silica sieve fraction 120-250 um; Bronkhorst
+      mass flow controllers; two type N thermocouples about 2 mm up- and downstream
+      of the bed.
+    id: coremeta4cat:REAC_b74m-m6rp_reactor
+    reactor_designator: coremeta4cat:FixedBedReactor
+    title: quartz glass tubular packed-bed reactor
+is_about_entity:
+- description: 'Six catalysts: Ni-BCZY, 1Ru/Ni-BCZY, 0.5Ru/1Ba/Ni-BCZY, 0.5Ru/0.5Ba/Ni-BCZY,
+    1Ru/1Ba/YSZ, 1Ru/1Ba/Ni-YSZ. See is_about_activity for per-catalyst detail.'
+  id: coremeta4cat:CAT_b74m-m6rp_all
+  title: Ru/Ba catalysts on Ni-BCZY, Ni-YSZ and YSZ
+is_referenced_by:
+- id: https://doi.org/10.1016/j.apcata.2025.120571
+  title: Davari et al., Appl. Catal. A 708 (2025) 120571
+keyword:
+- Ammonia decomposition
+- Ru catalyst
+- Ni-BCZY
+- Hydrogen production/generation
+- Protonic Ceramic Cell
+- Thermo-catalytic experiments
+- Microkinetic modeling
+other_identifier:
+- notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+publisher:
+  name:
+  - NFDI4Cat Central Data Repository
+rdf_type:
+  id: VOC4CAT:0007001
+  title: heterogeneous catalysis
+title:
+- 'Dataset for Publication: Experimental and Microkinetic Investigation of Thermo-Catalytic
+  Ammonia Decomposition over a Ba-promoted Ru/Ni-BCZY Catalyst for Use in Ammonia-fed
+  Protonic Ceramic Cells'
+was_generated_by:
+- activity_designator: Synthesis
+  catalyst_measured_properties:
+  - Ru distribution and nanoparticle size of 0.5Ru/1Ba/Ni-BCZY by SEM/EDX (article
+    Figs. 4-5; images not deposited)
+  had_input_entity:
+  - id: coremeta4cat:PREC_b74m-m6rp_RuNO_NO3
+    title: ruthenium(III) nitrosyl nitrate, aqueous solution (Alfa Aesar)
+  - id: coremeta4cat:PREC_b74m-m6rp_BaNO3
+    title: barium nitrate, Ba(NO3)2 (Alfa Aesar), dissolved in deionised water
+  - description: Output of SYN_b74m-m6rp_cermet_supports
+    id: coremeta4cat:SUP_b74m-m6rp_supports
+    title: crushed Ni-BCZY, Ni-YSZ and YSZ supports
+  had_output_entity:
+  - id: coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY
+    title: 1Ru/Ni-BCZY
+  - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
+    title: 0.5Ru/1Ba/Ni-BCZY
+  - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY
+    title: 0.5Ru/0.5Ba/Ni-BCZY
+  - id: coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ
+    title: 1Ru/1Ba/YSZ
+  - id: coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ
+    title: 1Ru/1Ba/Ni-YSZ
+  id: coremeta4cat:SYN_b74m-m6rp_Ru_Ba_IWI
+  nominal_composition:
+  - '1Ru/Ni-BCZY: 1.0 wt% Ru'
+  - '0.5Ru/1Ba/Ni-BCZY: 0.5 wt% Ru, 1.0 wt% Ba'
+  - '0.5Ru/0.5Ba/Ni-BCZY: 0.5 wt% Ru, 0.5 wt% Ba'
+  - '1Ru/1Ba/YSZ: 1.0 wt% Ru, 1.0 wt% Ba'
+  - '1Ru/1Ba/Ni-YSZ: 1.0 wt% Ru, 1.0 wt% Ba'
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+  realized_plan:
+    description: Because of the low pore volume of the cermets the precursor solution
+      was added in 100 uL steps, each followed by drying at 348 K for 15 min, until
+      the target loading was reached. Nitrates decomposed by calcination for 5 h at
+      873 K in static air; granulated to 120-250 um.
+    has_calcination_atmosphere:
+    - value: static air
+    has_calcination_dwelling_time:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 5
+    has_calcination_temperature_range:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      max_value: 873.15
+      min_value: 873.15
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/MIN
+      value: 15
+    has_drying_temperature:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+      value: 348.15
+    id: coremeta4cat:SYN_b74m-m6rp_IWI_method
+    impregnation_type:
+    - incipient_wetness
+    plan_designator: voc4cat:0007028
+    title: stepwise incipient wetness impregnation, calcination, granulation
+  title:
+  - Ru and Ba on Ni-BCZY, Ni-YSZ and YSZ by stepwise incipient wetness impregnation
+- activity_designator: Synthesis
+  catalyst_measured_properties:
+  - 'BET surface area: NiO-BCZY (oxidized) 1.1 m2/g, YSZ powder 14.1 m2/g (article
+    Table 2)'
+  - Ni dispersion of Ni-BCZY 3.17% (H2-TPD)
+  had_input_entity:
+  - id: coremeta4cat:PREC_b74m-m6rp_BCZY811
+    title: BaCe0.8Zr0.1Y0.1O3-d powder (BCZY811, CerPoTech)
+  - id: coremeta4cat:PREC_b74m-m6rp_8YSZ
+    title: 8 mol% yttria-stabilised zirconia powder (8-YSZ, Tosoh)
+  - id: coremeta4cat:PREC_b74m-m6rp_NiO
+    title: NiO powder (J.T. Baker)
+  - id: coremeta4cat:PREC_b74m-m6rp_graphite
+    title: graphite pore former (TimCal)
+  - id: coremeta4cat:PREC_b74m-m6rp_tape_organics
+    title: ethanol and methyl ethyl ketone (solvents, dispersant), polyvinyl butyral
+      (binder), PEG and TEG-EH (plasticizers, Eastman)
+  had_output_entity:
+  - id: coremeta4cat:SUP_b74m-m6rp_Ni-BCZY
+    title: crushed Ni-BCZY cermet powder
+  - id: coremeta4cat:SUP_b74m-m6rp_Ni-YSZ
+    title: crushed Ni-YSZ cermet powder
+  - id: coremeta4cat:SUP_b74m-m6rp_YSZ
+    title: crushed YSZ powder
+  id: coremeta4cat:SYN_b74m-m6rp_cermet_supports
+  nominal_composition:
+  - 'Ni-BCZY cermet: NiO and BaCe0.8Zr0.1Y0.1O3-d (BCZY811), 60:40 by weight before
+    reduction'
+  - 'Ni-YSZ cermet: NiO and 8-YSZ, 60:40 by weight before reduction'
+  - YSZ (8-YSZ, Ni-free)
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+  realized_plan:
+    description: Ceramic powder (and NiO for the cermets) slurried with graphite,
+      ethanol and MEK in a TURBULA 3D shaker for 24 h; PVB, PEG and TEG-EH added,
+      mixed 3 h, rested 24 h, de-aired under vacuum; cast with a ZAA 2300 film applicator
+      onto silicone-coated PET; dried 12 h at room temperature and 10 min at 773 K;
+      sintered 9 h at 1673 K (heating 1 K/min, cooling 3 K/min); crushed to a fine
+      powder.
+    id: coremeta4cat:SYN_b74m-m6rp_tape_casting_method
+    title: tape casting, sintering and crushing
+  title:
+  - Ni-BCZY, Ni-YSZ and YSZ supports from sintered tapes
+- activity_designator: Characterization
+  carried_out_by:
+  - description: Instrument model not stated in the article.
+    id: coremeta4cat:DEV_b74m-m6rp_TCD
+    title: TPR set-up with quartz reactor and thermal conductivity detector
+  description:
+  - Temperature-programmed reduction of about 0.1 g Ni-BCZY powder in a quartz reactor,
+    from room temperature to 1223 K at 10 K/min in 10% H2/Ar (50 mL/min); H2 consumption
+    followed by a thermal conductivity detector. Deposited signal 38-951 C.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_b74m-m6rp_Ni-BCZY
+    title: Ni-BCZY cermet powder
+  id: coremeta4cat:CHAR_b74m-m6rp_TCD
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+  rdf_type:
+    id: CHMO:0002908
+    title: temperature-programmed reduction
+  realized_plan:
+    description: About 0.1 g sample, 10% H2 in Ar at 50 mL/min, TCD detection.
+    has_heating_rate:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+      value: 10
+    has_temperature_range:
+    - description: room temperature to 1223 K (the article gives 1223 K as the end
+        point)
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      max_value: 1223.15
+      min_value: 298.15
+      unit: https://qudt.org/vocab/unit/K
+    id: coremeta4cat:CHAR_b74m-m6rp_TCD_method
+    plan_designator: CHMO:0002908
+    reducing_gas_composition:
+    - 10% H2 in Ar, 50 mL/min
+    title: H2-TPR, 10 K/min to 1223 K
+  title:
+  - H2-TPR of the Ni-BCZY cermet (article Fig. 1)
+- activity_designator: Simulation
+  calculated_property:
+  - description: Turnover frequency of NH3 decomposition, deposit Fig11_Ni+Ru.tab
+      (article Fig. 10); Ni-only and Ru-only in Fig11_Ni.tab and Fig11_Ru.tab
+    value: TOF 3.2e-4 to 0.37 s-1 (Ni+Ru sites, 498-848 K)
+  - description: Deposit Fig10_615K.csv, Fig10_818K.csv (article Fig. 9)
+    value: surface coverages of 12 surface species along the bed at 615 and 818 K
+  - description: Deposit Fig12b, Fig12d, Fig12f; TOF at 615 K vs. the same parameters
+      in Fig12_a, Fig12c, Fig12e (article Fig. 11 shows 100-10,000 ppm and 0.5-5 bar)
+    value: NH3 conversion vs. temperature for inlet NH3 100 ppm-100%, GHSV 100-100,000
+      h-1, pressure 0.5-10 bar
+  description:
+  - 'Simulations with the optimized microkinetic mechanism: axial NH3 and conversion
+    profiles over the 12 mm bed at 618-818 K (article Fig. 8); spatially resolved
+    surface coverages at 615 and 818 K (Fig. 9); turnover frequency of the Ru-only,
+    Ni-only and combined models at 498-848 K, computed without reactor effects (Fig.
+    10); and variation of inlet NH3, GHSV (100-100,000 h-1) and pressure at 615 K
+    or as a function of temperature (Fig. 11). Base case: 1000 ppm NH3 in Ar, 1 bar,
+    GHSV 50,000 h-1, 615 K (= T10 of 0.5Ru/1Ba/Ni-BCZY).'
+  evaluated_entity:
+  - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
+    title: 0.5Ru/1Ba/Ni-BCZY (modelled as Ru and Ni surface sites)
+  id: coremeta4cat:SIM_b74m-m6rp_MKM_parametric
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+  realized_plan:
+    description: 'Mechanism with the optimized Ru and Ni parameters (article Table
+      4). Varied inputs: inlet NH3 mole fraction, GHSV, pressure, temperature.'
+    id: coremeta4cat:SIM_b74m-m6rp_MKM_parametric_method
+    plan_designator: coremeta4cat:Microkinetics
+    title: optimized microkinetic packed-bed model, parameter variation
+  software_package:
+  - DETCHEM-PBR (DETCHEM package), reactor simulations
+  - DETCHEM-SURFPROBE, surface coverages and TOF without reactor effects
+  title:
+  - 'Microkinetic NH3 decomposition: reactor profiles, TOF and parameter variation'
+- activity_designator: Simulation
+  calculated_property:
+  - description: Deposit Fig6a-c (0.5Ru/1Ba/Ni-BCZY, original), Fig7a-c (Ni-BCZY,
+      original and optimized), Fig8a-c (0.5Ru/1Ba/Ni-BCZY, optimized)
+    value: NH3 conversion vs. surface temperature, 498-848 K, 9 simulated curves
+  description:
+  - 'One-dimensional packed-bed reactor simulation (negligible axial diffusion) with
+    a mean-field surface mechanism on Ru and Ni sites, compared with the measured
+    light-off curves at 500, 1000 and 3000 ppm NH3 in Ar, 1 bar, GHSV 50,000 h-1,
+    ramp 2 K/min. Ni steps start from Zhu et al. (Int. J. Green Energy 19 (2022) 1568),
+    Ru steps from Zhang et al. (ACS Sustain. Chem. Eng. 7 (2019) 18038, Ba-promoted
+    Ru on YSZ, coverage-dependent activation energies). Both parameter sets were re-optimized
+    against the 1000 ppm data and validated with the 500 and 3000 ppm data; the optimized
+    set is article Table 4. Surface species: Ru, H-Ru, N-Ru, NH-Ru, NH2-Ru, NH3-Ru,
+    Ni, H-Ni, N-Ni, NH-Ni, NH2-Ni, NH3-Ni.'
+  evaluated_entity:
+  - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
+    title: 0.5Ru/1Ba/Ni-BCZY (modelled as Ru and Ni surface sites)
+  - id: coremeta4cat:CAT_b74m-m6rp_Ni-BCZY
+    title: Ni-BCZY (modelled as Ni surface sites)
+  id: coremeta4cat:SIM_b74m-m6rp_MKM_validation
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+  realized_plan:
+    description: Modified Arrhenius rate expressions with coverage-dependent activation
+      energies; catalytic area scaled by F_cat/geo from the metal dispersion. Parameter
+      optimization in 5% steps with two dependent parameters fixed by thermodynamic
+      consistency.
+    id: coremeta4cat:SIM_b74m-m6rp_MKM_method
+    plan_designator: coremeta4cat:Microkinetics
+    title: microkinetic packed-bed model, literature and optimized parameters
+  software_package:
+  - DETCHEM-PBR (DETCHEM package)
+  - CaRMeN (Catalytic Reaction Mechanisms Network)
+  - DETCHEM-ADJUST (thermodynamic consistency during optimization)
+  title:
+  - Microkinetic simulation of NH3 decomposition light-off on Ni-BCZY and 0.5Ru/1Ba/Ni-BCZY
 
 ```
 ## CatalyticReaction-001
