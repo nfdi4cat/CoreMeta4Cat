@@ -50,6 +50,8 @@
     
       <link rel="stylesheet" href="../stylesheets/no-details-box.css">
     
+      <link rel="stylesheet" href="../stylesheets/schema_classmap.css">
+    
       <link rel="stylesheet" href="../css/ansi-colours.css">
     
       <link rel="stylesheet" href="../css/jupyter-cells.css">
@@ -193,6 +195,8 @@
         <div class="md-main__inner md-grid">
           
             
+              
+                
               
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
@@ -757,7 +761,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -800,6 +806,8 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
 
   
@@ -813,14 +821,14 @@
 </div>
 <p>The Reaction data class defines metadata required to document catalytic testing procedures, reactor configurations, operating conditions, and analytical methods. It provides structured descriptors necessary to contextualize catalytic performance data.</p>
 <p>Core fields include reactor design type, operational parameters, and product identification and quantification methods. The class also specifies metadata required to report and evaluate catalyst performance metrics, enabling structured comparison across experimental studies.</p>
-<p><iframe
-    src="../assets/metadata_reaction_hierarchy.html"
-    width="100%"
-    height= "470vh"
-    style="border: 2px solid #5C88DA; background-color: #F0F8FF;
-    "
-    allowfullscreen
-></iframe></p>
+<div class="cm4c-classmap" data-root="CatalyticReaction"
+     data-src="../assets/schema_graph.json"
+     data-sunburst="../assets/metadata_reaction_hierarchy.html"
+     data-site="../"
+     data-elements="../elements/classes/">
+<p>The interactive class map needs JavaScript. The full field list follows below.</p>
+</div>
+
 <details>
 <summary> <strong>Legend</strong> </summary>
 <ul>
@@ -5025,8 +5033,13 @@ suspended in an upward-flowing gas or liquid stream.</p>
 
 
 
+  
+  
 
 
+
+
+  
 
 
 
@@ -5075,6 +5088,8 @@ suspended in an upward-flowing gas or liquid stream.</p>
     
     
       <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../javascripts/schema_classmap.js"></script>
       
     
   </body>

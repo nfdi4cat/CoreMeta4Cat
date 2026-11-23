@@ -52,6 +52,8 @@
     
       <link rel="stylesheet" href="../stylesheets/no-details-box.css">
     
+      <link rel="stylesheet" href="../stylesheets/schema_classmap.css">
+    
       <link rel="stylesheet" href="../css/ansi-colours.css">
     
       <link rel="stylesheet" href="../css/jupyter-cells.css">
@@ -878,6 +880,14 @@
 <p><code>CatalysisDataset</code> is the entry point for every CoreMeta4Cat record. It is a <code>dcat:Dataset</code> -- fully compatible with plain DCAT and DCAT-AP -- extended with a global classification field and four link slots that connect to the <a href="../design-patterns/#the-four-data-classes">four CoreMeta4Cat pillars</a>: <a href="../synthesis/">Synthesis</a>, <a href="../characterization/">Characterization</a>, <a href="../reaction/">Reaction</a>, and <a href="../simulation/">Simulation</a>.</p>
 <p>This page is the reference for <code>CatalysisDataset</code> itself: its fields, the <code>CatalysisResearchFieldEnum</code> classification vocabulary, and a worked example of combining several pillars into a single dataset. For the conceptual background on <em>why</em> it's structured this way, see <a href="../design-patterns/#the-entry-point-catalysisdataset">Design Patterns: The entry point</a> and <a href="../design-patterns/#pattern-1-classification-via-rdf_type">Pattern 1: Classification via rdf_type</a>.</p>
 <h2 id="fields">Fields</h2>
+<p>The overview below shows only what CoreMeta4Cat adds to <code>dcat:Dataset</code>. Where the schema points to a generic or helper class, the overview shows the specific CoreMeta4Cat classes instead: <code>was_generated_by</code> leads to Synthesis, Characterization or Simulation, and <code>is_about_entity</code> to a precursor or catalyst sample. Each data class opens its own page.</p>
+<div class="cm4c-classmap" data-root="CatalysisDataset" data-mode="overview"
+     data-src="../assets/schema_graph.json"
+     data-site="../"
+     data-elements="../elements/classes/">
+<p>The interactive overview needs JavaScript. The table below lists the same fields.</p>
+</div>
+
 <p><code>CatalysisDataset</code> has four fields beyond the ones it inherits from <code>dcat:Dataset</code> (<code>id</code>, <code>title</code>, <code>description</code>, ...):</p>
 <table>
 <thead>
@@ -1100,6 +1110,8 @@
     
     
       <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../javascripts/schema_classmap.js"></script>
       
     
   </body>

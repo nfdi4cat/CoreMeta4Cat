@@ -50,6 +50,8 @@
     
       <link rel="stylesheet" href="../stylesheets/no-details-box.css">
     
+      <link rel="stylesheet" href="../stylesheets/schema_classmap.css">
+    
       <link rel="stylesheet" href="../css/ansi-colours.css">
     
       <link rel="stylesheet" href="../css/jupyter-cells.css">
@@ -193,6 +195,8 @@
         <div class="md-main__inner md-grid">
           
             
+              
+                
               
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
@@ -757,7 +761,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -800,6 +806,8 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
 
   
@@ -810,14 +818,14 @@
 <p>The Synthesis data class captures metadata required to document catalyst preparation procedures in a structured and reproducible manner. It defines the minimum information necessary to describe synthesis routes and their relevant parameters.</p>
 <p>Metadata are organized hierarchically based on the selected synthesis method. Method-specific child fields are activated depending on the preparation approach (e.g., co-precipitation requiring fields such as precipitating agent, synthesis pH, aging time, and aging temperature). In addition, method-independent fields—such as precursor identity, precursor quantity, and storage conditions—are included to ensure consistent documentation across synthesis strategies.</p>
 <p><strong>CURIE:</strong> <a href="OBI:0000070"><code>OBI:0000070</code></a></p>
-<p><iframe
-    src="../assets/metadata_synthesis_hierarchy.html"
-    width="100%"
-    height= "470vh"
-    style="border: 2px solid #5C88DA; background-color: #F0F8FF;
-    "
-    allowfullscreen
-></iframe></p>
+<div class="cm4c-classmap" data-root="Synthesis"
+     data-src="../assets/schema_graph.json"
+     data-sunburst="../assets/metadata_synthesis_hierarchy.html"
+     data-site="../"
+     data-elements="../elements/classes/">
+<p>The interactive class map needs JavaScript. The full field list follows below.</p>
+</div>
+
 <details>
 <summary> <strong>Legend</strong> </summary>
 <ul>
@@ -4916,8 +4924,13 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 
 
+  
+  
 
 
+
+
+  
 
 
 
@@ -4966,6 +4979,8 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
     
     
       <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../javascripts/schema_classmap.js"></script>
       
     
   </body>
