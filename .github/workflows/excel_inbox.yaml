@@ -471,12 +471,11 @@ jobs:
             const rtOutput    = (process.env.roundtrip_output || "").trim();
 
             const applyFailed = applyStatus === "errors";
-            const testFailed  = testResult  === "failure";
-            const testSkipped = testResult  === "skipped" || testResult === "cancelled";
             const rtDiff      = rtStatus    === "diff";
 
-            const allOk = !applyFailed && !testFailed && !testSkipped && !rtDiff
-                          && testResult === "success";
+            // Mirrors the condition of the "Commit schema changes" step below:
+            // the round-trip result is reported, but does not block the commit.
+            const committed = !applyFailed && testResult === "success";
 
             const sections = [];
 
@@ -515,9 +514,9 @@ jobs:
             if (rtStatus) {
               const icon = rtStatus === "ok" ? "✅" : "⚠️";
               const msg  = rtStatus === "ok"
-                ? "The inbox workbook and the updated schema are fully aligned."
-                : "Some fields in the inbox workbook differ from the updated schema. "
-                  + "This may indicate fields that could not be automatically converted.";
+                ? "Every edit in the inbox workbook is now in the updated schema."
+                : "Some edits in the inbox workbook are not in the updated schema — "
+                  + "usually the ones the report above lists as not applied.";
               sections.push(
                 `### ${icon} Round-trip check`, "",
                 msg, "",
@@ -529,12 +528,20 @@ jobs:
 
             // ── summary ────────────────────────────────────────────────────
             sections.push("---", "");
-            if (allOk) {
+            if (committed && !rtDiff) {
               sections.push(
                 "✅ **All checks passed.** Schema changes have been applied to this "
                 + "branch. A maintainer will review the diff and merge. "
                 + "The vocabulary workbook (`docs/assets/`) will be regenerated "
                 + "automatically by `update_excel.yaml` after merge.", ""
+              );
+            } else if (committed) {
+              sections.push(
+                "⚠️ **Schema changes have been applied and committed to this branch**, "
+                + "but the round-trip check found edits that are not in the schema "
+                + "(see above). A maintainer will review them before merging. To "
+                + "change something, edit the same workbook and push it to `inbox/` "
+                + "again — all of its edits are re-applied.", ""
               );
             } else {
               sections.push(

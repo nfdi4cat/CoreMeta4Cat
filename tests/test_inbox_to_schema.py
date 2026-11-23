@@ -439,7 +439,8 @@ def test_shared_slot_edit_warns_about_other_owner_classes(indexes):
     owners = ib._slot_owner_classes(schema, "has_atmosphere")
     assert len(owners) > 1, "precondition: has_atmosphere must be genuinely shared"
 
-    excel = {"Reaction": [_slot_row("has atmosphere", uri="FAKE:000001")]}
+    # A declared prefix: URIs are validated, and an undeclared one is an error.
+    excel = {"Reaction": [_slot_row("has atmosphere", uri="voc4cat:9999901")]}
     _, reporter = _plan(indexes, excel)
 
     shared_warnings = [
@@ -462,7 +463,7 @@ def test_non_shared_slot_edit_does_not_warn_about_sharing(indexes):
     owners = ib._slot_owner_classes(schema, "residence_time")
     assert owners == ["CSTR"], "precondition: residence_time must be single-owner"
 
-    excel = {"Reaction": [_slot_row("residence time", uri="FAKE:000002", domain="CSTR")]}
+    excel = {"Reaction": [_slot_row("residence time", uri="voc4cat:9999902", domain="CSTR")]}
     _, reporter = _plan(indexes, excel)
 
     shared_warnings = [
@@ -723,26 +724,20 @@ def test_verify_applied_flags_additions_that_did_not_land(tmp_path, monkeypatch)
     assert contexts == {"slot `qa_probe_missing`", "class `QaProbeMissingClass`"}
 
 
-def test_generated_workbook_plans_no_additions(tmp_path):
-    """Regression guard for the attach logic: the workbook generated from the
-    current schema must not plan any addition (no false attachments of the
-    structural/inherited display rows)."""
-    import openpyxl
-    from schema_to_excel import (
-        build_catcore_sheet, build_intro_sheet, build_legend_sheet, build_sheet,
-    )
+@pytest.mark.parametrize("use_baseline", [False, True])
+def test_generated_workbook_plans_no_changes(tmp_path, use_baseline):
+    """The unmodified workbook generated from the current schema plans no
+    change of any kind and raises no warning -- with the baseline (the normal
+    inbox path) and without it (every field compared with the schema). The
+    workbook shows LinkML's effective values, and the planner compares with
+    the same values, so not even inherited M/R/O / multivalued values may
+    look like edits."""
+    from schema_to_excel import build_workbook, save_workbook
+
+    path = tmp_path / "generated.xlsx"
+    save_workbook(build_workbook(_SCHEMA), path)
 
     schema = load_merged_schema(str(_SCHEMA))
-    wb = openpyxl.Workbook()
-    wb.remove(wb.active)
-    build_intro_sheet(wb)
-    build_legend_sheet(wb)
-    build_catcore_sheet(wb, schema)
-    for sheet_title in ib.CLASS_MAP:
-        build_sheet(wb, schema, sheet_title)
-    path = tmp_path / "generated.xlsx"
-    wb.save(str(path))
-
     reporter = ib.Reporter()
     sheets = ib.validate_structure(path, reporter)
     assert sheets is not None
@@ -751,6 +746,9 @@ def test_generated_workbook_plans_no_additions(tmp_path):
     changes = ib.plan_changes(
         schema, ib.parse_excel(sheets), label_to_slot, label_to_class,
         slot_origin, class_origin, reporter,
+        baseline=ib.read_baseline(path) if use_baseline else None,
     )
-    assert not reporter.has_errors
-    assert not [c for c in changes if c["type"] in ("class_add", "slot_add", "slot_attach")]
+    problems = [f"{d.level}: [{d.sheet}] {d.context}: {d.message}"
+                for d in reporter._diags if d.level != "info"]
+    assert not problems, "\n".join(problems[:20])
+    assert not changes, changes[:5]

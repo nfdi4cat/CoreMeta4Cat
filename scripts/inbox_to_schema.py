@@ -4,24 +4,46 @@ inbox_to_schema.py
 Converts a modified CoreMeta4Cat vocabulary workbook from the inbox/ folder
 into changes in the LinkML YAML schema files.
 
-Supported operations (all per-row in the Excel):
-  • Modify existing slots  — M/R/O, description, URI, range, multivalued,
-                             inlined_as_list, unit
+Only what the contributor changed is applied. Every generated workbook carries
+a very hidden ``_baseline`` sheet (see workbook_rows.py) with all rows exactly
+as they were generated, and each row of the submitted workbook is compared
+with it:
+
+  • unchanged rows are skipped -- a workbook downloaded before other changes
+    were merged never reverts them;
+  • for a changed row only the edited fields are applied (a field that was
+    also changed in the schema since the download is reported as a conflict);
+  • new rows add slots or classes, or attach an existing slot to a class;
+  • deleted rows remove the slot from that class, or remove the class.
+
+Workbooks without a ``_baseline`` sheet (made from an older template) are
+rejected -- there is no way to tell their edits from changes merged since.
+
+Supported operations (all per row in the Excel):
+  • Modify existing slots  — M/R/O (scoped to the row's class), description,
+                             URI, range, multivalued, inlined_as_list, unit
   • Modify existing classes — description, URI
   • Add new slots          — derived snake_case name from label; added to the
                              owning class's YAML module and global slots: dict
   • Add new classes        — derived PascalCase name; added as a subclass of
                              the class indicated by the domain column; new
                              slots on a new class go into the same module
-  • Attach existing slots  — a known slot listed (via the domain column) on a
-                             class that does not have it yet is appended to
-                             that class's slots: list; a differing M/R/O is
-                             scoped to the class via slot_usage
-  • Delete slots/classes   — a slot/class absent from the Excel but present in
-                             the schema is flagged and removed
+  • Attach existing slots  — a known slot listed on a class that does not have
+                             it yet is appended to that class's slots: list; a
+                             differing M/R/O is scoped to the class via slot_usage
+  • Delete slots/classes   — delete the row
 
-After applying, every added class/slot is verified against the reloaded
-schema; anything that did not land is reported as an error (exit code 3).
+Rows inherited from the vendored chemdcat-ap modules and the CoreMeta4Cat
+sheet are reference only: edits there are reported as warnings, never applied.
+
+Values are compared with what LinkML actually uses (SchemaView.induced_slot,
+see schema_to_excel.py), and writes take inheritance into account: switching
+off a flag that a slot would otherwise inherit writes an explicit ``false``.
+
+After applying, the schema is reloaded and the workbook rows regenerated:
+every applied field must now show the contributor's value, and every added
+class/slot must exist. If anything did not land, all schema files are
+restored and the run fails (exit code 3).
 
 All errors and warnings are printed as Markdown, suitable for pasting directly
 into a GitHub PR comment.
@@ -44,10 +66,11 @@ import contextlib
 import io
 import re
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Literal
 
+import openpyxl
 import pandas as pd
 from ruamel.yaml import YAML
 from ruamel.yaml.scalarstring import LiteralScalarString
@@ -57,14 +80,38 @@ _ROOT = _HERE.parent
 sys.path.insert(0, str(_HERE))
 
 from generate_schema_docs import (  # noqa: E402
-    EDITABLE_MODULE_FILES,
+    EDITABLE_MODULE_FILES,  # noqa: F401  (re-exported for callers)
     build_origin_index,
     get_all_class_slots,
     get_class_ranged_slot_usage,
     get_slot_details,
     get_subclasses,
     load_merged_schema,
+    load_yaml_file,
     snake_to_readable,
+)
+from schema_to_excel import (  # noqa: E402
+    _raw_row_values,
+    generate_rows,
+    load_schema_view,
+    slot_row_values,
+)
+from workbook_rows import (  # noqa: E402
+    BASELINE_SHEET,
+    COLUMN_ALIASES,
+    FIELD_LABELS,
+    REFERENCE_SHEET,
+    VALUE_FIELDS,
+    changed_fields,
+    class_name_from_label,
+    clean,
+    index_rows,
+    normalise_bool,
+    normalise_mro,
+    normalise_row,
+    read_baseline,
+    row_key,
+    slot_name_from_label,
 )
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -73,6 +120,7 @@ from generate_schema_docs import (  # noqa: E402
 
 SCHEMA_DIR    = _ROOT / "src" / "coremeta4cat" / "schema"
 DEFAULT_INBOX = _ROOT / "inbox" / "coremeta4cat_vocabulary.xlsx"
+DEV_WORKBOOK_URL = "https://nfdi4cat.github.io/CoreMeta4Cat/dev/assets/coremeta4cat_vocabulary.xlsx"
 
 # Sheet title (Excel) → LinkML class name in the schema
 CLASS_MAP: dict[str, str] = {
@@ -83,13 +131,12 @@ CLASS_MAP: dict[str, str] = {
 }
 
 # The set of coremeta4cat-authored (editable) modules is the single canonical
-# EDITABLE_MODULE_FILES list from generate_schema_docs.py (imported above) —
-# this is also what build_origin_index() scans, so "editable via the inbox
-# workflow" always means "defined in one of these files."
+# EDITABLE_MODULE_FILES list from generate_schema_docs.py -- this is also what
+# build_origin_index() scans, so "editable via the inbox workflow" always means
+# "defined in one of these files."
 #
 # New top-level slots/classes with no other owning module land here by default
-# (the top-level aggregator module — deliberately NOT EDITABLE_MODULE_FILES[-1],
-# since that list is ordered for schema-merge precedence, not for this purpose).
+# (the top-level aggregator module).
 DEFAULT_NEW_ELEMENT_FILE = "coremeta4cat.yaml"
 
 # Primitive LinkML types that are valid in the range column
@@ -98,11 +145,37 @@ PRIMITIVE_TYPES: frozenset[str] = frozenset({
     "date", "datetime", "time", "decimal", "double", "Any",
 })
 
-# The schema's default_range (coremeta4cat.yaml / coremeta4cat_common.yaml).
-# A slot with no explicit `range` key is equivalent to one with `range: string`,
-# so the two must be treated as equal when diffing against the Excel (which always
-# emits a range value via schema_to_excel).
+# The schema's default_range. A slot with no explicit `range` key is
+# equivalent to one with `range: string`.
 DEFAULT_RANGE = "string"
+
+# Workbook field → change type of a planned slot modification
+_CHANGE_TYPE = {
+    "mro":             "slot_mro",
+    "description":     "slot_description",
+    "uri":             "slot_uri",
+    "range":           "slot_range",
+    "multivalued":     "slot_multivalued",
+    "inlined_as_list": "slot_inlined_as_list",
+    "unit":            "slot_unit",
+}
+# Workbook field → YAML key on a slot / slot_usage node (M/R/O is two keys)
+_YAML_KEY = {
+    "description":     "description",
+    "uri":             "slot_uri",
+    "range":           "range",
+    "multivalued":     "multivalued",
+    "inlined_as_list": "inlined_as_list",
+    "unit":            "unit",
+}
+
+_PIPELINE_HINT = "This is a pipeline problem, not a workbook problem -- please report it to a maintainer."
+
+# Kept for callers of the old private helpers; the normalisation itself lives
+# in workbook_rows.py so all scripts compare rows the same way.
+_str = clean
+_normalise_bool = normalise_bool
+_mro_normalise = normalise_mro
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Diagnostic / reporting system
@@ -124,6 +197,10 @@ class Reporter:
     def __init__(self) -> None:
         self._diags:   list[Diagnostic] = []
         self._applied: list[str] = []
+        self._notes:   list[str] = []
+        self.empty_message = (
+            "✅ The workbook is fully aligned with the schema — no changes were needed."
+        )
 
     # ── record ─────────────────────────────────────────────────────────────
 
@@ -138,6 +215,20 @@ class Reporter:
 
     def applied(self, description: str) -> None:
         self._applied.append(description)
+
+    def note(self, text: str) -> None:
+        """A line shown in the report's Notes section (context, not a problem)."""
+        self._notes.append(text)
+
+    def rolled_back(self) -> None:
+        """Forget the applied list after the schema files were restored."""
+        count = len(self._applied)
+        self._applied = []
+        if count:
+            self.note(
+                f"{count} prepared change(s) were rolled back because of the errors "
+                f"below — the schema files are unchanged."
+            )
 
     # ── query ──────────────────────────────────────────────────────────────
 
@@ -157,6 +248,11 @@ class Reporter:
             "",
         ]
 
+        if self._notes:
+            lines += ["### ℹ️ Notes", ""]
+            lines += [f"- {note}" for note in self._notes]
+            lines.append("")
+
         if self._applied:
             lines += ["### ✅ Changes applied", ""]
             for desc in self._applied:
@@ -168,8 +264,8 @@ class Reporter:
             lines += [
                 "### ⚠️ Warnings — please review",
                 "",
-                "The following items were applied but require maintainer review "
-                "before the PR is merged:",
+                "The following items need a maintainer's review before the PR "
+                "is merged:",
                 "",
             ]
             for d in warnings:
@@ -194,11 +290,7 @@ class Reporter:
                 lines.append("")
 
         if not self._applied and not warnings and not errors:
-            lines += [
-                "✅ The workbook is fully aligned with the schema — "
-                "no changes were needed.",
-                "",
-            ]
+            lines += [self.empty_message, ""]
 
         return "\n".join(lines)
 
@@ -217,13 +309,42 @@ def _make_yaml() -> YAML:
     return y
 
 
+def _load_yaml(path: Path) -> Any:
+    y = _make_yaml()
+    with path.open(encoding="utf-8") as fh:
+        return y.load(fh)
+
+
+def _save_yaml(path: Path, doc: Any) -> None:
+    y = _make_yaml()
+    # newline="\n": LF on every OS (text mode would write CRLF on Windows)
+    with path.open("w", encoding="utf-8", newline="\n") as fh:
+        y.dump(doc, fh)
+
+
+def _as_literal(value: str) -> Any:
+    """Wrap multi-line strings in LiteralScalarString for block-style YAML."""
+    if "\n" in value:
+        return LiteralScalarString(value)
+    return value
+
+
+def _snapshot_schema(schema_dir: Path) -> dict[Path, bytes]:
+    return {p: p.read_bytes() for p in Path(schema_dir).glob("*.yaml")}
+
+
+def _restore_schema(snapshot: dict[Path, bytes]) -> None:
+    for path, data in snapshot.items():
+        path.write_bytes(data)
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Schema index builders
 # ─────────────────────────────────────────────────────────────────────────────
 
-# build_origin_index() now lives in generate_schema_docs.py (imported above)
-# so schema_to_excel.py can share the exact same editable/vendored predicate
-# for rendering read-only rows.
+# build_origin_index() lives in generate_schema_docs.py (imported above) so
+# schema_to_excel.py shares the exact same editable/vendored predicate for
+# rendering read-only rows.
 
 
 def build_label_index(schema: dict) -> tuple[dict[str, str], dict[str, str]]:
@@ -240,16 +361,11 @@ def build_label_index(schema: dict) -> tuple[dict[str, str], dict[str, str]]:
     label_to_slot:  dict[str, str] = {}
     label_to_class: dict[str, str] = {}
 
-    # 1. Global slots
     for name in schema.get("slots", {}):
         label_to_slot[snake_to_readable(name)] = name
 
-    # 2. Slot-usage-only slots: referenced in class slot_usage but not globally
-    #    defined (e.g. had_input_entity in Synthesis.slot_usage).  These are
-    #    rendered by schema_to_excel as top-level slot rows with an empty domain
-    #    and must be recognised as existing, not new.
     for class_def in schema.get("classes", {}).values():
-        for slot_name in (class_def.get("slot_usage") or {}):
+        for slot_name in ((class_def or {}).get("slot_usage") or {}):
             label = snake_to_readable(slot_name)
             if label not in label_to_slot:
                 label_to_slot[label] = slot_name
@@ -261,46 +377,18 @@ def build_label_index(schema: dict) -> tuple[dict[str, str], dict[str, str]]:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Excel parsing helpers
+# Label helpers
 # ─────────────────────────────────────────────────────────────────────────────
-
-
-def _str(val: Any) -> str:
-    """Coerce a cell value to a stripped string; treats NaN/None as ''."""
-    if val is None:
-        return ""
-    s = str(val).strip()
-    return "" if s.lower() in ("nan", "none", "nat") else s
-
-
-def _normalise_bool(val: Any) -> str:
-    """Return 'yes' if the cell indicates True, else ''."""
-    s = _str(val).lower()
-    return "yes" if s in ("yes", "y", "true", "1", "x") else ""
-
-
-def _mro_normalise(val: Any) -> str:
-    """Return 'M', 'R', 'O', or the raw upper-cased value for unknowns."""
-    s = _str(val).upper()
-    if s in ("M", "MANDATORY"):
-        return "M"
-    if s in ("R", "RECOMMENDED"):
-        return "R"
-    if s in ("O", "OPTIONAL"):
-        return "O"
-    return s  # caller detects invalids
 
 
 def _label_to_slot_name(label: str) -> str:
     """Derive a snake_case slot name from a human-readable label."""
-    return re.sub(r"[^a-z0-9]+", "_", label.strip().lower()).strip("_")
+    return slot_name_from_label(label)
 
 
 def _label_to_class_name(label: str) -> str:
     """Derive a PascalCase class name from a human-readable label."""
-    if " " not in label and label[:1].isupper():
-        return label.strip()   # already PascalCase
-    return "".join(word.capitalize() for word in label.strip().split())
+    return class_name_from_label(label)
 
 
 def _collect_pending_classes(rows: list[dict], label_to_class: dict[str, str]) -> dict[str, str]:
@@ -310,15 +398,10 @@ def _collect_pending_classes(rows: list[dict], label_to_class: dict[str, str]) -
     {derived PascalCase name: parent class name} ('' if the parent is unknown).
 
     A larger submission commonly adds a new slot AND the new class it points
-    to (or a new class AND its new parent class) in the same batch. Without
-    this pre-scan, validating each row only against the schema as it exists
-    *before* the batch means such forward references always fail, regardless
-    of row order. Treating these pending names as valid supports reviewing
-    and applying the whole multi-part change together.
-
-    The parent mapping is what lets slots assigned to a pending class be
-    written into the same YAML module the class itself will be written to
-    (see _resolve_class_target).
+    to (or a new class AND its new parent class) in the same batch; treating
+    these pending names as valid supports applying the whole change together.
+    The parent mapping lets slots on a pending class be written into the same
+    YAML module the class itself will be written to (_resolve_class_target).
     """
     new_rows = [
         row for row in rows
@@ -371,10 +454,7 @@ def _resolve_class_target(
     nearest existing ancestor (walking up through other pending classes).
 
     Both _plan_new_class and _plan_new_slot use this, so a new class and the
-    new slots assigned to it always target the same file. Previously a slot
-    whose domain was a pending class fell back to DEFAULT_NEW_ELEMENT_FILE,
-    while the class itself went to its parent's module -- the slot definition
-    landed in the wrong file and was never attached to the class (PR #157).
+    new slots assigned to it always target the same file (PR #157).
     """
     pending_classes = pending_classes or {}
     seen: set[str] = set()
@@ -431,22 +511,30 @@ def _class_has_slot(
 # ─────────────────────────────────────────────────────────────────────────────
 
 # Canonical column name → accepted aliases (all lower-case)
-_COL_ALIASES: dict[str, list[str]] = {
-    "label":           ["label"],
-    "type":            ["type"],
-    "domain":          ["domain"],
-    "M / R / O":       ["m / r / o", "m/r/o", "mro", "mandatory/recommended/optional"],
-    "range":           ["range"],
-    "multivalued":     ["multivalued"],
-    "inlined as list": ["inlined as list", "inlined_as_list"],
-    "unit":            ["unit"],
-    "uri":             ["uri"],
-    "description":     ["description"],
-}
+_COL_ALIASES: dict[str, list[str]] = COLUMN_ALIASES
 
-# Columns that must be present (the three new ones are optional for back-compat)
+# Columns that must be present (the three newer ones are optional for back-compat)
 _REQUIRED_COLS = {"label", "type", "domain", "M / R / O", "range", "uri", "description"}
 _OPTIONAL_COLS = {"multivalued", "inlined as list", "unit"}
+
+
+def _canonical_frame(df: pd.DataFrame) -> tuple[pd.DataFrame | None, list[str]]:
+    """Rename df's columns to canonical names; returns (df, missing required)."""
+    df = df.copy()
+    df.columns = [str(c).strip() for c in df.columns]
+    resolved: dict[str, str] = {}  # canonical → actual column name in df
+    for canonical, aliases in _COL_ALIASES.items():
+        found = next((c for c in df.columns if c.strip().lower() in aliases), None)
+        if found:
+            resolved[canonical] = found
+    missing = [c for c in _REQUIRED_COLS if c not in resolved]
+    if missing:
+        return None, missing
+    df = df.rename(columns={v: k for k, v in resolved.items()})
+    for col in _OPTIONAL_COLS:
+        if col not in df.columns:
+            df[col] = ""
+    return df.dropna(how="all"), []
 
 
 def validate_structure(
@@ -455,7 +543,8 @@ def validate_structure(
 ) -> dict[str, pd.DataFrame] | None:
     """
     Load and structurally validate the workbook.
-    Returns a dict {sheet_title: DataFrame} or None on fatal error.
+    Returns {sheet_title: DataFrame} for the data sheets (plus the CoreMeta4Cat
+    reference sheet when it is readable), or None on fatal error.
     """
     try:
         raw: dict[str, pd.DataFrame] = pd.read_excel(
@@ -469,7 +558,6 @@ def validate_structure(
         )
         return None
 
-    # All expected data sheets must be present
     missing = [s for s in CLASS_MAP if s not in raw]
     if missing:
         for s in missing:
@@ -485,67 +573,77 @@ def validate_structure(
     ok = True
 
     for sheet_title in CLASS_MAP:
-        df = raw[sheet_title].copy()
-        df.columns = [str(c).strip() for c in df.columns]
-
-        # Resolve actual column names to canonical names (case-insensitive)
-        resolved: dict[str, str] = {}  # canonical → actual column name in df
-        for canonical, aliases in _COL_ALIASES.items():
-            found = next(
-                (c for c in df.columns if c.strip().lower() in aliases),
-                None,
-            )
-            if found:
-                resolved[canonical] = found
-
-        missing_required = [c for c in _REQUIRED_COLS if c not in resolved]
-        if missing_required:
+        df, missing_required = _canonical_frame(raw[sheet_title])
+        if df is None:
             reporter.error(
                 sheet_title, "column check",
-                f"Missing required column(s): {', '.join(missing_required)}.",
+                f"Missing required column(s): {', '.join(sorted(missing_required))}.",
                 hint="Re-download the vocabulary template from docs/assets/ and "
                      "make sure you have not deleted or renamed any column headers.",
             )
             ok = False
             continue
-
-        # Rename to canonical names
-        df = df.rename(columns={v: k for k, v in resolved.items()})
-
-        # Add missing optional columns as empty
-        for col in _OPTIONAL_COLS:
-            if col not in df.columns:
-                df[col] = ""
-
-        df = df.dropna(how="all")
         sheets[sheet_title] = df
 
+    # The reference sheet is optional: it is only checked for (ignored) edits.
+    if REFERENCE_SHEET in raw:
+        df, _ = _canonical_frame(raw[REFERENCE_SHEET])
+        if df is not None:
+            sheets[REFERENCE_SHEET] = df
+
     return sheets if ok else None
+
+
+def scan_cell_errors(workbook_path: Path, reporter: Reporter) -> None:
+    """
+    Report cells that hold an Excel error value (e.g. #NAME?). They come from
+    text Excel read as a formula -- a description starting with '=' -- and
+    would otherwise be read as empty cells and silently dropped.
+    """
+    wb = openpyxl.load_workbook(str(workbook_path), data_only=True)
+    try:
+        for sheet_title in CLASS_MAP:
+            if sheet_title not in wb.sheetnames:
+                continue
+            for row in wb[sheet_title].iter_rows(min_row=2):
+                for cell in row:
+                    if cell.data_type == "e":
+                        reporter.error(
+                            sheet_title, f"cell {cell.coordinate}",
+                            f"Excel shows an error value (`{cell.value}`) instead of text.",
+                            hint="This happens when a cell starts with `=`, `+` or `-`: "
+                                 "Excel reads it as a formula. Type an apostrophe "
+                                 "first (e.g. `'=…`) so Excel keeps it as text.",
+                        )
+    finally:
+        wb.close()
 
 
 def parse_excel(
     sheets: dict[str, pd.DataFrame],
 ) -> dict[str, list[dict[str, Any]]]:
-    """Normalise validated DataFrames into typed row dicts."""
+    """Normalise validated DataFrames into row dicts (see workbook_rows.FIELDS)."""
     result: dict[str, list[dict[str, Any]]] = {}
     for sheet_title, df in sheets.items():
         rows: list[dict[str, Any]] = []
-        for _, raw in df.iterrows():
-            label = _str(raw.get("label", ""))
-            if not label:
-                continue
-            rows.append({
-                "label":           label,
-                "type":            _str(raw.get("type", "slot")).lower() or "slot",
-                "domain":          _str(raw.get("domain", "")),
-                "mro":             _mro_normalise(raw.get("M / R / O", "O")),
-                "range":           _str(raw.get("range", "")),
-                "multivalued":     _normalise_bool(raw.get("multivalued", "")),
-                "inlined_as_list": _normalise_bool(raw.get("inlined as list", "")),
-                "unit":            _str(raw.get("unit", "")),
-                "uri":             _str(raw.get("uri", "")),
-                "description":     _str(raw.get("description", "")),
+        for idx, raw in df.iterrows():
+            row = normalise_row({
+                "label":           raw.get("label"),
+                "type":            raw.get("type"),
+                "domain":          raw.get("domain"),
+                "mro":             raw.get("M / R / O"),
+                "range":           raw.get("range"),
+                "multivalued":     raw.get("multivalued"),
+                "inlined_as_list": raw.get("inlined as list"),
+                "unit":            raw.get("unit"),
+                "uri":             raw.get("uri"),
+                "description":     raw.get("description"),
             })
+            if not row["label"]:
+                continue
+            with contextlib.suppress(TypeError, ValueError):
+                row["_row"] = int(idx) + 2   # Excel row number (header is row 1)
+            rows.append(row)
         result[sheet_title] = rows
     return result
 
@@ -554,13 +652,39 @@ def parse_excel(
 # Validation helpers
 # ─────────────────────────────────────────────────────────────────────────────
 
+_IRI_RE   = re.compile(r"^https?://\S+$")
+_CURIE_RE = re.compile(r"^([A-Za-z_][\w.-]*):(\S+)$")
+_DATE_RE  = re.compile(r"^\d{4}-\d{2}-\d{2}([ T]\d{2}:\d{2}(:\d{2}(\.\d+)?)?)?$")
 
-def _valid_range(range_val: str, schema: dict, pending_class_names: set[str] | None = None) -> bool:
+_URI_HINT = (
+    "Use a CURIE with a prefix the schema declares (e.g. `voc4cat:0000123`, "
+    "`CHMO:0000123`) or a full `https://` IRI."
+)
+_UNIT_HINT = (
+    "Use a UCUM code such as `Cel`, `K`, `bar`, `h`, `mol/L` or `m2/g`. If Excel "
+    "changes what you type, format the cell as Text first."
+)
+
+
+def _valid_range(
+    range_val: str,
+    schema: dict,
+    pending_class_names: set[str] | None = None,
+    sv=None,
+) -> bool:
     if not range_val:
         return True
-    if range_val in PRIMITIVE_TYPES or range_val in schema.get("classes", {}):
+    if (range_val in PRIMITIVE_TYPES or range_val in schema.get("classes", {})
+            or range_val in (schema.get("enums") or {})):
         return True
-    return bool(pending_class_names) and range_val in pending_class_names
+    if pending_class_names and range_val in pending_class_names:
+        return True
+    if sv is not None:
+        with contextlib.suppress(Exception):
+            if (sv.get_class(range_val) is not None or sv.get_enum(range_val) is not None
+                    or sv.get_type(range_val) is not None):
+                return True
+    return False
 
 
 def _range_hint(schema: dict) -> str:
@@ -574,9 +698,179 @@ def _range_hint(schema: dict) -> str:
     )
 
 
+def _uri_problem(value: str, prefixes: set[str]) -> str | None:
+    """Why value is not a usable slot/class URI, or None if it is."""
+    if _IRI_RE.match(value):
+        return None
+    match = _CURIE_RE.match(value)
+    if not match:
+        return "is neither a CURIE (`prefix:id`) nor an `http(s)://` IRI."
+    prefix = match.group(1)
+    if prefix in prefixes:
+        return None
+    close = sorted(p for p in prefixes if p.lower() == prefix.lower())
+    suggestion = f" Did you mean `{close[0]}:`?" if close else ""
+    return f"uses the prefix `{prefix}:`, which the schema does not declare.{suggestion}"
+
+
+def _unit_problem(value: str) -> str | None:
+    """Why value is not a plausible UCUM code, or None if it is (or is empty)."""
+    if not value:
+        return None
+    if _DATE_RE.match(value):
+        return "looks like a date — Excel probably converted what you typed (e.g. `1/2`)."
+    if any(ch.isspace() for ch in value):
+        return "contains spaces, which UCUM codes never do."
+    if any(not 33 <= ord(ch) <= 126 for ch in value):
+        return "contains characters outside plain ASCII (UCUM writes `Cel`, not `°C`)."
+    return None
+
+
+def _short(value: Any, limit: int = 60) -> str:
+    text = str(value).replace("\n", " ")
+    return text if len(text) <= limit else text[: limit - 1] + "…"
+
+
+def _fields_text(fields: list[str]) -> str:
+    return ", ".join(f"*{FIELD_LABELS.get(f, f)}*" for f in fields)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# LinkML inheritance helpers
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+def _slot_level_value(sv, slot_name: str, key: str, include_self: bool = True) -> bool:
+    """
+    A flag's value from the slot definition and its parent slots. LinkML
+    (SchemaView.induced_slot) only passes *true* values down the slot
+    hierarchy, so the flag is set as soon as any of them sets it -- an
+    explicit `false` on a child slot does not switch off a parent's `true`.
+    Only a class's slot_usage can do that.
+    """
+    try:
+        names = sv.slot_ancestors(slot_name, reflexive=include_self)
+    except Exception:  # noqa: BLE001
+        return False
+    for name in names:
+        slot = sv.get_slot(name)
+        if slot is not None and getattr(slot, key, None):
+            return True
+    return False
+
+
+def _needs_class_override(sv, f: str, value: str, slot_name: str) -> bool:
+    """
+    True if writing `value` into the slot definition would not take effect:
+    it switches off a flag a parent slot sets (see _slot_level_value).
+    """
+    if f == "mro":
+        keys = {"M": (), "R": ("required",), "O": ("required", "recommended")}.get(value, ())
+    elif f in ("multivalued", "inlined_as_list"):
+        keys = () if value == "yes" else (f,)
+    else:
+        return False
+    return any(_slot_level_value(sv, slot_name, k, include_self=False) for k in keys)
+
+
+def _class_level_value(sv, slot_name: str, class_name: str, key: str) -> bool:
+    """
+    The value class_name would get for a flag if its own slot_usage did not
+    set it: the nearest ancestor's slot_usage, else the slot definition chain.
+    """
+    try:
+        ancestors = sv.class_ancestors(class_name, reflexive=False)
+    except Exception:  # noqa: BLE001
+        ancestors = []
+    for name in ancestors:
+        cls = sv.get_class(name)
+        usage = (cls.slot_usage or {}).get(slot_name) if cls is not None else None
+        value = getattr(usage, key, None) if usage is not None else None
+        if value is not None:
+            return bool(value)
+    return _slot_level_value(sv, slot_name, key, include_self=True)
+
+
+def _ancestor_usage_sets(sv, slot_name: str, class_name: str, keys: tuple[str, ...]) -> bool:
+    """True if a class ancestor's slot_usage sets one of keys for slot_name."""
+    try:
+        ancestors = sv.class_ancestors(class_name, reflexive=False)
+    except Exception:  # noqa: BLE001
+        return False
+    for name in ancestors:
+        cls = sv.get_class(name)
+        usage = (cls.slot_usage or {}).get(slot_name) if cls is not None else None
+        if usage is not None and any(getattr(usage, k, None) is not None for k in keys):
+            return True
+    return False
+
+
+def _is_identifier(sv, slot_name: str, class_name: str | None) -> bool:
+    with contextlib.suppress(Exception):
+        ind = sv.induced_slot(slot_name, class_name)
+        return bool(ind.identifier or ind.key)
+    return False
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Change planning
 # ─────────────────────────────────────────────────────────────────────────────
+
+
+@dataclass
+class _Plan:
+    """State shared by the per-row planners of one plan_changes() call."""
+    schema: dict
+    sv: Any
+    label_to_slot: dict[str, str]
+    label_to_class: dict[str, str]
+    slot_origin: dict[str, Path]
+    class_origin: dict[str, Path]
+    reporter: Reporter
+    changes: list[dict[str, Any]] = field(default_factory=list)
+    # New slots planned so far (name -> its slot_add change). A new field
+    # listed on several classes gets ONE global definition and is attached to
+    # every further class instead of being re-added.
+    planned_new_slots: dict[str, dict[str, Any]] = field(default_factory=dict)
+    _docs: dict[Path, dict] = field(default_factory=dict)
+    _prefixes: set[str] | None = None
+    _current: dict[str, list[dict]] | None = None
+
+    def doc(self, path: Path) -> dict:
+        if path not in self._docs:
+            self._docs[path] = load_yaml_file(str(path)) or {}
+        return self._docs[path]
+
+    def class_node(self, class_name: str) -> dict | None:
+        """The class as written in its own module, or None if not editable."""
+        path = self.class_origin.get(class_name)
+        if path is None:
+            return None
+        return (self.doc(path).get("classes") or {}).get(class_name) or {}
+
+    def own_usage(self, class_name: str, slot_name: str) -> dict | None:
+        node = self.class_node(class_name)
+        usage = (node or {}).get("slot_usage") or {}
+        if slot_name not in usage:
+            return None
+        return usage.get(slot_name) or {}
+
+    def own_slots(self, class_name: str) -> list[str]:
+        return list((self.class_node(class_name) or {}).get("slots") or [])
+
+    def prefixes(self) -> set[str]:
+        if self._prefixes is None:
+            known = set((self.schema.get("prefixes") or {}).keys())
+            with contextlib.suppress(Exception):
+                for schema in self.sv.all_schema():
+                    known.update((schema.prefixes or {}).keys())
+            self._prefixes = known
+        return self._prefixes
+
+    def current_rows(self) -> dict[str, list[dict]]:
+        if self._current is None:
+            self._current = generate_rows(SCHEMA_DIR)
+        return self._current
 
 
 def plan_changes(
@@ -587,253 +881,136 @@ def plan_changes(
     slot_origin: dict[str, Path],
     class_origin: dict[str, Path],
     reporter: Reporter,
+    *,
+    baseline: dict[str, dict] | None = None,
+    sv=None,
 ) -> list[dict[str, Any]]:
     """
-    Diff the Excel data against the merged schema.
-    Returns validated Change dicts ready to apply.
-    Unresolvable issues are recorded as errors or warnings on reporter.
+    Diff the Excel data against the merged schema and return validated change
+    dicts ready to apply. Unresolvable issues are recorded on reporter.
+
+    With `baseline` (the workbook's _baseline sheet, see read_baseline) only
+    the rows and fields that differ from it are planned, and rows missing
+    from it are planned as removals. Without it every field of every row is
+    compared with the current schema.
     """
-    changes: list[dict[str, Any]] = []
-    # New slots planned so far in this submission (name -> its slot_add
-    # change). A new field listed on several classes (e.g. one new
-    # "energy correction type" row per new class) gets ONE global definition
-    # and is attached to every further class instead of being re-added.
-    planned_new_slots: dict[str, dict[str, Any]] = {}
-
+    plan = _Plan(
+        schema=schema,
+        sv=sv if sv is not None else load_schema_view(SCHEMA_DIR),
+        label_to_slot=label_to_slot,
+        label_to_class=label_to_class,
+        slot_origin=slot_origin,
+        class_origin=class_origin,
+        reporter=reporter,
+    )
     for sheet_title, rows in excel_data.items():
-        # Classes proposed as new elsewhere in this same sheet -- lets a new
-        # slot/class reference another new class in the same submission
-        # (e.g. adding a slot together with the class it ranges over).
-        pending_classes = _collect_pending_classes(rows, label_to_class)
-        schema_class = CLASS_MAP[sheet_title]
+        base_idx = None if baseline is None else baseline.get(sheet_title, {})
+        if sheet_title == REFERENCE_SHEET:
+            _check_reference_sheet(plan, rows, base_idx)
+        elif sheet_title in CLASS_MAP:
+            _plan_sheet(plan, sheet_title, rows, base_idx)
+    return plan.changes
 
-        # Collect all slot/class names the schema knows about for this class
-        schema_slot_names: set[str] = set(get_all_class_slots(schema, schema_class))
-        for su_name, _ in get_class_ranged_slot_usage(schema, schema_class):
-            schema_slot_names.add(su_name)
 
-        schema_class_names: set[str] = set()
-        for slot_name in schema_slot_names:
-            slot_def = get_slot_details(schema, slot_name)
-            rng = slot_def.get("range", "")
-            if rng and rng in schema.get("classes", {}):
-                schema_class_names.add(rng)
-                for sub in get_subclasses(schema, rng):
-                    schema_class_names.add(sub)
+def _plan_sheet(p: _Plan, sheet: str, rows: list[dict], base_idx: dict | None) -> None:
+    schema_class = CLASS_MAP[sheet]
+    pending = _collect_pending_classes(rows, p.label_to_class)
 
-        # Track which schema names appear in the Excel (for deletion detection)
-        seen_slot_names:  set[str] = set()
-        seen_class_names: set[str] = set()
+    # One row per (label, domain): a second, different row with the same key
+    # would be ambiguous.
+    unique: list[dict] = []
+    by_key: dict[tuple[str, str], dict] = {}
+    for row in rows:
+        key = row_key(row)
+        first = by_key.get(key)
+        if first is None:
+            by_key[key] = row
+            unique.append(row)
+        elif changed_fields(row, first):
+            p.reporter.error(
+                sheet, f"{row['type']} '{row['label']}'",
+                f"Appears twice with the same domain "
+                f"(`{row['domain'] or 'top level'}`, rows {first.get('_row', '?')} "
+                f"and {row.get('_row', '?')}) but with different values.",
+                hint="Keep one row per field and class.",
+            )
 
-        for row in rows:
-            label    = row["label"]
-            row_type = row["type"]
-            domain   = row["domain"]
-
-            if row_type == "slot":
-                slot_name = label_to_slot.get(label)
-
-                if slot_name is not None:
-                    # ── Known global slot ───────────────────────────────────
-                    # If the row has a domain (e.g. domain="Precursor"), the
-                    # slot lives in that subclass's slot_usage, not in the
-                    # top-level class.  Use the domain class as context so
-                    # _plan_slot_changes targets the right YAML node.
-                    seen_slot_names.add(slot_name)
-                    effective_class = (
-                        _resolve_domain_class(domain, label_to_class, pending_classes)
-                        if domain else schema_class
-                    )
-                    if domain and not _class_has_slot(
-                        schema, effective_class, slot_name, pending_classes
-                    ):
-                        # ── Existing slot reused on a class that does not
-                        # have it yet (typically a class that is new in this
-                        # submission, e.g. "miller indices" on a new
-                        # CalculatedProperty subclass). Previously these rows
-                        # only had their properties diffed and were never
-                        # attached, so they silently vanished (PR #157).
-                        _plan_slot_attach(
-                            row, slot_name, schema, sheet_title, effective_class,
-                            class_origin, pending_classes, changes, reporter,
-                        )
-                    elif slot_name not in slot_origin:
-                        # Inherited from a vendored chemdcat-ap module (e.g.
-                        # ChemicalReaction's used_reactant) — visible for
-                        # reference on the effective class, but not owned by
-                        # any editable module. Never modifiable via the inbox
-                        # workflow, regardless of what the row contains.
-                        reporter.info(
-                            sheet_title, f"slot '{label}'",
-                            f"Skipped: `{slot_name}` is inherited from a chemdcat-ap "
-                            f"base class and is not modifiable via the inbox workflow "
-                            f"(edit the YAML directly).",
-                        )
-                    else:
-                        _plan_slot_changes(
-                            row, slot_name, schema, sheet_title, effective_class,
-                            slot_origin, class_origin, changes, reporter,
-                        )
-
-                elif domain:
-                    # ── Unknown label + non-empty domain ───────────────────
-                    # Could be a slot_usage-only slot (not in global slots:)
-                    # defined on the domain class (e.g. has_concentration in
-                    # CoPrecipitation).  Derive the slot name and check.
-                    effective_class = _resolve_domain_class(
-                        domain, label_to_class, pending_classes
-                    )
-                    derived_name = _label_to_slot_name(label)
-                    cls_def = schema.get("classes", {}).get(effective_class, {})
-                    if derived_name in (cls_def.get("slot_usage") or {}):
-                        seen_slot_names.add(derived_name)
-                        _plan_slot_changes(
-                            row, derived_name, schema, sheet_title,
-                            effective_class, slot_origin, class_origin,
-                            changes, reporter,
-                        )
-                    elif derived_name in get_all_class_slots(schema, effective_class):
-                        # Slot already belongs to the subclass hierarchy (its own
-                        # slots: list or a mixin) and cannot be modified via the
-                        # inbox workflow.  Skip silently — these rows are
-                        # structural display information from the Excel
-                        # generator, not editable fields.
-                        reporter.info(
-                            sheet_title, f"slot '{label}'",
-                            f"Skipped: belongs to sub-class `{effective_class}` "
-                            f"and is not modifiable via the inbox workflow "
-                            f"(edit the YAML directly).",
-                        )
-                    else:
-                        # Unknown slot assigned to a domain class that does not
-                        # already define it → a genuinely new slot to be added to
-                        # that subclass (e.g. anode/cathode on ElectrochemicalReactor).
-                        # _plan_new_slot resolves the owner class from the domain.
-                        _plan_new_slot(
-                            row, sheet_title, schema_class,
-                            schema, class_origin, slot_origin, label_to_slot,
-                            label_to_class, changes, reporter,
-                            pending_classes, planned_new_slots,
-                        )
-
-                else:
-                    # ── Unknown label + empty domain → new top-level slot ──
-                    _plan_new_slot(
-                        row, sheet_title, schema_class,
-                        schema, class_origin, slot_origin, label_to_slot,
-                        label_to_class, changes, reporter,
-                        pending_classes, planned_new_slots,
-                    )
-
-            elif row_type == "class":
-                # ── When a class row has a domain, that domain is the label
-                # of the parent slot (e.g. "had input entity" for Precursor).
-                # Mark that parent slot as seen so the deletion detector does
-                # not falsely warn that it is missing from the workbook.
-                if domain:
-                    parent_slot_name = label_to_slot.get(domain)
-                    if parent_slot_name:
-                        seen_slot_names.add(parent_slot_name)
-
-                class_name = label_to_class.get(label)
-                if class_name is None:
-                    _plan_new_class(
-                        row, sheet_title, schema_class,
-                        schema, class_origin, label_to_class,
-                        changes, reporter,
-                        pending_classes,
-                    )
-                else:
-                    seen_class_names.add(class_name)
-                    if class_name not in class_origin:
-                        # Inherited from a vendored chemdcat-ap module (e.g.
-                        # Catalyst, Reactor) — visible for reference, but not
-                        # owned by any editable module and never modifiable
-                        # via the inbox workflow.
-                        reporter.info(
-                            sheet_title, f"class '{label}'",
-                            f"Skipped: `{class_name}` is a chemdcat-ap base class "
-                            f"and is not modifiable via the inbox workflow "
-                            f"(edit the YAML directly).",
-                        )
-                    else:
-                        _plan_class_changes(
-                            row, class_name, schema, sheet_title,
-                            class_origin, changes, reporter,
-                        )
-
-        # ── detect deletions ───────────────────────────────────────────────
-        # Only slots/classes owned by an editable module can ever be
-        # "deleted" via the inbox workflow. Names inherited from a vendored
-        # chemdcat-ap module (not in slot_origin/class_origin) are skipped
-        # here entirely — they were never addable/removable via Excel in the
-        # first place, so their absence from a contributor's workbook is not
-        # a deletion signal.
-
-        for slot_name in schema_slot_names:
-            if slot_name not in slot_origin:
-                continue
-            if slot_name not in seen_slot_names:
-                reporter.warning(
-                    sheet_title, f"slot `{slot_name}`",
-                    f"Present in the schema but **missing** from your workbook "
-                    f"(expected label: *{snake_to_readable(slot_name)}*). "
-                    f"It will be removed from `{schema_class}`.",
-                    hint="If accidental (e.g. you filtered rows before saving), "
-                         "re-download the template and start again. "
-                         "If intentional, the deletion is applied and the test suite "
-                         "will verify no required fields are broken.",
+    for row in unique:
+        base = base_idx.get(row_key(row)) if base_idx is not None else None
+        fields: list[str] | None = None   # None: every field counts
+        if base is not None:
+            fields = changed_fields(row, base)
+            if not fields:
+                continue                  # untouched since the download
+            if "type" in fields:
+                p.reporter.warning(
+                    sheet, f"row '{row['label']}'",
+                    "Not applied: the *type* of an existing row (slot or class) "
+                    "can't be changed.",
+                    hint="Add a new row instead.",
                 )
-                changes.append({
-                    "type":         "slot_delete",
-                    "name":         slot_name,
-                    "schema_class": schema_class,
-                    "_target":      class_origin.get(
-                        schema_class, SCHEMA_DIR / DEFAULT_NEW_ELEMENT_FILE
-                    ),
-                })
-
-        for class_name in schema_class_names:
-            if class_name not in class_origin:
                 continue
-            if class_name not in seen_class_names:
-                reporter.warning(
-                    sheet_title, f"class `{class_name}`",
-                    f"Present in the schema but **missing** from your workbook "
-                    f"(expected label: *{snake_to_readable(class_name)}*). "
-                    f"It will be removed.",
-                    hint="If accidental, re-download the template. "
-                         "The maintainer will review deletions before merging.",
-                )
-                changes.append({
-                    "type":         "class_delete",
-                    "name":         class_name,
-                    "schema_class": schema_class,
-                    "_target":      class_origin.get(
-                        class_name, SCHEMA_DIR / DEFAULT_NEW_ELEMENT_FILE
-                    ),
-                })
 
-    return changes
+        if row["type"] == "slot":
+            _plan_slot_row(p, sheet, schema_class, row, base, fields, pending)
+        elif row["type"] == "class":
+            _plan_class_row(p, sheet, schema_class, row, base, fields, pending)
+        else:
+            p.reporter.error(
+                sheet, f"row '{row['label']}'",
+                f"Invalid type `{row['type']}`. Use **slot** or **class**.",
+            )
+
+    if base_idx is None:
+        _plan_legacy_deletions(p, sheet, schema_class, unique)
+    else:
+        _plan_removed_rows(p, sheet, schema_class, unique, base_idx, pending)
 
 
-# ── per-row change planners ────────────────────────────────────────────────
+# ── slots ──────────────────────────────────────────────────────────────────
 
 
-def _effective(slot_def: dict, su: dict, key: str, default: Any = None) -> Any:
-    """Return slot_usage value if set, else global slot value."""
-    if key in su:
-        return su[key]
-    return slot_def.get(key, default)
+def _plan_slot_row(
+    p: _Plan,
+    sheet: str,
+    schema_class: str,
+    row: dict,
+    base: dict | None,
+    fields: list[str] | None,
+    pending: dict[str, str],
+) -> None:
+    label, domain = row["label"], row["domain"]
+    classes = p.schema.get("classes", {})
+    effective_class = (
+        _resolve_domain_class(domain, p.label_to_class, pending) if domain else schema_class
+    )
+
+    slot_name = p.label_to_slot.get(label)
+    if slot_name is None and domain:
+        # A slot_usage-only or inherited slot of the domain class whose name
+        # is not a global slot (e.g. has_concentration on CoPrecipitation).
+        derived = _label_to_slot_name(label)
+        cdef = classes.get(effective_class) or {}
+        if derived in (cdef.get("slot_usage") or {}) or (
+            effective_class in classes and derived in get_all_class_slots(p.schema, effective_class)
+        ):
+            slot_name = derived
+
+    if slot_name is None:
+        _plan_new_slot(p, sheet, schema_class, row, pending)
+    elif not _class_has_slot(p.schema, effective_class, slot_name, pending):
+        # An existing slot listed on a class that does not have it yet
+        # (typically a class that is new in this submission).
+        _plan_slot_attach(p, sheet, row, slot_name, effective_class, pending)
+    else:
+        _plan_slot_changes(p, sheet, row, slot_name, effective_class, base, fields)
 
 
 def _slot_owner_classes(schema: dict, slot_name: str) -> list[str]:
     """
-    Return every class that directly references slot_name, via its own
-    slots: list or a slot_usage entry. Used to warn when an edit to a slot
-    that has no existing slot_usage override for the row's class would fall
-    through to the slot's single, global definition -- silently changing it
-    for every other class that also uses it, not just the one being edited.
+    Every class that directly references slot_name, via its own slots: list
+    or a slot_usage entry. Used to warn when an edit changes the slot's
+    single, global definition for every other class that uses it too.
     """
     owners: list[str] = []
     for cname, cdef in schema.get("classes", {}).items():
@@ -844,164 +1021,205 @@ def _slot_owner_classes(schema: dict, slot_name: str) -> list[str]:
     return owners
 
 
+def _slot_target(p: _Plan, f: str, slot_name: str, cls: str) -> tuple[str, Path, str | None] | None:
+    """
+    Where a change to field f of slot_name on class cls is written:
+    ("usage", file, cls) for cls's existing slot_usage entry, ("new_usage",
+    file, cls) for a new one, ("global", file, None) for the slot definition,
+    or None if it can't be applied.
+    """
+    own_usage = p.own_usage(cls, slot_name)
+    class_file = p.class_origin.get(cls)
+    slot_file = p.slot_origin.get(slot_name)
+    shared = any(c != cls for c in _slot_owner_classes(p.schema, slot_name))
+
+    if f == "mro":
+        # M/R/O is per class: scope it to this class unless the slot belongs
+        # to this class alone and nothing above it overrides M/R/O.
+        if own_usage is not None:
+            return ("usage", class_file, cls)
+        overridden = _ancestor_usage_sets(p.sv, slot_name, cls, ("required", "recommended"))
+        if not shared and not overridden and slot_file:
+            return ("global", slot_file, None)
+        if class_file:
+            return ("new_usage", class_file, cls)
+        return ("global", slot_file, None) if slot_file else None
+
+    key = _YAML_KEY[f]
+    if f in ("uri", "unit"):
+        if own_usage is not None and key in own_usage:
+            return ("usage", class_file, cls)
+        return ("global", slot_file, None) if slot_file else None
+
+    # description, range, multivalued, inlined_as_list
+    if own_usage is not None:
+        return ("usage", class_file, cls)
+    if _ancestor_usage_sets(p.sv, slot_name, cls, (key,)):
+        # Set by a parent class's slot_usage: override it for this class.
+        return ("new_usage", class_file, cls) if class_file else None
+    return ("global", slot_file, None) if slot_file else None
+
+
+def _inherited_flags(p: _Plan, f: str, slot_name: str, where: str, owner: str | None) -> dict[str, bool]:
+    """What the written node would inherit for each flag if it left it unset."""
+    keys = {"mro": ("required", "recommended"),
+            "multivalued": ("multivalued",),
+            "inlined_as_list": ("inlined_as_list",)}.get(f, ())
+    if where == "global":
+        return {k: _slot_level_value(p.sv, slot_name, k, include_self=False) for k in keys}
+    return {k: _class_level_value(p.sv, slot_name, owner, k) for k in keys}
+
+
+def _typed_value(f: str, value: str) -> Any:
+    if f in ("multivalued", "inlined_as_list"):
+        return value == "yes"
+    return value
+
+
 def _plan_slot_changes(
+    p: _Plan,
+    sheet: str,
     row: dict,
     slot_name: str,
-    schema: dict,
-    sheet: str,
-    schema_class: str,
-    slot_origin: dict[str, Path],
-    class_origin: dict[str, Path],
-    changes: list,
-    reporter: Reporter,
+    cls: str,
+    base: dict | None,
+    fields: list[str] | None,
 ) -> None:
-    slot_def  = get_slot_details(schema, slot_name)
-    class_def = schema.get("classes", {}).get(schema_class, {})
-    has_su_override = slot_name in (class_def.get("slot_usage") or {})
-    su        = (class_def.get("slot_usage") or {}).get(slot_name) or {}
+    reporter = p.reporter
+    vals = slot_row_values(p.sv, slot_name, cls)
+    if vals is None:   # SchemaView doesn't know the slot: compare with the YAML as written
+        vals = _raw_row_values(p.schema, slot_name, cls, None)
+    current = normalise_row({**vals, "label": row["label"], "domain": row["domain"]})
 
-    target_su   = class_origin.get(schema_class)
-    target_slot = slot_origin.get(slot_name)
-    changes_before = len(changes)
+    candidates = [f for f in (fields if fields is not None else VALUE_FIELDS) if f != "type"]
+    diffs = [f for f in candidates if row[f] != current[f]]
+    if not diffs:
+        return
 
-    # -- M/R/O --
-    new_mro = row["mro"]
-    if new_mro not in ("M", "R", "O"):
-        reporter.error(
-            sheet, f"slot `{slot_name}`",
-            f"Invalid M/R/O value `{new_mro!r}`. "
-            f"Only **M** (Mandatory), **R** (Recommended), or **O** (Optional) are accepted.",
+    context = f"slot `{slot_name}`"
+    if slot_name not in p.slot_origin:
+        reporter.warning(
+            sheet, f"slot '{row['label']}'",
+            f"Not applied: `{slot_name}` is inherited from a chemdcat-ap base class "
+            f"and is read-only here, so your change to {_fields_text(diffs)} was ignored.",
+            hint="Ask a maintainer to change it in the YAML directly, or open an issue.",
         )
-    else:
-        cur_req = bool(_effective(slot_def, su, "required",    False))
-        cur_rec = bool(_effective(slot_def, su, "recommended", False))
-        cur_mro = "M" if cur_req else ("R" if cur_rec else "O")
-        if new_mro != cur_mro:
-            changes.append({
-                "type": "slot_mro", "name": slot_name,
-                "schema_class": schema_class, "mro": new_mro,
-                "_target_su": target_su, "_target_slot": target_slot,
-            })
+        return
 
-    # -- description --
-    new_desc = row["description"]
-    if new_desc and new_desc != _str(_effective(slot_def, su, "description", "")):
-        changes.append({
-            "type": "slot_description", "name": slot_name,
-            "schema_class": schema_class, "value": new_desc,
-            "_target_su": target_su, "_target_slot": target_slot,
-        })
+    global_fields: list[str] = []
+    for f in diffs:
+        new, cur = row[f], current[f]
 
-    # -- URI --
-    new_uri = row["uri"]
-    if new_uri and new_uri != _str(_effective(slot_def, su, "slot_uri", "")):
-        changes.append({
-            "type": "slot_uri", "name": slot_name,
-            "schema_class": schema_class, "value": new_uri,
-            "_target_su": target_su, "_target_slot": target_slot,
-        })
-
-    # -- range --
-    new_range = row["range"]
-    if new_range:
-        # An absent range key means the schema default (string); normalise so a
-        # default-range slot is not seen as "changing" to string on the next run.
-        cur_range = _str(_effective(slot_def, su, "range", "")) or DEFAULT_RANGE
-        if new_range != cur_range:
-            if not _valid_range(new_range, schema):
-                reporter.error(
-                    sheet, f"slot `{slot_name}`",
-                    f"Unknown range `{new_range}`. "
-                    f"This type is not a recognized primitive or schema class.",
-                    hint=_range_hint(schema),
-                )
-            else:
+        # An empty description/URI/range cell means "keep".
+        if f in ("description", "uri", "range") and not new:
+            if fields is not None:
                 reporter.warning(
-                    sheet, f"slot `{slot_name}`",
-                    f"Range changed: `{cur_range}` → `{new_range}`. "
-                    f"This structural change may invalidate existing data files.",
-                    hint="The test suite will verify this automatically. "
-                         "A maintainer will review before merging.",
+                    sheet, context,
+                    f"Not applied: you cleared the *{FIELD_LABELS[f]}* of `{slot_name}` "
+                    f"({cls}); removing it is not supported here.",
+                    hint="Ask a maintainer if it really should be removed.",
                 )
-                changes.append({
-                    "type": "slot_range", "name": slot_name,
-                    "schema_class": schema_class, "value": new_range,
-                    "_target_su": target_su, "_target_slot": target_slot,
-                })
+            continue
 
-    # -- multivalued --
-    new_mv = row["multivalued"] == "yes"
-    cur_mv = bool(_effective(slot_def, su, "multivalued", False))
-    if new_mv != cur_mv:
-        changes.append({
-            "type": "slot_multivalued", "name": slot_name,
-            "schema_class": schema_class, "value": new_mv,
-            "_target_su": target_su, "_target_slot": target_slot,
+        if f == "mro":
+            if new not in ("M", "R", "O"):
+                reporter.error(
+                    sheet, context,
+                    f"Invalid M/R/O value `{new!r}`. "
+                    f"Only **M** (Mandatory), **R** (Recommended), or **O** (Optional) are accepted.",
+                )
+                continue
+            if new != "M" and _is_identifier(p.sv, slot_name, cls):
+                reporter.error(
+                    sheet, context,
+                    f"`{slot_name}` identifies the record and is always **M** (Mandatory).",
+                )
+                continue
+        elif f == "range" and not _valid_range(new, p.schema, sv=p.sv):
+            reporter.error(
+                sheet, context,
+                f"Unknown range `{new}`. This type is not a recognized primitive or schema class.",
+                hint=_range_hint(p.schema),
+            )
+            continue
+        elif f == "uri" and (problem := _uri_problem(new, p.prefixes())):
+            reporter.error(sheet, context, f"The URI `{new}` {problem}", hint=_URI_HINT)
+            continue
+        elif f == "unit" and (problem := _unit_problem(new)):
+            reporter.error(sheet, context, f"The unit `{new}` {problem}", hint=_UNIT_HINT)
+            continue
+        elif f == "inlined_as_list" and new == "yes" \
+                and p.sv.get_class(row["range"] or current["range"]) is None:
+            reporter.warning(
+                sheet, context,
+                "Not applied: *inlined as list* only applies to fields whose range is a class.",
+            )
+            continue
+
+        target = _slot_target(p, f, slot_name, cls)
+        if target is not None and target[0] == "global" and _needs_class_override(p.sv, f, new, slot_name):
+            # Switching off a flag a parent slot sets only works in slot_usage.
+            class_file = p.class_origin.get(cls)
+            target = None if class_file is None else (
+                "usage" if p.own_usage(cls, slot_name) is not None else "new_usage", class_file, cls,
+            )
+        if target is None:
+            reporter.warning(
+                sheet, context,
+                f"Not applied: the *{FIELD_LABELS[f]}* of `{slot_name}` can't be changed "
+                f"for `{cls}` through the workbook.",
+                hint="Ask a maintainer to change it in the YAML directly.",
+            )
+            continue
+        where, path, owner = target
+
+        if base is not None and base.get(f, "") != cur:
+            reporter.warning(
+                sheet, context,
+                f"Conflict: the *{FIELD_LABELS[f]}* of `{slot_name}` ({cls}) was also "
+                f"changed in the schema after you downloaded the workbook (it is now "
+                f"`{_short(cur)}`). Your value `{_short(new)}` is applied.",
+                hint="Check that this is still what you want.",
+            )
+        if f == "range":
+            reporter.warning(
+                sheet, context,
+                f"Range changed: `{cur}` → `{new}`. "
+                f"This structural change may invalidate existing data files.",
+                hint="The test suite will verify this automatically. "
+                     "A maintainer will review before merging.",
+            )
+
+        p.changes.append({
+            "type":         _CHANGE_TYPE[f],
+            "name":         slot_name,
+            "schema_class": cls,
+            "field":        f,
+            "value":        _typed_value(f, new),
+            "mro":          new if f == "mro" else None,
+            "_where":       where,
+            "_target":      path,
+            "_owner":       owner,
+            "_inherited":   _inherited_flags(p, f, slot_name, where, owner),
+            "_expect":      [(sheet, row_key(row), f, new, True)],
         })
+        if where == "global":
+            global_fields.append(f)
 
-    # -- inlined_as_list --
-    new_il = row["inlined_as_list"] == "yes"
-    cur_il = bool(_effective(slot_def, su, "inlined_as_list", False))
-    if new_il != cur_il:
-        changes.append({
-            "type": "slot_inlined_as_list", "name": slot_name,
-            "schema_class": schema_class, "value": new_il,
-            "_target_su": target_su, "_target_slot": target_slot,
-        })
-
-    # -- unit --
-    new_unit = row["unit"]
-    cur_unit = _str((slot_def.get("unit") or {}).get("ucum_code", ""))
-    if new_unit != cur_unit:
-        changes.append({
-            "type": "slot_unit", "name": slot_name,
-            "schema_class": schema_class, "value": new_unit,
-            "_target_slot": target_slot,
-        })
-
-    # -- warn if this edit falls through to the slot's single global
-    # definition, shared by more than one class ---------------------------
-    if len(changes) > changes_before and not has_su_override:
-        owners = [c for c in _slot_owner_classes(schema, slot_name) if c != schema_class]
+    if global_fields:
+        owners = [c for c in _slot_owner_classes(p.schema, slot_name) if c != cls]
         if owners:
             owners_str = ", ".join(f"`{c}`" for c in sorted(owners))
             reporter.warning(
-                sheet, f"slot `{slot_name}`",
+                sheet, context,
                 f"This edit changes `{slot_name}`'s single, global definition "
-                f"-- it is not scoped to `{schema_class}` alone. It will also "
+                f"-- it is not scoped to `{cls}` alone. It will also "
                 f"change `{slot_name}` for: {owners_str}.",
                 hint="If you only meant to change it for this class, a "
                      "maintainer needs to add a slot_usage override for "
-                     f"`{slot_name}` on `{schema_class}` first, rather than "
+                     f"`{slot_name}` on `{cls}` first, rather than "
                      "editing the global slot.",
             )
-
-
-def _plan_class_changes(
-    row: dict,
-    class_name: str,
-    schema: dict,
-    sheet: str,
-    class_origin: dict[str, Path],
-    changes: list,
-    reporter: Reporter,
-) -> None:
-    class_def = schema.get("classes", {}).get(class_name, {})
-    target = class_origin.get(class_name)
-
-    new_desc = row["description"]
-    if new_desc and new_desc != _str(class_def.get("description", "")):
-        changes.append({
-            "type": "class_description", "name": class_name,
-            "value": new_desc, "_target": target,
-        })
-
-    new_uri = row["uri"]
-    if new_uri and new_uri != _str(class_def.get("class_uri", "")):
-        changes.append({
-            "type": "class_uri", "name": class_name,
-            "value": new_uri, "_target": target,
-        })
 
 
 def _mro_slot_usage(base_required: bool, base_recommended: bool, mro: str) -> dict[str, bool]:
@@ -1013,7 +1231,7 @@ def _mro_slot_usage(base_required: bool, base_recommended: bool, mro: str) -> di
     su: dict[str, bool] = {}
     if (mro == "M") != base_required:
         su["required"] = mro == "M"
-    if (mro == "R") != base_recommended:
+    if mro != "M" and (mro == "R") != base_recommended:
         su["recommended"] = mro == "R"
     return su
 
@@ -1042,11 +1260,18 @@ def _slot_definition(slot_def: dict) -> dict[str, Any]:
     }
 
 
+def _effective_definition(p: _Plan, slot_name: str) -> dict[str, Any]:
+    """_slot_definition with the values LinkML uses (slot inheritance included)."""
+    vals = slot_row_values(p.sv, slot_name, None)
+    if vals is None:
+        return _slot_definition(get_slot_details(p.schema, slot_name))
+    return _row_definition(normalise_row(vals))
+
+
 def _definition_diffs(row: dict, reference: dict[str, Any]) -> list[str]:
     """
     Names of definition fields where the row differs from `reference`.
-    An empty range/URI/description cell means "keep", mirroring
-    _plan_slot_changes.
+    An empty range/URI/description cell means "keep".
     """
     diffs: list[str] = []
     for key, value in _row_definition(row).items():
@@ -1058,15 +1283,12 @@ def _definition_diffs(row: dict, reference: dict[str, Any]) -> list[str]:
 
 
 def _plan_slot_attach(
+    p: _Plan,
+    sheet: str,
     row: dict,
     slot_name: str,
-    schema: dict,
-    sheet: str,
     class_name: str,
-    class_origin: dict[str, Path],
-    pending_classes: dict[str, str] | None,
-    changes: list,
-    reporter: Reporter,
+    pending: dict[str, str],
 ) -> None:
     """
     Plan attaching an EXISTING slot to a class that does not have it yet
@@ -1077,9 +1299,10 @@ def _plan_slot_attach(
     is reported but not applied, because it would silently change the slot
     for every other class that uses it.
     """
+    reporter = p.reporter
     label = row["label"]
-    classes = schema.get("classes", {})
-    is_pending = class_name not in classes and class_name in (pending_classes or {})
+    classes = p.schema.get("classes", {})
+    is_pending = class_name not in classes and class_name in pending
 
     if not is_pending and class_name not in classes:
         reporter.error(
@@ -1090,7 +1313,7 @@ def _plan_slot_attach(
             hint="Look at the class rows in this sheet for valid domain names.",
         )
         return
-    if not is_pending and class_name not in class_origin:
+    if not is_pending and class_name not in p.class_origin:
         reporter.warning(
             sheet, f"slot `{slot_name}`",
             f"Not attached to `{class_name}`: it is a chemdcat-ap base class "
@@ -1108,14 +1331,13 @@ def _plan_slot_attach(
         )
         return
 
-    slot_def = get_slot_details(schema, slot_name)
     slot_usage = _mro_slot_usage(
-        bool(slot_def.get("required", False)),
-        bool(slot_def.get("recommended", False)),
+        _slot_level_value(p.sv, slot_name, "required") or _is_identifier(p.sv, slot_name, None),
+        _slot_level_value(p.sv, slot_name, "recommended"),
         mro,
     )
 
-    diffs = _definition_diffs(row, _slot_definition(slot_def))
+    diffs = _definition_diffs(row, _effective_definition(p, slot_name))
     if diffs:
         reporter.warning(
             sheet, f"slot `{slot_name}`",
@@ -1131,47 +1353,38 @@ def _plan_slot_attach(
         sheet, f"slot `{slot_name}`",
         f"Will attach existing slot `{slot_name}` to `{class_name}`.",
     )
-    changes.append({
+    domain_label = class_name if row["domain"] else ""
+    p.changes.append({
         "type":         "slot_attach",
         "name":         slot_name,
         "schema_class": class_name,
         "mro":          mro,
         "slot_usage":   slot_usage,
-        "_target":      _resolve_class_target(class_name, class_origin, pending_classes),
+        "_target":      _resolve_class_target(class_name, p.class_origin, pending),
+        "_expect":      [(sheet, (snake_to_readable(slot_name), domain_label), "mro", mro, False)],
     })
 
 
 def _plan_new_slot(
-    row: dict,
+    p: _Plan,
     sheet: str,
     schema_class: str,
-    schema: dict,
-    class_origin: dict[str, Path],
-    slot_origin: dict[str, Path],
-    label_to_slot: dict[str, str],
-    label_to_class: dict[str, str],
-    changes: list,
-    reporter: Reporter,
-    pending_classes: dict[str, str] | None = None,
-    planned_new_slots: dict[str, dict[str, Any]] | None = None,
+    row: dict,
+    pending: dict[str, str],
 ) -> None:
+    reporter = p.reporter
     label     = row["label"]
     domain    = row["domain"]
     slot_name = _label_to_slot_name(label)
-    pending_classes = pending_classes or {}
-    if planned_new_slots is None:
-        planned_new_slots = {}
-    classes = schema.get("classes", {})
+    classes   = p.schema.get("classes", {})
 
     # Resolve the class that will own the new slot:
     #   • empty domain     → the sheet's top-level data class (schema_class)
-    #   • non-empty domain → the named subclass (e.g. ElectrochemicalReactor),
-    #                        added to that class exactly like the top-level case.
-    #                        The domain may also be a class proposed as new
-    #                        elsewhere in this same submission (pending_classes).
+    #   • non-empty domain → the named (sub)class, which may also be a class
+    #                        proposed as new in this same submission
     if domain:
-        owner_class = _resolve_domain_class(domain, label_to_class, pending_classes)
-        if owner_class not in classes and owner_class not in pending_classes:
+        owner_class = _resolve_domain_class(domain, p.label_to_class, pending)
+        if owner_class not in classes and owner_class not in pending:
             reporter.error(
                 sheet, f"new slot '{label}'",
                 f"The domain `{domain}` is not a recognised class. "
@@ -1180,7 +1393,7 @@ def _plan_new_slot(
                 hint="Look at the class rows in this sheet for valid domain names.",
             )
             return
-        if owner_class in classes and owner_class not in class_origin:
+        if owner_class in classes and owner_class not in p.class_origin:
             reporter.error(
                 sheet, f"new slot '{label}'",
                 f"`{owner_class}` is a chemdcat-ap base class and is not "
@@ -1192,12 +1405,12 @@ def _plan_new_slot(
             return
     else:
         owner_class = schema_class
+    expect_key = (snake_to_readable(slot_name), owner_class if domain else "")
 
-    # Same new slot already planned earlier in this submission (e.g. one
-    # "energy correction type" row per new class): one shared definition,
-    # attached to every further class. Only M/R/O may differ per class.
-    if slot_name in planned_new_slots:
-        first = planned_new_slots[slot_name]
+    # Same new slot already planned earlier in this submission: one shared
+    # definition, attached to every further class. Only M/R/O may differ.
+    if slot_name in p.planned_new_slots:
+        first = p.planned_new_slots[slot_name]
         diffs = _definition_diffs(row, {
             "range":           first["range"],
             "uri":             first["uri"],
@@ -1231,20 +1444,18 @@ def _plan_new_slot(
             sheet, f"new slot `{slot_name}`",
             f"Will also attach `{slot_name}` to `{owner_class}`.",
         )
-        changes.append({
+        p.changes.append({
             "type":         "slot_attach",
             "name":         slot_name,
             "schema_class": owner_class,
             "mro":          mro,
-            "slot_usage":   _mro_slot_usage(
-                first["mro"] == "M", first["mro"] == "R", mro,
-            ),
-            "_target":      _resolve_class_target(owner_class, class_origin, pending_classes),
+            "slot_usage":   _mro_slot_usage(first["mro"] == "M", first["mro"] == "R", mro),
+            "_target":      _resolve_class_target(owner_class, p.class_origin, pending),
+            "_expect":      [(sheet, expect_key, "mro", mro, False)],
         })
         return
 
-    # Name conflict: same derived name as an existing slot
-    if slot_name in schema.get("slots", {}):
+    if slot_name in p.schema.get("slots", {}):
         existing_label = snake_to_readable(slot_name)
         reporter.error(
             sheet, f"new slot '{label}'",
@@ -1255,7 +1466,6 @@ def _plan_new_slot(
         )
         return
 
-    # M/R/O validation
     mro = row["mro"]
     if mro not in ("M", "R", "O"):
         reporter.error(
@@ -1264,59 +1474,156 @@ def _plan_new_slot(
         )
         return
 
-    # Range validation
     range_val = row["range"] or DEFAULT_RANGE
-    if not _valid_range(range_val, schema, set(pending_classes)):
+    if not _valid_range(range_val, p.schema, set(pending), sv=p.sv):
         reporter.error(
             sheet, f"new slot '{label}'",
             f"Unknown range `{range_val}` for new slot.",
-            hint=_range_hint(schema),
+            hint=_range_hint(p.schema),
         )
         return
+    if row["uri"] and (problem := _uri_problem(row["uri"], p.prefixes())):
+        reporter.error(sheet, f"new slot '{label}'", f"The URI `{row['uri']}` {problem}", hint=_URI_HINT)
+        return
+    if problem := _unit_problem(row["unit"]):
+        reporter.error(sheet, f"new slot '{label}'", f"The unit `{row['unit']}` {problem}", hint=_UNIT_HINT)
+        return
 
-    # Same module as the owner class -- for a class that is new in this
-    # submission, the module that class will be written to.
-    target = _resolve_class_target(owner_class, class_origin, pending_classes)
+    inlined = row["inlined_as_list"] == "yes"
+    if inlined and range_val not in classes and range_val not in pending \
+            and p.sv.get_class(range_val) is None:
+        reporter.warning(
+            sheet, f"new slot '{label}'",
+            "*inlined as list* was ignored: it only applies to fields whose range is a class.",
+        )
+        inlined = False
+    if not row["description"]:
+        reporter.warning(
+            sheet, f"new slot '{label}'",
+            "Has no description. Please add one, so others know what to record here.",
+        )
+
+    target = _resolve_class_target(owner_class, p.class_origin, pending)
     reporter.info(
         sheet, f"new slot `{slot_name}`",
         f"Will add `{slot_name}` to `{owner_class}`.",
     )
-    change = {
-        "type":           "slot_add",
-        "name":           slot_name,
-        "label":          label,
-        "schema_class":   owner_class,
-        "range":          range_val,
-        "mro":            mro,
-        "description":    row["description"],
-        "uri":            row["uri"],
-        "multivalued":    row["multivalued"] == "yes",
-        "inlined_as_list": row["inlined_as_list"] == "yes",
-        "unit":           row["unit"],
-        "_target":        target,
+    expected = {
+        "mro": mro, "range": range_val, "multivalued": row["multivalued"],
+        "inlined_as_list": "yes" if inlined else "", "unit": row["unit"],
+        "uri": row["uri"], "description": row["description"],
     }
-    changes.append(change)
-    planned_new_slots[slot_name] = change
+    change = {
+        "type":            "slot_add",
+        "name":            slot_name,
+        "label":           label,
+        "schema_class":    owner_class,
+        "range":           range_val,
+        "mro":             mro,
+        "description":     row["description"],
+        "uri":             row["uri"],
+        "multivalued":     row["multivalued"] == "yes",
+        "inlined_as_list": inlined,
+        "unit":            row["unit"],
+        "_target":         target,
+        "_expect":         [(sheet, expect_key, f, v, False) for f, v in expected.items()],
+    }
+    p.changes.append(change)
+    p.planned_new_slots[slot_name] = change
+
+
+# ── classes ────────────────────────────────────────────────────────────────
+
+
+def _plan_class_row(
+    p: _Plan,
+    sheet: str,
+    schema_class: str,
+    row: dict,
+    base: dict | None,
+    fields: list[str] | None,
+    pending: dict[str, str],
+) -> None:
+    reporter = p.reporter
+    label = row["label"]
+    class_name = p.label_to_class.get(label)
+    if class_name is None:
+        _plan_new_class(p, sheet, schema_class, row, pending)
+        return
+
+    class_def = p.schema.get("classes", {}).get(class_name) or {}
+    current = {
+        "uri":         _str(class_def.get("class_uri", "")),
+        "description": _str(class_def.get("description", "")),
+    }
+    if fields is not None:
+        other = [f for f in fields if f not in ("uri", "description")]
+        if other:
+            reporter.warning(
+                sheet, f"class '{label}'",
+                f"Not applied: the {_fields_text(other)} of a class row only repeat(s) "
+                f"the slot it belongs to.",
+                hint="Change the slot row above it instead.",
+            )
+    candidates = [f for f in (fields if fields is not None else ("uri", "description"))
+                  if f in ("uri", "description")]
+    diffs = [f for f in candidates if row[f] != current[f]]
+    if not diffs:
+        return
+
+    if class_name not in p.class_origin:
+        reporter.warning(
+            sheet, f"class '{label}'",
+            f"Not applied: `{class_name}` is a chemdcat-ap base class and is "
+            f"read-only here, so your change to {_fields_text(diffs)} was ignored.",
+            hint="Ask a maintainer to change it in the YAML directly, or open an issue.",
+        )
+        return
+
+    for f in diffs:
+        new = row[f]
+        if not new:
+            if fields is not None:
+                reporter.warning(
+                    sheet, f"class `{class_name}`",
+                    f"Not applied: you cleared the *{FIELD_LABELS[f]}* of `{class_name}`; "
+                    f"removing it is not supported here.",
+                    hint="Ask a maintainer if it really should be removed.",
+                )
+            continue
+        if f == "uri" and (problem := _uri_problem(new, p.prefixes())):
+            reporter.error(sheet, f"class `{class_name}`", f"The URI `{new}` {problem}", hint=_URI_HINT)
+            continue
+        if base is not None and base.get(f, "") != current[f]:
+            reporter.warning(
+                sheet, f"class `{class_name}`",
+                f"Conflict: the *{FIELD_LABELS[f]}* of `{class_name}` was also changed "
+                f"in the schema after you downloaded the workbook (it is now "
+                f"`{_short(current[f])}`). Your value `{_short(new)}` is applied.",
+                hint="Check that this is still what you want.",
+            )
+        p.changes.append({
+            "type":    "class_uri" if f == "uri" else "class_description",
+            "name":    class_name,
+            "value":   new,
+            "_target": p.class_origin[class_name],
+            "_expect": [(sheet, row_key(row), f, new, True)],
+        })
 
 
 def _plan_new_class(
-    row: dict,
+    p: _Plan,
     sheet: str,
     schema_class: str,
-    schema: dict,
-    class_origin: dict[str, Path],
-    label_to_class: dict[str, str],
-    changes: list,
-    reporter: Reporter,
-    pending_classes: dict[str, str] | None = None,
+    row: dict,
+    pending: dict[str, str],
 ) -> None:
+    reporter   = p.reporter
     label      = row["label"]
     domain     = row["domain"]
     class_name = _label_to_class_name(label)
-    pending_classes = pending_classes or {}
 
-    # Name conflict
-    if class_name in schema.get("classes", {}):
+    if class_name in p.schema.get("classes", {}):
         reporter.error(
             sheet, f"new class '{label}'",
             f"A class named `{class_name}` already exists. "
@@ -1324,7 +1631,6 @@ def _plan_new_class(
         )
         return
 
-    # Parent class required
     if not domain:
         reporter.error(
             sheet, f"new class '{label}'",
@@ -1334,10 +1640,9 @@ def _plan_new_class(
         return
 
     # The parent may already exist, or be proposed as new elsewhere in this
-    # same submission (pending_classes) -- e.g. "Chromatographic Methods"
-    # and "Gas Chromatography (GC)" added together, one as the other's parent.
-    parent_name = label_to_class.get(domain)
-    if parent_name is None and _label_to_class_name(domain) in pending_classes:
+    # same submission (pending).
+    parent_name = p.label_to_class.get(domain)
+    if parent_name is None and _label_to_class_name(domain) in pending:
         parent_name = _label_to_class_name(domain)
     if parent_name is None:
         reporter.error(
@@ -1347,15 +1652,21 @@ def _plan_new_class(
             hint="Look at the existing class rows in this sheet to find valid parent names.",
         )
         return
+    if row["uri"] and (problem := _uri_problem(row["uri"], p.prefixes())):
+        reporter.error(sheet, f"new class '{label}'", f"The URI `{row['uri']}` {problem}", hint=_URI_HINT)
+        return
+    if not row["description"]:
+        reporter.warning(
+            sheet, f"new class '{label}'",
+            "Has no description. Please add one, so others know what the class is for.",
+        )
 
-    # Module of the nearest existing ancestor (walking through a pending
-    # parent). _plan_new_slot resolves slots on this class the same way.
-    target = _resolve_class_target(parent_name, class_origin, pending_classes)
+    target = _resolve_class_target(parent_name, p.class_origin, pending)
     reporter.info(
         sheet, f"new class `{class_name}`",
         f"Will add `{class_name}` as subclass of `{parent_name}`.",
     )
-    changes.append({
+    p.changes.append({
         "type":         "class_add",
         "name":         class_name,
         "is_a":         parent_name,
@@ -1366,40 +1677,269 @@ def _plan_new_class(
     })
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# YAML file I/O helpers
-# ─────────────────────────────────────────────────────────────────────────────
+# ── removed rows ───────────────────────────────────────────────────────────
 
 
-def _load_yaml(path: Path) -> Any:
-    y = _make_yaml()
-    with path.open(encoding="utf-8") as fh:
-        return y.load(fh)
+def _rename_hint(base: dict, added: list[dict]) -> str:
+    """' (renamed to …?)' if an added row has the same domain and values."""
+    for row in added:
+        if (row["type"] == base["type"] and row["domain"] == base["domain"]
+                and not changed_fields(row, base)):
+            return (f" It looks like you renamed it to '{row['label']}': a rename is "
+                    f"applied as adding the new field and removing the old one.")
+    return ""
 
 
-def _save_yaml(path: Path, doc: Any) -> None:
-    y = _make_yaml()
-    with path.open("w", encoding="utf-8") as fh:
-        y.dump(doc, fh)
+def _slot_source(p: _Plan, slot_name: str, cls: str) -> str:
+    """The ancestor (or mixin) of cls that brings slot_name, for messages."""
+    with contextlib.suppress(Exception):
+        for name in p.sv.class_ancestors(cls, reflexive=False):
+            cdef = p.sv.get_class(name)
+            if cdef is not None and (slot_name in (cdef.slots or [])
+                                     or slot_name in (cdef.slot_usage or {})):
+                return name
+    return "a parent class"
 
 
-def _as_literal(value: str) -> Any:
-    """Wrap multi-line strings in LiteralScalarString for block-style YAML."""
-    if "\n" in value:
-        return LiteralScalarString(value)
-    return value
+def _class_references(schema: dict, class_name: str) -> list[str]:
+    """Everything that still points at class_name (subclasses, mixins, ranges)."""
+    refs: list[str] = []
+    for cname, cdef in schema.get("classes", {}).items():
+        cdef = cdef or {}
+        if cname == class_name:
+            continue
+        if cdef.get("is_a") == class_name:
+            refs.append(f"subclass `{cname}`")
+        if class_name in (cdef.get("mixins") or []):
+            refs.append(f"`{cname}` (mixin)")
+        for sname, usage in (cdef.get("slot_usage") or {}).items():
+            if (usage or {}).get("range") == class_name:
+                refs.append(f"`{cname}.{sname}` (range)")
+    for sname, sdef in schema.get("slots", {}).items():
+        if (sdef or {}).get("range") == class_name:
+            refs.append(f"slot `{sname}` (range)")
+    return refs
 
 
-def _set_mro(node: dict, mro: str) -> None:
-    """Set required/recommended on a slot or slot_usage node (clears old keys)."""
-    for key in ("required", "recommended"):
-        if key in node:
-            del node[key]
-    if mro == "M":
-        node["required"] = True
-    elif mro == "R":
-        node["recommended"] = True
-    # O → neither key present
+def _plan_removed_rows(
+    p: _Plan,
+    sheet: str,
+    schema_class: str,
+    rows: list[dict],
+    base_idx: dict,
+    pending: dict[str, str],
+) -> None:
+    """Rows in the baseline that the contributor deleted."""
+    present = {row_key(r) for r in rows}
+    class_labels = {r["label"] for r in rows if r["type"] == "class"}
+    added = [r for r in rows if row_key(r) not in base_idx]
+    current = index_rows(p.current_rows().get(sheet, []))
+
+    for key, base in base_idx.items():
+        if key in present or key not in current:
+            continue   # still there, or already gone from the schema
+        if base["type"] == "class":
+            if base["label"] not in class_labels:   # not still listed under another slot
+                _plan_class_removal(p, sheet, base)
+        else:
+            _plan_slot_removal(p, sheet, schema_class, base, added, pending)
+
+
+def _plan_slot_removal(
+    p: _Plan,
+    sheet: str,
+    schema_class: str,
+    base: dict,
+    added: list[dict],
+    pending: dict[str, str],
+) -> None:
+    label, domain = base["label"], base["domain"]
+    cls = _resolve_domain_class(domain, p.label_to_class, pending) if domain else schema_class
+    slot_name = p.label_to_slot.get(label) or _label_to_slot_name(label)
+    context = f"slot `{slot_name}`"
+
+    if slot_name not in p.slot_origin or cls not in p.class_origin:
+        p.reporter.warning(
+            sheet, context,
+            f"Not applied: you removed the row for `{slot_name}` on `{cls}`, but it "
+            f"comes from a chemdcat-ap base class and is read-only here.",
+            hint="Ask a maintainer to change it in the YAML directly, or open an issue.",
+        )
+        return
+
+    if slot_name in p.own_slots(cls):
+        p.reporter.warning(
+            sheet, context,
+            f"Present in the schema but **missing** from your workbook "
+            f"(expected label: *{label}*). It will be removed from `{cls}`."
+            + _rename_hint(base, added),
+            hint="If accidental (e.g. you filtered rows before saving), "
+                 "re-download the template and start again. "
+                 "If intentional, the deletion is applied and the test suite "
+                 "will verify no required fields are broken.",
+        )
+        p.changes.append({
+            "type":           "slot_delete",
+            "name":           slot_name,
+            "schema_class":   cls,
+            "_target":        p.class_origin[cls],
+            "_expect_absent": [(sheet, row_key(base))],
+        })
+        return
+
+    source = _slot_source(p, slot_name, cls)
+    p.reporter.warning(
+        sheet, context,
+        f"Not applied: you removed the row for `{slot_name}` on `{cls}`, but `{cls}` "
+        f"inherits it from `{source}`. It can only be removed there, which affects "
+        f"every class that inherits it.",
+        hint=f"Remove its row under `{source}` instead, or ask a maintainer.",
+    )
+
+
+def _plan_class_removal(p: _Plan, sheet: str, base: dict) -> None:
+    class_name = p.label_to_class.get(base["label"])
+    if class_name is None:
+        return
+    context = f"class `{class_name}`"
+    if class_name not in p.class_origin:
+        p.reporter.warning(
+            sheet, context,
+            f"Not applied: you removed the row for `{class_name}`, but it is a "
+            f"chemdcat-ap base class and read-only here.",
+            hint="Ask a maintainer to change it in the YAML directly, or open an issue.",
+        )
+        return
+    if class_name in CLASS_MAP.values():
+        p.reporter.warning(
+            sheet, context,
+            f"Not applied: `{class_name}` is one of the data classes and can't be "
+            f"removed through the workbook.",
+        )
+        return
+    refs = _class_references(p.schema, class_name)
+    if refs:
+        shown = ", ".join(refs[:8]) + (" …" if len(refs) > 8 else "")
+        p.reporter.error(
+            sheet, context,
+            f"Can't remove `{class_name}`: it is still used by {shown}.",
+            hint="Remove or move those first, or ask a maintainer.",
+        )
+        return
+    p.reporter.warning(
+        sheet, context,
+        f"Present in the schema but **missing** from your workbook "
+        f"(expected label: *{base['label']}*). It will be removed.",
+        hint="If accidental, re-download the template. "
+             "The maintainer will review deletions before merging.",
+    )
+    p.changes.append({
+        "type":         "class_delete",
+        "name":         class_name,
+        "schema_class": CLASS_MAP[sheet],
+        "_target":      p.class_origin[class_name],
+    })
+
+
+def _plan_legacy_deletions(p: _Plan, sheet: str, schema_class: str, rows: list[dict]) -> None:
+    """
+    Deletion detection without a baseline: top-level slots of the sheet class
+    (and the classes they range over) that no row mentions.
+    """
+    schema = p.schema
+    schema_slot_names: set[str] = set(get_all_class_slots(schema, schema_class))
+    for su_name, _ in get_class_ranged_slot_usage(schema, schema_class):
+        schema_slot_names.add(su_name)
+
+    schema_class_names: set[str] = set()
+    for slot_name in schema_slot_names:
+        rng = get_slot_details(schema, slot_name).get("range", "")
+        if rng and rng in schema.get("classes", {}):
+            schema_class_names.add(rng)
+            schema_class_names.update(get_subclasses(schema, rng))
+
+    seen_slots: set[str] = set()
+    seen_classes: set[str] = set()
+    for row in rows:
+        if row["type"] == "slot":
+            name = p.label_to_slot.get(row["label"])
+            seen_slots.add(name or _label_to_slot_name(row["label"]))
+        elif row["type"] == "class":
+            if row["domain"] and p.label_to_slot.get(row["domain"]):
+                seen_slots.add(p.label_to_slot[row["domain"]])   # the parent slot row
+            name = p.label_to_class.get(row["label"])
+            if name:
+                seen_classes.add(name)
+
+    for slot_name in sorted(schema_slot_names):
+        if slot_name not in p.slot_origin or slot_name in seen_slots:
+            continue
+        if slot_name not in p.own_slots(schema_class):
+            p.reporter.warning(
+                sheet, f"slot `{slot_name}`",
+                f"Not applied: `{slot_name}` is missing from your workbook, but "
+                f"`{schema_class}` inherits it from "
+                f"`{_slot_source(p, slot_name, schema_class)}`, so it was not removed.",
+            )
+            continue
+        p.reporter.warning(
+            sheet, f"slot `{slot_name}`",
+            f"Present in the schema but **missing** from your workbook "
+            f"(expected label: *{snake_to_readable(slot_name)}*). "
+            f"It will be removed from `{schema_class}`.",
+            hint="If accidental (e.g. you filtered rows before saving), "
+                 "re-download the template and start again. "
+                 "If intentional, the deletion is applied and the test suite "
+                 "will verify no required fields are broken.",
+        )
+        p.changes.append({
+            "type":         "slot_delete",
+            "name":         slot_name,
+            "schema_class": schema_class,
+            "_target":      p.class_origin.get(schema_class, SCHEMA_DIR / DEFAULT_NEW_ELEMENT_FILE),
+        })
+
+    for class_name in sorted(schema_class_names):
+        if (class_name not in p.class_origin or class_name in seen_classes
+                or class_name in CLASS_MAP.values()):   # never remove a data class itself
+            continue
+        p.reporter.warning(
+            sheet, f"class `{class_name}`",
+            f"Present in the schema but **missing** from your workbook "
+            f"(expected label: *{snake_to_readable(class_name)}*). "
+            f"It will be removed.",
+            hint="If accidental, re-download the template. "
+                 "The maintainer will review deletions before merging.",
+        )
+        p.changes.append({
+            "type":         "class_delete",
+            "name":         class_name,
+            "schema_class": schema_class,
+            "_target":      p.class_origin.get(class_name, SCHEMA_DIR / DEFAULT_NEW_ELEMENT_FILE),
+        })
+
+
+# ── reference sheet ────────────────────────────────────────────────────────
+
+
+def _check_reference_sheet(p: _Plan, rows: list[dict], base_idx: dict | None) -> None:
+    """Edits on the CoreMeta4Cat sheet are reported, never applied."""
+    reference = base_idx if base_idx is not None else index_rows(
+        p.current_rows().get(REFERENCE_SHEET, [])
+    )
+    submitted = index_rows(rows)
+    edited = [k for k, r in submitted.items() if k not in reference or changed_fields(r, reference[k])]
+    removed = [k for k in reference if k not in submitted]
+    labels = sorted({k[0] for k in edited + removed})
+    if labels:
+        shown = ", ".join(f"*{label}*" for label in labels[:6]) + (" …" if len(labels) > 6 else "")
+        p.reporter.warning(
+            REFERENCE_SHEET, "sheet",
+            f"Not applied: the {REFERENCE_SHEET} sheet is reference only, so your "
+            f"changes to {len(labels)} row(s) ({shown}) were ignored.",
+            hint="Propose changes to the CatalysisDataset fields in an issue, "
+                 "or ask a maintainer.",
+        )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1407,87 +1947,118 @@ def _set_mro(node: dict, mro: str) -> None:
 # ─────────────────────────────────────────────────────────────────────────────
 
 
-def _apply_slot_field(
-    ch: dict,
-    field_key: str,
-    value: Any,
-    reporter: Reporter,
-    label: str,
-) -> None:
-    """
-    Apply a single-field update to a slot, preferring slot_usage if it exists,
-    falling back to the global slots: entry.
-    """
-    schema_class = ch["schema_class"]
-    slot_name    = ch["name"]
-    target_su    = ch.get("_target_su")
-    target_slot  = ch.get("_target_slot")
-    applied_via  = None
+def _set_flag(node: Any, key: str, desired: bool, inherited: bool) -> None:
+    """Leave key unset when inheritance already gives the desired value."""
+    if desired == inherited:
+        if key in node:
+            del node[key]
+    else:
+        node[key] = desired
 
-    if target_su:
-        doc = _load_yaml(target_su)
-        cls = (doc.get("classes") or {}).get(schema_class) or {}
-        su  = (cls.get("slot_usage") or {}).get(slot_name)
-        if su is not None:
-            su[field_key] = value
-            _save_yaml(target_su, doc)
-            applied_via = f"slot_usage in `{target_su.name}`"
 
-    if applied_via is None and target_slot:
-        doc   = _load_yaml(target_slot)
+def _apply_mro(node: Any, mro: str, inherited: dict[str, bool]) -> None:
+    """Set required/recommended on a slot or slot_usage node."""
+    _set_flag(node, "required", mro == "M", inherited.get("required", False))
+    if mro == "M":
+        if "recommended" in node:
+            del node["recommended"]   # required wins either way
+    else:
+        _set_flag(node, "recommended", mro == "R", inherited.get("recommended", False))
+
+
+def _set_mro(node: dict, mro: str) -> None:
+    """Set required/recommended on a slot or slot_usage node (no inheritance)."""
+    _apply_mro(node, mro, {})
+
+
+def _locate_slot_node(doc: Any, ch: dict) -> Any | None:
+    """The YAML node a slot change is written to (created for "new_usage")."""
+    name, where = ch["name"], ch["_where"]
+    if where == "global":
         slots = doc.get("slots") or {}
-        if slot_name in slots:
-            if slots[slot_name] is None:
-                slots[slot_name] = {}
-            slots[slot_name][field_key] = value
-            _save_yaml(target_slot, doc)
-            applied_via = f"global slot in `{target_slot.name}`"
+        if name not in slots:
+            return None
+        if slots[name] is None:
+            slots[name] = {}
+        return slots[name]
 
-    if applied_via:
-        reporter.applied(f"{label}: `{slot_name}` ({schema_class}) — via {applied_via}")
+    cls_name = ch.get("_owner") or ch["schema_class"]
+    classes = doc.get("classes") or {}
+    if cls_name not in classes:
+        return None
+    if classes[cls_name] is None:
+        classes[cls_name] = {}
+    cls_node = classes[cls_name]
+    usage = cls_node.get("slot_usage")
+    if usage is None:
+        if where == "usage":
+            return None
+        cls_node["slot_usage"] = {}
+        usage = cls_node["slot_usage"]
+    if name not in usage:
+        if where == "usage":
+            return None
+        usage[name] = {}
+    elif usage[name] is None:
+        usage[name] = {}
+    return usage[name]
 
 
-def _apply_slot_flag(
-    ch: dict,
-    field_key: str,
-    value: bool,
-    reporter: Reporter,
-    label: str,
-) -> None:
-    """Apply a boolean flag (True → set key; False → delete key)."""
-    schema_class = ch["schema_class"]
-    slot_name    = ch["name"]
-    target_su    = ch.get("_target_su")
-    target_slot  = ch.get("_target_slot")
-    applied_via  = None
+def _applied_text(ch: dict) -> str:
+    target = Path(ch["_target"]).name
+    via = {
+        "global":    f"global slot in `{target}`",
+        "usage":     f"slot_usage in `{target}`",
+        "new_usage": f"new slot_usage on `{ch.get('_owner')}` in `{target}`",
+    }[ch["_where"]]
+    f, value = ch["field"], ch["value"]
+    subject = f"`{ch['name']}` ({ch['schema_class']})"
+    if f == "mro":
+        return f"M/R/O → **{value}**: {subject} — {via}"
+    if f == "description":
+        return f"description updated: {subject} — via {via}"
+    if f == "uri":
+        return f"URI updated: {subject} — via {via}"
+    if f == "range":
+        return f"range changed → `{value}`: {subject} — via {via}"
+    if f == "unit":
+        shown = f"`{value}`" if value else "*(removed)*"
+        return f"Unit → {shown}: {subject} — via {via}"
+    return f"{f} → `{value}`: {subject} — via {via}"
 
-    if target_su:
-        doc = _load_yaml(target_su)
-        cls = (doc.get("classes") or {}).get(schema_class) or {}
-        su  = (cls.get("slot_usage") or {}).get(slot_name)
-        if su is not None:
-            if value:
-                su[field_key] = True
-            elif field_key in su:
-                del su[field_key]
-            _save_yaml(target_su, doc)
-            applied_via = target_su.name
 
-    if applied_via is None and target_slot:
-        doc   = _load_yaml(target_slot)
-        slots = doc.get("slots") or {}
-        if slot_name in slots:
-            if slots[slot_name] is None:
-                slots[slot_name] = {}
-            if value:
-                slots[slot_name][field_key] = True
-            elif field_key in slots[slot_name]:
-                del slots[slot_name][field_key]
-            _save_yaml(target_slot, doc)
-            applied_via = target_slot.name
+def _apply_slot_value(ch: dict, reporter: Reporter) -> None:
+    path = Path(ch["_target"])
+    doc = _load_yaml(path)
+    node = _locate_slot_node(doc, ch)
+    if node is None:
+        reporter.error(
+            "schema", f"slot `{ch['name']}`",
+            f"Could not update `{ch['name']}` ({ch['schema_class']}): the definition "
+            f"to change is not in `{path.name}`. Nothing will be committed.",
+            hint=_PIPELINE_HINT,
+        )
+        return
 
-    if applied_via:
-        reporter.applied(f"{label} → `{value}`: `{slot_name}` ({schema_class})")
+    f, value = ch["field"], ch["value"]
+    inherited = ch.get("_inherited") or {}
+    if f == "mro":
+        _apply_mro(node, value, inherited)
+    elif f in ("multivalued", "inlined_as_list"):
+        _set_flag(node, f, bool(value), inherited.get(f, False))
+    elif f == "description":
+        node["description"] = _as_literal(value)
+    elif f == "uri":
+        node["slot_uri"] = value
+    elif f == "range":
+        node["range"] = value
+    elif f == "unit":
+        if value:
+            node["unit"] = {"ucum_code": value}
+        elif "unit" in node:
+            del node["unit"]
+    _save_yaml(path, doc)
+    reporter.applied(_applied_text(ch))
 
 
 def _append_slot_to_class(doc: Any, class_name: str, slot_name: str) -> Any | None:
@@ -1513,155 +2084,49 @@ def _attach_failed(reporter: Reporter, slot_name: str, class_name: str, target: 
         "schema", f"slot `{slot_name}`",
         f"Could not attach `{slot_name}` to `{class_name}`: the class is not "
         f"defined in `{target.name}`. Nothing will be committed.",
-        hint="This is a pipeline problem, not a workbook problem -- please "
-             "report it to a maintainer.",
+        hint=_PIPELINE_HINT,
     )
 
 
 def apply_changes(changes: list[dict], reporter: Reporter) -> None:
     """Apply all planned changes to YAML files (ruamel round-trip, comment-safe)."""
 
-    # New classes first: slots can only be attached to a class node that
-    # exists, independent of the row order in the workbook (class_add writes a
-    # fresh class node). The stable sort keeps everything else in row order,
-    # so a class's slots: list follows the workbook.
-    ordered = sorted(changes, key=lambda c: 0 if c["type"] == "class_add" else 1)
+    # New classes first (slots can only be attached to an existing class
+    # node), removed classes last; everything else keeps the workbook order.
+    order = {"class_add": 0, "class_delete": 2}
+    ordered = sorted(changes, key=lambda c: order.get(c["type"], 1))
 
     for ch in ordered:
         ctype = ch["type"]
 
-        # ── slot M/R/O ────────────────────────────────────────────────────
+        if ctype in _CHANGE_TYPE.values():
+            _apply_slot_value(ch, reporter)
 
-        if ctype == "slot_mro":
-            slot_name    = ch["name"]
-            mro          = ch["mro"]
-            schema_class = ch["schema_class"]
-            target_su    = ch.get("_target_su")
-            target_slot  = ch.get("_target_slot")
-            applied_via  = None
-
-            if target_su:
-                doc = _load_yaml(target_su)
-                cls = (doc.get("classes") or {}).get(schema_class) or {}
-                su  = (cls.get("slot_usage") or {}).get(slot_name)
-                if su is not None:
-                    _set_mro(su, mro)
-                    _save_yaml(target_su, doc)
-                    applied_via = f"slot_usage in `{target_su.name}`"
-
-            if applied_via is None and target_slot:
-                doc   = _load_yaml(target_slot)
-                slots = doc.get("slots") or {}
-                if slot_name in slots:
-                    if slots[slot_name] is None:
-                        slots[slot_name] = {}
-                    _set_mro(slots[slot_name], mro)
-                    _save_yaml(target_slot, doc)
-                    applied_via = f"global slot in `{target_slot.name}`"
-
-            if applied_via:
-                reporter.applied(
-                    f"M/R/O → **{mro}**: `{slot_name}` ({schema_class}) — {applied_via}"
-                )
-
-        # ── slot description ──────────────────────────────────────────────
-
-        elif ctype == "slot_description":
-            _apply_slot_field(
-                ch, "description", _as_literal(ch["value"]),
-                reporter, "description updated",
-            )
-
-        # ── slot URI ──────────────────────────────────────────────────────
-
-        elif ctype == "slot_uri":
-            _apply_slot_field(ch, "slot_uri", ch["value"], reporter, "URI updated")
-
-        # ── slot range ────────────────────────────────────────────────────
-
-        elif ctype == "slot_range":
-            _apply_slot_field(
-                ch, "range", ch["value"],
-                reporter,
-                f"range changed → `{ch['value']}`",
-            )
-
-        # ── slot multivalued / inlined_as_list ────────────────────────────
-
-        elif ctype == "slot_multivalued":
-            _apply_slot_flag(
-                ch, "multivalued", ch["value"],
-                reporter, "multivalued",
-            )
-
-        elif ctype == "slot_inlined_as_list":
-            _apply_slot_flag(
-                ch, "inlined_as_list", ch["value"],
-                reporter, "inlined_as_list",
-            )
-
-        # ── slot unit ─────────────────────────────────────────────────────
-
-        elif ctype == "slot_unit":
-            slot_name   = ch["name"]
-            new_unit    = ch["value"]
-            target_slot = ch.get("_target_slot")
-
-            if target_slot:
-                doc   = _load_yaml(target_slot)
-                slots = doc.get("slots") or {}
-                if slot_name in slots:
-                    if slots[slot_name] is None:
-                        slots[slot_name] = {}
-                    if new_unit:
-                        slots[slot_name]["unit"] = {"ucum_code": new_unit}
-                    elif "unit" in slots[slot_name]:
-                        del slots[slot_name]["unit"]
-                    _save_yaml(target_slot, doc)
-                    label = f"`{new_unit}`" if new_unit else "*(removed)*"
-                    reporter.applied(f"Unit → {label}: `{slot_name}`")
-
-        # ── class description ─────────────────────────────────────────────
-
-        elif ctype == "class_description":
+        elif ctype in ("class_description", "class_uri"):
             class_name = ch["name"]
             target     = ch.get("_target")
             if target:
-                doc = _load_yaml(target)
+                doc = _load_yaml(Path(target))
                 classes = doc.get("classes") or {}
                 if class_name in classes:
                     if classes[class_name] is None:
                         classes[class_name] = {}
-                    classes[class_name]["description"] = _as_literal(ch["value"])
-                    _save_yaml(target, doc)
-                    reporter.applied(f"Class description updated: `{class_name}`")
-
-        # ── class URI ─────────────────────────────────────────────────────
-
-        elif ctype == "class_uri":
-            class_name = ch["name"]
-            target     = ch.get("_target")
-            if target:
-                doc = _load_yaml(target)
-                classes = doc.get("classes") or {}
-                if class_name in classes:
-                    if classes[class_name] is None:
-                        classes[class_name] = {}
-                    classes[class_name]["class_uri"] = ch["value"]
-                    _save_yaml(target, doc)
-                    reporter.applied(f"Class URI updated: `{class_name}`")
-
-        # ── add new slot ──────────────────────────────────────────────────
+                    if ctype == "class_description":
+                        classes[class_name]["description"] = _as_literal(ch["value"])
+                        reporter.applied(f"Class description updated: `{class_name}`")
+                    else:
+                        classes[class_name]["class_uri"] = ch["value"]
+                        reporter.applied(f"Class URI updated: `{class_name}`")
+                    _save_yaml(Path(target), doc)
 
         elif ctype == "slot_add":
             slot_name    = ch["name"]
             schema_class = ch["schema_class"]
-            target       = ch["_target"]
+            target       = Path(ch["_target"])
             mro          = ch["mro"]
 
             doc = _load_yaml(target)
 
-            # Build slot definition dict
             slot_def: dict[str, Any] = {}
             if ch["description"]:
                 slot_def["description"] = _as_literal(ch["description"])
@@ -1680,14 +2145,13 @@ def apply_changes(changes: list[dict], reporter: Reporter) -> None:
             if ch["unit"]:
                 slot_def["unit"] = {"ucum_code": ch["unit"]}
 
-            # Append to class slots: list. The planner targets the module that
-            # defines (or will define) the owner class; if the class is not
-            # there, fail loudly instead of writing an orphaned slot.
+            # The planner targets the module that defines (or will define)
+            # the owner class; if the class is not there, fail loudly instead
+            # of writing an orphaned slot.
             if _append_slot_to_class(doc, schema_class, slot_name) is None:
                 _attach_failed(reporter, slot_name, schema_class, target)
                 continue
 
-            # Add to global slots:
             if "slots" not in doc or doc["slots"] is None:
                 doc["slots"] = {}
             doc["slots"][slot_name] = slot_def
@@ -1698,12 +2162,10 @@ def apply_changes(changes: list[dict], reporter: Reporter) -> None:
                 f"(M/R/O: {mro}, range: {ch['range']})"
             )
 
-        # ── attach existing slot to a class ───────────────────────────────
-
         elif ctype == "slot_attach":
             slot_name    = ch["name"]
             schema_class = ch["schema_class"]
-            target       = ch["_target"]
+            target       = Path(ch["_target"])
 
             doc = _load_yaml(target)
             cls_node = _append_slot_to_class(doc, schema_class, slot_name)
@@ -1725,12 +2187,10 @@ def apply_changes(changes: list[dict], reporter: Reporter) -> None:
                 f"Slot `{slot_name}` attached to `{schema_class}` (M/R/O: {ch['mro']})"
             )
 
-        # ── add new class ─────────────────────────────────────────────────
-
         elif ctype == "class_add":
             class_name = ch["name"]
             parent     = ch["is_a"]
-            target     = ch["_target"]
+            target     = Path(ch["_target"])
 
             doc = _load_yaml(target)
 
@@ -1749,37 +2209,35 @@ def apply_changes(changes: list[dict], reporter: Reporter) -> None:
                 f"New class `{class_name}` added as subclass of `{parent}`"
             )
 
-        # ── delete slot ───────────────────────────────────────────────────
-
         elif ctype == "slot_delete":
             slot_name    = ch["name"]
             schema_class = ch["schema_class"]
-            target       = ch["_target"]
+            target       = Path(ch["_target"])
 
             doc = _load_yaml(target)
             classes = doc.get("classes") or {}
+            removed = False
             if schema_class in classes:
                 cls_node = classes[schema_class] or {}
-                # Remove from class slots list
                 slot_list = cls_node.get("slots") or []
                 if slot_name in slot_list:
                     slot_list.remove(slot_name)
                     cls_node["slots"] = slot_list
-                # Remove from slot_usage
+                    removed = True
                 su = cls_node.get("slot_usage") or {}
                 if slot_name in su:
                     del su[slot_name]
-            _save_yaml(target, doc)
-            reporter.applied(
-                f"Slot `{slot_name}` removed from `{schema_class}` "
-                f"(global definition kept — it may still be used by other classes)"
-            )
-
-        # ── delete class ──────────────────────────────────────────────────
+                    removed = True
+            if removed:
+                _save_yaml(target, doc)
+                reporter.applied(
+                    f"Slot `{slot_name}` removed from `{schema_class}` "
+                    f"(global definition kept — it may still be used by other classes)"
+                )
 
         elif ctype == "class_delete":
             class_name = ch["name"]
-            target     = ch["_target"]
+            target     = Path(ch["_target"])
 
             doc = _load_yaml(target)
             classes = doc.get("classes") or {}
@@ -1798,8 +2256,7 @@ def verify_applied(changes: list[dict], reporter: Reporter, schema_dir: Path | N
     """
     Reload the schema after apply_changes and check that every planned
     addition actually landed: each new class exists, and each new/attached
-    slot is reachable from its class. Any miss is recorded as an error, so
-    main() exits with 3 and the inbox workflow does not commit.
+    slot is reachable from its class. Any miss is recorded as an error.
 
     LinkML validation alone cannot catch this -- an empty class and an
     orphaned global slot are both perfectly valid schema (PR #157).
@@ -1815,7 +2272,7 @@ def verify_applied(changes: list[dict], reporter: Reporter, schema_dir: Path | N
                 "schema", f"class `{ch['name']}`",
                 "Planned as a new class but missing from the schema after "
                 "applying the changes. Nothing will be committed.",
-                hint="This is a pipeline problem -- please report it to a maintainer.",
+                hint=_PIPELINE_HINT,
             )
         elif ctype in ("slot_add", "slot_attach"):
             slot_name, owner = ch["name"], ch["schema_class"]
@@ -1824,8 +2281,69 @@ def verify_applied(changes: list[dict], reporter: Reporter, schema_dir: Path | N
                     "schema", f"slot `{slot_name}`",
                     f"Planned for `{owner}` but not part of that class after "
                     f"applying the changes. Nothing will be committed.",
-                    hint="This is a pipeline problem -- please report it to a maintainer.",
+                    hint=_PIPELINE_HINT,
                 )
+        elif ctype == "class_delete" and ch["name"] in classes:
+            reporter.error(
+                "schema", f"class `{ch['name']}`",
+                "Planned for removal but still in the schema after applying "
+                "the changes. Nothing will be committed.",
+                hint=_PIPELINE_HINT,
+            )
+
+
+def verify_displayed(changes: list[dict], reporter: Reporter, schema_dir: Path | None = None) -> None:
+    """
+    Regenerate the workbook rows from the changed schema and check that every
+    applied field now shows the contributor's value -- the guarantee that
+    matters to them, and one that catches values a parent slot or class
+    overrides. Modified rows must match (error otherwise); added rows that do
+    not show up on the sheet are reported as a warning.
+    """
+    expects = [e for ch in changes for e in ch.get("_expect", [])]
+    absents = [a for ch in changes for a in ch.get("_expect_absent", [])]
+    if not expects and not absents:
+        return
+    rows = generate_rows(schema_dir or SCHEMA_DIR)
+    index = {sheet: index_rows(sheet_rows) for sheet, sheet_rows in rows.items()}
+
+    missing_reported: set = set()
+    for sheet, key, f, value, strict in expects:
+        where = f"'{key[0]}'" + (f" ({key[1]})" if key[1] else "")
+        row = index.get(sheet, {}).get(key)
+        if row is None:
+            if (sheet, key) in missing_reported:
+                continue
+            missing_reported.add((sheet, key))
+            if strict:
+                reporter.error(
+                    sheet, where,
+                    "This row is missing from the regenerated workbook after applying "
+                    "your changes. Nothing will be committed.",
+                    hint=_PIPELINE_HINT,
+                )
+            else:
+                reporter.warning(
+                    sheet, where,
+                    f"Added to the schema, but it does not show up on the {sheet} sheet "
+                    f"(its class is not reachable from `{CLASS_MAP.get(sheet, sheet)}`).",
+                    hint="Check the domain column; a maintainer may need to connect the class.",
+                )
+        elif row[f] != value:
+            reporter.error(
+                sheet, where,
+                f"The *{FIELD_LABELS.get(f, f)}* did not take effect: after applying, the "
+                f"schema gives `{_short(row[f])}` instead of `{_short(value)}`. "
+                f"Nothing will be committed.",
+                hint=_PIPELINE_HINT,
+            )
+    for sheet, key in absents:
+        if key in index.get(sheet, {}):
+            reporter.error(
+                sheet, f"'{key[0]}'" + (f" ({key[1]})" if key[1] else ""),
+                "Still shown on the sheet after removing it. Nothing will be committed.",
+                hint=_PIPELINE_HINT,
+            )
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1833,20 +2351,64 @@ def verify_applied(changes: list[dict], reporter: Reporter, schema_dir: Path | N
 # ─────────────────────────────────────────────────────────────────────────────
 
 
+def _note_edits(reporter: Reporter, excel_data: dict, baseline: dict, current: dict) -> None:
+    """Tell the contributor what was detected, and whether the template is older."""
+    edited = added = removed = stale = 0
+    for sheet in CLASS_MAP:
+        base_idx = baseline.get(sheet, {})
+        submitted = index_rows(excel_data.get(sheet, []))
+        now = index_rows(current.get(sheet, []))
+        for key, row in submitted.items():
+            if key not in base_idx:
+                added += 1
+            elif changed_fields(row, base_idx[key]):
+                edited += 1
+        removed += sum(1 for key in base_idx if key not in submitted)
+        stale += sum(1 for key, row in base_idx.items()
+                     if key not in now or changed_fields(row, now[key]))
+        stale += sum(1 for key in now if key not in base_idx)
+    reporter.note(
+        f"Compared with the workbook you downloaded: {edited} row(s) changed, "
+        f"{added} added, {removed} removed."
+    )
+    if stale:
+        reporter.note(
+            f"Your workbook was generated from an older version of the schema: "
+            f"{stale} row(s) have changed on `main` since. Only the rows you edited "
+            f"are applied — everything else keeps its current value."
+        )
+
+
 def main(inbox_path: Path) -> int:
     reporter = Reporter()
 
-    # 1. Load the merged schema
+    # 1. Load the merged schema and its LinkML view
     try:
-        schema = load_merged_schema(str(SCHEMA_DIR))
+        with contextlib.redirect_stdout(io.StringIO()):
+            schema = load_merged_schema(str(SCHEMA_DIR))
+        sv = load_schema_view(SCHEMA_DIR)
     except Exception as exc:  # noqa: BLE001
         reporter.error("schema", "load", f"Could not load the merged schema: {exc}")
         print(reporter.to_markdown())
         return 1
 
-    # 2. Validate workbook structure
+    # 2. Validate workbook structure, cell values and the baseline sheet
     sheets = validate_structure(inbox_path, reporter)
     if sheets is None or reporter.has_errors:
+        print(reporter.to_markdown())
+        return 3
+    scan_cell_errors(inbox_path, reporter)
+    baseline = read_baseline(inbox_path)
+    if baseline is None:
+        reporter.error(
+            "workbook", f"sheet '{BASELINE_SHEET}'",
+            "This workbook was made from an older template: it has no hidden "
+            f"`{BASELINE_SHEET}` sheet, so your edits can't be told apart from "
+            "changes merged since you downloaded it.",
+            hint=f"Download the current workbook ({DEV_WORKBOOK_URL}), copy your "
+                 "edits into it, and push again.",
+        )
+    if reporter.has_errors:
         print(reporter.to_markdown())
         return 3
 
@@ -1856,6 +2418,11 @@ def main(inbox_path: Path) -> int:
 
     # 4. Parse normalised row data from Excel
     excel_data = parse_excel(sheets)
+    reporter.empty_message = (
+        "✅ No edits found — every row matches the workbook you downloaded, "
+        "so nothing was changed."
+    )
+    _note_edits(reporter, excel_data, baseline, generate_rows(SCHEMA_DIR))
 
     # 5. Plan all changes (errors go to reporter, not raised)
     changes = plan_changes(
@@ -1863,6 +2430,7 @@ def main(inbox_path: Path) -> int:
         label_to_slot, label_to_class,
         slot_origin, class_origin,
         reporter,
+        baseline=baseline, sv=sv,
     )
 
     # 6. Stop if any planning errors — nothing written yet
@@ -1870,10 +2438,16 @@ def main(inbox_path: Path) -> int:
         print(reporter.to_markdown())
         return 3
 
-    # 7. Apply changes to YAML files, then verify every addition landed
+    # 7. Apply, verify everything landed, and roll back on any error
     if changes:
+        snapshot = _snapshot_schema(SCHEMA_DIR)
         apply_changes(changes, reporter)
-        verify_applied(changes, reporter)
+        if not reporter.has_errors:
+            verify_applied(changes, reporter)
+            verify_displayed(changes, reporter)
+        if reporter.has_errors:
+            _restore_schema(snapshot)
+            reporter.rolled_back()
 
     # 8. Print markdown report (captured by excel_inbox.yaml for PR comment)
     print(reporter.to_markdown())

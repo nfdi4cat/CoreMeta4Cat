@@ -22,6 +22,7 @@ on:  # yamllint disable-line rule:truthy
       # Only regenerate when something that affects the workbook changes.
       - "src/coremeta4cat/schema/**"
       - "scripts/schema_to_excel.py"
+      - "scripts/workbook_rows.py"
       - "scripts/generate_schema_docs.py"
 
 env:
