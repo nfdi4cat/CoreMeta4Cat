@@ -9,6 +9,7 @@ theme:
     - content.tabs.link
     - search.highlight
     - navigation.expand
+    - navigation.indexes
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
@@ -37,7 +38,10 @@ watch:
 nav:
   - Home: index.md
   - Getting started: getting-started.md
-  - Working with Data: working-with-data.md
+  - Working with Data:
+    - working-with-data/index.md
+    - Community datasets: working-with-data/community-datasets.md
+    - Usage patterns: working-with-data/usage-patterns.md
   - Overview: overview.md
   - Design Patterns: design-patterns.md
   - How to extend: how-to-extend.md
@@ -95,6 +99,10 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid

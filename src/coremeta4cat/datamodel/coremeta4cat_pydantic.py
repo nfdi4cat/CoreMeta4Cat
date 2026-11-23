@@ -85,7 +85,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                     'CatalysisDataset.\n'
                     '  The catalysis research field is expressed via rdf_type '
                     '(ClassifierMixin,\n'
-                    '  Pattern 3) using voc4cat terms — analogous to how '
+                    '  Pattern 3) using voc4cat terms â€” analogous to how '
                     'NMRSpectroscopy uses\n'
                     '  rdf_type: CHMO:0000613 to classify the measurement type.\n'
                     '\n'
@@ -159,24 +159,24 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                     '\n'
                     'Full import hierarchy:\n'
                     '```\n'
-                    '  coremeta4cat.yaml  (this file — aggregator + '
+                    '  coremeta4cat.yaml  (this file â€” aggregator + '
                     'CatalysisDataset entry point)\n'
                     '    +-- coremeta4cat_common.yaml         (shared slots, '
                     'enums)\n'
                     '          +-- chem_dcat_ap          (SubstanceSample, '
-                    'ChemicalSubstance, …)\n'
+                    'ChemicalSubstance, â€¦)\n'
                     '                +-- chemical_reaction_ap\n'
                     '                      +-- chemical_entities_ap\n'
                     '                            +-- material_entities_ap\n'
                     '                                  +-- dcat_ap_plus  '
                     '(DCAT-AP-PLUS base)\n'
-                    '    +-- coremeta4cat_synthesis_ap         (Step 3 — '
+                    '    +-- coremeta4cat_synthesis_ap         (Step 3 â€” '
                     'Synthesis, PreparationMethod, mixins)\n'
-                    '    +-- coremeta4cat_characterization_ap  (Step 4 — '
+                    '    +-- coremeta4cat_characterization_ap  (Step 4 â€” '
                     'Characterization, 24 techniques, mixins)\n'
-                    '    +-- coremeta4cat_reaction_ap          (Step 5 — Reaction, '
+                    '    +-- coremeta4cat_reaction_ap          (Step 5 â€” Reaction, '
                     '8 Reactor subclasses)\n'
-                    '    +-- coremeta4cat_simulation_ap        (Step 6 — '
+                    '    +-- coremeta4cat_simulation_ap        (Step 6 â€” '
                     'Simulation, 4 methods, 12 properties, mixins)\n'
                     '```',
      'id': 'https://w3id.org/nfdi4cat/coremeta4cat',
@@ -248,28 +248,28 @@ following DCAT-AP-PLUS Pattern 3 (Flexible classification).
     """
     heterogeneous_catalysis = "heterogeneous_catalysis"
     """
-    Heterogeneous catalysis — catalyst and reactants are in different phases.
+    Heterogeneous catalysis â€” catalyst and reactants are in different phases.
     """
     homogeneous_catalysis = "homogeneous_catalysis"
     """
-    Homogeneous catalysis — catalyst and reactants are in the same phase.
+    Homogeneous catalysis â€” catalyst and reactants are in the same phase.
     """
     biocatalysis = "biocatalysis"
     """
-    Biocatalysis — use of enzymes or whole cells as catalysts.
+    Biocatalysis â€” use of enzymes or whole cells as catalysts.
     """
     electrocatalysis = "electrocatalysis"
     """
-    Electrocatalysis — catalysis of electrochemical reactions.
+    Electrocatalysis â€” catalysis of electrochemical reactions.
     """
     photocatalysis = "photocatalysis"
     """
-    Photocatalysis — catalysis of a chemical reaction through the
+    Photocatalysis â€” catalysis of a chemical reaction through the
     absorption of sufficient light energy by a photocatalyst.
     """
     hybrid_catalysis = "hybrid_catalysis"
     """
-    Hybrid catalysis — combination of two or more catalytic approaches.
+    Hybrid catalysis â€” combination of two or more catalytic approaches.
     """
     other = "other"
     """
@@ -283,15 +283,15 @@ class ImpregnationTypeEnum(str, Enum):
     """
     wet_impregnation = "wet_impregnation"
     """
-    Wet impregnation — excess solution is used to impregnate the support.
+    Wet impregnation â€” excess solution is used to impregnate the support.
     """
     dry_impregnation = "dry_impregnation"
     """
-    Dry impregnation — solution volume equals the pore volume of the support.
+    Dry impregnation â€” solution volume equals the pore volume of the support.
     """
     incipient_wetness = "incipient_wetness"
     """
-    Incipient wetness impregnation — synonym for dry impregnation.
+    Incipient wetness impregnation â€” synonym for dry impregnation.
     """
     other = "other"
     """
@@ -2331,7 +2331,7 @@ class Synthesis(CatalysisDataGeneratingActivity):
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:catalyst_measured_properties'} })
-    storage_conditions: Optional[list[str]] = Field(default=None, description="""Conditions under which the catalyst is stored (e.g. inert atmosphere, 4°C).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'],
+    storage_conditions: Optional[list[str]] = Field(default=None, description="""Conditions under which the catalyst is stored (e.g. inert atmosphere, 4Â°C).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'voc4cat:0008105'} })
@@ -2525,7 +2525,7 @@ class Characterization(CatalysisDataGeneratingActivity):
 
     The specific technique type is expressed via rdf_type using an ontology
     term (e.g. CHMO:0000158 for powder XRD, CHMO:0000404 for XPS),
-    following DCAT-AP-PLUS Pattern 3 — exactly as NMRSpectroscopy uses
+    following DCAT-AP-PLUS Pattern 3 â€” exactly as NMRSpectroscopy uses
     rdf_type: CHMO:0000613.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000070',
@@ -5140,7 +5140,7 @@ class CatalyticReaction(ChemicalReaction):
     temperature, pressure, yield, reaction steps) from ChemicalReaction and
     adds catalysis-specific operating-condition slots.
 
-    Reaction is NOT a DataGeneratingActivity — it is the catalytic process
+    Reaction is NOT a DataGeneratingActivity â€” it is the catalytic process
     being observed, not the process that generates the dataset. A CatalysisDataset
     is linked to the Reaction it is about via is_about_activity.
 
@@ -6071,7 +6071,7 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "link
 class PreparationMethod(CatalysisPlan):
     """
     An abstract Plan describing the protocol used to prepare a catalyst.
-    Concrete subclasses (Impregnation, CoPrecipitation, …) specify the
+    Concrete subclasses (Impregnation, CoPrecipitation, â€¦) specify the
     method-specific parameters. Linked from Synthesis via realized_plan.
 
     The specific preparation method type should additionally be expressed
@@ -13536,7 +13536,7 @@ class CalcinationGaseousEnvironment(Atmosphere):
 class HeatingProcedure(QualitativeAttribute):
     """
     A qualitative descriptor of the thermal programme or heating procedure
-    applied (e.g. \"isothermal\", \"ramp 5 °C/min to 500 °C, dwell 2 h\").
+    applied (e.g. \"isothermal\", \"ramp 5 Â°C/min to 500 Â°C, dwell 2 h\").
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:HeatingProcedure',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
@@ -13632,7 +13632,7 @@ class HeatingProcedure(QualitativeAttribute):
 class SamplePretreatment(QualitativeAttribute):
     """
     A qualitative descriptor of the pre-treatment applied to a sample
-    before a process or measurement (e.g. \"reduction at 300 °C\", \"outgassing\").
+    before a process or measurement (e.g. \"reduction at 300 Â°C\", \"outgassing\").
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000122',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
@@ -19419,7 +19419,7 @@ class ChemicalReactor(Reactor):
     instruments (Device) from reaction vessels (Reactor). ChemicalReactor
     further specializes chemdcat-ap's generic Reactor for catalysis use cases.
 
-    Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify
+    Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, â€¦) specify
     reactor geometry and operating mode.
     A reactor that uses fields of its subclass declares the subclass with
     reactor_designator (its class_uri, e.g. coremeta4cat:FixedBedReactor).
@@ -19797,7 +19797,7 @@ rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_
 
 class CSTR(ChemicalReactor):
     """
-    Continuous stirred tank reactor (CSTR) — a well-mixed, continuous-flow
+    Continuous stirred tank reactor (CSTR) â€” a well-mixed, continuous-flow
     reactor operating at steady state.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0007019',
@@ -19998,7 +19998,7 @@ rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_
 
 class PlugFlowReactor(ChemicalReactor):
     """
-    Plug flow reactor (PFR) — a tubular reactor in which reactant composition
+    Plug flow reactor (PFR) â€” a tubular reactor in which reactant composition
     varies along the axis with no axial mixing.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0007102',
@@ -20189,7 +20189,7 @@ rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_
 
 class Autoclave(ChemicalReactor):
     """
-    Autoclave reactor — a sealed pressure vessel for batch reactions at
+    Autoclave reactor â€” a sealed pressure vessel for batch reactions at
     elevated temperature and/or pressure.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NCIT:C93052',
@@ -20381,7 +20381,7 @@ rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_
 
 class SlurryReactor(ChemicalReactor):
     """
-    Slurry reactor — a three-phase reactor in which catalyst particles are
+    Slurry reactor â€” a three-phase reactor in which catalyst particles are
     suspended in a liquid phase through which gas is bubbled.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:SlurryReactor',
@@ -20574,7 +20574,7 @@ rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_
 
 class Microreactor(ChemicalReactor):
     """
-    Microreactor — a miniaturised flow reactor with characteristic dimensions
+    Microreactor â€” a miniaturised flow reactor with characteristic dimensions
     in the sub-millimetre range, enabling precise thermal control and rapid
     screening.
     """
@@ -20757,7 +20757,7 @@ rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_
 
 class FixedBedReactor(ChemicalReactor):
     """
-    Fixed bed reactor — a tubular reactor packed with a stationary catalyst bed.
+    Fixed bed reactor â€” a tubular reactor packed with a stationary catalyst bed.
     The most common reactor type in heterogeneous catalysis testing.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:FixedBedReactor',
@@ -20952,7 +20952,7 @@ rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_
 
 class FluidizedBedReactor(ChemicalReactor):
     """
-    Fluidized bed reactor — a reactor in which the catalyst particles are
+    Fluidized bed reactor â€” a reactor in which the catalyst particles are
     suspended in an upward-flowing gas or liquid stream.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:FluidizedBedReactor',
@@ -25225,7 +25225,7 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "link
 
 class DFT(SimulationMethod):
     """
-    Density functional theory — a quantum mechanical method for calculating
+    Density functional theory â€” a quantum mechanical method for calculating
     the electronic structure of atoms, molecules, and periodic solids.
     The most widely used ab initio method in computational catalysis.
     """
@@ -25370,7 +25370,7 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "link
 
 class MolecularDynamics(SimulationMethod):
     """
-    Molecular dynamics simulation — a method for computing the time evolution
+    Molecular dynamics simulation â€” a method for computing the time evolution
     of a system of interacting particles by integrating the equations of motion.
     Used to study diffusion, reaction kinetics, and thermal properties.
     """
@@ -25509,7 +25509,7 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "link
 
 class Microkinetics(SimulationMethod):
     """
-    Microkinetic modelling — a mean-field kinetic approach that integrates
+    Microkinetic modelling â€” a mean-field kinetic approach that integrates
     elementary reaction steps and their rate constants to predict catalytic
     activity and selectivity under reaction conditions.
     """
@@ -25668,7 +25668,7 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "link
 
 class MonteCarlo(SimulationMethod):
     """
-    Monte Carlo simulation — a stochastic method that samples configuration
+    Monte Carlo simulation â€” a stochastic method that samples configuration
     space using random moves accepted or rejected according to a statistical
     criterion (e.g. Metropolis). Used for adsorption isotherms, phase diagrams,
     and lattice-based kinetics.
@@ -28109,7 +28109,7 @@ class CatalyticDescriptors(CalculatedProperty):
          'unit': {'ucum_code': 'eV'}} })
     scaling_relation: Optional[list[str]] = Field(default=None, description="""Linear scaling relation between adsorption energies (e.g. \"Delta_E_OH = 0.50 Delta_E_O + 0.10 eV\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'],
          'slot_uri': 'coremeta4cat:scaling_relation'} })
-    bep_relation: Optional[list[str]] = Field(default=None, description="""Brønsted–Evans–Polanyi relation between activation energies and reaction energies (slope and intercept).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'], 'slot_uri': 'coremeta4cat:bep_relation'} })
+    bep_relation: Optional[list[str]] = Field(default=None, description="""BrÃ¸nstedâ€“Evansâ€“Polanyi relation between activation energies and reaction energies (slope and intercept).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'], 'slot_uri': 'coremeta4cat:bep_relation'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',

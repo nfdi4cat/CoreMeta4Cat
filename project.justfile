@@ -21,6 +21,11 @@ schema-to-excel:
 gen-example-outputs:
   uv run python scripts/generate_example_outputs.py
 
+# Build the "Usage patterns" docs page from scripts/usage_patterns.yaml
+[group('model development')]
+gen-usage-patterns:
+  uv run python scripts/generate_usage_patterns.py
+
 # Compare the Excel vocabulary workbook against the current schema
 [group('model development')]
 excel-to-schema:

@@ -1,0 +1,341 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
+@prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
+@prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix hdl: <https://hdl.handle.net/> .
+@prefix schema1: <http://schema.org/> .
+@prefix doi: <https://doi.org/> .
+CHEBI:16134 schema1:name "ammonia" ;
+	a schema1:DefinedTerm .
+CHEBI:17997 schema1:name "dinitrogen" ;
+	a schema1:DefinedTerm .
+CHEBI:18276 schema1:name "dihydrogen" ;
+	a schema1:DefinedTerm .
+CHEBI:49475 schema1:name "argon atom" ;
+	a schema1:DefinedTerm .
+CHMO:0002908 schema1:name "temperature-programmed reduction" ;
+	a schema1:DefinedTerm .
+<https://creativecommons.org/licenses/by/4.0/> dcterms:title "CC BY 4.0" ;
+	a dcterms:LicenseDocument .
+doi:10.1016\/j.apcata.2025.120571 dcterms:title "Davari et al., Appl. Catal. A 708 (2025) 120571" ;
+	a rdfs:Resource .
+hdl:21.11165\/4cat\/b74m-m6rp dcterms:creator _:c14n10 , _:c14n14 , _:c14n28 , _:c14n29 , _:c14n3 , _:c14n34 , _:c14n9 ;
+	dcterms:description "Data from Davari et al., Appl. Catal. A 708 (2025) 120571: H2-TPR of the Ni-BCZY cermet; NH3 decomposition light-off curves of six Ru/Ba catalysts on Ni-BCZY, Ni-YSZ and YSZ at 500-3000 ppm NH3 in a packed bed (1 bar, GHSV 50,000 h-1); and DETCHEM microkinetic packed-bed simulations: comparison with the experiments for literature and optimized parameters, axial and surface-coverage profiles, turnover frequencies, and variation of inlet NH3, GHSV and pressure. File names follow the figures of a version of the article; from Fig6 on they do not match the published figure numbers." ;
+	dcterms:isReferencedBy doi:10.1016\/j.apcata.2025.120571 ;
+	dcterms:publisher _:c14n21 ;
+	dcterms:subject coremeta4cat:CAT_b74m-m6rp_all , coremeta4cat:REAC_b74m-m6rp_NH3_decomposition ;
+	dcterms:title "Dataset for Publication: Experimental and Microkinetic Investigation of Thermo-Catalytic Ammonia Decomposition over a Ba-promoted Ru/Ni-BCZY Catalyst for Use in Ammonia-fed Protonic Ceramic Cells" , "Repository landing page" ;
+	a rdfs:Resource , dcat:Dataset , voc4cat:0007001 ;
+	adms:identifier _:c14n27 ;
+	dcat:distribution _:c14n7 ;
+	dcat:keyword "Ammonia decomposition" , "Hydrogen production/generation" , "Microkinetic modeling" , "Ni-BCZY" , "Protonic Ceramic Cell" , "Ru catalyst" , "Thermo-catalytic experiments" ;
+	prov:wasGeneratedBy coremeta4cat:CHAR_b74m-m6rp_TCD , coremeta4cat:SIM_b74m-m6rp_MKM_parametric , coremeta4cat:SIM_b74m-m6rp_MKM_validation , coremeta4cat:SYN_b74m-m6rp_Ru_Ba_IWI , coremeta4cat:SYN_b74m-m6rp_cermet_supports .
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY dcterms:description "1000 ppm NH3; the deposited file lost its decimal separators" ;
+	dcterms:relation _:c14n30 , _:c14n5 ;
+	dcterms:title "0.5Ru/0.5Ba/Ni-BCZY" ;
+	a OBI:0000747 , SIO:010344 .
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY dcterms:description "0.5 wt% Ru and 1 wt% Ba on crushed Ni-BCZY cermet; 500, 1000, 3000 ppm NH3" ;
+	dcterms:relation _:c14n18 , _:c14n19 ;
+	dcterms:title "0.5Ru/1Ba/Ni-BCZY (modelled as Ru and Ni surface sites)" , "0.5Ru/1Ba/Ni-BCZY" ;
+	a OBI:0000747 , SIO:010344 , prov:Entity .
+coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ dcterms:description "1000 ppm NH3" ;
+	dcterms:relation _:c14n6 , _:c14n8 ;
+	dcterms:title "1Ru/1Ba/Ni-YSZ" ;
+	a OBI:0000747 , SIO:010344 .
+coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ dcterms:description "1000 ppm NH3; Ni-free YSZ support" ;
+	dcterms:relation _:c14n26 , _:c14n39 ;
+	dcterms:title "1Ru/1Ba/YSZ" ;
+	a OBI:0000747 , SIO:010344 .
+coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY dcterms:description "1000 ppm NH3" ;
+	dcterms:relation _:c14n36 ;
+	dcterms:title "1Ru/Ni-BCZY" ;
+	a OBI:0000747 , SIO:010344 .
+coremeta4cat:CAT_b74m-m6rp_Ni-BCZY dcterms:description "Bare cermet (NiO:BCZY811 = 60:40 by weight before reduction); 500, 1000, 3000 ppm NH3" ;
+	dcterms:title "Ni-BCZY (modelled as Ni surface sites)" , "Ni-BCZY cermet powder" , "Ni-BCZY cermet" ;
+	a SIO:010344 , prov:Entity .
+coremeta4cat:CAT_b74m-m6rp_all dcterms:description "Six catalysts: Ni-BCZY, 1Ru/Ni-BCZY, 0.5Ru/1Ba/Ni-BCZY, 0.5Ru/0.5Ba/Ni-BCZY, 1Ru/1Ba/YSZ, 1Ru/1Ba/Ni-YSZ. See is_about_activity for per-catalyst detail." ;
+	dcterms:title "Ru/Ba catalysts on Ni-BCZY, Ni-YSZ and YSZ" ;
+	a prov:Entity .
+coremeta4cat:CHAR_b74m-m6rp_TCD dcterms:description "Temperature-programmed reduction of about 0.1 g Ni-BCZY powder in a quartz reactor, from room temperature to 1223 K at 10 K/min in 10% H2/Ar (50 mL/min); H2 consumption followed by a thermal conductivity detector. Deposited signal 38-951 C." ;
+	dcterms:title "H2-TPR of the Ni-BCZY cermet (article Fig. 1)" ;
+	a "Characterization" , CHMO:0002908 ;
+	adms:identifier _:c14n17 ;
+	prov:used coremeta4cat:CAT_b74m-m6rp_Ni-BCZY , coremeta4cat:CHAR_b74m-m6rp_TCD_method ;
+	prov:wasAssociatedWith coremeta4cat:DEV_b74m-m6rp_TCD .
+coremeta4cat:CHAR_b74m-m6rp_TCD_method dcterms:description "About 0.1 g sample, 10% H2 in Ar at 50 mL/min, TCD detection." ;
+	dcterms:title "H2-TPR, 10 K/min to 1223 K" ;
+	a CHMO:0002908 ;
+	coremeta4cat:hasTemperatureRange _:c14n41 ;
+	coremeta4cat:reducing_gas_composition "10% H2 in Ar, 50 mL/min" ;
+	voc4cat:0008116 _:c14n25 .
+coremeta4cat:DEV_b74m-m6rp_TCD dcterms:description "Instrument model not stated in the article." ;
+	dcterms:title "TPR set-up with quartz reactor and thermal conductivity detector" ;
+	a prov:Agent .
+coremeta4cat:PREC_b74m-m6rp_8YSZ dcterms:title "8 mol% yttria-stabilised zirconia powder (8-YSZ, Tosoh)" ;
+	a voc4cat:0007794 .
+coremeta4cat:PREC_b74m-m6rp_BCZY811 dcterms:title "BaCe0.8Zr0.1Y0.1O3-d powder (BCZY811, CerPoTech)" ;
+	a voc4cat:0007794 .
+coremeta4cat:PREC_b74m-m6rp_BaNO3 dcterms:title "barium nitrate, Ba(NO3)2 (Alfa Aesar), dissolved in deionised water" ;
+	a voc4cat:0007794 .
+coremeta4cat:PREC_b74m-m6rp_NiO dcterms:title "NiO powder (J.T. Baker)" ;
+	a voc4cat:0007794 .
+coremeta4cat:PREC_b74m-m6rp_RuNO_NO3 dcterms:title "ruthenium(III) nitrosyl nitrate, aqueous solution (Alfa Aesar)" ;
+	a voc4cat:0007794 .
+coremeta4cat:PREC_b74m-m6rp_graphite dcterms:title "graphite pore former (TimCal)" ;
+	a voc4cat:0007794 .
+coremeta4cat:PREC_b74m-m6rp_tape_organics dcterms:title "ethanol and methyl ethyl ketone (solvents, dispersant), polyvinyl butyral (binder), PEG and TEG-EH (plasticizers, Eastman)" ;
+	a voc4cat:0007794 .
+coremeta4cat:PROD_b74m-m6rp_H2 dcterms:title "dihydrogen" ;
+	a CHEBI:18276 , NCIT:C48810 .
+coremeta4cat:PROD_b74m-m6rp_N2 dcterms:title "dinitrogen" ;
+	a CHEBI:17997 , NCIT:C48810 .
+coremeta4cat:REAC_b74m-m6rp_Ar dcterms:title "argon (balance)" ;
+	a CHEBI:49475 , SIO:010411 .
+coremeta4cat:REAC_b74m-m6rp_FTIR dcterms:description "MKS Instruments MG2030 FTIR spectrometer, continuous analysis of the effluent gas" ;
+	dcterms:title "online FTIR gas analysis" ;
+	a OBI:0000272 .
+coremeta4cat:REAC_b74m-m6rp_NH3 dcterms:title "ammonia" ;
+	a CHEBI:16134 , SIO:010411 .
+coremeta4cat:REAC_b74m-m6rp_NH3_decomposition RO:0004008 coremeta4cat:PROD_b74m-m6rp_H2 , coremeta4cat:PROD_b74m-m6rp_N2 ;
+	RO:0004009 coremeta4cat:REAC_b74m-m6rp_Ar , coremeta4cat:REAC_b74m-m6rp_NH3 ;
+	RXNO:0000425 coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ , coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ , coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_Ni-BCZY ;
+	dcterms:description "Thermocatalytic decomposition of ammonia (2 NH3 -> N2 + 3 H2) measured as light-off curves in a packed bed: NH3 in Ar at 1 bar, GHSV 50,000 h-1, temperature ramped from 473 to 873 K at 2 K/min, after 1.5 h pretreatment at 873 K in 5% H2/Ar and 1 h Ar purge at 473 K. Six catalysts at 1000 ppm NH3 (Fig. 2); 0.5Ru/1Ba/Ni-BCZY and Ni-BCZY also at 500 and 3000 ppm (Fig. 3 and simulation comparisons). Article Table 3 gives T10/T50: Ni-BCZY 656/717 K, 1Ru/Ni-BCZY 621/675 K, 0.5Ru/1Ba/Ni-BCZY 615/675 K, 0.5Ru/0.5Ba/Ni-BCZY 621/676 K, 1Ru/1Ba/YSZ 536/589 K, 1Ru/1Ba/Ni-YSZ 621/688 K. The deposited curve for 0.5Ru/0.5Ba/Ni-BCZY is unreadable (lost decimal separators); its T10/T50 survive only in the article." ;
+	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0007001 ;
+	adms:identifier _:c14n0 ;
+	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
+	coremeta4cat:catalyst_form voc4cat:0007034 ;
+	coremeta4cat:catalyst_quantity _:c14n37 ;
+	coremeta4cat:feed_composition_range _:c14n38 ;
+	coremeta4cat:product_identification_method coremeta4cat:REAC_b74m-m6rp_FTIR ;
+	voc4cat:0000118 _:c14n22 ;
+	voc4cat:0007009 "thermocatalytic ammonia decomposition" ;
+	voc4cat:0007014 voc4cat:0007001 ;
+	voc4cat:0007032 _:c14n16 .
+coremeta4cat:REAC_b74m-m6rp_reactor dcterms:description "0.8 cm inner diameter, 100 cm long, in a furnace; bed fixed by quartz wool, about 1.2 cm long; catalyst and silica sieve fraction 120-250 um; Bronkhorst mass flow controllers; two type N thermocouples about 2 mm up- and downstream of the bed." ;
+	dcterms:title "quartz glass tubular packed-bed reactor" ;
+	a coremeta4cat:FixedBedReactor ;
+	coremeta4cat:catalyst_bed_diameter _:c14n12 ;
+	voc4cat:0008217 _:c14n32 ;
+	voc4cat:0008218 "silica particles, 700 mg, 120-250 um" .
+coremeta4cat:SIM_b74m-m6rp_MKM_method dcterms:description "Modified Arrhenius rate expressions with coverage-dependent activation energies; catalytic area scaled by F_cat/geo from the metal dispersion. Parameter optimization in 5% steps with two dependent parameters fixed by thermodynamic consistency." ;
+	dcterms:title "microkinetic packed-bed model, literature and optimized parameters" ;
+	a coremeta4cat:Microkinetics .
+coremeta4cat:SIM_b74m-m6rp_MKM_parametric dcterms:description "Simulations with the optimized microkinetic mechanism: axial NH3 and conversion profiles over the 12 mm bed at 618-818 K (article Fig. 8); spatially resolved surface coverages at 615 and 818 K (Fig. 9); turnover frequency of the Ru-only, Ni-only and combined models at 498-848 K, computed without reactor effects (Fig. 10); and variation of inlet NH3, GHSV (100-100,000 h-1) and pressure at 615 K or as a function of temperature (Fig. 11). Base case: 1000 ppm NH3 in Ar, 1 bar, GHSV 50,000 h-1, 615 K (= T10 of 0.5Ru/1Ba/Ni-BCZY)." ;
+	dcterms:title "Microkinetic NH3 decomposition: reactor profiles, TOF and parameter variation" ;
+	a "Simulation" ;
+	adms:identifier _:c14n35 ;
+	prov:used coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY , coremeta4cat:SIM_b74m-m6rp_MKM_parametric_method ;
+	coremeta4cat:calculated_property _:c14n2 , _:c14n24 , _:c14n31 ;
+	coremeta4cat:software_package "DETCHEM-PBR (DETCHEM package), reactor simulations" , "DETCHEM-SURFPROBE, surface coverages and TOF without reactor effects" .
+coremeta4cat:SIM_b74m-m6rp_MKM_parametric_method dcterms:description "Mechanism with the optimized Ru and Ni parameters (article Table 4). Varied inputs: inlet NH3 mole fraction, GHSV, pressure, temperature." ;
+	dcterms:title "optimized microkinetic packed-bed model, parameter variation" ;
+	a coremeta4cat:Microkinetics .
+coremeta4cat:SIM_b74m-m6rp_MKM_validation dcterms:description "One-dimensional packed-bed reactor simulation (negligible axial diffusion) with a mean-field surface mechanism on Ru and Ni sites, compared with the measured light-off curves at 500, 1000 and 3000 ppm NH3 in Ar, 1 bar, GHSV 50,000 h-1, ramp 2 K/min. Ni steps start from Zhu et al. (Int. J. Green Energy 19 (2022) 1568), Ru steps from Zhang et al. (ACS Sustain. Chem. Eng. 7 (2019) 18038, Ba-promoted Ru on YSZ, coverage-dependent activation energies). Both parameter sets were re-optimized against the 1000 ppm data and validated with the 500 and 3000 ppm data; the optimized set is article Table 4. Surface species: Ru, H-Ru, N-Ru, NH-Ru, NH2-Ru, NH3-Ru, Ni, H-Ni, N-Ni, NH-Ni, NH2-Ni, NH3-Ni." ;
+	dcterms:title "Microkinetic simulation of NH3 decomposition light-off on Ni-BCZY and 0.5Ru/1Ba/Ni-BCZY" ;
+	a "Simulation" ;
+	adms:identifier _:c14n20 ;
+	prov:used coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_Ni-BCZY , coremeta4cat:SIM_b74m-m6rp_MKM_method ;
+	coremeta4cat:calculated_property _:c14n1 ;
+	coremeta4cat:software_package "CaRMeN (Catalytic Reaction Mechanisms Network)" , "DETCHEM-ADJUST (thermodynamic consistency during optimization)" , "DETCHEM-PBR (DETCHEM package)" .
+coremeta4cat:SUP_b74m-m6rp_Ni-BCZY dcterms:title "crushed Ni-BCZY cermet powder" ;
+	a OBI:0000747 .
+coremeta4cat:SUP_b74m-m6rp_Ni-YSZ dcterms:title "crushed Ni-YSZ cermet powder" ;
+	a OBI:0000747 .
+coremeta4cat:SUP_b74m-m6rp_YSZ dcterms:title "crushed YSZ powder" ;
+	a OBI:0000747 .
+coremeta4cat:SUP_b74m-m6rp_supports dcterms:description "Output of SYN_b74m-m6rp_cermet_supports" ;
+	dcterms:title "crushed Ni-BCZY, Ni-YSZ and YSZ supports" ;
+	a voc4cat:0007794 .
+coremeta4cat:SYN_b74m-m6rp_IWI_method dcterms:description "Because of the low pore volume of the cermets the precursor solution was added in 100 uL steps, each followed by drying at 348 K for 15 min, until the target loading was reached. Nitrates decomposed by calcination for 5 h at 873 K in static air; granulated to 120-250 um." ;
+	dcterms:title "stepwise incipient wetness impregnation, calcination, granulation" ;
+	SIO:000008 _:c14n40 ;
+	a voc4cat:0007028 ;
+	coremeta4cat:hasCalcinationTemperatureRange _:c14n33 ;
+	voc4cat:0000060 _:c14n15 ;
+	voc4cat:0008119 "incipient_wetness" ;
+	voc4cat:0008206 _:c14n4 ;
+	voc4cat:0008207 _:c14n13 .
+coremeta4cat:SYN_b74m-m6rp_Ru_Ba_IWI dcterms:title "Ru and Ba on Ni-BCZY, Ni-YSZ and YSZ by stepwise incipient wetness impregnation" ;
+	a "Synthesis" ;
+	adms:identifier _:c14n23 ;
+	prov:generated coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ , coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ , coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY ;
+	prov:used coremeta4cat:PREC_b74m-m6rp_BaNO3 , coremeta4cat:PREC_b74m-m6rp_RuNO_NO3 , coremeta4cat:SUP_b74m-m6rp_supports , coremeta4cat:SYN_b74m-m6rp_IWI_method ;
+	coremeta4cat:catalyst_measured_properties "Ru distribution and nanoparticle size of 0.5Ru/1Ba/Ni-BCZY by SEM/EDX (article Figs. 4-5; images not deposited)" ;
+	coremeta4cat:nominal_composition "0.5Ru/0.5Ba/Ni-BCZY: 0.5 wt% Ru, 0.5 wt% Ba" , "0.5Ru/1Ba/Ni-BCZY: 0.5 wt% Ru, 1.0 wt% Ba" , "1Ru/1Ba/Ni-YSZ: 1.0 wt% Ru, 1.0 wt% Ba" , "1Ru/1Ba/YSZ: 1.0 wt% Ru, 1.0 wt% Ba" , "1Ru/Ni-BCZY: 1.0 wt% Ru" .
+coremeta4cat:SYN_b74m-m6rp_cermet_supports dcterms:title "Ni-BCZY, Ni-YSZ and YSZ supports from sintered tapes" ;
+	a "Synthesis" ;
+	adms:identifier _:c14n11 ;
+	prov:generated coremeta4cat:SUP_b74m-m6rp_Ni-BCZY , coremeta4cat:SUP_b74m-m6rp_Ni-YSZ , coremeta4cat:SUP_b74m-m6rp_YSZ ;
+	prov:used coremeta4cat:PREC_b74m-m6rp_8YSZ , coremeta4cat:PREC_b74m-m6rp_BCZY811 , coremeta4cat:PREC_b74m-m6rp_NiO , coremeta4cat:PREC_b74m-m6rp_graphite , coremeta4cat:PREC_b74m-m6rp_tape_organics , coremeta4cat:SYN_b74m-m6rp_tape_casting_method ;
+	coremeta4cat:catalyst_measured_properties "BET surface area: NiO-BCZY (oxidized) 1.1 m2/g, YSZ powder 14.1 m2/g (article Table 2)" , "Ni dispersion of Ni-BCZY 3.17% (H2-TPD)" ;
+	coremeta4cat:nominal_composition "Ni-BCZY cermet: NiO and BaCe0.8Zr0.1Y0.1O3-d (BCZY811), 60:40 by weight before reduction" , "Ni-YSZ cermet: NiO and 8-YSZ, 60:40 by weight before reduction" , "YSZ (8-YSZ, Ni-free)" .
+coremeta4cat:SYN_b74m-m6rp_tape_casting_method dcterms:description "Ceramic powder (and NiO for the cermets) slurried with graphite, ethanol and MEK in a TURBULA 3D shaker for 24 h; PVB, PEG and TEG-EH added, mixed 3 h, rested 24 h, de-aired under vacuum; cast with a ZAA 2300 film applicator onto silicone-coated PET; dried 12 h at room temperature and 10 min at 773 K; sintered 9 h at 1673 K (heating 1 K/min, cooling 3 K/min); crushed to a fine powder." ;
+	dcterms:title "tape casting, sintering and crushing" ;
+	a voc4cat:0007016 .
+voc4cat:0007001 schema1:name "heterogeneous catalysis" ;
+	a schema1:DefinedTerm .
+_:c14n0 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/b74m-m6rp" .
+_:c14n1 dcterms:description "Deposit Fig6a-c (0.5Ru/1Ba/Ni-BCZY, original), Fig7a-c (Ni-BCZY, original and optimized), Fig8a-c (0.5Ru/1Ba/Ni-BCZY, optimized)" ;
+	a IAO:0000109 ;
+	prov:value "NH3 conversion vs. surface temperature, 498-848 K, 9 simulated curves" .
+_:c14n10 a foaf:Agent ;
+	foaf:name "Angeli, Sofia" .
+_:c14n11 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/b74m-m6rp" .
+_:c14n12 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+	qudt:unit <https://qudt.org/vocab/unit/CentiM> ;
+	a qudt:Quantity ;
+	prov:value "0.8"^^xsd:float .
+_:c14n13 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	prov:value "348.15"^^xsd:float .
+_:c14n14 a foaf:Agent ;
+	foaf:name "Chacko, Rinu" .
+_:c14n15 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+	qudt:unit <https://qudt.org/vocab/unit/HR> ;
+	a qudt:Quantity ;
+	prov:value "5.0"^^xsd:float .
+_:c14n16 dcterms:description "Ramp 473-873 K at 2 K/min; deposited inlet temperature 200-601 C" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "873.15"^^xsd:float ;
+	coremeta4cat:minValue "473.15"^^xsd:float .
+_:c14n17 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/b74m-m6rp" .
+_:c14n18 dcterms:description "Ba, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n19 dcterms:description "Ru, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "0.5"^^xsd:float .
+_:c14n2 dcterms:description "Deposit Fig12b, Fig12d, Fig12f; TOF at 615 K vs. the same parameters in Fig12_a, Fig12c, Fig12e (article Fig. 11 shows 100-10,000 ppm and 0.5-5 bar)" ;
+	a IAO:0000109 ;
+	prov:value "NH3 conversion vs. temperature for inlet NH3 100 ppm-100%, GHSV 100-100,000 h-1, pressure 0.5-10 bar" .
+_:c14n20 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/b74m-m6rp" .
+_:c14n21 a foaf:Agent ;
+	foaf:name "NFDI4Cat Central Data Repository" .
+_:c14n22 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n23 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/b74m-m6rp" .
+_:c14n24 dcterms:description "Turnover frequency of NH3 decomposition, deposit Fig11_Ni+Ru.tab (article Fig. 10); Ni-only and Ru-only in Fig11_Ni.tab and Fig11_Ru.tab" ;
+	a IAO:0000109 ;
+	prov:value "TOF 3.2e-4 to 0.37 s-1 (Ni+Ru sites, 498-848 K)" .
+_:c14n25 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/TemperaturePerTime> ;
+	qudt:unit <https://qudt.org/vocab/unit/K-PER-MIN> ;
+	a qudt:Quantity ;
+	prov:value "10.0"^^xsd:float .
+_:c14n26 dcterms:description "Ba, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n27 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/b74m-m6rp" .
+_:c14n28 a foaf:Agent ;
+	foaf:name "Davari, Sadaf" .
+_:c14n29 a foaf:Agent ;
+	foaf:name "Lott, Patrick" .
+_:c14n3 a foaf:Agent ;
+	foaf:name "Dailly, Julian" .
+_:c14n30 dcterms:description "Ru, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "0.5"^^xsd:float .
+_:c14n31 dcterms:description "Deposit Fig10_615K.csv, Fig10_818K.csv (article Fig. 9)" ;
+	a IAO:0000109 ;
+	prov:value "surface coverages of 12 surface species along the bed at 615 and 818 K" .
+_:c14n32 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+	qudt:unit <https://qudt.org/vocab/unit/CentiM> ;
+	a qudt:Quantity ;
+	prov:value "1.2"^^xsd:float .
+_:c14n33 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "873.15"^^xsd:float ;
+	coremeta4cat:minValue "873.15"^^xsd:float .
+_:c14n34 a foaf:Agent ;
+	foaf:name "Bastek, Tim" .
+_:c14n35 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/b74m-m6rp" .
+_:c14n36 dcterms:description "Ru, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n37 dcterms:description "Catalyst granulate per test, mixed with 700 mg silica" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
+	a qudt:Quantity ;
+	prov:value "300.0"^^xsd:float .
+_:c14n38 dcterms:description "NH3 at the inlet (500, 1000, 3000 ppm), balance Ar" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MoleFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PPM> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "3000.0"^^xsd:float ;
+	coremeta4cat:minValue "500.0"^^xsd:float .
+_:c14n39 dcterms:description "Ru, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n4 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+	qudt:unit <https://qudt.org/vocab/unit/MIN> ;
+	a qudt:Quantity ;
+	prov:value "15.0"^^xsd:float .
+_:c14n40 a voc4cat:0000055 ;
+	prov:value "static air" .
+_:c14n41 dcterms:description "room temperature to 1223 K (the article gives 1223 K as the end point)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "1223.15"^^xsd:float ;
+	coremeta4cat:minValue "298.15"^^xsd:float .
+_:c14n5 dcterms:description "Ba, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "0.5"^^xsd:float .
+_:c14n6 dcterms:description "Ba, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n7 dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+	a dcat:Distribution ;
+	dcat:accessURL hdl:21.11165\/4cat\/b74m-m6rp .
+_:c14n8 dcterms:description "Ru, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n9 a foaf:Agent ;
+	foaf:name "Deutschmann, Olaf" .

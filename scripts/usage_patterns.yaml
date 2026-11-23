@@ -1,0 +1,436 @@
+# Usage patterns for docs/working-with-data/usage-patterns.md
+#
+# Every pattern is an excerpt of a community dataset in tests/data/valid/. The generator
+# (scripts/generate_usage_patterns.py, `just gen-usage-patterns`) cuts the excerpt, validates
+# it against `class`, and renders it as graph, YAML and Turtle.
+#
+# To add a pattern: pick a dataset record, give the path to the object (`select`, omitted =
+# the whole record), list the fields to keep (`keep`, see the generator's docstring for the
+# rules), and write purpose, use case and notes. The excerpt must be valid on its own, so
+# keep at least the mandatory fields of its class.
+
+title: Usage patterns
+description: Small, validated examples of how to write recurring things in CoreMeta4Cat
+intro: |
+  Usage patterns are small, reusable examples for things that come up again and again when a
+  catalysis dataset is described: a synthesis with its precursors, a measurement with a
+  specific technique, a catalytic test in a fixed bed, a simulation and its results. Each
+  pattern states its purpose, shows a real use case and the fields involved, and gives the
+  example three ways: as a graph, as YAML (the format you write) and as RDF/Turtle (what a
+  knowledge graph receives).
+
+  Every example is an excerpt of one of the [community datasets](community-datasets.md) and is
+  validated against the current schema whenever the documentation is built, so it can be copied
+  as a starting point. For *why* the schema is structured this way, see
+  [Design Patterns](../design-patterns.md); for every field, see the
+  [Schema Reference](../elements/overview.md).
+
+sections:
+
+  - title: "Section 1: Describing a dataset"
+    intro: |
+      Everything starts with a `CatalysisDataset`: it says what the data is, who made it, which
+      catalysis field it belongs to, and which activities produced it.
+    patterns:
+      - id: dataset-entry-point
+        title: A dataset, its classification and its activities
+        dataset: b74m-m6rp
+        dataset_label: "Dataset 5 (NH₃ decomposition)"
+        source: tests/data/valid/CatalysisDataset-b74m-m6rp.yaml
+        class: CatalysisDataset
+        purpose: >-
+          Make a dataset findable and classifiable: a persistent identifier, a title, the catalysis
+          research field as a vocabulary term, the people behind it, the publication that uses it,
+          and where the files are.
+        use_case: >-
+          A deposit of thermocatalytic NH₃ decomposition data. The research field is
+          *heterogeneous catalysis* (`VOC4CAT:0007001`); the dataset was produced by, among other
+          activities, a temperature-programmed reduction, linked under `was_generated_by`.
+        notes:
+          - >-
+            `activity_designator` tells software which kind of activity an entry of
+            `was_generated_by` is (Synthesis, Characterization or Simulation). It is needed
+            whenever activities are nested inside a dataset record.
+          - >-
+            `is_referenced_by` links the dataset to the article; the article usually cites the
+            dataset only by its handle, so this is the way back.
+        keep:
+          id: true
+          title: true
+          description: true
+          rdf_type: true
+          keyword: 3
+          creator: 2
+          publisher: true
+          is_referenced_by: true
+          dataset_distribution: true
+          was_generated_by:
+            _ids: ["coremeta4cat:CHAR_b74m-m6rp_TCD"]
+            id: true
+            activity_designator: true
+            title: true
+            rdf_type: true
+            carried_out_by: true
+            evaluated_entity: true
+            realized_plan: {id: true, plan_designator: true, title: true}
+
+  - title: "Section 2: Catalyst synthesis"
+    intro: |
+      A `Synthesis` takes precursors (`had_input_entity`), follows a preparation method
+      (`realized_plan`) and produces catalyst samples (`had_output_entity`). The method's class
+      decides which parameters it can carry.
+    patterns:
+      - id: synthesis-coprecipitation
+        title: A synthesis with precursors, amounts and a typed preparation method
+        dataset: 6mxw-xsrd
+        dataset_label: "Dataset 4 (Cu–Ga–Al mixed oxides)"
+        source: tests/data/valid/CatalysisDataset-6mxw-xsrd.yaml
+        select: "was_generated_by[id=coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4]"
+        class: Synthesis
+        purpose: >-
+          Record what went into a catalyst, how much of it, and the conditions of the preparation
+          method as structured values.
+        use_case: >-
+          Co-precipitation of a Cu–Al–Ga hydrotalcite precursor from three metal nitrates at pH 9,
+          aged at 65 °C and calcined. The plan declares itself a `CoPrecipitation`
+          (`plan_designator: voc4cat:0007795`), which makes the precipitation, ageing and
+          calcination fields available.
+        notes:
+          - >-
+            `plan_designator` takes the `class_uri` of the method exactly as written in the
+            schema (`voc4cat:…` in lower case). Without it, the method fields still validate as
+            JSON but cannot be loaded into the Python datamodel.
+          - >-
+            Some quantity fields take a list even when there is one value (e.g. `has_ph_value`),
+            others a single value (e.g. `has_aging_duration`). The schema reference shows which.
+        keep:
+          id: true
+          activity_designator: true
+          title: true
+          nominal_composition: true
+          catalyst_measured_properties: true
+          had_input_entity: {id: true, title: true, precursor_quantity: true}
+          had_output_entity: {id: true, title: true}
+          realized_plan:
+            id: true
+            plan_designator: true
+            title: true
+            precipitating_agent: true
+            has_ph_value: true
+            has_aging_temperature: true
+            has_aging_duration: true
+            has_calcination_temperature_range: true
+            has_calcination_atmosphere: true
+
+      - id: synthesis-multi-step
+        title: A preparation in two steps
+        dataset: 6mxw-xsrd
+        dataset_label: "Dataset 4 (Cu–Ga–Al mixed oxides)"
+        source: tests/data/valid/CatalysisDataset-6mxw-xsrd.yaml
+        class: CatalysisDataset
+        purpose: >-
+          Describe a preparation that uses two different methods one after the other, without
+          losing which method and which conditions belong to which step.
+        use_case: >-
+          A Cu–Al oxide is co-precipitated and calcined (step 1); then 1 wt% Ga is added by
+          incipient wetness impregnation and the material is calcined again (step 2). The
+          intermediate oxides are the output of step 1 and the input of step 2, which chains the
+          two `Synthesis` records.
+        notes:
+          - >-
+            The chain is made by using the same `id` for the intermediate in both records. Each
+            step can then declare its own method class.
+          - >-
+            Precursor masses are recommended, not mandatory. Articles often give only target
+            loadings, as here.
+        keep:
+          id: true
+          title: true
+          description: true
+          was_generated_by:
+            _ids: ["coremeta4cat:SYN_6mxw-xsrd_gen2_step1", "coremeta4cat:SYN_6mxw-xsrd_gen2_step2"]
+            id: true
+            activity_designator: true
+            title: true
+            nominal_composition: true
+            catalyst_measured_properties: true
+            had_input_entity: {id: true, title: true}
+            had_output_entity: {_limit: 2, id: true, title: true}
+            realized_plan:
+              id: true
+              plan_designator: true
+              title: true
+              impregnation_type: true
+              has_calcination_temperature_range: true
+
+  - title: "Section 3: Characterization"
+    intro: |
+      A `Characterization` is carried out by an instrument (`carried_out_by`), evaluates samples
+      (`evaluated_entity`) and follows a technique (`realized_plan`). The technique's class decides
+      which parameters it can carry.
+    patterns:
+      - id: characterization-typed-technique
+        title: A measurement with a typed technique and its parameters
+        dataset: b74m-m6rp
+        dataset_label: "Dataset 5 (NH₃ decomposition)"
+        source: tests/data/valid/CatalysisDataset-b74m-m6rp.yaml
+        select: "was_generated_by[id=coremeta4cat:CHAR_b74m-m6rp_TCD]"
+        class: Characterization
+        purpose: >-
+          Say which technique was used, on which sample, with which instrument, and record the
+          technique-specific parameters in their own fields.
+        use_case: >-
+          H₂ temperature-programmed reduction of a Ni-BCZY cermet: 10% H₂ in Ar, 10 K/min up to
+          1223 K, TCD detection. The plan is declared as `TPR` (`plan_designator: CHMO:0002908`),
+          the same term that classifies the activity (`rdf_type`).
+        notes:
+          - >-
+            `rdf_type` on the activity classifies the measurement for search; `plan_designator`
+            on the plan selects the technique class and its fields. Both point to the same CHMO
+            term here.
+        keep:
+          id: true
+          activity_designator: true
+          title: true
+          rdf_type: true
+          carried_out_by: true
+          evaluated_entity: true
+          realized_plan:
+            id: true
+            plan_designator: true
+            title: true
+            has_temperature_range: true
+            has_heating_rate: true
+            reducing_gas_composition: true
+
+      - id: characterization-many-samples
+        title: One technique, many samples
+        dataset: 32x1-99x6
+        dataset_label: "Dataset 2 (P-modified Pd catalysts)"
+        source: tests/data/valid/CatalysisDataset-32x1-99x6.yaml
+        select: "was_generated_by[id=coremeta4cat:CHAR_32x1-99x6_BET]"
+        class: Characterization
+        purpose: >-
+          Keep records short when one technique is applied to a whole sample series: one
+          `Characterization` per technique, listing every sample it was applied to.
+        use_case: >-
+          BET surface area of ten Pd/P catalysts on Al₂O₃ and SiO₂ (three shown here). The
+          technique is classified by an ENM term; the instrument model was not stated in the
+          source and is described as such.
+        keep:
+          id: true
+          activity_designator: true
+          title: true
+          rdf_type: true
+          carried_out_by: true
+          evaluated_entity: {_limit: 3, id: true, title: true}
+          realized_plan: {id: true, title: true}
+
+  - title: "Section 4: Catalytic testing"
+    intro: |
+      A `CatalyticReaction` names the reaction, its catalysts, reactants and products, the reactor
+      it ran in and the conditions. Group runs that share reactor and analytics into one record.
+    patterns:
+      - id: reaction-participants
+        title: Catalysts, reactants and products
+        dataset: b74m-m6rp
+        dataset_label: "Dataset 5 (NH₃ decomposition)"
+        source: tests/data/valid/CatalysisDataset-b74m-m6rp.yaml
+        select: "is_about_activity[0]"
+        class: CatalyticReaction
+        purpose: >-
+          Identify what reacted over which catalyst: chemicals as ChEBI terms, catalysts with
+          their nominal loadings.
+        use_case: >-
+          Ammonia decomposition over Ru/Ba catalysts on a Ni-BCZY cermet (two of six catalysts
+          shown). Ammonia and argon are reactants, nitrogen and hydrogen products; the loadings are
+          mass fractions in percent.
+        keep:
+          id: true
+          title: true
+          reaction_name: true
+          rdf_type: true
+          catalyst_type: true
+          catalyst_form: true
+          used_catalyst: {_limit: 2, id: true, title: true, has_quantitative_attribute: true}
+          used_reactant: true
+          generated_product: true
+          used_reactor: {id: true, reactor_designator: true, title: true}
+
+      - id: reaction-reactor-conditions
+        title: Reactor, conditions and product analysis
+        dataset: b74m-m6rp
+        dataset_label: "Dataset 5 (NH₃ decomposition)"
+        source: tests/data/valid/CatalysisDataset-b74m-m6rp.yaml
+        select: "is_about_activity[0]"
+        class: CatalyticReaction
+        purpose: >-
+          Describe where and under which conditions a catalytic test ran, and how the products
+          were measured.
+        use_case: >-
+          A quartz packed bed (0.8 cm inner diameter, 1.2 cm bed, catalyst diluted with silica) at
+          1 bar, ramped from 473 to 873 K with 500–3000 ppm NH₃ in Ar; the effluent was analysed
+          by online FTIR. The reactor is declared a `FixedBedReactor`
+          (`reactor_designator: coremeta4cat:FixedBedReactor`).
+        notes:
+          - >-
+            Declaring the reactor type restricts its fields: fixed-bed fields on a reactor
+            declared as an autoclave fail validation.
+          - >-
+            Space velocity and results such as conversion or T₁₀/T₅₀ have no field yet; they go
+            into `description` for now.
+        keep:
+          id: true
+          title: true
+          catalyst_quantity: true
+          used_reactor:
+            id: true
+            reactor_designator: true
+            title: true
+            catalyst_bed_diameter: true
+            catalyst_bed_height: true
+            catalyst_dilution_material: true
+          product_identification_method: true
+          reactor_temperature_range: true
+          experiment_pressure: true
+          feed_composition_range: true
+
+  - title: "Section 5: Simulation"
+    intro: |
+      A `Simulation` names its software, the method it realized (`realized_plan`), what it
+      modelled (`evaluated_entity`) and the properties it computed (`calculated_property`).
+    patterns:
+      - id: simulation-dft-properties
+        title: A simulation with a typed method and calculated properties
+        dataset: 6mxw-xsrd
+        dataset_label: "Dataset 4 (Cu–Ga–Al mixed oxides)"
+        source: tests/data/valid/CatalysisDataset-6mxw-xsrd.yaml
+        select: "was_generated_by[id=coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites]"
+        class: Simulation
+        purpose: >-
+          Record which code and method produced a set of computed values, and what they were
+          computed for.
+        use_case: >-
+          DFT binding energies of OH and CO at doped CuGa₂O₄ sites (VASP, PBE). The plan is
+          declared as `DFT` (`plan_designator: coremeta4cat:DFT`) so the functional has its own
+          field.
+        notes:
+          - >-
+            Adsorption and binding energies have no dedicated property class yet, so value and
+            context go into `calculated_property` as text.
+        keep:
+          id: true
+          activity_designator: true
+          title: true
+          software_package: true
+          rdf_type: true
+          evaluated_entity: {_limit: 1, id: true, title: true}
+          realized_plan: {id: true, plan_designator: true, title: true, exchange_correlation_functional: true}
+          calculated_property: true
+
+      - id: simulation-relative-values
+        title: Comparing variants with relative values
+        dataset: 8ppb-aeky
+        dataset_label: "Dataset 6 (transaminase MD)"
+        source: tests/data/valid/CatalysisDataset-8ppb-aeky.yaml
+        select: "was_generated_by[id=coremeta4cat:SIM_8ppb-aeky_MMGBSA]"
+        class: Simulation
+        purpose: >-
+          Report computed values that only make sense relative to a reference, and name the
+          reference.
+        use_case: >-
+          MM/GBSA binding free energies of a PLP-bound substrate in two mutants of an amine
+          transaminase, reported as ΔΔG relative to the parent enzyme 3FCR-4M.
+        keep:
+          id: true
+          activity_designator: true
+          title: true
+          software_package: true
+          evaluated_entity: {id: true, title: true}
+          realized_plan: {id: true, title: true}
+          calculated_property: true
+
+      - id: simulation-workflow-step
+        title: A simulation step that produces structures, not properties
+        dataset: 8ppb-aeky
+        dataset_label: "Dataset 6 (transaminase MD)"
+        source: tests/data/valid/CatalysisDataset-8ppb-aeky.yaml
+        select: "was_generated_by[id=coremeta4cat:SIM_8ppb-aeky_MD]"
+        class: Simulation
+        purpose: >-
+          Describe workflow steps such as structure preparation, docking or molecular dynamics,
+          whose result is a structure or trajectory file rather than a number.
+        use_case: >-
+          Desmond molecular dynamics of an enzyme–substrate complex in three variants. The plan is
+          declared as `MolecularDynamics` (`plan_designator: NCIT:C18097`); there is no
+          `calculated_property`.
+        notes:
+          - >-
+            `calculated_property` is recommended, not mandatory, for exactly this case.
+        keep:
+          id: true
+          activity_designator: true
+          title: true
+          software_package: true
+          evaluated_entity: {_limit: 1, id: true, title: true}
+          realized_plan: {id: true, plan_designator: true, title: true}
+
+  - title: "Section 6: Frequently applied patterns"
+    intro: |
+      Two things appear in almost every record: values with units, and terms from controlled
+      vocabularies.
+    patterns:
+      - id: quantities
+        title: Values, ranges and fractions with units
+        dataset: b74m-m6rp
+        dataset_label: "Dataset 5 (NH₃ decomposition)"
+        source: tests/data/valid/CatalysisDataset-b74m-m6rp.yaml
+        select: "is_about_activity[0]"
+        class: CatalyticReaction
+        purpose: >-
+          Write numbers so that software can compare them: a value or a range, the kind of
+          quantity, and the unit, both as QUDT IRIs.
+        use_case: >-
+          A single pressure (1 bar), a temperature range (473.15–873.15 K) and a metal loading as
+          mass fraction (0.5 wt% Ru).
+        notes:
+          - >-
+            Use full QUDT IRIs for `unit` (`https://qudt.org/vocab/unit/K`), not bare codes like
+            `K`. Bare codes pass validation but cannot be resolved in RDF.
+          - >-
+            `description` on a quantity is the place for context such as "nominal" or "constant
+            across all runs".
+        keep:
+          id: true
+          title: true
+          used_catalyst: {_limit: 1, id: true, title: true, has_quantitative_attribute: 1}
+          used_reactor: {id: true, reactor_designator: true, title: true}
+          reactor_temperature_range: true
+          experiment_pressure: true
+
+      - id: vocabulary-terms
+        title: Classifying with vocabulary terms
+        dataset: 2d6m-exeb
+        dataset_label: "Dataset 1 (CO/CO₂ methanation)"
+        source: tests/data/valid/CatalysisDataset-2d6m-exeb.yaml
+        select: "is_about_activity[id=coremeta4cat:REAC_2d6m-exeb_CO_methanation]"
+        class: CatalyticReaction
+        purpose: >-
+          Make records searchable across datasets by classifying them with terms from controlled
+          vocabularies instead of free text.
+        use_case: >-
+          CO methanation classified by its Voc4Cat reaction term, with carbon monoxide identified
+          by its ChEBI term.
+        notes:
+          - >-
+            `rdf_type` takes an object with the term's CURIE (`id`) and a readable label
+            (`title`). Voc4Cat covers catalysis-specific terms; CHEBI, CHMO and NCIT are used for
+            chemicals, techniques and general concepts.
+        keep:
+          id: true
+          title: true
+          reaction_name: true
+          rdf_type: true
+          catalyst_type: true
+          used_reactant: {_limit: 1, id: true, title: true, rdf_type: true}
+          used_reactor: {id: true, title: true}

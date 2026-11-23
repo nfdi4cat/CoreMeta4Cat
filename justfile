@@ -94,7 +94,7 @@ lint:
 
 # Generate md documentation for the schema
 [group('model development')]
-gen-doc: schema-to-excel _gen-yaml gen-schema-docs gen-charts gen-example-outputs
+gen-doc: schema-to-excel _gen-yaml gen-schema-docs gen-charts gen-example-outputs gen-usage-patterns
   uv run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
 
 # Build docs and run test server
