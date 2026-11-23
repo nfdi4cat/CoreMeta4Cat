@@ -1,0 +1,21 @@
+id: coremeta4cat:CHAR_32x1-99x6_BET
+title:
+- BET surface area analysis (10 catalysts)
+rdf_type:
+  id: enm:0000064
+  title: BET analysis
+carried_out_by:
+- id: coremeta4cat:DEV_32x1-99x6_BET
+  title: BET surface area analyser
+  description: Instrument model not specified in the source dataset files.
+evaluated_entity:
+- id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+  title: Pd/Al2O3
+- id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+  title: Pd/1P/Al2O3
+- id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+  title: Pd/2P/Al2O3
+realized_plan:
+  id: coremeta4cat:CHAR_32x1-99x6_BET_method
+  title: N2 physisorption BET method
+activity_designator: Characterization
