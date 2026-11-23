@@ -1795,7 +1795,7 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CatalyticReaction</span> <span class="p">,</span> <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0007001</span> <span class="p">;</span>
     <span class="nn">prov</span><span class="p">:</span><span class="nt">wasAssociatedWith</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">REAC_b74m-m6rp_reactor</span> <span class="p">;</span>
-    <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">catalyst_form</span> <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0007034</span> <span class="p">;</span>
+    <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0000016</span> <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0007034</span> <span class="p">;</span>
     <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0007009</span> <span class="s">"thermocatalytic ammonia decomposition"</span> <span class="p">;</span>
     <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0007014</span> <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0007001</span> <span class="p">.</span>
 <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">REAC_b74m-m6rp_reactor</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"quartz glass tubular packed-bed reactor"</span> <span class="p">;</span>
@@ -1835,7 +1835,7 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
 <li>Declaring the reactor type restricts its fields: fixed-bed fields on a reactor declared as an autoclave fail validation.</li>
 <li>Space velocity and results such as conversion or T₁₀/T₅₀ have no field yet; they go into <code>description</code> for now.</li>
 </ul>
-<p><strong>Fields used:</strong> <code>catalyst_quantity</code>, <code>used_reactor</code>, <code>reactor_designator</code>, <code>catalyst_bed_diameter</code>, <code>catalyst_bed_height</code>, <code>catalyst_dilution_material</code>, <code>product_identification_method</code>, <code>reactor_temperature_range</code>, <code>experiment_pressure</code>, <code>feed_composition_range</code></p>
+<p><strong>Fields used:</strong> <code>catalyst_mass</code>, <code>used_reactor</code>, <code>reactor_designator</code>, <code>catalyst_bed_diameter</code>, <code>catalyst_bed_height</code>, <code>catalyst_dilution_material</code>, <code>product_identification_method</code>, <code>reactor_temperature_range</code>, <code>experiment_pressure</code>, <code>feed_composition_range</code></p>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:3"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio"/><input id="__tabbed_7_2" name="__tabbed_7" type="radio"/><input id="__tabbed_7_3" name="__tabbed_7" type="radio"/><div class="tabbed-labels"><label for="__tabbed_7_1">Graph</label><label for="__tabbed_7_2">YAML</label><label for="__tabbed_7_3">RDF (Turtle)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1850,7 +1850,7 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     n8["473.15–873.15 K&lt;br/&gt;«Temperature»"]
     n9["1.0 BAR&lt;br/&gt;«Pressure»"]
     n10["500.0–3000.0 PPM&lt;br/&gt;«MoleFraction»"]
-    n1 --&gt;|catalyst_quantity| n2
+    n1 --&gt;|catalyst_mass| n2
     n3 --&gt;|catalyst_bed_diameter| n4
     n3 --&gt;|catalyst_bed_height| n5
     n3 --&gt;|catalyst_dilution_material| n6
@@ -1879,7 +1879,7 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
 <div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:REAC_b74m-m6rp_NH3_decomposition</span>
 <span class="nt">title</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)</span>
-<span class="nt">catalyst_quantity</span><span class="p">:</span>
+<span class="nt">catalyst_mass</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span>
 <span class="w">  </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/Mass</span>
 <span class="w">  </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/MilliGM</span>
@@ -1935,39 +1935,39 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
 <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">REAC_b74m-m6rp_NH3_decomposition</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CatalyticReaction</span> <span class="p">;</span>
     <span class="nn">prov</span><span class="p">:</span><span class="nt">wasAssociatedWith</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">REAC_b74m-m6rp_reactor</span> <span class="p">;</span>
-    <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">catalyst_quantity</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n4</span> <span class="p">;</span>
     <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">feed_composition_range</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n5</span> <span class="p">;</span>
-    <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">product_identification_method</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">REAC_b74m-m6rp_FTIR</span> <span class="p">;</span>
-    <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0000118</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="p">;</span>
-    <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0007032</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="p">.</span>
+    <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0000118</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n3</span> <span class="p">;</span>
+    <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0000129</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">REAC_b74m-m6rp_FTIR</span> <span class="p">;</span>
+    <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0007032</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="p">;</span>
+    <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0008141</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="p">.</span>
 <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">REAC_b74m-m6rp_reactor</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"quartz glass tubular packed-bed reactor"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">FixedBedReactor</span> <span class="p">;</span>
     <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">catalyst_bed_diameter</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n0</span> <span class="p">;</span>
-    <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0008217</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n3</span> <span class="p">;</span>
+    <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0008217</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n4</span> <span class="p">;</span>
     <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0008218</span> <span class="s">"silica particles, 700 mg, 120-250 um"</span> <span class="p">.</span>
 <span class="nn">_</span><span class="p">:</span><span class="nt">c14n0</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/Length&gt;</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/CentiM&gt;</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
     <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"0.8"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Ramp 473-873 K at 2 K/min; deposited inlet temperature 200-601 C"</span> <span class="p">;</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Catalyst granulate per test, mixed with 700 mg silica"</span> <span class="p">;</span>
+    <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/Mass&gt;</span> <span class="p">;</span>
+    <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/MilliGM&gt;</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
+    <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"300.0"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Ramp 473-873 K at 2 K/min; deposited inlet temperature 200-601 C"</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/Temperature&gt;</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/K&gt;</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
     <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">maxValue</span> <span class="s">"873.15"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">;</span>
     <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">minValue</span> <span class="s">"473.15"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/Pressure&gt;</span> <span class="p">;</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n3</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/Pressure&gt;</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/BAR&gt;</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
     <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"1.0"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n3</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/Length&gt;</span> <span class="p">;</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n4</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/Length&gt;</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/CentiM&gt;</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
     <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"1.2"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n4</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Catalyst granulate per test, mixed with 700 mg silica"</span> <span class="p">;</span>
-    <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/Mass&gt;</span> <span class="p">;</span>
-    <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/MilliGM&gt;</span> <span class="p">;</span>
-    <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
-    <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"300.0"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
 <span class="nn">_</span><span class="p">:</span><span class="nt">c14n5</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"NH3 at the inlet (500, 1000, 3000 ppm), balance Ar"</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/MoleFraction&gt;</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/PPM&gt;</span> <span class="p">;</span>

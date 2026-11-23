@@ -169,9 +169,9 @@ coremeta4cat:REAC_32x1-99x6_CAL_Al2O3 RO:0004009 coremeta4cat:REAC_32x1-99x6_CAL
 	a coremeta4cat:CatalyticReaction , voc4cat:0000260 ;
 	adms:identifier _:c14n36 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_reactor ;
-	coremeta4cat:catalyst_form voc4cat:0007034 ;
-	coremeta4cat:product_identification_method coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_product_id ;
+	voc4cat:0000016 voc4cat:0007034 ;
 	voc4cat:0000118 _:c14n17 , _:c14n38 ;
+	voc4cat:0000129 coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_product_id ;
 	voc4cat:0007009 "selective hydrogenation of cinnamyl alcohol" ;
 	voc4cat:0007014 voc4cat:0007001 ;
 	voc4cat:0007032 _:c14n30 .
@@ -192,9 +192,9 @@ coremeta4cat:REAC_32x1-99x6_CAL_SiO2 RO:0004009 coremeta4cat:REAC_32x1-99x6_CAL_
 	a coremeta4cat:CatalyticReaction , voc4cat:0000260 ;
 	adms:identifier _:c14n31 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_32x1-99x6_CAL_SiO2_reactor ;
-	coremeta4cat:catalyst_form voc4cat:0007034 ;
-	coremeta4cat:product_identification_method coremeta4cat:REAC_32x1-99x6_CAL_SiO2_product_id ;
+	voc4cat:0000016 voc4cat:0007034 ;
 	voc4cat:0000118 _:c14n1 , _:c14n10 ;
+	voc4cat:0000129 coremeta4cat:REAC_32x1-99x6_CAL_SiO2_product_id ;
 	voc4cat:0007009 "selective hydrogenation of cinnamyl alcohol" ;
 	voc4cat:0007014 voc4cat:0007001 ;
 	voc4cat:0007032 _:c14n12 .
@@ -215,9 +215,9 @@ coremeta4cat:REAC_32x1-99x6_Citral_Al2O3 RO:0004009 coremeta4cat:REAC_32x1-99x6_
 	a coremeta4cat:CatalyticReaction , voc4cat:0000260 ;
 	adms:identifier _:c14n21 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_reactor ;
-	coremeta4cat:catalyst_form voc4cat:0007034 ;
-	coremeta4cat:product_identification_method coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_product_id ;
+	voc4cat:0000016 voc4cat:0007034 ;
 	voc4cat:0000118 _:c14n11 , _:c14n16 ;
+	voc4cat:0000129 coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_product_id ;
 	voc4cat:0007009 "selective hydrogenation of citral" ;
 	voc4cat:0007014 voc4cat:0007001 ;
 	voc4cat:0007032 _:c14n29 .
@@ -238,9 +238,9 @@ coremeta4cat:REAC_32x1-99x6_Citral_SiO2 RO:0004009 coremeta4cat:REAC_32x1-99x6_C
 	a coremeta4cat:CatalyticReaction , voc4cat:0000260 ;
 	adms:identifier _:c14n13 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_32x1-99x6_Citral_SiO2_reactor ;
-	coremeta4cat:catalyst_form voc4cat:0007034 ;
-	coremeta4cat:product_identification_method coremeta4cat:REAC_32x1-99x6_Citral_SiO2_product_id ;
+	voc4cat:0000016 voc4cat:0007034 ;
 	voc4cat:0000118 _:c14n14 , _:c14n32 ;
+	voc4cat:0000129 coremeta4cat:REAC_32x1-99x6_Citral_SiO2_product_id ;
 	voc4cat:0007009 "selective hydrogenation of citral" ;
 	voc4cat:0007014 voc4cat:0007001 ;
 	voc4cat:0007032 _:c14n25 .

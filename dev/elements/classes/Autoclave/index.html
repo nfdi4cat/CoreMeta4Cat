@@ -493,8 +493,6 @@
       ChemicalReactor &lt;|-- Autoclave
         click ChemicalReactor href "../../classes/ChemicalReactor/"
 
-      Autoclave : agitation_type
-
       Autoclave : alternative_label
 
       Autoclave : batch_duration
@@ -646,7 +644,44 @@
 
       Autoclave : reaction_chamber_material
 
+      Autoclave : reaction_chamber_shape
+
       Autoclave : reactor_designator
+
+      Autoclave : reactor_stirrer_type
+
+      Autoclave : reactor_working_volume
+
+
+
+
+
+        Autoclave --&gt; "* _recommended_" Volume : reactor_working_volume
+        click Volume href "../../classes/Volume/"
+
+
+
+      Autoclave : stirrer_diameter
+
+
+
+
+
+        Autoclave --&gt; "* _recommended_" LengthQuantity : stirrer_diameter
+        click LengthQuantity href "../../classes/LengthQuantity/"
+
+
+
+      Autoclave : stirring_rate
+
+
+
+
+
+        Autoclave --&gt; "* _recommended_" AngularVelocity : stirring_rate
+        click AngularVelocity href "../../classes/AngularVelocity/"
+
+
 
       Autoclave : title
 
@@ -658,17 +693,6 @@
 
         Autoclave --&gt; "0..1" DefinedTerm : type
         click DefinedTerm href "../../classes/DefinedTerm/"
-
-
-
-      Autoclave : vessel_internal_volume
-
-
-
-
-
-        Autoclave --&gt; "* _recommended_" Volume : vessel_internal_volume
-        click Volume href "../../classes/Volume/"
 
 
 
@@ -718,21 +742,39 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../../slots/agitation_type/">agitation_type</a></td>
+<td><a href="../../slots/reactor_stirrer_type/">reactor_stirrer_type</a></td>
 <td>* <em>recommended</em> <br/> <a href="../../types/String/">String</a></td>
-<td>The category of agitation used inside the autoclave (e.g. magnetic<br/>stirring, mechanical overhead stirring, rocking, none).</td>
+<td>The category of mechanical or magnetic agitation device used in the<br/>reactor, such as a magnetic stirrer or an overhead mechanical (steel<br/>shaft) stirrer. Distinct from the synthesis-context stirrer_type slot<br/>(coremeta4cat_synthesis_ap), since reactor and synthesis-vessel stirring<br/>may use different equipment.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../../slots/stirring_rate/">stirring_rate</a></td>
+<td>* <em>recommended</em> <br> <a href="../AngularVelocity/">AngularVelocity</a></br></td>
+<td>The rate at which the stirrer rotates, typically expressed in<br/>revolutions per unit time (e.g. revolutions per minute).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../../slots/stirrer_diameter/">stirrer_diameter</a></td>
+<td>* <em>recommended</em> <br> <a href="../LengthQuantity/">LengthQuantity</a></br></td>
+<td>The effective diameter of the stirrer. Typically expressed as the<br/>distance across the rotating blade or mixing head from one tip to<br/>the opposite tip.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../../slots/reactor_working_volume/">reactor_working_volume</a></td>
+<td>* <em>recommended</em> <br> <a href="../Volume/">Volume</a></br></td>
+<td>Volume of the reaction chamber, calculated by its dimensions. Volume<br/>of pipes and valves connected to the reactor is not included.</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../../slots/reaction_chamber_shape/">reaction_chamber_shape</a></td>
+<td>* <em>recommended</em> <br> <a href="../../types/String/">String</a></br></td>
+<td>The shape of the reaction chamber (e.g. cylindrical, cubical,<br/>rectangular).</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../../slots/reaction_chamber_material/">reaction_chamber_material</a></td>
 <td>* <em>recommended</em> <br> <a href="../../types/String/">String</a></br></td>
 <td>Material used for the construction of the inner reaction chamber<br/>(the surface in direct contact with the reaction mixture). Distinct<br/>from vessel_material, the material of the outer pressure vessel/shell.</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../../slots/vessel_internal_volume/">vessel_internal_volume</a></td>
-<td>* <em>recommended</em> <br> <a href="../Volume/">Volume</a></br></td>
-<td>The internal (working) volume of the autoclave vessel.</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -779,31 +821,31 @@
 </tr>
 <tr>
 <td><a href="../../slots/has_volume/">has_volume</a></td>
-<td>* <em>recommended</em> <br/> <a href="../Volume/">Volume</a></td>
+<td>* <em>recommended</em> <br> <a href="../Volume/">Volume</a></br></td>
 <td>The slot to provide the Volume of a MaterialEntity.</td>
 <td><a href="../MaterialisticMixin/">MaterialisticMixin</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/has_density/">has_density</a></td>
-<td>* <em>recommended</em> <br/> <a href="../Density/">Density</a></td>
+<td>* <em>recommended</em> <br> <a href="../Density/">Density</a></br></td>
 <td>The slot to provide the Density of a MaterialEntity.</td>
 <td><a href="../MaterialisticMixin/">MaterialisticMixin</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/has_pressure/">has_pressure</a></td>
-<td>* <em>recommended</em> <br/> <a href="../Pressure/">Pressure</a></td>
+<td>* <em>recommended</em> <br> <a href="../Pressure/">Pressure</a></br></td>
 <td>The slot to provide data about the pressure of a MaterialEntity or an Activity, whereas the Pressure of an Activity is ontologically a quality borne by the material entities participating in the Activity.</td>
 <td><a href="../MaterialisticMixin/">MaterialisticMixin</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/id/">id</a></td>
-<td>1 <br/> <a href="../../types/Uriorcurie/">Uriorcurie</a></td>
+<td>1 <br> <a href="../../types/Uriorcurie/">Uriorcurie</a></br></td>
 <td>A slot to provide an URI for an entity within this schema.</td>
 <td><a href="../AgenticEntity/">AgenticEntity</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/title/">title</a></td>
-<td>0..1 <br/> <a href="../../types/String/">String</a></td>
+<td>0..1 <br> <a href="../../types/String/">String</a></br></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 <td><a href="../AgenticEntity/">AgenticEntity</a></td>
 </tr>
@@ -892,11 +934,18 @@
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
 <span class="nt">slots</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">agitation_type</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactor_stirrer_type</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stirring_rate</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stirrer_diameter</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactor_working_volume</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reaction_chamber_shape</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reaction_chamber_material</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vessel_internal_volume</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vessel_material</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">batch_duration</span>
+<span class="nt">slot_usage</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">stirrer_diameter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stirrer_diameter</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NCIT:C93052</span>
 </code></pre></div>
 </details>
@@ -908,15 +957,101 @@
 <span class="w">  </span><span class="s">elevated</span><span class="nv"> </span><span class="s">temperature</span><span class="nv"> </span><span class="s">and/or</span><span class="nv"> </span><span class="s">pressure.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
+<span class="nt">slot_usage</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">stirrer_diameter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stirrer_diameter</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">agitation_type</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">agitation_type</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">category</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">agitation</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">inside</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">autoclave</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">magnetic</span>
+<span class="w">  </span><span class="nt">reactor_stirrer_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactor_stirrer_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">category</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">mechanical</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">magnetic</span><span class="nv"> </span><span class="s">agitation</span><span class="nv"> </span><span class="s">device</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">in</span>
+<span class="w">      </span><span class="s">the</span>
 
-<span class="w">      </span><span class="s">stirring,</span><span class="nv"> </span><span class="s">mechanical</span><span class="nv"> </span><span class="s">overhead</span><span class="nv"> </span><span class="s">stirring,</span><span class="nv"> </span><span class="s">rocking,</span><span class="nv"> </span><span class="s">none).'</span>
+<span class="w">      </span><span class="s">reactor,</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">magnetic</span><span class="nv"> </span><span class="s">stirrer</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">overhead</span><span class="nv"> </span><span class="s">mechanical</span><span class="nv"> </span><span class="s">(steel</span>
+
+<span class="w">      </span><span class="s">shaft)</span><span class="nv"> </span><span class="s">stirrer.</span><span class="nv"> </span><span class="s">Distinct</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">synthesis-context</span><span class="nv"> </span><span class="s">stirrer_type</span><span class="nv"> </span><span class="s">slot</span>
+
+<span class="w">      </span><span class="s">(coremeta4cat_synthesis_ap),</span><span class="nv"> </span><span class="s">since</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">synthesis-vessel</span><span class="nv"> </span><span class="s">stirring</span>
+
+<span class="w">      </span><span class="s">may</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">different</span><span class="nv"> </span><span class="s">equipment.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0008113</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CSTR</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">stirring_rate</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stirring_rate</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">rate</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">stirrer</span><span class="nv"> </span><span class="s">rotates,</span><span class="nv"> </span><span class="s">typically</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">in</span>
+
+<span class="w">      </span><span class="s">revolutions</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">unit</span><span class="nv"> </span><span class="s">time</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">revolutions</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">minute).'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_angular_velocity</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0008114</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CSTR</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AngularVelocity</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">stirrer_diameter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stirrer_diameter</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">effective</span><span class="nv"> </span><span class="s">diameter</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">stirrer.</span><span class="nv"> </span><span class="s">Typically</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">the</span>
+
+<span class="w">      </span><span class="s">distance</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">rotating</span><span class="nv"> </span><span class="s">blade</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">mixing</span><span class="nv"> </span><span class="s">head</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">tip</span><span class="nv"> </span><span class="s">to</span>
+
+<span class="w">      </span><span class="s">the</span><span class="nv"> </span><span class="s">opposite</span><span class="nv"> </span><span class="s">tip.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_length</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0008115</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CSTR</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LengthQuantity</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">reactor_working_volume</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactor_working_volume</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Volume</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">chamber,</span><span class="nv"> </span><span class="s">calculated</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">dimensions.</span><span class="nv"> </span><span class="s">Volume</span>
+
+<span class="w">      </span><span class="s">of</span><span class="nv"> </span><span class="s">pipes</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">valves</span><span class="nv"> </span><span class="s">connected</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">included.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_volume</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0000153</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CSTR</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Volume</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">reaction_chamber_shape</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reaction_chamber_shape</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">shape</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">chamber</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">cylindrical,</span><span class="nv"> </span><span class="s">cubical,</span>
+
+<span class="w">      </span><span class="s">rectangular).'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_qualitative_attribute</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0000155</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
@@ -940,20 +1075,6 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">vessel_internal_volume</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vessel_internal_volume</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The internal (working) volume of the autoclave vessel.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">has_volume</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Autoclave</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Volume</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>

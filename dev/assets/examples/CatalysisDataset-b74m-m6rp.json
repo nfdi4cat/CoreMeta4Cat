@@ -414,7 +414,7 @@
       "catalyst_form": [
         "supported"
       ],
-      "catalyst_quantity": [
+      "catalyst_mass": [
         {
           "value": 300,
           "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",

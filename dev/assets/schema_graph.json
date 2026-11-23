@@ -435,13 +435,49 @@
    "description": "Autoclave reactor — a sealed pressure vessel for batch reactions at elevated temperature and/or pressure.",
    "fields": [
     {
-     "name": "agitation_type",
+     "name": "reactor_stirrer_type",
+     "range": "string",
+     "kind": "primitive",
+     "requirement": "O",
+     "multivalued": false,
+     "unit": "",
+     "description": "The category of mechanical or magnetic agitation device used in the reactor, such as a magnetic stirrer or an overhead mechanical (steel shaft) stirrer."
+    },
+    {
+     "name": "stirring_rate",
+     "range": "AngularVelocity",
+     "kind": "class",
+     "requirement": "R",
+     "multivalued": false,
+     "unit": "",
+     "description": "The rate at which the stirrer rotates, typically expressed in revolutions per unit time (e.g. revolutions per minute)."
+    },
+    {
+     "name": "stirrer_diameter",
+     "range": "LengthQuantity",
+     "kind": "class",
+     "requirement": "R",
+     "multivalued": false,
+     "unit": "",
+     "description": "The effective diameter of the stirrer. Typically expressed as the distance across the rotating blade or mixing head from one tip to the opposite tip."
+    },
+    {
+     "name": "reactor_working_volume",
+     "range": "Volume",
+     "kind": "class",
+     "requirement": "R",
+     "multivalued": false,
+     "unit": "",
+     "description": "Volume of the reaction chamber, calculated by its dimensions. Volume of pipes and valves connected to the reactor is not included."
+    },
+    {
+     "name": "reaction_chamber_shape",
      "range": "string",
      "kind": "primitive",
      "requirement": "R",
      "multivalued": false,
      "unit": "",
-     "description": "The category of agitation used inside the autoclave (e.g. magnetic stirring, mechanical overhead stirring, rocking, none)."
+     "description": "The shape of the reaction chamber (e.g. cylindrical, cubical, rectangular)."
     },
     {
      "name": "reaction_chamber_material",
@@ -451,15 +487,6 @@
      "multivalued": false,
      "unit": "",
      "description": "Material used for the construction of the inner reaction chamber (the surface in direct contact with the reaction mixture). Distinct from vessel_material, the material of the outer pressure vessel/shell."
-    },
-    {
-     "name": "vessel_internal_volume",
-     "range": "Volume",
-     "kind": "class",
-     "requirement": "R",
-     "multivalued": false,
-     "unit": "",
-     "description": "The internal (working) volume of the autoclave vessel."
     },
     {
      "name": "vessel_material",
@@ -1180,7 +1207,7 @@
    "description": "A ChemicalReaction (chemdcat-ap) specialization representing the catalytic reaction being studied.",
    "fields": [
     {
-     "name": "catalyst_quantity",
+     "name": "catalyst_mass",
      "range": "Mass",
      "kind": "class",
      "requirement": "R",

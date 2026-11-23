@@ -1029,10 +1029,6 @@
          <lastmod>2026-11-23</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/agitation_type/</loc>
-         <lastmod>2026-11-23</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/algorithm/</loc>
          <lastmod>2026-11-23</lastmod>
     </url>
@@ -1177,15 +1173,15 @@
          <lastmod>2026-11-23</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_mass/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_measured_properties/</loc>
          <lastmod>2026-11-23</lastmod>
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_particle_size/</loc>
-         <lastmod>2026-11-23</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/catalyst_quantity/</loc>
          <lastmod>2026-11-23</lastmod>
     </url>
     <url>
@@ -2425,6 +2421,10 @@
          <lastmod>2026-11-23</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reaction_chamber_shape/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reaction_energy/</loc>
          <lastmod>2026-11-23</lastmod>
     </url>
@@ -2866,10 +2866,6 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/version_notes/</loc>
-         <lastmod>2026-11-23</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/vessel_internal_volume/</loc>
          <lastmod>2026-11-23</lastmod>
     </url>
     <url>

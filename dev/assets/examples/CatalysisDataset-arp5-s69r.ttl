@@ -135,9 +135,9 @@ coremeta4cat:REAC_arp5-s69r_Aminocarbonylation RO:0004009 coremeta4cat:REAC_arp5
 	a coremeta4cat:CatalyticReaction , voc4cat:0000247 ;
 	adms:identifier _:c14n15 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_arp5-s69r_reactor ;
-	coremeta4cat:catalyst_form voc4cat:0007034 ;
-	coremeta4cat:product_identification_method coremeta4cat:REAC_arp5-s69r_Amino_product_id ;
+	voc4cat:0000016 voc4cat:0007034 ;
 	voc4cat:0000118 _:c14n14 ;
+	voc4cat:0000129 coremeta4cat:REAC_arp5-s69r_Amino_product_id ;
 	voc4cat:0007009 "Pd-catalyzed aminocarbonylation of iodobenzene" ;
 	voc4cat:0007014 voc4cat:0007001 ;
 	voc4cat:0007032 _:c14n20 .
@@ -150,9 +150,9 @@ coremeta4cat:REAC_arp5-s69r_Carbonylation RO:0004009 coremeta4cat:REAC_arp5-s69r
 	a coremeta4cat:CatalyticReaction , voc4cat:0000247 ;
 	adms:identifier _:c14n22 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_arp5-s69r_reactor ;
-	coremeta4cat:catalyst_form voc4cat:0007034 ;
-	coremeta4cat:product_identification_method coremeta4cat:REAC_arp5-s69r_Carbonylation_product_id ;
+	voc4cat:0000016 voc4cat:0007034 ;
 	voc4cat:0000118 _:c14n23 ;
+	voc4cat:0000129 coremeta4cat:REAC_arp5-s69r_Carbonylation_product_id ;
 	voc4cat:0007009 "Pd-catalyzed alkoxycarbonylation of aryl iodides" ;
 	voc4cat:0007014 voc4cat:0007001 ;
 	voc4cat:0007032 _:c14n18 .
@@ -182,9 +182,9 @@ coremeta4cat:REAC_arp5-s69r_Phenoxycarbonylation RO:0004009 coremeta4cat:REAC_ar
 	a coremeta4cat:CatalyticReaction , voc4cat:0000247 ;
 	adms:identifier _:c14n19 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_arp5-s69r_reactor ;
-	coremeta4cat:catalyst_form voc4cat:0007034 ;
-	coremeta4cat:product_identification_method coremeta4cat:REAC_arp5-s69r_Phenoxy_product_id ;
+	voc4cat:0000016 voc4cat:0007034 ;
 	voc4cat:0000118 _:c14n11 ;
+	voc4cat:0000129 coremeta4cat:REAC_arp5-s69r_Phenoxy_product_id ;
 	voc4cat:0007009 "Pd-catalyzed phenoxycarbonylation of iodobenzene" ;
 	voc4cat:0007014 voc4cat:0007001 ;
 	voc4cat:0007032 _:c14n5 .

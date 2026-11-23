@@ -1571,9 +1571,9 @@ slots:
     description: Total duration of the experiment or measurement run.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
-    - SIO:000008
+    - voc4cat:0000111
     is_a: has_duration
-    slot_uri: SIO:000008
+    slot_uri: voc4cat:0000111
     owner: CatalyticReaction
     domain_of:
     - PowderXRD
@@ -4635,15 +4635,15 @@ slots:
     recommended: true
     multivalued: true
     inlined_as_list: true
-  catalyst_quantity:
-    name: catalyst_quantity
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/catalyst_quantity
+  catalyst_mass:
+    name: catalyst_mass
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/catalyst_mass
     description: Mass of catalyst loaded into the reactor.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - coremeta4cat:catalyst_quantity
+    - voc4cat:0008141
     is_a: has_mass
-    slot_uri: coremeta4cat:catalyst_quantity
+    slot_uri: voc4cat:0008141
     owner: CatalyticReaction
     domain_of:
     - CatalyticReaction
@@ -4711,7 +4711,9 @@ slots:
 
       from catalyst_type (the catalytic regime).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    slot_uri: coremeta4cat:catalyst_form
+    mappings:
+    - voc4cat:0000016
+    slot_uri: voc4cat:0000016
     owner: CatalyticReaction
     domain_of:
     - CatalyticReaction
@@ -4903,9 +4905,10 @@ slots:
     - voc4cat:0008114
     is_a: has_angular_velocity
     slot_uri: voc4cat:0008114
-    owner: CSTR
+    owner: Autoclave
     domain_of:
     - CSTR
+    - Autoclave
     range: AngularVelocity
     recommended: true
     multivalued: true
@@ -4938,9 +4941,10 @@ slots:
     - voc4cat:0000153
     is_a: has_volume
     slot_uri: voc4cat:0000153
-    owner: CSTR
+    owner: Autoclave
     domain_of:
     - CSTR
+    - Autoclave
     range: Volume
     recommended: true
     multivalued: true
@@ -4974,9 +4978,10 @@ slots:
     - voc4cat:0008115
     is_a: has_length
     slot_uri: voc4cat:0008115
-    owner: CSTR
+    owner: Autoclave
     domain_of:
     - CSTR
+    - Autoclave
     range: LengthQuantity
     recommended: true
     multivalued: true
@@ -5000,9 +5005,10 @@ slots:
     - voc4cat:0008113
     is_a: has_qualitative_attribute
     slot_uri: voc4cat:0008113
-    owner: CSTR
+    owner: Autoclave
     domain_of:
     - CSTR
+    - Autoclave
     range: string
     recommended: true
     multivalued: true
@@ -5103,15 +5109,17 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
-  agitation_type:
-    name: agitation_type
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/agitation_type
-    description: 'The category of agitation used inside the autoclave (e.g. magnetic
+  reaction_chamber_shape:
+    name: reaction_chamber_shape
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/reaction_chamber_shape
+    description: 'The shape of the reaction chamber (e.g. cylindrical, cubical,
 
-      stirring, mechanical overhead stirring, rocking, none).'
+      rectangular).'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - voc4cat:0000155
     is_a: has_qualitative_attribute
-    slot_uri: coremeta4cat:agitation_type
+    slot_uri: voc4cat:0000155
     owner: Autoclave
     domain_of:
     - Autoclave
@@ -5138,21 +5146,6 @@ slots:
     range: string
     recommended: true
     multivalued: true
-    inlined_as_list: true
-  vessel_internal_volume:
-    name: vessel_internal_volume
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/vessel_internal_volume
-    description: The internal (working) volume of the autoclave vessel.
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
-    is_a: has_volume
-    slot_uri: coremeta4cat:vessel_internal_volume
-    owner: Autoclave
-    domain_of:
-    - Autoclave
-    range: Volume
-    recommended: true
-    multivalued: true
-    inlined: true
     inlined_as_list: true
   vessel_material:
     name: vessel_material
@@ -5435,9 +5428,9 @@ slots:
       The abstract stub ProductIdentificationMethod is retained for backward compatibility.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - coremeta4cat:product_identification_method
+    - voc4cat:0000129
     is_a: realized_plan
-    slot_uri: coremeta4cat:product_identification_method
+    slot_uri: voc4cat:0000129
     owner: CatalyticReaction
     domain_of:
     - CatalyticReaction
@@ -9517,10 +9510,10 @@ slots:
       The abstract stub ProductIdentificationMethod is retained for backward compatibility.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     mappings:
-    - coremeta4cat:product_identification_method
+    - voc4cat:0000129
     is_a: product_identification_method
     domain: CatalyticReaction
-    slot_uri: coremeta4cat:product_identification_method
+    slot_uri: voc4cat:0000129
     alias: product_identification_method
     owner: CatalyticReaction
     domain_of:
@@ -9555,6 +9548,31 @@ slots:
     is_usage_slot: true
     usage_slot_name: has_reaction_step
     range: CatalyticReaction
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  Autoclave_stirrer_diameter:
+    name: Autoclave_stirrer_diameter
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/stirrer_diameter
+    description: 'The effective diameter of the stirrer. Typically expressed as the
+
+      distance across the rotating blade or mixing head from one tip to
+
+      the opposite tip.'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    mappings:
+    - voc4cat:0008115
+    is_a: stirrer_diameter
+    domain: Autoclave
+    slot_uri: voc4cat:0008115
+    alias: stirrer_diameter
+    owner: Autoclave
+    domain_of:
+    - Autoclave
+    is_usage_slot: true
+    usage_slot_name: stirrer_diameter
+    range: LengthQuantity
+    recommended: true
     multivalued: true
     inlined: true
     inlined_as_list: true
@@ -15765,7 +15783,7 @@ classes:
     - ChemicalReaction_has_pressure
     - has_yield
     - ChemicalReaction_related_resource
-    - catalyst_quantity
+    - catalyst_mass
     - catalyst_type
     - catalyst_form
     - reaction_name
@@ -16039,11 +16057,18 @@ classes:
     - has_density
     - has_pressure
     - reactor_designator
-    - agitation_type
+    - reactor_stirrer_type
+    - stirring_rate
+    - Autoclave_stirrer_diameter
+    - reactor_working_volume
+    - reaction_chamber_shape
     - reaction_chamber_material
-    - vessel_internal_volume
     - vessel_material
     - batch_duration
+    slot_usage:
+      stirrer_diameter:
+        name: stirrer_diameter
+        recommended: true
     class_uri: NCIT:C93052
   SlurryReactor:
     name: SlurryReactor
@@ -20341,6 +20366,6 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.12.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-11-23T21:48:57'
+source_file_date: '2026-11-23T22:05:02'
 source_file_size: 14821
 

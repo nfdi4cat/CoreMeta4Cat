@@ -973,12 +973,12 @@
 </details>
 <h2 id="slots">Slots</h2>
 <details open="open">
-<summary><strong>catalyst quantity</strong> (Recommended, Multivalued)</summary>
+<summary><strong>catalyst mass</strong> (Recommended, Multivalued)</summary>
 <p><strong>Description:</strong> Mass of catalyst loaded into the reactor.</p>
 <p><strong>Data Type:</strong> Mass</p>
 <p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/catalyst_quantity"><code>coremeta4cat:catalyst_quantity</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_quantity/">catalyst_quantity</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008141"><code>voc4cat:0008141</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_mass/">catalyst_mass</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-Mass" open="open">
 <summary><strong>Mass</strong></summary>
@@ -1004,7 +1004,7 @@
     </p>
 </details>
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_quantity target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_mass target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -1046,6 +1046,7 @@ reactor (e.g. thin film, bulk, powder, supported). A separate axis
 from catalyst_type (the catalytic regime).</p>
 <p><strong>Data Type:</strong> CatalystFormEnum</p>
 <p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000016"><code>voc4cat:0000016</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/catalyst_form/">catalyst_form</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_form target="_blank" class="md-button md-button--primary">
@@ -1220,7 +1221,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 <p><strong>Description:</strong> Total duration of the experiment or measurement run.</p>
 <p><strong>Data Type:</strong> Duration</p>
 <p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="http://semanticscience.org/resource/SIO_000008"><code>SIO:000008</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000111"><code>voc4cat:0000111</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/has_experiment_duration/">has_experiment_duration</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-Duration" open="open">
@@ -1247,7 +1248,7 @@ Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).
 The abstract stub ProductIdentificationMethod is retained for backward compatibility.</p>
 <p><strong>Data Type:</strong> ProductIdentificationMethod</p>
 <p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/product_identification_method"><code>coremeta4cat:product_identification_method</code></a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000129"><code>voc4cat:0000129</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/product_identification_method/">product_identification_method</a></p>
 <p><strong>Data Type Class Details:</strong></p>
 <details id="schema-class-ProductIdentificationMethod" open="open">
@@ -3859,14 +3860,96 @@ elevated temperature and/or pressure.</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/Autoclave/">Autoclave</a></p>
 <p><strong>Slots</strong></p>
 <details>
-<summary><strong>agitation type</strong> (Recommended)</summary>
-<p><strong>Description:</strong> The category of agitation used inside the autoclave (e.g. magnetic
-stirring, mechanical overhead stirring, rocking, none).</p>
+<summary><strong>reactor stirrer type</strong> (Optional)</summary>
+<p><strong>Description:</strong> The category of mechanical or magnetic agitation device used in the
+reactor, such as a magnetic stirrer or an overhead mechanical (steel
+shaft) stirrer. Distinct from the synthesis-context stirrer_type slot
+(coremeta4cat_synthesis_ap), since reactor and synthesis-vessel stirring
+may use different equipment.</p>
+<p><strong>Data Type:</strong> string</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008113"><code>voc4cat:0008113</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/reactor_stirrer_type/">reactor_stirrer_type</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_stirrer_type target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>stirring rate</strong> (Recommended)</summary>
+<p><strong>Description:</strong> The rate at which the stirrer rotates, typically expressed in
+revolutions per unit time (e.g. revolutions per minute).</p>
+<p><strong>Data Type:</strong> AngularVelocity</p>
+<p><strong>Cardinality:</strong>  Recommended</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008114"><code>voc4cat:0008114</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/stirring_rate/">stirring_rate</a></p>
+<p><strong>Data Type Class Details:</strong></p>
+<details>
+<summary><strong>AngularVelocity</strong></summary>
+<p><strong>Description:</strong> Rate of rotational motion, typically expressed in revolutions per minute.</p>
+<p><strong>CURIE:</strong> <a href="http://qudt.org/schema/qudt/Quantity"><code>qudt:Quantity</code></a></p>
+<p><em>Full field list already shown <a href="#schema-class-AngularVelocity">earlier on this page</a> -- this class is reached from multiple fields.</em></p>
+</details>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20stirring_rate target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>stirrer diameter</strong> (Recommended)</summary>
+<p><strong>Description:</strong> The effective diameter of the stirrer. Typically expressed as the
+distance across the rotating blade or mixing head from one tip to
+the opposite tip.</p>
+<p><strong>Data Type:</strong> LengthQuantity</p>
+<p><strong>Cardinality:</strong>  Recommended</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0008115"><code>voc4cat:0008115</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/stirrer_diameter/">stirrer_diameter</a></p>
+<p><strong>Data Type Class Details:</strong></p>
+<details>
+<summary><strong>LengthQuantity</strong></summary>
+<p><strong>Description:</strong> A quantitative measure of length or spatial dimension (nm, mm, cm).</p>
+<p><strong>CURIE:</strong> <a href="http://qudt.org/schema/qudt/Quantity"><code>qudt:Quantity</code></a></p>
+<p><em>Full field list already shown <a href="#schema-class-LengthQuantity">earlier on this page</a> -- this class is reached from multiple fields.</em></p>
+</details>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20stirrer_diameter target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>reactor working volume</strong> (Recommended)</summary>
+<p><strong>Description:</strong> Volume of the reaction chamber, calculated by its dimensions. Volume
+of pipes and valves connected to the reactor is not included.</p>
+<p><strong>Data Type:</strong> Volume</p>
+<p><strong>Cardinality:</strong>  Recommended</p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000153"><code>voc4cat:0000153</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/reactor_working_volume/">reactor_working_volume</a></p>
+<p><strong>Data Type Class Details:</strong></p>
+<details>
+<summary><strong>Volume</strong></summary>
+<p><strong>Description:</strong> A measure of regions in three-dimensional space.</p>
+<p><strong>CURIE:</strong> <a href="http://qudt.org/schema/qudt/Quantity"><code>qudt:Quantity</code></a></p>
+<p><em>Full field list already shown <a href="#schema-class-Volume">earlier on this page</a> -- this class is reached from multiple fields.</em></p>
+</details>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_working_volume target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>reaction chamber shape</strong> (Recommended)</summary>
+<p><strong>Description:</strong> The shape of the reaction chamber (e.g. cylindrical, cubical,
+rectangular).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>Schema Reference:</strong> <a href="../elements/slots/agitation_type/">agitation_type</a></p>
+<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0000155"><code>voc4cat:0000155</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/reaction_chamber_shape/">reaction_chamber_shape</a></p>
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20agitation_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reaction_chamber_shape target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -3882,25 +3965,6 @@ from vessel_material, the material of the outer pressure vessel/shell.</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/reaction_chamber_material/">reaction_chamber_material</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reaction_chamber_material target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p>
-</details>
-<details>
-<summary><strong>vessel internal volume</strong> (Recommended)</summary>
-<p><strong>Description:</strong> The internal (working) volume of the autoclave vessel.</p>
-<p><strong>Data Type:</strong> Volume</p>
-<p><strong>Cardinality:</strong>  Recommended</p>
-<p><strong>Schema Reference:</strong> <a href="../elements/slots/vessel_internal_volume/">vessel_internal_volume</a></p>
-<p><strong>Data Type Class Details:</strong></p>
-<details>
-<summary><strong>Volume</strong></summary>
-<p><strong>Description:</strong> A measure of regions in three-dimensional space.</p>
-<p><strong>CURIE:</strong> <a href="http://qudt.org/schema/qudt/Quantity"><code>qudt:Quantity</code></a></p>
-<p><em>Full field list already shown <a href="#schema-class-Volume">earlier on this page</a> -- this class is reached from multiple fields.</em></p>
-</details>
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_internal_volume target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>

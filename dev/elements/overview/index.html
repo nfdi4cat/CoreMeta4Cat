@@ -2038,10 +2038,6 @@ slots and enums) and the four subprofile modules.</p>
 <td>The rotational speed of the agitator/impeller, typically expressed<br>in revolutions per unit time.</td>
 </tr>
 <tr>
-<td><a href="../slots/agitation_type/">agitation_type</a></td>
-<td>The category of agitation used inside the autoclave (e.g. magnetic<br>stirring, mechanical overhead stirring, rocking, none).</td>
-</tr>
-<tr>
 <td><a href="../slots/algorithm/">algorithm</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
@@ -2186,16 +2182,16 @@ slots and enums) and the four subprofile modules.</p>
 <td>The physical form or presentation of the catalyst as loaded into the<br>reactor (e.g. thin film, bulk, powder, supported). A separate axis<br>from catalyst_type (the catalytic regime).</td>
 </tr>
 <tr>
+<td><a href="../slots/catalyst_mass/">catalyst_mass</a></td>
+<td>Mass of catalyst loaded into the reactor.</td>
+</tr>
+<tr>
 <td><a href="../slots/catalyst_measured_properties/">catalyst_measured_properties</a></td>
 <td>Key measured properties of the resulting catalyst<br>(e.g. BET surface area, sieve fraction, molar ratio).</td>
 </tr>
 <tr>
 <td><a href="../slots/catalyst_particle_size/">catalyst_particle_size</a></td>
 <td>A measure of the characteristic linear dimension of a particle in a<br>sample, typically reported as diameter or sieve fraction range.</td>
-</tr>
-<tr>
-<td><a href="../slots/catalyst_quantity/">catalyst_quantity</a></td>
-<td>Mass of catalyst loaded into the reactor.</td>
 </tr>
 <tr>
 <td><a href="../slots/catalyst_support/">catalyst_support</a></td>
@@ -3434,6 +3430,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Material used for the construction of the inner reaction chamber<br>(the surface in direct contact with the reaction mixture). Distinct<br>from vessel_material, the material of the outer pressure vessel/shell.</td>
 </tr>
 <tr>
+<td><a href="../slots/reaction_chamber_shape/">reaction_chamber_shape</a></td>
+<td>The shape of the reaction chamber (e.g. cylindrical, cubical,<br>rectangular).</td>
+</tr>
+<tr>
 <td><a href="../slots/reaction_energy/">reaction_energy</a></td>
 <td>Reaction energy of the elementary step, Delta_E = E(final state) - E(initial state).</td>
 </tr>
@@ -3876,10 +3876,6 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/version_notes/">version_notes</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
-</tr>
-<tr>
-<td><a href="../slots/vessel_internal_volume/">vessel_internal_volume</a></td>
-<td>The internal (working) volume of the autoclave vessel.</td>
 </tr>
 <tr>
 <td><a href="../slots/vessel_material/">vessel_material</a></td>
