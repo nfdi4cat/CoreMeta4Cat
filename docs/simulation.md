@@ -1833,7 +1833,7 @@ calculated band gap.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`VOC4CAT:0005056`](VOC4CAT:0005056)
+**CURIE:** [`voc4cat:0005056`](https://w3id.org/nfdi4cat/voc4cat_0005056)
 
 **Schema Reference:** [material_sample](./elements/slots/material_sample.md)
 
@@ -2166,7 +2166,7 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).
 <details markdown="1">
 <summary><strong>energy correction type</strong> (Optional, Multivalued)</summary>
 
-**Description:** Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.
+**Description:** Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used.
 
 **Data Type:** string
 
@@ -2338,7 +2338,7 @@ Use empirical formula or SMILES for molecular systems.
 <details markdown="1">
 <summary><strong>reaction energy</strong> (Recommended, Multivalued)</summary>
 
-**Description:** Reaction energy of the elementary step, ΔE = E(final state) - E(initial state).
+**Description:** Reaction energy of the elementary step, Delta_E = E(final state) - E(initial state).
 
 **Data Type:** float
 
@@ -2359,7 +2359,7 @@ Use empirical formula or SMILES for molecular systems.
 <details markdown="1">
 <summary><strong>reaction free energy</strong> (Optional, Multivalued)</summary>
 
-**Description:** Gibbs free energy change of the elementary step, ΔG, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.
+**Description:** Gibbs free energy change of the elementary step, Delta_G, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.
 
 **Data Type:** float
 
@@ -2401,7 +2401,7 @@ Use empirical formula or SMILES for molecular systems.
 <details markdown="1">
 <summary><strong>energy correction type</strong> (Optional, Multivalued)</summary>
 
-**Description:** Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.
+**Description:** Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used.
 
 **Data Type:** string
 
@@ -2615,7 +2615,7 @@ Use empirical formula or SMILES for molecular systems.
 <details markdown="1">
 <summary><strong>energy correction type</strong> (Optional, Multivalued)</summary>
 
-**Description:** Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.
+**Description:** Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used.
 
 **Data Type:** string
 
@@ -2926,7 +2926,7 @@ Use empirical formula or SMILES for molecular systems.
 <details markdown="1">
 <summary><strong>scaling relation</strong> (Optional, Multivalued)</summary>
 
-**Description:** Linear scaling relation between adsorption energies (e.g. "ΔE_OH = 0.50 ΔE_O + 0.10 eV").
+**Description:** Linear scaling relation between adsorption energies (e.g. "Delta_E_OH = 0.50 Delta_E_O + 0.10 eV").
 
 **Data Type:** string
 

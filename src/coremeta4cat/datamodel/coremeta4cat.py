@@ -145,6 +145,7 @@ ENVO = CurieNamespace('ENVO', 'http://purl.obolibrary.org/obo/ENVO_')
 IAO = CurieNamespace('IAO', 'http://purl.obolibrary.org/obo/IAO_')
 MOP = CurieNamespace('MOP', 'http://purl.obolibrary.org/obo/MOP_')
 NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')
+NMR = CurieNamespace('NMR', 'http://nmrML.org/nmrCV#NMR:')
 OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
 PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
 PROCO = CurieNamespace('PROCO', 'http://purl.obolibrary.org/obo/PROCO_')
@@ -152,7 +153,6 @@ REX = CurieNamespace('REX', 'http://purl.obolibrary.org/obo/REX_')
 RO = CurieNamespace('RO', 'http://purl.obolibrary.org/obo/RO_')
 RXNO = CurieNamespace('RXNO', 'http://purl.obolibrary.org/obo/RXNO_')
 SIO = CurieNamespace('SIO', 'http://semanticscience.org/resource/SIO_')
-VOC4CAT = CurieNamespace('VOC4CAT', 'https://w3id.org/nfdi4cat/voc4cat_')
 ADMS = CurieNamespace('adms', 'http://www.w3.org/ns/adms#')
 ALLOTROPE_QUALITY = CurieNamespace('allotrope_quality', 'http://purl.allotrope.org/ontologies/quality#AFQ_')
 ALLOTROPE_RESULT = CurieNamespace('allotrope_result', 'http://purl.allotrope.org/ontologies/result#AFR_')
@@ -5042,7 +5042,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.NMRSpectroscopy
 
     id: Union[str, NMRSpectroscopyId] = None
-    nucleus: Optional[Union[str, list[str]]] = empty_list()
+    acquisition_nucleus: Union[str, list[str]] = None
     solvent: Optional[Union[dict[Union[str, ChemicalEntityId], Union[dict, "ChemicalEntity"]], list[Union[dict, "ChemicalEntity"]]]] = empty_dict()
     irradiation_frequency: Optional[Union[float, list[float]]] = empty_list()
     has_temperature: Optional[Union[Union[dict, "Temperature"], list[Union[dict, "Temperature"]]]] = empty_list()
@@ -5057,9 +5057,11 @@ class NMRSpectroscopy(CharacterizationTechnique):
         if not isinstance(self.id, NMRSpectroscopyId):
             self.id = NMRSpectroscopyId(self.id)
 
-        if not isinstance(self.nucleus, list):
-            self.nucleus = [self.nucleus] if self.nucleus is not None else []
-        self.nucleus = [v if isinstance(v, str) else str(v) for v in self.nucleus]
+        if self._is_empty(self.acquisition_nucleus):
+            self.MissingRequiredField("acquisition_nucleus")
+        if not isinstance(self.acquisition_nucleus, list):
+            self.acquisition_nucleus = [self.acquisition_nucleus] if self.acquisition_nucleus is not None else []
+        self.acquisition_nucleus = [v if isinstance(v, str) else str(v) for v in self.acquisition_nucleus]
 
         self._normalize_inlined_as_list(slot_name="solvent", slot_type=ChemicalEntity, key_name="id", keyed=True)
 
@@ -10039,8 +10041,8 @@ slots.excitation_laser_power = Slot(uri=ALLOTROPE_RESULT['0001595'], name="excit
 slots.filter_or_grating = Slot(uri=COREMETA4CAT.filter_or_grating, name="filter_or_grating", curie=COREMETA4CAT.curie('filter_or_grating'),
                    model_uri=COREMETA4CAT.filter_or_grating, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.nucleus = Slot(uri=COREMETA4CAT.nucleus, name="nucleus", curie=COREMETA4CAT.curie('nucleus'),
-                   model_uri=COREMETA4CAT.nucleus, domain=None, range=Optional[Union[str, list[str]]])
+slots.acquisition_nucleus = Slot(uri=NMR['1400083'], name="acquisition_nucleus", curie=NMR.curie('1400083'),
+                   model_uri=COREMETA4CAT.acquisition_nucleus, domain=None, range=Union[str, list[str]])
 
 slots.irradiation_frequency = Slot(uri=COREMETA4CAT.irradiation_frequency, name="irradiation_frequency", curie=COREMETA4CAT.curie('irradiation_frequency'),
                    model_uri=COREMETA4CAT.irradiation_frequency, domain=None, range=Optional[Union[float, list[float]]])
@@ -10048,7 +10050,7 @@ slots.irradiation_frequency = Slot(uri=COREMETA4CAT.irradiation_frequency, name=
 slots.nmr_pulse_sequence = Slot(uri=COREMETA4CAT.nmr_pulse_sequence, name="nmr_pulse_sequence", curie=COREMETA4CAT.curie('nmr_pulse_sequence'),
                    model_uri=COREMETA4CAT.nmr_pulse_sequence, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.nmr_sample_tube = Slot(uri=COREMETA4CAT.nmr_sample_tube, name="nmr_sample_tube", curie=COREMETA4CAT.curie('nmr_sample_tube'),
+slots.nmr_sample_tube = Slot(uri=NMR['1400132'], name="nmr_sample_tube", curie=NMR.curie('1400132'),
                    model_uri=COREMETA4CAT.nmr_sample_tube, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.image_resolution = Slot(uri=COREMETA4CAT.image_resolution, name="image_resolution", curie=COREMETA4CAT.curie('image_resolution'),

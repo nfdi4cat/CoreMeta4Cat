@@ -116,13 +116,13 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>solvent</strong> (Optional, Multivalued)</summary>
+<summary><strong>solvent</strong> (Recommended, Multivalued)</summary>
 
 **Description:** Solvent used in a process or sample preparation.
 
 **Data Type:** ChemicalEntity
 
-**Cardinality:**  Optional, Multivalued
+**Cardinality:**  Recommended, Multivalued
 
 **CURIE:** [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246)
 

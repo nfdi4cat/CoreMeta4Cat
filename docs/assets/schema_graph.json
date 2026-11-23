@@ -193,7 +193,7 @@
      "requirement": "O",
      "multivalued": true,
      "unit": "",
-     "description": "Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used."
+     "description": "Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used."
     },
     {
      "name": "zero_point_energy_correction",
@@ -1122,7 +1122,7 @@
      "requirement": "O",
      "multivalued": true,
      "unit": "",
-     "description": "Linear scaling relation between adsorption energies (e.g. \"ΔE_OH = 0.50 ΔE_O + 0.10 eV\")."
+     "description": "Linear scaling relation between adsorption energies (e.g. \"Delta_E_OH = 0.50 Delta_E_O + 0.10 eV\")."
     },
     {
      "name": "bep_relation",
@@ -2918,7 +2918,7 @@
      "name": "solvent",
      "range": "ChemicalEntity",
      "kind": "class",
-     "requirement": "O",
+     "requirement": "R",
      "multivalued": true,
      "unit": "",
      "description": "Solvent used in a process or sample preparation."
@@ -5641,10 +5641,10 @@
    "description": "Nuclear magnetic resonance spectroscopy for structure elucidation. Note: for detailed liquid-state NMR minimum information, the dedicated nmr_dcat_ap profile (MARGARITAS) should be used in combination with this subprofile.",
    "fields": [
     {
-     "name": "nucleus",
+     "name": "acquisition_nucleus",
      "range": "string",
      "kind": "primitive",
-     "requirement": "O",
+     "requirement": "M",
      "multivalued": true,
      "unit": "",
      "description": "NMR-active nucleus observed (e.g. 1H, 13C, 31P)."
@@ -5653,7 +5653,7 @@
      "name": "solvent",
      "range": "ChemicalEntity",
      "kind": "class",
-     "requirement": "O",
+     "requirement": "R",
      "multivalued": true,
      "unit": "",
      "description": "Solvent used in a process or sample preparation."
@@ -6829,7 +6829,7 @@
      "requirement": "R",
      "multivalued": true,
      "unit": "eV",
-     "description": "Reaction energy of the elementary step, ΔE = E(final state) - E(initial state)."
+     "description": "Reaction energy of the elementary step, Delta_E = E(final state) - E(initial state)."
     },
     {
      "name": "reaction_free_energy",
@@ -6838,7 +6838,7 @@
      "requirement": "O",
      "multivalued": true,
      "unit": "eV",
-     "description": "Gibbs free energy change of the elementary step, ΔG, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures."
+     "description": "Gibbs free energy change of the elementary step, Delta_G, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures."
     },
     {
      "name": "free_energy_temperature",
@@ -6856,7 +6856,7 @@
      "requirement": "O",
      "multivalued": true,
      "unit": "",
-     "description": "Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used."
+     "description": "Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used."
     },
     {
      "name": "miller_indices",
@@ -8117,7 +8117,7 @@
      "name": "solvent",
      "range": "ChemicalEntity",
      "kind": "class",
-     "requirement": "O",
+     "requirement": "R",
      "multivalued": true,
      "unit": "",
      "description": "Solvent used in a process or sample preparation."
@@ -8512,7 +8512,7 @@
      "requirement": "O",
      "multivalued": true,
      "unit": "",
-     "description": "Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used."
+     "description": "Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used."
     },
     {
      "name": "miller_indices",
@@ -8619,7 +8619,7 @@
      "name": "solvent",
      "range": "ChemicalEntity",
      "kind": "class",
-     "requirement": "O",
+     "requirement": "R",
      "multivalued": true,
      "unit": "",
      "description": "Solvent used in a process or sample preparation."

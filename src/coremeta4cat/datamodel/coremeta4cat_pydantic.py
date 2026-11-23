@@ -236,7 +236,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                            'prefix_reference': 'http://www.w3.org/2004/02/skos/core#'},
                   'voc4cat': {'prefix_prefix': 'voc4cat',
                               'prefix_reference': 'https://w3id.org/nfdi4cat/voc4cat_'}},
-     'source_file': 'src/coremeta4cat/schema/coremeta4cat.yaml',
+     'source_file': 'src\\coremeta4cat\\schema\\coremeta4cat.yaml',
      'title': 'CoreMeta4cat Metadata Reference Model'} )
 
 class CatalysisResearchFieldEnum(str, Enum):
@@ -9905,10 +9905,10 @@ class NMRSpectroscopy(CharacterizationTechnique):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000073',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    nucleus: Optional[list[str]] = Field(default=None, description="""NMR-active nucleus observed (e.g. 1H, 13C, 31P).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
+    acquisition_nucleus: list[str] = Field(default=..., description="""NMR-active nucleus observed (e.g. 1H, 13C, 31P).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:nucleus'} })
+         'slot_uri': 'NMR:1400083'} })
     solvent: Optional[list[ChemicalEntity]] = Field(default=None, description="""Solvent used in a process or sample preparation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Synthesis',
                        'NMRSpectroscopy',
                        'UVVisSpectroscopy',
@@ -9949,7 +9949,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
     nmr_sample_tube: Optional[list[str]] = Field(default=None, description="""NMR sample tube type (e.g. 5mm standard, Shigemi tube).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:nmr_sample_tube'} })
+         'slot_uri': 'NMR:1400132'} })
     number_of_scans: Optional[list[int]] = Field(default=None, description="""Number of scans or accumulations recorded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['XPS',
                        'InfraredSpectroscopy',
                        'DRIFTS',
@@ -26852,7 +26852,7 @@ class BandGap(CalculatedProperty, DFTSettingsMixin, MaterialDescriptorMixin):
 calculated band gap.""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
-         'slot_uri': 'VOC4CAT:0005056'} })
+         'slot_uri': 'voc4cat:0005056'} })
     structure_model: Optional[list[str]] = Field(default=None, description="""Model structure used in the band gap calculation (e.g. bulk unit cell,
 surface slab, defect supercell).""", json_schema_extra = { "linkml_meta": {'domain_of': ['BandGap'],
          'is_a': 'has_qualitative_attribute',
@@ -27021,7 +27021,7 @@ class AdsorptionEnergetics(CalculatedProperty):
     energy_reference: Optional[list[str]] = Field(default=None, description="""Reference species and states used to compute relative energies (e.g. \"CO(g)\", \"1/2 H2(g)\", \"H2O(g) and H2(g)\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics'],
          'recommended': True,
          'slot_uri': 'coremeta4cat:energy_reference'} })
-    energy_correction_type: Optional[list[str]] = Field(default=None, description="""Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics', 'ReactionEnergetics', 'TransitionState'],
+    energy_correction_type: Optional[list[str]] = Field(default=None, description="""Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics', 'ReactionEnergetics', 'TransitionState'],
          'slot_uri': 'coremeta4cat:energy_correction_type'} })
     zero_point_energy_correction: Optional[list[float]] = Field(default=None, description="""Zero-point energy correction applied to the reported energy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics'],
          'slot_uri': 'coremeta4cat:zero_point_energy_correction',
@@ -27146,17 +27146,17 @@ class ReactionEnergetics(CalculatedProperty):
          'slot_uri': 'coremeta4cat:elementary_step'} })
     initial_state: Optional[list[str]] = Field(default=None, description="""Description of the initial-state configuration of the elementary step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'], 'slot_uri': 'coremeta4cat:initial_state'} })
     final_state: Optional[list[str]] = Field(default=None, description="""Description of the final-state configuration of the elementary step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'], 'slot_uri': 'coremeta4cat:final_state'} })
-    reaction_energy: Optional[list[float]] = Field(default=None, description="""Reaction energy of the elementary step, ΔE = E(final state) - E(initial state).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'],
+    reaction_energy: Optional[list[float]] = Field(default=None, description="""Reaction energy of the elementary step, Delta_E = E(final state) - E(initial state).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'],
          'recommended': True,
          'slot_uri': 'coremeta4cat:reaction_energy',
          'unit': {'ucum_code': 'eV'}} })
-    reaction_free_energy: Optional[list[float]] = Field(default=None, description="""Gibbs free energy change of the elementary step, ΔG, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'],
+    reaction_free_energy: Optional[list[float]] = Field(default=None, description="""Gibbs free energy change of the elementary step, Delta_G, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'],
          'slot_uri': 'coremeta4cat:reaction_free_energy',
          'unit': {'ucum_code': 'eV'}} })
     free_energy_temperature: Optional[list[float]] = Field(default=None, description="""Temperature at which free energy corrections were evaluated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ReactionEnergetics'],
          'slot_uri': 'coremeta4cat:free_energy_temperature',
          'unit': {'ucum_code': 'K'}} })
-    energy_correction_type: Optional[list[str]] = Field(default=None, description="""Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics', 'ReactionEnergetics', 'TransitionState'],
+    energy_correction_type: Optional[list[str]] = Field(default=None, description="""Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics', 'ReactionEnergetics', 'TransitionState'],
          'slot_uri': 'coremeta4cat:energy_correction_type'} })
     miller_indices: Optional[list[str]] = Field(default=None, description="""Miller indices of the modelled surface facet (e.g. \"(111)\", \"(110)\", \"(100)\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces',
                        'AdsorptionEnergetics',
@@ -27288,7 +27288,7 @@ class TransitionState(CalculatedProperty):
          'unit': {'ucum_code': 'cm-1'}} })
     ts_verification_method: Optional[list[str]] = Field(default=None, description="""Method used to verify the transition state (e.g. vibrational analysis showing a single imaginary mode, intrinsic reaction coordinate (IRC)).""", json_schema_extra = { "linkml_meta": {'domain_of': ['TransitionState'],
          'slot_uri': 'coremeta4cat:ts_verification_method'} })
-    energy_correction_type: Optional[list[str]] = Field(default=None, description="""Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics', 'ReactionEnergetics', 'TransitionState'],
+    energy_correction_type: Optional[list[str]] = Field(default=None, description="""Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AdsorptionEnergetics', 'ReactionEnergetics', 'TransitionState'],
          'slot_uri': 'coremeta4cat:energy_correction_type'} })
     miller_indices: Optional[list[str]] = Field(default=None, description="""Miller indices of the modelled surface facet (e.g. \"(111)\", \"(110)\", \"(100)\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['Surfaces',
                        'AdsorptionEnergetics',
@@ -27536,7 +27536,7 @@ class CatalyticDescriptors(CalculatedProperty):
     d_band_center: Optional[list[float]] = Field(default=None, description="""Centre of the d-band projected density of states, relative to the Fermi level.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'],
          'slot_uri': 'coremeta4cat:d_band_center',
          'unit': {'ucum_code': 'eV'}} })
-    scaling_relation: Optional[list[str]] = Field(default=None, description="""Linear scaling relation between adsorption energies (e.g. \"ΔE_OH = 0.50 ΔE_O + 0.10 eV\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'],
+    scaling_relation: Optional[list[str]] = Field(default=None, description="""Linear scaling relation between adsorption energies (e.g. \"Delta_E_OH = 0.50 Delta_E_O + 0.10 eV\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'],
          'slot_uri': 'coremeta4cat:scaling_relation'} })
     bep_relation: Optional[list[str]] = Field(default=None, description="""Brønsted–Evans–Polanyi relation between activation energies and reaction energies (slope and intercept).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'], 'slot_uri': 'coremeta4cat:bep_relation'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
