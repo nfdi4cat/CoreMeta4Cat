@@ -2498,7 +2498,7 @@ this subprofile.
 **Slots**
 
 <details markdown="1">
-<summary><strong>nucleus</strong> (Mandatory, Multivalued)</summary>
+<summary><strong>acquisition nucleus</strong> (Mandatory, Multivalued)</summary>
 
 **Description:** NMR-active nucleus observed (e.g. 1H, 13C, 31P).
 
@@ -2508,10 +2508,10 @@ this subprofile.
 
 **CURIE:** [`NMR:1400083`](http://nmrML.org/nmrCV#NMR:1400083)
 
-**Schema Reference:** [nucleus](./elements/slots/nucleus.md)
+**Schema Reference:** [acquisition_nucleus](./elements/slots/acquisition_nucleus.md)
 
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20nucleus target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20acquisition_nucleus target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
