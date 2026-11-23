@@ -66,6 +66,7 @@ extra_css:
 
 extra_javascript:
   - javascripts/schema_classmap.js
+  - javascripts/preview_version_selector.js  # only acts on PR previews
 
 site_url: https://nfdi4cat.github.io/CoreMeta4Cat
 repo_url: https://github.com/nfdi4cat/CoreMeta4Cat
