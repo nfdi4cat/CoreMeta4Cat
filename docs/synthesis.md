@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Synthesis
 
 The Synthesis data class captures metadata required to document catalyst preparation procedures in a structured and reproducible manner. It defines the minimum information necessary to describe synthesis routes and their relevant parameters.
@@ -7,14 +12,14 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **CURIE:** [`OBI:0000070`](OBI:0000070)
 
-<iframe
-    src="../assets/metadata_synthesis_hierarchy.html"
-    width="100%"
-    height= "470vh"
-    style="border: 2px solid #5C88DA; background-color: #F0F8FF;
-    "
-    allowfullscreen
-></iframe><details markdown="1"><summary markdown="1"> **Legend** </summary>
+<div class="cm4c-classmap" data-root="Synthesis"
+     data-src="../assets/schema_graph.json"
+     data-site="../"
+     data-elements="../elements/classes/">
+<p>The interactive class map needs JavaScript. The full field list follows below.</p>
+</div>
+
+<details markdown="1"><summary markdown="1"> **Legend** </summary>
 
 - **Description:**A short description for Comprehension purposes
 
@@ -2221,7 +2226,7 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`coremeta4cat:hydrolysis_ratio`](https://w3id.org/nfdi4cat/coremeta4cat/hydrolysis_ratio)
+**CURIE:** [`voc4cat:0008157`](https://w3id.org/nfdi4cat/voc4cat_0008157)
 
 **Schema Reference:** [hydrolysis_ratio](./elements/slots/hydrolysis_ratio.md)
 
@@ -2291,7 +2296,7 @@ of precursor molecules to form a colloidal network (gel).
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`coremeta4cat:surfactant_template`](https://w3id.org/nfdi4cat/coremeta4cat/surfactant_template)
+**CURIE:** [`voc4cat:0008147`](https://w3id.org/nfdi4cat/voc4cat_0008147)
 
 **Schema Reference:** [surfactant_template](./elements/slots/surfactant_template.md)
 
@@ -2461,7 +2466,7 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`coremeta4cat:filling_volume`](https://w3id.org/nfdi4cat/coremeta4cat/filling_volume)
+**CURIE:** [`voc4cat:0008148`](https://w3id.org/nfdi4cat/voc4cat_0008148)
 
 **Schema Reference:** [filling_volume](./elements/slots/filling_volume.md)
 
@@ -2501,7 +2506,7 @@ sealed vessel using a non-aqueous solvent.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`coremeta4cat:cooling_rate`](https://w3id.org/nfdi4cat/coremeta4cat/cooling_rate)
+**CURIE:** [`voc4cat:0008149`](https://w3id.org/nfdi4cat/voc4cat_0008149)
 
 **Schema Reference:** [cooling_rate](./elements/slots/cooling_rate.md)
 
@@ -2687,7 +2692,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **Description:** Catalyst preparation using plasma treatment to modify surface
 properties or deposit active components.
 
-**CURIE:** [`coremeta4cat:PlasmaAssisted`](https://w3id.org/nfdi4cat/coremeta4cat/PlasmaAssisted)
+**CURIE:** [`voc4cat:0008152`](https://w3id.org/nfdi4cat/voc4cat_0008152)
 
 **Schema Reference:** [PlasmaAssisted](./elements/classes/PlasmaAssisted.md)
 
@@ -2702,7 +2707,7 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`coremeta4cat:plasma_type`](https://w3id.org/nfdi4cat/coremeta4cat/plasma_type)
+**CURIE:** [`voc4cat:0008153`](https://w3id.org/nfdi4cat/voc4cat_0008153)
 
 **Schema Reference:** [plasma_type](./elements/slots/plasma_type.md)
 
@@ -2721,7 +2726,7 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`coremeta4cat:power_input`](https://w3id.org/nfdi4cat/coremeta4cat/power_input)
+**CURIE:** [`voc4cat:0008154`](https://w3id.org/nfdi4cat/voc4cat_0008154)
 
 **Schema Reference:** [power_input](./elements/slots/power_input.md)
 
@@ -2757,7 +2762,7 @@ properties or deposit active components.
 
 **Cardinality:**  Optional, Multivalued
 
-**CURIE:** [`coremeta4cat:exposure_time`](https://w3id.org/nfdi4cat/coremeta4cat/exposure_time)
+**CURIE:** [`voc4cat:0008155`](https://w3id.org/nfdi4cat/voc4cat_0008155)
 
 **Schema Reference:** [exposure_time](./elements/slots/exposure_time.md)
 
@@ -2971,7 +2976,7 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **Description:** Catalyst preparation by combustion of a fuel/oxidizer mixture,
 producing metal oxide catalysts in a single rapid step.
 
-**CURIE:** [`coremeta4cat:CombustionSynthesis`](https://w3id.org/nfdi4cat/coremeta4cat/CombustionSynthesis)
+**CURIE:** [`voc4cat:0008156`](https://w3id.org/nfdi4cat/voc4cat_0008156)
 
 **Schema Reference:** [CombustionSynthesis](./elements/classes/CombustionSynthesis.md)
 

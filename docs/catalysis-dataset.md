@@ -11,6 +11,15 @@ This page is the reference for `CatalysisDataset` itself: its fields, the `Catal
 
 ## Fields
 
+The overview below shows only what CoreMeta4Cat adds to `dcat:Dataset`. Where the schema points to a generic or helper class, the overview shows the specific CoreMeta4Cat classes instead: `was_generated_by` leads to Synthesis, Characterization or Simulation, and `is_about_entity` to a precursor or catalyst sample. Each data class opens its own page.
+
+<div class="cm4c-classmap" data-root="CatalysisDataset" data-mode="overview"
+     data-src="../assets/schema_graph.json"
+     data-site="../"
+     data-elements="../elements/classes/">
+<p>The interactive overview needs JavaScript. The table below lists the same fields.</p>
+</div>
+
 `CatalysisDataset` has four fields beyond the ones it inherits from `dcat:Dataset` (`id`, `title`, `description`, ...):
 
 | Field | Range | Cardinality | Purpose |

@@ -47,13 +47,9 @@ from generate_schema_docs import (  # noqa: E402
 # Visual design — matches the original Excel-based charts
 # ─────────────────────────────────────────────────────────────────────────────
 
-BASE_COLORS: dict[str, dict[str, str]] = {
-    "synthesis":        {"M": "#d73027", "R": "#f46d43", "O": "#fdae61"},
-    "characterization": {"M": "#4575b4", "R": "#74add1", "O": "#abd9e9"},
-    "reaction":         {"M": "#1a9850", "R": "#66bd63", "O": "#a6d96a"},
-    "simulation":       {"M": "#984ea3", "R": "#b358cb", "O": "#e082ea"},
-    "coremeta4cat":     {"M": "#e66101", "R": "#fdb863", "O": "#fddbc7"},
-}
+# Palette per data class (Mandatory / Recommended / Optional), shared with the
+# class map on the data-class pages -- defined once in schema_graph.py.
+from schema_graph import BASE_COLORS  # noqa: E402
 
 # Maps schema class names to their simplified display names used in charts and docs.
 # Needed where the schema uses a fully qualified name to avoid clashes with

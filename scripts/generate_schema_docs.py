@@ -479,7 +479,10 @@ def generate_markdown_for_main_class(schema: dict, main_class: str, output_file:
 
     display_name = DISPLAY_NAMES.get(main_class, main_class)
     description  = CLASS_DESCRIPTIONS.get(main_class, "test description")
-    md  = f"# {snake_to_readable(display_name)}\n\n"
+    # The page has no sub-headings worth a table of contents; hiding it gives
+    # the class map the full content width.
+    md  = "---\nhide:\n  - toc\n---\n\n"
+    md += f"# {snake_to_readable(display_name)}\n\n"
 
     # Warning admonition for classes whose schema name differs from the display name
     if main_class != display_name:
@@ -498,10 +501,15 @@ def generate_markdown_for_main_class(schema: dict, main_class: str, output_file:
     if class_uri:
         md += f"**CURIE:** [`{class_uri}`]({class_uri})\n\n"
 
-    md += (f'<iframe\n    src="../assets/metadata_{display_name.lower()}_hierarchy.html"\n'
-           f'    width="100%"\n    height= "470vh"\n'
-           f'    style="border: 2px solid #5C88DA; background-color: #F0F8FF;\n    "\n'
-           f'    allowfullscreen\n></iframe>')
+    # Interactive class map, drawn by docs/javascripts/schema_classmap.js from
+    # docs/assets/schema_graph.json (written by main() via schema_graph.py).
+    md += (f'<div class="cm4c-classmap" data-root="{main_class}"\n'
+           f'     data-src="../assets/schema_graph.json"\n'
+           f'     data-site="../"\n'
+           f'     data-elements="../elements/classes/">\n'
+           f'<p>The interactive class map needs JavaScript. '
+           f'The full field list follows below.</p>\n'
+           f'</div>\n\n')
 
     # Slots section: direct/mixin slots first, then class-ranged slot_usage entries
     direct_slots    = get_all_class_slots(schema, main_class)
@@ -553,7 +561,15 @@ def main(schema_dir: str, output_dir: str = "."):
     for main_class, filename in main_classes.items():
         generate_markdown_for_main_class(schema, main_class, str(output_path / filename))
 
-    print(f"\nDone -- {len(main_classes)} files written to '{output_dir}'.")
+    # Imported here, not at the top: schema_graph imports this module.
+    from schema_graph import write_schema_graph
+    _, class_origin = build_origin_index(schema_dir)
+    pages = dict(main_classes)
+    pages["CatalysisDataset"] = "catalysis-dataset.md"   # hand-written page with the dataset overview
+    write_schema_graph(schema, output_path / "assets" / "schema_graph.json",
+                       pages=pages, editable=set(class_origin))
+
+    print(f"\nDone -- {len(main_classes)} pages and the class map data written to '{output_dir}'.")
 
 
 if __name__ == "__main__":
