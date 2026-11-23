@@ -4,7 +4,8 @@
 # =====================================================
 # - When "Preview documentation build" (test_pages_build.yaml) succeeds for
 #   a PR, publish its `docs-preview` artifact to gh-pages under
-#   pr-preview/pr-<number>/ and comment the URL on the PR.
+#   pr-preview/pr-<number>/ and, once GitHub Pages actually serves it,
+#   comment the URL on the PR.
 # - When a PR is closed, remove its preview again.
 #
 # Security: this workflow has write access, so it must never check out or
@@ -119,6 +120,16 @@ jobs:
           echo "number=$pr_number" >> "$GITHUB_OUTPUT"
           echo "result=$result" >> "$GITHUB_OUTPUT"
 
+      # Lets the next steps recognise when GitHub Pages serves this build.
+      # The commit comes from the event, not from the (untrusted) artifact.
+      - name: Mark the preview with the built commit
+        if: steps.pr.outputs.result == 'deploy'
+        env:
+          BUILT_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          rm -f _preview/site/preview-build.txt
+          echo "$BUILT_SHA" > _preview/site/preview-build.txt
+
       # https://github.com/rossjrw/pr-preview-action
       - name: Deploy preview
         id: preview
@@ -135,6 +146,34 @@ jobs:
           deploy-commit-message: >-
             Deploy preview for PR ${{ steps.pr.outputs.number }} 🛫
 
+      # Pushing to gh-pages is not the end: GitHub Pages then rebuilds the
+      # site (pages-build-deployment), which takes another minute or two.
+      # Commenting before that sends people to a missing or half-updated
+      # preview, so wait until the marker written above is served.
+      - name: Wait until GitHub Pages serves the preview
+        id: live
+        if: steps.pr.outputs.result == 'deploy'
+        env:
+          PREVIEW_URL: ${{ steps.preview.outputs.preview-url }}
+          BUILT_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          marker="${PREVIEW_URL%/}/preview-build.txt"
+          for attempt in $(seq 1 60); do
+            served="$(curl -fsSL --max-time 10 \
+              -H 'Cache-Control: no-cache' "$marker?attempt=$attempt" \
+              2>/dev/null | tr -d '[:space:]' || true)"
+            if [ "$served" = "$BUILT_SHA" ]; then
+              echo "The preview of ${BUILT_SHA:0:7} is live" \
+                "(after about $(( (attempt - 1) * 10 )) s)."
+              echo "live=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::warning::GitHub Pages did not serve the preview of" \
+            "${BUILT_SHA:0:7} within 10 minutes; commenting anyway."
+          echo "live=false" >> "$GITHUB_OUTPUT"
+
       # Comment lines stay unwrapped: GitHub renders newlines as line breaks.
       # yamllint disable rule:line-length
 
@@ -149,7 +188,7 @@ jobs:
           message: |
             :books: **Documentation preview:** ${{ steps.preview.outputs.preview-url }}
 
-            Built from ${{ github.event.workflow_run.head_sha }} ([build run](${{ github.event.workflow_run.html_url }})). It is updated on every push and removed when this PR is closed. GitHub Pages may need a minute to serve a new version.
+            Built from ${{ github.event.workflow_run.head_sha }} ([build run](${{ github.event.workflow_run.html_url }})). It is updated on every push and removed when this PR is closed. ${{ steps.live.outputs.live != 'true' && 'GitHub Pages had not served this version yet after 10 minutes, so it may still take a moment to appear.' || '' }}
 
       - name: Comment why there is no preview
         if: steps.pr.outputs.result == 'untrusted'
