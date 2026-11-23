@@ -59,14 +59,14 @@ LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>calculated property</strong> (Mandatory, Multivalued)</summary>
+<summary><strong>calculated property</strong> (Recommended, Multivalued)</summary>
 
 **Description:** A property computed by this Simulation, provided as a CalculatedProperty
 instance. Multiple properties may be computed in a single simulation run.
 
 **Data Type:** CalculatedProperty
 
-**Cardinality:**  Mandatory, Multivalued
+**Cardinality:**  Recommended, Multivalued
 
 **CURIE:** [`coremeta4cat:calculated_property`](https://w3id.org/nfdi4cat/coremeta4cat/calculated_property)
 
@@ -3042,6 +3042,32 @@ Linked from Simulation via realized_plan.
   </a>
 </p></details>
 
+<details markdown="1">
+<summary><strong>plan designator</strong> (Optional)</summary>
+
+**Description:** Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [plan_designator](./elements/slots/plan_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plan_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SimulationMethod target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -3202,6 +3228,32 @@ calculation. Set to true for systems containing magnetic elements.
   </a>
 </p></details>
 
+<details markdown="1">
+<summary><strong>plan designator</strong> (Optional)</summary>
+
+**Description:** Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [plan_designator](./elements/slots/plan_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plan_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20DFT target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -3335,6 +3387,32 @@ thermodynamic quantities are conserved.
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>plan designator</strong> (Optional)</summary>
+
+**Description:** Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [plan_designator](./elements/slots/plan_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plan_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3523,6 +3601,32 @@ stiff ODE solver, steady-state Newton method).
   </a>
 </p></details>
 
+<details markdown="1">
+<summary><strong>plan designator</strong> (Optional)</summary>
+
+**Description:** Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [plan_designator](./elements/slots/plan_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plan_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Microkinetics target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -3704,6 +3808,32 @@ Kawasaki, heat-bath algorithm).
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>plan designator</strong> (Optional)</summary>
+
+**Description:** Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [plan_designator](./elements/slots/plan_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plan_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>

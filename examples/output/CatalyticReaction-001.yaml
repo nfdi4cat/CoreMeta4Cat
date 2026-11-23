@@ -13,7 +13,7 @@ used_reactor:
   title: stainless steel fixed-bed plug-flow reactor
   description: 10 mm inner diameter, 30 cm length, 0.5 g catalyst diluted with SiC
   reactor_designator: voc4cat:0007018
-catalyst_quantity:
+catalyst_mass:
 - value: 0.5
   has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
   unit: https://qudt.org/vocab/unit/GM

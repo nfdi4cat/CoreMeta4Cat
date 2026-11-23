@@ -395,7 +395,7 @@ is_about_activity:
     - value: 1.2
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/CentiM
-  catalyst_quantity:
+  catalyst_mass:
   - value: 300.0
     has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
     description: Catalyst granulate per test, mixed with 700 mg silica

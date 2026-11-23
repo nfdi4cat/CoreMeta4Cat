@@ -96,7 +96,7 @@ catalysis_research_field: heterogeneous catalysis
 
 was_generated_by:
   - type: Reaction
-    catalyst_quantity: 100.0    # mg
+    catalyst_mass: 100.0    # mg
     reactant:
       - "1 vol% CO in N2"
       - "2 vol% O2 in N2"

@@ -2860,9 +2860,12 @@ class Autoclave(ChemicalReactor):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Autoclave
 
     id: Union[str, AutoclaveId] = None
-    agitation_type: Optional[Union[str, list[str]]] = empty_list()
+    reactor_stirrer_type: Optional[Union[str, list[str]]] = empty_list()
+    stirring_rate: Optional[Union[Union[dict, "AngularVelocity"], list[Union[dict, "AngularVelocity"]]]] = empty_list()
+    stirrer_diameter: Optional[Union[Union[dict, "LengthQuantity"], list[Union[dict, "LengthQuantity"]]]] = empty_list()
+    reactor_working_volume: Optional[Union[Union[dict, "Volume"], list[Union[dict, "Volume"]]]] = empty_list()
+    reaction_chamber_shape: Optional[Union[str, list[str]]] = empty_list()
     reaction_chamber_material: Optional[Union[str, list[str]]] = empty_list()
-    vessel_internal_volume: Optional[Union[Union[dict, "Volume"], list[Union[dict, "Volume"]]]] = empty_list()
     vessel_material: Optional[Union[str, list[str]]] = empty_list()
     batch_duration: Optional[Union[dict, "Duration"]] = None
 
@@ -2872,15 +2875,23 @@ class Autoclave(ChemicalReactor):
         if not isinstance(self.id, AutoclaveId):
             self.id = AutoclaveId(self.id)
 
-        if not isinstance(self.agitation_type, list):
-            self.agitation_type = [self.agitation_type] if self.agitation_type is not None else []
-        self.agitation_type = [v if isinstance(v, str) else str(v) for v in self.agitation_type]
+        if not isinstance(self.reactor_stirrer_type, list):
+            self.reactor_stirrer_type = [self.reactor_stirrer_type] if self.reactor_stirrer_type is not None else []
+        self.reactor_stirrer_type = [v if isinstance(v, str) else str(v) for v in self.reactor_stirrer_type]
+
+        self._normalize_inlined_as_list(slot_name="stirring_rate", slot_type=AngularVelocity, key_name="value", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="stirrer_diameter", slot_type=LengthQuantity, key_name="value", keyed=False)
+
+        self._normalize_inlined_as_list(slot_name="reactor_working_volume", slot_type=Volume, key_name="value", keyed=False)
+
+        if not isinstance(self.reaction_chamber_shape, list):
+            self.reaction_chamber_shape = [self.reaction_chamber_shape] if self.reaction_chamber_shape is not None else []
+        self.reaction_chamber_shape = [v if isinstance(v, str) else str(v) for v in self.reaction_chamber_shape]
 
         if not isinstance(self.reaction_chamber_material, list):
             self.reaction_chamber_material = [self.reaction_chamber_material] if self.reaction_chamber_material is not None else []
         self.reaction_chamber_material = [v if isinstance(v, str) else str(v) for v in self.reaction_chamber_material]
-
-        self._normalize_inlined_as_list(slot_name="vessel_internal_volume", slot_type=Volume, key_name="value", keyed=False)
 
         if not isinstance(self.vessel_material, list):
             self.vessel_material = [self.vessel_material] if self.vessel_material is not None else []
@@ -3348,7 +3359,7 @@ class CatalyticReaction(ChemicalReaction):
 
     id: Union[str, CatalyticReactionId] = None
     used_reactor: Union[dict[Union[str, ChemicalReactorId], Union[dict, ChemicalReactor]], list[Union[dict, ChemicalReactor]]] = empty_dict()
-    catalyst_quantity: Optional[Union[Union[dict, "Mass"], list[Union[dict, "Mass"]]]] = empty_list()
+    catalyst_mass: Optional[Union[Union[dict, "Mass"], list[Union[dict, "Mass"]]]] = empty_list()
     catalyst_type: Optional[Union[Union[str, "CatalysisResearchFieldEnum"], list[Union[str, "CatalysisResearchFieldEnum"]]]] = empty_list()
     catalyst_form: Optional[Union[Union[str, "CatalystFormEnum"], list[Union[str, "CatalystFormEnum"]]]] = empty_list()
     reaction_name: Optional[Union[str, list[str]]] = empty_list()
@@ -3371,7 +3382,7 @@ class CatalyticReaction(ChemicalReaction):
             self.MissingRequiredField("used_reactor")
         self._normalize_inlined_as_list(slot_name="used_reactor", slot_type=ChemicalReactor, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="catalyst_quantity", slot_type=Mass, key_name="value", keyed=False)
+        self._normalize_inlined_as_list(slot_name="catalyst_mass", slot_type=Mass, key_name="value", keyed=False)
 
         if not isinstance(self.catalyst_type, list):
             self.catalyst_type = [self.catalyst_type] if self.catalyst_type is not None else []
@@ -9781,7 +9792,7 @@ slots.has_stirring_speed = Slot(uri=VOC4CAT['0008114'], name="has_stirring_speed
 slots.has_stirring_duration = Slot(uri=SIO['000008'], name="has_stirring_duration", curie=SIO.curie('000008'),
                    model_uri=COREMETA4CAT.has_stirring_duration, domain=None, range=Optional[Union[dict, Duration]])
 
-slots.has_experiment_duration = Slot(uri=SIO['000008'], name="has_experiment_duration", curie=SIO.curie('000008'),
+slots.has_experiment_duration = Slot(uri=VOC4CAT['0000111'], name="has_experiment_duration", curie=VOC4CAT.curie('0000111'),
                    model_uri=COREMETA4CAT.has_experiment_duration, domain=None, range=Optional[Union[dict, Duration]])
 
 slots.has_sample_mass = Slot(uri=SIO['000008'], name="has_sample_mass", curie=SIO.curie('000008'),
@@ -10324,13 +10335,13 @@ slots.gradient_program = Slot(uri=COREMETA4CAT.gradient_program, name="gradient_
 slots.ionization_mode = Slot(uri=COREMETA4CAT.ionization_mode, name="ionization_mode", curie=COREMETA4CAT.curie('ionization_mode'),
                    model_uri=COREMETA4CAT.ionization_mode, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.catalyst_quantity = Slot(uri=COREMETA4CAT.catalyst_quantity, name="catalyst_quantity", curie=COREMETA4CAT.curie('catalyst_quantity'),
-                   model_uri=COREMETA4CAT.catalyst_quantity, domain=None, range=Optional[Union[Union[dict, Mass], list[Union[dict, Mass]]]])
+slots.catalyst_mass = Slot(uri=VOC4CAT['0008141'], name="catalyst_mass", curie=VOC4CAT.curie('0008141'),
+                   model_uri=COREMETA4CAT.catalyst_mass, domain=None, range=Optional[Union[Union[dict, Mass], list[Union[dict, Mass]]]])
 
 slots.catalyst_type = Slot(uri=VOC4CAT['0007014'], name="catalyst_type", curie=VOC4CAT.curie('0007014'),
                    model_uri=COREMETA4CAT.catalyst_type, domain=None, range=Optional[Union[Union[str, "CatalysisResearchFieldEnum"], list[Union[str, "CatalysisResearchFieldEnum"]]]])
 
-slots.catalyst_form = Slot(uri=COREMETA4CAT.catalyst_form, name="catalyst_form", curie=COREMETA4CAT.curie('catalyst_form'),
+slots.catalyst_form = Slot(uri=VOC4CAT['0000016'], name="catalyst_form", curie=VOC4CAT.curie('0000016'),
                    model_uri=COREMETA4CAT.catalyst_form, domain=None, range=Optional[Union[Union[str, "CatalystFormEnum"], list[Union[str, "CatalystFormEnum"]]]])
 
 slots.reaction_name = Slot(uri=VOC4CAT['0007009'], name="reaction_name", curie=VOC4CAT.curie('0007009'),
@@ -10396,14 +10407,11 @@ slots.tube_material = Slot(uri=COREMETA4CAT.tube_material, name="tube_material",
 slots.catalyst_particle_size = Slot(uri=VOC4CAT['0008212'], name="catalyst_particle_size", curie=VOC4CAT.curie('0008212'),
                    model_uri=COREMETA4CAT.catalyst_particle_size, domain=None, range=Optional[Union[Union[dict, LengthQuantity], list[Union[dict, LengthQuantity]]]])
 
-slots.agitation_type = Slot(uri=COREMETA4CAT.agitation_type, name="agitation_type", curie=COREMETA4CAT.curie('agitation_type'),
-                   model_uri=COREMETA4CAT.agitation_type, domain=None, range=Optional[Union[str, list[str]]])
+slots.reaction_chamber_shape = Slot(uri=VOC4CAT['0000155'], name="reaction_chamber_shape", curie=VOC4CAT.curie('0000155'),
+                   model_uri=COREMETA4CAT.reaction_chamber_shape, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.reaction_chamber_material = Slot(uri=VOC4CAT['0000156'], name="reaction_chamber_material", curie=VOC4CAT.curie('0000156'),
                    model_uri=COREMETA4CAT.reaction_chamber_material, domain=None, range=Optional[Union[str, list[str]]])
-
-slots.vessel_internal_volume = Slot(uri=COREMETA4CAT.vessel_internal_volume, name="vessel_internal_volume", curie=COREMETA4CAT.curie('vessel_internal_volume'),
-                   model_uri=COREMETA4CAT.vessel_internal_volume, domain=None, range=Optional[Union[Union[dict, Volume], list[Union[dict, Volume]]]])
 
 slots.vessel_material = Slot(uri=COREMETA4CAT.vessel_material, name="vessel_material", curie=COREMETA4CAT.curie('vessel_material'),
                    model_uri=COREMETA4CAT.vessel_material, domain=None, range=Optional[Union[str, list[str]]])
@@ -10453,7 +10461,7 @@ slots.bed_expansion_height = Slot(uri=COREMETA4CAT.bed_expansion_height, name="b
 slots.bubble_size_distribution = Slot(uri=COREMETA4CAT.bubble_size_distribution, name="bubble_size_distribution", curie=COREMETA4CAT.curie('bubble_size_distribution'),
                    model_uri=COREMETA4CAT.bubble_size_distribution, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.product_identification_method = Slot(uri=COREMETA4CAT.product_identification_method, name="product_identification_method", curie=COREMETA4CAT.curie('product_identification_method'),
+slots.product_identification_method = Slot(uri=VOC4CAT['0000129'], name="product_identification_method", curie=VOC4CAT.curie('0000129'),
                    model_uri=COREMETA4CAT.product_identification_method, domain=None, range=Optional[Union[dict[Union[str, ProductIdentificationMethodId], Union[dict, ProductIdentificationMethod]], list[Union[dict, ProductIdentificationMethod]]]])
 
 slots.software_package = Slot(uri=COREMETA4CAT.software_package, name="software_package", curie=COREMETA4CAT.curie('software_package'),
@@ -11155,11 +11163,14 @@ slots.CatalyticReaction_rdf_type = Slot(uri=RDF.type, name="CatalyticReaction_rd
 slots.CatalyticReaction_used_reactor = Slot(uri=PROV.wasAssociatedWith, name="CatalyticReaction_used_reactor", curie=PROV.curie('wasAssociatedWith'),
                    model_uri=COREMETA4CAT.CatalyticReaction_used_reactor, domain=CatalyticReaction, range=Union[dict[Union[str, ChemicalReactorId], Union[dict, ChemicalReactor]], list[Union[dict, ChemicalReactor]]])
 
-slots.CatalyticReaction_product_identification_method = Slot(uri=COREMETA4CAT.product_identification_method, name="CatalyticReaction_product_identification_method", curie=COREMETA4CAT.curie('product_identification_method'),
+slots.CatalyticReaction_product_identification_method = Slot(uri=VOC4CAT['0000129'], name="CatalyticReaction_product_identification_method", curie=VOC4CAT.curie('0000129'),
                    model_uri=COREMETA4CAT.CatalyticReaction_product_identification_method, domain=CatalyticReaction, range=Optional[Union[dict[Union[str, ProductIdentificationMethodId], Union[dict, "ProductIdentificationMethod"]], list[Union[dict, "ProductIdentificationMethod"]]]])
 
 slots.CatalyticReaction_has_reaction_step = Slot(uri=BFO['0000051'], name="CatalyticReaction_has_reaction_step", curie=BFO.curie('0000051'),
                    model_uri=COREMETA4CAT.CatalyticReaction_has_reaction_step, domain=CatalyticReaction, range=Optional[Union[dict[Union[str, CatalyticReactionId], Union[dict, "CatalyticReaction"]], list[Union[dict, "CatalyticReaction"]]]])
+
+slots.Autoclave_stirrer_diameter = Slot(uri=VOC4CAT['0008115'], name="Autoclave_stirrer_diameter", curie=VOC4CAT.curie('0008115'),
+                   model_uri=COREMETA4CAT.Autoclave_stirrer_diameter, domain=Autoclave, range=Optional[Union[Union[dict, "LengthQuantity"], list[Union[dict, "LengthQuantity"]]]])
 
 slots.Simulation_rdf_type = Slot(uri=RDF.type, name="Simulation_rdf_type", curie=RDF.curie('type'),
                    model_uri=COREMETA4CAT.Simulation_rdf_type, domain=Simulation, range=Optional[Union[dict, "DefinedTerm"]])

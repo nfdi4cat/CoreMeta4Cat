@@ -100,7 +100,7 @@ classes:
       The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)
       is expressed via rdf_type using a voc4cat or ChemO term.
     slots:
-    - catalyst_quantity
+    - catalyst_mass
     - catalyst_type
     - catalyst_form
     - reaction_name
@@ -242,11 +242,17 @@ classes:
       Autoclave reactor — a sealed pressure vessel for batch reactions at
       elevated temperature and/or pressure.
     slots:
-    - agitation_type
+    - reactor_stirrer_type
+    - stirring_rate
+    - stirrer_diameter
+    - reactor_working_volume
+    - reaction_chamber_shape
     - reaction_chamber_material
-    - vessel_internal_volume
     - vessel_material
     - batch_duration
+    slot_usage:
+      stirrer_diameter:
+        recommended: true
 
   SlurryReactor:
     is_a: ChemicalReactor
@@ -305,11 +311,11 @@ slots:
 
   # ---- Reaction-level slots ----
 
-  catalyst_quantity:
+  catalyst_mass:
     description: Mass of catalyst loaded into the reactor.
     is_a: has_mass
     range: Mass
-    slot_uri: coremeta4cat:catalyst_quantity
+    slot_uri: voc4cat:0008141
     recommended: true
     multivalued: true
     inlined_as_list: true
@@ -346,6 +352,7 @@ slots:
       reactor (e.g. thin film, bulk, powder, supported). A separate axis
       from catalyst_type (the catalytic regime).
     range: CatalystFormEnum
+    slot_uri: voc4cat:0000016
     recommended: true
     multivalued: true
 
@@ -437,7 +444,7 @@ slots:
     slot_uri: voc4cat:0007259
     recommended: true
 
-  # ---- CSTR-specific slots ----
+  # ---- Stirred-reactor slots (CSTR; stirring and volume slots shared with Autoclave) ----
 
   stirring_rate:
     description: |-
@@ -537,12 +544,13 @@ slots:
 
   # ---- Autoclave-specific slots ----
 
-  agitation_type:
+  reaction_chamber_shape:
     description: |-
-      The category of agitation used inside the autoclave (e.g. magnetic
-      stirring, mechanical overhead stirring, rocking, none).
+      The shape of the reaction chamber (e.g. cylindrical, cubical,
+      rectangular).
     is_a: has_qualitative_attribute
     range: string
+    slot_uri: voc4cat:0000155
     recommended: true
 
   reaction_chamber_material:
@@ -553,12 +561,6 @@ slots:
     is_a: has_qualitative_attribute
     range: string
     slot_uri: voc4cat:0000156
-    recommended: true
-
-  vessel_internal_volume:
-    description: The internal (working) volume of the autoclave vessel.
-    is_a: has_volume
-    range: Volume
     recommended: true
 
   vessel_material:
@@ -700,7 +702,7 @@ slots:
       The abstract stub ProductIdentificationMethod is retained for backward compatibility.
     is_a: realized_plan
     range: ProductIdentificationMethod
-    slot_uri: coremeta4cat:product_identification_method
+    slot_uri: voc4cat:0000129
     recommended: true
     multivalued: true
     inlined_as_list: true

@@ -215,7 +215,7 @@ is_about_activity:
       PID temperature controller; mass flow controllers (Brooks SLA5850) for CH4,
       CO2, N2'
     reactor_designator: voc4cat:0007018
-  catalyst_quantity:
+  catalyst_mass:
   - value: 0.2
     has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
     unit: https://qudt.org/vocab/unit/GM

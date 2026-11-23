@@ -571,7 +571,7 @@
           ]
         }
       ],
-      "catalyst_quantity": [
+      "catalyst_mass": [
         {
           "value": 300.0,
           "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",

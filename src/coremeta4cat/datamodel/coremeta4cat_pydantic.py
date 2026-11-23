@@ -236,7 +236,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                            'prefix_reference': 'http://www.w3.org/2004/02/skos/core#'},
                   'voc4cat': {'prefix_prefix': 'voc4cat',
                               'prefix_reference': 'https://w3id.org/nfdi4cat/voc4cat_'}},
-     'source_file': 'src/coremeta4cat/schema/coremeta4cat.yaml',
+     'source_file': 'src\\coremeta4cat\\schema\\coremeta4cat.yaml',
      'title': 'CoreMeta4cat Metadata Reference Model'} )
 
 class CatalysisResearchFieldEnum(str, Enum):
@@ -5240,10 +5240,10 @@ class CatalyticReaction(ChemicalReaction):
                                          'range': 'ChemicalReactor',
                                          'required': True}}})
 
-    catalyst_quantity: Optional[list[Mass]] = Field(default=None, description="""Mass of catalyst loaded into the reactor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'],
+    catalyst_mass: Optional[list[Mass]] = Field(default=None, description="""Mass of catalyst loaded into the reactor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'],
          'is_a': 'has_mass',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:catalyst_quantity'} })
+         'slot_uri': 'voc4cat:0008141'} })
     catalyst_type: Optional[list[CatalysisResearchFieldEnum]] = Field(default=None, description="""The catalytic regime of the reaction (e.g. heterogeneous, homogeneous,
 biocatalysis, electrocatalysis, photocatalysis). For the physical
 form/presentation of the catalyst itself, use catalyst_form instead.
@@ -5267,7 +5267,9 @@ independent and often both apply to the same catalyst at once.""", json_schema_e
          'slot_uri': 'voc4cat:0007014'} })
     catalyst_form: Optional[list[CatalystFormEnum]] = Field(default=None, description="""The physical form or presentation of the catalyst as loaded into the
 reactor (e.g. thin film, bulk, powder, supported). A separate axis
-from catalyst_type (the catalytic regime).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'], 'recommended': True} })
+from catalyst_type (the catalytic regime).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'],
+         'recommended': True,
+         'slot_uri': 'voc4cat:0000016'} })
     reaction_name: Optional[list[str]] = Field(default=None, description="""A name for the catalytic reaction which assigns the reactants and
 (desired) products (e.g. \"ammonia synthesis\", \"Fischer-Tropsch synthesis\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'],
          'is_a': 'has_qualitative_attribute',
@@ -5305,13 +5307,13 @@ vol% or mol%). For fixed-composition experiments use reactant.has_concentration.
          'slot_uri': 'coremeta4cat:feed_composition_range'} })
     has_experiment_duration: Optional[Duration] = Field(default=None, description="""Total duration of the experiment or measurement run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD', 'CatalyticReaction'],
          'is_a': 'has_duration',
-         'slot_uri': 'SIO:000008'} })
+         'slot_uri': 'voc4cat:0000111'} })
     product_identification_method: Optional[list[ProductIdentificationMethod]] = Field(default=None, description="""The analytical method used to identify and/or quantify reaction products.
 Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).
 The abstract stub ProductIdentificationMethod is retained for backward compatibility.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'],
          'is_a': 'realized_plan',
          'recommended': True,
-         'slot_uri': 'coremeta4cat:product_identification_method'} })
+         'slot_uri': 'voc4cat:0000129'} })
     used_starting_material: Optional[list[StartingMaterial]] = Field(default=None, description="""The slot to specify the StartingMaterial(s) of a ChemicalReaction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalReaction'],
          'is_a': 'had_input_entity',
          'recommended': True,
@@ -8862,7 +8864,7 @@ Provide unit as a QUDT term (e.g. Degree).""", json_schema_extra = { "linkml_met
          'slot_uri': 'coremeta4cat:sample_spinning_speed'} })
     has_experiment_duration: Optional[Duration] = Field(default=None, description="""Total duration of the experiment or measurement run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD', 'CatalyticReaction'],
          'is_a': 'has_duration',
-         'slot_uri': 'SIO:000008'} })
+         'slot_uri': 'voc4cat:0000111'} })
     xray_source: Optional[list[str]] = Field(default=None, description="""X-ray source used (e.g. Cu K-alpha, Mo K-alpha, synchrotron).""", json_schema_extra = { "linkml_meta": {'domain_of': ['XRaySourceMixin'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
@@ -19804,21 +19806,21 @@ class CSTR(ChemicalReactor):
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
     stirring_rate: Optional[list[AngularVelocity]] = Field(default=None, description="""The rate at which the stirrer rotates, typically expressed in
-revolutions per unit time (e.g. revolutions per minute).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR'],
+revolutions per unit time (e.g. revolutions per minute).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR', 'Autoclave'],
          'is_a': 'has_angular_velocity',
          'recommended': True,
          'slot_uri': 'voc4cat:0008114'} })
     residence_time: Optional[Duration] = Field(default=None, description="""The average time a unit of fluid spends inside the reactor before
 exiting.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR'], 'is_a': 'has_duration', 'recommended': True} })
     reactor_working_volume: Optional[list[Volume]] = Field(default=None, description="""Volume of the reaction chamber, calculated by its dimensions. Volume
-of pipes and valves connected to the reactor is not included.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR'],
+of pipes and valves connected to the reactor is not included.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR', 'Autoclave'],
          'is_a': 'has_volume',
          'recommended': True,
          'slot_uri': 'voc4cat:0000153'} })
     reactor_diameter: Optional[list[LengthQuantity]] = Field(default=None, description="""The internal diameter of the reactor vessel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR'], 'is_a': 'has_length', 'recommended': True} })
     stirrer_diameter: Optional[list[LengthQuantity]] = Field(default=None, description="""The effective diameter of the stirrer. Typically expressed as the
 distance across the rotating blade or mixing head from one tip to
-the opposite tip.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR'],
+the opposite tip.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR', 'Autoclave'],
          'is_a': 'has_length',
          'recommended': True,
          'slot_uri': 'voc4cat:0008115'} })
@@ -19826,7 +19828,7 @@ the opposite tip.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR'
 reactor, such as a magnetic stirrer or an overhead mechanical (steel
 shaft) stirrer. Distinct from the synthesis-context stirrer_type slot
 (coremeta4cat_synthesis_ap), since reactor and synthesis-vessel stirring
-may use different equipment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR'],
+may use different equipment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR', 'Autoclave'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'voc4cat:0008113'} })
@@ -20193,19 +20195,45 @@ class Autoclave(ChemicalReactor):
     elevated temperature and/or pressure.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NCIT:C93052',
-         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/',
+         'slot_usage': {'stirrer_diameter': {'name': 'stirrer_diameter',
+                                             'recommended': True}}})
 
-    agitation_type: Optional[list[str]] = Field(default=None, description="""The category of agitation used inside the autoclave (e.g. magnetic
-stirring, mechanical overhead stirring, rocking, none).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Autoclave'],
+    reactor_stirrer_type: Optional[list[str]] = Field(default=None, description="""The category of mechanical or magnetic agitation device used in the
+reactor, such as a magnetic stirrer or an overhead mechanical (steel
+shaft) stirrer. Distinct from the synthesis-context stirrer_type slot
+(coremeta4cat_synthesis_ap), since reactor and synthesis-vessel stirring
+may use different equipment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR', 'Autoclave'],
          'is_a': 'has_qualitative_attribute',
-         'recommended': True} })
+         'recommended': True,
+         'slot_uri': 'voc4cat:0008113'} })
+    stirring_rate: Optional[list[AngularVelocity]] = Field(default=None, description="""The rate at which the stirrer rotates, typically expressed in
+revolutions per unit time (e.g. revolutions per minute).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR', 'Autoclave'],
+         'is_a': 'has_angular_velocity',
+         'recommended': True,
+         'slot_uri': 'voc4cat:0008114'} })
+    stirrer_diameter: Optional[list[LengthQuantity]] = Field(default=None, description="""The effective diameter of the stirrer. Typically expressed as the
+distance across the rotating blade or mixing head from one tip to
+the opposite tip.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR', 'Autoclave'],
+         'is_a': 'has_length',
+         'recommended': True,
+         'slot_uri': 'voc4cat:0008115'} })
+    reactor_working_volume: Optional[list[Volume]] = Field(default=None, description="""Volume of the reaction chamber, calculated by its dimensions. Volume
+of pipes and valves connected to the reactor is not included.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CSTR', 'Autoclave'],
+         'is_a': 'has_volume',
+         'recommended': True,
+         'slot_uri': 'voc4cat:0000153'} })
+    reaction_chamber_shape: Optional[list[str]] = Field(default=None, description="""The shape of the reaction chamber (e.g. cylindrical, cubical,
+rectangular).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Autoclave'],
+         'is_a': 'has_qualitative_attribute',
+         'recommended': True,
+         'slot_uri': 'voc4cat:0000155'} })
     reaction_chamber_material: Optional[list[str]] = Field(default=None, description="""Material used for the construction of the inner reaction chamber
 (the surface in direct contact with the reaction mixture). Distinct
 from vessel_material, the material of the outer pressure vessel/shell.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Autoclave'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'voc4cat:0000156'} })
-    vessel_internal_volume: Optional[list[Volume]] = Field(default=None, description="""The internal (working) volume of the autoclave vessel.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Autoclave'], 'is_a': 'has_volume', 'recommended': True} })
     vessel_material: Optional[list[str]] = Field(default=None, description="""Material used for the construction of the outer autoclave vessel/
 pressure shell. Distinct from reaction_chamber_material, the material
 of the inner reaction chamber lining.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Autoclave'],

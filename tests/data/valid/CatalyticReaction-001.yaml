@@ -14,7 +14,7 @@
 # The loader instantiates the abstract ChemicalReactor (not FixedBedReactor).
 
 id: "coremeta4cat:REAC_001_CO2_hydrogenation"
-catalyst_quantity:
+catalyst_mass:
   - value: 0.5
     has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
     unit: https://qudt.org/vocab/unit/GM

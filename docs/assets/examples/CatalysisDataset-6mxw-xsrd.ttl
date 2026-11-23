@@ -155,8 +155,8 @@ coremeta4cat:REAC_6mxw-xsrd_CO2_hydrogenation RO:0004008 coremeta4cat:PROD_6mxw-
 	a coremeta4cat:CatalyticReaction ;
 	adms:identifier _:c14n0 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_6mxw-xsrd_reactor ;
-	coremeta4cat:catalyst_form voc4cat:0007015 ;
 	coremeta4cat:feed_composition_range _:c14n2 , _:c14n20 , _:c14n39 , _:c14n41 , _:c14n49 ;
+	voc4cat:0000016 voc4cat:0007015 ;
 	voc4cat:0000118 _:c14n35 ;
 	voc4cat:0007009 "hydrogenation of CO2/CO to methanol and dimethyl ether" ;
 	voc4cat:0007014 voc4cat:0007001 ;
@@ -181,8 +181,8 @@ coremeta4cat:REAC_6mxw-xsrd_screening RO:0004008 coremeta4cat:PROD_6mxw-xsrd_CH4
 	a coremeta4cat:CatalyticReaction ;
 	adms:identifier _:c14n5 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_6mxw-xsrd_reactor ;
-	coremeta4cat:catalyst_form voc4cat:0007015 ;
 	coremeta4cat:feed_composition_range _:c14n11 , _:c14n23 , _:c14n26 ;
+	voc4cat:0000016 voc4cat:0007015 ;
 	voc4cat:0000118 _:c14n29 ;
 	voc4cat:0007009 "hydrogenation of CO2/CO to methanol and dimethyl ether" ;
 	voc4cat:0007014 voc4cat:0007001 ;

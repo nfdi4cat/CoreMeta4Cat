@@ -39,7 +39,7 @@ coremeta4cat:REAC_b74m-m6rp_NH3_decomposition RO:0004008 coremeta4cat:PROD_b74m-
 	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
 	a coremeta4cat:CatalyticReaction , voc4cat:0007001 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
-	coremeta4cat:catalyst_form voc4cat:0007034 ;
+	voc4cat:0000016 voc4cat:0007034 ;
 	voc4cat:0007009 "thermocatalytic ammonia decomposition" ;
 	voc4cat:0007014 voc4cat:0007001 .
 coremeta4cat:REAC_b74m-m6rp_reactor dcterms:title "quartz glass tubular packed-bed reactor" ;

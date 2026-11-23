@@ -40,7 +40,7 @@ Core fields include reactor design type, operational parameters, and product ide
 ## Slots
 
 <details markdown="1" open>
-<summary><strong>catalyst quantity</strong> (Recommended, Multivalued)</summary>
+<summary><strong>catalyst mass</strong> (Recommended, Multivalued)</summary>
 
 **Description:** Mass of catalyst loaded into the reactor.
 
@@ -48,9 +48,9 @@ Core fields include reactor design type, operational parameters, and product ide
 
 **Cardinality:**  Recommended, Multivalued
 
-**CURIE:** [`coremeta4cat:catalyst_quantity`](https://w3id.org/nfdi4cat/coremeta4cat/catalyst_quantity)
+**CURIE:** [`voc4cat:0008141`](https://w3id.org/nfdi4cat/voc4cat_0008141)
 
-**Schema Reference:** [catalyst_quantity](./elements/slots/catalyst_quantity.md)
+**Schema Reference:** [catalyst_mass](./elements/slots/catalyst_mass.md)
 
 **Data Type Class Details:**
 
@@ -87,7 +87,7 @@ Core fields include reactor design type, operational parameters, and product ide
     </p></details>
 
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_quantity target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20catalyst_mass target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -139,6 +139,8 @@ from catalyst_type (the catalytic regime).
 **Data Type:** CatalystFormEnum
 
 **Cardinality:**  Recommended, Multivalued
+
+**CURIE:** [`voc4cat:0000016`](https://w3id.org/nfdi4cat/voc4cat_0000016)
 
 **Schema Reference:** [catalyst_form](./elements/slots/catalyst_form.md)
 
@@ -388,7 +390,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **Cardinality:**  Optional
 
-**CURIE:** [`SIO:000008`](http://semanticscience.org/resource/SIO_000008)
+**CURIE:** [`voc4cat:0000111`](https://w3id.org/nfdi4cat/voc4cat_0000111)
 
 **Schema Reference:** [has_experiment_duration](./elements/slots/has_experiment_duration.md)
 
@@ -416,7 +418,7 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>product identification method</strong> (Mandatory, Multivalued)</summary>
+<summary><strong>product identification method</strong> (Recommended, Multivalued)</summary>
 
 **Description:** The analytical method used to identify and/or quantify reaction products.
 Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).
@@ -424,9 +426,9 @@ The abstract stub ProductIdentificationMethod is retained for backward compatibi
 
 **Data Type:** ProductIdentificationMethod
 
-**Cardinality:**  Mandatory, Multivalued
+**Cardinality:**  Recommended, Multivalued
 
-**CURIE:** [`coremeta4cat:product_identification_method`](https://w3id.org/nfdi4cat/coremeta4cat/product_identification_method)
+**CURIE:** [`voc4cat:0000129`](https://w3id.org/nfdi4cat/voc4cat_0000129)
 
 **Schema Reference:** [product_identification_method](./elements/slots/product_identification_method.md)
 
@@ -464,6 +466,32 @@ persistent id.
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>plan designator</strong> (Optional)</summary>
+
+**Description:** Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [plan_designator](./elements/slots/plan_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plan_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -2945,6 +2973,8 @@ further specializes chemdcat-ap's generic Reactor for catalysis use cases.
 
 Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify
 reactor geometry and operating mode.
+A reactor that uses fields of its subclass declares the subclass with
+reactor_designator (its class_uri, e.g. coremeta4cat:FixedBedReactor).
 Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).
 
 **CURIE:** [`voc4cat:0007018`](https://w3id.org/nfdi4cat/voc4cat_0007018)
@@ -2952,6 +2982,28 @@ Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).
 **Schema Reference:** [ChemicalReactor](./elements/classes/ChemicalReactor.md)
 
 **Slots**
+
+<details markdown="1">
+<summary><strong>reactor designator</strong> (Optional)</summary>
+
+**Description:** Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [reactor_designator](./elements/slots/reactor_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
 
 <details markdown="1">
 <summary><strong>alternative label</strong> (Optional)</summary>
@@ -3301,6 +3353,28 @@ causing (or is caused by) chemical reactions.
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20faradaic_current target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>reactor designator</strong> (Optional)</summary>
+
+**Description:** Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [reactor_designator](./elements/slots/reactor_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -3714,6 +3788,28 @@ may use different equipment.
 </p></details>
 
 <details markdown="1">
+<summary><strong>reactor designator</strong> (Optional)</summary>
+
+**Description:** Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [reactor_designator](./elements/slots/reactor_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
 <summary><strong>alternative label</strong> (Optional)</summary>
 
 **Description:** The slot to specify an alternative label, name or title for a MaterialEntity.
@@ -4075,6 +4171,28 @@ sample, typically reported as diameter or sieve fraction range.
 </p></details>
 
 <details markdown="1">
+<summary><strong>reactor designator</strong> (Optional)</summary>
+
+**Description:** Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [reactor_designator](./elements/slots/reactor_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
 <summary><strong>alternative label</strong> (Optional)</summary>
 
 **Description:** The slot to specify an alternative label, name or title for a MaterialEntity.
@@ -4291,19 +4409,144 @@ elevated temperature and/or pressure.
 **Slots**
 
 <details markdown="1">
-<summary><strong>agitation type</strong> (Recommended)</summary>
+<summary><strong>reactor stirrer type</strong> (Optional)</summary>
 
-**Description:** The category of agitation used inside the autoclave (e.g. magnetic
-stirring, mechanical overhead stirring, rocking, none).
+**Description:** The category of mechanical or magnetic agitation device used in the
+reactor, such as a magnetic stirrer or an overhead mechanical (steel
+shaft) stirrer. Distinct from the synthesis-context stirrer_type slot
+(coremeta4cat_synthesis_ap), since reactor and synthesis-vessel stirring
+may use different equipment.
+
+**Data Type:** string
+
+**Cardinality:**  Optional
+
+**CURIE:** [`voc4cat:0008113`](https://w3id.org/nfdi4cat/voc4cat_0008113)
+
+**Schema Reference:** [reactor_stirrer_type](./elements/slots/reactor_stirrer_type.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_stirrer_type target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>stirring rate</strong> (Recommended)</summary>
+
+**Description:** The rate at which the stirrer rotates, typically expressed in
+revolutions per unit time (e.g. revolutions per minute).
+
+**Data Type:** AngularVelocity
+
+**Cardinality:**  Recommended
+
+**CURIE:** [`voc4cat:0008114`](https://w3id.org/nfdi4cat/voc4cat_0008114)
+
+**Schema Reference:** [stirring_rate](./elements/slots/stirring_rate.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>AngularVelocity</strong></summary>
+
+**Description:** Rate of rotational motion, typically expressed in revolutions per minute.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-AngularVelocity) -- this class is reached from multiple fields.*
+
+</details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20stirring_rate target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>stirrer diameter</strong> (Recommended)</summary>
+
+**Description:** The effective diameter of the stirrer. Typically expressed as the
+distance across the rotating blade or mixing head from one tip to
+the opposite tip.
+
+**Data Type:** LengthQuantity
+
+**Cardinality:**  Recommended
+
+**CURIE:** [`voc4cat:0008115`](https://w3id.org/nfdi4cat/voc4cat_0008115)
+
+**Schema Reference:** [stirrer_diameter](./elements/slots/stirrer_diameter.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>LengthQuantity</strong></summary>
+
+**Description:** A quantitative measure of length or spatial dimension (nm, mm, cm).
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-LengthQuantity) -- this class is reached from multiple fields.*
+
+</details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20stirrer_diameter target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>reactor working volume</strong> (Recommended)</summary>
+
+**Description:** Volume of the reaction chamber, calculated by its dimensions. Volume
+of pipes and valves connected to the reactor is not included.
+
+**Data Type:** Volume
+
+**Cardinality:**  Recommended
+
+**CURIE:** [`voc4cat:0000153`](https://w3id.org/nfdi4cat/voc4cat_0000153)
+
+**Schema Reference:** [reactor_working_volume](./elements/slots/reactor_working_volume.md)
+
+**Data Type Class Details:**
+
+<details markdown="1">
+<summary><strong>Volume</strong></summary>
+
+**Description:** A measure of regions in three-dimensional space.
+
+**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+*Full field list already shown [earlier on this page](#schema-class-Volume) -- this class is reached from multiple fields.*
+
+</details>
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_working_volume target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>reaction chamber shape</strong> (Recommended)</summary>
+
+**Description:** The shape of the reaction chamber (e.g. cylindrical, cubical,
+rectangular).
 
 **Data Type:** string
 
 **Cardinality:**  Recommended
 
-**Schema Reference:** [agitation_type](./elements/slots/agitation_type.md)
+**CURIE:** [`voc4cat:0000155`](https://w3id.org/nfdi4cat/voc4cat_0000155)
+
+**Schema Reference:** [reaction_chamber_shape](./elements/slots/reaction_chamber_shape.md)
 
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20agitation_type target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reaction_chamber_shape target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -4325,36 +4568,6 @@ from vessel_material, the material of the outer pressure vessel/shell.
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reaction_chamber_material target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1">
-<summary><strong>vessel internal volume</strong> (Recommended)</summary>
-
-**Description:** The internal (working) volume of the autoclave vessel.
-
-**Data Type:** Volume
-
-**Cardinality:**  Recommended
-
-**Schema Reference:** [vessel_internal_volume](./elements/slots/vessel_internal_volume.md)
-
-**Data Type Class Details:**
-
-<details markdown="1">
-<summary><strong>Volume</strong></summary>
-
-**Description:** A measure of regions in three-dimensional space.
-
-**CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
-
-*Full field list already shown [earlier on this page](#schema-class-Volume) -- this class is reached from multiple fields.*
-
-</details>
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20vessel_internal_volume target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -4405,6 +4618,28 @@ start to end of the reaction step.
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20batch_duration target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>reactor designator</strong> (Optional)</summary>
+
+**Description:** Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [reactor_designator](./elements/slots/reactor_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -4761,6 +4996,28 @@ in revolutions per unit time.
 </p></details>
 
 <details markdown="1">
+<summary><strong>reactor designator</strong> (Optional)</summary>
+
+**Description:** Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [reactor_designator](./elements/slots/reactor_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
 <summary><strong>alternative label</strong> (Optional)</summary>
 
 **Description:** The slot to specify an alternative label, name or title for a MaterialEntity.
@@ -5038,6 +5295,28 @@ channels.
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20number_of_channels target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>reactor designator</strong> (Optional)</summary>
+
+**Description:** Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [reactor_designator](./elements/slots/reactor_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>
@@ -5408,6 +5687,28 @@ measured along the direction of flow.
 </p></details>
 
 <details markdown="1">
+<summary><strong>reactor designator</strong> (Optional)</summary>
+
+**Description:** Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [reactor_designator](./elements/slots/reactor_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
 <summary><strong>alternative label</strong> (Optional)</summary>
 
 **Description:** The slot to specify an alternative label, name or title for a MaterialEntity.
@@ -5678,6 +5979,28 @@ suspended in an upward-flowing gas or liquid stream.
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bubble_size_distribution target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p></details>
+
+<details markdown="1">
+<summary><strong>reactor designator</strong> (Optional)</summary>
+
+**Description:** Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.
+
+**Data Type:** uriorcurie
+
+**Cardinality:**  Optional
+
+**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+
+**Schema Reference:** [reactor_designator](./elements/slots/reactor_designator.md)
+
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20reactor_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>

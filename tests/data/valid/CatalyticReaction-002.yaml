@@ -17,7 +17,7 @@
 #     for the controlled-vocabulary regime/form
 
 id: "coremeta4cat:REAC_002_DRM_NiCeO2"
-catalyst_quantity:
+catalyst_mass:
   - value: 0.2
     has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
     unit: https://qudt.org/vocab/unit/GM

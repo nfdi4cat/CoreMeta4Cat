@@ -84,7 +84,7 @@ id: coremeta4cat:DS_002_DRM_NiO_CeO2
 is_about_activity:
 - catalyst_form:
   - supported
-  catalyst_quantity:
+  catalyst_mass:
   - has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
     unit: https://qudt.org/vocab/unit/GM
     value: 0.2
@@ -3149,7 +3149,7 @@ id: hdl:21.11165/4cat/b74m-m6rp
 is_about_activity:
 - catalyst_form:
   - supported
-  catalyst_quantity:
+  catalyst_mass:
   - description: Catalyst granulate per test, mixed with 700 mg silica
     has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
     unit: https://qudt.org/vocab/unit/MilliGM
@@ -3553,7 +3553,7 @@ was_generated_by:
 ```yaml
 catalyst_form:
 - supported
-catalyst_quantity:
+catalyst_mass:
 - has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
   unit: https://qudt.org/vocab/unit/GM
   value: 0.5
@@ -3598,7 +3598,7 @@ used_reactor:
 ```yaml
 catalyst_form:
 - supported
-catalyst_quantity:
+catalyst_mass:
 - has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
   unit: https://qudt.org/vocab/unit/GM
   value: 0.2
