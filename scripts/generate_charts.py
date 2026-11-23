@@ -273,6 +273,12 @@ def build_sunburst_chart(schema: dict, class_name: str) -> str:
         width: 100%;
         height: 100vh;
     }}
+    /* to_html wraps the chart in a plain <div>; without a height the chart
+       falls back to Plotly's default 450 px instead of filling the window
+       (or the frame it is shown in on the data-class pages) */
+    .chart-container > div {{
+        height: 100%;
+    }}
   </style>
 </head>
 <body>
@@ -356,6 +362,12 @@ def build_overview_chart(schema: dict) -> str:
     .chart-container {{
         width: 100%;
         height: 100vh;
+    }}
+    /* to_html wraps the chart in a plain <div>; without a height the chart
+       falls back to Plotly's default 450 px instead of filling the window
+       (or the frame it is shown in on the data-class pages) */
+    .chart-container > div {{
+        height: 100%;
     }}
   </style>
 </head>
