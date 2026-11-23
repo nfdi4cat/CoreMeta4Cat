@@ -9905,7 +9905,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000073',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
-    nucleus: list[str] = Field(default=..., description="""NMR-active nucleus observed (e.g. 1H, 13C, 31P).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
+    acquisition_nucleus: list[str] = Field(default=..., description="""NMR-active nucleus observed (e.g. 1H, 13C, 31P).""", json_schema_extra = { "linkml_meta": {'domain_of': ['NMRSpectroscopy'],
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'NMR:1400083'} })

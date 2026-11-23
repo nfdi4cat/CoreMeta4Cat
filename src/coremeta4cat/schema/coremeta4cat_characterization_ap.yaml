@@ -336,7 +336,7 @@ classes:
       nmr_dcat_ap profile (MARGARITAS) should be used in combination with
       this subprofile.
     slots:
-    - nucleus
+    - acquisition_nucleus
     - solvent
     - irradiation_frequency
     - has_temperature
@@ -952,7 +952,7 @@ slots:
 
   # ---- NMR-specific ----
 
-  nucleus:
+  acquisition_nucleus:
     description: NMR-active nucleus observed (e.g. 1H, 13C, 31P).
     is_a: has_qualitative_attribute
     range: string

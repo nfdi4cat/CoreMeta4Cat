@@ -5042,7 +5042,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.NMRSpectroscopy
 
     id: Union[str, NMRSpectroscopyId] = None
-    nucleus: Union[str, list[str]] = None
+    acquisition_nucleus: Union[str, list[str]] = None
     solvent: Optional[Union[dict[Union[str, ChemicalEntityId], Union[dict, "ChemicalEntity"]], list[Union[dict, "ChemicalEntity"]]]] = empty_dict()
     irradiation_frequency: Optional[Union[float, list[float]]] = empty_list()
     has_temperature: Optional[Union[Union[dict, "Temperature"], list[Union[dict, "Temperature"]]]] = empty_list()
@@ -5057,11 +5057,11 @@ class NMRSpectroscopy(CharacterizationTechnique):
         if not isinstance(self.id, NMRSpectroscopyId):
             self.id = NMRSpectroscopyId(self.id)
 
-        if self._is_empty(self.nucleus):
-            self.MissingRequiredField("nucleus")
-        if not isinstance(self.nucleus, list):
-            self.nucleus = [self.nucleus] if self.nucleus is not None else []
-        self.nucleus = [v if isinstance(v, str) else str(v) for v in self.nucleus]
+        if self._is_empty(self.acquisition_nucleus):
+            self.MissingRequiredField("acquisition_nucleus")
+        if not isinstance(self.acquisition_nucleus, list):
+            self.acquisition_nucleus = [self.acquisition_nucleus] if self.acquisition_nucleus is not None else []
+        self.acquisition_nucleus = [v if isinstance(v, str) else str(v) for v in self.acquisition_nucleus]
 
         self._normalize_inlined_as_list(slot_name="solvent", slot_type=ChemicalEntity, key_name="id", keyed=True)
 
@@ -10041,8 +10041,8 @@ slots.excitation_laser_power = Slot(uri=ALLOTROPE_RESULT['0001595'], name="excit
 slots.filter_or_grating = Slot(uri=COREMETA4CAT.filter_or_grating, name="filter_or_grating", curie=COREMETA4CAT.curie('filter_or_grating'),
                    model_uri=COREMETA4CAT.filter_or_grating, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.nucleus = Slot(uri=NMR['1400083'], name="nucleus", curie=NMR.curie('1400083'),
-                   model_uri=COREMETA4CAT.nucleus, domain=None, range=Union[str, list[str]])
+slots.acquisition_nucleus = Slot(uri=NMR['1400083'], name="acquisition_nucleus", curie=NMR.curie('1400083'),
+                   model_uri=COREMETA4CAT.acquisition_nucleus, domain=None, range=Union[str, list[str]])
 
 slots.irradiation_frequency = Slot(uri=COREMETA4CAT.irradiation_frequency, name="irradiation_frequency", curie=COREMETA4CAT.curie('irradiation_frequency'),
                    model_uri=COREMETA4CAT.irradiation_frequency, domain=None, range=Optional[Union[float, list[float]]])

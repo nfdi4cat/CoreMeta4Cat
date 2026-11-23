@@ -3775,9 +3775,9 @@ slots:
     recommended: true
     multivalued: true
     inlined_as_list: true
-  nucleus:
-    name: nucleus
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/nucleus
+  acquisition_nucleus:
+    name: acquisition_nucleus
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/acquisition_nucleus
     description: NMR-active nucleus observed (e.g. 1H, 13C, 31P).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
@@ -15174,7 +15174,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
-    - nucleus
+    - acquisition_nucleus
     - solvent
     - irradiation_frequency
     - has_temperature
