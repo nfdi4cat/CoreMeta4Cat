@@ -1,0 +1,68 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
+@prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
+CHEBI:16134 schema1:name "ammonia" ;
+	a schema1:DefinedTerm .
+CHEBI:17997 schema1:name "dinitrogen" ;
+	a schema1:DefinedTerm .
+CHEBI:18276 schema1:name "dihydrogen" ;
+	a schema1:DefinedTerm .
+CHEBI:49475 schema1:name "argon atom" ;
+	a schema1:DefinedTerm .
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY dcterms:relation _:c14n0 , _:c14n3 ;
+	dcterms:title "0.5Ru/0.5Ba/Ni-BCZY" ;
+	a SIO:010344 .
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY dcterms:relation _:c14n1 , _:c14n2 ;
+	dcterms:title "0.5Ru/1Ba/Ni-BCZY" ;
+	a SIO:010344 .
+coremeta4cat:PROD_b74m-m6rp_H2 dcterms:title "dihydrogen" ;
+	a CHEBI:18276 , NCIT:C48810 .
+coremeta4cat:PROD_b74m-m6rp_N2 dcterms:title "dinitrogen" ;
+	a CHEBI:17997 , NCIT:C48810 .
+coremeta4cat:REAC_b74m-m6rp_Ar dcterms:title "argon (balance)" ;
+	a CHEBI:49475 , SIO:010411 .
+coremeta4cat:REAC_b74m-m6rp_NH3 dcterms:title "ammonia" ;
+	a CHEBI:16134 , SIO:010411 .
+coremeta4cat:REAC_b74m-m6rp_NH3_decomposition RO:0004008 coremeta4cat:PROD_b74m-m6rp_H2 , coremeta4cat:PROD_b74m-m6rp_N2 ;
+	RO:0004009 coremeta4cat:REAC_b74m-m6rp_Ar , coremeta4cat:REAC_b74m-m6rp_NH3 ;
+	RXNO:0000425 coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY ;
+	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0007001 ;
+	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
+	voc4cat:0000016 voc4cat:0007034 ;
+	voc4cat:0007009 "thermocatalytic ammonia decomposition" ;
+	voc4cat:0007014 voc4cat:0007001 .
+coremeta4cat:REAC_b74m-m6rp_reactor dcterms:title "quartz glass tubular packed-bed reactor" ;
+	a coremeta4cat:FixedBedReactor .
+voc4cat:0007001 schema1:name "heterogeneous catalysis" ;
+	a schema1:DefinedTerm .
+_:c14n0 dcterms:description "Ba, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "0.5"^^xsd:float .
+_:c14n1 dcterms:description "Ba, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n2 dcterms:description "Ru, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "0.5"^^xsd:float .
+_:c14n3 dcterms:description "Ru, nominal" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "0.5"^^xsd:float .
