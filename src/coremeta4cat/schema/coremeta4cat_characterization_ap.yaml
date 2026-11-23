@@ -41,6 +41,7 @@ prefixes:
   allotrope.quality: http://purl.allotrope.org/ontologies/quality#AFQ_
   allotrope.role: http://purl.allotrope.org/ontologies/role#AFRL_
   enm: http://purl.enanomapper.org/onto/
+  NMR: "http://nmrML.org/nmrCV#NMR:"
 
 default_prefix: coremeta4cat
 default_range: string
@@ -955,8 +956,10 @@ slots:
     description: NMR-active nucleus observed (e.g. 1H, 13C, 31P).
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: coremeta4cat:nucleus
+    slot_uri: NMR:1400083
     multivalued: true
+    required: true
+    
 
   irradiation_frequency:
     description: Irradiation frequency of the NMR spectrometer.
@@ -978,7 +981,7 @@ slots:
     description: NMR sample tube type (e.g. 5mm standard, Shigemi tube).
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: coremeta4cat:nmr_sample_tube
+    slot_uri: NMR:1400132
     multivalued: true
 
   # ---- SEM-specific ----
