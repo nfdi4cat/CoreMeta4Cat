@@ -1167,7 +1167,7 @@ slots:
       calculated band gap.
     is_a: has_qualitative_attribute
     range: string
-    slot_uri: VOC4CAT:0005056
+    slot_uri: voc4cat:0005056
     multivalued: true
 
   structure_model:

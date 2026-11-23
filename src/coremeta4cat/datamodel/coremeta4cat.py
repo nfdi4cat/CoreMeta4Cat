@@ -145,6 +145,7 @@ ENVO = CurieNamespace('ENVO', 'http://purl.obolibrary.org/obo/ENVO_')
 IAO = CurieNamespace('IAO', 'http://purl.obolibrary.org/obo/IAO_')
 MOP = CurieNamespace('MOP', 'http://purl.obolibrary.org/obo/MOP_')
 NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')
+NMR = CurieNamespace('NMR', 'http://nmrML.org/nmrCV#NMR:')
 OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
 PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
 PROCO = CurieNamespace('PROCO', 'http://purl.obolibrary.org/obo/PROCO_')
@@ -3850,8 +3851,8 @@ class PlasmaAssisted(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["PlasmaAssisted"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:PlasmaAssisted"
+    class_class_uri: ClassVar[URIRef] = VOC4CAT["0008152"]
+    class_class_curie: ClassVar[str] = "voc4cat:0008152"
     class_name: ClassVar[str] = "PlasmaAssisted"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.PlasmaAssisted
 
@@ -3900,8 +3901,8 @@ class CombustionSynthesis(PreparationMethod):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["CombustionSynthesis"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:CombustionSynthesis"
+    class_class_uri: ClassVar[URIRef] = VOC4CAT["0008156"]
+    class_class_curie: ClassVar[str] = "voc4cat:0008156"
     class_name: ClassVar[str] = "CombustionSynthesis"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CombustionSynthesis
 
@@ -5041,7 +5042,7 @@ class NMRSpectroscopy(CharacterizationTechnique):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.NMRSpectroscopy
 
     id: Union[str, NMRSpectroscopyId] = None
-    nucleus: Optional[Union[str, list[str]]] = empty_list()
+    nucleus: Union[str, list[str]] = None
     solvent: Optional[Union[dict[Union[str, ChemicalEntityId], Union[dict, "ChemicalEntity"]], list[Union[dict, "ChemicalEntity"]]]] = empty_dict()
     irradiation_frequency: Optional[Union[float, list[float]]] = empty_list()
     has_temperature: Optional[Union[Union[dict, "Temperature"], list[Union[dict, "Temperature"]]]] = empty_list()
@@ -5056,6 +5057,8 @@ class NMRSpectroscopy(CharacterizationTechnique):
         if not isinstance(self.id, NMRSpectroscopyId):
             self.id = NMRSpectroscopyId(self.id)
 
+        if self._is_empty(self.nucleus):
+            self.MissingRequiredField("nucleus")
         if not isinstance(self.nucleus, list):
             self.nucleus = [self.nucleus] if self.nucleus is not None else []
         self.nucleus = [v if isinstance(v, str) else str(v) for v in self.nucleus]
@@ -7080,6 +7083,306 @@ class BandGap(CalculatedProperty):
         if not isinstance(self.k_point_mesh, list):
             self.k_point_mesh = [self.k_point_mesh] if self.k_point_mesh is not None else []
         self.k_point_mesh = [v if isinstance(v, str) else str(v) for v in self.k_point_mesh]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class AdsorptionEnergetics(CalculatedProperty):
+    """
+    Adsorption energetics of a species on a catalyst surface or site, computed from periodic slab or cluster models.
+    Essential for constructing reaction energy profiles and identifying activity descriptors.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["AdsorptionEnergetics"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:AdsorptionEnergetics"
+    class_name: ClassVar[str] = "AdsorptionEnergetics"
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.AdsorptionEnergetics
+
+    value: str = None
+    adsorbate: Optional[Union[str, list[str]]] = empty_list()
+    adsorption_site: Optional[Union[str, list[str]]] = empty_list()
+    adsorption_energy: Optional[Union[float, list[float]]] = empty_list()
+    energy_reference: Optional[Union[str, list[str]]] = empty_list()
+    energy_correction_type: Optional[Union[str, list[str]]] = empty_list()
+    zero_point_energy_correction: Optional[Union[float, list[float]]] = empty_list()
+    surface_coverage: Optional[Union[float, list[float]]] = empty_list()
+    miller_indices: Optional[Union[str, list[str]]] = empty_list()
+    material_composition: Optional[Union[str, list[str]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if not isinstance(self.adsorbate, list):
+            self.adsorbate = [self.adsorbate] if self.adsorbate is not None else []
+        self.adsorbate = [v if isinstance(v, str) else str(v) for v in self.adsorbate]
+
+        if not isinstance(self.adsorption_site, list):
+            self.adsorption_site = [self.adsorption_site] if self.adsorption_site is not None else []
+        self.adsorption_site = [v if isinstance(v, str) else str(v) for v in self.adsorption_site]
+
+        if not isinstance(self.adsorption_energy, list):
+            self.adsorption_energy = [self.adsorption_energy] if self.adsorption_energy is not None else []
+        self.adsorption_energy = [v if isinstance(v, float) else float(v) for v in self.adsorption_energy]
+
+        if not isinstance(self.energy_reference, list):
+            self.energy_reference = [self.energy_reference] if self.energy_reference is not None else []
+        self.energy_reference = [v if isinstance(v, str) else str(v) for v in self.energy_reference]
+
+        if not isinstance(self.energy_correction_type, list):
+            self.energy_correction_type = [self.energy_correction_type] if self.energy_correction_type is not None else []
+        self.energy_correction_type = [v if isinstance(v, str) else str(v) for v in self.energy_correction_type]
+
+        if not isinstance(self.zero_point_energy_correction, list):
+            self.zero_point_energy_correction = [self.zero_point_energy_correction] if self.zero_point_energy_correction is not None else []
+        self.zero_point_energy_correction = [v if isinstance(v, float) else float(v) for v in self.zero_point_energy_correction]
+
+        if not isinstance(self.surface_coverage, list):
+            self.surface_coverage = [self.surface_coverage] if self.surface_coverage is not None else []
+        self.surface_coverage = [v if isinstance(v, float) else float(v) for v in self.surface_coverage]
+
+        if not isinstance(self.miller_indices, list):
+            self.miller_indices = [self.miller_indices] if self.miller_indices is not None else []
+        self.miller_indices = [v if isinstance(v, str) else str(v) for v in self.miller_indices]
+
+        if not isinstance(self.material_composition, list):
+            self.material_composition = [self.material_composition] if self.material_composition is not None else []
+        self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ReactionEnergetics(CalculatedProperty):
+    """
+    Thermochemistry of an elementary reaction step on a catalyst, given as the energy difference between its initial
+    and final states.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ReactionEnergetics"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:ReactionEnergetics"
+    class_name: ClassVar[str] = "ReactionEnergetics"
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ReactionEnergetics
+
+    value: str = None
+    elementary_step: Optional[Union[str, list[str]]] = empty_list()
+    initial_state: Optional[Union[str, list[str]]] = empty_list()
+    final_state: Optional[Union[str, list[str]]] = empty_list()
+    reaction_energy: Optional[Union[float, list[float]]] = empty_list()
+    reaction_free_energy: Optional[Union[float, list[float]]] = empty_list()
+    free_energy_temperature: Optional[Union[float, list[float]]] = empty_list()
+    energy_correction_type: Optional[Union[str, list[str]]] = empty_list()
+    miller_indices: Optional[Union[str, list[str]]] = empty_list()
+    material_composition: Optional[Union[str, list[str]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if not isinstance(self.elementary_step, list):
+            self.elementary_step = [self.elementary_step] if self.elementary_step is not None else []
+        self.elementary_step = [v if isinstance(v, str) else str(v) for v in self.elementary_step]
+
+        if not isinstance(self.initial_state, list):
+            self.initial_state = [self.initial_state] if self.initial_state is not None else []
+        self.initial_state = [v if isinstance(v, str) else str(v) for v in self.initial_state]
+
+        if not isinstance(self.final_state, list):
+            self.final_state = [self.final_state] if self.final_state is not None else []
+        self.final_state = [v if isinstance(v, str) else str(v) for v in self.final_state]
+
+        if not isinstance(self.reaction_energy, list):
+            self.reaction_energy = [self.reaction_energy] if self.reaction_energy is not None else []
+        self.reaction_energy = [v if isinstance(v, float) else float(v) for v in self.reaction_energy]
+
+        if not isinstance(self.reaction_free_energy, list):
+            self.reaction_free_energy = [self.reaction_free_energy] if self.reaction_free_energy is not None else []
+        self.reaction_free_energy = [v if isinstance(v, float) else float(v) for v in self.reaction_free_energy]
+
+        if not isinstance(self.free_energy_temperature, list):
+            self.free_energy_temperature = [self.free_energy_temperature] if self.free_energy_temperature is not None else []
+        self.free_energy_temperature = [v if isinstance(v, float) else float(v) for v in self.free_energy_temperature]
+
+        if not isinstance(self.energy_correction_type, list):
+            self.energy_correction_type = [self.energy_correction_type] if self.energy_correction_type is not None else []
+        self.energy_correction_type = [v if isinstance(v, str) else str(v) for v in self.energy_correction_type]
+
+        if not isinstance(self.miller_indices, list):
+            self.miller_indices = [self.miller_indices] if self.miller_indices is not None else []
+        self.miller_indices = [v if isinstance(v, str) else str(v) for v in self.miller_indices]
+
+        if not isinstance(self.material_composition, list):
+            self.material_composition = [self.material_composition] if self.material_composition is not None else []
+        self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class TransitionState(CalculatedProperty):
+    """
+    Transition state of an elementary reaction step and its activation barrier, located by a transition state search
+    method.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["TransitionState"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:TransitionState"
+    class_name: ClassVar[str] = "TransitionState"
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.TransitionState
+
+    value: str = None
+    elementary_step: Optional[Union[str, list[str]]] = empty_list()
+    forward_activation_energy: Optional[Union[float, list[float]]] = empty_list()
+    reverse_activation_energy: Optional[Union[float, list[float]]] = empty_list()
+    ts_search_method: Optional[Union[str, list[str]]] = empty_list()
+    number_of_images: Optional[Union[int, list[int]]] = empty_list()
+    imaginary_frequency: Optional[Union[float, list[float]]] = empty_list()
+    ts_verification_method: Optional[Union[str, list[str]]] = empty_list()
+    energy_correction_type: Optional[Union[str, list[str]]] = empty_list()
+    miller_indices: Optional[Union[str, list[str]]] = empty_list()
+    material_composition: Optional[Union[str, list[str]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if not isinstance(self.elementary_step, list):
+            self.elementary_step = [self.elementary_step] if self.elementary_step is not None else []
+        self.elementary_step = [v if isinstance(v, str) else str(v) for v in self.elementary_step]
+
+        if not isinstance(self.forward_activation_energy, list):
+            self.forward_activation_energy = [self.forward_activation_energy] if self.forward_activation_energy is not None else []
+        self.forward_activation_energy = [v if isinstance(v, float) else float(v) for v in self.forward_activation_energy]
+
+        if not isinstance(self.reverse_activation_energy, list):
+            self.reverse_activation_energy = [self.reverse_activation_energy] if self.reverse_activation_energy is not None else []
+        self.reverse_activation_energy = [v if isinstance(v, float) else float(v) for v in self.reverse_activation_energy]
+
+        if not isinstance(self.ts_search_method, list):
+            self.ts_search_method = [self.ts_search_method] if self.ts_search_method is not None else []
+        self.ts_search_method = [v if isinstance(v, str) else str(v) for v in self.ts_search_method]
+
+        if not isinstance(self.number_of_images, list):
+            self.number_of_images = [self.number_of_images] if self.number_of_images is not None else []
+        self.number_of_images = [v if isinstance(v, int) else int(v) for v in self.number_of_images]
+
+        if not isinstance(self.imaginary_frequency, list):
+            self.imaginary_frequency = [self.imaginary_frequency] if self.imaginary_frequency is not None else []
+        self.imaginary_frequency = [v if isinstance(v, float) else float(v) for v in self.imaginary_frequency]
+
+        if not isinstance(self.ts_verification_method, list):
+            self.ts_verification_method = [self.ts_verification_method] if self.ts_verification_method is not None else []
+        self.ts_verification_method = [v if isinstance(v, str) else str(v) for v in self.ts_verification_method]
+
+        if not isinstance(self.energy_correction_type, list):
+            self.energy_correction_type = [self.energy_correction_type] if self.energy_correction_type is not None else []
+        self.energy_correction_type = [v if isinstance(v, str) else str(v) for v in self.energy_correction_type]
+
+        if not isinstance(self.miller_indices, list):
+            self.miller_indices = [self.miller_indices] if self.miller_indices is not None else []
+        self.miller_indices = [v if isinstance(v, str) else str(v) for v in self.miller_indices]
+
+        if not isinstance(self.material_composition, list):
+            self.material_composition = [self.material_composition] if self.material_composition is not None else []
+        self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ElectrochemicalFreeEnergy(CalculatedProperty):
+    """
+    Potential-dependent free energetics of electrocatalytic reactions, e.g. from the computational hydrogen electrode,
+    yielding limiting potentials and theoretical overpotentials.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["ElectrochemicalFreeEnergy"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:ElectrochemicalFreeEnergy"
+    class_name: ClassVar[str] = "ElectrochemicalFreeEnergy"
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.ElectrochemicalFreeEnergy
+
+    value: str = None
+    electrode_potential_model: Optional[Union[str, list[str]]] = empty_list()
+    potential_reference_scale: Optional[Union[str, list[str]]] = empty_list()
+    applied_potential: Optional[Union[float, list[float]]] = empty_list()
+    limiting_potential: Optional[Union[float, list[float]]] = empty_list()
+    theoretical_overpotential: Optional[Union[float, list[float]]] = empty_list()
+    potential_determining_step: Optional[Union[str, list[str]]] = empty_list()
+    solvation_model: Optional[Union[str, list[str]]] = empty_list()
+    material_composition: Optional[Union[str, list[str]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if not isinstance(self.electrode_potential_model, list):
+            self.electrode_potential_model = [self.electrode_potential_model] if self.electrode_potential_model is not None else []
+        self.electrode_potential_model = [v if isinstance(v, str) else str(v) for v in self.electrode_potential_model]
+
+        if not isinstance(self.potential_reference_scale, list):
+            self.potential_reference_scale = [self.potential_reference_scale] if self.potential_reference_scale is not None else []
+        self.potential_reference_scale = [v if isinstance(v, str) else str(v) for v in self.potential_reference_scale]
+
+        if not isinstance(self.applied_potential, list):
+            self.applied_potential = [self.applied_potential] if self.applied_potential is not None else []
+        self.applied_potential = [v if isinstance(v, float) else float(v) for v in self.applied_potential]
+
+        if not isinstance(self.limiting_potential, list):
+            self.limiting_potential = [self.limiting_potential] if self.limiting_potential is not None else []
+        self.limiting_potential = [v if isinstance(v, float) else float(v) for v in self.limiting_potential]
+
+        if not isinstance(self.theoretical_overpotential, list):
+            self.theoretical_overpotential = [self.theoretical_overpotential] if self.theoretical_overpotential is not None else []
+        self.theoretical_overpotential = [v if isinstance(v, float) else float(v) for v in self.theoretical_overpotential]
+
+        if not isinstance(self.potential_determining_step, list):
+            self.potential_determining_step = [self.potential_determining_step] if self.potential_determining_step is not None else []
+        self.potential_determining_step = [v if isinstance(v, str) else str(v) for v in self.potential_determining_step]
+
+        if not isinstance(self.solvation_model, list):
+            self.solvation_model = [self.solvation_model] if self.solvation_model is not None else []
+        self.solvation_model = [v if isinstance(v, str) else str(v) for v in self.solvation_model]
+
+        if not isinstance(self.material_composition, list):
+            self.material_composition = [self.material_composition] if self.material_composition is not None else []
+        self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CatalyticDescriptors(CalculatedProperty):
+    """
+    Computed descriptors that correlate with catalytic activity or selectivity, such as d-band centres or linear
+    scaling relations.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["CatalyticDescriptors"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:CatalyticDescriptors"
+    class_name: ClassVar[str] = "CatalyticDescriptors"
+    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CatalyticDescriptors
+
+    value: str = None
+    descriptor_type: Optional[Union[str, list[str]]] = empty_list()
+    descriptor_value: Optional[Union[float, list[float]]] = empty_list()
+    d_band_center: Optional[Union[float, list[float]]] = empty_list()
+    scaling_relation: Optional[Union[str, list[str]]] = empty_list()
+    bep_relation: Optional[Union[str, list[str]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if not isinstance(self.descriptor_type, list):
+            self.descriptor_type = [self.descriptor_type] if self.descriptor_type is not None else []
+        self.descriptor_type = [v if isinstance(v, str) else str(v) for v in self.descriptor_type]
+
+        if not isinstance(self.descriptor_value, list):
+            self.descriptor_value = [self.descriptor_value] if self.descriptor_value is not None else []
+        self.descriptor_value = [v if isinstance(v, float) else float(v) for v in self.descriptor_value]
+
+        if not isinstance(self.d_band_center, list):
+            self.d_band_center = [self.d_band_center] if self.d_band_center is not None else []
+        self.d_band_center = [v if isinstance(v, float) else float(v) for v in self.d_band_center]
+
+        if not isinstance(self.scaling_relation, list):
+            self.scaling_relation = [self.scaling_relation] if self.scaling_relation is not None else []
+        self.scaling_relation = [v if isinstance(v, str) else str(v) for v in self.scaling_relation]
+
+        if not isinstance(self.bep_relation, list):
+            self.bep_relation = [self.bep_relation] if self.bep_relation is not None else []
+        self.bep_relation = [v if isinstance(v, str) else str(v) for v in self.bep_relation]
 
         super().__post_init__(**kwargs)
 
@@ -9192,6 +9495,93 @@ class PhysicalStateEnum(EnumDefinitionImpl):
 class slots:
     pass
 
+slots.adsorbate = Slot(uri=COREMETA4CAT.adsorbate, name="adsorbate", curie=COREMETA4CAT.curie('adsorbate'),
+                   model_uri=COREMETA4CAT.adsorbate, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.adsorption_site = Slot(uri=COREMETA4CAT.adsorption_site, name="adsorption_site", curie=COREMETA4CAT.curie('adsorption_site'),
+                   model_uri=COREMETA4CAT.adsorption_site, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.adsorption_energy = Slot(uri=COREMETA4CAT.adsorption_energy, name="adsorption_energy", curie=COREMETA4CAT.curie('adsorption_energy'),
+                   model_uri=COREMETA4CAT.adsorption_energy, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.energy_reference = Slot(uri=COREMETA4CAT.energy_reference, name="energy_reference", curie=COREMETA4CAT.curie('energy_reference'),
+                   model_uri=COREMETA4CAT.energy_reference, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.energy_correction_type = Slot(uri=COREMETA4CAT.energy_correction_type, name="energy_correction_type", curie=COREMETA4CAT.curie('energy_correction_type'),
+                   model_uri=COREMETA4CAT.energy_correction_type, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.zero_point_energy_correction = Slot(uri=COREMETA4CAT.zero_point_energy_correction, name="zero_point_energy_correction", curie=COREMETA4CAT.curie('zero_point_energy_correction'),
+                   model_uri=COREMETA4CAT.zero_point_energy_correction, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.elementary_step = Slot(uri=COREMETA4CAT.elementary_step, name="elementary_step", curie=COREMETA4CAT.curie('elementary_step'),
+                   model_uri=COREMETA4CAT.elementary_step, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.initial_state = Slot(uri=COREMETA4CAT.initial_state, name="initial_state", curie=COREMETA4CAT.curie('initial_state'),
+                   model_uri=COREMETA4CAT.initial_state, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.final_state = Slot(uri=COREMETA4CAT.final_state, name="final_state", curie=COREMETA4CAT.curie('final_state'),
+                   model_uri=COREMETA4CAT.final_state, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.reaction_energy = Slot(uri=COREMETA4CAT.reaction_energy, name="reaction_energy", curie=COREMETA4CAT.curie('reaction_energy'),
+                   model_uri=COREMETA4CAT.reaction_energy, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.reaction_free_energy = Slot(uri=COREMETA4CAT.reaction_free_energy, name="reaction_free_energy", curie=COREMETA4CAT.curie('reaction_free_energy'),
+                   model_uri=COREMETA4CAT.reaction_free_energy, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.free_energy_temperature = Slot(uri=COREMETA4CAT.free_energy_temperature, name="free_energy_temperature", curie=COREMETA4CAT.curie('free_energy_temperature'),
+                   model_uri=COREMETA4CAT.free_energy_temperature, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.forward_activation_energy = Slot(uri=COREMETA4CAT.forward_activation_energy, name="forward_activation_energy", curie=COREMETA4CAT.curie('forward_activation_energy'),
+                   model_uri=COREMETA4CAT.forward_activation_energy, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.reverse_activation_energy = Slot(uri=COREMETA4CAT.reverse_activation_energy, name="reverse_activation_energy", curie=COREMETA4CAT.curie('reverse_activation_energy'),
+                   model_uri=COREMETA4CAT.reverse_activation_energy, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.ts_search_method = Slot(uri=COREMETA4CAT.ts_search_method, name="ts_search_method", curie=COREMETA4CAT.curie('ts_search_method'),
+                   model_uri=COREMETA4CAT.ts_search_method, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.number_of_images = Slot(uri=COREMETA4CAT.number_of_images, name="number_of_images", curie=COREMETA4CAT.curie('number_of_images'),
+                   model_uri=COREMETA4CAT.number_of_images, domain=None, range=Optional[Union[int, list[int]]])
+
+slots.imaginary_frequency = Slot(uri=COREMETA4CAT.imaginary_frequency, name="imaginary_frequency", curie=COREMETA4CAT.curie('imaginary_frequency'),
+                   model_uri=COREMETA4CAT.imaginary_frequency, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.ts_verification_method = Slot(uri=COREMETA4CAT.ts_verification_method, name="ts_verification_method", curie=COREMETA4CAT.curie('ts_verification_method'),
+                   model_uri=COREMETA4CAT.ts_verification_method, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.electrode_potential_model = Slot(uri=COREMETA4CAT.electrode_potential_model, name="electrode_potential_model", curie=COREMETA4CAT.curie('electrode_potential_model'),
+                   model_uri=COREMETA4CAT.electrode_potential_model, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.potential_reference_scale = Slot(uri=COREMETA4CAT.potential_reference_scale, name="potential_reference_scale", curie=COREMETA4CAT.curie('potential_reference_scale'),
+                   model_uri=COREMETA4CAT.potential_reference_scale, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.applied_potential = Slot(uri=COREMETA4CAT.applied_potential, name="applied_potential", curie=COREMETA4CAT.curie('applied_potential'),
+                   model_uri=COREMETA4CAT.applied_potential, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.limiting_potential = Slot(uri=COREMETA4CAT.limiting_potential, name="limiting_potential", curie=COREMETA4CAT.curie('limiting_potential'),
+                   model_uri=COREMETA4CAT.limiting_potential, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.theoretical_overpotential = Slot(uri=COREMETA4CAT.theoretical_overpotential, name="theoretical_overpotential", curie=COREMETA4CAT.curie('theoretical_overpotential'),
+                   model_uri=COREMETA4CAT.theoretical_overpotential, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.potential_determining_step = Slot(uri=COREMETA4CAT.potential_determining_step, name="potential_determining_step", curie=COREMETA4CAT.curie('potential_determining_step'),
+                   model_uri=COREMETA4CAT.potential_determining_step, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.descriptor_type = Slot(uri=COREMETA4CAT.descriptor_type, name="descriptor_type", curie=COREMETA4CAT.curie('descriptor_type'),
+                   model_uri=COREMETA4CAT.descriptor_type, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.descriptor_value = Slot(uri=COREMETA4CAT.descriptor_value, name="descriptor_value", curie=COREMETA4CAT.curie('descriptor_value'),
+                   model_uri=COREMETA4CAT.descriptor_value, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.d_band_center = Slot(uri=COREMETA4CAT.d_band_center, name="d_band_center", curie=COREMETA4CAT.curie('d_band_center'),
+                   model_uri=COREMETA4CAT.d_band_center, domain=None, range=Optional[Union[float, list[float]]])
+
+slots.scaling_relation = Slot(uri=COREMETA4CAT.scaling_relation, name="scaling_relation", curie=COREMETA4CAT.curie('scaling_relation'),
+                   model_uri=COREMETA4CAT.scaling_relation, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.bep_relation = Slot(uri=COREMETA4CAT.bep_relation, name="bep_relation", curie=COREMETA4CAT.curie('bep_relation'),
+                   model_uri=COREMETA4CAT.bep_relation, domain=None, range=Optional[Union[str, list[str]]])
+
 slots.activity_designator = Slot(uri=RDF.type, name="activity_designator", curie=RDF.curie('type'),
                    model_uri=COREMETA4CAT.activity_designator, domain=None, range=Optional[str])
 
@@ -9396,31 +9786,31 @@ slots.synthesis_duration = Slot(uri=VOC4CAT['0000050'], name="synthesis_duration
 slots.synthesis_pressure = Slot(uri=VOC4CAT['0000053'], name="synthesis_pressure", curie=VOC4CAT.curie('0000053'),
                    model_uri=COREMETA4CAT.synthesis_pressure, domain=None, range=Optional[Union[Union[dict, Pressure], list[Union[dict, Pressure]]]])
 
-slots.hydrolysis_ratio = Slot(uri=COREMETA4CAT.hydrolysis_ratio, name="hydrolysis_ratio", curie=COREMETA4CAT.curie('hydrolysis_ratio'),
+slots.hydrolysis_ratio = Slot(uri=VOC4CAT['0008157'], name="hydrolysis_ratio", curie=VOC4CAT.curie('0008157'),
                    model_uri=COREMETA4CAT.hydrolysis_ratio, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.drying = Slot(uri=COREMETA4CAT.drying, name="drying", curie=COREMETA4CAT.curie('drying'),
                    model_uri=COREMETA4CAT.drying, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.surfactant_template = Slot(uri=COREMETA4CAT.surfactant_template, name="surfactant_template", curie=COREMETA4CAT.curie('surfactant_template'),
+slots.surfactant_template = Slot(uri=VOC4CAT['0008147'], name="surfactant_template", curie=VOC4CAT.curie('0008147'),
                    model_uri=COREMETA4CAT.surfactant_template, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.filling_volume = Slot(uri=COREMETA4CAT.filling_volume, name="filling_volume", curie=COREMETA4CAT.curie('filling_volume'),
+slots.filling_volume = Slot(uri=VOC4CAT['0008148'], name="filling_volume", curie=VOC4CAT.curie('0008148'),
                    model_uri=COREMETA4CAT.filling_volume, domain=None, range=Optional[Union[float, list[float]]])
 
 slots.stirrer_type = Slot(uri=VOC4CAT['0008113'], name="stirrer_type", curie=VOC4CAT.curie('0008113'),
                    model_uri=COREMETA4CAT.stirrer_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.cooling_rate = Slot(uri=COREMETA4CAT.cooling_rate, name="cooling_rate", curie=COREMETA4CAT.curie('cooling_rate'),
+slots.cooling_rate = Slot(uri=VOC4CAT['0008149'], name="cooling_rate", curie=VOC4CAT.curie('0008149'),
                    model_uri=COREMETA4CAT.cooling_rate, domain=None, range=Optional[Union[Union[dict, HeatingRate], list[Union[dict, HeatingRate]]]])
 
-slots.plasma_type = Slot(uri=COREMETA4CAT.plasma_type, name="plasma_type", curie=COREMETA4CAT.curie('plasma_type'),
+slots.plasma_type = Slot(uri=VOC4CAT['0008153'], name="plasma_type", curie=VOC4CAT.curie('0008153'),
                    model_uri=COREMETA4CAT.plasma_type, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.power_input = Slot(uri=COREMETA4CAT.power_input, name="power_input", curie=COREMETA4CAT.curie('power_input'),
+slots.power_input = Slot(uri=VOC4CAT['0008154'], name="power_input", curie=VOC4CAT.curie('0008154'),
                    model_uri=COREMETA4CAT.power_input, domain=None, range=Optional[Union[Union[dict, PowerQuantity], list[Union[dict, PowerQuantity]]]])
 
-slots.exposure_time = Slot(uri=COREMETA4CAT.exposure_time, name="exposure_time", curie=COREMETA4CAT.curie('exposure_time'),
+slots.exposure_time = Slot(uri=VOC4CAT['0008155'], name="exposure_time", curie=VOC4CAT.curie('0008155'),
                    model_uri=COREMETA4CAT.exposure_time, domain=None, range=Optional[Union[Union[dict, Duration], list[Union[dict, Duration]]]])
 
 slots.fuel = Slot(uri=COREMETA4CAT.fuel, name="fuel", curie=COREMETA4CAT.curie('fuel'),
@@ -9651,8 +10041,8 @@ slots.excitation_laser_power = Slot(uri=ALLOTROPE_RESULT['0001595'], name="excit
 slots.filter_or_grating = Slot(uri=COREMETA4CAT.filter_or_grating, name="filter_or_grating", curie=COREMETA4CAT.curie('filter_or_grating'),
                    model_uri=COREMETA4CAT.filter_or_grating, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.nucleus = Slot(uri=COREMETA4CAT.nucleus, name="nucleus", curie=COREMETA4CAT.curie('nucleus'),
-                   model_uri=COREMETA4CAT.nucleus, domain=None, range=Optional[Union[str, list[str]]])
+slots.nucleus = Slot(uri=NMR['1400083'], name="nucleus", curie=NMR.curie('1400083'),
+                   model_uri=COREMETA4CAT.nucleus, domain=None, range=Union[str, list[str]])
 
 slots.irradiation_frequency = Slot(uri=COREMETA4CAT.irradiation_frequency, name="irradiation_frequency", curie=COREMETA4CAT.curie('irradiation_frequency'),
                    model_uri=COREMETA4CAT.irradiation_frequency, domain=None, range=Optional[Union[float, list[float]]])
@@ -9660,7 +10050,7 @@ slots.irradiation_frequency = Slot(uri=COREMETA4CAT.irradiation_frequency, name=
 slots.nmr_pulse_sequence = Slot(uri=COREMETA4CAT.nmr_pulse_sequence, name="nmr_pulse_sequence", curie=COREMETA4CAT.curie('nmr_pulse_sequence'),
                    model_uri=COREMETA4CAT.nmr_pulse_sequence, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.nmr_sample_tube = Slot(uri=COREMETA4CAT.nmr_sample_tube, name="nmr_sample_tube", curie=COREMETA4CAT.curie('nmr_sample_tube'),
+slots.nmr_sample_tube = Slot(uri=NMR['1400132'], name="nmr_sample_tube", curie=NMR.curie('1400132'),
                    model_uri=COREMETA4CAT.nmr_sample_tube, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.image_resolution = Slot(uri=COREMETA4CAT.image_resolution, name="image_resolution", curie=COREMETA4CAT.curie('image_resolution'),

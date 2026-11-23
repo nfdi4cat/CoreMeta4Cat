@@ -198,7 +198,7 @@ slots:
     recommended: true
     multivalued: true
   energy_correction_type:
-    description: 'Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.'
+    description: 'Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used.'
     range: string
     slot_uri: coremeta4cat:energy_correction_type
     multivalued: true
@@ -226,7 +226,7 @@ slots:
     slot_uri: coremeta4cat:final_state
     multivalued: true
   reaction_energy:
-    description: Reaction energy of the elementary step, ΔE = E(final state) - E(initial state).
+    description: Reaction energy of the elementary step, Delta_E = E(final state) - E(initial state).
     range: float
     slot_uri: coremeta4cat:reaction_energy
     recommended: true
@@ -234,7 +234,7 @@ slots:
     unit:
       ucum_code: eV
   reaction_free_energy:
-    description: Gibbs free energy change of the elementary step, ΔG, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.
+    description: Gibbs free energy change of the elementary step, Delta_G, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.
     range: float
     slot_uri: coremeta4cat:reaction_free_energy
     multivalued: true
@@ -343,7 +343,7 @@ slots:
     unit:
       ucum_code: eV
   scaling_relation:
-    description: Linear scaling relation between adsorption energies (e.g. "ΔE_OH = 0.50 ΔE_O + 0.10 eV").
+    description: Linear scaling relation between adsorption energies (e.g. "Delta_E_OH = 0.50 Delta_E_O + 0.10 eV").
     range: string
     slot_uri: coremeta4cat:scaling_relation
     multivalued: true
