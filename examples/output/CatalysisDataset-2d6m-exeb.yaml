@@ -44,6 +44,7 @@ was_generated_by:
       from the reactor outlet stream. Method parameters not specified in the source
       dataset files.
     id: coremeta4cat:CHAR_2d6m-exeb_GC_method
+    plan_designator: OBI:0000272
   activity_designator: Characterization
 creator:
 - name:
@@ -207,12 +208,7 @@ is_about_activity:
     title: isothermal cylindrical fixed-bed reactors
     description: Cylindrical fixed-bed reactors, radius 3-10 mm across the 4 runs,
       isothermal operation.
-  product_identification_method:
-  - title: CO conversion from outlet gas composition
-    description: CO conversion (dimensionless, 0-1) calculated from inlet and outlet
-      CO concentrations. Specific analytical instrument not stated in dataset files;
-      gas chromatography is the standard method for this reaction.
-    id: coremeta4cat:REAC_2d6m-exeb_CO_product_id
+    reactor_designator: voc4cat:0007018
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:
@@ -230,6 +226,13 @@ is_about_activity:
     has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
     description: ~100-101.3 kPa in all 4 runs
     unit: https://qudt.org/vocab/unit/KiloPA
+  product_identification_method:
+  - title: CO conversion from outlet gas composition
+    description: CO conversion (dimensionless, 0-1) calculated from inlet and outlet
+      CO concentrations. Specific analytical instrument not stated in dataset files;
+      gas chromatography is the standard method for this reaction.
+    id: coremeta4cat:REAC_2d6m-exeb_CO_product_id
+    plan_designator: OBI:0000272
 - id: coremeta4cat:REAC_2d6m-exeb_CO2_methanation
   title:
   - CO2 methanation catalyst screening (8 Ni catalysts)
@@ -433,12 +436,7 @@ is_about_activity:
     title: isothermal cylindrical fixed-bed reactors
     description: Cylindrical fixed-bed reactors, radius 3-10 mm across the 8 runs,
       isothermal operation.
-  product_identification_method:
-  - title: CO2 conversion from outlet gas composition
-    description: CO2 conversion (dimensionless, 0-1) calculated from inlet and outlet
-      CO2 concentrations. Specific analytical instrument not stated in dataset files;
-      gas chromatography is the standard method for this reaction.
-    id: coremeta4cat:REAC_2d6m-exeb_CO2_product_id
+    reactor_designator: voc4cat:0007018
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:
@@ -457,6 +455,13 @@ is_about_activity:
     description: ~100-101.3 kPa in 7 of the 8 runs; Exp9 used 800 kPa (see used_catalyst
       description)
     unit: https://qudt.org/vocab/unit/KiloPA
+  product_identification_method:
+  - title: CO2 conversion from outlet gas composition
+    description: CO2 conversion (dimensionless, 0-1) calculated from inlet and outlet
+      CO2 concentrations. Specific analytical instrument not stated in dataset files;
+      gas chromatography is the standard method for this reaction.
+    id: coremeta4cat:REAC_2d6m-exeb_CO2_product_id
+    plan_designator: OBI:0000272
 - id: coremeta4cat:REAC_2d6m-exeb_mixed_methanation
   title:
   - Mixed CO+CO2 methanation catalyst screening (4 Ni catalysts)
@@ -590,12 +595,7 @@ is_about_activity:
     title: isothermal cylindrical fixed-bed reactors
     description: Cylindrical fixed-bed reactors, radius 3.77-6.5 mm across the 4 runs,
       isothermal operation.
-  product_identification_method:
-  - title: CO and CO2 conversion from outlet gas composition
-    description: CO and CO2 conversion (dimensionless, 0-1) calculated from inlet
-      and outlet gas concentrations. Specific analytical instrument not stated in
-      dataset files; gas chromatography is the standard method for this reaction.
-    id: coremeta4cat:REAC_2d6m-exeb_mixed_product_id
+    reactor_designator: voc4cat:0007018
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:
@@ -614,6 +614,13 @@ is_about_activity:
     has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
     description: ~100 kPa in all 4 runs
     unit: https://qudt.org/vocab/unit/KiloPA
+  product_identification_method:
+  - title: CO and CO2 conversion from outlet gas composition
+    description: CO and CO2 conversion (dimensionless, 0-1) calculated from inlet
+      and outlet gas concentrations. Specific analytical instrument not stated in
+      dataset files; gas chromatography is the standard method for this reaction.
+    id: coremeta4cat:REAC_2d6m-exeb_mixed_product_id
+    plan_designator: OBI:0000272
 rdf_type:
   id: voc4cat:0007001
   title: heterogeneous catalysis

@@ -42,7 +42,8 @@
       "realized_plan": {
         "title": "Pulse CO chemisorption method",
         "description": "CO pulses at room temperature; peak areas integrated to determine total CO uptake.",
-        "id": "coremeta4cat:CHAR_arp5-s69r_COChemisorption_method"
+        "id": "coremeta4cat:CHAR_arp5-s69r_COChemisorption_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     },
@@ -85,7 +86,8 @@
       "realized_plan": {
         "title": "CO-adsorption DRIFT method",
         "description": "Reflectance mode; scanner velocity 20 kHz; aperture 6 mm; MIR source, KBr beamsplitter.",
-        "id": "coremeta4cat:CHAR_arp5-s69r_DRIFT_method"
+        "id": "coremeta4cat:CHAR_arp5-s69r_DRIFT_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     },
@@ -138,7 +140,8 @@
       "realized_plan": {
         "title": "Powder XRD measurement method",
         "description": "Transmission geometry, air atmosphere, ambient temperature; software INSTPAR.",
-        "id": "coremeta4cat:CHAR_arp5-s69r_PXRD_method"
+        "id": "coremeta4cat:CHAR_arp5-s69r_PXRD_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     },
@@ -186,7 +189,8 @@
       "realized_plan": {
         "title": "STEM/TEM imaging and EDX mapping method",
         "description": "HRTEM (Digital Micrograph/Gatan) and HAADF-STEM/STEM-EDXS (TEM Imaging and Microscopy/FEI, Esprit/Bruker); Cliff-Lorimer quantification for EDXS.",
-        "id": "coremeta4cat:CHAR_arp5-s69r_STEM_method"
+        "id": "coremeta4cat:CHAR_arp5-s69r_STEM_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     },
@@ -229,7 +233,8 @@
       "realized_plan": {
         "title": "XPS core-level measurement method",
         "description": "Pd 3d scans for both catalysts; P 2p scan additionally for Pd3P/SiO2.",
-        "id": "coremeta4cat:CHAR_arp5-s69r_XPS_method"
+        "id": "coremeta4cat:CHAR_arp5-s69r_XPS_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     }
@@ -391,14 +396,8 @@
         {
           "id": "coremeta4cat:REAC_arp5-s69r_reactor",
           "title": "Parr 5500 series compact reactor",
-          "description": "Batch autoclave, cylindrical stainless steel reaction chamber (25 mL, 25.4 x 50.8 mm ID), overhead stirrer at 1000 rpm, electric heating."
-        }
-      ],
-      "product_identification_method": [
-        {
-          "title": "GC-MS product quantification",
-          "description": "Gas chromatography-mass spectrometry with n-decane internal standard.",
-          "id": "coremeta4cat:REAC_arp5-s69r_Amino_product_id"
+          "description": "Batch autoclave, cylindrical stainless steel reaction chamber (25 mL, 25.4 x 50.8 mm ID), overhead stirrer at 1000 rpm, electric heating.",
+          "reactor_designator": "voc4cat:0007018"
         }
       ],
       "catalyst_type": [
@@ -425,6 +424,14 @@
           "has_quantity_type": "http://qudt.org/vocab/quantitykind/Pressure",
           "description": "Initial CO pressure, constant across the 3 runs",
           "unit": "https://qudt.org/vocab/unit/BAR"
+        }
+      ],
+      "product_identification_method": [
+        {
+          "title": "GC-MS product quantification",
+          "description": "Gas chromatography-mass spectrometry with n-decane internal standard.",
+          "id": "coremeta4cat:REAC_arp5-s69r_Amino_product_id",
+          "plan_designator": "OBI:0000272"
         }
       ]
     },
@@ -516,14 +523,8 @@
         {
           "id": "coremeta4cat:REAC_arp5-s69r_reactor",
           "title": "Parr 5500 series compact reactor",
-          "description": "Batch autoclave, cylindrical stainless steel reaction chamber (25 mL, 25.4 x 50.8 mm ID), overhead stirrer at 1000 rpm, electric heating."
-        }
-      ],
-      "product_identification_method": [
-        {
-          "title": "GC-MS product quantification",
-          "description": "Gas chromatography-mass spectrometry with n-decane internal standard; conversion/yield/selectivity computed from GC-MS peak areas.",
-          "id": "coremeta4cat:REAC_arp5-s69r_Carbonylation_product_id"
+          "description": "Batch autoclave, cylindrical stainless steel reaction chamber (25 mL, 25.4 x 50.8 mm ID), overhead stirrer at 1000 rpm, electric heating.",
+          "reactor_designator": "voc4cat:0007018"
         }
       ],
       "catalyst_type": [
@@ -550,6 +551,14 @@
           "has_quantity_type": "http://qudt.org/vocab/quantitykind/Pressure",
           "description": "Initial CO pressure, constant across all 27 runs",
           "unit": "https://qudt.org/vocab/unit/BAR"
+        }
+      ],
+      "product_identification_method": [
+        {
+          "title": "GC-MS product quantification",
+          "description": "Gas chromatography-mass spectrometry with n-decane internal standard; conversion/yield/selectivity computed from GC-MS peak areas.",
+          "id": "coremeta4cat:REAC_arp5-s69r_Carbonylation_product_id",
+          "plan_designator": "OBI:0000272"
         }
       ]
     },
@@ -614,14 +623,8 @@
         {
           "id": "coremeta4cat:REAC_arp5-s69r_reactor",
           "title": "Parr 5500 series compact reactor",
-          "description": "Batch autoclave, cylindrical stainless steel reaction chamber (25 mL, 25.4 x 50.8 mm ID), overhead stirrer at 1000 rpm, electric heating."
-        }
-      ],
-      "product_identification_method": [
-        {
-          "title": "GC-MS product quantification",
-          "description": "Gas chromatography-mass spectrometry with n-decane internal standard.",
-          "id": "coremeta4cat:REAC_arp5-s69r_Phenoxy_product_id"
+          "description": "Batch autoclave, cylindrical stainless steel reaction chamber (25 mL, 25.4 x 50.8 mm ID), overhead stirrer at 1000 rpm, electric heating.",
+          "reactor_designator": "voc4cat:0007018"
         }
       ],
       "catalyst_type": [
@@ -648,6 +651,14 @@
           "has_quantity_type": "http://qudt.org/vocab/quantitykind/Pressure",
           "description": "Initial CO pressure",
           "unit": "https://qudt.org/vocab/unit/BAR"
+        }
+      ],
+      "product_identification_method": [
+        {
+          "title": "GC-MS product quantification",
+          "description": "Gas chromatography-mass spectrometry with n-decane internal standard.",
+          "id": "coremeta4cat:REAC_arp5-s69r_Phenoxy_product_id",
+          "plan_designator": "OBI:0000272"
         }
       ]
     }

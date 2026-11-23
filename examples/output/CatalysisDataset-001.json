@@ -25,7 +25,8 @@
       "realized_plan": {
         "title": "incipient wetness impregnation",
         "description": "incipient_wetness, 25 deg C, 12 h",
-        "id": "coremeta4cat:SYNTH_001_impregnation_method"
+        "id": "coremeta4cat:SYNTH_001_impregnation_method",
+        "plan_designator": "voc4cat:0007016"
       },
       "activity_designator": "Synthesis",
       "nominal_composition": [
@@ -70,7 +71,8 @@
       "realized_plan": {
         "title": "BET surface area measurement",
         "description": "N2 physisorption at 77 K, degassing at 300 deg C for 3 h under vacuum prior to measurement",
-        "id": "coremeta4cat:CHAR_001_BET_method"
+        "id": "coremeta4cat:CHAR_001_BET_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     },
@@ -92,7 +94,8 @@
       "realized_plan": {
         "title": "powder X-ray diffraction",
         "description": "Cu K-alpha, 2theta range 5 to 80 deg, step size 0.02 deg, scan rate 1 deg/min, Rietveld refinement for phase quantification",
-        "id": "coremeta4cat:CHAR_002_XRD_method"
+        "id": "coremeta4cat:CHAR_002_XRD_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     }

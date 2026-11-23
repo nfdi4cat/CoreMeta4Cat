@@ -2367,7 +2367,7 @@ automatically when a class is instantiated directly.""", json_schema_extra = { "
          'is_a': 'had_input_activity',
          'recommended': True,
          'slot_uri': 'prov:wasInformedBy'} })
-    realized_plan: PreparationMethod = Field(default=..., description="""The PreparationMethod (protocol) realized in this Synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
+    realized_plan: Union[Impregnation,CoPrecipitation,SolGel,Solvothermal,PlasmaAssisted,CombustionSynthesis,AtomicLayerDeposition,DepositionPrecipitation,MicrowaveAssisted,SonochemicalSynthesis,FlameSprayPyrolysis,MechanochemicalSynthesis,Sublimation,MolecularSynthesis,ExsolutionSynthesis] = Field(default=..., description="""The PreparationMethod (protocol) realized in this Synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
          'in_subset': ['domain_agnostic_core'],
          'slot_uri': 'prov:used'} })
     occurred_in: Optional[Surrounding] = Field(default=None, description="""The slot to specify the Surrounding in which an Activity took place.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
@@ -2600,7 +2600,7 @@ automatically when a class is instantiated directly.""", json_schema_extra = { "
          'is_a': 'had_input_activity',
          'recommended': True,
          'slot_uri': 'prov:wasInformedBy'} })
-    realized_plan: CharacterizationTechnique = Field(default=..., description="""The CharacterizationTechnique (protocol) realized in this Characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
+    realized_plan: Union[PowderXRD,SingleCrystalXRD,XRayAbsorptionSpectroscopy,XPS,EDX,InfraredSpectroscopy,DRIFTS,RamanSpectroscopy,NMRSpectroscopy,TransmissionElectronMicroscopy,ScanningElectronMicroscopy,Thermogravimetry,TPR,TPO,BET,ICPAES,ElementalAnalysis,UVVisSpectroscopy,PhotoluminescenceSpectroscopy,PhotoluminescenceLifetime,CyclicVoltammetry,ConductivityMeasurement,DynamicLightScattering,ElectroSprayIonizationMassSpectrometry,GCMS,SizeExclusionChromatography,HighPerformanceLiquidChromatographyMassSpectrometry] = Field(default=..., description="""The CharacterizationTechnique (protocol) realized in this Characterization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
          'in_subset': ['domain_agnostic_core'],
          'slot_uri': 'prov:used'} })
     occurred_in: Optional[Surrounding] = Field(default=None, description="""The slot to specify the Surrounding in which an Activity took place.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
@@ -5198,7 +5198,7 @@ class CatalyticReaction(ChemicalReaction):
                                                           'multivalued': True,
                                                           'name': 'product_identification_method',
                                                           'range': 'ProductIdentificationMethod',
-                                                          'required': True},
+                                                          'recommended': True},
                         'rdf_type': {'description': 'The type of catalytic reaction as '
                                                     'an ontology term (e.g. '
                                                     'voc4cat:0007010\n'
@@ -5306,10 +5306,11 @@ vol% or mol%). For fixed-composition experiments use reactant.has_concentration.
     has_experiment_duration: Optional[Duration] = Field(default=None, description="""Total duration of the experiment or measurement run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD', 'CatalyticReaction'],
          'is_a': 'has_duration',
          'slot_uri': 'SIO:000008'} })
-    product_identification_method: list[ProductIdentificationMethod] = Field(default=..., description="""The analytical method used to identify and/or quantify reaction products.
+    product_identification_method: Optional[list[ProductIdentificationMethod]] = Field(default=None, description="""The analytical method used to identify and/or quantify reaction products.
 Should reference a CharacterizationTechnique instance (e.g. GCMS, HPLC_MS).
 The abstract stub ProductIdentificationMethod is retained for backward compatibility.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticReaction'],
          'is_a': 'realized_plan',
+         'recommended': True,
          'slot_uri': 'coremeta4cat:product_identification_method'} })
     used_starting_material: Optional[list[StartingMaterial]] = Field(default=None, description="""The slot to specify the StartingMaterial(s) of a ChemicalReaction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalReaction'],
          'is_a': 'had_input_entity',
@@ -5332,7 +5333,7 @@ The abstract stub ProductIdentificationMethod is retained for backward compatibi
          'recommended': True,
          'slot_uri': 'prov:wasAssociatedWith'} })
     has_duration: Optional[str] = Field(default=None, description="""A slot to provide the duration of a ChemicalReaction.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalReaction'], 'slot_uri': 'schema:duration'} })
-    used_reactor: list[ChemicalReactor] = Field(default=..., description="""The reactor in which the Reaction takes place.
+    used_reactor: list[Union[ElectrochemicalReactor,CSTR,PlugFlowReactor,Autoclave,SlurryReactor,Microreactor,FixedBedReactor,FluidizedBedReactor]] = Field(default=..., description="""The reactor in which the Reaction takes place.
 Must be a ChemicalReactor instance (a Reactor subclass specific to
 catalytic reaction vessels, e.g. FixedBedReactor, CSTR, Autoclave).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ChemicalReaction'],
          'is_a': 'carried_out_by',
@@ -5953,6 +5954,10 @@ class CatalysisPlan(Plan):
     reuse the same protocol), so id is added once here rather than
     repeated on each of PreparationMethod, CharacterizationTechnique,
     SimulationMethod, and ProductIdentificationMethod individually.
+
+    It also adds a type designator (plan_designator) so that a plan can
+    declare which concrete subclass it is (e.g. CoPrecipitation, TPR, DFT)
+    and use that subclass's fields.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
@@ -5968,6 +5973,16 @@ class CatalysisPlan(Plan):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/CatalysisPlan","coremeta4cat:CatalysisPlan"] = Field(default="coremeta4cat:CatalysisPlan", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -6078,6 +6093,16 @@ class PreparationMethod(CatalysisPlan):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/PreparationMethod","https://w3id.org/nfdi4cat/voc4cat_0007016","coremeta4cat:PreparationMethod","voc4cat:0007016"] = Field(default="voc4cat:0007016", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -6234,6 +6259,16 @@ provided as a QuantitativeRange. Unit: Degree Celsius.""", json_schema_extra = {
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Impregnation","https://w3id.org/nfdi4cat/voc4cat_0007028","coremeta4cat:Impregnation","voc4cat:0007028"] = Field(default="voc4cat:0007028", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -6424,6 +6459,16 @@ provided as a QuantitativeRange. Unit: Degree Celsius.""", json_schema_extra = {
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/CoPrecipitation","https://w3id.org/nfdi4cat/voc4cat_0007795","coremeta4cat:CoPrecipitation","voc4cat:0007795"] = Field(default="voc4cat:0007795", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -6559,6 +6604,16 @@ class SolGel(PreparationMethod, DryingMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/SolGel","http://purl.obolibrary.org/obo/CHMO_0001313","coremeta4cat:SolGel","CHMO:0001313"] = Field(default="CHMO:0001313", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -6702,6 +6757,16 @@ class Solvothermal(PreparationMethod, ThermalSynthesisMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Solvothermal","http://purl.obolibrary.org/obo/CHMO_0001458","coremeta4cat:Solvothermal","CHMO:0001458"] = Field(default="CHMO:0001458", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -6847,6 +6912,16 @@ class PlasmaAssisted(PreparationMethod, ThermalSynthesisMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/PlasmaAssisted","https://w3id.org/nfdi4cat/voc4cat_0008152","coremeta4cat:PlasmaAssisted","voc4cat:0008152"] = Field(default="voc4cat:0008152", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -6997,6 +7072,16 @@ class CombustionSynthesis(PreparationMethod, ThermalSynthesisMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/CombustionSynthesis","https://w3id.org/nfdi4cat/voc4cat_0008156","coremeta4cat:CombustionSynthesis","voc4cat:0008156"] = Field(default="voc4cat:0008156", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -7135,6 +7220,16 @@ class AtomicLayerDeposition(PreparationMethod):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/AtomicLayerDeposition","http://purl.obolibrary.org/obo/CHMO_0001311","coremeta4cat:AtomicLayerDeposition","CHMO:0001311"] = Field(default="CHMO:0001311", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -7332,6 +7427,16 @@ provided as a QuantitativeRange. Unit: Degree Celsius.""", json_schema_extra = {
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/DepositionPrecipitation","coremeta4cat:DepositionPrecipitation"] = Field(default="coremeta4cat:DepositionPrecipitation", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -7472,6 +7577,16 @@ class MicrowaveAssisted(PreparationMethod, ThermalSynthesisMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/MicrowaveAssisted","http://purl.obolibrary.org/obo/CHMO_0002906","coremeta4cat:MicrowaveAssisted","CHMO:0002906"] = Field(default="CHMO:0002906", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -7651,6 +7766,16 @@ provided as a QuantitativeRange. Unit: Degree Celsius.""", json_schema_extra = {
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/SonochemicalSynthesis","coremeta4cat:SonochemicalSynthesis"] = Field(default="coremeta4cat:SonochemicalSynthesis", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -7795,6 +7920,16 @@ class FlameSprayPyrolysis(PreparationMethod):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/FlameSprayPyrolysis","https://w3id.org/nfdi4cat/voc4cat_0007031","coremeta4cat:FlameSprayPyrolysis","voc4cat:0007031"] = Field(default="voc4cat:0007031", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -7957,6 +8092,16 @@ class MechanochemicalSynthesis(PreparationMethod, ThermalSynthesisMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/MechanochemicalSynthesis","coremeta4cat:MechanochemicalSynthesis"] = Field(default="coremeta4cat:MechanochemicalSynthesis", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -8091,6 +8236,16 @@ class Sublimation(PreparationMethod, ThermalSynthesisMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Sublimation","coremeta4cat:Sublimation"] = Field(default="coremeta4cat:Sublimation", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -8282,6 +8437,16 @@ class MolecularSynthesis(PreparationMethod, DryingMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/MolecularSynthesis","coremeta4cat:MolecularSynthesis"] = Field(default="coremeta4cat:MolecularSynthesis", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -8415,6 +8580,16 @@ provided as a QuantitativeRange. Unit: Degree Celsius.""", json_schema_extra = {
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ExsolutionSynthesis","coremeta4cat:ExsolutionSynthesis"] = Field(default="coremeta4cat:ExsolutionSynthesis", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -8521,6 +8696,16 @@ class CharacterizationTechnique(CatalysisPlan):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/CharacterizationTechnique","http://purl.obolibrary.org/obo/OBI_0000272","coremeta4cat:CharacterizationTechnique","OBI:0000272"] = Field(default="OBI:0000272", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -8697,6 +8882,16 @@ Provide unit as a QUDT term (e.g. Degree).""", json_schema_extra = { "linkml_met
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/PowderXRD","http://purl.obolibrary.org/obo/CHMO_0000158","coremeta4cat:PowderXRD","CHMO:0000158"] = Field(default="CHMO:0000158", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -8830,6 +9025,16 @@ class SingleCrystalXRD(CharacterizationTechnique, XRaySourceMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/SingleCrystalXRD","http://purl.obolibrary.org/obo/CHMO_0000852","coremeta4cat:SingleCrystalXRD","CHMO:0000852"] = Field(default="CHMO:0000852", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -9005,6 +9210,16 @@ Provide unit as a QUDT term (e.g. eV, keV).""", json_schema_extra = { "linkml_me
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/XRayAbsorptionSpectroscopy","https://w3id.org/nfdi4cat/voc4cat_0000286","coremeta4cat:XRayAbsorptionSpectroscopy","voc4cat:0000286"] = Field(default="voc4cat:0000286", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -9168,6 +9383,16 @@ Provide unit as a QUDT term (e.g. eV, keV).""", json_schema_extra = { "linkml_me
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/XPS","http://purl.obolibrary.org/obo/CHMO_0000404","coremeta4cat:XPS","CHMO:0000404"] = Field(default="CHMO:0000404", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -9286,6 +9511,16 @@ class EDX(CharacterizationTechnique):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/EDX","http://purl.obolibrary.org/obo/CHMO_0000309","coremeta4cat:EDX","CHMO:0000309"] = Field(default="CHMO:0000309", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -9458,6 +9693,16 @@ Provide unit as a QUDT term (e.g. ReciprocalCentimetre).""", json_schema_extra =
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/InfraredSpectroscopy","http://purl.obolibrary.org/obo/CHMO_0000630","coremeta4cat:InfraredSpectroscopy","CHMO:0000630"] = Field(default="CHMO:0000630", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -9645,6 +9890,16 @@ Provide unit as a QUDT term (e.g. ReciprocalCentimetre).""", json_schema_extra =
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/DRIFTS","http://purl.obolibrary.org/obo/CHMO_0000645","coremeta4cat:DRIFTS","CHMO:0000645"] = Field(default="CHMO:0000645", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -9810,6 +10065,16 @@ class RamanSpectroscopy(CharacterizationTechnique):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/RamanSpectroscopy","https://w3id.org/nfdi4cat/voc4cat_0000069","coremeta4cat:RamanSpectroscopy","voc4cat:0000069"] = Field(default="voc4cat:0000069", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -9983,6 +10248,16 @@ class NMRSpectroscopy(CharacterizationTechnique):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/NMRSpectroscopy","https://w3id.org/nfdi4cat/voc4cat_0000073","coremeta4cat:NMRSpectroscopy","voc4cat:0000073"] = Field(default="voc4cat:0000073", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -10108,6 +10383,16 @@ class TransmissionElectronMicroscopy(CharacterizationTechnique, ElectronMicrosco
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/TransmissionElectronMicroscopy","https://w3id.org/nfdi4cat/voc4cat_0000078","coremeta4cat:TransmissionElectronMicroscopy","voc4cat:0000078"] = Field(default="voc4cat:0000078", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -10233,6 +10518,16 @@ class ScanningElectronMicroscopy(CharacterizationTechnique, ElectronMicroscopyMi
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ScanningElectronMicroscopy","https://w3id.org/nfdi4cat/voc4cat_0000075","coremeta4cat:ScanningElectronMicroscopy","voc4cat:0000075"] = Field(default="voc4cat:0000075", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -10385,6 +10680,16 @@ Provide unit as a QUDT term (e.g. Degree Celsius, Kelvin).""", json_schema_extra
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Thermogravimetry","http://purl.obolibrary.org/obo/CHMO_0000690","coremeta4cat:Thermogravimetry","CHMO:0000690"] = Field(default="CHMO:0000690", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -10506,6 +10811,16 @@ Provide unit as a QUDT term (e.g. Degree Celsius, Kelvin).""", json_schema_extra
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/TPR","http://purl.obolibrary.org/obo/CHMO_0002908","coremeta4cat:TPR","CHMO:0002908"] = Field(default="CHMO:0002908", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -10627,6 +10942,16 @@ Provide unit as a QUDT term (e.g. Degree Celsius, Kelvin).""", json_schema_extra
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/TPO","http://purl.obolibrary.org/obo/CHMO_0002907","coremeta4cat:TPO","CHMO:0002907"] = Field(default="CHMO:0002907", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -10750,6 +11075,16 @@ class BET(CharacterizationTechnique):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/BET","http://purl.enanomapper.org/onto/0000064","coremeta4cat:BET","enm:0000064"] = Field(default="enm:0000064", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -10869,6 +11204,16 @@ class ICPAES(CharacterizationTechnique):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ICPAES","http://purl.obolibrary.org/obo/CHMO_0000267","coremeta4cat:ICPAES","CHMO:0000267"] = Field(default="CHMO:0000267", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -10987,6 +11332,16 @@ class ElementalAnalysis(CharacterizationTechnique):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ElementalAnalysis","http://purl.obolibrary.org/obo/CHMO_0001075","coremeta4cat:ElementalAnalysis","CHMO:0001075"] = Field(default="CHMO:0001075", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -11114,6 +11469,16 @@ with min_value and max_value (unit_code: \"nm\").""", json_schema_extra = { "lin
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/UVVisSpectroscopy","https://w3id.org/nfdi4cat/voc4cat_0000079","coremeta4cat:UVVisSpectroscopy","voc4cat:0000079"] = Field(default="voc4cat:0000079", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -11271,6 +11636,16 @@ class PhotoluminescenceSpectroscopy(CharacterizationTechnique, Photoluminescence
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/PhotoluminescenceSpectroscopy","http://purl.obolibrary.org/obo/CHMO_0000773","coremeta4cat:PhotoluminescenceSpectroscopy","CHMO:0000773"] = Field(default="CHMO:0000773", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -11416,6 +11791,16 @@ class PhotoluminescenceLifetime(CharacterizationTechnique, PhotoluminescenceMixi
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/PhotoluminescenceLifetime","http://purl.obolibrary.org/obo/CHMO_0001917","coremeta4cat:PhotoluminescenceLifetime","CHMO:0001917"] = Field(default="CHMO:0001917", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -11598,6 +11983,16 @@ QuantitativeRange with min_value and max_value (unit_code: \"V\").""", json_sche
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/CyclicVoltammetry","http://purl.obolibrary.org/obo/CHMO_0000025","coremeta4cat:CyclicVoltammetry","CHMO:0000025"] = Field(default="CHMO:0000025", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -11774,6 +12169,16 @@ class ConductivityMeasurement(CharacterizationTechnique, ElectrochemistryMixin):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ConductivityMeasurement","http://purl.obolibrary.org/obo/CHMO_0000010","coremeta4cat:ConductivityMeasurement","CHMO:0000010"] = Field(default="CHMO:0000010", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -11931,6 +12336,16 @@ class DynamicLightScattering(CharacterizationTechnique):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/DynamicLightScattering","http://purl.obolibrary.org/obo/CHMO_0000167","coremeta4cat:DynamicLightScattering","CHMO:0000167"] = Field(default="CHMO:0000167", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -12082,6 +12497,16 @@ The unit for m/z is dimensionless (Thomson); set unit to the appropriate QUDT te
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ElectroSprayIonizationMassSpectrometry","http://purl.obolibrary.org/obo/CHMO_0000482","coremeta4cat:ElectroSprayIonizationMassSpectrometry","CHMO:0000482"] = Field(default="CHMO:0000482", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -12263,6 +12688,16 @@ The unit for m/z is dimensionless (Thomson); set unit to the appropriate QUDT te
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/GCMS","http://purl.obolibrary.org/obo/CHMO_0000497","coremeta4cat:GCMS","CHMO:0000497"] = Field(default="CHMO:0000497", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -12419,6 +12854,16 @@ class SizeExclusionChromatography(CharacterizationTechnique, ChromatographyMixin
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/SizeExclusionChromatography","allotrope.quality:0000843","coremeta4cat:SizeExclusionChromatography"] = Field(default="allotrope.quality:0000843", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -12579,6 +13024,16 @@ class HighPerformanceLiquidChromatographyMassSpectrometry(CharacterizationTechni
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/HighPerformanceLiquidChromatographyMassSpectrometry","http://purl.obolibrary.org/obo/CHMO_0000796","coremeta4cat:HighPerformanceLiquidChromatographyMassSpectrometry","CHMO:0000796"] = Field(default="CHMO:0000796", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -12690,6 +13145,16 @@ class ProductIdentificationMethod(CatalysisPlan):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ProductIdentificationMethod","http://purl.obolibrary.org/obo/OBI_0000272","coremeta4cat:ProductIdentificationMethod","OBI:0000272"] = Field(default="OBI:0000272", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -18956,12 +19421,20 @@ class ChemicalReactor(Reactor):
 
     Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify
     reactor geometry and operating mode.
+    A reactor that uses fields of its subclass declares the subclass with
+    reactor_designator (its class_uri, e.g. coremeta4cat:FixedBedReactor).
     Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'class_uri': 'voc4cat:0007018',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/'})
 
+    reactor_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ChemicalReactor","https://w3id.org/nfdi4cat/voc4cat_0007018","coremeta4cat:ChemicalReactor","voc4cat:0007018"] = Field(default="voc4cat:0007018", description="""Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['ChemicalReactor'],
+         'slot_uri': 'rdf:type'} })
     alternative_label: Optional[str] = Field(default=None, description="""The slot to specify an alternative label, name or title for a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin'],
          'slot_uri': 'skos:altLabel',
          'todos': ['Should probably rather declared on Entity or in some common '
@@ -19156,6 +19629,12 @@ causing (or is caused by) chemical reactions.""", json_schema_extra = { "linkml_
          'is_a': 'has_quantitative_attribute',
          'recommended': True,
          'slot_uri': 'voc4cat:0007259'} })
+    reactor_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ElectrochemicalReactor","https://w3id.org/nfdi4cat/voc4cat_0000193","coremeta4cat:ElectrochemicalReactor","voc4cat:0000193"] = Field(default="voc4cat:0000193", description="""Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['ChemicalReactor'],
+         'slot_uri': 'rdf:type'} })
     alternative_label: Optional[str] = Field(default=None, description="""The slot to specify an alternative label, name or title for a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin'],
          'slot_uri': 'skos:altLabel',
          'todos': ['Should probably rather declared on Entity or in some common '
@@ -19351,6 +19830,12 @@ may use different equipment.""", json_schema_extra = { "linkml_meta": {'domain_o
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'voc4cat:0008113'} })
+    reactor_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/CSTR","https://w3id.org/nfdi4cat/voc4cat_0007019","coremeta4cat:CSTR","voc4cat:0007019"] = Field(default="voc4cat:0007019", description="""Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['ChemicalReactor'],
+         'slot_uri': 'rdf:type'} })
     alternative_label: Optional[str] = Field(default=None, description="""The slot to specify an alternative label, name or title for a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin'],
          'slot_uri': 'skos:altLabel',
          'todos': ['Should probably rather declared on Entity or in some common '
@@ -19536,6 +20021,12 @@ sample, typically reported as diameter or sieve fraction range.""", json_schema_
          'is_a': 'has_length',
          'recommended': True,
          'slot_uri': 'voc4cat:0008212'} })
+    reactor_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/PlugFlowReactor","https://w3id.org/nfdi4cat/voc4cat_0007102","coremeta4cat:PlugFlowReactor","voc4cat:0007102"] = Field(default="voc4cat:0007102", description="""Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['ChemicalReactor'],
+         'slot_uri': 'rdf:type'} })
     alternative_label: Optional[str] = Field(default=None, description="""The slot to specify an alternative label, name or title for a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin'],
          'slot_uri': 'skos:altLabel',
          'todos': ['Should probably rather declared on Entity or in some common '
@@ -19722,6 +20213,12 @@ of the inner reaction chamber lining.""", json_schema_extra = { "linkml_meta": {
          'recommended': True} })
     batch_duration: Optional[Duration] = Field(default=None, description="""The total duration of the batch reaction inside the autoclave, from
 start to end of the reaction step.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Autoclave'], 'is_a': 'has_duration', 'recommended': True} })
+    reactor_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Autoclave","http://purl.obolibrary.org/obo/NCIT_C93052","coremeta4cat:Autoclave","NCIT:C93052"] = Field(default="NCIT:C93052", description="""Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['ChemicalReactor'],
+         'slot_uri': 'rdf:type'} })
     alternative_label: Optional[str] = Field(default=None, description="""The slot to specify an alternative label, name or title for a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin'],
          'slot_uri': 'skos:altLabel',
          'todos': ['Should probably rather declared on Entity or in some common '
@@ -19909,6 +20406,12 @@ the slurry suspension.""", json_schema_extra = { "linkml_meta": {'domain_of': ['
 in revolutions per unit time.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SlurryReactor'],
          'is_a': 'has_angular_velocity',
          'recommended': True} })
+    reactor_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/SlurryReactor","coremeta4cat:SlurryReactor"] = Field(default="coremeta4cat:SlurryReactor", description="""Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['ChemicalReactor'],
+         'slot_uri': 'rdf:type'} })
     alternative_label: Optional[str] = Field(default=None, description="""The slot to specify an alternative label, name or title for a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin'],
          'slot_uri': 'skos:altLabel',
          'todos': ['Should probably rather declared on Entity or in some common '
@@ -20086,6 +20589,12 @@ channels.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microreactor'
     number_of_channels: Optional[list[int]] = Field(default=None, description="""The number of parallel channels in the microreactor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Microreactor'],
          'is_a': 'has_quantitative_attribute',
          'recommended': True} })
+    reactor_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Microreactor","https://w3id.org/nfdi4cat/voc4cat_0000234","coremeta4cat:Microreactor","voc4cat:0000234"] = Field(default="voc4cat:0000234", description="""Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['ChemicalReactor'],
+         'slot_uri': 'rdf:type'} })
     alternative_label: Optional[str] = Field(default=None, description="""The slot to specify an alternative label, name or title for a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin'],
          'slot_uri': 'skos:altLabel',
          'todos': ['Should probably rather declared on Entity or in some common '
@@ -20275,6 +20784,12 @@ measured along the direction of flow.""", json_schema_extra = { "linkml_meta": {
          'is_a': 'has_length',
          'recommended': True,
          'slot_uri': 'voc4cat:0008217'} })
+    reactor_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/FixedBedReactor","coremeta4cat:FixedBedReactor"] = Field(default="coremeta4cat:FixedBedReactor", description="""Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['ChemicalReactor'],
+         'slot_uri': 'rdf:type'} })
     alternative_label: Optional[str] = Field(default=None, description="""The slot to specify an alternative label, name or title for a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin'],
          'slot_uri': 'skos:altLabel',
          'todos': ['Should probably rather declared on Entity or in some common '
@@ -20456,6 +20971,12 @@ class FluidizedBedReactor(ChemicalReactor):
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:bubble_size_distribution'} })
+    reactor_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/FluidizedBedReactor","coremeta4cat:FluidizedBedReactor"] = Field(default="coremeta4cat:FluidizedBedReactor", description="""Type designator for ChemicalReactor subclasses: the class_uri of the
+concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+(Autoclave). Needed whenever a reactor uses fields of its subclass; same
+rules as plan_designator.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['ChemicalReactor'],
+         'slot_uri': 'rdf:type'} })
     alternative_label: Optional[str] = Field(default=None, description="""The slot to specify an alternative label, name or title for a MaterialEntity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['MaterialisticMixin'],
          'slot_uri': 'skos:altLabel',
          'todos': ['Should probably rather declared on Entity or in some common '
@@ -22101,9 +22622,9 @@ class Precursor(MaterialSample):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0007794',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'slot_usage': {'precursor_quantity': {'name': 'precursor_quantity',
-                                               'required': True}}})
+                                               'recommended': True}}})
 
-    precursor_quantity: list[Mass] = Field(default=..., description="""Quantity of precursor used in synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Precursor'],
+    precursor_quantity: Optional[list[Mass]] = Field(default=None, description="""Quantity of precursor used in synthesis.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Precursor'],
          'is_a': 'has_mass',
          'recommended': True,
          'slot_uri': 'voc4cat:0008118'} })
@@ -24417,7 +24938,7 @@ LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.""", json_sch
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:software_package'} })
-    calculated_property: list[CalculatedProperty] = Field(default=..., description="""A property computed by this Simulation, provided as a CalculatedProperty
+    calculated_property: Optional[list[CalculatedProperty]] = Field(default=None, description="""A property computed by this Simulation, provided as a CalculatedProperty
 instance. Multiple properties may be computed in a single simulation run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Simulation'],
          'is_a': 'had_output_entity',
          'recommended': True,
@@ -24439,7 +24960,7 @@ automatically when a class is instantiated directly.""", json_schema_extra = { "
          'is_a': 'had_input_activity',
          'recommended': True,
          'slot_uri': 'prov:wasInformedBy'} })
-    realized_plan: SimulationMethod = Field(default=..., description="""The SimulationMethod (protocol) realized in this Simulation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
+    realized_plan: Union[DFT,MolecularDynamics,Microkinetics,MonteCarlo] = Field(default=..., description="""The SimulationMethod (protocol) realized in this Simulation.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
          'in_subset': ['domain_agnostic_core'],
          'slot_uri': 'prov:used'} })
     occurred_in: Optional[Surrounding] = Field(default=None, description="""The slot to specify the Surrounding in which an Activity took place.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
@@ -24607,6 +25128,16 @@ class SimulationMethod(CatalysisPlan):
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/SimulationMethod","http://purl.obolibrary.org/obo/OBI_0000272","coremeta4cat:SimulationMethod","OBI:0000272"] = Field(default="OBI:0000272", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -24742,6 +25273,16 @@ calculation. Set to true for systems containing magnetic elements.""", json_sche
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/DFT","coremeta4cat:DFT"] = Field(default="coremeta4cat:DFT", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -24871,6 +25412,16 @@ thermodynamic quantities are conserved.""", json_schema_extra = { "linkml_meta":
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/MolecularDynamics","http://purl.obolibrary.org/obo/NCIT_C18097","coremeta4cat:MolecularDynamics","NCIT:C18097"] = Field(default="NCIT:C18097", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -25020,6 +25571,16 @@ stiff ODE solver, steady-state Newton method).""", json_schema_extra = { "linkml
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Microkinetics","coremeta4cat:Microkinetics"] = Field(default="coremeta4cat:Microkinetics", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -25173,6 +25734,16 @@ Kawasaki, heat-bath algorithm).""", json_schema_extra = { "linkml_meta": {'domai
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/MonteCarlo","coremeta4cat:MonteCarlo"] = Field(default="coremeta4cat:MonteCarlo", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CatalysisPlan'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',

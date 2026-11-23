@@ -16,7 +16,8 @@
   "realized_plan": {
     "title": "powder X-ray diffraction",
     "description": "Cu K-alpha, 2theta range 5 to 80 deg, step size 0.02 deg, scan rate 1 deg/min, Rietveld refinement for phase quantification",
-    "id": "coremeta4cat:CHAR_002_XRD_method"
+    "id": "coremeta4cat:CHAR_002_XRD_method",
+    "plan_designator": "OBI:0000272"
   },
   "activity_designator": "Characterization",
   "@type": "Characterization"

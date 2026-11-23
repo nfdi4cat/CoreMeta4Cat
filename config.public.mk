@@ -30,3 +30,9 @@ LINKML_GENERATORS_TYPESCRIPT_ARGS=
 ## pass args to pydantic generator which isn't supported by gen-project
 ## https://github.com/linkml/linkml/issues/2537
 LINKML_GENERATORS_PYDANTIC_ARGS=
+
+###### environment for the tools called by justfile
+
+## Python UTF-8 mode: on Windows, files are otherwise written in the local code page and
+## non-ASCII characters in examples/output get garbled (e.g. α -> Î±). No effect on Linux/macOS.
+PYTHONUTF8=1

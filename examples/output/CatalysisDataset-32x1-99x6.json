@@ -86,7 +86,8 @@
       "realized_plan": {
         "title": "N2 physisorption BET method",
         "description": "Standard N2 physisorption at liquid-nitrogen temperature (-196C), Brunauer-Emmett-Teller analysis. Adsorbate gas and measurement temperature not explicitly stated in bet_results.txt; assumed standard BET convention.",
-        "id": "coremeta4cat:CHAR_32x1-99x6_BET_method"
+        "id": "coremeta4cat:CHAR_32x1-99x6_BET_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     },
@@ -139,7 +140,8 @@
       "realized_plan": {
         "title": "CO-adsorption DRIFT method",
         "description": "CO adsorption at room temperature; pseudo-absorbance = log(1/reflectance).",
-        "id": "coremeta4cat:CHAR_32x1-99x6_DRIFT_method"
+        "id": "coremeta4cat:CHAR_32x1-99x6_DRIFT_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     },
@@ -212,7 +214,8 @@
       "realized_plan": {
         "title": "ICP-AES elemental analysis method",
         "description": "Elements analyzed: Pd, P. Results reported in wt% (icp_results.txt).",
-        "id": "coremeta4cat:CHAR_32x1-99x6_ICPAES_method"
+        "id": "coremeta4cat:CHAR_32x1-99x6_ICPAES_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     },
@@ -275,7 +278,8 @@
       "realized_plan": {
         "title": "Infrared spectroscopy method",
         "description": "Wavenumber range ~400-3599 cm-1; pseudo-absorbance units.",
-        "id": "coremeta4cat:CHAR_32x1-99x6_IR_method"
+        "id": "coremeta4cat:CHAR_32x1-99x6_IR_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     },
@@ -358,7 +362,8 @@
       "realized_plan": {
         "title": "Powder XRD measurement method",
         "description": "Two-theta scan, ~2-92 degrees, step size 0.015 degrees. One file (PXRD_1PSiO2.xy) is a Pd-free P/SiO2 support reference; one file (PXRD_Pd5Al2O3.xy) is missing the 'P' in its name but is interpreted as the nominal 5 wt% P/Al2O3 sample based on the file series context (matches ICP sample FR507).",
-        "id": "coremeta4cat:CHAR_32x1-99x6_PXRD_method"
+        "id": "coremeta4cat:CHAR_32x1-99x6_PXRD_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization"
     }
@@ -631,14 +636,8 @@
         {
           "id": "coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_reactor",
           "title": "batch pressurized reactor",
-          "description": "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files."
-        }
-      ],
-      "product_identification_method": [
-        {
-          "title": "Conversion/yield quantification",
-          "description": "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class.",
-          "id": "coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_product_id"
+          "description": "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files.",
+          "reactor_designator": "voc4cat:0007018"
         }
       ],
       "catalyst_type": [
@@ -671,6 +670,14 @@
           "has_quantity_type": "http://qudt.org/vocab/quantitykind/Pressure",
           "description": "Maximum pressure in the design space",
           "unit": "https://qudt.org/vocab/unit/BAR"
+        }
+      ],
+      "product_identification_method": [
+        {
+          "title": "Conversion/yield quantification",
+          "description": "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class.",
+          "id": "coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_product_id",
+          "plan_designator": "OBI:0000272"
         }
       ]
     },
@@ -807,14 +814,8 @@
         {
           "id": "coremeta4cat:REAC_32x1-99x6_CAL_SiO2_reactor",
           "title": "batch pressurized reactor",
-          "description": "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files."
-        }
-      ],
-      "product_identification_method": [
-        {
-          "title": "Conversion/yield quantification",
-          "description": "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class.",
-          "id": "coremeta4cat:REAC_32x1-99x6_CAL_SiO2_product_id"
+          "description": "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files.",
+          "reactor_designator": "voc4cat:0007018"
         }
       ],
       "catalyst_type": [
@@ -847,6 +848,14 @@
           "has_quantity_type": "http://qudt.org/vocab/quantitykind/Pressure",
           "description": "Maximum pressure in the design space",
           "unit": "https://qudt.org/vocab/unit/BAR"
+        }
+      ],
+      "product_identification_method": [
+        {
+          "title": "Conversion/yield quantification",
+          "description": "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class.",
+          "id": "coremeta4cat:REAC_32x1-99x6_CAL_SiO2_product_id",
+          "plan_designator": "OBI:0000272"
         }
       ]
     },
@@ -969,14 +978,8 @@
         {
           "id": "coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_reactor",
           "title": "batch pressurized reactor",
-          "description": "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files."
-        }
-      ],
-      "product_identification_method": [
-        {
-          "title": "Conversion/yield quantification",
-          "description": "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class.",
-          "id": "coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_product_id"
+          "description": "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files.",
+          "reactor_designator": "voc4cat:0007018"
         }
       ],
       "catalyst_type": [
@@ -1009,6 +1012,14 @@
           "has_quantity_type": "http://qudt.org/vocab/quantitykind/Pressure",
           "description": "Maximum pressure in the design space",
           "unit": "https://qudt.org/vocab/unit/BAR"
+        }
+      ],
+      "product_identification_method": [
+        {
+          "title": "Conversion/yield quantification",
+          "description": "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class.",
+          "id": "coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_product_id",
+          "plan_designator": "OBI:0000272"
         }
       ]
     },
@@ -1131,14 +1142,8 @@
         {
           "id": "coremeta4cat:REAC_32x1-99x6_Citral_SiO2_reactor",
           "title": "batch pressurized reactor",
-          "description": "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files."
-        }
-      ],
-      "product_identification_method": [
-        {
-          "title": "Conversion/yield quantification",
-          "description": "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class.",
-          "id": "coremeta4cat:REAC_32x1-99x6_Citral_SiO2_product_id"
+          "description": "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files.",
+          "reactor_designator": "voc4cat:0007018"
         }
       ],
       "catalyst_type": [
@@ -1171,6 +1176,14 @@
           "has_quantity_type": "http://qudt.org/vocab/quantitykind/Pressure",
           "description": "Maximum pressure in the design space",
           "unit": "https://qudt.org/vocab/unit/BAR"
+        }
+      ],
+      "product_identification_method": [
+        {
+          "title": "Conversion/yield quantification",
+          "description": "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class.",
+          "id": "coremeta4cat:REAC_32x1-99x6_Citral_SiO2_product_id",
+          "plan_designator": "OBI:0000272"
         }
       ]
     }

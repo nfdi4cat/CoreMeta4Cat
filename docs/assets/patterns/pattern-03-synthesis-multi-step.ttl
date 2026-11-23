@@ -1,0 +1,59 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix hdl: <https://hdl.handle.net/> .
+hdl:21.11165\/4cat\/6mxw-xsrd dcterms:description "Data from Weber et al., ACS Catal. 2025, 15, 18857: DFT and machine-learned-potential (EquiformerV2/OCP, MACE-MPA-0) binding energies of OH and CO used to screen active phases; nominal and XRF compositions of 76 co-precipitated Cu-Ga-Al hydrotalcite-like precursors; the 13 compositions of the initial activity screening; calcination temperatures of the seven optimized catalysts; and the 17-condition test protocol for CO2/CO hydrogenation to methanol and dimethyl ether at 80 bar in a 16-fold fixed-bed reactor. Catalytic results (conversions, yields) and further characterization (PXRD, N2 sorption, TPR, N2O-RFC, TEM) are reported in the article but not deposited." ;
+	dcterms:title "Copper Gallium Aluminum Mixed Metal Oxides as Alternative Catalyst Candidates for Efficient Conversion of Carbon Dioxide to Methanol and Dimethyl Ether" ;
+	a dcat:Dataset ;
+	prov:wasGeneratedBy coremeta4cat:SYN_6mxw-xsrd_gen2_step1 , coremeta4cat:SYN_6mxw-xsrd_gen2_step2 .
+coremeta4cat:CAT_6mxw-xsrd_G2_450_250 dcterms:title "Cu0.85Al0.15(450)-1wt.%Ga(250)" ;
+	a OBI:0000747 .
+coremeta4cat:CAT_6mxw-xsrd_G2_450_350 dcterms:title "Cu0.85Al0.15(450)-1wt.%Ga(350)" ;
+	a OBI:0000747 .
+coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450 dcterms:title "Cu0.85Al0.15 oxide calcined at 450 C (output of step 1)" , "Cu0.85Al0.15 oxide calcined at 450 C" ;
+	a OBI:0000747 , voc4cat:0007794 .
+coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550 dcterms:title "Cu0.85Al0.15 oxide calcined at 550 C (output of step 1)" , "Cu0.85Al0.15 oxide calcined at 550 C" ;
+	a OBI:0000747 , voc4cat:0007794 .
+coremeta4cat:PREC_6mxw-xsrd_AlNO3 dcterms:title "aluminium nitrate nonahydrate, Al(NO3)3·9H2O (Sigma-Aldrich, 99.9%)" ;
+	a voc4cat:0007794 .
+coremeta4cat:PREC_6mxw-xsrd_CuNO3 dcterms:title "copper(II) nitrate trihydrate, Cu(NO3)2·3H2O (Sigma-Aldrich, 98.8%)" ;
+	a voc4cat:0007794 .
+coremeta4cat:PREC_6mxw-xsrd_GaNO3 dcterms:title "gallium(III) nitrate hydrate, Ga(NO3)3·xH2O (Sigma-Aldrich, 99.9%), aqueous solution" ;
+	a voc4cat:0007794 .
+coremeta4cat:SYN_6mxw-xsrd_gen2_step1 dcterms:title "Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C" ;
+	a "Synthesis" ;
+	prov:generated coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450 , coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550 ;
+	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:SYN_6mxw-xsrd_gen2_step1_method ;
+	coremeta4cat:catalyst_measured_properties "No measured properties of the intermediate oxides are deposited." ;
+	coremeta4cat:nominal_composition "Cu0.85Al0.15 (metal fractions Cu 0.85, Al 0.15)" .
+coremeta4cat:SYN_6mxw-xsrd_gen2_step1_method dcterms:title "automated co-precipitation at pH 9, ageing, freeze-drying, calcination at 450/550 C" ;
+	a voc4cat:0007795 ;
+	coremeta4cat:hasCalcinationTemperatureRange _:c14n0 .
+coremeta4cat:SYN_6mxw-xsrd_gen2_step2 dcterms:title "1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at 250 or 350 C" ;
+	a "Synthesis" ;
+	prov:generated coremeta4cat:CAT_6mxw-xsrd_G2_450_250 , coremeta4cat:CAT_6mxw-xsrd_G2_450_350 ;
+	prov:used coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450 , coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_gen2_step2_method ;
+	coremeta4cat:catalyst_measured_properties "No measured properties of these four samples are deposited." ;
+	coremeta4cat:nominal_composition "Cu0.85Al0.15 mixed oxide with 1 wt% Ga (target loading)" .
+coremeta4cat:SYN_6mxw-xsrd_gen2_step2_method dcterms:title "incipient wetness impregnation with Ga(NO3)3, drying, calcination at 250/350 C" ;
+	a voc4cat:0007028 ;
+	coremeta4cat:hasCalcinationTemperatureRange _:c14n1 ;
+	voc4cat:0008119 "incipient_wetness" .
+_:c14n0 dcterms:description "450 or 550 C" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "823.15"^^xsd:float ;
+	coremeta4cat:minValue "723.15"^^xsd:float .
+_:c14n1 dcterms:description "250 or 350 C" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "623.15"^^xsd:float ;
+	coremeta4cat:minValue "523.15"^^xsd:float .

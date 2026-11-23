@@ -34,6 +34,7 @@ realized_plan:
     12 h in static air oven; calcination: 5 deg C/min ramp to 500 deg C, isothermal
     hold for 4 h in static air, natural cooling'
   id: coremeta4cat:SYNTH_002_coprecipitation_method
+  plan_designator: voc4cat:0007016
 activity_designator: Synthesis
 nominal_composition:
 - 15 wt% NiO/CeO2

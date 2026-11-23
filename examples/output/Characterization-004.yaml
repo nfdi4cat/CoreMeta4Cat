@@ -18,6 +18,7 @@ realized_plan:
     interacting with CeO2) and 400-600 deg C (NiO strongly interacting); CeO2 surface
     reduction: 600-900 deg C'
   id: coremeta4cat:CHAR_004_TPR_method
+  plan_designator: OBI:0000272
 activity_designator: Characterization
 sample_description:
 - NiO/CeO2 calcined at 500 deg C; 50 mg packed in quartz U-tube reactor (4 mm ID);

@@ -54,7 +54,8 @@
       "realized_plan": {
         "title": "co-precipitation",
         "description": "aqueous solutions of Ni(NO3)2 (0.5 M) and Ce(NO3)3 (0.5 M) mixed in stoichiometric ratio; precipitant: 1 M Na2CO3 solution added dropwise at 2 mL/min; target pH 8.5 maintained by feedback addition; mixing: 600 rpm mechanical stirring at 60 deg C for 2 h; aging: 12 h at 60 deg C without stirring; filtration: vacuum filtration through Whatman grade 4 filter paper; washing: 5 successive deionized water washes until conductivity < 5 uS/cm (Na+ removal); drying: 120 deg C for 12 h in static air oven; calcination: 5 deg C/min ramp to 500 deg C, isothermal hold for 4 h in static air, natural cooling",
-        "id": "coremeta4cat:SYNTH_002_coprecipitation_method"
+        "id": "coremeta4cat:SYNTH_002_coprecipitation_method",
+        "plan_designator": "voc4cat:0007016"
       },
       "activity_designator": "Synthesis",
       "nominal_composition": [
@@ -103,7 +104,8 @@
       "realized_plan": {
         "title": "X-ray photoelectron spectroscopy (XPS)",
         "description": "monochromatic Al K-alpha (1486.6 eV); base pressure 5e-9 mbar; survey scan: 0-1350 eV, 1.0 eV step, 50 ms dwell, 3 scans, pass energy 200 eV; high-resolution regions: Ni 2p3/2 (845-895 eV), Ce 3d (875-935 eV), O 1s (525-540 eV), C 1s (280-295 eV); step size 0.1 eV, 20 scans each, pass energy 50 eV; spot size 400 um; lens mode: large area XL; charge compensation: dual-beam flood gun (1 eV electrons + 10 eV Ar+); binding energy scale calibrated to C 1s adventitious carbon at 284.8 eV; Shirley background subtraction; peak fitting: Voigt profiles (CasaXPS v2.3.25); atomic concentrations from Scofield sensitivity factors corrected for transmission function",
-        "id": "coremeta4cat:CHAR_003_XPS_method"
+        "id": "coremeta4cat:CHAR_003_XPS_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization",
       "sample_state": [
@@ -142,7 +144,8 @@
       "realized_plan": {
         "title": "H2 temperature-programmed reduction (H2-TPR)",
         "description": "reducing gas: 5 vol% H2/Ar, total flow 50 mL/min (calibrated Brooks MFC); temperature programme: 50 deg C to 900 deg C at 10 deg C/min; isothermal hold: 30 min at 900 deg C; H2O trap: molecular sieve 3A between reactor outlet and TCD to prevent TCD signal interference; baseline: Ar flow for 30 min at 50 deg C before switching to H2/Ar; H2 consumption quantified by integration of TCD signal, calibrated against CuO reference standard (99.9%, 10 mg, single reduction peak at 310 deg C); NiO reduction: expected peaks at 280-350 deg C (NiO weakly interacting with CeO2) and 400-600 deg C (NiO strongly interacting); CeO2 surface reduction: 600-900 deg C",
-        "id": "coremeta4cat:CHAR_004_TPR_method"
+        "id": "coremeta4cat:CHAR_004_TPR_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Characterization",
       "sample_description": [
@@ -169,7 +172,8 @@
       "realized_plan": {
         "title": "ReaxFF molecular dynamics (NVT, 800 deg C)",
         "description": "force field: ReaxFF C/H/Ni/O parametrisation (van Duin et al. 2012, DOI: 10.1021/jp210484t); ensemble: NVT with Nose-Hoover thermostat (tau = 100 fs) at 800 deg C (1073 K); integration timestep: 0.5 fs; total simulation time: 1 ns (2,000,000 steps); equilibration phase: 200 ps (400,000 steps) discarded; production phase: 800 ps (1,600,000 steps) used for analysis; sampling interval: every 1000 steps (0.5 ps); bond order cutoff: C-O 0.3, Ni-O 0.3 (fix reax/c/bonds); radial distribution functions computed with OVITO using 0.05 Ang bin width; common-neighbour analysis (CNA) to track Ni cluster crystallographic ordering",
-        "id": "coremeta4cat:SIM_002_MD_method"
+        "id": "coremeta4cat:SIM_002_MD_method",
+        "plan_designator": "OBI:0000272"
       },
       "activity_designator": "Simulation",
       "software_package": [
@@ -256,14 +260,8 @@
         {
           "id": "coremeta4cat:REACT_003_FixedBed_DRM",
           "title": "quartz fixed-bed plug-flow reactor (DRM)",
-          "description": "quartz tube reactor, 8 mm inner diameter, 30 cm length; catalyst bed: 200 mg NiO/CeO2 (250-500 um sieve fraction) diluted 1:2 (mass) with inert SiC chips (500 um); thermocouple inserted into catalyst bed centre; backpressure regulator at outlet (1 bar); reactor surrounded by ceramic-fibre furnace with PID temperature controller; mass flow controllers (Brooks SLA5850) for CH4, CO2, N2"
-        }
-      ],
-      "product_identification_method": [
-        {
-          "title": "online dual-column gas chromatography (TCD)",
-          "description": "Shimadzu GC-2014 with TCD detector (Ar carrier gas); column 1: HayeSep D (2 m x 1/8 in) for CO2, CH4 separation; column 2: Molecular Sieve 5A (2 m x 1/8 in) for CO, H2, N2, CH4 separation; 10-port Valco valve for column switching; oven temperature: 50 deg C isothermal; TCD temperature: 250 deg C; injection: automated gas sampling valve, 1 mL loop; analysis cycle: 10 min; calibration: certified gas standard (Air Liquide CRYSTAL mixture: H2 5%, CO 5%, CH4 5%, CO2 10%, N2 balance); CH4 conversion, CO2 conversion, H2/CO ratio, and carbon balance calculated from N2-normalised molar flows",
-          "id": "coremeta4cat:REAC_002_GC_method"
+          "description": "quartz tube reactor, 8 mm inner diameter, 30 cm length; catalyst bed: 200 mg NiO/CeO2 (250-500 um sieve fraction) diluted 1:2 (mass) with inert SiC chips (500 um); thermocouple inserted into catalyst bed centre; backpressure regulator at outlet (1 bar); reactor surrounded by ceramic-fibre furnace with PID temperature controller; mass flow controllers (Brooks SLA5850) for CH4, CO2, N2",
+          "reactor_designator": "voc4cat:0007018"
         }
       ],
       "catalyst_quantity": [
@@ -311,7 +309,15 @@
         "value": 20.0,
         "has_quantity_type": "http://qudt.org/vocab/quantitykind/Time",
         "unit": "https://qudt.org/vocab/unit/HR"
-      }
+      },
+      "product_identification_method": [
+        {
+          "title": "online dual-column gas chromatography (TCD)",
+          "description": "Shimadzu GC-2014 with TCD detector (Ar carrier gas); column 1: HayeSep D (2 m x 1/8 in) for CO2, CH4 separation; column 2: Molecular Sieve 5A (2 m x 1/8 in) for CO, H2, N2, CH4 separation; 10-port Valco valve for column switching; oven temperature: 50 deg C isothermal; TCD temperature: 250 deg C; injection: automated gas sampling valve, 1 mL loop; analysis cycle: 10 min; calibration: certified gas standard (Air Liquide CRYSTAL mixture: H2 5%, CO 5%, CH4 5%, CO2 10%, N2 balance); CH4 conversion, CO2 conversion, H2/CO ratio, and carbon balance calculated from N2-normalised molar flows",
+          "id": "coremeta4cat:REAC_002_GC_method",
+          "plan_designator": "OBI:0000272"
+        }
+      ]
     }
   ],
   "@type": "CatalysisDataset"
