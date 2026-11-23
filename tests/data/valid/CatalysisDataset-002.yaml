@@ -139,7 +139,7 @@ is_about_activity:
   - id: "coremeta4cat:REAC_002_DRM_NiCeO2"
     title:
       - "dry methane reforming catalytic activity test (600-800 deg C, 20 h)"
-    catalyst_quantity:
+    catalyst_mass:
       - value: 0.2
         has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
         unit: https://qudt.org/vocab/unit/GM

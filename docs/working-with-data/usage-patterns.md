@@ -1078,7 +1078,7 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
     	a coremeta4cat:CatalyticReaction , voc4cat:0007001 ;
     	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
-    	coremeta4cat:catalyst_form voc4cat:0007034 ;
+    	voc4cat:0000016 voc4cat:0007034 ;
     	voc4cat:0007009 "thermocatalytic ammonia decomposition" ;
     	voc4cat:0007014 voc4cat:0007001 .
     coremeta4cat:REAC_b74m-m6rp_reactor dcterms:title "quartz glass tubular packed-bed reactor" ;
@@ -1120,7 +1120,7 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
 - Declaring the reactor type restricts its fields: fixed-bed fields on a reactor declared as an autoclave fail validation.
 - Space velocity and results such as conversion or T₁₀/T₅₀ have no field yet; they go into `description` for now.
 
-**Fields used:** [`catalyst_quantity`](../elements/slots/catalyst_quantity.md), [`used_reactor`](../elements/slots/used_reactor.md), `reactor_designator`, [`catalyst_bed_diameter`](../elements/slots/catalyst_bed_diameter.md), [`catalyst_bed_height`](../elements/slots/catalyst_bed_height.md), [`catalyst_dilution_material`](../elements/slots/catalyst_dilution_material.md), [`product_identification_method`](../elements/slots/product_identification_method.md), [`reactor_temperature_range`](../elements/slots/reactor_temperature_range.md), [`experiment_pressure`](../elements/slots/experiment_pressure.md), [`feed_composition_range`](../elements/slots/feed_composition_range.md)
+**Fields used:** `catalyst_mass`, [`used_reactor`](../elements/slots/used_reactor.md), `reactor_designator`, [`catalyst_bed_diameter`](../elements/slots/catalyst_bed_diameter.md), [`catalyst_bed_height`](../elements/slots/catalyst_bed_height.md), [`catalyst_dilution_material`](../elements/slots/catalyst_dilution_material.md), [`product_identification_method`](../elements/slots/product_identification_method.md), [`reactor_temperature_range`](../elements/slots/reactor_temperature_range.md), [`experiment_pressure`](../elements/slots/experiment_pressure.md), [`feed_composition_range`](../elements/slots/feed_composition_range.md)
 
 === "Graph"
 
@@ -1136,7 +1136,7 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
         n8["473.15–873.15 K<br/>«Temperature»"]
         n9["1.0 BAR<br/>«Pressure»"]
         n10["500.0–3000.0 PPM<br/>«MoleFraction»"]
-        n1 -->|catalyst_quantity| n2
+        n1 -->|catalyst_mass| n2
         n3 -->|catalyst_bed_diameter| n4
         n3 -->|catalyst_bed_height| n5
         n3 -->|catalyst_dilution_material| n6
@@ -1168,7 +1168,7 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
     id: coremeta4cat:REAC_b74m-m6rp_NH3_decomposition
     title:
     - NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)
-    catalyst_quantity:
+    catalyst_mass:
     - value: 300
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/MilliGM
@@ -1226,39 +1226,39 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
     coremeta4cat:REAC_b74m-m6rp_NH3_decomposition dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
     	a coremeta4cat:CatalyticReaction ;
     	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
-    	coremeta4cat:catalyst_quantity _:c14n4 ;
     	coremeta4cat:feed_composition_range _:c14n5 ;
-    	coremeta4cat:product_identification_method coremeta4cat:REAC_b74m-m6rp_FTIR ;
-    	voc4cat:0000118 _:c14n2 ;
-    	voc4cat:0007032 _:c14n1 .
+    	voc4cat:0000118 _:c14n3 ;
+    	voc4cat:0000129 coremeta4cat:REAC_b74m-m6rp_FTIR ;
+    	voc4cat:0007032 _:c14n2 ;
+    	voc4cat:0008141 _:c14n1 .
     coremeta4cat:REAC_b74m-m6rp_reactor dcterms:title "quartz glass tubular packed-bed reactor" ;
     	a coremeta4cat:FixedBedReactor ;
     	coremeta4cat:catalyst_bed_diameter _:c14n0 ;
-    	voc4cat:0008217 _:c14n3 ;
+    	voc4cat:0008217 _:c14n4 ;
     	voc4cat:0008218 "silica particles, 700 mg, 120-250 um" .
     _:c14n0 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
     	qudt:unit <https://qudt.org/vocab/unit/CentiM> ;
     	a qudt:Quantity ;
     	prov:value "0.8"^^xsd:float .
-    _:c14n1 dcterms:description "Ramp 473-873 K at 2 K/min; deposited inlet temperature 200-601 C" ;
+    _:c14n1 dcterms:description "Catalyst granulate per test, mixed with 700 mg silica" ;
+    	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+    	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
+    	a qudt:Quantity ;
+    	prov:value "300.0"^^xsd:float .
+    _:c14n2 dcterms:description "Ramp 473-873 K at 2 K/min; deposited inlet temperature 200-601 C" ;
     	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
     	qudt:unit <https://qudt.org/vocab/unit/K> ;
     	a qudt:Quantity ;
     	coremeta4cat:maxValue "873.15"^^xsd:float ;
     	coremeta4cat:minValue "473.15"^^xsd:float .
-    _:c14n2 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+    _:c14n3 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
     	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
     	a qudt:Quantity ;
     	prov:value "1.0"^^xsd:float .
-    _:c14n3 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+    _:c14n4 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
     	qudt:unit <https://qudt.org/vocab/unit/CentiM> ;
     	a qudt:Quantity ;
     	prov:value "1.2"^^xsd:float .
-    _:c14n4 dcterms:description "Catalyst granulate per test, mixed with 700 mg silica" ;
-    	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
-    	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
-    	a qudt:Quantity ;
-    	prov:value "300.0"^^xsd:float .
     _:c14n5 dcterms:description "NH3 at the inlet (500, 1000, 3000 ppm), balance Ar" ;
     	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MoleFraction> ;
     	qudt:unit <https://qudt.org/vocab/unit/PPM> ;

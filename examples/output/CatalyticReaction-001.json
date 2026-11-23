@@ -25,7 +25,7 @@
       "reactor_designator": "voc4cat:0007018"
     }
   ],
-  "catalyst_quantity": [
+  "catalyst_mass": [
     {
       "value": 0.5,
       "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",

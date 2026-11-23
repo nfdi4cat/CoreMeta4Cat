@@ -38,7 +38,7 @@ coremeta4cat:CHAR_003_XPS_method dcterms:description "monochromatic Al K-alpha (
 	dcterms:title "X-ray photoelectron spectroscopy (XPS)" ;
 	a OBI:0000272 .
 coremeta4cat:CHAR_004_TPR_NiO_CeO2 <http://purl.allotrope.org/ontologies/result#AFR_0000317> "thermal conductivity detector (TCD), Ar carrier gas reference channel" ;
-	SIO:000008 _:c14n10 ;
+	SIO:000008 _:c14n9 ;
 	a "Characterization" ;
 	prov:used coremeta4cat:CAT_002_NiO_CeO2 , coremeta4cat:CHAR_004_TPR_method ;
 	prov:wasAssociatedWith coremeta4cat:DEV_005_Micromeritics_AutoChem ;
@@ -81,18 +81,18 @@ coremeta4cat:REACT_003_FixedBed_DRM dcterms:description "quartz tube reactor, 8 
 coremeta4cat:REAC_002_DRM_NiCeO2 RO:0004009 <https://pubchem.ncbi.nlm.nih.gov/compound/280> , <https://pubchem.ncbi.nlm.nih.gov/compound/297> , <https://pubchem.ncbi.nlm.nih.gov/compound/947> ;
 	RXNO:0000425 coremeta4cat:CAT_002_NiCeO2 ;
 	dcterms:title "dry methane reforming catalytic activity test (600-800 deg C, 20 h)" ;
-	SIO:000008 _:c14n4 ;
 	a coremeta4cat:CatalyticReaction ;
 	prov:used coremeta4cat:FEED_004_CH4_DRM , coremeta4cat:FEED_005_CO2_DRM , coremeta4cat:FEED_006_N2_standard ;
 	prov:wasAssociatedWith coremeta4cat:REACT_003_FixedBed_DRM ;
-	coremeta4cat:catalyst_form voc4cat:0007034 ;
-	coremeta4cat:catalyst_quantity _:c14n8 ;
-	coremeta4cat:feed_composition_range _:c14n15 , _:c14n5 ;
-	coremeta4cat:product_identification_method coremeta4cat:REAC_002_GC_method ;
-	voc4cat:0000118 _:c14n9 ;
+	coremeta4cat:feed_composition_range _:c14n15 , _:c14n4 ;
+	voc4cat:0000016 voc4cat:0007034 ;
+	voc4cat:0000111 _:c14n8 ;
+	voc4cat:0000118 _:c14n7 ;
+	voc4cat:0000129 coremeta4cat:REAC_002_GC_method ;
 	voc4cat:0007014 voc4cat:0007001 ;
 	voc4cat:0007032 _:c14n16 ;
-	voc4cat:0007809 _:c14n6 .
+	voc4cat:0007809 _:c14n5 ;
+	voc4cat:0008141 _:c14n10 .
 coremeta4cat:REAC_002_GC_method dcterms:description "Shimadzu GC-2014 with TCD detector (Ar carrier gas); column 1: HayeSep D (2 m x 1/8 in) for CO2, CH4 separation; column 2: Molecular Sieve 5A (2 m x 1/8 in) for CO, H2, N2, CH4 separation; 10-port Valco valve for column switching; oven temperature: 50 deg C isothermal; TCD temperature: 250 deg C; injection: automated gas sampling valve, 1 mL loop; analysis cycle: 10 min; calibration: certified gas standard (Air Liquide CRYSTAL mixture: H2 5%, CO 5%, CH4 5%, CO2 10%, N2 balance); CH4 conversion, CO2 conversion, H2/CO ratio, and carbon balance calculated from N2-normalised molar flows" ;
 	dcterms:title "online dual-column gas chromatography (TCD)" ;
 	a OBI:0000272 .
@@ -106,7 +106,7 @@ coremeta4cat:SIM_002_MD_method dcterms:description "force field: ReaxFF C/H/Ni/O
 coremeta4cat:SLAB_002_CeO2_111_Ni13 dcterms:description "13-atom cuboctahedral Ni cluster on 6-layer CeO2(111) p(4x4) periodic slab; ReaxFF MD model representing Ni/CeO2 metal-support interface" , "6-layer CeO2(111) p(4x4) slab (256 CeO2 formula units, 768 atoms total); bottom 3 layers fixed during MD; 13-atom cuboctahedral Ni cluster adsorbed on three-fold hollow O site; 20 Ang vacuum layer; 3D periodic boundary conditions" ;
 	dcterms:title "CeO2(111) surface slab with supported 13-atom Ni cluster" , "Ni13/CeO2(111) computational model" ;
 	a prov:Entity .
-coremeta4cat:SYNTH_002_NiO_CeO2 SIO:000008 _:c14n7 ;
+coremeta4cat:SYNTH_002_NiO_CeO2 SIO:000008 _:c14n6 ;
 	a "Synthesis" ;
 	prov:generated coremeta4cat:CAT_002_NiO_CeO2 ;
 	prov:used coremeta4cat:PREC_004_Ni_NO3_6H2O , coremeta4cat:PREC_005_Ce_NO3_6H2O , coremeta4cat:PREC_006_Na2CO3 , coremeta4cat:SYNTH_002_coprecipitation_method ;
@@ -124,8 +124,10 @@ _:c14n0 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
 _:c14n1 dcterms:description "first-shell Ni-O coordination distance at Ni cluster / CeO2 interface (peak of Ni-O radial distribution function, production trajectory average)" ;
 	a IAO:0000109 ;
 	prov:value "3.8 Ang" .
-_:c14n10 a voc4cat:0000122 ;
-	prov:value "oxidative pretreatment: 10 vol% O2/Ar (50 mL/min) at 300 deg C for 30 min; cool to 50 deg C under Ar purge" .
+_:c14n10 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+	qudt:unit <https://qudt.org/vocab/unit/GM> ;
+	a qudt:Quantity ;
+	prov:value "0.2"^^xsd:float .
 _:c14n11 dcterms:description "fraction of Ni atoms in direct contact with CeO2 surface (Ni-O bond order > 0.3) averaged over production trajectory; measures cluster wetting / spreading" ;
 	a IAO:0000109 ;
 	prov:value "0.42" .
@@ -152,21 +154,19 @@ _:c14n3 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
 	qudt:unit <https://qudt.org/vocab/unit/GM> ;
 	a qudt:Quantity ;
 	prov:value "8.72"^^xsd:float .
-_:c14n4 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
-	qudt:unit <https://qudt.org/vocab/unit/HR> ;
-	a qudt:Quantity ;
-	prov:value "20.0"^^xsd:float .
-_:c14n5 dcterms:description "stoichiometric DRM: CH4/CO2 = 1:1 (molar)" ;
+_:c14n4 dcterms:description "stoichiometric DRM: CH4/CO2 = 1:1 (molar)" ;
 	a qudt:Quantity .
-_:c14n6 a coremeta4cat:Atmosphere ;
+_:c14n5 a coremeta4cat:Atmosphere ;
 	prov:value "CH4/CO2/N2 = 45:45:10 vol%, total flow 100 mL/min (STP), GHSV = 30000 mL/(g*h)" .
-_:c14n7 a voc4cat:0000122 ;
+_:c14n6 a voc4cat:0000122 ;
 	prov:value "in situ reduction: 5 vol% H2/N2 at 700 deg C for 1 h (10 deg C/min ramp) before DRM tests" .
-_:c14n8 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
-	qudt:unit <https://qudt.org/vocab/unit/GM> ;
-	a qudt:Quantity ;
-	prov:value "0.2"^^xsd:float .
-_:c14n9 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+_:c14n7 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
 	qudt:unit <https://qudt.org/vocab/unit/ATM> ;
 	a qudt:Quantity ;
 	prov:value "1.0"^^xsd:float .
+_:c14n8 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+	qudt:unit <https://qudt.org/vocab/unit/HR> ;
+	a qudt:Quantity ;
+	prov:value "20.0"^^xsd:float .
+_:c14n9 a voc4cat:0000122 ;
+	prov:value "oxidative pretreatment: 10 vol% O2/Ar (50 mL/min) at 300 deg C for 30 min; cool to 50 deg C under Ar purge" .

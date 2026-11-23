@@ -282,7 +282,7 @@ sections:
         keep:
           id: true
           title: true
-          catalyst_quantity: true
+          catalyst_mass: true
           used_reactor:
             id: true
             reactor_designator: true

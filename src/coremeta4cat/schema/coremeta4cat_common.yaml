@@ -445,7 +445,7 @@ slots:
 
   has_experiment_duration:
     is_a: has_duration
-    slot_uri: SIO:000008
+    slot_uri: voc4cat:0000111
     range: Duration
     description: Total duration of the experiment or measurement run.
 

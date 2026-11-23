@@ -302,7 +302,7 @@ def test_inherited_slot_absent_from_workbook_is_not_flagged_for_deletion(indexes
     removable via Excel, so their absence is not a deletion signal."""
     schema = indexes[0]
     own_only = [
-        "catalyst_quantity", "catalyst_type", "catalyst_form",
+        "catalyst_mass", "catalyst_type", "catalyst_form",
         "reaction_name", "reactor_temperature_range", "has_atmosphere",
         "experiment_pressure", "feed_composition_range",
         "has_experiment_duration", "product_identification_method",
@@ -372,7 +372,7 @@ def test_own_slot_absent_from_workbook_is_still_flagged_for_deletion(indexes):
     changes, reporter = _plan(indexes, excel)
 
     assert any(
-        c["type"] == "slot_delete" and c["name"] == "catalyst_quantity"
+        c["type"] == "slot_delete" and c["name"] == "catalyst_mass"
         for c in changes
     )
 
@@ -459,10 +459,10 @@ def test_non_shared_slot_edit_does_not_warn_about_sharing(indexes):
     warning, even though other warnings (e.g. a range change) may still
     legitimately fire."""
     schema = indexes[0]
-    owners = ib._slot_owner_classes(schema, "reactor_working_volume")
-    assert owners == ["CSTR"], "precondition: reactor_working_volume must be single-owner"
+    owners = ib._slot_owner_classes(schema, "residence_time")
+    assert owners == ["CSTR"], "precondition: residence_time must be single-owner"
 
-    excel = {"Reaction": [_slot_row("reactor working volume", uri="FAKE:000002", domain="CSTR")]}
+    excel = {"Reaction": [_slot_row("residence time", uri="FAKE:000002", domain="CSTR")]}
     _, reporter = _plan(indexes, excel)
 
     shared_warnings = [
