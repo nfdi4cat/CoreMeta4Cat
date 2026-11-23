@@ -148,7 +148,9 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../../../working-with-data/">
 <span class="md-ellipsis">
     
@@ -159,6 +161,46 @@
     
   </span>
 </a>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with Data
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../working-with-data/community-datasets/">
+<span class="md-ellipsis">
+    
+  
+    Community datasets
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../working-with-data/usage-patterns/">
+<span class="md-ellipsis">
+    
+  
+    Usage patterns
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../../overview/">
@@ -605,6 +647,8 @@
 
 
 
+      Microreactor : reactor_designator
+
       Microreactor : title
 
       Microreactor : type
@@ -680,20 +724,26 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../../slots/reactor_designator/">reactor_designator</a></td>
+<td>0..1 <br/> <a href="../../types/Uriorcurie/">Uriorcurie</a></td>
+<td>Type designator for ChemicalReactor subclasses: the class_uri of the<br/>concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052<br/>(Autoclave). Needed whenever a reactor uses fields of its subclass; same<br/>rules as plan_designator.</td>
+<td><a href="../ChemicalReactor/">ChemicalReactor</a></td>
+</tr>
+<tr>
 <td><a href="../../slots/alternative_label/">alternative_label</a></td>
-<td>0..1 <br/> <a href="../../types/String/">String</a></td>
+<td>0..1 <br> <a href="../../types/String/">String</a></br></td>
 <td>The slot to specify an alternative label, name or title for a MaterialEntity.</td>
 <td><a href="../MaterialisticMixin/">MaterialisticMixin</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/has_physical_state/">has_physical_state</a></td>
-<td>0..1 <br/> <a href="../../enums/PhysicalStateEnum/">PhysicalStateEnum</a></td>
+<td>0..1 <br> <a href="../../enums/PhysicalStateEnum/">PhysicalStateEnum</a></br></td>
 <td>The slot to specify the physical state of a MaterialEntity.</td>
 <td><a href="../MaterialisticMixin/">MaterialisticMixin</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/has_temperature/">has_temperature</a></td>
-<td>* <em>recommended</em> <br/> <a href="../Temperature/">Temperature</a></td>
+<td>* <em>recommended</em> <br> <a href="../Temperature/">Temperature</a></br></td>
 <td>The slot to provide the Temperature of a MaterialEntity or an Activity, whereas the temperature of the Activity is ontologically rooted in the temperature of the material entities that participate in the Activity.</td>
 <td><a href="../MaterialisticMixin/">MaterialisticMixin</a></td>
 </tr>
@@ -881,6 +931,24 @@
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">reactor_designator</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reactor_designator</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Type</span><span class="nv"> </span><span class="s">designator</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">ChemicalReactor</span><span class="nv"> </span><span class="s">subclasses:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">class_uri</span><span class="nv"> </span><span class="s">of</span>
+<span class="w">      </span><span class="s">the</span>
+
+<span class="w">      </span><span class="s">concrete</span><span class="nv"> </span><span class="s">reactor,</span><span class="nv"> </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">coremeta4cat:FixedBedReactor</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">NCIT:C93052</span>
+
+<span class="w">      </span><span class="s">(Autoclave).</span><span class="nv"> </span><span class="s">Needed</span><span class="nv"> </span><span class="s">whenever</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">uses</span><span class="nv"> </span><span class="s">fields</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">subclass;</span><span class="nv"> </span><span class="s">same</span>
+
+<span class="w">      </span><span class="s">rules</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">plan_designator.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf:type</span>
+<span class="w">    </span><span class="nt">designates_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Microreactor</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
 <span class="w">  </span><span class="nt">alternative_label</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alternative_label</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The slot to specify an alternative label, name or title for a MaterialEntity.</span>
@@ -1275,7 +1343,7 @@
 <div class="md-dialog__inner md-typeset"></div>
 </div>
 <div class="md-progress" data-md-component="progress" role="progressbar"></div>
-<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
 <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
 <script src="../../../javascripts/schema_classmap.js"></script>
 <script src="../../../javascripts/preview_version_selector.js"></script>

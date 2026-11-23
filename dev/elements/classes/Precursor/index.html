@@ -148,7 +148,9 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../../../working-with-data/">
 <span class="md-ellipsis">
     
@@ -159,6 +161,46 @@
     
   </span>
 </a>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with Data
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../working-with-data/community-datasets/">
+<span class="md-ellipsis">
+    
+  
+    Community datasets
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../working-with-data/usage-patterns/">
+<span class="md-ellipsis">
+    
+  
+    Usage patterns
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../../overview/">
@@ -604,7 +646,7 @@
 
 
 
-        Precursor --&gt; "1..* _recommended_" Mass : precursor_quantity
+        Precursor --&gt; "* _recommended_" Mass : precursor_quantity
         click Mass href "../../classes/Mass/"
 
 
@@ -686,7 +728,7 @@
 <tbody>
 <tr>
 <td><a href="../../slots/precursor_quantity/">precursor_quantity</a></td>
-<td>1..* <em>recommended</em> <br/> <a href="../Mass/">Mass</a></td>
+<td>* <em>recommended</em> <br/> <a href="../Mass/">Mass</a></td>
 <td>Quantity of precursor used in synthesis.</td>
 <td>direct</td>
 </tr>
@@ -864,7 +906,7 @@
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">precursor_quantity</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">precursor_quantity</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007794</span>
 </code></pre></div>
 </details>
@@ -879,7 +921,7 @@
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">precursor_quantity</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">precursor_quantity</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">precursor_quantity</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">precursor_quantity</span>
@@ -892,7 +934,6 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Precursor</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mass</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -1320,7 +1361,7 @@
 <div class="md-dialog__inner md-typeset"></div>
 </div>
 <div class="md-progress" data-md-component="progress" role="progressbar"></div>
-<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
 <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
 <script src="../../../javascripts/schema_classmap.js"></script>
 <script src="../../../javascripts/preview_version_selector.js"></script>

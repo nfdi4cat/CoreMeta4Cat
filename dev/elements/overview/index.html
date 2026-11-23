@@ -287,9 +287,33 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../working-with-data/" class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../working-with-data/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -303,7 +327,87 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-data/community-datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community datasets
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../working-with-data/usage-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -423,6 +527,18 @@
   
   
     
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1068,7 +1184,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ChemicalReactor/">ChemicalReactor</a></td>
-<td>Abstract Reactor (chemdcat-ap) subclass representing a catalytic reactor<br>vessel.<br><br>Reactor is more specific than the general Device (AgenticEntity): it restricts<br>the used_reactor relation (is_a: carried_out_by) on Reaction to dedicated<br>reactor equipment. This semantic distinction separates analytical<br>instruments (Device) from reaction vessels (Reactor). ChemicalReactor<br>further specializes chemdcat-ap's generic Reactor for catalysis use cases.<br><br>Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify<br>reactor geometry and operating mode.<br>Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).</td>
+<td>Abstract Reactor (chemdcat-ap) subclass representing a catalytic reactor<br>vessel.<br><br>Reactor is more specific than the general Device (AgenticEntity): it restricts<br>the used_reactor relation (is_a: carried_out_by) on Reaction to dedicated<br>reactor equipment. This semantic distinction separates analytical<br>instruments (Device) from reaction vessels (Reactor). ChemicalReactor<br>further specializes chemdcat-ap's generic Reactor for catalysis use cases.<br><br>Concrete subclasses (FixedBedReactor, CSTR, PlugFlowReactor, …) specify<br>reactor geometry and operating mode.<br>A reactor that uses fields of its subclass declares the subclass with<br>reactor_designator (its class_uri, e.g. coremeta4cat:FixedBedReactor).<br>Linked from Reaction via used_reactor (restricted to range: ChemicalReactor).</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Autoclave/">Autoclave</a></td>
@@ -1288,7 +1404,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalysisPlan/">CatalysisPlan</a></td>
-<td>A CoreMeta4Cat specialization of DCAT-AP-PLUS's Plan that adds a<br>persistent identifier (id). Plan itself (external, dcat-ap-plus) only<br>lists title/description -- every CoreMeta4Cat protocol, technique, and<br>method class needs to be independently citable and cross-referenceable<br>(e.g. linked to from multiple Reaction/Characterization instances that<br>reuse the same protocol), so id is added once here rather than<br>repeated on each of PreparationMethod, CharacterizationTechnique,<br>SimulationMethod, and ProductIdentificationMethod individually.</td>
+<td>A CoreMeta4Cat specialization of DCAT-AP-PLUS's Plan that adds a<br>persistent identifier (id). Plan itself (external, dcat-ap-plus) only<br>lists title/description -- every CoreMeta4Cat protocol, technique, and<br>method class needs to be independently citable and cross-referenceable<br>(e.g. linked to from multiple Reaction/Characterization instances that<br>reuse the same protocol), so id is added once here rather than<br>repeated on each of PreparationMethod, CharacterizationTechnique,<br>SimulationMethod, and ProductIdentificationMethod individually.<br><br>It also adds a type designator (plan_designator) so that a plan can<br>declare which concrete subclass it is (e.g. CoPrecipitation, TPR, DFT)<br>and use that subclass's fields.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CharacterizationTechnique/">CharacterizationTechnique</a></td>
@@ -3190,6 +3306,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Components of the piezoelectric tensor e_ij (C/m2) or d_ij (pC/N),<br>describing the coupling between stress and electric polarization.</td>
 </tr>
 <tr>
+<td><a href="../slots/plan_designator/">plan_designator</a></td>
+<td>Type designator for CatalysisPlan subclasses: the class_uri of the concrete<br>PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,<br>e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),<br>coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:<br>realized_plan ranges over the abstract parent, and without the designator<br>the Python datamodel rejects subclass-specific fields. The value must match<br>the class_uri exactly, including the prefix spelling (voc4cat, not<br>VOC4CAT). In RDF it becomes the plan's rdf:type.</td>
+</tr>
+<tr>
 <td><a href="../slots/plasma_type/">plasma_type</a></td>
 <td>Type of plasma used (e.g. DBD, microwave, RF plasma).</td>
 </tr>
@@ -3328,6 +3448,10 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/reaction_vessel/">reaction_vessel</a></td>
 <td>Type of reaction vessel used (e.g. Schlenk flask, round-bottom flask).</td>
+</tr>
+<tr>
+<td><a href="../slots/reactor_designator/">reactor_designator</a></td>
+<td>Type designator for ChemicalReactor subclasses: the class_uri of the<br>concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052<br>(Autoclave). Needed whenever a reactor uses fields of its subclass; same<br>rules as plan_designator.</td>
 </tr>
 <tr>
 <td><a href="../slots/reactor_diameter/">reactor_diameter</a></td>
@@ -4009,7 +4133,7 @@ slots and enums) and the four subprofile modules.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>

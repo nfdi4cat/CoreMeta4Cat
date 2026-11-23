@@ -1221,6 +1221,54 @@ slots:
     domain_of:
     - CatalysisDataGeneratingActivity
     range: string
+  plan_designator:
+    name: plan_designator
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/plan_designator
+    description: 'Type designator for CatalysisPlan subclasses: the class_uri of the
+      concrete
+
+      PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+
+      e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+
+      coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+
+      realized_plan ranges over the abstract parent, and without the designator
+
+      the Python datamodel rejects subclass-specific fields. The value must match
+
+      the class_uri exactly, including the prefix spelling (voc4cat, not
+
+      VOC4CAT). In RDF it becomes the plan''s rdf:type.'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - rdf:type
+    slot_uri: rdf:type
+    designates_type: true
+    owner: CatalysisPlan
+    domain_of:
+    - CatalysisPlan
+    range: uriorcurie
+  reactor_designator:
+    name: reactor_designator
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/reactor_designator
+    description: 'Type designator for ChemicalReactor subclasses: the class_uri of
+      the
+
+      concrete reactor, e.g. coremeta4cat:FixedBedReactor or NCIT:C93052
+
+      (Autoclave). Needed whenever a reactor uses fields of its subclass; same
+
+      rules as plan_designator.'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
+    mappings:
+    - rdf:type
+    slot_uri: rdf:type
+    designates_type: true
+    owner: ChemicalReactor
+    domain_of:
+    - ChemicalReactor
+    range: uriorcurie
   has_flow_rate:
     name: has_flow_rate
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/has_flow_rate
@@ -5394,7 +5442,7 @@ slots:
     domain_of:
     - CatalyticReaction
     range: ProductIdentificationMethod
-    required: true
+    recommended: true
     multivalued: true
     inlined: true
     inlined_as_list: true
@@ -5433,7 +5481,6 @@ slots:
     domain_of:
     - Simulation
     range: CalculatedProperty
-    required: true
     recommended: true
     multivalued: true
     inlined: true
@@ -9269,7 +9316,6 @@ slots:
     is_usage_slot: true
     usage_slot_name: precursor_quantity
     range: Mass
-    required: true
     recommended: true
     multivalued: true
     inlined: true
@@ -9482,7 +9528,7 @@ slots:
     is_usage_slot: true
     usage_slot_name: product_identification_method
     range: ProductIdentificationMethod
-    required: true
+    recommended: true
     multivalued: true
     inlined: true
     inlined_as_list: true
@@ -13554,7 +13600,14 @@ classes:
 
       repeated on each of PreparationMethod, CharacterizationTechnique,
 
-      SimulationMethod, and ProductIdentificationMethod individually.'
+      SimulationMethod, and ProductIdentificationMethod individually.
+
+
+      It also adds a type designator (plan_designator) so that a plan can
+
+      declare which concrete subclass it is (e.g. CoPrecipitation, TPR, DFT)
+
+      and use that subclass''s fields.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     is_a: Plan
     abstract: true
@@ -13564,6 +13617,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     class_uri: coremeta4cat:CatalysisPlan
   CatalysisDataGeneratingActivity:
     name: CatalysisDataGeneratingActivity
@@ -14228,7 +14282,7 @@ classes:
     slot_usage:
       precursor_quantity:
         name: precursor_quantity
-        required: true
+        recommended: true
     class_uri: voc4cat:0007794
   CatalystSample:
     name: CatalystSample
@@ -14289,6 +14343,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     class_uri: voc4cat:0007016
   Impregnation:
     name: Impregnation
@@ -14309,6 +14364,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - impregnation_type
     - impregnation_duration
     - impregnation_temperature
@@ -14343,6 +14399,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - precipitating_agent
     - precipitating_concentration
     - has_ph_value
@@ -14383,6 +14440,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - hydrolysis_ratio
     - has_aging_duration
     - drying
@@ -14411,6 +14469,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - filling_volume
     - stirrer_type
     - cooling_rate
@@ -14437,6 +14496,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - plasma_type
     - power_input
     - exposure_time
@@ -14464,6 +14524,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - fuel
     - oxidizer
     - fuel_to_oxidizer_ratio
@@ -14492,6 +14553,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - substrate
     - pulse_time
     - purging_duration
@@ -14519,6 +14581,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - deposition_temperature
     - deposition_time
     - precipitating_agent
@@ -14561,6 +14624,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - power
     - microwave_frequency
     - synthesis_temperature
@@ -14587,6 +14651,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - sonication_power
     - sonication_duration
     - has_temperature
@@ -14617,6 +14682,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - flame_type
     - has_flow_rate
     - inlet_system
@@ -14645,6 +14711,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - vessel_volume
     - size_and_material
     - milling_speed
@@ -14675,6 +14742,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - synthesis_pressure
     - synthesis_temperature
     - synthesis_duration
@@ -14699,6 +14767,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - reaction_vessel
     - mixing_device
     - has_stirring_duration
@@ -14737,6 +14806,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - has_calcination_temperature_range
     - has_calcination_dwelling_time
     - number_of_cycles
@@ -14952,6 +15022,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     class_uri: OBI:0000272
   PowderXRD:
     name: PowderXRD
@@ -14970,6 +15041,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - has_two_theta_range
     - step_size
     - has_operation_mode
@@ -14996,6 +15068,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - has_temperature
     - xray_source
     - monochromator
@@ -15018,6 +15091,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - has_operation_mode
     - element_analyzed
     - absorption_edge
@@ -15048,6 +15122,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - total_acquisition_time
     - number_of_scans
     - step_size
@@ -15074,6 +15149,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - primary_energy
     - counting_time
     - resolution
@@ -15094,6 +15170,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - has_operation_mode
     - has_wavenumber_range
     - step_size
@@ -15119,6 +15196,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - adsorption_gas
     - has_atmosphere
     - has_flow_rate
@@ -15145,6 +15223,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - excitation_laser_wavelength
     - excitation_laser_power
     - magnification_setting
@@ -15174,6 +15253,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - acquisition_nucleus
     - solvent
     - irradiation_frequency
@@ -15199,6 +15279,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - has_operation_mode
     - gun_type
     - acceleration_voltage
@@ -15220,6 +15301,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - image_resolution
     - field_emitter
     - gun_type
@@ -15243,6 +15325,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - has_operation_mode
     - has_atmosphere
     - initial_temperature
@@ -15269,6 +15352,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - reducing_gas_composition
     - has_temperature_range
     - has_heating_rate
@@ -15291,6 +15375,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - oxidizing_gas_composition
     - has_temperature_range
     - has_heating_rate
@@ -15311,6 +15396,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - adsorbate_gas
     - degassing_temperature
     - measurement_temperature
@@ -15332,6 +15418,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - element_analyzed
     - calibration_method
     - detection_limit
@@ -15352,6 +15439,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - elements_analyzed
     - combustion_temperature
     - carrier_gas
@@ -15371,6 +15459,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - wavelength_range
     - path_length
     - solvent
@@ -15392,6 +15481,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - emission_range
     - slit_width
     - step_size
@@ -15418,6 +15508,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - lifetime_fitting_model
     - number_of_shots
     - excitation_wavelength
@@ -15442,6 +15533,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - scan_rate
     - scan_potential_range
     - step_size_potential
@@ -15471,6 +15563,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - electrode_configuration
     - ac_frequency
     - ac_dc_mode
@@ -15498,6 +15591,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - solvent
     - has_concentration
     - light_wavelength
@@ -15524,6 +15618,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - has_operation_mode
     - spray_voltage
     - capillary_temperature
@@ -15551,6 +15646,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - carrier_gas
     - carrier_gas_purity
     - inlet_temperature
@@ -15585,6 +15681,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - has_temperature
     - calibration_standard
     - column_type
@@ -15611,6 +15708,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - gradient_program
     - ionization_mode
     - has_temperature
@@ -15722,7 +15820,7 @@ classes:
 
           The abstract stub ProductIdentificationMethod is retained for backward compatibility.'
         range: ProductIdentificationMethod
-        required: true
+        recommended: true
         multivalued: true
         inlined_as_list: true
       has_reaction_step:
@@ -15768,6 +15866,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     class_uri: OBI:0000272
   ChemicalReactor:
     name: ChemicalReactor
@@ -15779,8 +15878,9 @@ classes:
       instruments (Device) from reaction vessels (Reactor). ChemicalReactor\nfurther\
       \ specializes chemdcat-ap's generic Reactor for catalysis use cases.\n\nConcrete\
       \ subclasses (FixedBedReactor, CSTR, PlugFlowReactor, \u2026) specify\nreactor\
-      \ geometry and operating mode.\nLinked from Reaction via used_reactor (restricted\
-      \ to range: ChemicalReactor)."
+      \ geometry and operating mode.\nA reactor that uses fields of its subclass declares\
+      \ the subclass with\nreactor_designator (its class_uri, e.g. coremeta4cat:FixedBedReactor).\n\
+      Linked from Reaction via used_reactor (restricted to range: ChemicalReactor)."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
     exact_mappings:
     - voc4cat:0007018
@@ -15804,6 +15904,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
+    - reactor_designator
     class_uri: voc4cat:0007018
   ElectrochemicalReactor:
     name: ElectrochemicalReactor
@@ -15833,6 +15934,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
+    - reactor_designator
     - has_cathode
     - has_anode
     - cell_operating_mode
@@ -15866,6 +15968,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
+    - reactor_designator
     - stirring_rate
     - residence_time
     - reactor_working_volume
@@ -15900,6 +16003,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
+    - reactor_designator
     - tube_length
     - tube_internal_diameter
     - flow_direction
@@ -15934,6 +16038,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
+    - reactor_designator
     - agitation_type
     - reaction_chamber_material
     - vessel_internal_volume
@@ -15967,6 +16072,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
+    - reactor_designator
     - catalyst_particle_size
     - gas_liquid_ratio
     - agitation_sparging_rate
@@ -16001,6 +16107,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
+    - reactor_designator
     - channel_material
     - channel_dimensions
     - number_of_channels
@@ -16032,6 +16139,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
+    - reactor_designator
     - catalyst_particle_size
     - catalyst_bed_diameter
     - catalyst_bed_volume
@@ -16065,6 +16173,7 @@ classes:
     - has_volume
     - has_density
     - has_pressure
+    - reactor_designator
     - gas_distributor_type
     - bed_expansion_height
     - bubble_size_distribution
@@ -16199,6 +16308,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     class_uri: OBI:0000272
   DFT:
     name: DFT
@@ -16216,6 +16326,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - exchange_correlation_functional
     - energy_cutoff
     - convergence_criteria
@@ -16239,6 +16350,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - force_field
     - simulation_timestep
     - simulation_time
@@ -16261,6 +16373,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - rate_constants
     - solver_type
     - has_temperature
@@ -16285,6 +16398,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
+    - plan_designator
     - interaction_potential
     - number_of_steps
     - has_temperature
@@ -20227,6 +20341,6 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.12.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-11-23T17:29:39'
+source_file_date: '2026-11-23T18:12:55'
 source_file_size: 14821
 

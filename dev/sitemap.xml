@@ -53,10 +53,6 @@
          <lastmod>2026-11-23</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/working-with-data/</loc>
-         <lastmod>2026-11-23</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/a_heros_journey/a_heros_journey/</loc>
          <lastmod>2026-11-23</lastmod>
     </url>
@@ -2301,6 +2297,10 @@
          <lastmod>2026-11-23</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/plan_designator/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/plasma_type/</loc>
          <lastmod>2026-11-23</lastmod>
     </url>
@@ -2438,6 +2438,10 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reaction_vessel/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/reactor_designator/</loc>
          <lastmod>2026-11-23</lastmod>
     </url>
     <url>
@@ -2990,6 +2994,18 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/types/Uriorcurie/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/working-with-data/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/working-with-data/community-datasets/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/working-with-data/usage-patterns/</loc>
          <lastmod>2026-11-23</lastmod>
     </url>
 </urlset>

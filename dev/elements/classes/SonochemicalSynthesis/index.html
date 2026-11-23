@@ -148,7 +148,9 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../../../working-with-data/">
 <span class="md-ellipsis">
     
@@ -159,6 +161,46 @@
     
   </span>
 </a>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with Data
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../working-with-data/community-datasets/">
+<span class="md-ellipsis">
+    
+  
+    Community datasets
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../working-with-data/usage-patterns/">
+<span class="md-ellipsis">
+    
+  
+    Usage patterns
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../../overview/">
@@ -562,6 +604,8 @@
 
       SonochemicalSynthesis : number_of_cycles
 
+      SonochemicalSynthesis : plan_designator
+
       SonochemicalSynthesis : rdf_type
 
 
@@ -715,26 +759,32 @@
 <td><a href="../CatalysisPlan/">CatalysisPlan</a></td>
 </tr>
 <tr>
+<td><a href="../../slots/plan_designator/">plan_designator</a></td>
+<td>0..1 <br/> <a href="../../types/Uriorcurie/">Uriorcurie</a></td>
+<td>Type designator for CatalysisPlan subclasses: the class_uri of the concrete<br/>PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,<br/>e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),<br/>coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:<br/>realized_plan ranges over the abstract parent, and without the designator<br/>the Python datamodel rejects subclass-specific fields. The value must match<br/>the class_uri exactly, including the prefix spelling (voc4cat, not<br/>VOC4CAT). In RDF it becomes the plan's rdf:type.</td>
+<td><a href="../CatalysisPlan/">CatalysisPlan</a></td>
+</tr>
+<tr>
 <td><a href="../../slots/title/">title</a></td>
-<td>0..1 <br/> <a href="../../types/String/">String</a></td>
+<td>0..1 <br> <a href="../../types/String/">String</a></br></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 <td><a href="../Plan/">Plan</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/description/">description</a></td>
-<td>0..1 <br/> <a href="../../types/String/">String</a></td>
+<td>0..1 <br> <a href="../../types/String/">String</a></br></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 <td><a href="../Plan/">Plan</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/type/">type</a></td>
-<td>0..1 <br/> <a href="../DefinedTerm/">DefinedTerm</a></td>
+<td>0..1 <br> <a href="../DefinedTerm/">DefinedTerm</a></br></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 <td><a href="../ClassifierMixin/">ClassifierMixin</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/rdf_type/">rdf_type</a></td>
-<td>0..1 <em>recommended</em> <br/> <a href="../DefinedTerm/">DefinedTerm</a></td>
+<td>0..1 <em>recommended</em> <br> <a href="../DefinedTerm/">DefinedTerm</a></br></td>
 <td>The slot to specify the ontology class that is instantiated by an entity.</td>
 <td><a href="../ClassifierMixin/">ClassifierMixin</a></td>
 </tr>
@@ -1036,6 +1086,32 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Resource</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">plan_designator</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">plan_designator</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Type</span><span class="nv"> </span><span class="s">designator</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">CatalysisPlan</span><span class="nv"> </span><span class="s">subclasses:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">class_uri</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span>
+<span class="w">      </span><span class="s">concrete</span>
+
+<span class="w">      </span><span class="s">PreparationMethod,</span><span class="nv"> </span><span class="s">CharacterizationTechnique</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">SimulationMethod</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">plan</span><span class="nv"> </span><span class="s">is,</span>
+
+<span class="w">      </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">voc4cat:0007795</span><span class="nv"> </span><span class="s">(CoPrecipitation),</span><span class="nv"> </span><span class="s">CHMO:0002908</span><span class="nv"> </span><span class="s">(TPR),</span>
+
+<span class="w">      </span><span class="s">coremeta4cat:DFT.</span><span class="nv"> </span><span class="s">Needed</span><span class="nv"> </span><span class="s">whenever</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">plan</span><span class="nv"> </span><span class="s">uses</span><span class="nv"> </span><span class="s">fields</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">subclass:</span>
+
+<span class="w">      </span><span class="s">realized_plan</span><span class="nv"> </span><span class="s">ranges</span><span class="nv"> </span><span class="s">over</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">abstract</span><span class="nv"> </span><span class="s">parent,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">without</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">designator</span>
+
+<span class="w">      </span><span class="s">the</span><span class="nv"> </span><span class="s">Python</span><span class="nv"> </span><span class="s">datamodel</span><span class="nv"> </span><span class="s">rejects</span><span class="nv"> </span><span class="s">subclass-specific</span><span class="nv"> </span><span class="s">fields.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">must</span><span class="nv"> </span><span class="s">match</span>
+
+<span class="w">      </span><span class="s">the</span><span class="nv"> </span><span class="s">class_uri</span><span class="nv"> </span><span class="s">exactly,</span><span class="nv"> </span><span class="s">including</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">prefix</span><span class="nv"> </span><span class="s">spelling</span><span class="nv"> </span><span class="s">(voc4cat,</span><span class="nv"> </span><span class="s">not</span>
+
+<span class="w">      </span><span class="s">VOC4CAT).</span><span class="nv"> </span><span class="s">In</span><span class="nv"> </span><span class="s">RDF</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">becomes</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">plan</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">rdf:type.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf:type</span>
+<span class="w">    </span><span class="nt">designates_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SonochemicalSynthesis</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisPlan</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">This slot is described in more detail within the class in which it</span>
@@ -1190,7 +1266,7 @@
 <div class="md-dialog__inner md-typeset"></div>
 </div>
 <div class="md-progress" data-md-component="progress" role="progressbar"></div>
-<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
 <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
 <script src="../../../javascripts/schema_classmap.js"></script>
 <script src="../../../javascripts/preview_version_selector.js"></script>

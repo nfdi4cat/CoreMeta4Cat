@@ -289,9 +289,33 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../working-with-data/" class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../working-with-data/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -305,7 +329,87 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../working-with-data/community-datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community datasets
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../working-with-data/usage-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -427,6 +531,18 @@
   
   
     
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -868,11 +984,11 @@ LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.</p>
 </p>
 </details>
 <details open="open">
-<summary><strong>calculated property</strong> (Mandatory, Multivalued)</summary>
+<summary><strong>calculated property</strong> (Recommended, Multivalued)</summary>
 <p><strong>Description:</strong> A property computed by this Simulation, provided as a CalculatedProperty
 instance. Multiple properties may be computed in a single simulation run.</p>
 <p><strong>Data Type:</strong> CalculatedProperty</p>
-<p><strong>Cardinality:</strong>  Mandatory, Multivalued</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/calculated_property"><code>coremeta4cat:calculated_property</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/calculated_property/">calculated_property</a></p>
 <p><strong>Data Type Class Details:</strong></p>
@@ -2927,6 +3043,26 @@ Linked from Simulation via realized_plan.</p>
   </a>
 </p>
 </details>
+<details>
+<summary><strong>plan designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/plan_designator/">plan_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plan_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20SimulationMethod target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -3038,6 +3174,26 @@ calculation. Set to true for systems containing magnetic elements.</p>
   </a>
 </p>
 </details>
+<details>
+<summary><strong>plan designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/plan_designator/">plan_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plan_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20DFT target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -3129,6 +3285,26 @@ thermodynamic quantities are conserved.</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/id/">id</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>plan designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/plan_designator/">plan_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plan_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -3255,6 +3431,26 @@ stiff ODE solver, steady-state Newton method).</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/id/">id</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20id target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>plan designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/plan_designator/">plan_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plan_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -3386,6 +3582,26 @@ Kawasaki, heat-bath algorithm).</p>
   </a>
 </p>
 </details>
+<details>
+<summary><strong>plan designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
+e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
+coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
+realized_plan ranges over the abstract parent, and without the designator
+the Python datamodel rejects subclass-specific fields. The value must match
+the class_uri exactly, including the prefix spelling (voc4cat, not
+VOC4CAT). In RDF it becomes the plan's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/plan_designator/">plan_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20plan_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20MonteCarlo target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -3456,7 +3672,7 @@ Kawasaki, heat-bath algorithm).</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
