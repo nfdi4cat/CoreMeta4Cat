@@ -1,0 +1,203 @@
+# .github/workflows/deploy_docs_preview.yaml
+#
+# Deploy / remove documentation previews (step 2 of 2)
+# =====================================================
+# - When "Preview documentation build" (test_pages_build.yaml) succeeds for
+#   a PR, publish its `docs-preview` artifact to gh-pages under
+#   pr-preview/pr-<number>/ and comment the URL on the PR.
+# - When a PR is closed, remove its preview again.
+#
+# Security: this workflow has write access, so it must never check out or
+# run code from a PR (https://securitylab.github.com/resources/
+# github-actions-preventing-pwn-requests/). It only checks out branches of
+# this repository (never the PR) and treats the artifact as untrusted data:
+#   * the PR number in the artifact is only used after the GitHub API
+#     confirms that this PR's head is exactly the commit that was built;
+#   * a fork PR is only published if its author is an owner, member or
+#     collaborator (TRUSTED_ASSOCIATIONS below), because previews are served
+#     from the organisation's GitHub Pages domain. Other fork PRs get a
+#     comment pointing to the artifact of the build run instead.
+#
+# workflow_run and pull_request_target always use the workflow file from
+# the default branch, so changes to this file only take effect once they
+# are merged to main.
+---
+name: Deploy documentation preview
+
+on:  # yamllint disable-line rule:truthy
+  workflow_run:
+    # Must match `name:` in test_pages_build.yaml.
+    workflows: ["Preview documentation build"]
+    types: [completed]
+  pull_request_target:
+    types: [closed]
+    # Same filter as test_pages_build.yaml: such PRs never get a preview.
+    paths-ignore:
+      - "docs/assets/coremeta4cat_vocabulary.xlsx"
+
+# One deploy/remove at a time per PR branch.
+concurrency:
+  # yamllint disable-line rule:line-length
+  group: docs-preview-${{ github.event.workflow_run.head_repository.full_name || github.event.pull_request.head.repo.full_name }}-${{ github.event.workflow_run.head_branch || github.event.pull_request.head.ref }}
+  cancel-in-progress: false
+
+permissions: {}
+
+env:
+  # Author associations whose fork PRs get a published preview. PRs from
+  # branches of this repository are always published.
+  TRUSTED_ASSOCIATIONS: "OWNER MEMBER COLLABORATOR"
+
+jobs:
+  deploy:
+    name: Deploy preview
+    if: >
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read         # download the artifact of the build run
+      contents: write       # push the preview to gh-pages
+      pull-requests: write  # comment the preview URL on the PR
+    steps:
+      # Trusted code only: the default branch of this repository.
+      # https://github.com/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      # https://github.com/actions/download-artifact
+      - name: Download documentation preview
+        uses: actions/download-artifact@v8
+        with:
+          name: docs-preview
+          path: _preview
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ github.token }}
+
+      - name: Verify pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILT_SHA: ${{ github.event.workflow_run.head_sha }}
+          BUILT_REPO: ${{ github.event.workflow_run.head_repository.full_name }}
+        run: |
+          # The artifact was produced by PR code: validate before use.
+          pr_number="$(head -c 20 _preview/pr_number 2>/dev/null \
+            | tr -d '[:space:]' || true)"
+          if ! [[ "$pr_number" =~ ^[0-9]+$ ]]; then
+            echo "::error::The artifact contains no valid PR number."
+            exit 1
+          fi
+
+          if ! pr_info="$(gh api "repos/$GITHUB_REPOSITORY/pulls/$pr_number" \
+            --jq '[.state, .head.sha, (.head.repo.full_name // "-"),
+                   .author_association] | @tsv')"; then
+            echo "::error::Could not look up PR #$pr_number."
+            exit 1
+          fi
+          IFS=$'\t' read -r state head_sha head_repo association \
+            <<< "$pr_info"
+
+          result=deploy
+          if [ "$state" != "open" ]; then
+            result=skip
+            echo "::notice::PR #$pr_number is $state; nothing to deploy."
+          elif [ "$head_sha" != "$BUILT_SHA" ] \
+            || [ "$head_repo" != "$BUILT_REPO" ]; then
+            result=skip
+            echo "::notice::PR #$pr_number no longer points at the built" \
+              "commit ${BUILT_SHA:0:7}; the build of its current head" \
+              "deploys the preview."
+          elif [ "$head_repo" != "$GITHUB_REPOSITORY" ] \
+            && [[ " $TRUSTED_ASSOCIATIONS " != *" $association "* ]]; then
+            result=untrusted
+            echo "::notice::Not publishing PR #$pr_number: fork PR by an" \
+              "author with association $association."
+          fi
+
+          echo "number=$pr_number" >> "$GITHUB_OUTPUT"
+          echo "result=$result" >> "$GITHUB_OUTPUT"
+
+      # https://github.com/rossjrw/pr-preview-action
+      - name: Deploy preview
+        id: preview
+        if: steps.pr.outputs.result == 'deploy'
+        uses: rossjrw/pr-preview-action@v1.8.2
+        with:
+          action: deploy
+          pr-number: ${{ steps.pr.outputs.number }}
+          source-dir: _preview/site/
+          preview-branch: gh-pages
+          # The action can't find the PR of a workflow_run event by itself,
+          # so the comment is posted by the next step.
+          comment: false
+          deploy-commit-message: >-
+            Deploy preview for PR ${{ steps.pr.outputs.number }} 🛫
+
+      # Comment lines stay unwrapped: GitHub renders newlines as line breaks.
+      # yamllint disable rule:line-length
+
+      # Same header as pr-preview-action uses, so one comment is updated.
+      # https://github.com/marocchino/sticky-pull-request-comment
+      - name: Comment preview URL
+        if: steps.pr.outputs.result == 'deploy'
+        uses: marocchino/sticky-pull-request-comment@v3.0.5
+        with:
+          header: pr-preview
+          number: ${{ steps.pr.outputs.number }}
+          message: |
+            :books: **Documentation preview:** ${{ steps.preview.outputs.preview-url }}
+
+            Built from ${{ github.event.workflow_run.head_sha }} ([build run](${{ github.event.workflow_run.html_url }})). It is updated on every push and removed when this PR is closed. GitHub Pages may need a minute to serve a new version.
+
+      - name: Comment why there is no preview
+        if: steps.pr.outputs.result == 'untrusted'
+        uses: marocchino/sticky-pull-request-comment@v3.0.5
+        with:
+          header: pr-preview
+          number: ${{ steps.pr.outputs.number }}
+          message: |
+            :books: Documentation previews are published automatically only for PRs from members and collaborators of this repository.
+
+            The built site of ${{ github.event.workflow_run.head_sha }} can be downloaded as the `docs-preview` artifact of the [build run](${{ github.event.workflow_run.html_url }}).
+
+      # yamllint enable rule:line-length
+
+  remove:
+    name: Remove preview
+    if: github.event_name == 'pull_request_target'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write       # remove the preview from gh-pages
+      pull-requests: write  # update the preview comment
+    steps:
+      - name: Check for an existing preview
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if gh api --silent \
+            "repos/$GITHUB_REPOSITORY/contents/pr-preview/pr-$PR_NUMBER?ref=gh-pages"
+          then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "No preview of PR #$PR_NUMBER on gh-pages; nothing to remove."
+          fi
+
+      # On pull_request_target this checks out the PR's base branch of this
+      # repository, NOT the PR's code. Never change that.
+      # https://github.com/actions/checkout
+      - name: Checkout
+        if: steps.check.outputs.exists == 'true'
+        uses: actions/checkout@v7.0.1
+
+      # https://github.com/rossjrw/pr-preview-action
+      - name: Remove preview
+        if: steps.check.outputs.exists == 'true'
+        uses: rossjrw/pr-preview-action@v1.8.2
+        with:
+          action: remove
+          preview-branch: gh-pages

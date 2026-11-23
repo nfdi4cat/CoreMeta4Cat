@@ -1,3 +1,20 @@
+# .github/workflows/test_pages_build.yaml
+#
+# Preview documentation build (step 1 of 2)
+# ==========================================
+# Builds the documentation of a pull request and uploads it as the
+# `docs-preview` artifact. Publishing it is done by deploy_docs_preview.yaml,
+# which is triggered when this workflow completes.
+#
+# This workflow runs the PR's code (just, mkdocs), so it only gets a
+# read-only token. That is also all a PR from a fork can get, which is why
+# it runs for every PR, forks included. The write access needed to push to
+# gh-pages and to comment on the PR lives in deploy_docs_preview.yaml, which
+# never executes PR code.
+#
+# deploy_docs_preview.yaml refers to this workflow by its `name:` below;
+# keep both in sync when renaming it.
+---
 name: Preview documentation build
 
 on:  # yamllint disable-line rule:truthy
@@ -6,24 +23,25 @@ on:  # yamllint disable-line rule:truthy
       - opened
       - reopened
       - synchronize
+    # The auto-PRs from update_excel.yaml only change the generated
+    # workbook; they don't need a documentation preview.
+    paths-ignore:
+      - "docs/assets/coremeta4cat_vocabulary.xlsx"
 
 env:
   CLICOLOR: 1
 
-concurrency: preview-${{ github.ref }}
+# One build per PR; a new push cancels the build of the previous commit.
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions: {}
 
 jobs:
-  run:
-    # Don't run for PRs from forks
-    if: github.event.pull_request.head.repo.full_name == github.repository
-    # Grant GITHUB_TOKEN the permissions required to make a gh-pages deployment
+  build:
     permissions:
-      contents: write  # to let mkdocs write the new docs
-      pages: write     # to deploy to Pages
-      id-token: write  # allow to generate an OpenID Connect (OIDC) token
-      pull-requests: write  # add comment on the PR with the preview URL
+      contents: read  # check out the PR
     runs-on: ubuntu-latest
     steps:
       # https://github.com/actions/checkout
@@ -31,6 +49,7 @@ jobs:
         uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       # https://github.com/actions/setup-python
       - name: Set up Python 3
@@ -61,9 +80,22 @@ jobs:
           uv run mkdocs build -d site
           touch site/.nojekyll
 
-      # https://github.com/rossjrw/pr-preview-action
-      - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1.8.2
+      # deploy_docs_preview.yaml can't see which PR a fork's run belongs to,
+      # so the number travels with the artifact. It is verified there before
+      # it is used.
+      - name: Record PR number
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: echo "$PR_NUMBER" > pr_number
+
+      # https://github.com/actions/upload-artifact
+      - name: Upload documentation preview
+        uses: actions/upload-artifact@v7
         with:
-          source-dir: site/
-          preview-branch: gh-pages
+          name: docs-preview
+          path: |
+            site/
+            pr_number
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
