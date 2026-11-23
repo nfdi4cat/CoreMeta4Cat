@@ -20,16 +20,75 @@ env:
 permissions: {}
 
 jobs:
+  python-matrix:
+    name: Generate Python version matrix
+    runs-on: ubuntu-latest
+    permissions: {}
+
+    outputs:
+      versions: ${{ steps.python.outputs.versions }}
+
+    steps:
+      - name: Check out main branch
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Install packaging
+        run: python -m pip install packaging
+
+      - name: Extract supported Python versions
+        id: python
+        run: |
+          python - <<'PY'
+          import json
+          import tomllib
+          from pathlib import Path
+
+          from packaging.specifiers import SpecifierSet
+          from packaging.version import Version
+
+          with Path("pyproject.toml").open("rb") as f:
+              pyproject = tomllib.load(f)
+
+          requires_python = pyproject["project"]["requires-python"]
+
+          candidates = [
+              Version(f"3.{minor}")
+              for minor in range(8, 20)
+          ]
+
+          versions = [
+              str(version)
+              for version in candidates
+              if version in SpecifierSet(requires_python)
+          ]
+
+          if not versions:
+              raise SystemExit(
+                  f"No supported Python versions found for {requires_python}"
+              )
+
+          print(f"Supported Python versions: {versions}")
+
+          with open("$GITHUB_OUTPUT", "a") as output:
+              output.write(f"versions={json.dumps(versions)}\n")
+          PY
+
   test:
 
     runs-on: ubuntu-latest
 
     permissions:
       contents: read  # needed alongside actions/upload-artifact below
+      
+    needs: python-matrix
 
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+        python-version: ${{ fromJSON(needs.python-matrix.outputs.versions) }}
       fail-fast: false
 
     steps:
