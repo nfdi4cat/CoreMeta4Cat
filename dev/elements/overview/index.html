@@ -1880,6 +1880,10 @@ slots and enums) and the four subprofile modules.</p>
 <td>Mass spectrometer acquisition mode (e.g. full scan, SIM, SRM).</td>
 </tr>
 <tr>
+<td><a href="../slots/acquisition_nucleus/">acquisition_nucleus</a></td>
+<td>NMR-active nucleus observed (e.g. 1H, 13C, 31P).</td>
+</tr>
+<tr>
 <td><a href="../slots/activation_energy/">activation_energy</a></td>
 <td>Activation energy for each elementary step in the reaction mechanism. Used here as an input parameter of the microkinetic model; where the barrier was computed, report it via the TransitionState calculated property and reference it here.</td>
 </tr>
@@ -2333,7 +2337,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td><a href="../slots/energy_correction_type/">energy_correction_type</a></td>
-<td>Level at which the reported energies are given: electronic energy (ΔE), zero-point-energy corrected, enthalpy, or Gibbs free energy (ΔG). For free energies, state the temperature and pressures used.</td>
+<td>Level at which the reported energies are given: electronic energy (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G). For free energies, state the temperature and pressures used.</td>
 </tr>
 <tr>
 <td><a href="../slots/energy_cutoff/">energy_cutoff</a></td>
@@ -3096,10 +3100,6 @@ slots and enums) and the four subprofile modules.</p>
 <td>This slot is described in more detail within the class in which it is used.</td>
 </tr>
 <tr>
-<td><a href="../slots/nucleus/">nucleus</a></td>
-<td>NMR-active nucleus observed (e.g. 1H, 13C, 31P).</td>
-</tr>
-<tr>
 <td><a href="../slots/number_of_atoms/">number_of_atoms</a></td>
 <td>Number of atoms in the simulation cell or supercell.</td>
 </tr>
@@ -3313,11 +3313,11 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td><a href="../slots/reaction_energy/">reaction_energy</a></td>
-<td>Reaction energy of the elementary step, ΔE = E(final state) - E(initial state).</td>
+<td>Reaction energy of the elementary step, Delta_E = E(final state) - E(initial state).</td>
 </tr>
 <tr>
 <td><a href="../slots/reaction_free_energy/">reaction_free_energy</a></td>
-<td>Gibbs free energy change of the elementary step, ΔG, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.</td>
+<td>Gibbs free energy change of the elementary step, Delta_G, including ZPE, enthalpic and entropic corrections at the stated temperature and pressures.</td>
 </tr>
 <tr>
 <td><a href="../slots/reaction_name/">reaction_name</a></td>
@@ -3429,7 +3429,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td><a href="../slots/scaling_relation/">scaling_relation</a></td>
-<td>Linear scaling relation between adsorption energies (e.g. "ΔE_OH = 0.50 ΔE_O + 0.10 eV").</td>
+<td>Linear scaling relation between adsorption energies (e.g. "Delta_E_OH = 0.50 Delta_E_O + 0.10 eV").</td>
 </tr>
 <tr>
 <td><a href="../slots/scan_potential_range/">scan_potential_range</a></td>

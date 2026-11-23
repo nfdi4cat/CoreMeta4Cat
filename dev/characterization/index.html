@@ -2515,23 +2515,23 @@ this subprofile.</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/NMRSpectroscopy/">NMRSpectroscopy</a></p>
 <p><strong>Slots</strong></p>
 <details>
-<summary><strong>nucleus</strong> (Optional, Multivalued)</summary>
+<summary><strong>acquisition nucleus</strong> (Mandatory, Multivalued)</summary>
 <p><strong>Description:</strong> NMR-active nucleus observed (e.g. 1H, 13C, 31P).</p>
 <p><strong>Data Type:</strong> string</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/nucleus"><code>coremeta4cat:nucleus</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/slots/nucleus/">nucleus</a></p>
+<p><strong>Cardinality:</strong>  Mandatory, Multivalued</p>
+<p><strong>CURIE:</strong> <a href="http://nmrML.org/nmrCV#NMR:1400083"><code>NMR:1400083</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/acquisition_nucleus/">acquisition_nucleus</a></p>
 <p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20nucleus target="_blank" class="md-button md-button--primary">
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20acquisition_nucleus target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
 </details>
 <details>
-<summary><strong>solvent</strong> (Optional, Multivalued)</summary>
+<summary><strong>solvent</strong> (Recommended, Multivalued)</summary>
 <p><strong>Description:</strong> Solvent used in a process or sample preparation.</p>
 <p><strong>Data Type:</strong> ChemicalEntity</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007246"><code>voc4cat:0007246</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/solvent/">solvent</a></p>
 <p><strong>Data Type Class Details:</strong></p>
@@ -2599,7 +2599,7 @@ this subprofile.</p>
 <p><strong>Description:</strong> NMR sample tube type (e.g. 5mm standard, Shigemi tube).</p>
 <p><strong>Data Type:</strong> string</p>
 <p><strong>Cardinality:</strong>  Optional, Multivalued</p>
-<p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/coremeta4cat/nmr_sample_tube"><code>coremeta4cat:nmr_sample_tube</code></a></p>
+<p><strong>CURIE:</strong> <a href="http://nmrML.org/nmrCV#NMR:1400132"><code>NMR:1400132</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/nmr_sample_tube/">nmr_sample_tube</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20nmr_sample_tube target="_blank" class="md-button md-button--primary">
@@ -3578,10 +3578,10 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 </p>
 </details>
 <details>
-<summary><strong>solvent</strong> (Optional, Multivalued)</summary>
+<summary><strong>solvent</strong> (Recommended, Multivalued)</summary>
 <p><strong>Description:</strong> Solvent used in a process or sample preparation.</p>
 <p><strong>Data Type:</strong> ChemicalEntity</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007246"><code>voc4cat:0007246</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/solvent/">solvent</a></p>
 <p><strong>Data Type Class Details:</strong></p>
@@ -4321,10 +4321,10 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/DynamicLightScattering/">DynamicLightScattering</a></p>
 <p><strong>Slots</strong></p>
 <details>
-<summary><strong>solvent</strong> (Optional, Multivalued)</summary>
+<summary><strong>solvent</strong> (Recommended, Multivalued)</summary>
 <p><strong>Description:</strong> Solvent used in a process or sample preparation.</p>
 <p><strong>Data Type:</strong> ChemicalEntity</p>
-<p><strong>Cardinality:</strong>  Optional, Multivalued</p>
+<p><strong>Cardinality:</strong>  Recommended, Multivalued</p>
 <p><strong>CURIE:</strong> <a href="https://w3id.org/nfdi4cat/voc4cat_0007246"><code>voc4cat:0007246</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/solvent/">solvent</a></p>
 <p><strong>Data Type Class Details:</strong></p>

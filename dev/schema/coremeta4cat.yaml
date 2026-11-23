@@ -826,9 +826,9 @@ slots:
   energy_correction_type:
     name: energy_correction_type
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/energy_correction_type
-    description: "Level at which the reported energies are given: electronic energy\
-      \ (\u0394E), zero-point-energy corrected, enthalpy, or Gibbs free energy (\u0394\
-      G). For free energies, state the temperature and pressures used."
+    description: 'Level at which the reported energies are given: electronic energy
+      (Delta_E), zero-point-energy corrected, enthalpy, or Gibbs free energy (Delta_G).
+      For free energies, state the temperature and pressures used.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat
     mappings:
     - coremeta4cat:energy_correction_type
@@ -901,8 +901,8 @@ slots:
   reaction_energy:
     name: reaction_energy
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/reaction_energy
-    description: "Reaction energy of the elementary step, \u0394E = E(final state)\
-      \ - E(initial state)."
+    description: Reaction energy of the elementary step, Delta_E = E(final state)
+      - E(initial state).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat
     mappings:
     - coremeta4cat:reaction_energy
@@ -918,8 +918,8 @@ slots:
   reaction_free_energy:
     name: reaction_free_energy
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/reaction_free_energy
-    description: "Gibbs free energy change of the elementary step, \u0394G, including\
-      \ ZPE, enthalpic and entropic corrections at the stated temperature and pressures."
+    description: Gibbs free energy change of the elementary step, Delta_G, including
+      ZPE, enthalpic and entropic corrections at the stated temperature and pressures.
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat
     mappings:
     - coremeta4cat:reaction_free_energy
@@ -1175,8 +1175,8 @@ slots:
   scaling_relation:
     name: scaling_relation
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/scaling_relation
-    description: "Linear scaling relation between adsorption energies (e.g. \"\u0394\
-      E_OH = 0.50 \u0394E_O + 0.10 eV\")."
+    description: Linear scaling relation between adsorption energies (e.g. "Delta_E_OH
+      = 0.50 Delta_E_O + 0.10 eV").
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat
     mappings:
     - coremeta4cat:scaling_relation
@@ -3775,19 +3775,20 @@ slots:
     recommended: true
     multivalued: true
     inlined_as_list: true
-  nucleus:
-    name: nucleus
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/nucleus
+  acquisition_nucleus:
+    name: acquisition_nucleus
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/acquisition_nucleus
     description: NMR-active nucleus observed (e.g. 1H, 13C, 31P).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:nucleus
+    - NMR:1400083
     is_a: has_qualitative_attribute
-    slot_uri: coremeta4cat:nucleus
+    slot_uri: NMR:1400083
     owner: NMRSpectroscopy
     domain_of:
     - NMRSpectroscopy
     range: string
+    required: true
     recommended: true
     multivalued: true
     inlined_as_list: true
@@ -3831,9 +3832,9 @@ slots:
     description: NMR sample tube type (e.g. 5mm standard, Shigemi tube).
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     mappings:
-    - coremeta4cat:nmr_sample_tube
+    - NMR:1400132
     is_a: has_qualitative_attribute
-    slot_uri: coremeta4cat:nmr_sample_tube
+    slot_uri: NMR:1400132
     owner: NMRSpectroscopy
     domain_of:
     - NMRSpectroscopy
@@ -6766,9 +6767,9 @@ slots:
       calculated band gap.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     mappings:
-    - VOC4CAT:0005056
+    - voc4cat:0005056
     is_a: has_qualitative_attribute
-    slot_uri: VOC4CAT:0005056
+    slot_uri: voc4cat:0005056
     owner: BandGap
     domain_of:
     - BandGap
@@ -15173,7 +15174,7 @@ classes:
     - ClassifierMixin_type
     - rdf_type
     - id
-    - nucleus
+    - acquisition_nucleus
     - solvent
     - irradiation_frequency
     - has_temperature
@@ -20226,6 +20227,6 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.12.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-11-20T15:35:59'
-source_file_size: 14797
+source_file_date: '2026-11-23T13:45:11'
+source_file_size: 14821
 
