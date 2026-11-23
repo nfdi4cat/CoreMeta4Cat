@@ -53,10 +53,6 @@
          <lastmod>2026-11-23</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/working-with-data/</loc>
-         <lastmod>2026-11-23</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/a_heros_journey/a_heros_journey/</loc>
          <lastmod>2026-11-23</lastmod>
     </url>
@@ -2998,6 +2994,18 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/elements/types/Uriorcurie/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/working-with-data/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/working-with-data/community-datasets/</loc>
+         <lastmod>2026-11-23</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/working-with-data/usage-patterns/</loc>
          <lastmod>2026-11-23</lastmod>
     </url>
 </urlset>
