@@ -14,6 +14,7 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 <div class="cm4c-classmap" data-root="Synthesis"
      data-src="../assets/schema_graph.json"
+     data-sunburst="../assets/metadata_synthesis_hierarchy.html"
      data-site="../"
      data-elements="../elements/classes/">
 <p>The interactive class map needs JavaScript. The full field list follows below.</p>

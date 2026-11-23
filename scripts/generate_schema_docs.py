@@ -503,8 +503,11 @@ def generate_markdown_for_main_class(schema: dict, main_class: str, output_file:
 
     # Interactive class map, drawn by docs/javascripts/schema_classmap.js from
     # docs/assets/schema_graph.json (written by main() via schema_graph.py).
+    # data-sunburst offers the sunburst chart from generate_charts.py as the
+    # alternative view.
     md += (f'<div class="cm4c-classmap" data-root="{main_class}"\n'
            f'     data-src="../assets/schema_graph.json"\n'
+           f'     data-sunburst="../assets/metadata_{display_name.lower()}_hierarchy.html"\n'
            f'     data-site="../"\n'
            f'     data-elements="../elements/classes/">\n'
            f'<p>The interactive class map needs JavaScript. '

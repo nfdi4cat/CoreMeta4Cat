@@ -55,7 +55,7 @@
 .cm4c-picker { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.6em; width: 100%; text-align: left; padding: 0.35em 0.6em; border: 1px solid var(--cm4c-line-strong); border-radius: 4px; background: var(--cm4c-bg); cursor: pointer; font-weight: 600; }
 .cm4c-picker:hover { border-color: var(--cm4c-accent); }
 .cm4c-caret { color: var(--cm4c-muted); flex: none; }
-.cm4c-picker[aria-expanded="true"] .cm4c-caret, .cm4c-enum-btn[aria-expanded="true"] .cm4c-caret { display: inline-block; transform: rotate(180deg); }
+.cm4c-picker[aria-expanded="true"] .cm4c-caret, .cm4c-toggle[aria-expanded="true"] .cm4c-caret { display: inline-block; transform: rotate(180deg); }
 .cm4c-picklist { border: 1px solid var(--cm4c-line-strong); border-radius: 4px; background: var(--cm4c-bg); padding: 0.3em; display: grid; gap: 0.3em; }
 .cm4c-filter { font: inherit; width: 100%; box-sizing: border-box; padding: 0.3em 0.5em; border: 1px solid var(--cm4c-line-strong); border-radius: 3px; background: var(--cm4c-bg); color: var(--cm4c-fg); }
 .cm4c-picks { display: grid; max-height: 17em; overflow-y: auto; }
@@ -86,9 +86,9 @@
 .cm4c-go { cursor: pointer; }
 .cm4c-go:hover, .cm4c-row.cm4c-hl { background: var(--cm4c-accent-soft); }
 
-/* allowed values: a button that unfolds a wrapping list under the row */
-.cm4c-enum-btn { display: inline-flex; gap: 0.4em; align-items: center; padding: 0.05em 0.45em; border: 1px solid var(--cm4c-line-strong); border-radius: 3px; background: var(--cm4c-bg); cursor: pointer; font-size: 0.84em; white-space: nowrap; }
-.cm4c-enum-btn:hover { border-color: var(--cm4c-accent); }
+/* fold-out buttons: allowed values under a row, classes in a used-by group */
+.cm4c-toggle { display: inline-flex; gap: 0.4em; align-items: center; justify-self: start; padding: 0.05em 0.45em; border: 1px solid var(--cm4c-line-strong); border-radius: 3px; background: var(--cm4c-bg); cursor: pointer; font-size: 0.84em; white-space: nowrap; }
+.cm4c-toggle:hover { border-color: var(--cm4c-accent); }
 .cm4c-classmap .cm4c-enum { grid-column: 2 / -1; list-style: none; margin: 0.2em 0 0.15em; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25em; }
 .cm4c-classmap .cm4c-enum li { margin: 0; padding: 0 0.55em; border: 1px solid var(--cm4c-line); border-radius: 999px; background: var(--cm4c-sunken); font-size: 0.84em; }
 
@@ -110,6 +110,17 @@
 .cm4c-target .cm4c-head { border-bottom: 0; }
 .cm4c-user { padding: 0.45em 0.85em; }
 .cm4c-user small { display: block; color: var(--cm4c-muted); font-family: var(--cm4c-mono); font-size: 0.84em; }
+.cm4c-group, .cm4c-group:hover { cursor: default; border-color: var(--cm4c-line-strong); display: grid; gap: 0.35em; }
+.cm4c-members { display: grid; }
+.cm4c-member { display: block; width: 100%; text-align: left; padding: 0.15em 0.4em; margin: 0 -0.4em; border: 0; border-radius: 3px; background: none; color: var(--cm4c-accent); cursor: pointer; overflow-wrap: anywhere; }
+.cm4c-member:hover { background: var(--cm4c-accent-soft); }
+
+/* class map / sunburst switch */
+.cm4c-views { display: inline-flex; margin-bottom: 0.9em; border: 1px solid var(--cm4c-line-strong); border-radius: 5px; overflow: hidden; }
+.cm4c-views button { padding: 0.3em 0.85em; border: 0; border-right: 1px solid var(--cm4c-line-strong); background: var(--cm4c-bg); cursor: pointer; }
+.cm4c-views button:last-child { border-right: 0; }
+.cm4c-views button[aria-pressed="true"] { background: var(--cm4c-accent-soft); color: var(--cm4c-accent); font-weight: 700; }
+.cm4c-chart iframe { display: block; width: 100%; height: min(78vh, 760px); min-height: 460px; border: 1px solid var(--cm4c-line-strong); border-radius: 6px; background: #ffffff; }
 .cm4c-open { display: block; padding: 0 0.85em 0.6em; color: var(--cm4c-accent); font-size: 0.88em; }
 .cm4c-muted { color: var(--cm4c-muted); }
 .cm4c-classmap .cm4c-pad { padding: 0 0.85em 0.7em; font-size: 0.9em; }

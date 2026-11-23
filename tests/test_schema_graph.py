@@ -131,4 +131,7 @@ def test_page_embeds_class_map(schema, tmp_path):
     assert text.startswith("---\nhide:\n  - toc\n---\n")
     assert 'class="cm4c-classmap" data-root="Simulation"' in text
     assert 'data-src="../assets/schema_graph.json"' in text
+    # the sunburst chart stays available as the alternative view
+    assert 'data-sunburst="../assets/metadata_simulation_hierarchy.html"' in text
+    assert (_ROOT / "docs" / "assets" / "metadata_simulation_hierarchy.html").exists()
     assert "<iframe" not in text

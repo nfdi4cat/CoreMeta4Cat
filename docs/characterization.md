@@ -13,6 +13,7 @@ The class follows a hierarchical structure in which selection of a characterizat
 
 <div class="cm4c-classmap" data-root="Characterization"
      data-src="../assets/schema_graph.json"
+     data-sunburst="../assets/metadata_characterization_hierarchy.html"
      data-site="../"
      data-elements="../elements/classes/">
 <p>The interactive class map needs JavaScript. The full field list follows below.</p>

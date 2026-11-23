@@ -3,7 +3,8 @@
  *
  * Renders into every
  *   <div class="cm4c-classmap" data-root="Simulation" data-src="../assets/schema_graph.json"
- *        data-site="../" data-elements="../elements/classes/" [data-mode="overview"]>
+ *        data-site="../" data-elements="../elements/classes/"
+ *        [data-sunburst="../assets/metadata_simulation_hierarchy.html"] [data-mode="overview"]>
  * The data-class pages are written by scripts/generate_schema_docs.py; the
  * data itself comes from scripts/schema_graph.py.
  *
@@ -11,6 +12,8 @@
  * UML-style box. Its origin or users are on the left, its fields in the
  * middle, the classes it points to on the right (each drawn once). A class
  * that comes in several types gets a type list to switch between them in place.
+ * With data-sunburst set, a switch above the diagram swaps in the sunburst
+ * chart produced by scripts/generate_charts.py.
  *
  * Overview (data-mode="overview"): a fixed, reduced view of one class in which
  * stand-in and generic classes are replaced by the specific CoreMeta4Cat
@@ -31,14 +34,15 @@
     O1: "optional, at most one", "O*": "optional, any number",
   };
   const SVG_NS = "http://www.w3.org/2000/svg";
-  const MAX_USERS = 14;
   const FILTER_FROM = 10;   // show a filter box in type lists longer than this
+  const GROUP_OPEN_MAX = 3; // used-by groups up to this size are listed directly
+  const VIEW_KEY = "cm4c-diagram-view";
   let uid = 0;
 
   const multiplicity = f => `[${f.requirement === "M" ? 1 : 0}..${f.multivalued ? "*" : 1}]`;
   const cardinalityText = f => CARDINALITY[f.requirement + (f.multivalued ? "*" : "1")];
   const words = s => s.replace(/_/g, " ");
-  const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
+  const plural = (n, word) => `${n} ${n === 1 ? word : word + (/(s|x|ch|sh)$/.test(word) ? "es" : "s")}`;
   const humanName = s => s.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2");
   const joinOr = list => (list.length < 2 ? list.join("") : `${list.slice(0, -1).join(", ")} or ${list[list.length - 1]}`);
 
@@ -56,6 +60,28 @@
     node.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } });
   }
 
+  // A button with a caret that shows or hides `list`; redraws the connector lines afterwards.
+  function disclosure(text, list) {
+    const button = el("button", "cm4c-toggle");
+    button.type = "button";
+    button.setAttribute("aria-expanded", "false");
+    button.append(el("span", null, text), el("span", "cm4c-caret", "▾"));
+    list.hidden = true;
+    button.addEventListener("click", e => {
+      e.stopPropagation();
+      list.hidden = !list.hidden;
+      button.setAttribute("aria-expanded", String(!list.hidden));
+      const stage = button.closest(".cm4c-stage");
+      if (stage) requestAnimationFrame(() => drawLinks(stage));
+    });
+    return button;
+  }
+
+  const store = {
+    get(key) { try { return window.localStorage.getItem(key); } catch (e) { return null; } },
+    set(key, value) { try { window.localStorage.setItem(key, value); } catch (e) { /* private mode */ } },
+  };
+
   const requests = {};
   function load(src) {
     if (!requests[src]) {
@@ -70,11 +96,10 @@
 
   /* ---------- pieces shared by both views ---------- */
 
-  function context(host, graph, paletteKey) {
+  function context(host, stage, graph, paletteKey) {
     const CL = graph.classes;
     return {
-      host, graph, CL,
-      site: host.dataset.site || "",
+      host, stage, graph, CL,
       elements: host.dataset.elements || "",
       palette: graph.colors[paletteKey] || { M: "#555", R: "#888", O: "#bbb" },
       label: n => humanName(CL[n] ? CL[n].label : n),
@@ -87,20 +112,10 @@
   // Allowed values: a button that unfolds a wrapping list under the row.
   function enumControl(ctx, f) {
     const values = ctx.graph.enums[f.range] || [];
-    const button = el("button", "cm4c-enum-btn");
-    button.type = "button";
-    button.setAttribute("aria-expanded", "false");
-    button.append(el("span", null, plural(values.length, "allowed value")), el("span", "cm4c-caret", "▾"));
     const list = el("ul", "cm4c-enum");
-    list.hidden = true;
     list.setAttribute("aria-label", `Allowed values of ${words(f.name)}`);
     values.forEach(v => list.appendChild(el("li", null, words(v))));
-    button.addEventListener("click", e => {
-      e.stopPropagation();
-      list.hidden = !list.hidden;
-      button.setAttribute("aria-expanded", String(!list.hidden));
-    });
-    return { control: button, extra: list };
+    return { control: disclosure(plural(values.length, "allowed value"), list), extra: list };
   }
 
   function valueCell(ctx, f, focus) {
@@ -182,26 +197,26 @@
     return head;
   }
 
-  function newMap(host) {
+  function newMap() {
     const map = el("div", "cm4c-map");
     const svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttribute("class", "cm4c-links");
     svg.setAttribute("aria-hidden", "true");
     map.appendChild(svg);
-    return { map, svg };
+    return map;
   }
 
   // Rows carry data-targets="A B"; target boxes carry data-id="A".
-  function highlight(host, target, on) {
-    host.querySelectorAll(`.cm4c-row[data-targets~="${target}"]`).forEach(r => r.classList.toggle("cm4c-hl", on));
-    host.querySelectorAll(`.cm4c-links path[data-target="${target}"]`).forEach(p => p.classList.toggle("cm4c-hl", on));
-    const b = host.querySelector(`.cm4c-target[data-id="${target}"]`);
+  function highlight(stage, target, on) {
+    stage.querySelectorAll(`.cm4c-row[data-targets~="${target}"]`).forEach(r => r.classList.toggle("cm4c-hl", on));
+    stage.querySelectorAll(`.cm4c-links path[data-target="${target}"]`).forEach(p => p.classList.toggle("cm4c-hl", on));
+    const b = stage.querySelector(`.cm4c-target[data-id="${target}"]`);
     if (b) b.classList.toggle("cm4c-hl", on);
   }
 
-  function drawLinks(host) {
-    const svg = host.querySelector(".cm4c-links");
-    if (!svg || !svg.isConnected || getComputedStyle(svg).display === "none") return;
+  function drawLinks(stage) {
+    const svg = stage.querySelector(".cm4c-links");
+    if (!svg || !svg.isConnected || stage.offsetParent === null || getComputedStyle(svg).display === "none") return;
     svg.innerHTML = "";
     const base = svg.getBoundingClientRect();
     const curve = (x1, y1, x2, y2, target) => {
@@ -211,50 +226,52 @@
       if (target) p.dataset.target = target;
       svg.appendChild(p);
     };
-    host.querySelectorAll(".cm4c-row[data-targets]").forEach(r => {
+    stage.querySelectorAll(".cm4c-row[data-targets]").forEach(r => {
       const a = r.getBoundingClientRect();
       r.dataset.targets.split(" ").forEach(id => {
-        const tb = host.querySelector(`.cm4c-target[data-id="${id}"]`);
+        const tb = stage.querySelector(`.cm4c-target[data-id="${id}"]`);
         if (!tb) return;
         const b = tb.getBoundingClientRect();
         curve(a.right - base.left, a.top + 14 - base.top, b.left - base.left, b.top + 18 - base.top, id);
       });
     });
-    const fb = host.querySelector(".cm4c-focus");
+    const fb = stage.querySelector(".cm4c-focus");
     if (!fb) return;
     const f = fb.getBoundingClientRect();
-    host.querySelectorAll(".cm4c-user").forEach(u => {
+    stage.querySelectorAll(".cm4c-user").forEach(u => {
       const a = u.getBoundingClientRect();
-      curve(a.right - base.left, a.top + a.height / 2 - base.top, f.left - base.left, f.top + 22 - base.top);
+      // a group box: anchor at its heading, so the line stays put when the list unfolds
+      const y = u.classList.contains("cm4c-group") ? a.top + 14 : a.top + a.height / 2;
+      curve(a.right - base.left, y - base.top, f.left - base.left, f.top + 22 - base.top);
     });
   }
 
-  function watchSize(host) {
+  function watchSize(stage) {
     if (!window.ResizeObserver) return;
     let frame = 0;
     new ResizeObserver(() => {
       cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => drawLinks(host));
-    }).observe(host);
+      frame = requestAnimationFrame(() => drawLinks(stage));
+    }).observe(stage);
   }
 
-  function wireHighlights(host) {
-    host.querySelectorAll(".cm4c-row[data-targets]").forEach(r => {
+  function wireHighlights(stage) {
+    stage.querySelectorAll(".cm4c-row[data-targets]").forEach(r => {
       const ids = r.dataset.targets.split(" ");
-      r.addEventListener("mouseenter", () => ids.forEach(id => highlight(host, id, true)));
-      r.addEventListener("mouseleave", () => ids.forEach(id => highlight(host, id, false)));
+      r.addEventListener("mouseenter", () => ids.forEach(id => highlight(stage, id, true)));
+      r.addEventListener("mouseleave", () => ids.forEach(id => highlight(stage, id, false)));
     });
-    host.querySelectorAll(".cm4c-target[data-id]").forEach(b => {
-      b.addEventListener("mouseenter", () => highlight(host, b.dataset.id, true));
-      b.addEventListener("mouseleave", () => highlight(host, b.dataset.id, false));
+    stage.querySelectorAll(".cm4c-target[data-id]").forEach(b => {
+      b.addEventListener("mouseenter", () => highlight(stage, b.dataset.id, true));
+      b.addEventListener("mouseleave", () => highlight(stage, b.dataset.id, false));
     });
   }
 
   /* ---------- class map ---------- */
 
-  function createClassMap(host, graph) {
+  function createClassMap(host, stage, graph) {
     const rootClass = host.dataset.root;
-    const ctx = context(host, graph, rootClass);
+    const ctx = context(host, stage, graph, rootClass);
     const { CL, label } = ctx;
     const id = ++uid;
 
@@ -373,12 +390,38 @@
       return v;
     }
 
+    // One box per field that points at the focus: a single class is a plain
+    // link box; several classes share one box with their names listed (or
+    // folded away behind "N classes" when there are many).
+    function userGroup(g) {
+      const via = `via ${words(g.field)}` + (g.as ? ` (as ${label(g.as).toLowerCase()})` : "");
+      if (g.classes.length === 1) {
+        const b = el("div", "cm4c-box cm4c-user");
+        activate(b, () => go(g.classes[0]));
+        b.appendChild(document.createTextNode(label(g.classes[0])));
+        b.appendChild(el("small", null, via));
+        return b;
+      }
+      const b = el("div", "cm4c-box cm4c-user cm4c-group");
+      b.appendChild(el("small", null, via));
+      const list = el("div", "cm4c-members");
+      g.classes.forEach(c => {
+        const m = el("button", "cm4c-member", label(c));
+        m.type = "button";
+        m.addEventListener("click", () => go(c));
+        list.appendChild(m);
+      });
+      if (g.classes.length > GROUP_OPEN_MAX) b.appendChild(disclosure(plural(g.classes.length, "class"), list));
+      b.appendChild(list);
+      return b;
+    }
+
     function render() {
       const now = current();
       const focus = now.c;
       const c = CL[focus];
       const root = now.root;
-      host.innerHTML = "";
+      stage.innerHTML = "";
 
       // path
       const crumbs = el("nav", "cm4c-crumbs");
@@ -395,9 +438,9 @@
         });
         crumbs.appendChild(b);
       });
-      host.appendChild(crumbs);
+      stage.appendChild(crumbs);
 
-      const { map } = newMap(host);
+      const map = newMap();
 
       // left: origin of a data class, or where the focused class is used
       const isRoot = focus === rootClass && !root;
@@ -417,24 +460,20 @@
           });
         }
       } else {
-        const users = [];
-        const seen = new Set();
+        const groups = [];
+        const byKey = new Map();
         const addUsers = (target, as) => (usedBy[target] || []).forEach(u => {
-          const key = u.from + "|" + u.field;
-          if (u.from !== focus && !seen.has(key)) { seen.add(key); users.push({ ...u, as }); }
+          if (u.from === focus) return;
+          const key = `${u.field}|${as || ""}`;
+          let g = byKey.get(key);
+          if (!g) { g = { field: u.field, as, classes: [] }; byKey.set(key, g); groups.push(g); }
+          if (!g.classes.includes(u.from)) g.classes.push(u.from);
         });
         if (root) addUsers(root, root !== focus ? root : null);
         addUsers(focus, null);
-        if (users.length) {
+        if (groups.length) {
           L.appendChild(el("div", "cm4c-colhead", "Used by"));
-          users.slice(0, MAX_USERS).forEach(u => {
-            const b = el("div", "cm4c-box cm4c-user");
-            activate(b, () => go(u.from));
-            b.appendChild(document.createTextNode(label(u.from)));
-            b.appendChild(el("small", null, `via ${words(u.field)}` + (u.as ? ` (as ${label(u.as).toLowerCase()})` : "")));
-            L.appendChild(b);
-          });
-          if (users.length > MAX_USERS) L.appendChild(el("p", "cm4c-muted", `+ ${users.length - MAX_USERS} more`));
+          groups.forEach(g => L.appendChild(userGroup(g)));
         }
       }
       if (L.children.length) map.appendChild(L);
@@ -505,30 +544,30 @@
       if (!targets.length) R.appendChild(el("p", "cm4c-muted", "Only plain values here. Nothing further to open."));
       map.appendChild(R);
 
-      host.appendChild(map);
-      wireHighlights(host);
+      stage.appendChild(map);
+      wireHighlights(stage);
       if (state.refocus) {
         state.refocus = false;
-        const p = host.querySelector(".cm4c-picker");
+        const p = stage.querySelector(".cm4c-picker");
         if (p) p.focus();
       }
-      requestAnimationFrame(() => drawLinks(host));
+      requestAnimationFrame(() => drawLinks(stage));
     }
 
-    watchSize(host);
+    watchSize(stage);
     render();
   }
 
   /* ---------- overview ---------- */
 
-  function createOverview(host, graph) {
+  function createOverview(host, stage, graph) {
     const name = host.dataset.root;
     const ov = graph.overviews[name];
-    const ctx = context(host, graph, name);
+    const ctx = context(host, stage, graph, name);
     const { CL, label } = ctx;
-    host.innerHTML = "";
+    stage.innerHTML = "";
 
-    const { map } = newMap(host);
+    const map = newMap();
     map.classList.add("cm4c-noleft");
 
     const M = el("div", "cm4c-col cm4c-center");
@@ -569,10 +608,46 @@
     });
     map.appendChild(R);
 
-    host.appendChild(map);
-    wireHighlights(host);
-    watchSize(host);
-    requestAnimationFrame(() => drawLinks(host));
+    stage.appendChild(map);
+    wireHighlights(stage);
+    watchSize(stage);
+    requestAnimationFrame(() => drawLinks(stage));
+  }
+
+  /* ---------- class map / sunburst switch ---------- */
+
+  // Adds "Class map | Sunburst chart" above the diagram. The chart page is
+  // only loaded when first asked for; switching back keeps the class map as
+  // it was. The choice is remembered for the next page.
+  function addViewSwitch(host, stage) {
+    const bar = el("div", "cm4c-views");
+    bar.setAttribute("role", "group");
+    bar.setAttribute("aria-label", "Diagram");
+    const chart = el("div", "cm4c-chart");
+    chart.hidden = true;
+    const buttons = {};
+    const show = view => {
+      stage.hidden = view !== "map";
+      chart.hidden = view !== "sunburst";
+      Object.entries(buttons).forEach(([v, b]) => b.setAttribute("aria-pressed", String(v === view)));
+      if (view === "sunburst" && !chart.firstChild) {
+        const frame = el("iframe");
+        frame.src = host.dataset.sunburst;
+        frame.title = `Sunburst chart of the ${humanName(host.dataset.root)} fields`;
+        chart.appendChild(frame);
+      }
+      if (view === "map") requestAnimationFrame(() => drawLinks(stage));
+    };
+    [["map", "Class map"], ["sunburst", "Sunburst chart"]].forEach(([view, text]) => {
+      const b = el("button", null, text);
+      b.type = "button";
+      b.addEventListener("click", () => { show(view); store.set(VIEW_KEY, view); });
+      buttons[view] = b;
+      bar.appendChild(b);
+    });
+    host.insertBefore(bar, stage);
+    host.appendChild(chart);
+    show(store.get(VIEW_KEY) === "sunburst" ? "sunburst" : "map");
   }
 
   /* ---------- mounting ---------- */
@@ -586,7 +661,11 @@
       .then(graph => {
         const known = overview ? graph.overviews && graph.overviews[host.dataset.root] : graph.classes[host.dataset.root];
         if (!known) throw new Error(`unknown class ${host.dataset.root}`);
-        (overview ? createOverview : createClassMap)(host, graph);
+        host.innerHTML = "";
+        const stage = el("div", "cm4c-stage");
+        host.appendChild(stage);
+        (overview ? createOverview : createClassMap)(host, stage, graph);
+        if (!overview && host.dataset.sunburst) addViewSwitch(host, stage);
       })
       .catch(err => {
         host.textContent = `The class map could not be loaded (${err.message}).`;

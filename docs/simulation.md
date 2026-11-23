@@ -13,6 +13,7 @@ Computational approaches are organized under the parent field simulation method,
 
 <div class="cm4c-classmap" data-root="Simulation"
      data-src="../assets/schema_graph.json"
+     data-sunburst="../assets/metadata_simulation_hierarchy.html"
      data-site="../"
      data-elements="../elements/classes/">
 <p>The interactive class map needs JavaScript. The full field list follows below.</p>

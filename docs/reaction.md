@@ -14,6 +14,7 @@ Core fields include reactor design type, operational parameters, and product ide
 
 <div class="cm4c-classmap" data-root="CatalyticReaction"
      data-src="../assets/schema_graph.json"
+     data-sunburst="../assets/metadata_reaction_hierarchy.html"
      data-site="../"
      data-elements="../elements/classes/">
 <p>The interactive class map needs JavaScript. The full field list follows below.</p>
