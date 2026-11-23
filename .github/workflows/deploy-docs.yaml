@@ -11,6 +11,13 @@ on:  # yamllint disable-line rule:truthy
 
 permissions: {}
 
+# One deploy per branch or tag at a time. A newer waiting run replaces an
+# older waiting one, so a slow or retried deploy can never publish older docs
+# over newer ones.
+concurrency:
+  group: deploy-docs-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build-docs:
     runs-on: ubuntu-latest
@@ -69,12 +76,19 @@ jobs:
       # yamllint disable rule:line-length
       - name: Build & deploy "dev" docs for a new commit to main
         if: (github.event_name == 'push' && github.ref_type != 'tag') || github.event_name == 'workflow_dispatch'
+        # The preview workflow (deploy_docs_preview.yaml) pushes to gh-pages
+        # too; the script refreshes gh-pages and retries if it moved.
         run: |
           export SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
-          uv run mike deploy --push --update-aliases --title "dev (${SHORT_SHA})" dev
+          bash .github/scripts/mike-push-with-retry.sh \
+            uv run mike deploy --push --update-aliases --title "dev (${SHORT_SHA})" dev
 
       - name: Build & deploy docs for a new version tag
         if: github.ref_type == 'tag' && github.event_name == 'push'
+        env:
+          VERSION: ${{ github.ref_name }}
         run: |
-          uv run mike deploy --push --update-aliases ${{ github.ref_name }} latest
-          uv run mike set-default latest --push
+          bash .github/scripts/mike-push-with-retry.sh \
+            uv run mike deploy --push --update-aliases "$VERSION" latest
+          bash .github/scripts/mike-push-with-retry.sh \
+            uv run mike set-default latest --push
