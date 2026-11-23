@@ -24,8 +24,19 @@ Columns (sheets 3-7):
   uri            ontology CURIE for the term
   description    documentation string
 
+Slot values are the *effective* values LinkML works with (SchemaView
+.induced_slot): a slot inherits from its parent slots (e.g. everything that
+is_a has_quantitative_attribute is recommended and multivalued unless it says
+otherwise), identifier slots are mandatory, and class slot_usage overrides
+apply. This is what the generated JSON Schema / Pydantic models enforce.
+
+Hidden sheet:
+  _baseline      very hidden copy of every data row exactly as generated. The
+                 inbox pipeline compares a contributor's workbook against it to
+                 find the rows they actually changed (see workbook_rows.py).
+
 Output:
-  docs/assets/coremeta4cat_vocabulary.xlsx  (overwrites the file in place)
+  docs/assets/coremeta4cat_vocabulary.xlsx  (rewritten only if its content changed)
 
 Run:
     just schema-to-excel
@@ -35,12 +46,18 @@ Run:
 
 from __future__ import annotations
 
+import contextlib
+import hashlib
+import io
 import sys
+import zipfile
 from pathlib import Path
+from typing import Any
 
 import openpyxl
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
+from openpyxl.worksheet.datavalidation import DataValidation
 
 _HERE = Path(__file__).parent
 _ROOT = _HERE.parent
@@ -56,6 +73,18 @@ from generate_schema_docs import (  # noqa: E402
     load_merged_schema,
     snake_to_readable,
 )
+from workbook_rows import (  # noqa: E402
+    BASELINE_SHEET,
+    DATA_SHEETS,
+    HEADERS,
+    REFERENCE_SHEET,
+    baseline_values,
+    row_from_values,
+)
+
+SCHEMA_DIR  = _ROOT / "src" / "coremeta4cat" / "schema"
+OUTPUT_PATH = _ROOT / "docs" / "assets" / "coremeta4cat_vocabulary.xlsx"
+ROOT_MODULE = "coremeta4cat.yaml"   # imports every other module
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Styles
@@ -86,20 +115,6 @@ FILL_INHERITED = PatternFill("solid", fgColor="F2F2F2")
 FONT_INHERITED = Font(italic=True, color="7F7F7F")
 FONT_INHERITED_CLASS = Font(bold=True, italic=True, color="7F7F7F")
 
-HEADERS = [
-    "label",
-    "type",
-    "domain",
-    "M / R / O",
-    "range",
-    "multivalued",
-    "inlined as list",
-    "unit",
-    "uri",
-    "description",
-]
-
-
 # Maps sheet title (user-facing) -> LinkML class name in the schema
 CLASS_MAP = {
     "Synthesis": "Synthesis",
@@ -108,21 +123,109 @@ CLASS_MAP = {
     "Simulation": "Simulation",
 }
 
+# Dropdowns offered on the data sheets: column letter -> allowed values.
+DROPDOWNS = {
+    "B": ("slot", "class"),
+    "D": ("M", "R", "O"),
+    "F": ("Yes",),
+    "G": ("Yes",),
+}
+DROPDOWN_SPARE_ROWS = 500   # blank rows below the data that get the dropdowns too
+
 # ─────────────────────────────────────────────────────────────────────────────
-# Shared helpers
+# Effective slot values (LinkML SchemaView)
 # ─────────────────────────────────────────────────────────────────────────────
 
-def _slot_mro(schema: dict, class_name: str, slot_name: str) -> str:
-    class_def = schema.get("classes", {}).get(class_name, {})
-    usage = (class_def.get("slot_usage") or {}).get(slot_name) or {}
-    slot_def = get_slot_details(schema, slot_name)
-    required    = usage.get("required",    slot_def.get("required",    False))
-    recommended = usage.get("recommended", slot_def.get("recommended", False))
-    if required:
-        return "M"
-    if recommended:
-        return "R"
-    return "O"
+# Both caches are keyed by the schema's content (schema_fingerprint), so copies
+# of the same schema share one entry and any edit to a module invalidates it.
+_VIEW_CACHE: dict[str, Any] = {}
+_ROWS_CACHE: dict[str, dict[str, list[dict]]] = {}
+_CACHE_SIZE = 6
+
+
+def schema_fingerprint(schema_dir: Path | str) -> str:
+    """Hash of every YAML module in schema_dir, used to cache per schema state."""
+    digest = hashlib.sha1()
+    for path in sorted(Path(schema_dir).glob("*.yaml")):
+        digest.update(path.name.encode())
+        digest.update(path.read_bytes())
+    return digest.hexdigest()
+
+
+def _cache_put(cache: dict, key, value) -> None:
+    while len(cache) >= _CACHE_SIZE:
+        cache.pop(next(iter(cache)))
+    cache[key] = value
+
+
+def load_schema_view(schema_dir: Path | str = SCHEMA_DIR):
+    """
+    LinkML SchemaView of the full schema, imports resolved.
+
+    The vendored chemdcat-ap modules import dcat-ap-plus from the web; the
+    slot inheritance that decides most M/R/O and multivalued values
+    (has_qualitative_attribute, has_quantitative_attribute, ...) lives there,
+    so this needs network access -- like every LinkML generator run.
+    """
+    from linkml_runtime import SchemaView
+
+    key = schema_fingerprint(schema_dir)
+    sv = _VIEW_CACHE.get(key)
+    if sv is None:
+        try:
+            sv = SchemaView(str(Path(schema_dir) / ROOT_MODULE))
+            sv.all_slots()   # resolve all imports now, so failures surface here
+        except Exception as exc:  # noqa: BLE001
+            raise RuntimeError(
+                f"Could not load the LinkML schema from {schema_dir}: {exc}. "
+                "The vendored chemdcat-ap modules import dcat-ap-plus from the "
+                "web, so this needs network access."
+            ) from exc
+        _cache_put(_VIEW_CACHE, key, sv)
+    return sv
+
+
+def slot_row_values(sv, slot_name: str, class_name: str) -> dict | None:
+    """
+    The values the workbook shows for slot_name on class_name: LinkML's
+    induced slot (slot inheritance, identifier => mandatory, slot_usage of
+    the class and its ancestors). None if LinkML does not know the slot.
+    """
+    try:
+        ind = sv.induced_slot(slot_name, class_name)
+    except Exception:  # noqa: BLE001 -- unknown slot or class
+        return None
+    unit = getattr(ind.unit, "ucum_code", None) if ind.unit is not None else None
+    rng = ind.range or "string"
+    # inlined_as_list only means something for class-valued fields; LinkML
+    # also reports it (inherited) on string/number slots.
+    inlined = bool(ind.inlined_as_list) and sv.get_class(rng) is not None
+    return {
+        "mro":             "M" if ind.required else ("R" if ind.recommended else "O"),
+        "range":           rng,
+        "multivalued":     "Yes" if ind.multivalued else "",
+        "inlined_as_list": "Yes" if inlined else "",
+        "unit":            unit or "",
+        "uri":             ind.slot_uri or "",
+        "description":     ind.description or "",
+    }
+
+
+def _raw_row_values(schema: dict, slot_name: str, class_name: str, synthetic: dict | None) -> dict:
+    """Fallback for slots SchemaView cannot resolve: the YAML values as written."""
+    slot_def = dict(synthetic or get_slot_details(schema, slot_name))
+    usage = ((schema.get("classes", {}).get(class_name) or {}).get("slot_usage") or {}).get(slot_name) or {}
+    slot_def.update({k: v for k, v in usage.items() if v is not None})
+    mro = "M" if slot_def.get("required") else ("R" if slot_def.get("recommended") else "O")
+    return {
+        "mro":             mro,
+        "range":           slot_def.get("range") or "string",
+        "multivalued":     "Yes" if slot_def.get("multivalued") else "",
+        "inlined_as_list": "Yes" if slot_def.get("inlined_as_list") else "",
+        "unit":            (slot_def.get("unit") or {}).get("ucum_code", "") or "",
+        "uri":             slot_def.get("slot_uri", "") or "",
+        "description":     slot_def.get("description", "") or "",
+    }
 
 
 def _write_data_headers(ws) -> None:
@@ -160,6 +263,23 @@ def _auto_width(ws) -> None:
     for col_cells in ws.columns:
         max_len = max((len(str(c.value or "")) for c in col_cells), default=10)
         ws.column_dimensions[get_column_letter(col_cells[0].column)].width = min(max_len + 4, 60)
+
+
+def _add_dropdowns(ws) -> None:
+    """In-cell dropdowns for the columns that only accept a few values."""
+    last_row = ws.max_row + DROPDOWN_SPARE_ROWS
+    for column, values in DROPDOWNS.items():
+        dv = DataValidation(
+            type="list",
+            formula1='"' + ",".join(values) + '"',
+            allow_blank=True,
+            showErrorMessage=True,
+            errorStyle="warning",
+            errorTitle="Unexpected value",
+            error=f"Expected one of: {', '.join(values)} (or leave it empty).",
+        )
+        dv.add(f"{column}2:{column}{last_row}")
+        ws.add_data_validation(dv)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -213,7 +333,7 @@ def build_intro_sheet(wb: openpyxl.Workbook) -> None:
     _section(r, "Sheet overview"); r += 1
     _row(r, "Introduction", "This sheet — project overview and guidance."); r += 1
     _row(r, "Legend", "Explanation of colour coding and column meanings."); r += 1
-    _row(r, "CoreMeta4Cat", "The minimal cross-cutting fields that apply to every catalysis dataset, regardless of data class (based on CatalysisDataset)."); r += 1
+    _row(r, "CoreMeta4Cat", "The minimal cross-cutting fields that apply to every catalysis dataset, regardless of data class (based on CatalysisDataset). Reference only -- edits on this sheet are not applied."); r += 1
     _row(r, "Synthesis", "Metadata fields for catalyst preparation / synthesis experiments."); r += 1
     _row(r, "Characterization", "Metadata fields for analytical characterization of catalysts."); r += 1
     _row(r, "Reaction", "Metadata fields for catalytic reaction testing and performance evaluation."); r += 1
@@ -221,19 +341,20 @@ def build_intro_sheet(wb: openpyxl.Workbook) -> None:
     _blank(r); r += 1
 
     _section(r, "How to propose changes"); r += 1
-    _row(r, "1. Edit", "Download this file, edit the Synthesis / Characterization / Reaction / Simulation sheets directly. Do not rename sheets or change column headers -- the automated check requires exact names."); r += 1
-    _row(r, "2. Modify a field", "Edit an existing row's M/R/O, range, unit, uri, or description to propose a correction."); r += 1
-    _row(r, "3. Add a field", "Add a new row: give it a label, set type to 'slot', and set domain to the class it belongs to (leave empty for a top-level field). You can add a new slot and the new class it points to in the same submission -- both rows will be validated together."); r += 1
-    _row(r, "4. Submit", "Place the edited file at inbox/coremeta4cat_vocabulary.xlsx and open a pull request. An automated check validates the changes and reports any problems as a PR comment before a maintainer reviews it. See inbox/README.md for the full workflow."); r += 1
-    _row(r, "Read-only rows", "Rows shown in grey italics (see Legend) are inherited from chemdcat-ap, the chemistry model CoreMeta4Cat builds on. They are shown for reference but cannot be added, changed, or removed through this workflow."); r += 1
-    _row(r, "Shared fields", "Some fields (e.g. has_atmosphere) are defined once and reused across several classes -- editing one is a global change, not scoped to a single sheet section. The automated check will warn you and list every other class affected if this applies to your edit."); r += 1
+    _row(r, "1. Edit", "Download a fresh copy of this file and edit the Synthesis / Characterization / Reaction / Simulation sheets directly. Do not rename sheets or change column headers -- the automated check requires exact names. The file keeps a hidden copy of how it looked when it was generated, so only the rows you change are applied -- even if the schema changed after your download."); r += 1
+    _row(r, "2. Modify a field", "Edit an existing row's M/R/O, range, multivalued, unit, uri, or description to propose a correction. An M/R/O change applies to the row's class only."); r += 1
+    _row(r, "3. Add a field", "Add a new row: give it a label, set type to 'slot', and set domain to the class it belongs to (leave empty for a top-level field). You can add a new slot and the new class it points to in the same submission -- both rows will be validated together. Please always fill in a description."); r += 1
+    _row(r, "4. Remove a field", "Delete its row. A field a class inherits from its parent class can only be removed from the parent; the automated check tells you if that applies."); r += 1
+    _row(r, "5. Submit", "Place the edited file at inbox/coremeta4cat_vocabulary.xlsx and open a pull request. An automated check validates the changes and reports any problems as a PR comment before a maintainer reviews it. See inbox/README.md for the full workflow."); r += 1
+    _row(r, "Read-only rows", "Rows shown in grey italics (see Legend) are inherited from chemdcat-ap, the chemistry model CoreMeta4Cat builds on. They are shown for reference but cannot be added, changed, or removed through this workflow -- edits to them are reported, not applied."); r += 1
+    _row(r, "Shared fields", "Some fields (e.g. has_atmosphere) are defined once and reused across several classes -- editing their description, range, multivalued, unit or uri is a global change, not scoped to a single sheet section. The automated check will warn you and list every other class affected if this applies to your edit."); r += 1
     _blank(r); r += 1
 
     _section(r, "How to read the data sheets"); r += 1
     _row(r, "label", "Human-readable name of the metadata field or class."); r += 1
     _row(r, "type", "Whether this row is a 'slot' (a metadata field) or a 'class' (a structured sub-record type)."); r += 1
     _row(r, "domain", "The slot or class this entry belongs to. Empty means it is a top-level entry of the data class."); r += 1
-    _row(r, "M / R / O", "Whether the field is Mandatory (must be reported), Recommended (strongly encouraged), or Optional. See the Legend sheet for colour coding."); r += 1
+    _row(r, "M / R / O", "Whether the field is Mandatory (must be reported), Recommended (strongly encouraged), or Optional -- including what a field inherits from the more general field it is based on. See the Legend sheet for colour coding."); r += 1
     _row(r, "range", "The expected value type — a primitive (string, float, integer) or a class name that expands into its own set of fields."); r += 1
     _row(r, "multivalued", "'Yes' if the field accepts a list of values; empty means a single value. Most fields are single-valued."); r += 1
     _row(r, "inlined as list", "'Yes' if linked sub-records are stored directly inside the parent as an ordered list. Empty if not applicable. See Legend for details."); r += 1
@@ -316,7 +437,7 @@ def build_legend_sheet(wb: openpyxl.Workbook) -> None:
     _col_row(r, "domain",
              "The slot or class this entry belongs to in the hierarchy. An empty domain means the entry is at the top level of the data class."); r += 1
     _col_row(r, "M / R / O",
-             "M = Mandatory, R = Recommended, O = Optional. Derived from the 'required' and 'recommended' attributes in the LinkML schema."); r += 1
+             "M = Mandatory, R = Recommended, O = Optional. The 'required' and 'recommended' values LinkML uses for this field on this class -- including values inherited from the more general field it is based on. Identifier fields (id) are always mandatory."); r += 1
     _col_row(r, "range",
              "The expected value type. Primitives (string, float, integer, boolean, uri) are leaf values. A class name means the field expands into a structured sub-record defined by the named class."); r += 1
     _col_row(r, "multivalued",
@@ -343,53 +464,60 @@ def build_legend_sheet(wb: openpyxl.Workbook) -> None:
 # CoreMeta4Cat (CatalysisDataset) sheet
 # ─────────────────────────────────────────────────────────────────────────────
 
-def build_catcore_sheet(wb: openpyxl.Workbook, schema: dict) -> None:
-    """
-    The minimal cross-cutting layer — fields on CatalysisDataset that apply
-    to every catalysis dataset regardless of data class.
-    """
-    ws = wb.create_sheet(title="CoreMeta4Cat")
-    _write_data_headers(ws)
+CATCORE_CLASS = "CatalysisDataset"
 
-    classes  = schema.get("classes", {})
-    cat_def  = classes.get("CatalysisDataset", {})
-    slot_usage = cat_def.get("slot_usage") or {}
 
-    rows: list = []
+def collect_catcore_rows(schema: dict, sv=None) -> list[list]:
+    """
+    The minimal cross-cutting layer -- the CatalysisDataset fields its
+    slot_usage highlights, with the values LinkML uses for them.
+    """
+    sv = sv if sv is not None else load_schema_view(SCHEMA_DIR)
+    slot_usage = (schema.get("classes", {}).get(CATCORE_CLASS) or {}).get("slot_usage") or {}
+
+    rows: list[list] = []
+    seen: set = set()
     for su_name, su_def in slot_usage.items():
         if not su_def:
             continue
-        required    = su_def.get("required",    False)
-        recommended = su_def.get("recommended", False)
-        mro = "M" if required else ("R" if recommended else "O")
-        rng  = su_def.get("range", "")
-        uri  = su_def.get("slot_uri", "") or (classes.get(rng, {}).get("class_uri", "") if rng else "")
-        desc = su_def.get("description", "")
-        multivalued     = "Yes" if su_def.get("multivalued",     False) else ""
-        inlined_as_list = "Yes" if su_def.get("inlined_as_list", False) else ""
-        unit            = (su_def.get("unit") or {}).get("ucum_code", "")
-        rows.append((snake_to_readable(su_name), "slot", "", mro, rng, multivalued, inlined_as_list, unit, uri, desc))
-
-    seen: set = set()
-    for row in rows:
-        key = (row[0], row[2])  # label + domain
-        if key in seen:
+        label = snake_to_readable(su_name)
+        if label in seen:
             continue
-        seen.add(key)
-        _append_row(ws, list(row), row[1], row[3])
+        seen.add(label)
+        vals = (slot_row_values(sv, su_name, CATCORE_CLASS)
+                or _raw_row_values(schema, su_name, CATCORE_CLASS, su_def))
+        rows.append([label, "slot", "", vals["mro"], vals["range"], vals["multivalued"],
+                     vals["inlined_as_list"], vals["unit"], vals["uri"], vals["description"]])
+    return rows
 
+
+def build_catcore_sheet(wb: openpyxl.Workbook, schema: dict, sv=None) -> list[list]:
+    """Write the CoreMeta4Cat sheet; returns the rows written."""
+    ws = wb.create_sheet(title=REFERENCE_SHEET)
+    _write_data_headers(ws)
+    rows = collect_catcore_rows(schema, sv)
+    for row in rows:
+        _append_row(ws, row, "slot", row[3])
     _auto_width(ws)
+    return rows
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Data-class sheet builder (Synthesis, Characterization, Reaction, Simulation)
 # ─────────────────────────────────────────────────────────────────────────────
 
+def _class_row(schema: dict, class_name: str, domain_label: str, mro: str) -> tuple:
+    class_def = schema.get("classes", {}).get(class_name) or {}
+    return (snake_to_readable(class_name), "class", domain_label, mro, "", "", "", "",
+            class_def.get("class_uri", "") or "", class_def.get("description", "") or "",
+            class_name)
+
+
 def _collect_rows(
     schema: dict,
+    sv,
     class_name: str,
     parent_label: str,
-    context_class: str,
     seen: set,
     rows: list,
     depth: int = 0,
@@ -399,60 +527,69 @@ def _collect_rows(
     seen = seen | {class_name}
     classes = schema.get("classes", {})
 
+    # The class's own, inherited and mixin slots first, then the slot_usage
+    # entries that narrow an inherited slot to a class range (e.g. Synthesis
+    # realized_plan -> PreparationMethod).
     direct_slots = get_all_class_slots(schema, class_name)
-    for slot_name in direct_slots:
-        mro = _slot_mro(schema, context_class if depth == 0 else class_name, slot_name)
-        slot_def = get_slot_details(schema, slot_name)
-        range_type      = slot_def.get("range", "string")
-        multivalued     = "Yes" if slot_def.get("multivalued",     False) else ""
-        inlined_as_list = "Yes" if slot_def.get("inlined_as_list", False) else ""
-        unit            = (slot_def.get("unit") or {}).get("ucum_code", "")
-        uri  = slot_def.get("slot_uri", "")
-        desc = slot_def.get("description", "")
+    entries = [(name, None) for name in direct_slots]
+    entries += [
+        (name, synthetic)
+        for name, synthetic in get_class_ranged_slot_usage(schema, class_name)
+        if name not in direct_slots
+    ]
+
+    for slot_name, synthetic in entries:
+        vals = (slot_row_values(sv, slot_name, class_name)
+                or _raw_row_values(schema, slot_name, class_name, synthetic))
         label = snake_to_readable(slot_name)
-        rows.append((label, "slot", parent_label, mro, range_type, multivalued, inlined_as_list, unit, uri, desc, slot_name))
+        rows.append((label, "slot", parent_label, vals["mro"], vals["range"],
+                     vals["multivalued"], vals["inlined_as_list"], vals["unit"],
+                     vals["uri"], vals["description"], slot_name))
 
-        if range_type and range_type in classes and not is_mixin(schema, range_type):
-            class_def   = classes[range_type]
-            class_label = snake_to_readable(range_type)
-            class_uri   = class_def.get("class_uri", "")
-            class_desc  = class_def.get("description", "")
-            rows.append((class_label, "class", label, mro, "", "", "", "", class_uri, class_desc, range_type))
-            _collect_rows(schema, range_type, class_label, context_class, seen, rows, depth + 1)
-            for sub in get_subclasses(schema, range_type):
-                sub_def   = classes.get(sub, {})
-                sub_label = snake_to_readable(sub)
-                sub_uri   = sub_def.get("class_uri", "")
-                sub_desc  = sub_def.get("description", "")
-                rows.append((sub_label, "class", class_label, mro, "", "", "", "", sub_uri, sub_desc, sub))
-                _collect_rows(schema, sub, sub_label, context_class, seen | {range_type}, rows, depth + 2)
-
-    for su_name, synthetic in get_class_ranged_slot_usage(schema, class_name):
-        if su_name in direct_slots:
-            continue
-        rng             = synthetic.get("range", "")
-        mro             = _slot_mro(schema, class_name, su_name)
-        multivalued     = "Yes" if synthetic.get("multivalued",     False) else ""
-        inlined_as_list = "Yes" if synthetic.get("inlined_as_list", False) else ""
-        unit            = (synthetic.get("unit") or {}).get("ucum_code", "")
-        uri             = synthetic.get("slot_uri", "")
-        desc            = synthetic.get("description", "")
-        su_label = snake_to_readable(su_name)
-        rows.append((su_label, "slot", parent_label, mro, rng, multivalued, inlined_as_list, unit, uri, desc, su_name))
-        if rng and rng in classes and not is_mixin(schema, rng):
-            class_def   = classes[rng]
+        # Expand the class the slot is declared with, and every subclass of
+        # it. This keeps the sheet layout; the range column above shows the
+        # effective (possibly narrowed) range.
+        rng = (synthetic or get_slot_details(schema, slot_name)).get("range", "string")
+        if rng in classes and not is_mixin(schema, rng):
             class_label = snake_to_readable(rng)
-            class_uri   = class_def.get("class_uri", "")
-            class_desc  = class_def.get("description", "")
-            rows.append((class_label, "class", su_label, mro, "", "", "", "", class_uri, class_desc, rng))
-            _collect_rows(schema, rng, class_label, class_name, seen, rows, depth + 1)
+            rows.append(_class_row(schema, rng, label, vals["mro"]))
+            _collect_rows(schema, sv, rng, class_label, seen, rows, depth + 1)
             for sub in get_subclasses(schema, rng):
-                sub_def   = classes.get(sub, {})
-                sub_label = snake_to_readable(sub)
-                sub_uri   = sub_def.get("class_uri", "")
-                sub_desc  = sub_def.get("description", "")
-                rows.append((sub_label, "class", class_label, mro, "", "", "", "", sub_uri, sub_desc, sub))
-                _collect_rows(schema, sub, sub_label, class_name, seen | {rng}, rows, depth + 2)
+                rows.append(_class_row(schema, sub, class_label, vals["mro"]))
+                _collect_rows(schema, sv, sub, snake_to_readable(sub), seen | {rng}, rows, depth + 2)
+
+
+def collect_sheet_rows(
+    schema: dict,
+    sv,
+    sheet_title: str,
+    class_name: str | None = None,
+    slot_origin: dict | None = None,
+    class_origin: dict | None = None,
+) -> list[tuple[list, str, str, bool]]:
+    """
+    Rows of one data sheet as (values, row type, M/R/O, owned), one per
+    (label, domain) pair. `owned` is False for rows inherited from a vendored
+    chemdcat-ap module; ownership is only checked when an origin index is given.
+    """
+    if class_name is None:
+        class_name = CLASS_MAP.get(sheet_title, sheet_title)
+    raw_rows: list = []
+    _collect_rows(schema, sv, class_name, "", set(), raw_rows)
+
+    check_ownership = slot_origin is not None or class_origin is not None
+    out: list[tuple[list, str, str, bool]] = []
+    seen: set = set()
+    for row in raw_rows:
+        key = (row[0], row[2])  # label + domain
+        if key in seen:
+            continue
+        seen.add(key)
+        row_type, raw_name = row[1], row[10]
+        origin = (slot_origin if row_type == "slot" else class_origin) or {}
+        owned = (raw_name in origin) if check_ownership else True
+        out.append((list(row[:10]), row_type, row[3], owned))
+    return out
 
 
 def build_sheet(
@@ -462,68 +599,127 @@ def build_sheet(
     class_name: str | None = None,
     slot_origin: dict | None = None,
     class_origin: dict | None = None,
-) -> None:
-    if class_name is None:
-        class_name = CLASS_MAP.get(sheet_title, sheet_title)
+    sv=None,
+) -> list[list]:
+    """Write one data sheet; returns the rows written (cell values)."""
+    sv = sv if sv is not None else load_schema_view(SCHEMA_DIR)
     ws = wb.create_sheet(title=sheet_title)
     _write_data_headers(ws)
 
-    # Ownership checking is opt-in: callers that don't pass slot_origin/
-    # class_origin (e.g. existing tests building a bare sheet) get today's
-    # exact appearance, with no row treated as "not owned."
-    check_ownership = slot_origin is not None or class_origin is not None
-    slot_origin  = slot_origin  or {}
-    class_origin = class_origin or {}
-
-    rows: list = []
-    _collect_rows(schema, class_name, "", class_name, set(), rows)
-
-    seen_labels: set = set()
-    for row in rows:
-        key = (row[0], row[2])  # label + domain
-        if key in seen_labels:
-            continue
-        seen_labels.add(key)
-        row_type, raw_name = row[1], row[10]
-        origin = slot_origin if row_type == "slot" else class_origin
-        owned = (raw_name in origin) if check_ownership else True
-        _append_row(ws, list(row[:10]), row_type, row[3], owned=owned)
+    rows = collect_sheet_rows(schema, sv, sheet_title, class_name, slot_origin, class_origin)
+    for values, row_type, mro, owned in rows:
+        _append_row(ws, values, row_type, mro, owned=owned)
 
     _auto_width(ws)
+    _add_dropdowns(ws)
+    return [values for values, *_ in rows]
+
+
+def build_baseline_sheet(wb: openpyxl.Workbook, sheet_rows: dict[str, list[list]]) -> None:
+    """Very hidden copy of every data row, used by the inbox pipeline."""
+    ws = wb.create_sheet(title=BASELINE_SHEET)
+    for values in baseline_values(sheet_rows):
+        ws.append(values)
+    ws.sheet_state = "veryHidden"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Whole workbook, rows for other scripts, stable saving
+# ─────────────────────────────────────────────────────────────────────────────
+
+def build_workbook(schema_dir: Path | str = SCHEMA_DIR, verbose: bool = False) -> openpyxl.Workbook:
+    log = print if verbose else (lambda *_: None)
+    if verbose:
+        schema = load_merged_schema(str(schema_dir))
+    else:
+        with contextlib.redirect_stdout(io.StringIO()):
+            schema = load_merged_schema(str(schema_dir))
+    sv = load_schema_view(schema_dir)
+    slot_origin, class_origin = build_origin_index(schema_dir)
+
+    wb = openpyxl.Workbook()
+    wb.remove(wb.active)
+
+    log("  Building sheet: Introduction")
+    build_intro_sheet(wb)
+    log("  Building sheet: Legend")
+    build_legend_sheet(wb)
+
+    log(f"  Building sheet: {REFERENCE_SHEET}")
+    sheet_rows = {REFERENCE_SHEET: build_catcore_sheet(wb, schema, sv)}
+    for sheet_title in DATA_SHEETS:
+        log(f"  Building sheet: {sheet_title}")
+        sheet_rows[sheet_title] = build_sheet(
+            wb, schema, sheet_title,
+            slot_origin=slot_origin, class_origin=class_origin, sv=sv,
+        )
+
+    log(f"  Building sheet: {BASELINE_SHEET} (very hidden)")
+    build_baseline_sheet(wb, sheet_rows)
+    return wb
+
+
+def generate_rows(schema_dir: Path | str = SCHEMA_DIR) -> dict[str, list[dict]]:
+    """
+    {sheet: [normalised row dict]} for the CoreMeta4Cat sheet and the data
+    sheets -- exactly the rows a workbook generated from schema_dir contains.
+    Cached per schema state.
+    """
+    key = schema_fingerprint(schema_dir)
+    rows = _ROWS_CACHE.get(key)
+    if rows is None:
+        with contextlib.redirect_stdout(io.StringIO()):
+            schema = load_merged_schema(str(schema_dir))
+        sv = load_schema_view(schema_dir)
+        rows = {REFERENCE_SHEET: [row_from_values(v) for v in collect_catcore_rows(schema, sv)]}
+        for sheet_title in DATA_SHEETS:
+            rows[sheet_title] = [
+                row_from_values(values)
+                for values, *_ in collect_sheet_rows(schema, sv, sheet_title)
+            ]
+        _cache_put(_ROWS_CACHE, key, rows)
+    return {sheet: [dict(r) for r in sheet_rows] for sheet, sheet_rows in rows.items()}
+
+
+def _workbook_parts(data: bytes) -> dict[str, bytes]:
+    """The parts of an .xlsx file, minus docProps/core.xml (creation/save time)."""
+    with zipfile.ZipFile(io.BytesIO(data)) as zf:
+        return {name: zf.read(name) for name in zf.namelist() if name != "docProps/core.xml"}
+
+
+def save_workbook(wb: openpyxl.Workbook, output_path: Path | str) -> bool:
+    """
+    Save wb to output_path unless the file there already has identical
+    content. Returns True if the file was written. Keeps regeneration from
+    producing a "changed" binary (and an auto-PR) when only the timestamps differ.
+    """
+    out = Path(output_path)
+    buffer = io.BytesIO()
+    wb.save(buffer)
+    data = buffer.getvalue()
+    if out.exists():
+        try:
+            if _workbook_parts(out.read_bytes()) == _workbook_parts(data):
+                return False
+        except zipfile.BadZipFile:
+            pass
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_bytes(data)
+    return True
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Entry point
 # ─────────────────────────────────────────────────────────────────────────────
 
-def main(schema_dir: str, output_path: str) -> None:
+def main(schema_dir: Path | str = SCHEMA_DIR, output_path: Path | str = OUTPUT_PATH) -> None:
     print(f"\nLoading CoreMeta4Cat modules from: {schema_dir}")
-    schema = load_merged_schema(schema_dir)
-    slot_origin, class_origin = build_origin_index(schema_dir)
-
-    wb = openpyxl.Workbook()
-    wb.remove(wb.active)
-
-    print("  Building sheet: Introduction")
-    build_intro_sheet(wb)
-
-    print("  Building sheet: Legend")
-    build_legend_sheet(wb)
-
-    print("  Building sheet: CoreMeta4Cat")
-    build_catcore_sheet(wb, schema)
-
-    for sheet_title in ["Synthesis", "Characterization", "Reaction", "Simulation"]:
-        print(f"  Building sheet: {sheet_title}")
-        build_sheet(wb, schema, sheet_title, slot_origin=slot_origin, class_origin=class_origin)
-
-    out = Path(output_path)
-    out.parent.mkdir(parents=True, exist_ok=True)
-    wb.save(str(out))
-    print(f"\nSaved -> {out}")
+    wb = build_workbook(schema_dir, verbose=True)
+    if save_workbook(wb, output_path):
+        print(f"\nSaved -> {output_path}")
+    else:
+        print(f"\nUnchanged -> {output_path} (same content, file left as is)")
 
 
 if __name__ == "__main__":
-    schema_dir  = str(_ROOT / "src" / "coremeta4cat" / "schema")
-    output_path = str(_ROOT / "docs" / "assets" / "coremeta4cat_vocabulary.xlsx")
-    main(schema_dir, output_path)
+    main(SCHEMA_DIR, OUTPUT_PATH)
