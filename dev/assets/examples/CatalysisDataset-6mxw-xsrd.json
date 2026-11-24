@@ -481,7 +481,7 @@
         "X-ray fluorescence analysis of 76 Cu-Ga-Al compositions spanning the Cu/Al/Ga ternary (Cu 0-1, Al 0-1, Ga 0-1, metal fractions normalised to 1), including the three single-metal end members. According to the article (section 3.2), XRF was measured on the freeze-dried hydrotalcite-like (HTC) precursors, i.e. before calcination. Measured Cu, Al and Ga fractions are reported next to the nominal fractions."
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000067",
+        "id": "voc4cat:0000067",
         "title": "X-ray fluorescence"
       },
       "carried_out_by": [
@@ -524,7 +524,7 @@
         "pymatgen, structure generation"
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000215",
+        "id": "voc4cat:0000215",
         "title": "density functional theory"
       },
       "evaluated_entity": [

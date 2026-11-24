@@ -312,7 +312,7 @@ was_generated_by:
     to the article (section 3.2), XRF was measured on the freeze-dried hydrotalcite-like (HTC) precursors,
     i.e. before calcination. Measured Cu, Al and Ga fractions are reported next to the nominal fractions.
   rdf_type:
-    id: VOC4CAT:0000067
+    id: voc4cat:0000067
     title: X-ray fluorescence
   carried_out_by:
   - id: coremeta4cat:DEV_6mxw-xsrd_XRF
@@ -345,7 +345,7 @@ was_generated_by:
   - Atomic Simulation Environment (ASE), structure generation
   - pymatgen, structure generation
   rdf_type:
-    id: VOC4CAT:0000215
+    id: voc4cat:0000215
     title: density functional theory
   evaluated_entity:
   - id: coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites
