@@ -293,7 +293,7 @@ was_generated_by:
     title: Bruker M4 TORNADO micro-XRF spectrometer
     description: Rh X-ray tube; ESPRIT software (article, section 2.1.4).
   rdf_type:
-    id: VOC4CAT:0000067
+    id: voc4cat:0000067
     title: X-ray fluorescence
   evaluated_entity:
   - id: coremeta4cat:CAT_6mxw-xsrd_HTC_library
@@ -321,7 +321,7 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
   rdf_type:
-    id: VOC4CAT:0000215
+    id: voc4cat:0000215
     title: density functional theory
   evaluated_entity:
   - id: coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites

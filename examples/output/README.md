@@ -2667,7 +2667,7 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
   rdf_type:
-    id: VOC4CAT:0000067
+    id: voc4cat:0000067
     title: X-ray fluorescence
   realized_plan:
     description: Elemental composition by the fundamental parameter method in ESPRIT;
@@ -2719,7 +2719,7 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
   rdf_type:
-    id: VOC4CAT:0000215
+    id: voc4cat:0000215
     title: density functional theory
   realized_plan:
     description: Vienna Ab initio Simulation Package with the PBE functional and projector

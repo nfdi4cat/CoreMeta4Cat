@@ -1376,7 +1376,7 @@ modelled (`evaluated_entity`) and the properties it computed (`calculated_proper
         n2(["“VASP”"])
         n3(["“Atomic Simulation Environment (ASE), stru…”"])
         n4(["“pymatgen, structure generation”"])
-        n5["density functional theory<br/>VOC4CAT:0000215"]
+        n5["density functional theory<br/>voc4cat:0000215"]
         n6["CuGa2O4 surface models, pristine and with…<br/>«EvaluatedEntity»"]
         n7["periodic DFT, PBE, PAW<br/>«DFT»"]
         n8(["“PBE”"])
@@ -1421,7 +1421,7 @@ modelled (`evaluated_entity`) and the properties it computed (`calculated_proper
     - Atomic Simulation Environment (ASE), structure generation
     - pymatgen, structure generation
     rdf_type:
-      id: VOC4CAT:0000215
+      id: voc4cat:0000215
       title: density functional theory
     evaluated_entity:
     - id: coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites
