@@ -1099,7 +1099,7 @@ description:
 - Catalyst characterization (BET, ICP-AES, PXRD, DRIFT, IR) and catalytic testing
   data for a series of Pd/P catalysts (nominal 2 wt% Pd, 0-5 wt% P) on Al2O3 and SiO2
   supports, investigating how phosphorus modification of the support tunes the Pd-catalyzed
-  selective hydrogenation of cinnamyl alcohol (CAL) and citral. Catalytic performance
+  selective hydrogenation of cinnamaldehyde (CAL) and citral. Catalytic performance
   was screened via Central Composite Design (Al2O3/CAL, 27 runs) and full-factorial
   designs (SiO2/CAL, Al2O3/citral, SiO2/citral; 9 runs each) varying temperature (30-70
   C), pressure (1-9 bar), phosphorus loading, and reaction time. TEM is mentioned
@@ -1112,8 +1112,8 @@ is_about_activity:
   catalyst_type:
   - heterogeneous_catalysis
   description:
-  - Selective hydrogenation of cinnamyl alcohol (CAL) over 6 Pd/P/Al2O3 catalysts
-    (P loading 0-5 wt%, ~2 wt% Pd) in a Central Composite Design (27 runs) exploring
+  - Selective hydrogenation of cinnamaldehyde (CAL) over 6 Pd/P/Al2O3 catalysts (P
+    loading 0-5 wt%, ~2 wt% Pd) in a Central Composite Design (27 runs) exploring
     temperature, pressure, phosphorus loading, and time. An initial fixed-condition
     screening (50C/5bar/30min, hot-filtration leaching test) gave CAL conversion/HCAL
     yield of 32/30% (Pd/Al2O3) and 45/42% (Pd/3P/Al2O3). Conversion ranged 6-96%,
@@ -1140,7 +1140,7 @@ is_about_activity:
     id: voc4cat:0000260
     title: hydrogenation
   reaction_name:
-  - selective hydrogenation of cinnamyl alcohol
+  - selective hydrogenation of cinnamaldehyde
   reactor_temperature_range:
   - description: Temperature range explored in the design of experiments (catalytic_data.xlsx)
     has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
@@ -1148,7 +1148,7 @@ is_about_activity:
     min_value: 303.15
     unit: https://qudt.org/vocab/unit/K
   title:
-  - Selective hydrogenation of cinnamyl alcohol over Pd-P/Al2O3 catalysts
+  - Selective hydrogenation of cinnamaldehyde over Pd-P/Al2O3 catalysts
   used_catalyst:
   - description: Pd on Al2O3 support, unmodified (P-free) reference catalyst
     has_physical_state: SOLID
@@ -1312,9 +1312,9 @@ is_about_activity:
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_substrate
     rdf_type:
-      id: CHEBI:15554
-      title: cinnamyl alcohol
-    title: cinnamyl alcohol
+      id: CHEBI:16731
+      title: (E)-cinnamaldehyde
+    title: cinnamaldehyde
   - id: coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_H2
     rdf_type:
       id: CHEBI:18276
@@ -1332,7 +1332,7 @@ is_about_activity:
   catalyst_type:
   - heterogeneous_catalysis
   description:
-  - Selective hydrogenation of cinnamyl alcohol (CAL) over 4 Pd/P/SiO2 catalysts (P
+  - Selective hydrogenation of cinnamaldehyde (CAL) over 4 Pd/P/SiO2 catalysts (P
     loading 0-5 wt%, ~2 wt% Pd) in a full factorial design (9 runs) exploring temperature,
     pressure, phosphorus loading, and time. An initial fixed-condition screening (50C/5bar/30min,
     hot-filtration leaching test) gave CAL conversion/HCAL yield of 23/22% (Pd/SiO2)
@@ -1360,7 +1360,7 @@ is_about_activity:
     id: voc4cat:0000260
     title: hydrogenation
   reaction_name:
-  - selective hydrogenation of cinnamyl alcohol
+  - selective hydrogenation of cinnamaldehyde
   reactor_temperature_range:
   - description: Temperature range explored in the design of experiments (catalytic_data.xlsx)
     has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
@@ -1368,7 +1368,7 @@ is_about_activity:
     min_value: 303.15
     unit: https://qudt.org/vocab/unit/K
   title:
-  - Selective hydrogenation of cinnamyl alcohol over Pd-P/SiO2 catalysts
+  - Selective hydrogenation of cinnamaldehyde over Pd-P/SiO2 catalysts
   used_catalyst:
   - description: Pd on SiO2 support, unmodified (P-free) reference catalyst
     has_physical_state: SOLID
@@ -1472,9 +1472,9 @@ is_about_activity:
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_CAL_SiO2_substrate
     rdf_type:
-      id: CHEBI:15554
-      title: cinnamyl alcohol
-    title: cinnamyl alcohol
+      id: CHEBI:16731
+      title: (E)-cinnamaldehyde
+    title: cinnamaldehyde
   - id: coremeta4cat:REAC_32x1-99x6_CAL_SiO2_H2
     rdf_type:
       id: CHEBI:18276
@@ -1621,7 +1621,7 @@ is_about_activity:
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_substrate
     rdf_type:
-      id: CHEBI:29085
+      id: CHEBI:23316
       title: citral
     title: citral
   - id: coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_H2
@@ -1770,7 +1770,7 @@ is_about_activity:
   used_reactant:
   - id: coremeta4cat:REAC_32x1-99x6_Citral_SiO2_substrate
     rdf_type:
-      id: CHEBI:29085
+      id: CHEBI:23316
       title: citral
     title: citral
   - id: coremeta4cat:REAC_32x1-99x6_Citral_SiO2_H2
@@ -1792,6 +1792,9 @@ is_about_entity:
     loading, BET surface area).
   id: coremeta4cat:CAT_32x1-99x6_all
   title: 10 Pd/P catalyst samples (Al2O3 and SiO2 supports)
+is_referenced_by:
+- id: https://doi.org/10.26434/chemrxiv.15007916/v1
+  title: Rang et al., ChemRxiv 2026, preprint
 keyword:
 - Chemistry
 - Engineering
@@ -1800,7 +1803,7 @@ keyword:
 - Palladium catalyst
 - Phosphorus modification
 - Selective hydrogenation
-- Cinnamyl alcohol
+- Cinnamaldehyde
 - Citral
 other_identifier:
 - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
@@ -1818,6 +1821,248 @@ title:
 - "Support Engineering with Phosphorus: Tuning the Palladium-Catalyzed Selective Hydrogenation\
   \ of \u03B1,\u03B2-Unsaturated Aldehydes"
 was_generated_by:
+- activity_designator: Synthesis
+  catalyst_measured_properties:
+  - P contents measured by ICP after Pd deposition (see CHAR_32x1-99x6_ICPAES)
+  - Phosphate species on the modified alumina shown by ATR-IR (article, section 2.1)
+  catalyst_support:
+  - alumina, Puralox TH 100/150 (Sasol)
+  - silica, Cariact Q 20C (Fuji Silysia Chemical)
+  description:
+  - 'For 970 mg of support, NH4H2PO4 was dissolved in deionised water (1 mL for alumina,
+    added in 0.5 mL aliquots; 1.4 mL for silica, added in 0.7 mL aliquots, based on
+    the pore volume of each support), then dried and calcined in flowing dry air.
+    Source: article, section 4.2.'
+  had_input_entity:
+  - id: coremeta4cat:PREC_32x1-99x6_NH4H2PO4
+    precursor_quantity:
+    - description: per 970 mg of support, for 1 wt% P
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/MilliGM
+      value: 37.1
+    - description: per 970 mg of support, for 2 wt% P
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/MilliGM
+      value: 74.3
+    - description: per 970 mg of support, for 3 wt% P
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/MilliGM
+      value: 111
+    - description: per 970 mg of support, for 4 wt% P
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/MilliGM
+      value: 149
+    - description: per 970 mg of support, for 5 wt% P
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/MilliGM
+      value: 186
+    rdf_type:
+      id: CHEBI:62982
+      title: ammonium dihydrogen phosphate
+    title: ammonium dihydrogen phosphate, NH4H2PO4 (Sigma-Aldrich, >98%)
+  - id: coremeta4cat:SUP_32x1-99x6_Al2O3
+    rdf_type:
+      id: CHEBI:30187
+      title: aluminium oxide
+    title: alumina, Puralox TH 100/150 (Sasol), heated at 700 C for 5 h
+  - id: coremeta4cat:SUP_32x1-99x6_SiO2
+    precursor_quantity:
+    - description: per batch
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/MilliGM
+      value: 970
+    rdf_type:
+      id: CHEBI:30563
+      title: silicon dioxide
+    title: silica, Cariact Q 20C (Fuji Silysia Chemical), heated at 350 C for 5 h
+  had_output_entity:
+  - id: coremeta4cat:SUP_32x1-99x6_1PAl2O3
+    title: 1PAl2O3 (1 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_2PAl2O3
+    title: 2PAl2O3 (2 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_3PAl2O3
+    title: 3PAl2O3 (3 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_4PAl2O3
+    title: 4PAl2O3 (4 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_5PAl2O3
+    title: 5PAl2O3 (5 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_1PSiO2
+    title: 1PSiO2 (1 wt% P on silica)
+  - id: coremeta4cat:SUP_32x1-99x6_3PSiO2
+    title: 3PSiO2 (3 wt% P on silica)
+  - id: coremeta4cat:SUP_32x1-99x6_5PSiO2
+    title: 5PSiO2 (5 wt% P on silica)
+  has_sample_pretreatment:
+  - value: Supports heated before use, silica at 350 C and alumina at 700 C, each
+      for 5 h
+  id: coremeta4cat:SYN_32x1-99x6_P_modification
+  nominal_composition:
+  - 1, 2, 3, 4 and 5 wt% P on alumina (1PAl2O3 to 5PAl2O3)
+  - 1, 3 and 5 wt% P on silica (1PSiO2, 3PSiO2, 5PSiO2)
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  realized_plan:
+    description: Dried 12 h at 60 C, then calcined 4 h at 500 C under compressed dry
+      air (20 NL/h, GHSV 10 h-1).
+    has_calcination_atmosphere:
+    - value: flowing compressed dry air
+    has_calcination_dwelling_time:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 4
+    has_calcination_gas_flow_rate:
+    - description: normal litres per hour; GHSV 10 h-1
+      has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFlowRate
+      unit: https://qudt.org/vocab/unit/L-PER-HR
+      value: 20
+    has_calcination_temperature_range:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      max_value: 773.15
+      min_value: 773.15
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 12
+    has_drying_temperature:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+      value: 333.15
+    id: coremeta4cat:SYN_32x1-99x6_IWI_air_method
+    impregnation_type:
+    - incipient_wetness
+    plan_designator: voc4cat:0007028
+    title: incipient wetness impregnation, drying, calcination in flowing dry air
+  solvent:
+  - id: coremeta4cat:SOLV_32x1-99x6_water
+    rdf_type:
+      id: CHEBI:15377
+      title: water
+    title: deionised water
+  title:
+  - Phosphorus modification of alumina and silica by incipient wetness impregnation
+    with NH4H2PO4
+- activity_designator: Synthesis
+  catalyst_measured_properties:
+  - Pd contents by ICP-OES slightly below 2 wt%, deviation below 0.2 wt% (article,
+    section 2.1)
+  - 'BET surface area: Pd/Al2O3 119 m2/g and Pd/5PAl2O3 108 m2/g; Pd/SiO2 126 m2/g
+    and Pd/5PSiO2 72 m2/g'
+  - 'Mean Pd particle size by STEM: 9.7 nm (Pd/SiO2) and 3.8 nm with phosphorus; 3.3
+    nm (Pd/Al2O3) and 2.2 nm with phosphorus (article, Table 1)'
+  catalyst_support:
+  - alumina and silica, unmodified or phosphorus-modified
+  description:
+  - 'Per batch, 0.56 mL of the 10 wt% [Pd(NH3)4](NO3)2 solution was diluted with deionised
+    water (0.44 mL for alumina, added in 0.5 mL aliquots; 0.84 mL for silica, added
+    in 0.7 mL aliquots), impregnated onto the supports, dried and calcined as in the
+    phosphorus modification. Target Pd loading 2 wt%. Source: article, section 4.3.'
+  had_input_entity:
+  - has_volume:
+    - description: per batch
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Volume
+      unit: https://qudt.org/vocab/unit/MilliL
+      value: 0.56
+    id: coremeta4cat:PREC_32x1-99x6_PdNH34NO32
+    title: tetraamminepalladium(II) nitrate, [Pd(NH3)4](NO3)2, 10 wt% aqueous solution
+      (Sigma-Aldrich, >99%)
+  - id: coremeta4cat:SUP_32x1-99x6_Al2O3
+    rdf_type:
+      id: CHEBI:30187
+      title: aluminium oxide
+    title: alumina, Puralox TH 100/150 (Sasol), heated at 700 C for 5 h
+  - id: coremeta4cat:SUP_32x1-99x6_SiO2
+    rdf_type:
+      id: CHEBI:30563
+      title: silicon dioxide
+    title: silica, Cariact Q 20C (Fuji Silysia Chemical), heated at 350 C for 5 h
+  - id: coremeta4cat:SUP_32x1-99x6_1PAl2O3
+    title: 1PAl2O3 (1 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_2PAl2O3
+    title: 2PAl2O3 (2 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_3PAl2O3
+    title: 3PAl2O3 (3 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_4PAl2O3
+    title: 4PAl2O3 (4 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_5PAl2O3
+    title: 5PAl2O3 (5 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_1PSiO2
+    title: 1PSiO2 (1 wt% P on silica)
+  - id: coremeta4cat:SUP_32x1-99x6_3PSiO2
+    title: 3PSiO2 (3 wt% P on silica)
+  - id: coremeta4cat:SUP_32x1-99x6_5PSiO2
+    title: 5PSiO2 (5 wt% P on silica)
+  had_output_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+  has_sample_pretreatment:
+  - value: Supports heated before use, silica at 350 C and alumina at 700 C, each
+      for 5 h
+  id: coremeta4cat:SYN_32x1-99x6_Pd_impregnation
+  nominal_composition:
+  - 2 wt% Pd on alumina with 0, 1, 2, 3, 4 or 5 wt% P
+  - 2 wt% Pd on silica with 0, 1, 3 or 5 wt% P
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  realized_plan:
+    description: Dried 12 h at 60 C, then calcined 4 h at 500 C under compressed dry
+      air (20 NL/h, GHSV 10 h-1).
+    has_calcination_atmosphere:
+    - value: flowing compressed dry air
+    has_calcination_dwelling_time:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 4
+    has_calcination_gas_flow_rate:
+    - description: normal litres per hour; GHSV 10 h-1
+      has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFlowRate
+      unit: https://qudt.org/vocab/unit/L-PER-HR
+      value: 20
+    has_calcination_temperature_range:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      max_value: 773.15
+      min_value: 773.15
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 12
+    has_drying_temperature:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+      value: 333.15
+    id: coremeta4cat:SYN_32x1-99x6_IWI_air_method
+    impregnation_type:
+    - incipient_wetness
+    plan_designator: voc4cat:0007028
+    title: incipient wetness impregnation, drying, calcination in flowing dry air
+  solvent:
+  - id: coremeta4cat:SOLV_32x1-99x6_water
+    rdf_type:
+      id: CHEBI:15377
+      title: water
+    title: deionised water
+  title:
+  - Pd deposition on unmodified and phosphorus-modified supports by incipient wetness
+    impregnation
 - activity_designator: Characterization
   carried_out_by:
   - description: Instrument model not specified in the source dataset files.
@@ -3297,6 +3542,9 @@ is_about_entity:
     above for per-sample detail.
   id: coremeta4cat:CAT_arp5-s69r_all
   title: Pd3P/SiO2 and Pd/SiO2 catalyst samples
+is_referenced_by:
+- id: https://doi.org/10.1016/j.jcat.2026.116733
+  title: Neyyathala et al., J. Catal. 456 (2026) 116733
 keyword:
 - Chemistry
 - Catalysis
@@ -3316,6 +3564,169 @@ rdf_type:
 title:
 - Carbonylation catalysis of aryl halides through active-site engineering
 was_generated_by:
+- activity_designator: Synthesis
+  carried_out_by:
+  - id: coremeta4cat:DEV_arp5-s69r_furnace
+    title: box furnace with a quartz Schlenk tube (pressure relief valve)
+  catalyst_measured_properties:
+  - 'Pd loading by ICP-AES: 4.95 wt%'
+  - 'Mean particle size by HAADF-STEM: 5.6 nm'
+  - Pd3P phase confirmed by PXRD and HRTEM lattice fringes (article, section 3.1)
+  catalyst_support:
+  - silica, Cariact Q 20C (Fuji Silysia Chemical)
+  description:
+  - Pd(OAc)2 and H3PO4 dissolved in concentrated hydrochloric acid, impregnated onto
+    silica, dried and treated in hydrogen at 400 C, following a previously reported
+    procedure (article, section 2.2, ref. 44). The article gives the amounts for the
+    5 wt% Pd catalyst only.
+  had_input_entity:
+  - id: coremeta4cat:PREC_arp5-s69r_PdOAc2
+    precursor_quantity:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/MilliGM
+      value: 100
+    title: palladium(II) acetate, Pd(OAc)2 (Sigma-Aldrich, >=99.99%)
+  - has_volume:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Volume
+      unit: https://qudt.org/vocab/unit/MicroL
+      value: 10
+    id: coremeta4cat:PREC_arp5-s69r_H3PO4
+    rdf_type:
+      id: CHEBI:26078
+      title: phosphoric acid
+    title: phosphoric acid, 85 wt% (Sigma-Aldrich)
+  - id: coremeta4cat:SUP_arp5-s69r_SiO2
+    precursor_quantity:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/GM
+      value: 0.94
+    rdf_type:
+      id: CHEBI:30563
+      title: silicon dioxide
+    title: silica, Cariact Q 20C (Fuji Silysia Chemical)
+  had_output_entity:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+  id: coremeta4cat:SYN_arp5-s69r_Pd3P_SiO2
+  nominal_composition:
+  - 'Pd3P/SiO2: 5 wt% Pd'
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  realized_plan:
+    description: Precursors dissolved in concentrated hydrochloric acid by sonication
+      and added dropwise to the silica; dried 12 h at 60 C; then heated at 50 C/min
+      to 400 C and held 8 h in pure hydrogen in an evacuated and H2-filled quartz
+      Schlenk tube. The hydrogen treatment is recorded in the calcination fields.
+    has_calcination_atmosphere:
+    - value: pure hydrogen (Air Liquide, 99.999%)
+    has_calcination_dwelling_time:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 8
+    has_calcination_heating_rate:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+      value: 50
+    has_calcination_temperature_range:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      max_value: 673.15
+      min_value: 673.15
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 12
+    has_drying_temperature:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+      value: 333.15
+    id: coremeta4cat:SYN_arp5-s69r_IWI_H2_method
+    impregnation_type:
+    - incipient_wetness
+    plan_designator: voc4cat:0007028
+    title: incipient wetness impregnation, drying, thermal treatment in hydrogen
+  solvent:
+  - id: coremeta4cat:SOLV_arp5-s69r_HCl
+    rdf_type:
+      id: CHEBI:749659
+      title: hydrochloric acid
+    title: concentrated hydrochloric acid, 37% (Thermo Scientific Chemicals)
+  storage_conditions:
+  - Used directly or stored in an Ar-filled glovebox (MBraun) before use or analysis
+  title:
+  - Pd3P/SiO2 (5 wt% Pd) by incipient wetness impregnation and thermal treatment in
+    hydrogen
+- activity_designator: Synthesis
+  carried_out_by:
+  - id: coremeta4cat:DEV_arp5-s69r_furnace
+    title: box furnace with a quartz Schlenk tube (pressure relief valve)
+  catalyst_measured_properties:
+  - 'Mean particle size by HAADF-STEM: 6.6 nm'
+  - Face-centred cubic Pd phase by PXRD (article, section 3.1)
+  catalyst_support:
+  - silica, Cariact Q 20C (Fuji Silysia Chemical)
+  description:
+  - Same procedure as SYN_arp5-s69r_Pd3P_SiO2, without H3PO4 (article, section 2.2).
+  had_input_entity:
+  - id: coremeta4cat:PREC_arp5-s69r_PdOAc2
+    title: palladium(II) acetate, Pd(OAc)2 (Sigma-Aldrich, >=99.99%)
+  - id: coremeta4cat:SUP_arp5-s69r_SiO2
+    rdf_type:
+      id: CHEBI:30563
+      title: silicon dioxide
+    title: silica, Cariact Q 20C (Fuji Silysia Chemical)
+  had_output_entity:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+  id: coremeta4cat:SYN_arp5-s69r_Pd_SiO2
+  nominal_composition:
+  - 'Pd/SiO2: 5 wt% Pd'
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  realized_plan:
+    description: Precursors dissolved in concentrated hydrochloric acid by sonication
+      and added dropwise to the silica; dried 12 h at 60 C; then heated at 50 C/min
+      to 400 C and held 8 h in pure hydrogen in an evacuated and H2-filled quartz
+      Schlenk tube. The hydrogen treatment is recorded in the calcination fields.
+    has_calcination_atmosphere:
+    - value: pure hydrogen (Air Liquide, 99.999%)
+    has_calcination_dwelling_time:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 8
+    has_calcination_heating_rate:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+      value: 50
+    has_calcination_temperature_range:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      max_value: 673.15
+      min_value: 673.15
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+      value: 12
+    has_drying_temperature:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+      value: 333.15
+    id: coremeta4cat:SYN_arp5-s69r_IWI_H2_method
+    impregnation_type:
+    - incipient_wetness
+    plan_designator: voc4cat:0007028
+    title: incipient wetness impregnation, drying, thermal treatment in hydrogen
+  solvent:
+  - id: coremeta4cat:SOLV_arp5-s69r_HCl
+    rdf_type:
+      id: CHEBI:749659
+      title: hydrochloric acid
+    title: concentrated hydrochloric acid, 37% (Thermo Scientific Chemicals)
+  storage_conditions:
+  - Used directly or stored in an Ar-filled glovebox (MBraun) before use or analysis
+  title:
+  - Pd/SiO2 (5 wt% Pd) reference catalyst, prepared like Pd3P/SiO2 without phosphoric
+    acid
 - activity_designator: Characterization
   carried_out_by:
   - description: Instrument model not specified in the source dataset files.
@@ -3361,6 +3772,9 @@ was_generated_by:
   - description: See CatalyticReaction files for full detail.
     id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
     title: Pd/SiO2 (5 wt% Pd, ARNE02)
+  has_sample_pretreatment:
+  - value: 1 h in argon (50 mL/min) at 150 C to remove physisorbed water, then cooled
+      to 30 C before CO dosing
   id: coremeta4cat:CHAR_arp5-s69r_DRIFT
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
@@ -3447,6 +3861,9 @@ was_generated_by:
       and Microscopy/FEI, Esprit/Bruker); Cliff-Lorimer quantification for EDXS.
     id: coremeta4cat:CHAR_arp5-s69r_STEM_method
     title: STEM/TEM imaging and EDX mapping method
+  sample_preparation:
+  - Dispersed in ethanol, a drop placed on a Cu grid with an amorphous carbon film,
+    dried at 60 C overnight
   title:
   - STEM/TEM imaging and EDX mapping (3 catalyst samples)
 - activity_designator: Characterization
@@ -3475,6 +3892,9 @@ was_generated_by:
     description: Pd 3d scans for both catalysts; P 2p scan additionally for Pd3P/SiO2.
     id: coremeta4cat:CHAR_arp5-s69r_XPS_method
     title: XPS core-level measurement method
+  sample_preparation:
+  - Stored under inert atmosphere in a glovebox and transferred with minimal exposure
+    to air; no further pretreatment
   title:
   - X-ray photoelectron spectroscopy (2 catalysts, Pd 3d and P 2p)
 
