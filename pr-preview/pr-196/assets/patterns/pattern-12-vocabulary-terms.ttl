@@ -1,0 +1,24 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
+CHEBI:17245 schema1:name "carbon monoxide" ;
+	a schema1:DefinedTerm .
+coremeta4cat:REAC_2d6m-exeb_CO dcterms:title "carbon monoxide" ;
+	a CHEBI:17245 , SIO:010411 .
+coremeta4cat:REAC_2d6m-exeb_CO_methanation RO:0004009 coremeta4cat:REAC_2d6m-exeb_CO ;
+	dcterms:title "CO methanation catalyst screening (4 Ni catalysts)" ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0000260 ;
+	prov:wasAssociatedWith coremeta4cat:REAC_2d6m-exeb_CO_reactor ;
+	voc4cat:0007009 "CO methanation" ;
+	voc4cat:0007014 voc4cat:0007001 .
+coremeta4cat:REAC_2d6m-exeb_CO_reactor dcterms:title "isothermal cylindrical fixed-bed reactors" ;
+	a voc4cat:0007018 .
+voc4cat:0000260 schema1:name "hydrogenation" ;
+	a schema1:DefinedTerm .
