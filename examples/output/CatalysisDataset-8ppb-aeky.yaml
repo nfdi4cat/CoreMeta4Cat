@@ -82,8 +82,10 @@ was_generated_by:
   calculated_property:
   - value: -1.86 kcal/mol
     description: Relative binding free energy (ddG) of 4M-N15 (S19V/P423F) vs. 3FCR-4M
+    property_designator: IAO:0000109
   - value: -1.11 kcal/mol
     description: Relative binding free energy (ddG) of 4M-N16 (G151A/P423F) vs. 3FCR-4M
+    property_designator: IAO:0000109
 - id: coremeta4cat:SIM_8ppb-aeky_induced_fit_docking
   title:
   - Induced-fit docking of the substrate-cofactor complex into 3FCR-4M

@@ -17,7 +17,7 @@ CoreMeta4Cat defines that minimum set of information — which fields are requir
 
 | I am… | Start here |
 |---|---|
-| A **researcher** who wants to check or improve the metadata in my dataset | [Download metadata list](https://nfdi4cat.github.io/CoreMeta4Cat/latest/assets/coremeta4cat_vocabulary.xlsx) · [Metadata Checker Tool](#metadata-checker-tool) |
+| A **researcher** who wants to check or improve the metadata in my dataset | [Download metadata list](https://nfdi4cat.github.io/CoreMeta4Cat/latest/assets/coremeta4cat_vocabulary.xlsx) · [Metadata Checker (in development)](#metadata-list-and-metadata-checker) |
 | A **data steward** or repository manager | [Getting Started on the docs site](https://nfdi4cat.github.io/CoreMeta4Cat/latest/getting-started/) |
 | A **developer** contributing to the schema or tooling | [Schema architecture](#schema-architecture) · [Developer tooling](#developer-tooling) |
 | **New to CoreMeta4Cat** and just exploring | [Documentation site](https://nfdi4cat.github.io/CoreMeta4Cat/latest/) |
@@ -25,7 +25,7 @@ CoreMeta4Cat defines that minimum set of information — which fields are requir
 ---
 
 
-## Metadata Checker Tool
+## Metadata list and Metadata Checker
 
 The most up-to-date list of CoreMeta4Cat metadata fields for all four research domains — Synthesis, Characterization, Reaction, and Simulation — is available as a structured Excel workbook:
 
@@ -33,7 +33,7 @@ The most up-to-date list of CoreMeta4Cat metadata fields for all four research d
 
 Each domain lists its fields grouped by priority (Mandatory, Recommended, Optional), with plain-language descriptions and links to controlled vocabulary terms where available. This is the right starting point if you want to understand what metadata your dataset should include.
 
-We are currently developing a user-friendly **Metadata Checker** tool that will make this process even easier — upload your dataset, and the tool will automatically identify which required fields are present, which are missing, and give you a plain-language gap report with a downloadable template to act on. No schema knowledge required. The tool will be available here soon.
+We are also developing a **Metadata Checker**: an ELN-style form for entering and submitting new data along the CoreMeta4Cat fields, with feedback buttons for reporting problems with a field while you work. It is still in development and will be linked here once it is available.
 
 ---
 
@@ -90,9 +90,6 @@ scripts/
   generate_charts.py       ← builds sunburst hierarchy charts from schema
   schema_to_excel.py       ← exports schema → vocabulary workbook
   excel_to_schema.py       ← compares workbook against schema
-  excel_to_schema_json.py  ← converts vocabulary workbook → tool JSON (new)
-tool/                      ← Metadata Checker browser tool (new)
-  step1/index.html         ← Step 1: Define Dataset
 docs/           ← MkDocs documentation source
 tests/
   data/valid/   ← example YAML records used as unit tests

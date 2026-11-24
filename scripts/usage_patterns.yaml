@@ -240,12 +240,23 @@ sections:
         select: "is_about_activity[0]"
         class: CatalyticReaction
         purpose: >-
-          Identify what reacted over which catalyst: chemicals as ChEBI terms, catalysts with
-          their nominal loadings.
+          Identify what reacted over which catalyst: chemicals as ChEBI terms, catalysts with the
+          elements they are composed of and their nominal loadings.
         use_case: >-
           Ammonia decomposition over Ru/Ba catalysts on a Ni-BCZY cermet (two of six catalysts
-          shown). Ammonia and argon are reactants, nitrogen and hydrogen products; the loadings are
-          mass fractions in percent.
+          shown). Ammonia and argon are reactants, nitrogen and hydrogen products. Each catalyst
+          lists ruthenium and barium under `composed_of`, each with its loading as a mass fraction
+          in percent.
+        notes:
+          - >-
+            A loading belongs to a component, not to the catalyst as a whole: list the components
+            under `composed_of`, each with its ChEBI term, and give each its own mass fraction.
+            Properties of the whole catalyst, such as its BET surface area or mass, stay on the
+            catalyst.
+          - >-
+            Each component gets its own `id` (here the catalyst's id plus the element symbol),
+            because its loading applies only within this catalyst. The chemical identity is shared
+            through `rdf_type`.
         keep:
           id: true
           title: true
@@ -253,7 +264,7 @@ sections:
           rdf_type: true
           catalyst_type: true
           catalyst_form: true
-          used_catalyst: {_limit: 2, id: true, title: true, has_quantitative_attribute: true}
+          used_catalyst: {_limit: 2, id: true, title: true, composed_of: true}
           used_reactant: true
           generated_product: true
           used_reactor: {id: true, reactor_designator: true, title: true}
@@ -315,11 +326,18 @@ sections:
         use_case: >-
           DFT binding energies of OH and CO at doped CuGa₂O₄ sites (VASP, PBE). The plan is
           declared as `DFT` (`plan_designator: coremeta4cat:DFT`) so the functional has its own
-          field.
+          field, and each binding energy as `AdsorptionEnergetics`
+          (`property_designator: coremeta4cat:AdsorptionEnergetics`) so the adsorbate and the
+          energy reference have their own fields.
         notes:
           - >-
-            Adsorption and binding energies have no dedicated property class yet, so value and
-            context go into `calculated_property` as text.
+            `property_designator` works like `plan_designator`: it names the property class an
+            entry belongs to (adsorption, reaction or transition-state energetics, electrochemical
+            free energy, catalytic descriptors, or one of the material properties). Without it, an
+            entry can only carry a value and a description.
+          - >-
+            The deposit gives the binding energies as ranges over 17 sites, so the range stays in
+            `value`; a single computed energy goes into `adsorption_energy` as a number in eV.
         keep:
           id: true
           activity_designator: true
@@ -394,7 +412,7 @@ sections:
           quantity, and the unit, both as QUDT IRIs.
         use_case: >-
           A single pressure (1 bar), a temperature range (473.15–873.15 K) and a metal loading as
-          mass fraction (0.5 wt% Ru).
+          mass fraction (0.5 wt% Ru), given on the ruthenium component of the catalyst.
         notes:
           - >-
             Use full QUDT IRIs for `unit` (`https://qudt.org/vocab/unit/K`), not bare codes like
@@ -406,7 +424,11 @@ sections:
           id: true
           title: true
           rdf_type: true
-          used_catalyst: {_limit: 1, id: true, title: true, has_quantitative_attribute: 1}
+          used_catalyst:
+            _limit: 1
+            id: true
+            title: true
+            composed_of: {_limit: 1, id: true, title: true, rdf_type: true, has_quantitative_attribute: 1}
           used_reactor: {id: true, reactor_designator: true, title: true}
           reactor_temperature_range: true
           experiment_pressure: true

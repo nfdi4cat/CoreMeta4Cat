@@ -1,6 +1,5 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
-@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -18,9 +17,16 @@ coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites dcterms:title "CuGa2O4 surface models,
 	a prov:Entity .
 voc4cat:0000215 schema1:name "density functional theory" ;
 	a schema1:DefinedTerm .
-_:c14n0 dcterms:description "CO binding energy; range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest); referenced to gas-phase CO" ;
-	a IAO:0000109 ;
-	prov:value "-2.20 to 0.51 eV (17 sites)" .
-_:c14n1 dcterms:description "OH binding energy; range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); reference state not defined in the main text" ;
-	a IAO:0000109 ;
-	prov:value "-1.87 to 1.41 eV (17 sites)" .
+_:c14n0 dcterms:description "Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest)." ;
+	dcterms:title "CO binding energy" ;
+	a coremeta4cat:AdsorptionEnergetics ;
+	prov:value "-2.20 to 0.51 eV (17 sites)" ;
+	coremeta4cat:adsorbate "CO" ;
+	coremeta4cat:energy_reference "CO(g)" ;
+	coremeta4cat:material_composition "CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn" , "Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr" .
+_:c14n1 dcterms:description "Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference state is not defined in the main text." ;
+	dcterms:title "OH binding energy" ;
+	a coremeta4cat:AdsorptionEnergetics ;
+	prov:value "-1.87 to 1.41 eV (17 sites)" ;
+	coremeta4cat:adsorbate "OH" ;
+	coremeta4cat:material_composition "CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn" , "Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr" .

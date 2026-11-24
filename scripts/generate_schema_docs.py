@@ -494,7 +494,12 @@ The class follows a hierarchical structure in which selection of a characterizat
 Core fields include reactor design type, operational parameters, and product identification and quantification methods. The class also specifies metadata required to report and evaluate catalyst performance metrics, enabling structured comparison across experimental studies.""",
     "Simulation":         """The Simulation data class captures metadata describing theoretical and computational studies in catalysis. It documents methodological background, computational settings, and modeling approaches required to interpret simulation results.
 
-Computational approaches are organized under the parent field simulation method, which includes techniques such as density functional theory, molecular dynamics, microkinetic modeling, and Monte Carlo simulations. Selection of a specific method activates the corresponding method-specific metadata fields necessary to describe model setup and computational parameters.""",
+Computational approaches are organized under the parent field simulation method, which includes techniques such as density functional theory, molecular dynamics, microkinetic modeling, and Monte Carlo simulations. Selection of a specific method activates the corresponding method-specific metadata fields necessary to describe model setup and computational parameters.
+
+The results of a simulation are recorded as calculated properties. Besides general material properties, such as thermodynamic stability, electronic structure or surface energies, these include quantities specific to catalysis: adsorption, reaction and transition-state energetics, electrochemical free energies and catalytic descriptors. Each entry names its property class with `property_designator`; the [simulation usage pattern](working-with-data/usage-patterns.md) shows an example.
+
+!!! tip "Theoreticians: help us extend this data class"
+    The catalysis-specific properties were added only recently, and many methods, settings and quantities used in computational catalysis are still missing. If you miss one, use the **Submit Term Feedback** button next to the closest field, open an [issue](https://github.com/nfdi4cat/CoreMeta4Cat/issues), or propose it through the vocabulary workbook. [How to contribute](contributing.md) explains each option.""",
 }
 
 

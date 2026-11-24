@@ -488,22 +488,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 1.8,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 0.8,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 118.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_1P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.8,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_1P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 0.8,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         },
@@ -514,22 +536,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 2.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 2.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 116.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_2P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 2.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_2P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 2.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         },
@@ -540,22 +584,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 1.8,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 2.5,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 105.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_3P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.8,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_3P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 2.5,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         },
@@ -566,22 +632,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 2.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 3.7,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 112.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_4P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 2.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_4P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 3.7,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         },
@@ -592,22 +680,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 1.9,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 4.6,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 108.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_5P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.9,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_5P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 4.6,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         }
@@ -716,22 +826,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 2.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 1.1,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 118.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_1P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 2.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_1P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.1,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         },
@@ -742,22 +874,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 1.8,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 2.6,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 98.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_3P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.8,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_3P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 2.6,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         },
@@ -768,22 +922,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 2.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 4.8,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 72.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_5P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 2.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_5P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 4.8,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         }
@@ -878,22 +1054,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 1.8,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 0.8,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 118.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_1P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.8,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_1P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 0.8,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         },
@@ -904,22 +1102,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 1.8,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 2.5,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 105.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_3P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.8,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_3P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 2.5,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         },
@@ -930,22 +1150,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 1.9,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 4.6,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 108.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_5P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.9,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_Al2O3_5P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 4.6,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         }
@@ -1040,22 +1282,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 2.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 1.1,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 118.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_1P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 2.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_1P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.1,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         },
@@ -1066,22 +1330,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 1.8,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 2.6,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 98.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_3P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.8,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_3P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 2.6,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         },
@@ -1092,22 +1378,44 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 2.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured Pd loading (icp_results.txt)"
-            },
-            {
-              "value": 4.8,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "ICP-AES measured P loading (icp_results.txt)"
-            },
-            {
               "value": 72.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/SpecificArea",
               "unit": "https://qudt.org/vocab/unit/M2-PER-GM",
               "description": "BET specific surface area (bet_results.txt)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_5P_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 2.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
+            },
+            {
+              "id": "coremeta4cat:CAT_32x1-99x6_SiO2_5P_P",
+              "title": "phosphorus",
+              "rdf_type": {
+                "id": "CHEBI:28659",
+                "title": "phosphorus atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 4.8,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "ICP-AES measured loading (icp_results.txt)"
+                }
+              ]
             }
           ]
         }

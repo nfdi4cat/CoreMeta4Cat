@@ -4,6 +4,7 @@
 @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
 @prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
 @prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix RO: <http://purl.obolibrary.org/obo/RO_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -17,16 +18,32 @@ CHEBI:17997 schema1:name "dinitrogen" ;
 	a schema1:DefinedTerm .
 CHEBI:18276 schema1:name "dihydrogen" ;
 	a schema1:DefinedTerm .
+CHEBI:30682 schema1:name "ruthenium atom" ;
+	a schema1:DefinedTerm .
+CHEBI:32594 schema1:name "barium atom" ;
+	a schema1:DefinedTerm .
 CHEBI:49475 schema1:name "argon atom" ;
 	a schema1:DefinedTerm .
 SIO:010511 schema1:name "decomposition reaction" ;
 	a schema1:DefinedTerm .
-coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY dcterms:relation _:c14n0 , _:c14n3 ;
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY BFO:0000051 coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ba , coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ru ;
 	dcterms:title "0.5Ru/0.5Ba/Ni-BCZY" ;
 	a SIO:010344 .
-coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY dcterms:relation _:c14n1 , _:c14n2 ;
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ba dcterms:relation _:c14n2 ;
+	dcterms:title "barium" ;
+	a CHEBI:23367 , CHEBI:32594 .
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ru dcterms:relation _:c14n3 ;
+	dcterms:title "ruthenium" ;
+	a CHEBI:23367 , CHEBI:30682 .
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY BFO:0000051 coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ba , coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru ;
 	dcterms:title "0.5Ru/1Ba/Ni-BCZY" ;
 	a SIO:010344 .
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ba dcterms:relation _:c14n0 ;
+	dcterms:title "barium" ;
+	a CHEBI:23367 , CHEBI:32594 .
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru dcterms:relation _:c14n1 ;
+	dcterms:title "ruthenium" ;
+	a CHEBI:23367 , CHEBI:30682 .
 coremeta4cat:PROD_b74m-m6rp_H2 dcterms:title "dihydrogen" ;
 	a CHEBI:18276 , NCIT:C48810 .
 coremeta4cat:PROD_b74m-m6rp_N2 dcterms:title "dinitrogen" ;
@@ -46,22 +63,22 @@ coremeta4cat:REAC_b74m-m6rp_NH3_decomposition RO:0004008 coremeta4cat:PROD_b74m-
 	voc4cat:0007014 voc4cat:0007001 .
 coremeta4cat:REAC_b74m-m6rp_reactor dcterms:title "quartz glass tubular packed-bed reactor" ;
 	a coremeta4cat:FixedBedReactor .
-_:c14n0 dcterms:description "Ba, nominal" ;
-	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-	a qudt:Quantity ;
-	prov:value "0.5"^^xsd:float .
-_:c14n1 dcterms:description "Ba, nominal" ;
+_:c14n0 dcterms:description "Nominal loading" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
 	a qudt:Quantity ;
 	prov:value "1.0"^^xsd:float .
-_:c14n2 dcterms:description "Ru, nominal" ;
+_:c14n1 dcterms:description "Nominal loading" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
 	a qudt:Quantity ;
 	prov:value "0.5"^^xsd:float .
-_:c14n3 dcterms:description "Ru, nominal" ;
+_:c14n2 dcterms:description "Nominal loading" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "0.5"^^xsd:float .
+_:c14n3 dcterms:description "Nominal loading" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
 	a qudt:Quantity ;

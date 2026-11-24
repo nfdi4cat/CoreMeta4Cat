@@ -358,16 +358,28 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Pd loading (Overview Reaction Description-2.txt)"
-            },
-            {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst mass used per batch test"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Overview Reaction Description-2.txt)"
+                }
+              ]
             }
           ]
         }
@@ -456,16 +468,28 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Pd loading (Overview Reaction Description-2.txt)"
-            },
-            {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst mass used per batch test"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Overview Reaction Description-2.txt)"
+                }
+              ]
             }
           ]
         },
@@ -476,16 +500,28 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Pd loading (Overview Reaction Description-2.txt)"
-            },
-            {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst mass used per batch test"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Overview Reaction Description-2.txt)"
+                }
+              ]
             }
           ]
         }
@@ -581,16 +617,28 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Pd loading (Overview Reaction Description-2.txt)"
-            },
-            {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst mass used per batch test"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd",
+              "title": "palladium",
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Overview Reaction Description-2.txt)"
+                }
+              ]
             }
           ]
         }

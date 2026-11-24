@@ -400,6 +400,8 @@ MyNewProperty:
     - property_specific_slot
 ```
 
+In a dataset, an entry of `calculated_property` declares its class with `property_designator`, whose value is the new class's `class_uri` (here `coremeta4cat:MyNewProperty`). Without it, software cannot tell which property an entry is, and its property-specific fields are not available. See the [simulation usage pattern](working-with-data/usage-patterns.md) for a worked example with `AdsorptionEnergetics`.
+
 ---
 
 ## Adding a shared slot
