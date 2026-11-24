@@ -485,12 +485,14 @@
 <h1 id="class-catalysisdataset">Class: CatalysisDataset</h1>
 <p><em>A dcat:Dataset that contains research data in the field of catalysis.</em></p>
 <p>__</p>
-<p><em>The catalysis research field is expressed via rdf_type using a voc4cat</em></p>
-<p><em>term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).</em></p>
+<p><em>The catalysis research field is expressed via rdf_type using voc4cat</em></p>
+<p><em>terms from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).</em></p>
 <p><em>For example, a dataset from heterogeneous catalysis research would carry:</em></p>
 <p>_  rdf_type:_</p>
-<p>_    id: voc4cat:0007001_</p>
-<p>_    title: "heterogeneous catalysis"_</p>
+<p>_    - id: voc4cat:0007001_</p>
+<p>_      title: "heterogeneous catalysis"_</p>
+<p><em>Interdisciplinary work lists every field that applies, e.g. biocatalysis</em></p>
+<p><em>and electrocatalysis for bioelectrocatalysis.</em></p>
 <p>__</p>
 <p><em>The four CoreMeta4Cat minimum information pillars are linked via the slots</em></p>
 <p><em>below, each pointing to the corresponding DataGeneratingActivity or</em></p>
@@ -752,7 +754,7 @@
 
 
 
-        CatalysisDataset --&gt; "0..1 _recommended_" DefinedTerm : rdf_type
+        CatalysisDataset --&gt; "1..* _recommended_" DefinedTerm : rdf_type
         click DefinedTerm href "../../classes/DefinedTerm/"
 
 
@@ -884,12 +886,12 @@
 <td><a href="../../slots/type/">type</a></td>
 <td>* <br/> <a href="../DefinedTerm/">DefinedTerm</a></td>
 <td>A type of the Dataset.</td>
-<td><a href="../Dataset/">Dataset</a>, <a href="../ClassifierMixin/">ClassifierMixin</a></td>
+<td><a href="../ClassifierMixin/">ClassifierMixin</a>, <a href="../Dataset/">Dataset</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/rdf_type/">rdf_type</a></td>
-<td>0..1 <em>recommended</em> <br/> <a href="../DefinedTerm/">DefinedTerm</a></td>
-<td>The catalysis research field, provided as a voc4cat term from<br/>CatalysisResearchFieldEnum. This is the primary machine-actionable<br/>classification of the dataset's domain.</td>
+<td>1..* <em>recommended</em> <br/> <a href="../DefinedTerm/">DefinedTerm</a></td>
+<td>The catalysis research field(s), provided as voc4cat terms from<br/>CatalysisResearchFieldEnum. This is the primary machine-actionable<br/>classification of the dataset's domain (Layer 1) and is mandatory.<br/>Several fields can be given for interdisciplinary work, e.g.<br/>biocatalysis and electrocatalysis for bioelectrocatalysis.</td>
 <td><a href="../ClassifierMixin/">ClassifierMixin</a></td>
 </tr>
 <tr>
@@ -906,13 +908,13 @@
 </tr>
 <tr>
 <td><a href="../../slots/conforms_to/">conforms_to</a></td>
-<td>* <br/> <a href="../Standard/">Standard</a></td>
+<td>* <br> <a href="../Standard/">Standard</a></br></td>
 <td>An implementing rule or other specification.</td>
 <td><a href="../Dataset/">Dataset</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/contact_point/">contact_point</a></td>
-<td>* <em>recommended</em> <br/> <a href="../Kind/">Kind</a></td>
+<td>* <em>recommended</em> <br> <a href="../Kind/">Kind</a></br></td>
 <td>Contact information that can be used for sending comments about the Dataset.</td>
 <td><a href="../Dataset/">Dataset</a></td>
 </tr>
@@ -1152,13 +1154,14 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">"A</span><span class="nv"> </span><span class="s">dcat:Dataset</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">contains</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">catalysis.\n\</span>
-<span class="w">  </span><span class="s">\nThe</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">rdf_type</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">voc4cat\nterm</span><span class="nv"> </span><span class="s">from\</span>
+<span class="w">  </span><span class="s">\nThe</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">rdf_type</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">voc4cat\nterms</span><span class="nv"> </span><span class="s">from\</span>
 <span class="w">  </span><span class="s">\ CatalysisResearchFieldEnum</span><span class="nv"> </span><span class="s">(following</span><span class="nv"> </span><span class="s">DCAT-AP-PLUS</span><span class="nv"> </span><span class="s">Pattern</span><span class="nv"> </span><span class="s">3).\nFor</span><span class="nv"> </span><span class="s">example,</span><span class="nv"> </span><span class="s">a\</span>
-<span class="w">  </span><span class="s">\ dataset</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">heterogeneous</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">would</span><span class="nv"> </span><span class="s">carry:\n</span><span class="nv">  </span><span class="s">rdf_type:\n</span><span class="nv">    </span><span class="s">id:\</span>
-<span class="w">  </span><span class="s">\ voc4cat:0007001\n</span><span class="nv">    </span><span class="s">title:</span><span class="nv"> </span><span class="s">\"heterogeneous</span><span class="nv"> </span><span class="s">catalysis\"\n\nThe</span><span class="nv"> </span><span class="s">four</span><span class="nv"> </span><span class="s">CoreMeta4Cat\</span>
-<span class="w">  </span><span class="s">\ minimum</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">pillars</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">slots\nbelow,</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">pointing</span><span class="nv"> </span><span class="s">to\</span>
-<span class="w">  </span><span class="s">\ the</span><span class="nv"> </span><span class="s">corresponding</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">or\nEvaluatedActivity</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">defined\</span>
-<span class="w">  </span><span class="s">\ in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">subprofile</span><span class="nv"> </span><span class="s">modules."</span>
+<span class="w">  </span><span class="s">\ dataset</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">heterogeneous</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">would</span><span class="nv"> </span><span class="s">carry:\n</span><span class="nv">  </span><span class="s">rdf_type:\n</span><span class="nv">    </span><span class="s">-\</span>
+<span class="w">  </span><span class="s">\ id:</span><span class="nv"> </span><span class="s">voc4cat:0007001\n</span><span class="nv">      </span><span class="s">title:</span><span class="nv"> </span><span class="s">\"heterogeneous</span><span class="nv"> </span><span class="s">catalysis\"\nInterdisciplinary\</span>
+<span class="w">  </span><span class="s">\ work</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">applies,</span><span class="nv"> </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">biocatalysis\nand</span><span class="nv"> </span><span class="s">electrocatalysis</span><span class="nv"> </span><span class="s">for\</span>
+<span class="w">  </span><span class="s">\ bioelectrocatalysis.\n\nThe</span><span class="nv"> </span><span class="s">four</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">minimum</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">pillars</span><span class="nv"> </span><span class="s">are\</span>
+<span class="w">  </span><span class="s">\ linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">slots\nbelow,</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">pointing</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">corresponding</span><span class="nv"> </span><span class="s">DataGeneratingActivity\</span>
+<span class="w">  </span><span class="s">\ or\nEvaluatedActivity</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">subprofile</span><span class="nv"> </span><span class="s">modules."</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="nt">mixins</span><span class="p">:</span>
@@ -1166,17 +1169,23 @@
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">rdf_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf_type</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">field,</span><span class="nv"> </span><span class="s">provided</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">term</span><span class="nv"> </span><span class="s">from</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">field(s),</span><span class="nv"> </span><span class="s">provided</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">terms</span><span class="nv"> </span><span class="s">from</span>
 
 <span class="w">      </span><span class="s">CatalysisResearchFieldEnum.</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">primary</span><span class="nv"> </span><span class="s">machine-actionable</span>
 
-<span class="w">      </span><span class="s">classification</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">domain.'</span>
+<span class="w">      </span><span class="s">classification</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">(Layer</span><span class="nv"> </span><span class="s">1)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">mandatory.</span>
+
+<span class="w">      </span><span class="s">Several</span><span class="nv"> </span><span class="s">fields</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">given</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">interdisciplinary</span><span class="nv"> </span><span class="s">work,</span><span class="nv"> </span><span class="s">e.g.</span>
+
+<span class="w">      </span><span class="s">biocatalysis</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">electrocatalysis</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">bioelectrocatalysis.'</span>
 <span class="w">    </span><span class="nt">bindings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisResearchFieldEnum</span>
-<span class="w">      </span><span class="nt">obligation_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RECOMMENDED</span>
+<span class="w">      </span><span class="nt">obligation_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUIRED</span>
 <span class="w">      </span><span class="nt">binds_value_of</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
-<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classify the dataset by catalysis research field using voc4cat.</span>
-<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classify the dataset by catalysis research field(s) using voc4cat.</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">was_generated_by</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">(Synthesis,</span><span class="nv"> </span><span class="s">Characterization,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Simulation)</span>
@@ -1211,13 +1220,14 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">"A</span><span class="nv"> </span><span class="s">dcat:Dataset</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">contains</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">catalysis.\n\</span>
-<span class="w">  </span><span class="s">\nThe</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">rdf_type</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">voc4cat\nterm</span><span class="nv"> </span><span class="s">from\</span>
+<span class="w">  </span><span class="s">\nThe</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">rdf_type</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">voc4cat\nterms</span><span class="nv"> </span><span class="s">from\</span>
 <span class="w">  </span><span class="s">\ CatalysisResearchFieldEnum</span><span class="nv"> </span><span class="s">(following</span><span class="nv"> </span><span class="s">DCAT-AP-PLUS</span><span class="nv"> </span><span class="s">Pattern</span><span class="nv"> </span><span class="s">3).\nFor</span><span class="nv"> </span><span class="s">example,</span><span class="nv"> </span><span class="s">a\</span>
-<span class="w">  </span><span class="s">\ dataset</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">heterogeneous</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">would</span><span class="nv"> </span><span class="s">carry:\n</span><span class="nv">  </span><span class="s">rdf_type:\n</span><span class="nv">    </span><span class="s">id:\</span>
-<span class="w">  </span><span class="s">\ voc4cat:0007001\n</span><span class="nv">    </span><span class="s">title:</span><span class="nv"> </span><span class="s">\"heterogeneous</span><span class="nv"> </span><span class="s">catalysis\"\n\nThe</span><span class="nv"> </span><span class="s">four</span><span class="nv"> </span><span class="s">CoreMeta4Cat\</span>
-<span class="w">  </span><span class="s">\ minimum</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">pillars</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">slots\nbelow,</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">pointing</span><span class="nv"> </span><span class="s">to\</span>
-<span class="w">  </span><span class="s">\ the</span><span class="nv"> </span><span class="s">corresponding</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">or\nEvaluatedActivity</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">defined\</span>
-<span class="w">  </span><span class="s">\ in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">subprofile</span><span class="nv"> </span><span class="s">modules."</span>
+<span class="w">  </span><span class="s">\ dataset</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">heterogeneous</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">would</span><span class="nv"> </span><span class="s">carry:\n</span><span class="nv">  </span><span class="s">rdf_type:\n</span><span class="nv">    </span><span class="s">-\</span>
+<span class="w">  </span><span class="s">\ id:</span><span class="nv"> </span><span class="s">voc4cat:0007001\n</span><span class="nv">      </span><span class="s">title:</span><span class="nv"> </span><span class="s">\"heterogeneous</span><span class="nv"> </span><span class="s">catalysis\"\nInterdisciplinary\</span>
+<span class="w">  </span><span class="s">\ work</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">applies,</span><span class="nv"> </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">biocatalysis\nand</span><span class="nv"> </span><span class="s">electrocatalysis</span><span class="nv"> </span><span class="s">for\</span>
+<span class="w">  </span><span class="s">\ bioelectrocatalysis.\n\nThe</span><span class="nv"> </span><span class="s">four</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">minimum</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">pillars</span><span class="nv"> </span><span class="s">are\</span>
+<span class="w">  </span><span class="s">\ linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">slots\nbelow,</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">pointing</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">corresponding</span><span class="nv"> </span><span class="s">DataGeneratingActivity\</span>
+<span class="w">  </span><span class="s">\ or\nEvaluatedActivity</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">subprofile</span><span class="nv"> </span><span class="s">modules."</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="nt">mixins</span><span class="p">:</span>
@@ -1225,17 +1235,23 @@
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">rdf_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf_type</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">field,</span><span class="nv"> </span><span class="s">provided</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">term</span><span class="nv"> </span><span class="s">from</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">field(s),</span><span class="nv"> </span><span class="s">provided</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">terms</span><span class="nv"> </span><span class="s">from</span>
 
 <span class="w">      </span><span class="s">CatalysisResearchFieldEnum.</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">primary</span><span class="nv"> </span><span class="s">machine-actionable</span>
 
-<span class="w">      </span><span class="s">classification</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">domain.'</span>
+<span class="w">      </span><span class="s">classification</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">(Layer</span><span class="nv"> </span><span class="s">1)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">mandatory.</span>
+
+<span class="w">      </span><span class="s">Several</span><span class="nv"> </span><span class="s">fields</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">given</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">interdisciplinary</span><span class="nv"> </span><span class="s">work,</span><span class="nv"> </span><span class="s">e.g.</span>
+
+<span class="w">      </span><span class="s">biocatalysis</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">electrocatalysis</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">bioelectrocatalysis.'</span>
 <span class="w">    </span><span class="nt">bindings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisResearchFieldEnum</span>
-<span class="w">      </span><span class="nt">obligation_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RECOMMENDED</span>
+<span class="w">      </span><span class="nt">obligation_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUIRED</span>
 <span class="w">      </span><span class="nt">binds_value_of</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
-<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classify the dataset by catalysis research field using voc4cat.</span>
-<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classify the dataset by catalysis research field(s) using voc4cat.</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">was_generated_by</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">(Synthesis,</span><span class="nv"> </span><span class="s">Characterization,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Simulation)</span>
@@ -1283,11 +1299,15 @@
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">rdf_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf_type</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">field,</span><span class="nv"> </span><span class="s">provided</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">term</span><span class="nv"> </span><span class="s">from</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">catalysis</span><span class="nv"> </span><span class="s">research</span><span class="nv"> </span><span class="s">field(s),</span><span class="nv"> </span><span class="s">provided</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">terms</span><span class="nv"> </span><span class="s">from</span>
 
 <span class="w">      </span><span class="s">CatalysisResearchFieldEnum.</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">primary</span><span class="nv"> </span><span class="s">machine-actionable</span>
 
-<span class="w">      </span><span class="s">classification</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">domain.'</span>
+<span class="w">      </span><span class="s">classification</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">domain</span><span class="nv"> </span><span class="s">(Layer</span><span class="nv"> </span><span class="s">1)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">mandatory.</span>
+
+<span class="w">      </span><span class="s">Several</span><span class="nv"> </span><span class="s">fields</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">given</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">interdisciplinary</span><span class="nv"> </span><span class="s">work,</span><span class="nv"> </span><span class="s">e.g.</span>
+
+<span class="w">      </span><span class="s">biocatalysis</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">electrocatalysis</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">bioelectrocatalysis.'</span>
 <span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">domain_agnostic_core</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
@@ -1299,11 +1319,14 @@
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DefinedTerm</span>
 <span class="w">    </span><span class="nt">bindings</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisResearchFieldEnum</span>
-<span class="w">      </span><span class="nt">obligation_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RECOMMENDED</span>
+<span class="w">      </span><span class="nt">obligation_level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUIRED</span>
 <span class="w">      </span><span class="nt">binds_value_of</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
-<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classify the dataset by catalysis research field using voc4cat.</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classify the dataset by catalysis research field(s) using voc4cat.</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">access_rights</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">access_rights</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Information that indicates whether the Dataset is publicly accessible,</span>

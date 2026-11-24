@@ -1260,10 +1260,10 @@
 <div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:dataset-001</span>
 <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span><span class="w">                  </span><span class="c1"># → dcat:Dataset</span>
 
-<span class="c1"># Layer 1: global classification</span>
+<span class="c1"># Layer 1: global classification (one or more research fields)</span>
 <span class="nt">rdf_type</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007001</span>
-<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007001</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
 
 <span class="c1"># Layer 2: links to the four data classes</span>
 <span class="nt">was_generated_by</span><span class="p">:</span>
@@ -1414,15 +1414,15 @@
 <p>Flexible, machine-actionable classification of datasets, activities, and entities using ontology terms — without creating a separate class for every possible value.</p>
 </div>
 <p>Rather than defining a fixed class hierarchy for every type of catalysis or every synthesis method, CoreMeta4Cat uses a single <code>rdf_type</code> slot on each class to carry a controlled vocabulary term from Voc4Cat, CHMO, or another ontology. This keeps the schema compact while staying fully machine-actionable.</p>
-<p><strong>On CatalysisDataset</strong> — classify the catalysis research field:</p>
+<p><strong>On CatalysisDataset</strong> — classify the catalysis research field (mandatory; a list, so several fields can be given):</p>
 <div class="highlight"><pre><span></span><code><span class="nt">rdf_type</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007001</span>
-<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007001</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
 </code></pre></div>
 <p><strong>On Synthesis</strong> — classify the preparation method type:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Synthesis</span>
 <span class="nt">rdf_type</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007016</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007028</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"impregnation"</span>
 <span class="nt">realized_plan</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Impregnation</span><span class="w">    </span><span class="c1"># the concrete method class with all parameter slots</span>
@@ -1479,8 +1479,8 @@ Simulation             ──→      SimulationMethod
 <p>This separation means a single <code>PreparationMethod</code> record could in principle be shared across multiple <code>Synthesis</code> activities — a direct gain for reproducibility. That sharing depends on the Plan being independently identifiable, which is why <code>realized_plan.id</code> is populated above.</p>
 <p><code>Plan</code> (external, DCAT-AP-PLUS) only carries <code>title</code>/<code>description</code> — no <code>id</code>. Rather than repeat an <code>id</code> slot on each of <code>PreparationMethod</code>, <code>CharacterizationTechnique</code>, <code>SimulationMethod</code>, and <code>ProductIdentificationMethod</code> individually, CoreMeta4Cat inserts one shared intermediate class, <code>CatalysisPlan</code> (<code>is_a: Plan</code>, abstract), that adds <code>id</code> once; all four then specialize <code>CatalysisPlan</code> instead of <code>Plan</code> directly. <code>realized_plan</code> itself needed <code>inlined: true</code> added explicitly on each of its class-level overrides (on <code>Synthesis</code>, <code>Characterization</code>, <code>Simulation</code>) once its range became identifier-bearing — LinkML's default for a single-valued, class-typed slot switches from "inline the whole object" to "reference by id" the moment the range class gains an identifier slot, unless told otherwise.</p>
 <div class="admonition note">
-<p class="admonition-title">A LinkML JSON Schema quirk worth knowing</p>
-<p>Slots marked <code>recommended: true</code> (not <code>required: true</code>) still show up in the generated JSON Schema's <code>required</code> array — <code>gen-json-schema</code> has no native "recommended" tier to fall back to, so it folds recommended into required rather than dropping the distinction. In practice this means every Recommended field on a class needs a value for an instance to validate via <code>linkml-run-examples</code> (or any other JSON-Schema-based validator), not just Mandatory ones.</p>
+<p class="admonition-title">Recommended fields and validation</p>
+<p>Only slots marked <code>required: true</code> end up in the generated JSON Schema's <code>required</code> array. Slots marked <code>recommended: true</code> do not, so a record validates as soon as its Mandatory fields are present. To also list the Recommended fields a record leaves empty, run <code>linkml-validate</code> with LinkML's recommended-slot check, as shown in <a href="../getting-started/#level-4-validating-against-the-full-schema">Getting Started, Level 4</a>.</p>
 </div>
 <hr />
 <h2 id="pattern-3-mixin-classes">Pattern 3: Mixin classes</h2>

@@ -1134,20 +1134,20 @@
 <tbody>
 <tr>
 <td>Catalysis research field</td>
-<td>heterogeneous catalysis, electrocatalysis, biocatalysis</td>
-<td>Recommended</td>
+<td>heterogeneous catalysis, electrocatalysis, biocatalysis (several can be given)</td>
+<td>Mandatory</td>
 </tr>
 <tr>
 <td>Reaction type</td>
 <td>CO oxidation, ammonia synthesis, hydrogenation</td>
-<td>Recommended</td>
+<td>Mandatory for every reaction</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Layer 2 — Data-class-specific metadata</strong> is structured around the four data classes: Synthesis, Characterization, Reaction, and Simulation. Each data class carries its own set of Mandatory, Recommended, and Optional fields.</p>
 <div class="highlight"><pre><span></span><code>CatalysisDataset
  ├── catalysis research field          [Layer 1 — applies to all]
- ├── reaction type                     [Layer 1 — applies to all]
+ ├── reaction type                     [Layer 1 — on each Reaction]
  ├── was_generated_by → Synthesis      [Layer 2 — data-class specific]
  ├── was_generated_by → Characterization
  ├── was_generated_by → Simulation

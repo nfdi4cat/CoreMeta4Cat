@@ -9029,11 +9029,15 @@ slots:
   CatalysisDataset_rdf_type:
     name: CatalysisDataset_rdf_type
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/rdf_type
-    description: 'The catalysis research field, provided as a voc4cat term from
+    description: 'The catalysis research field(s), provided as voc4cat terms from
 
       CatalysisResearchFieldEnum. This is the primary machine-actionable
 
-      classification of the dataset''s domain.'
+      classification of the dataset''s domain (Layer 1) and is mandatory.
+
+      Several fields can be given for interdisciplinary work, e.g.
+
+      biocatalysis and electrocatalysis for bioelectrocatalysis.'
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
@@ -9051,12 +9055,14 @@ slots:
     range: DefinedTerm
     bindings:
     - range: CatalysisResearchFieldEnum
-      obligation_level: RECOMMENDED
+      obligation_level: REQUIRED
       binds_value_of: id
-      description: Classify the dataset by catalysis research field using voc4cat.
+      description: Classify the dataset by catalysis research field(s) using voc4cat.
+    required: true
     recommended: true
+    multivalued: true
     inlined: true
-    inlined_as_list: false
+    inlined_as_list: true
   CatalysisDataset_was_generated_by:
     name: CatalysisDataset_was_generated_by
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/was_generated_by
@@ -9440,9 +9446,15 @@ slots:
   CatalyticReaction_rdf_type:
     name: CatalyticReaction_rdf_type
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/rdf_type
-    description: 'The type of catalytic reaction as an ontology term (e.g. voc4cat:0007010
+    description: 'The type of catalytic reaction as an ontology term, e.g. voc4cat:0000259
 
-      for a specific reaction type, or a ChemO/RXNO term).
+      (CO2 hydrogenation), or a term from RXNO, CHMO or SIO. Mandatory for
+
+      every reaction (Layer 1). If no specific term exists, use the closest
+
+      broader one (e.g. voc4cat:0000260, hydrogenation, for CO methanation)
+
+      and keep the specific name in reaction_name.
 
 
       This is the sole reaction-type classification mechanism (DCAT-AP-PLUS
@@ -9451,13 +9463,9 @@ slots:
 
       slot + ReactionType class hierarchy (cf. PR #118, since superseded here).
 
-      Kept `recommended` rather than `required` for the same reason as
+      See nfdi4cat/CoreMeta4Cat#117 for the cardinality discussion and
 
-      catalyst_type below: see nfdi4cat/CoreMeta4Cat#117 for the cardinality
-
-      discussion and nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism
-
-      discussion.'
+      nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism discussion.'
     in_subset:
     - domain_agnostic_core
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
@@ -9473,6 +9481,7 @@ slots:
     is_usage_slot: true
     usage_slot_name: rdf_type
     range: DefinedTerm
+    required: true
     recommended: true
     inlined: true
     inlined_as_list: false
@@ -13506,13 +13515,14 @@ classes:
     name: CatalysisDataset
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CatalysisDataset
     description: "A dcat:Dataset that contains research data in the field of catalysis.\n\
-      \nThe catalysis research field is expressed via rdf_type using a voc4cat\nterm\
+      \nThe catalysis research field is expressed via rdf_type using voc4cat\nterms\
       \ from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).\nFor example,\
       \ a dataset from heterogeneous catalysis research would carry:\n  rdf_type:\n\
-      \    id: voc4cat:0007001\n    title: \"heterogeneous catalysis\"\n\nThe four\
-      \ CoreMeta4Cat minimum information pillars are linked via the slots\nbelow,\
-      \ each pointing to the corresponding DataGeneratingActivity or\nEvaluatedActivity\
-      \ subclass defined in the CoreMeta4Cat subprofile modules."
+      \    - id: voc4cat:0007001\n      title: \"heterogeneous catalysis\"\nInterdisciplinary\
+      \ work lists every field that applies, e.g. biocatalysis\nand electrocatalysis\
+      \ for bioelectrocatalysis.\n\nThe four CoreMeta4Cat minimum information pillars\
+      \ are linked via the slots\nbelow, each pointing to the corresponding DataGeneratingActivity\
+      \ or\nEvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat
     exact_mappings:
     - dcat:Dataset
@@ -13563,17 +13573,23 @@ classes:
     slot_usage:
       rdf_type:
         name: rdf_type
-        description: 'The catalysis research field, provided as a voc4cat term from
+        description: 'The catalysis research field(s), provided as voc4cat terms from
 
           CatalysisResearchFieldEnum. This is the primary machine-actionable
 
-          classification of the dataset''s domain.'
+          classification of the dataset''s domain (Layer 1) and is mandatory.
+
+          Several fields can be given for interdisciplinary work, e.g.
+
+          biocatalysis and electrocatalysis for bioelectrocatalysis.'
         bindings:
         - range: CatalysisResearchFieldEnum
-          obligation_level: RECOMMENDED
+          obligation_level: REQUIRED
           binds_value_of: id
-          description: Classify the dataset by catalysis research field using voc4cat.
-        recommended: true
+          description: Classify the dataset by catalysis research field(s) using voc4cat.
+        required: true
+        multivalued: true
+        inlined_as_list: true
       was_generated_by:
         name: was_generated_by
         description: 'The DataGeneratingActivity (Synthesis, Characterization, or
@@ -15814,9 +15830,15 @@ classes:
     slot_usage:
       rdf_type:
         name: rdf_type
-        description: 'The type of catalytic reaction as an ontology term (e.g. voc4cat:0007010
+        description: 'The type of catalytic reaction as an ontology term, e.g. voc4cat:0000259
 
-          for a specific reaction type, or a ChemO/RXNO term).
+          (CO2 hydrogenation), or a term from RXNO, CHMO or SIO. Mandatory for
+
+          every reaction (Layer 1). If no specific term exists, use the closest
+
+          broader one (e.g. voc4cat:0000260, hydrogenation, for CO methanation)
+
+          and keep the specific name in reaction_name.
 
 
           This is the sole reaction-type classification mechanism (DCAT-AP-PLUS
@@ -15825,14 +15847,10 @@ classes:
 
           slot + ReactionType class hierarchy (cf. PR #118, since superseded here).
 
-          Kept `recommended` rather than `required` for the same reason as
+          See nfdi4cat/CoreMeta4Cat#117 for the cardinality discussion and
 
-          catalyst_type below: see nfdi4cat/CoreMeta4Cat#117 for the cardinality
-
-          discussion and nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism
-
-          discussion.'
-        recommended: true
+          nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism discussion.'
+        required: true
       used_reactor:
         name: used_reactor
         description: 'The reactor in which the Reaction takes place.
@@ -20381,6 +20399,6 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.12.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-11-24T13:34:00'
-source_file_size: 14865
+source_file_date: '2026-11-24T16:25:45'
+source_file_size: 15221
 

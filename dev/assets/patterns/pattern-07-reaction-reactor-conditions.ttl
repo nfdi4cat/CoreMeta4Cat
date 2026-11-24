@@ -1,4 +1,5 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
 @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
@@ -6,11 +7,14 @@
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
+SIO:010511 schema1:name "decomposition reaction" ;
+	a schema1:DefinedTerm .
 coremeta4cat:REAC_b74m-m6rp_FTIR dcterms:description "MKS Instruments MG2030 FTIR spectrometer, continuous analysis of the effluent gas" ;
 	dcterms:title "online FTIR gas analysis" ;
 	a OBI:0000272 .
 coremeta4cat:REAC_b74m-m6rp_NH3_decomposition dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
-	a coremeta4cat:CatalyticReaction ;
+	a SIO:010511 , coremeta4cat:CatalyticReaction ;
 	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
 	coremeta4cat:feed_composition_range _:c14n5 ;
 	voc4cat:0000118 _:c14n3 ;

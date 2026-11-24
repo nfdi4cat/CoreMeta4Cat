@@ -1018,13 +1018,13 @@
 <tr>
 <td><code>rdf_type</code></td>
 <td><code>CatalysisResearchFieldEnum</code> (via <code>bindings</code>)</td>
-<td>Recommended</td>
-<td><strong>Layer 1</strong> -- the coarsest possible classification: which field of catalysis this dataset belongs to.</td>
+<td>Mandatory, Multivalued</td>
+<td><strong>Layer 1</strong> -- the coarsest possible classification: which field(s) of catalysis this dataset belongs to.</td>
 </tr>
 <tr>
 <td><code>was_generated_by</code></td>
 <td><code>DataGeneratingActivity</code></td>
-<td>Recommended, Multivalued</td>
+<td>Mandatory, Multivalued</td>
 <td><strong>Layer 2</strong> -- the activity/activities that <em>produced</em> this dataset's data: <code>Synthesis</code>, <code>Characterization</code>, and/or <code>Simulation</code> instances.</td>
 </tr>
 <tr>
@@ -1041,12 +1041,19 @@
 </tr>
 </tbody>
 </table>
-<p>All four are Recommended, not Mandatory: a dataset can legitimately carry only a subset (e.g. a pure simulation dataset has no <code>is_about_entity</code>).</p>
+<p><code>rdf_type</code> is Mandatory, and so is <code>was_generated_by</code>, which DCAT-AP+ requires for every dataset. <code>is_about_activity</code> and <code>is_about_entity</code> are Recommended: a dataset can legitimately leave them out (e.g. a pure simulation dataset has no <code>is_about_entity</code>). The dataset's <code>id</code> is Mandatory as well, as in DCAT-AP+ and ChemDCAT-AP.</p>
 <h2 id="layer-1-classifying-the-research-field">Layer 1: classifying the research field</h2>
 <p><code>rdf_type</code> on <code>CatalysisDataset</code> is not a free-form slot -- its value is constrained to <code>CatalysisResearchFieldEnum</code> via a <a href="../design-patterns/#pattern-1-classification-via-rdf_type">DCAT-AP-PLUS Pattern 3 <code>bindings</code> block</a> rather than by adding a dedicated new slot. This keeps <code>CatalysisDataset</code> a drop-in <code>dcat:Dataset</code> (any DCAT-AP tool can still read <code>rdf_type</code>) while giving CoreMeta4Cat tooling a controlled, machine-actionable value to filter and facet on.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">rdf_type</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007001</span>
-<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007001</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
+</code></pre></div>
+<p><code>rdf_type</code> is a list, so work that spans more than one field lists each of them, for example bioelectrocatalysis:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">rdf_type</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0000204</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"biocatalysis"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0000216</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"electrocatalysis"</span>
 </code></pre></div>
 <p><strong><code>CatalysisResearchFieldEnum</code> permissible values:</strong></p>
 <table>
@@ -1095,7 +1102,7 @@
 </tr>
 </tbody>
 </table>
-<p>This is a dataset-wide, single classification axis -- it says nothing about <em>how</em> a specific reaction was run. That's a separate, per-reaction concern: <code>CatalyticReaction.catalyst_type</code> uses the same <code>CatalysisResearchFieldEnum</code> values to record the catalytic regime of one particular reaction (see <a href="../reaction/">Reaction: catalyst_type</a>), independent of whatever this dataset's own <code>rdf_type</code> says. A heterogeneous-catalysis dataset (<code>rdf_type</code>) can, for instance, still contain a reaction step run under homogeneous conditions as a control experiment (<code>catalyst_type</code>) -- the two fields are deliberately decoupled.</p>
+<p>This is a dataset-wide classification axis -- it says nothing about <em>how</em> a specific reaction was run. That's a separate, per-reaction concern: <code>CatalyticReaction.catalyst_type</code> uses the same <code>CatalysisResearchFieldEnum</code> values to record the catalytic regime of one particular reaction (see <a href="../reaction/">Reaction: catalyst_type</a>), independent of whatever this dataset's own <code>rdf_type</code> says. A heterogeneous-catalysis dataset (<code>rdf_type</code>) can, for instance, still contain a reaction step run under homogeneous conditions as a control experiment (<code>catalyst_type</code>) -- the two fields are deliberately decoupled.</p>
 <h2 id="layer-2-linking-the-pillars">Layer 2: linking the pillars</h2>
 <p>Layer 2 is where a <code>CatalysisDataset</code> actually points at the substance of the record. Three slots cover it, and all three are multivalued -- a single dataset can reference several activities of the same kind at once (e.g. two separate <code>Characterization</code> runs):</p>
 <ul>
@@ -1111,15 +1118,15 @@
 
 <span class="c1"># Layer 1 -- global classification</span>
 <span class="nt">rdf_type</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007001</span>
-<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007001</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
 
 <span class="c1"># Layer 2 -- three activities produced this dataset's data...</span>
 <span class="nt">was_generated_by</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:SYN_001_NiCeO2"</span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Synthesis</span>
 <span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:0007016</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007028</span>
 <span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"impregnation"</span>
 <span class="w">    </span><span class="nt">nominal_composition</span><span class="p">:</span><span class="w"> </span><span class="s">"10wt%</span><span class="nv"> </span><span class="s">Ni/CeO2"</span>
 <span class="w">    </span><span class="nt">had_output_entity</span><span class="p">:</span>
@@ -1151,6 +1158,9 @@
 <span class="nt">is_about_activity</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:REAC_002_DRM_NiCeO2"</span>
 <span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span><span class="w">                               </span><span class="c1"># reaction type (Layer 1, mandatory)</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0001446</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"catalytic</span><span class="nv"> </span><span class="s">reforming"</span>
 <span class="w">    </span><span class="nt">used_catalyst</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CAT_002_NiCeO2"</span><span class="w">     </span><span class="c1"># same catalyst sample again</span>
 <span class="w">    </span><span class="nt">catalyst_type</span><span class="p">:</span>

@@ -4,8 +4,8 @@ reaction_name:
 title:
 - CO methanation catalyst screening (4 Ni catalysts)
 rdf_type:
-  id: voc4cat:0007010
-  title: CO methanation
+  id: voc4cat:0000260
+  title: hydrogenation
 catalyst_type:
 - heterogeneous_catalysis
 used_reactant:

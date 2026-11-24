@@ -20,7 +20,7 @@ description:
   results (conversions, yields) and further characterization (PXRD, N2 sorption, TPR, N2O-RFC, TEM) are
   reported in the article but not deposited.'
 rdf_type:
-  id: VOC4CAT:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis
 keyword:
 - CO2 hydrogenation
@@ -448,6 +448,9 @@ is_about_activity:
     20 bar under 10 vol% Ar in N2 (GHSV 6000 h-1, 48 L/h), then in-situ reduction in the syngas feed.
     Products are methanol and dimethyl ether, with methane as a minor by-product. Conversions and yields
     are reported in the article''s figures only; they are not deposited.'
+  rdf_type:
+    id: voc4cat:0000259
+    title: CO2 hydrogenation
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:
@@ -582,6 +585,9 @@ is_about_activity:
     1: 6000 h-1), CO2 13-27.1 vol%, CO 0-15.8 vol%, H2 63.3-76 vol%, 5 vol% Ar, N2 balance. Same 16-fold
     fixed-bed reactor and pretreatment as the optimized catalysts. The highest combined MeOH + DME yields
     were found for Cu0.40Ga0.07Al0.53 and Cu0.33Ga0.07Al0.60 (article, section 3.3); yields are not deposited.'
+  rdf_type:
+    id: voc4cat:0000259
+    title: CO2 hydrogenation
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:

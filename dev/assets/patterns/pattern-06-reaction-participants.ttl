@@ -19,6 +19,8 @@ CHEBI:18276 schema1:name "dihydrogen" ;
 	a schema1:DefinedTerm .
 CHEBI:49475 schema1:name "argon atom" ;
 	a schema1:DefinedTerm .
+SIO:010511 schema1:name "decomposition reaction" ;
+	a schema1:DefinedTerm .
 coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY dcterms:relation _:c14n0 , _:c14n3 ;
 	dcterms:title "0.5Ru/0.5Ba/Ni-BCZY" ;
 	a SIO:010344 .
@@ -37,15 +39,13 @@ coremeta4cat:REAC_b74m-m6rp_NH3_decomposition RO:0004008 coremeta4cat:PROD_b74m-
 	RO:0004009 coremeta4cat:REAC_b74m-m6rp_Ar , coremeta4cat:REAC_b74m-m6rp_NH3 ;
 	RXNO:0000425 coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY ;
 	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
-	a coremeta4cat:CatalyticReaction , voc4cat:0007001 ;
+	a SIO:010511 , coremeta4cat:CatalyticReaction ;
 	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
 	voc4cat:0000016 voc4cat:0007034 ;
 	voc4cat:0007009 "thermocatalytic ammonia decomposition" ;
 	voc4cat:0007014 voc4cat:0007001 .
 coremeta4cat:REAC_b74m-m6rp_reactor dcterms:title "quartz glass tubular packed-bed reactor" ;
 	a coremeta4cat:FixedBedReactor .
-voc4cat:0007001 schema1:name "heterogeneous catalysis" ;
-	a schema1:DefinedTerm .
 _:c14n0 dcterms:description "Ba, nominal" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;

@@ -17,7 +17,7 @@ description:
   (4M-N16), and Prime MM/GBSA relative binding free energies. All results are in 17 software archives
   (about 33 GB). The enzyme kinetics and preparative reactions of the article are not part of this dataset.'
 rdf_type:
-  id: VOC4CAT:0000204
+- id: voc4cat:0000204
   title: biocatalysis
 keyword:
 - biocatalysis

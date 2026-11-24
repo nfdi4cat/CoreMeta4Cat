@@ -487,6 +487,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Level 4 — Validating against the full schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checking-recommended-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking recommended fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1238,6 +1255,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Level 4 — Validating against the full schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checking-recommended-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking recommended fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1779,6 +1813,27 @@ linkml-validate<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>synthesis_records.json
 </code></pre></div>
 <p>Validation reports which mandatory fields are missing, which values fall outside the expected type or controlled vocabulary, and which cross-record links are incomplete. You do not need to reach full validation compliance in one step — treat it as a diagnostic tool that tells you where the gaps are and helps you prioritise what to add next.</p>
+<h3 id="checking-recommended-fields">Checking recommended fields</h3>
+<p>By default, <code>linkml-validate</code> only enforces mandatory fields. LinkML can also list the recommended fields a record leaves empty. Save this configuration as <code>recommended.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">JsonschemaValidationPlugin</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">closed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">RecommendedSlotsPlugin</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+</code></pre></div>
+<p>and pass it to the same command:</p>
+<div class="highlight"><pre><span></span><code>linkml-validate<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--schema<span class="w"> </span>coremeta4cat.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target-class<span class="w"> </span>CatalysisDataset<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--config<span class="w"> </span>recommended.yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>synthesis_records.json<span class="w"> </span>&gt;<span class="w"> </span>report.txt
+</code></pre></div>
+<p>Every missing recommended field appears as a <code>[WARN]</code> line in <code>report.txt</code>; mandatory fields still appear as <code>[ERROR]</code>. This includes the recommended fields that CoreMeta4Cat inherits from DCAT-AP+ and ChemDCAT-AP. To see only those of the CoreMeta4Cat data classes:</p>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">"on class '(CatalysisDataset|Synthesis|Characterization|CatalyticReaction|Simulation)'"</span><span class="w"> </span>report.txt
+</code></pre></div>
+<p>If your repository or project requires recommended fields, let the check fail when any are missing:</p>
+<div class="highlight"><pre><span></span><code>!<span class="w"> </span>grep<span class="w"> </span>-q<span class="w"> </span><span class="s1">'^\[WARN\]'</span><span class="w"> </span>report.txt
+</code></pre></div>
+<p>The check looks at each field's class as declared in the schema. The parameters of a specific method or technique (for example <code>PowderXRD</code> or <code>TPR</code>) are checked when that record is validated on its own, with its class as <code>--target-class</code>.</p>
 <hr />
 <h2 id="what-each-level-gives-you">What each level gives you</h2>
 <table>

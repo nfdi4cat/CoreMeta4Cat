@@ -31,6 +31,8 @@ CHEBI:49475 schema1:name "argon atom" ;
 	a schema1:DefinedTerm .
 CHMO:0002908 schema1:name "temperature-programmed reduction" ;
 	a schema1:DefinedTerm .
+SIO:010511 schema1:name "decomposition reaction" ;
+	a schema1:DefinedTerm .
 <https://creativecommons.org/licenses/by/4.0/> dcterms:title "CC BY 4.0" ;
 	a dcterms:LicenseDocument .
 doi:10.1016\/j.apcata.2025.120571 dcterms:title "Davari et al., Appl. Catal. A 708 (2025) 120571" ;
@@ -117,7 +119,7 @@ coremeta4cat:REAC_b74m-m6rp_NH3_decomposition RO:0004008 coremeta4cat:PROD_b74m-
 	RXNO:0000425 coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ , coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ , coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_Ni-BCZY ;
 	dcterms:description "Thermocatalytic decomposition of ammonia (2 NH3 -> N2 + 3 H2) measured as light-off curves in a packed bed: NH3 in Ar at 1 bar, GHSV 50,000 h-1, temperature ramped from 473 to 873 K at 2 K/min, after 1.5 h pretreatment at 873 K in 5% H2/Ar and 1 h Ar purge at 473 K. Six catalysts at 1000 ppm NH3 (Fig. 2); 0.5Ru/1Ba/Ni-BCZY and Ni-BCZY also at 500 and 3000 ppm (Fig. 3 and simulation comparisons). Article Table 3 gives T10/T50: Ni-BCZY 656/717 K, 1Ru/Ni-BCZY 621/675 K, 0.5Ru/1Ba/Ni-BCZY 615/675 K, 0.5Ru/0.5Ba/Ni-BCZY 621/676 K, 1Ru/1Ba/YSZ 536/589 K, 1Ru/1Ba/Ni-YSZ 621/688 K. The deposited curve for 0.5Ru/0.5Ba/Ni-BCZY is unreadable (lost decimal separators); its T10/T50 survive only in the article." ;
 	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
-	a coremeta4cat:CatalyticReaction , voc4cat:0007001 ;
+	a SIO:010511 , coremeta4cat:CatalyticReaction ;
 	adms:identifier _:c14n0 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
 	coremeta4cat:feed_composition_range _:c14n38 ;
