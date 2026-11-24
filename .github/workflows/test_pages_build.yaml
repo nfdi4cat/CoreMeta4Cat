@@ -78,7 +78,6 @@ jobs:
           just gen-schema-docs
           just gen-doc
           uv run mkdocs build -d site
-          touch site/.nojekyll
 
       # deploy_docs_preview.yaml can't see which PR a fork's run belongs to,
       # so the number travels with the artifact. It is verified there before
@@ -96,6 +95,5 @@ jobs:
           path: |
             site/
             pr_number
-          include-hidden-files: true
           if-no-files-found: error
           retention-days: 7

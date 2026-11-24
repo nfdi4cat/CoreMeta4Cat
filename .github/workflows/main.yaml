@@ -11,11 +11,18 @@ on:  # yamllint disable-line rule:truthy
     # This workflow fires after the excel_inbox bot-commit (which removes the
     # inbox file and adds schema changes), so the test matrix runs on the
     # correct, already-validated schema — satisfying branch-protection checks.
+    #
+    # PRs that only change the generated workbook (the auto-PRs of
+    # update_excel.yaml) are skipped too: GitHub holds runs for PRs opened with
+    # GITHUB_TOKEN until someone approves them, and auto-merge merges these
+    # PRs within seconds, so such a run could only ever expire as "failed".
+    # The schema behind the workbook was already tested on main.
     paths-ignore:
       - "inbox/**"
+      - "docs/assets/coremeta4cat_vocabulary.xlsx"
 
 env:
-  FORCE_COLOR: "1" # Make tools pretty.
+  FORCE_COLOR: "1"  # Make tools pretty.
 
 permissions: {}
 
@@ -117,7 +124,7 @@ jobs:
 
     permissions:
       contents: read  # needed alongside actions/upload-artifact below
-      
+
     needs: python-matrix
 
     strategy:
