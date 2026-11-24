@@ -403,12 +403,19 @@ is_about_activity:
   title:
   - CO methanation catalyst screening (4 Ni catalysts)
   used_catalyst:
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp2_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 20.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp2_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp2_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 20.0
     - description: 'Particle diameter (Exp2_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -423,12 +430,19 @@ is_about_activity:
       value: 0.5
     id: coremeta4cat:CAT_2d6m-exeb_Exp2
     title: 20 wt% Ni/Al2O3 (Exp2)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp3_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 20.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp3_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp3_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 20.0
     - description: 'Particle diameter (Exp3_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -443,12 +457,19 @@ is_about_activity:
       value: 0.2
     id: coremeta4cat:CAT_2d6m-exeb_Exp3
     title: 20 wt% Ni/Al2O3 (Exp3)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp4_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 10.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp4_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp4_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 10.0
     - description: 'Particle diameter (Exp4_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -463,12 +484,19 @@ is_about_activity:
       value: 0.05
     id: coremeta4cat:CAT_2d6m-exeb_Exp4
     title: 10 wt% Ni/SiO2 (Exp4)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp12_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 10.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp12_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp12_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 10.0
     - description: 'Particle diameter (Exp12_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -552,12 +580,19 @@ is_about_activity:
   title:
   - CO2 methanation catalyst screening (8 Ni catalysts)
   used_catalyst:
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp7_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 10.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp7_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp7_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 10.0
     - description: 'Particle diameter (Exp7_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -572,12 +607,19 @@ is_about_activity:
       value: 1.2
     id: coremeta4cat:CAT_2d6m-exeb_Exp7
     title: 10 wt% Ni/MgAl2O4 (Exp7)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp8_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 20.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp8_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp8_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 20.0
     - description: 'Particle diameter (Exp8_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -592,15 +634,22 @@ is_about_activity:
       value: 0.2
     id: coremeta4cat:CAT_2d6m-exeb_Exp8
     title: 20 wt% Ni/Al2O3 (Exp8)
-  - description: High Ni-loading Al2O3-supported catalyst; this run also used an elevated
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp9_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 40.8
+      id: coremeta4cat:CAT_2d6m-exeb_Exp9_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    description: High Ni-loading Al2O3-supported catalyst; this run also used an elevated
       feed pressure of 800 kPa, an outlier relative to the other runs in this series
       (~100-101.3 kPa).
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp9_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 40.8
     - description: 'Particle diameter (Exp9_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -615,12 +664,19 @@ is_about_activity:
       value: 0.025
     id: coremeta4cat:CAT_2d6m-exeb_Exp9
     title: 40.8 wt% Ni/Al2O3 (Exp9)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp13_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 10.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp13_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp13_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 10.0
     - description: 'Particle diameter (Exp13_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -635,12 +691,19 @@ is_about_activity:
       value: 0.05
     id: coremeta4cat:CAT_2d6m-exeb_Exp13
     title: 10 wt% Ni/ZrO2 (Exp13)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp14_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 10.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp14_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp14_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 10.0
     - description: 'Particle diameter (Exp14_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -655,12 +718,19 @@ is_about_activity:
       value: 0.05
     id: coremeta4cat:CAT_2d6m-exeb_Exp14
     title: 10 wt% Ni/SiO2 (Exp14)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp15_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 20.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp15_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp15_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 20.0
     - description: 'Particle diameter (Exp15_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -671,12 +741,19 @@ is_about_activity:
       value: 1.76
     id: coremeta4cat:CAT_2d6m-exeb_Exp15
     title: 20 wt% Ni/Al2O3 (Exp15)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp16_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 15.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp16_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp16_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 15.0
     - description: 'Particle diameter (Exp16_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -691,12 +768,19 @@ is_about_activity:
       value: 0.3
     id: coremeta4cat:CAT_2d6m-exeb_Exp16
     title: 15 wt% Ni/Al2O3 (Exp16)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp17_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 10.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp17_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp17_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 10.0
     - description: 'Particle diameter (Exp17_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -778,12 +862,19 @@ is_about_activity:
   title:
   - Mixed CO+CO2 methanation catalyst screening (4 Ni catalysts)
   used_catalyst:
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp11_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 5.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp11_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp11_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 5.0
     - description: 'Particle diameter (Exp11_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -798,12 +889,19 @@ is_about_activity:
       value: 0.15
     id: coremeta4cat:CAT_2d6m-exeb_Exp11
     title: 5 wt% Ni/ZrO2 (Exp11)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp18_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 5.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp18_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp18_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 5.0
     - description: 'Particle diameter (Exp18_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -818,12 +916,19 @@ is_about_activity:
       value: 0.18
     id: coremeta4cat:CAT_2d6m-exeb_Exp18
     title: 5 wt% Ni/SiO2 (Exp18)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp19_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 5.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp19_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp19_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 5.0
     - description: 'Particle diameter (Exp19_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -838,12 +943,19 @@ is_about_activity:
       value: 0.15
     id: coremeta4cat:CAT_2d6m-exeb_Exp19
     title: 5 wt% Ni/TiO2 (Exp19)
-  - has_physical_state: SOLID
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: 'Loading (Exp20_metadata.json: catalyst.metal_loading)'
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 5.0
+      id: coremeta4cat:CAT_2d6m-exeb_Exp20_Ni
+      rdf_type:
+        id: CHEBI:28112
+        title: nickel atom
+      title: nickel
+    has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: 'Ni loading (Exp20_metadata.json: catalyst.metal_loading)'
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 5.0
     - description: 'Particle diameter (Exp20_metadata.json: catalyst.particles_mean_diameter)'
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
       unit: https://qudt.org/vocab/unit/MicroM
@@ -1047,85 +1159,150 @@ is_about_activity:
       value: 119.0
     id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
     title: Pd/Al2O3
-  - description: Pd on Al2O3 support, nominal 1 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.8
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 0.8
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on Al2O3 support, nominal 1 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.8
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 0.8
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
       value: 118.0
     id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
     title: Pd/1P/Al2O3 (nominal 1 wt% P)
-  - description: Pd on Al2O3 support, nominal 2 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 2.0
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 2.0
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on Al2O3 support, nominal 2 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 2.0
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 2.0
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
       value: 116.0
     id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
     title: Pd/2P/Al2O3 (nominal 2 wt% P)
-  - description: Pd on Al2O3 support, nominal 3 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.8
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 2.5
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on Al2O3 support, nominal 3 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.8
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 2.5
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
       value: 105.0
     id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
     title: Pd/3P/Al2O3 (nominal 3 wt% P)
-  - description: Pd on Al2O3 support, nominal 4 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 2.0
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 3.7
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on Al2O3 support, nominal 4 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 2.0
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 3.7
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
       value: 112.0
     id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
     title: Pd/4P/Al2O3 (nominal 4 wt% P)
-  - description: Pd on Al2O3 support, nominal 5 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.9
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 4.6
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on Al2O3 support, nominal 5 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.9
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 4.6
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
@@ -1202,51 +1379,90 @@ is_about_activity:
       value: 126.0
     id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
     title: Pd/SiO2
-  - description: Pd on SiO2 support, nominal 1 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 2.0
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_1P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.1
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_1P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on SiO2 support, nominal 1 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 2.0
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.1
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
       value: 118.0
     id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
     title: Pd/1P/SiO2 (nominal 1 wt% P)
-  - description: Pd on SiO2 support, nominal 3 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.8
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_3P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 2.6
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_3P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on SiO2 support, nominal 3 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.8
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 2.6
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
       value: 98.0
     id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
     title: Pd/3P/SiO2 (nominal 3 wt% P)
-  - description: Pd on SiO2 support, nominal 5 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 2.0
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_5P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 4.8
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_5P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on SiO2 support, nominal 5 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 2.0
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 4.8
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
@@ -1312,51 +1528,90 @@ is_about_activity:
   title:
   - Selective hydrogenation of citral over Pd-P/Al2O3 catalysts
   used_catalyst:
-  - description: Pd on Al2O3 support, nominal 1 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.8
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 0.8
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on Al2O3 support, nominal 1 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.8
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 0.8
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
       value: 118.0
     id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
     title: Pd/1P/Al2O3 (nominal 1 wt% P)
-  - description: Pd on Al2O3 support, nominal 3 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.8
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 2.5
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on Al2O3 support, nominal 3 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.8
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 2.5
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
       value: 105.0
     id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
     title: Pd/3P/Al2O3 (nominal 3 wt% P)
-  - description: Pd on Al2O3 support, nominal 5 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.9
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 4.6
+      id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on Al2O3 support, nominal 5 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.9
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 4.6
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
@@ -1422,51 +1677,90 @@ is_about_activity:
   title:
   - Selective hydrogenation of citral over Pd-P/SiO2 catalysts
   used_catalyst:
-  - description: Pd on SiO2 support, nominal 1 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 2.0
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_1P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.1
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_1P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on SiO2 support, nominal 1 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 2.0
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.1
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
       value: 118.0
     id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
     title: Pd/1P/SiO2 (nominal 1 wt% P)
-  - description: Pd on SiO2 support, nominal 3 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.8
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_3P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 2.6
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_3P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on SiO2 support, nominal 3 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.8
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 2.6
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
       value: 98.0
     id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
     title: Pd/3P/SiO2 (nominal 3 wt% P)
-  - description: Pd on SiO2 support, nominal 5 wt% P (phosphorus modifier)
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 2.0
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_5P_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    - has_quantitative_attribute:
+      - description: ICP-AES measured loading (icp_results.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 4.8
+      id: coremeta4cat:CAT_32x1-99x6_SiO2_5P_P
+      rdf_type:
+        id: CHEBI:28659
+        title: phosphorus atom
+      title: phosphorus
+    description: Pd on SiO2 support, nominal 5 wt% P (phosphorus modifier)
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: ICP-AES measured Pd loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 2.0
-    - description: ICP-AES measured P loading (icp_results.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 4.8
     - description: BET specific surface area (bet_results.txt)
       has_quantity_type: http://qudt.org/vocab/quantitykind/SpecificArea
       unit: https://qudt.org/vocab/unit/M2-PER-GM
@@ -2385,11 +2679,26 @@ was_generated_by:
   - XRF elemental analysis (76 Cu-Ga-Al hydrotalcite-like precursors)
 - activity_designator: Simulation
   calculated_property:
-  - description: OH binding energy; range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu
-      highest); reference state not defined in the main text
+  - adsorbate:
+    - OH
+    description: Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference
+      state is not defined in the main text.
+    material_composition:
+    - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+    - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: OH binding energy
     value: -1.87 to 1.41 eV (17 sites)
-  - description: CO binding energy; range over all sites (Ga2O3-Ru lowest, pristine
-      Ga2O3 highest); referenced to gas-phase CO
+  - adsorbate:
+    - CO
+    description: Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest).
+    energy_reference:
+    - CO(g)
+    material_composition:
+    - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+    - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: CO binding energy
     value: -2.20 to 0.51 eV (17 sites)
   description:
   - 'Density functional theory binding energies of OH and CO at 17 sites: pristine
@@ -2430,10 +2739,17 @@ was_generated_by:
   - DFT binding energies of OH and CO at 17 oxide surface sites
 - activity_designator: Simulation
   calculated_property:
-  - description: OH binding energy; range over all compositions (Al4Cu9 lowest, Fe
-      and GaNi3 highest)
+  - adsorbate:
+    - OH
+    description: Range over all compositions (Al4Cu9 lowest, Fe and GaNi3 highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: OH binding energy
     value: -1.50 to 2.91 eV (31 compositions)
-  - description: CO binding energy; range over all compositions (Ir lowest, Fe highest)
+  - adsorbate:
+    - CO
+    description: Range over all compositions (Ir lowest, Fe highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: CO binding energy
     value: -2.51 to 1.14 eV (31 compositions)
   description:
   - Binding energies of OH and CO computed with the MACE-MPA-0 machine-learned interatomic
@@ -2464,9 +2780,17 @@ was_generated_by:
   - MACE-MPA-0 binding-energy screening of OH and CO (31 compositions)
 - activity_designator: Simulation
   calculated_property:
-  - description: OH binding energy; range over all compositions (InSb lowest, Pd highest)
+  - adsorbate:
+    - OH
+    description: Range over all compositions (InSb lowest, Pd highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: OH binding energy
     value: -5.35 to 0.79 eV (37 compositions)
-  - description: CO binding energy; range over all compositions (InSb lowest, Al highest)
+  - adsorbate:
+    - CO
+    description: Range over all compositions (InSb lowest, Al highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: CO binding energy
     value: -5.12 to -0.13 eV (37 compositions)
   description:
   - Binding energies of OH and CO computed with an Open Catalyst Project (OCP) machine-learned
@@ -2751,14 +3075,21 @@ is_about_activity:
   title:
   - Aminocarbonylation of iodobenzene over Pd3P/SiO2 (3 runs)
   used_catalyst:
-  - description: Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt%
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: Loading (Overview Reaction Description-2.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 5.0
+      id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    description: Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt%
       Pd, 0.5 mol% metal loading.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: Pd loading (Overview Reaction Description-2.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 5.0
     - description: Catalyst mass used per batch test
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
@@ -2822,29 +3153,43 @@ is_about_activity:
   title:
   - Alkoxycarbonylation of aryl iodides over Pd3P/SiO2 and Pd/SiO2 (27 runs)
   used_catalyst:
-  - description: Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt%
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: Loading (Overview Reaction Description-2.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 5.0
+      id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    description: Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt%
       Pd, 0.5 mol% metal loading.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: Pd loading (Overview Reaction Description-2.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 5.0
     - description: Catalyst mass used per batch test
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
       value: 0.01
     id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
     title: Pd3P/SiO2 (5 wt% Pd, internal code ARNE01)
-  - description: Unmodified (phosphorus-free) palladium nanoparticles supported on
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: Loading (Overview Reaction Description-2.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 5.0
+      id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    description: Unmodified (phosphorus-free) palladium nanoparticles supported on
       silica, 5 wt% Pd, 0.5 mol% metal loading -- reference catalyst for comparison
       against the Pd3P phosphide.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: Pd loading (Overview Reaction Description-2.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 5.0
     - description: Catalyst mass used per batch test
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
@@ -2908,14 +3253,21 @@ is_about_activity:
   title:
   - Phenoxycarbonylation of iodobenzene over Pd3P/SiO2 (1 run)
   used_catalyst:
-  - description: Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt%
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: Loading (Overview Reaction Description-2.txt)
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 5.0
+      id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      title: palladium
+    description: Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt%
       Pd, 0.5 mol% metal loading.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - description: Pd loading (Overview Reaction Description-2.txt)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 5.0
     - description: Catalyst mass used per batch test
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
@@ -3225,65 +3577,119 @@ is_about_activity:
   - NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts,
     3 inlet concentrations)
   used_catalyst:
-  - description: 0.5 wt% Ru and 1 wt% Ba on crushed Ni-BCZY cermet; 500, 1000, 3000
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: Nominal loading
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 0.5
+      id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru
+      rdf_type:
+        id: CHEBI:30682
+        title: ruthenium atom
+      title: ruthenium
+    - has_quantitative_attribute:
+      - description: Nominal loading
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.0
+      id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ba
+      rdf_type:
+        id: CHEBI:32594
+        title: barium atom
+      title: barium
+    description: 0.5 wt% Ru and 1 wt% Ba on crushed Ni-BCZY cermet; 500, 1000, 3000
       ppm NH3
-    has_quantitative_attribute:
-    - description: Ru, nominal
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 0.5
-    - description: Ba, nominal
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.0
     id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
     title: 0.5Ru/1Ba/Ni-BCZY
-  - description: 1000 ppm NH3; the deposited file lost its decimal separators
-    has_quantitative_attribute:
-    - description: Ru, nominal
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 0.5
-    - description: Ba, nominal
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 0.5
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: Nominal loading
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 0.5
+      id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ru
+      rdf_type:
+        id: CHEBI:30682
+        title: ruthenium atom
+      title: ruthenium
+    - has_quantitative_attribute:
+      - description: Nominal loading
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 0.5
+      id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ba
+      rdf_type:
+        id: CHEBI:32594
+        title: barium atom
+      title: barium
+    description: 1000 ppm NH3; the deposited file lost its decimal separators
     id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY
     title: 0.5Ru/0.5Ba/Ni-BCZY
-  - description: 1000 ppm NH3
-    has_quantitative_attribute:
-    - description: Ru, nominal
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.0
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: Nominal loading
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.0
+      id: coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY_Ru
+      rdf_type:
+        id: CHEBI:30682
+        title: ruthenium atom
+      title: ruthenium
+    description: 1000 ppm NH3
     id: coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY
     title: 1Ru/Ni-BCZY
   - description: Bare cermet (NiO:BCZY811 = 60:40 by weight before reduction); 500,
       1000, 3000 ppm NH3
     id: coremeta4cat:CAT_b74m-m6rp_Ni-BCZY
     title: Ni-BCZY cermet
-  - description: 1000 ppm NH3
-    has_quantitative_attribute:
-    - description: Ru, nominal
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.0
-    - description: Ba, nominal
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.0
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: Nominal loading
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.0
+      id: coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ_Ru
+      rdf_type:
+        id: CHEBI:30682
+        title: ruthenium atom
+      title: ruthenium
+    - has_quantitative_attribute:
+      - description: Nominal loading
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.0
+      id: coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ_Ba
+      rdf_type:
+        id: CHEBI:32594
+        title: barium atom
+      title: barium
+    description: 1000 ppm NH3
     id: coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ
     title: 1Ru/1Ba/Ni-YSZ
-  - description: 1000 ppm NH3; Ni-free YSZ support
-    has_quantitative_attribute:
-    - description: Ru, nominal
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.0
-    - description: Ba, nominal
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      value: 1.0
+  - composed_of:
+    - has_quantitative_attribute:
+      - description: Nominal loading
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.0
+      id: coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ_Ru
+      rdf_type:
+        id: CHEBI:30682
+        title: ruthenium atom
+      title: ruthenium
+    - has_quantitative_attribute:
+      - description: Nominal loading
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        value: 1.0
+      id: coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ_Ba
+      rdf_type:
+        id: CHEBI:32594
+        title: barium atom
+      title: barium
+    description: 1000 ppm NH3; Ni-free YSZ support
     id: coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ
     title: 1Ru/1Ba/YSZ
   used_reactant:
@@ -3799,8 +4205,22 @@ sample_description:
 ### Input
 ```yaml
 calculated_property:
-- description: CO adsorption energy on hollow fcc site of Cu(111) relative to gas-phase
+- adsorbate:
+  - CO
+  adsorption_energy:
+  - -0.67
+  adsorption_site:
+  - fcc hollow
+  description: CO adsorption energy on hollow fcc site of Cu(111) relative to gas-phase
     CO
+  energy_reference:
+  - CO(g)
+  material_composition:
+  - Cu
+  miller_indices:
+  - (111)
+  property_designator: coremeta4cat:AdsorptionEnergetics
+  title: CO adsorption energy
   value: -0.67 eV
 - description: C-O bond length of adsorbed CO
   value: 1.157 Ang

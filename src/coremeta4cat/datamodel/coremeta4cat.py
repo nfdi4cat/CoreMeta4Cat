@@ -6563,7 +6563,9 @@ class CalculatedProperty(QualitativeAttribute):
     Abstract QualitativeAttribute representing a property computed by a
     Simulation. Concrete subclasses carry the property-specific output
     values and the computational settings used to produce them.
-    Linked from Simulation via the calculated_property slot.
+    Linked from Simulation via the calculated_property slot. An entry
+    declares its concrete subclass with property_designator, e.g.
+    coremeta4cat:AdsorptionEnergetics.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -6573,6 +6575,38 @@ class CalculatedProperty(QualitativeAttribute):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CalculatedProperty
 
     value: str = None
+    property_designator: Optional[Union[str, URIorCURIE]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
+
+        super().__post_init__(**kwargs)
+
+
+    def __new__(cls, *args, **kwargs):
+
+        type_designator = "property_designator"
+        if not type_designator in kwargs:
+            return super().__new__(cls,*args,**kwargs)
+        else:
+            type_designator_value = kwargs[type_designator]
+            target_cls = cls._class_for("class_class_curie", type_designator_value)
+
+
+            if target_cls is None:
+                target_cls = cls._class_for("class_class_uri", type_designator_value)
+
+
+            if target_cls is None:
+                target_cls = cls._class_for("class_model_uri", type_designator_value)
+
+
+            if target_cls is None:
+                raise ValueError(f"Wrong type designator value: class {cls.__name__} "
+                                 f"has no subclass with ['class_class_curie', 'class_class_uri', 'class_model_uri']='{kwargs[type_designator]}'")
+            return super().__new__(target_cls,*args,**kwargs)
+
+
 
 @dataclass(repr=False)
 class ThermodynamicStability(CalculatedProperty):
@@ -6617,6 +6651,7 @@ class ThermodynamicStability(CalculatedProperty):
         self.competing_phases = [v if isinstance(v, str) else str(v) for v in self.competing_phases]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6656,6 +6691,7 @@ class Piezoelectricity(CalculatedProperty):
         self.ionic_electronic_contributions = [v if isinstance(v, str) else str(v) for v in self.ionic_electronic_contributions]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6700,6 +6736,7 @@ class ElasticConstants(CalculatedProperty):
         self.young_modulus = [v if isinstance(v, float) else float(v) for v in self.young_modulus]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6745,6 +6782,7 @@ class Surfaces(CalculatedProperty):
         self.surface_termination_method = [v if isinstance(v, str) else str(v) for v in self.surface_termination_method]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6799,6 +6837,7 @@ class DielectricTensors(CalculatedProperty):
         self.k_point_mesh = [v if isinstance(v, str) else str(v) for v in self.k_point_mesh]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6849,6 +6888,7 @@ class PhononDispersion(CalculatedProperty):
         self.crystal_structure = [v if isinstance(v, str) else str(v) for v in self.crystal_structure]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6914,6 +6954,7 @@ class EquationsOfState(CalculatedProperty):
         self.k_point_mesh = [v if isinstance(v, str) else str(v) for v in self.k_point_mesh]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6967,6 +7008,7 @@ class AqueousStability(CalculatedProperty):
         self.crystal_structure = [v if isinstance(v, str) else str(v) for v in self.crystal_structure]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7032,6 +7074,7 @@ class GrainBoundaries(CalculatedProperty):
         self.crystal_structure = [v if isinstance(v, str) else str(v) for v in self.crystal_structure]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7097,6 +7140,7 @@ class ElectronicStructure(CalculatedProperty):
         self.k_point_mesh = [v if isinstance(v, str) else str(v) for v in self.k_point_mesh]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7157,6 +7201,7 @@ class Ferroelectrics(CalculatedProperty):
         self.crystal_structure = [v if isinstance(v, str) else str(v) for v in self.crystal_structure]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7237,6 +7282,7 @@ class BandGap(CalculatedProperty):
         self.k_point_mesh = [v if isinstance(v, str) else str(v) for v in self.k_point_mesh]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7301,6 +7347,7 @@ class AdsorptionEnergetics(CalculatedProperty):
         self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7365,6 +7412,7 @@ class ReactionEnergetics(CalculatedProperty):
         self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7434,6 +7482,7 @@ class TransitionState(CalculatedProperty):
         self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7493,6 +7542,7 @@ class ElectrochemicalFreeEnergy(CalculatedProperty):
         self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7537,6 +7587,7 @@ class CatalyticDescriptors(CalculatedProperty):
         self.bep_relation = [v if isinstance(v, str) else str(v) for v in self.bep_relation]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -10475,6 +10526,9 @@ slots.software_package = Slot(uri=COREMETA4CAT.software_package, name="software_
 
 slots.calculated_property = Slot(uri=COREMETA4CAT.calculated_property, name="calculated_property", curie=COREMETA4CAT.curie('calculated_property'),
                    model_uri=COREMETA4CAT.calculated_property, domain=None, range=Optional[Union[Union[dict, CalculatedProperty], list[Union[dict, CalculatedProperty]]]])
+
+slots.property_designator = Slot(uri=RDF.type, name="property_designator", curie=RDF.curie('type'),
+                   model_uri=COREMETA4CAT.property_designator, domain=None, range=Optional[Union[str, URIorCURIE]])
 
 slots.exchange_correlation_functional = Slot(uri=COREMETA4CAT.exchange_correlation_functional, name="exchange_correlation_functional", curie=COREMETA4CAT.curie('exchange_correlation_functional'),
                    model_uri=COREMETA4CAT.exchange_correlation_functional, domain=None, range=Optional[Union[str, list[str]]])

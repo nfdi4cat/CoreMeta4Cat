@@ -26,8 +26,22 @@ realized_plan:
   title: "periodic plane-wave DFT"
   description: "PBE functional, PAW pseudopotentials, 400 eV cutoff, 4x4x1 Monkhorst-Pack k-mesh, D3 dispersion correction, spin-unpolarized"
 calculated_property:
-  - value: "-0.67 eV"
+  - property_designator: coremeta4cat:AdsorptionEnergetics
+    title: "CO adsorption energy"
+    value: "-0.67 eV"
     description: "CO adsorption energy on hollow fcc site of Cu(111) relative to gas-phase CO"
+    adsorbate:
+      - "CO"
+    adsorption_site:
+      - "fcc hollow"
+    adsorption_energy:
+      - -0.67
+    energy_reference:
+      - "CO(g)"
+    miller_indices:
+      - "(111)"
+    material_composition:
+      - "Cu"
   - value: "1.157 Ang"
     description: "C-O bond length of adsorbed CO"
   - value: "2.312 Ang"

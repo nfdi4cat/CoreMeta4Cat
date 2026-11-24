@@ -139,12 +139,6 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 20.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp2_metadata.json: catalyst.metal_loading)"
-            },
-            {
               "value": 630.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
               "unit": "https://qudt.org/vocab/unit/MicroM",
@@ -162,6 +156,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp2_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp2_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 20.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp2_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -169,12 +181,6 @@
           "title": "20 wt% Ni/Al2O3 (Exp3)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 20.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp3_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 375.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -193,6 +199,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp3_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp3_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 20.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp3_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -200,12 +224,6 @@
           "title": "10 wt% Ni/SiO2 (Exp4)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 10.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp4_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 265.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -224,6 +242,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp4_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp4_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 10.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp4_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -231,12 +267,6 @@
           "title": "10 wt% Ni/ZrO2 (Exp12)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 10.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp12_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 265.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -254,6 +284,24 @@
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp12_metadata.json: catalyst.mass)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp12_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 10.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp12_metadata.json: catalyst.metal_loading)"
+                }
+              ]
             }
           ]
         }
@@ -358,12 +406,6 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 10.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp7_metadata.json: catalyst.metal_loading)"
-            },
-            {
               "value": 335.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
               "unit": "https://qudt.org/vocab/unit/MicroM",
@@ -381,6 +423,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp7_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp7_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 10.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp7_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -388,12 +448,6 @@
           "title": "20 wt% Ni/Al2O3 (Exp8)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 20.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp8_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 375.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -412,6 +466,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp8_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp8_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 20.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp8_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -420,12 +492,6 @@
           "description": "High Ni-loading Al2O3-supported catalyst; this run also used an elevated feed pressure of 800 kPa, an outlier relative to the other runs in this series (~100-101.3 kPa).",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 40.8,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp9_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 175.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -444,6 +510,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp9_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp9_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 40.8,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp9_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -451,12 +535,6 @@
           "title": "10 wt% Ni/ZrO2 (Exp13)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 10.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp13_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 265.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -475,6 +553,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp13_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp13_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 10.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp13_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -482,12 +578,6 @@
           "title": "10 wt% Ni/SiO2 (Exp14)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 10.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp14_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 265.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -506,6 +596,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp14_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp14_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 10.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp14_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -513,12 +621,6 @@
           "title": "20 wt% Ni/Al2O3 (Exp15)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 20.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp15_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 750.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -531,6 +633,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp15_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp15_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 20.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp15_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -538,12 +658,6 @@
           "title": "15 wt% Ni/Al2O3 (Exp16)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 15.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp16_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 630.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -562,6 +676,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp16_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp16_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 15.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp16_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -569,12 +701,6 @@
           "title": "10 wt% Ni/MgAl2O4 (Exp17)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 10.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp17_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 335.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -592,6 +718,24 @@
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp17_metadata.json: catalyst.mass)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp17_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 10.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp17_metadata.json: catalyst.metal_loading)"
+                }
+              ]
             }
           ]
         }
@@ -696,12 +840,6 @@
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
             {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp11_metadata.json: catalyst.metal_loading)"
-            },
-            {
               "value": 220.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
               "unit": "https://qudt.org/vocab/unit/MicroM",
@@ -719,6 +857,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp11_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp11_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp11_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -726,12 +882,6 @@
           "title": "5 wt% Ni/SiO2 (Exp18)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp18_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 3000.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -750,6 +900,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp18_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp18_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp18_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -757,12 +925,6 @@
           "title": "5 wt% Ni/TiO2 (Exp19)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp19_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 630.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -781,6 +943,24 @@
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp19_metadata.json: catalyst.mass)"
             }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp19_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp19_metadata.json: catalyst.metal_loading)"
+                }
+              ]
+            }
           ]
         },
         {
@@ -788,12 +968,6 @@
           "title": "5 wt% Ni/Al2O3 (Exp20)",
           "has_physical_state": "SOLID",
           "has_quantitative_attribute": [
-            {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "unit": "https://qudt.org/vocab/unit/PERCENT",
-              "description": "Ni loading (Exp20_metadata.json: catalyst.metal_loading)"
-            },
             {
               "value": 220.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
@@ -811,6 +985,24 @@
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
               "unit": "https://qudt.org/vocab/unit/GM",
               "description": "Catalyst bed mass (Exp20_metadata.json: catalyst.mass)"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_2d6m-exeb_Exp20_Ni",
+              "title": "nickel",
+              "rdf_type": {
+                "id": "CHEBI:28112",
+                "title": "nickel atom"
+              },
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT",
+                  "description": "Loading (Exp20_metadata.json: catalyst.metal_loading)"
+                }
+              ]
             }
           ]
         }

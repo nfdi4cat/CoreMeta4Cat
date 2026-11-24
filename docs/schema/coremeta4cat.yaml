@@ -5481,6 +5481,32 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
+  property_designator:
+    name: property_designator
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/property_designator
+    description: 'Type designator for CalculatedProperty subclasses: the class_uri
+      of the
+
+      concrete property an entry of calculated_property is, e.g.
+
+      coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+
+      Needed whenever an entry uses fields of its subclass: calculated_property
+
+      ranges over the abstract CalculatedProperty, and without the designator
+
+      software cannot tell which property class an entry belongs to. The value
+
+      must match the class_uri exactly. In RDF it becomes the entry''s rdf:type.'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
+    mappings:
+    - rdf:type
+    slot_uri: rdf:type
+    designates_type: true
+    owner: CalculatedProperty
+    domain_of:
+    - CalculatedProperty
+    range: uriorcurie
   exchange_correlation_functional:
     name: exchange_correlation_functional
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/exchange_correlation_functional
@@ -16475,7 +16501,11 @@ classes:
 
       values and the computational settings used to produce them.
 
-      Linked from Simulation via the calculated_property slot.'
+      Linked from Simulation via the calculated_property slot. An entry
+
+      declares its concrete subclass with property_designator, e.g.
+
+      coremeta4cat:AdsorptionEnergetics.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     exact_mappings:
     - IAO:0000109
@@ -16487,6 +16517,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     class_uri: IAO:0000109
   ThermodynamicStability:
     name: ThermodynamicStability
@@ -16507,6 +16538,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - formation_energy
     - reference_energies
     - energy_above_hull
@@ -16530,6 +16562,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - piezoelectric_tensor
     - crystal_symmetry
     - strain_applied
@@ -16552,6 +16585,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - elastic_tensor
     - bulk_modulus
     - shear_modulus
@@ -16576,6 +16610,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - surface_energy
     - miller_indices
     - slab_thickness
@@ -16602,6 +16637,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - dielectric_tensor
     - born_effective_charges
     - material_composition
@@ -16630,6 +16666,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - force_constant_method
     - kq_point_mesh
     - smearing_parameter
@@ -16659,6 +16696,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - fit_method
     - bulk_modulus
     - pressure_derivative
@@ -16690,6 +16728,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - ph_range
     - potential_range
     - solvation_model
@@ -16718,6 +16757,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - grain_boundary_plane
     - misorientation_angle
     - grain_boundary_energy
@@ -16750,6 +16790,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - smearing_method
     - spin_polarized
     - band_path
@@ -16780,6 +16821,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - polarization_direction
     - spontaneous_polarization
     - reference_structure
@@ -16810,6 +16852,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - material_sample
     - structure_model
     - smearing_broadening
@@ -16839,6 +16882,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - adsorbate
     - adsorption_site
     - adsorption_energy
@@ -16864,6 +16908,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - elementary_step
     - initial_state
     - final_state
@@ -16889,6 +16934,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - elementary_step
     - forward_activation_energy
     - reverse_activation_energy
@@ -16916,6 +16962,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - electrode_potential_model
     - potential_reference_scale
     - applied_potential
@@ -16940,6 +16987,7 @@ classes:
     - QualitativeAttribute_value
     - ClassifierMixin_type
     - rdf_type
+    - property_designator
     - descriptor_type
     - descriptor_value
     - d_band_center

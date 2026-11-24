@@ -910,11 +910,16 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
 
 ### Pattern 6 – Catalysts, reactants and products { #reaction-participants }
 
-**Purpose:** Identify what reacted over which catalyst: chemicals as ChEBI terms, catalysts with their nominal loadings.
+**Purpose:** Identify what reacted over which catalyst: chemicals as ChEBI terms, catalysts with the elements they are composed of and their nominal loadings.
 
-**Example use case:** Ammonia decomposition over Ru/Ba catalysts on a Ni-BCZY cermet (two of six catalysts shown). Ammonia and argon are reactants, nitrogen and hydrogen products; the loadings are mass fractions in percent.
+**Example use case:** Ammonia decomposition over Ru/Ba catalysts on a Ni-BCZY cermet (two of six catalysts shown). Ammonia and argon are reactants, nitrogen and hydrogen products. Each catalyst lists ruthenium and barium under `composed_of`, each with its loading as a mass fraction in percent.
 
-**Fields used:** [`reaction_name`](../elements/slots/reaction_name.md), [`rdf_type`](../elements/slots/rdf_type.md), [`catalyst_type`](../elements/slots/catalyst_type.md), [`catalyst_form`](../elements/slots/catalyst_form.md), [`used_catalyst`](../elements/slots/used_catalyst.md), [`has_quantitative_attribute`](../elements/slots/has_quantitative_attribute.md), [`used_reactant`](../elements/slots/used_reactant.md), [`generated_product`](../elements/slots/generated_product.md), [`used_reactor`](../elements/slots/used_reactor.md), [`reactor_designator`](../elements/slots/reactor_designator.md)
+**Notes:**
+
+- A loading belongs to a component, not to the catalyst as a whole: list the components under `composed_of`, each with its ChEBI term, and give each its own mass fraction. Properties of the whole catalyst, such as its BET surface area or mass, stay on the catalyst.
+- Each component gets its own `id` (here the catalyst's id plus the element symbol), because its loading applies only within this catalyst. The chemical identity is shared through `rdf_type`.
+
+**Fields used:** [`reaction_name`](../elements/slots/reaction_name.md), [`rdf_type`](../elements/slots/rdf_type.md), [`catalyst_type`](../elements/slots/catalyst_type.md), [`catalyst_form`](../elements/slots/catalyst_form.md), [`used_catalyst`](../elements/slots/used_catalyst.md), [`composed_of`](../elements/slots/composed_of.md), [`has_quantitative_attribute`](../elements/slots/has_quantitative_attribute.md), [`used_reactant`](../elements/slots/used_reactant.md), [`generated_product`](../elements/slots/generated_product.md), [`used_reactor`](../elements/slots/used_reactor.md), [`reactor_designator`](../elements/slots/reactor_designator.md)
 
 === "Graph"
 
@@ -926,39 +931,53 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
         n4(["“heterogeneous_catalysis”"])
         n5(["“supported”"])
         n6["0.5Ru/1Ba/Ni-BCZY<br/>«Catalyst»"]
-        n7["0.5 PERCENT<br/>«MassFraction»"]
-        n8["1.0 PERCENT<br/>«MassFraction»"]
-        n9["0.5Ru/0.5Ba/Ni-BCZY<br/>«Catalyst»"]
-        n10["0.5 PERCENT<br/>«MassFraction»"]
-        n11["0.5 PERCENT<br/>«MassFraction»"]
-        n12["ammonia<br/>«Reagent»"]
-        n13["ammonia<br/>CHEBI:16134"]
-        n14["argon (balance)<br/>«Reagent»"]
-        n15["argon atom<br/>CHEBI:49475"]
-        n16["dinitrogen<br/>«ChemicalProduct»"]
-        n17["dinitrogen<br/>CHEBI:17997"]
-        n18["dihydrogen<br/>«ChemicalProduct»"]
-        n19["dihydrogen<br/>CHEBI:18276"]
-        n20["quartz glass tubular packed-bed reactor<br/>«FixedBedReactor»"]
+        n7["ruthenium<br/>«ChemicalEntity»"]
+        n8["ruthenium atom<br/>CHEBI:30682"]
+        n9["0.5 PERCENT<br/>«MassFraction»"]
+        n10["barium<br/>«ChemicalEntity»"]
+        n11["barium atom<br/>CHEBI:32594"]
+        n12["1.0 PERCENT<br/>«MassFraction»"]
+        n13["0.5Ru/0.5Ba/Ni-BCZY<br/>«Catalyst»"]
+        n14["ruthenium<br/>«ChemicalEntity»"]
+        n15["0.5 PERCENT<br/>«MassFraction»"]
+        n16["barium<br/>«ChemicalEntity»"]
+        n17["0.5 PERCENT<br/>«MassFraction»"]
+        n18["ammonia<br/>«Reagent»"]
+        n19["ammonia<br/>CHEBI:16134"]
+        n20["argon (balance)<br/>«Reagent»"]
+        n21["argon atom<br/>CHEBI:49475"]
+        n22["dinitrogen<br/>«ChemicalProduct»"]
+        n23["dinitrogen<br/>CHEBI:17997"]
+        n24["dihydrogen<br/>«ChemicalProduct»"]
+        n25["dihydrogen<br/>CHEBI:18276"]
+        n26["quartz glass tubular packed-bed reactor<br/>«FixedBedReactor»"]
         n1 -->|reaction_name| n2
         n1 -->|rdf_type| n3
         n1 -->|catalyst_type| n4
         n1 -->|catalyst_form| n5
-        n6 -->|has_quantitative_attribute| n7
-        n6 -->|has_quantitative_attribute| n8
+        n7 -->|rdf_type| n8
+        n7 -->|has_quantitative_attribute| n9
+        n6 -->|composed_of| n7
+        n10 -->|rdf_type| n11
+        n10 -->|has_quantitative_attribute| n12
+        n6 -->|composed_of| n10
         n1 -->|used_catalyst| n6
-        n9 -->|has_quantitative_attribute| n10
-        n9 -->|has_quantitative_attribute| n11
-        n1 -->|used_catalyst| n9
-        n12 -->|rdf_type| n13
-        n1 -->|used_reactant| n12
-        n14 -->|rdf_type| n15
-        n1 -->|used_reactant| n14
-        n16 -->|rdf_type| n17
-        n1 -->|generated_product| n16
+        n14 -->|rdf_type| n8
+        n14 -->|has_quantitative_attribute| n15
+        n13 -->|composed_of| n14
+        n16 -->|rdf_type| n11
+        n16 -->|has_quantitative_attribute| n17
+        n13 -->|composed_of| n16
+        n1 -->|used_catalyst| n13
         n18 -->|rdf_type| n19
-        n1 -->|generated_product| n18
-        n1 -->|used_reactor| n20
+        n1 -->|used_reactant| n18
+        n20 -->|rdf_type| n21
+        n1 -->|used_reactant| n20
+        n22 -->|rdf_type| n23
+        n1 -->|generated_product| n22
+        n24 -->|rdf_type| n25
+        n1 -->|generated_product| n24
+        n1 -->|used_reactor| n26
         classDef dataset fill:#cfe9ef,stroke:#00838f,color:#222
         classDef activity fill:#fde2c4,stroke:#c26b00,color:#222
         classDef plan fill:#e3dcf7,stroke:#5b3fb5,color:#222
@@ -971,10 +990,10 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
         classDef other fill:#ffffff,stroke:#757575,color:#222
         class n1 activity
         class n2,n4,n5 literal
-        class n3,n13,n15,n17,n19 term
-        class n6,n9,n20 agent
-        class n7,n8,n10,n11 quantity
-        class n12,n14,n16,n18 entity
+        class n3,n8,n11,n19,n21,n23,n25 term
+        class n6,n13,n26 agent
+        class n7,n10,n14,n16,n18,n20,n22,n24 entity
+        class n9,n12,n15,n17 quantity
     ```
 
 === "YAML"
@@ -995,26 +1014,50 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     used_catalyst:
     - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
       title: 0.5Ru/1Ba/Ni-BCZY
-      has_quantitative_attribute:
-      - value: 0.5
-        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-        unit: https://qudt.org/vocab/unit/PERCENT
-        description: Ru, nominal
-      - value: 1.0
-        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-        unit: https://qudt.org/vocab/unit/PERCENT
-        description: Ba, nominal
+      composed_of:
+      - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru
+        title: ruthenium
+        rdf_type:
+          id: CHEBI:30682
+          title: ruthenium atom
+        has_quantitative_attribute:
+        - value: 0.5
+          has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+          unit: https://qudt.org/vocab/unit/PERCENT
+          description: Nominal loading
+      - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ba
+        title: barium
+        rdf_type:
+          id: CHEBI:32594
+          title: barium atom
+        has_quantitative_attribute:
+        - value: 1.0
+          has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+          unit: https://qudt.org/vocab/unit/PERCENT
+          description: Nominal loading
     - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY
       title: 0.5Ru/0.5Ba/Ni-BCZY
-      has_quantitative_attribute:
-      - value: 0.5
-        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-        unit: https://qudt.org/vocab/unit/PERCENT
-        description: Ru, nominal
-      - value: 0.5
-        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-        unit: https://qudt.org/vocab/unit/PERCENT
-        description: Ba, nominal
+      composed_of:
+      - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ru
+        title: ruthenium
+        rdf_type:
+          id: CHEBI:30682
+          title: ruthenium atom
+        has_quantitative_attribute:
+        - value: 0.5
+          has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+          unit: https://qudt.org/vocab/unit/PERCENT
+          description: Nominal loading
+      - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ba
+        title: barium
+        rdf_type:
+          id: CHEBI:32594
+          title: barium atom
+        has_quantitative_attribute:
+        - value: 0.5
+          has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+          unit: https://qudt.org/vocab/unit/PERCENT
+          description: Nominal loading
     used_reactant:
     - id: coremeta4cat:REAC_b74m-m6rp_NH3
       title: ammonia
@@ -1052,6 +1095,7 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
     @prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
     @prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
+    @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
     @prefix RO: <http://purl.obolibrary.org/obo/RO_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -1065,16 +1109,32 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     	a schema1:DefinedTerm .
     CHEBI:18276 schema1:name "dihydrogen" ;
     	a schema1:DefinedTerm .
+    CHEBI:30682 schema1:name "ruthenium atom" ;
+    	a schema1:DefinedTerm .
+    CHEBI:32594 schema1:name "barium atom" ;
+    	a schema1:DefinedTerm .
     CHEBI:49475 schema1:name "argon atom" ;
     	a schema1:DefinedTerm .
     SIO:010511 schema1:name "decomposition reaction" ;
     	a schema1:DefinedTerm .
-    coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY dcterms:relation _:c14n0 , _:c14n3 ;
+    coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY BFO:0000051 coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ba , coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ru ;
     	dcterms:title "0.5Ru/0.5Ba/Ni-BCZY" ;
     	a SIO:010344 .
-    coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY dcterms:relation _:c14n1 , _:c14n2 ;
+    coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ba dcterms:relation _:c14n2 ;
+    	dcterms:title "barium" ;
+    	a CHEBI:23367 , CHEBI:32594 .
+    coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ru dcterms:relation _:c14n3 ;
+    	dcterms:title "ruthenium" ;
+    	a CHEBI:23367 , CHEBI:30682 .
+    coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY BFO:0000051 coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ba , coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru ;
     	dcterms:title "0.5Ru/1Ba/Ni-BCZY" ;
     	a SIO:010344 .
+    coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ba dcterms:relation _:c14n0 ;
+    	dcterms:title "barium" ;
+    	a CHEBI:23367 , CHEBI:32594 .
+    coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru dcterms:relation _:c14n1 ;
+    	dcterms:title "ruthenium" ;
+    	a CHEBI:23367 , CHEBI:30682 .
     coremeta4cat:PROD_b74m-m6rp_H2 dcterms:title "dihydrogen" ;
     	a CHEBI:18276 , NCIT:C48810 .
     coremeta4cat:PROD_b74m-m6rp_N2 dcterms:title "dinitrogen" ;
@@ -1094,22 +1154,22 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     	voc4cat:0007014 voc4cat:0007001 .
     coremeta4cat:REAC_b74m-m6rp_reactor dcterms:title "quartz glass tubular packed-bed reactor" ;
     	a coremeta4cat:FixedBedReactor .
-    _:c14n0 dcterms:description "Ba, nominal" ;
-    	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-    	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-    	a qudt:Quantity ;
-    	prov:value "0.5"^^xsd:float .
-    _:c14n1 dcterms:description "Ba, nominal" ;
+    _:c14n0 dcterms:description "Nominal loading" ;
     	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
     	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
     	a qudt:Quantity ;
     	prov:value "1.0"^^xsd:float .
-    _:c14n2 dcterms:description "Ru, nominal" ;
+    _:c14n1 dcterms:description "Nominal loading" ;
     	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
     	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
     	a qudt:Quantity ;
     	prov:value "0.5"^^xsd:float .
-    _:c14n3 dcterms:description "Ru, nominal" ;
+    _:c14n2 dcterms:description "Nominal loading" ;
+    	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+    	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+    	a qudt:Quantity ;
+    	prov:value "0.5"^^xsd:float .
+    _:c14n3 dcterms:description "Nominal loading" ;
     	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
     	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
     	a qudt:Quantity ;
@@ -1299,13 +1359,14 @@ modelled (`evaluated_entity`) and the properties it computed (`calculated_proper
 
 **Purpose:** Record which code and method produced a set of computed values, and what they were computed for.
 
-**Example use case:** DFT binding energies of OH and CO at doped CuGa₂O₄ sites (VASP, PBE). The plan is declared as `DFT` (`plan_designator: coremeta4cat:DFT`) so the functional has its own field.
+**Example use case:** DFT binding energies of OH and CO at doped CuGa₂O₄ sites (VASP, PBE). The plan is declared as `DFT` (`plan_designator: coremeta4cat:DFT`) so the functional has its own field, and each binding energy as `AdsorptionEnergetics` (`property_designator: coremeta4cat:AdsorptionEnergetics`) so the adsorbate and the energy reference have their own fields.
 
 **Notes:**
 
-- Adsorption and binding energies have no dedicated property class yet, so value and context go into `calculated_property` as text.
+- `property_designator` works like `plan_designator`: it names the property class an entry belongs to (adsorption, reaction or transition-state energetics, electrochemical free energy, catalytic descriptors, or one of the material properties). Without it, an entry can only carry a value and a description.
+- The deposit gives the binding energies as ranges over 17 sites, so the range stays in `value`; a single computed energy goes into `adsorption_energy` as a number in eV.
 
-**Fields used:** [`activity_designator`](../elements/slots/activity_designator.md), [`software_package`](../elements/slots/software_package.md), [`rdf_type`](../elements/slots/rdf_type.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md), [`exchange_correlation_functional`](../elements/slots/exchange_correlation_functional.md), [`calculated_property`](../elements/slots/calculated_property.md)
+**Fields used:** [`activity_designator`](../elements/slots/activity_designator.md), [`software_package`](../elements/slots/software_package.md), [`rdf_type`](../elements/slots/rdf_type.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md), [`exchange_correlation_functional`](../elements/slots/exchange_correlation_functional.md), [`calculated_property`](../elements/slots/calculated_property.md), [`property_designator`](../elements/slots/property_designator.md), [`adsorbate`](../elements/slots/adsorbate.md), [`material_composition`](../elements/slots/material_composition.md), [`energy_reference`](../elements/slots/energy_reference.md)
 
 === "Graph"
 
@@ -1372,12 +1433,27 @@ modelled (`evaluated_entity`) and the properties it computed (`calculated_proper
       exchange_correlation_functional:
       - PBE
     calculated_property:
-    - value: -1.87 to 1.41 eV (17 sites)
-      description: OH binding energy; range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); reference
-        state not defined in the main text
-    - value: -2.20 to 0.51 eV (17 sites)
-      description: CO binding energy; range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest); referenced
-        to gas-phase CO
+    - property_designator: coremeta4cat:AdsorptionEnergetics
+      title: OH binding energy
+      value: -1.87 to 1.41 eV (17 sites)
+      description: Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference state is not
+        defined in the main text.
+      adsorbate:
+      - OH
+      material_composition:
+      - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+      - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
+    - property_designator: coremeta4cat:AdsorptionEnergetics
+      title: CO binding energy
+      value: -2.20 to 0.51 eV (17 sites)
+      description: Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest).
+      adsorbate:
+      - CO
+      energy_reference:
+      - CO(g)
+      material_composition:
+      - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+      - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
     ```
 
 === "RDF (Turtle)"
@@ -1385,7 +1461,6 @@ modelled (`evaluated_entity`) and the properties it computed (`calculated_proper
     ```turtle
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
     @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
-    @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
     @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -1403,12 +1478,19 @@ modelled (`evaluated_entity`) and the properties it computed (`calculated_proper
     	a prov:Entity .
     voc4cat:0000215 schema1:name "density functional theory" ;
     	a schema1:DefinedTerm .
-    _:c14n0 dcterms:description "CO binding energy; range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest); referenced to gas-phase CO" ;
-    	a IAO:0000109 ;
-    	prov:value "-2.20 to 0.51 eV (17 sites)" .
-    _:c14n1 dcterms:description "OH binding energy; range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); reference state not defined in the main text" ;
-    	a IAO:0000109 ;
-    	prov:value "-1.87 to 1.41 eV (17 sites)" .
+    _:c14n0 dcterms:description "Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest)." ;
+    	dcterms:title "CO binding energy" ;
+    	a coremeta4cat:AdsorptionEnergetics ;
+    	prov:value "-2.20 to 0.51 eV (17 sites)" ;
+    	coremeta4cat:adsorbate "CO" ;
+    	coremeta4cat:energy_reference "CO(g)" ;
+    	coremeta4cat:material_composition "CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn" , "Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr" .
+    _:c14n1 dcterms:description "Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference state is not defined in the main text." ;
+    	dcterms:title "OH binding energy" ;
+    	a coremeta4cat:AdsorptionEnergetics ;
+    	prov:value "-1.87 to 1.41 eV (17 sites)" ;
+    	coremeta4cat:adsorbate "OH" ;
+    	coremeta4cat:material_composition "CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn" , "Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr" .
     ```
 
 Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xsrd) as `Simulation`, validated against the current schema. Download: [YAML](../assets/patterns/pattern-08-simulation-dft-properties.yaml) · [Turtle](../assets/patterns/pattern-08-simulation-dft-properties.ttl)
@@ -1608,14 +1690,14 @@ vocabularies.
 
 **Purpose:** Write numbers so that software can compare them: a value or a range, the kind of quantity, and the unit, both as QUDT IRIs.
 
-**Example use case:** A single pressure (1 bar), a temperature range (473.15–873.15 K) and a metal loading as mass fraction (0.5 wt% Ru).
+**Example use case:** A single pressure (1 bar), a temperature range (473.15–873.15 K) and a metal loading as mass fraction (0.5 wt% Ru), given on the ruthenium component of the catalyst.
 
 **Notes:**
 
 - Use full QUDT IRIs for `unit` (`https://qudt.org/vocab/unit/K`), not bare codes like `K`. Bare codes pass validation but cannot be resolved in RDF.
 - `description` on a quantity is the place for context such as "nominal" or "constant across all runs".
 
-**Fields used:** [`rdf_type`](../elements/slots/rdf_type.md), [`used_catalyst`](../elements/slots/used_catalyst.md), [`has_quantitative_attribute`](../elements/slots/has_quantitative_attribute.md), [`used_reactor`](../elements/slots/used_reactor.md), [`reactor_designator`](../elements/slots/reactor_designator.md), [`reactor_temperature_range`](../elements/slots/reactor_temperature_range.md), [`experiment_pressure`](../elements/slots/experiment_pressure.md)
+**Fields used:** [`rdf_type`](../elements/slots/rdf_type.md), [`used_catalyst`](../elements/slots/used_catalyst.md), [`composed_of`](../elements/slots/composed_of.md), [`has_quantitative_attribute`](../elements/slots/has_quantitative_attribute.md), [`used_reactor`](../elements/slots/used_reactor.md), [`reactor_designator`](../elements/slots/reactor_designator.md), [`reactor_temperature_range`](../elements/slots/reactor_temperature_range.md), [`experiment_pressure`](../elements/slots/experiment_pressure.md)
 
 === "Graph"
 
@@ -1624,16 +1706,20 @@ vocabularies.
         n1["NH3 decomposition light-off over Ru/Ni-BC…<br/>«CatalyticReaction»"]
         n2["decomposition reaction<br/>SIO:010511"]
         n3["0.5Ru/1Ba/Ni-BCZY<br/>«Catalyst»"]
-        n4["0.5 PERCENT<br/>«MassFraction»"]
-        n5["quartz glass tubular packed-bed reactor<br/>«FixedBedReactor»"]
-        n6["473.15–873.15 K<br/>«Temperature»"]
-        n7["1.0 BAR<br/>«Pressure»"]
+        n4["ruthenium<br/>«ChemicalEntity»"]
+        n5["ruthenium atom<br/>CHEBI:30682"]
+        n6["0.5 PERCENT<br/>«MassFraction»"]
+        n7["quartz glass tubular packed-bed reactor<br/>«FixedBedReactor»"]
+        n8["473.15–873.15 K<br/>«Temperature»"]
+        n9["1.0 BAR<br/>«Pressure»"]
         n1 -->|rdf_type| n2
-        n3 -->|has_quantitative_attribute| n4
+        n4 -->|rdf_type| n5
+        n4 -->|has_quantitative_attribute| n6
+        n3 -->|composed_of| n4
         n1 -->|used_catalyst| n3
-        n1 -->|used_reactor| n5
-        n1 -->|reactor_temperature_range| n6
-        n1 -->|experiment_pressure| n7
+        n1 -->|used_reactor| n7
+        n1 -->|reactor_temperature_range| n8
+        n1 -->|experiment_pressure| n9
         classDef dataset fill:#cfe9ef,stroke:#00838f,color:#222
         classDef activity fill:#fde2c4,stroke:#c26b00,color:#222
         classDef plan fill:#e3dcf7,stroke:#5b3fb5,color:#222
@@ -1645,9 +1731,10 @@ vocabularies.
         classDef literal fill:#eeeeee,stroke:#757575,color:#222
         classDef other fill:#ffffff,stroke:#757575,color:#222
         class n1 activity
-        class n2 term
-        class n3,n5 agent
-        class n4,n6,n7 quantity
+        class n2,n5 term
+        class n3,n7 agent
+        class n4 entity
+        class n6,n8,n9 quantity
     ```
 
 === "YAML"
@@ -1662,11 +1749,17 @@ vocabularies.
     used_catalyst:
     - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
       title: 0.5Ru/1Ba/Ni-BCZY
-      has_quantitative_attribute:
-      - value: 0.5
-        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-        unit: https://qudt.org/vocab/unit/PERCENT
-        description: Ru, nominal
+      composed_of:
+      - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru
+        title: ruthenium
+        rdf_type:
+          id: CHEBI:30682
+          title: ruthenium atom
+        has_quantitative_attribute:
+        - value: 0.5
+          has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+          unit: https://qudt.org/vocab/unit/PERCENT
+          description: Nominal loading
     used_reactor:
     - id: coremeta4cat:REAC_b74m-m6rp_reactor
       reactor_designator: coremeta4cat:FixedBedReactor
@@ -1689,23 +1782,30 @@ vocabularies.
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
     @prefix SIO: <http://semanticscience.org/resource/SIO_> .
     @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+    @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
     @prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
+    @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
     @prefix qudt: <http://qudt.org/schema/qudt/> .
     @prefix prov: <http://www.w3.org/ns/prov#> .
     @prefix dcterms: <http://purl.org/dc/terms/> .
     @prefix schema1: <http://schema.org/> .
+    CHEBI:30682 schema1:name "ruthenium atom" ;
+    	a schema1:DefinedTerm .
     SIO:010511 schema1:name "decomposition reaction" ;
     	a schema1:DefinedTerm .
-    coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY dcterms:relation _:c14n1 ;
+    coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY BFO:0000051 coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru ;
     	dcterms:title "0.5Ru/1Ba/Ni-BCZY" ;
     	a SIO:010344 .
+    coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru dcterms:relation _:c14n2 ;
+    	dcterms:title "ruthenium" ;
+    	a CHEBI:23367 , CHEBI:30682 .
     coremeta4cat:REAC_b74m-m6rp_NH3_decomposition RXNO:0000425 coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY ;
     	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
     	a SIO:010511 , coremeta4cat:CatalyticReaction ;
     	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
-    	voc4cat:0000118 _:c14n2 ;
+    	voc4cat:0000118 _:c14n1 ;
     	voc4cat:0007032 _:c14n0 .
     coremeta4cat:REAC_b74m-m6rp_reactor dcterms:title "quartz glass tubular packed-bed reactor" ;
     	a coremeta4cat:FixedBedReactor .
@@ -1715,15 +1815,15 @@ vocabularies.
     	a qudt:Quantity ;
     	coremeta4cat:maxValue "873.15"^^xsd:float ;
     	coremeta4cat:minValue "473.15"^^xsd:float .
-    _:c14n1 dcterms:description "Ru, nominal" ;
+    _:c14n1 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+    	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+    	a qudt:Quantity ;
+    	prov:value "1.0"^^xsd:float .
+    _:c14n2 dcterms:description "Nominal loading" ;
     	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
     	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
     	a qudt:Quantity ;
     	prov:value "0.5"^^xsd:float .
-    _:c14n2 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
-    	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
-    	a qudt:Quantity ;
-    	prov:value "1.0"^^xsd:float .
     ```
 
 Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as `CatalyticReaction`, validated against the current schema. Download: [YAML](../assets/patterns/pattern-11-quantities.yaml) · [Turtle](../assets/patterns/pattern-11-quantities.ttl)

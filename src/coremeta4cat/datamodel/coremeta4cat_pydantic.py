@@ -24982,7 +24982,7 @@ LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.""", json_sch
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:software_package'} })
-    calculated_property: Optional[list[CalculatedProperty]] = Field(default=None, description="""A property computed by this Simulation, provided as a CalculatedProperty
+    calculated_property: Optional[list[Union[ThermodynamicStability,Piezoelectricity,ElasticConstants,Surfaces,DielectricTensors,PhononDispersion,EquationsOfState,AqueousStability,GrainBoundaries,ElectronicStructure,Ferroelectrics,BandGap,AdsorptionEnergetics,ReactionEnergetics,TransitionState,ElectrochemicalFreeEnergy,CatalyticDescriptors]]] = Field(default=None, description="""A property computed by this Simulation, provided as a CalculatedProperty
 instance. Multiple properties may be computed in a single simulation run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Simulation'],
          'is_a': 'had_output_entity',
          'recommended': True,
@@ -25878,12 +25878,23 @@ class CalculatedProperty(QualitativeAttribute):
     Abstract QualitativeAttribute representing a property computed by a
     Simulation. Concrete subclasses carry the property-specific output
     values and the computational settings used to produce them.
-    Linked from Simulation via the calculated_property slot.
+    Linked from Simulation via the calculated_property slot. An entry
+    declares its concrete subclass with property_designator, e.g.
+    coremeta4cat:AdsorptionEnergetics.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'class_uri': 'IAO:0000109',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/CalculatedProperty","http://purl.obolibrary.org/obo/IAO_0000109","coremeta4cat:CalculatedProperty","IAO:0000109"] = Field(default="IAO:0000109", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26006,6 +26017,15 @@ metric). Zero for phases on the hull; positive values indicate metastability."""
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:competing_phases'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ThermodynamicStability","coremeta4cat:ThermodynamicStability"] = Field(default="coremeta4cat:ThermodynamicStability", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26120,6 +26140,15 @@ describing the coupling between stress and electric polarization.""", json_schem
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:ionic_electronic_contributions'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Piezoelectricity","coremeta4cat:Piezoelectricity"] = Field(default="coremeta4cat:Piezoelectricity", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26240,6 +26269,15 @@ elastic response of the material.""", json_schema_extra = { "linkml_meta": {'dom
          'recommended': True,
          'slot_uri': 'coremeta4cat:young_modulus',
          'unit': {'ucum_code': 'GPa'}} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ElasticConstants","coremeta4cat:ElasticConstants"] = Field(default="coremeta4cat:ElasticConstants", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26366,6 +26404,15 @@ periodic interactions between slab images.""", json_schema_extra = { "linkml_met
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:surface_termination_method'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Surfaces","coremeta4cat:Surfaces"] = Field(default="coremeta4cat:Surfaces", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26502,6 +26549,15 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_sche
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/DielectricTensors","coremeta4cat:DielectricTensors"] = Field(default="coremeta4cat:DielectricTensors", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26634,6 +26690,15 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { 
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:001100'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/PhononDispersion","coremeta4cat:PhononDispersion"] = Field(default="coremeta4cat:PhononDispersion", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26779,6 +26844,15 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_sche
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/EquationsOfState","coremeta4cat:EquationsOfState"] = Field(default="coremeta4cat:EquationsOfState", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26931,6 +27005,15 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { 
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:001100'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/AqueousStability","coremeta4cat:AqueousStability"] = Field(default="coremeta4cat:AqueousStability", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27077,6 +27160,15 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { 
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:001100'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/GrainBoundaries","coremeta4cat:GrainBoundaries"] = Field(default="coremeta4cat:GrainBoundaries", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27224,6 +27316,15 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_sche
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ElectronicStructure","coremeta4cat:ElectronicStructure"] = Field(default="coremeta4cat:ElectronicStructure", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27365,6 +27466,15 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { 
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:001100'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Ferroelectrics","coremeta4cat:Ferroelectrics"] = Field(default="coremeta4cat:Ferroelectrics", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27528,6 +27638,15 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_sche
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/BandGap","coremeta4cat:BandGap"] = Field(default="coremeta4cat:BandGap", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27661,6 +27780,15 @@ Use empirical formula or SMILES for molecular systems.""", json_schema_extra = {
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/AdsorptionEnergetics","coremeta4cat:AdsorptionEnergetics"] = Field(default="coremeta4cat:AdsorptionEnergetics", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27789,6 +27917,15 @@ Use empirical formula or SMILES for molecular systems.""", json_schema_extra = {
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ReactionEnergetics","coremeta4cat:ReactionEnergetics"] = Field(default="coremeta4cat:ReactionEnergetics", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27921,6 +28058,15 @@ Use empirical formula or SMILES for molecular systems.""", json_schema_extra = {
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/TransitionState","coremeta4cat:TransitionState"] = Field(default="coremeta4cat:TransitionState", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -28047,6 +28193,15 @@ Use empirical formula or SMILES for molecular systems.""", json_schema_extra = {
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ElectrochemicalFreeEnergy","coremeta4cat:ElectrochemicalFreeEnergy"] = Field(default="coremeta4cat:ElectrochemicalFreeEnergy", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -28154,6 +28309,15 @@ class CatalyticDescriptors(CalculatedProperty):
     scaling_relation: Optional[list[str]] = Field(default=None, description="""Linear scaling relation between adsorption energies (e.g. \"Delta_E_OH = 0.50 Delta_E_O + 0.10 eV\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'],
          'slot_uri': 'coremeta4cat:scaling_relation'} })
     bep_relation: Optional[list[str]] = Field(default=None, description="""Brønsted–Evans–Polanyi relation between activation energies and reaction energies (slope and intercept).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'], 'slot_uri': 'coremeta4cat:bep_relation'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/CatalyticDescriptors","coremeta4cat:CatalyticDescriptors"] = Field(default="coremeta4cat:CatalyticDescriptors", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',

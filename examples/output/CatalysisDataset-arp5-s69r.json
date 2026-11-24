@@ -377,19 +377,31 @@
           "description": "Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt% Pd, 0.5 mol% metal loading.",
           "has_quantitative_attribute": [
             {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Pd loading (Overview Reaction Description-2.txt)",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
-            },
-            {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
               "description": "Catalyst mass used per batch test",
               "unit": "https://qudt.org/vocab/unit/GM"
             }
           ],
-          "has_physical_state": "SOLID"
+          "has_physical_state": "SOLID",
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd",
+              "title": "palladium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Loading (Overview Reaction Description-2.txt)",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              }
+            }
+          ]
         }
       ],
       "used_reactor": [
@@ -484,19 +496,31 @@
           "description": "Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt% Pd, 0.5 mol% metal loading.",
           "has_quantitative_attribute": [
             {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Pd loading (Overview Reaction Description-2.txt)",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
-            },
-            {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
               "description": "Catalyst mass used per batch test",
               "unit": "https://qudt.org/vocab/unit/GM"
             }
           ],
-          "has_physical_state": "SOLID"
+          "has_physical_state": "SOLID",
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd",
+              "title": "palladium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Loading (Overview Reaction Description-2.txt)",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              }
+            }
+          ]
         },
         {
           "id": "coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt",
@@ -504,19 +528,31 @@
           "description": "Unmodified (phosphorus-free) palladium nanoparticles supported on silica, 5 wt% Pd, 0.5 mol% metal loading -- reference catalyst for comparison against the Pd3P phosphide.",
           "has_quantitative_attribute": [
             {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Pd loading (Overview Reaction Description-2.txt)",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
-            },
-            {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
               "description": "Catalyst mass used per batch test",
               "unit": "https://qudt.org/vocab/unit/GM"
             }
           ],
-          "has_physical_state": "SOLID"
+          "has_physical_state": "SOLID",
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt_Pd",
+              "title": "palladium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Loading (Overview Reaction Description-2.txt)",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              }
+            }
+          ]
         }
       ],
       "used_reactor": [
@@ -604,19 +640,31 @@
           "description": "Palladium phosphide (Pd3P) nanoparticles supported on silica, 5 wt% Pd, 0.5 mol% metal loading.",
           "has_quantitative_attribute": [
             {
-              "value": 5.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Pd loading (Overview Reaction Description-2.txt)",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
-            },
-            {
               "value": 0.01,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
               "description": "Catalyst mass used per batch test",
               "unit": "https://qudt.org/vocab/unit/GM"
             }
           ],
-          "has_physical_state": "SOLID"
+          "has_physical_state": "SOLID",
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd",
+              "title": "palladium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 5.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Loading (Overview Reaction Description-2.txt)",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:33363",
+                "title": "palladium atom"
+              }
+            }
+          ]
         }
       ],
       "used_reactor": [

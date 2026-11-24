@@ -86,11 +86,13 @@
       "calculated_property": [
         {
           "value": "-1.86 kcal/mol",
-          "description": "Relative binding free energy (ddG) of 4M-N15 (S19V/P423F) vs. 3FCR-4M"
+          "description": "Relative binding free energy (ddG) of 4M-N15 (S19V/P423F) vs. 3FCR-4M",
+          "property_designator": "IAO:0000109"
         },
         {
           "value": "-1.11 kcal/mol",
-          "description": "Relative binding free energy (ddG) of 4M-N16 (G151A/P423F) vs. 3FCR-4M"
+          "description": "Relative binding free energy (ddG) of 4M-N16 (G151A/P423F) vs. 3FCR-4M",
+          "property_designator": "IAO:0000109"
         }
       ]
     },

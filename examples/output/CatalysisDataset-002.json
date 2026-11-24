@@ -183,19 +183,23 @@
       "calculated_property": [
         {
           "value": "1.52 J/m2",
-          "description": "CeO2(111) cleavage surface energy (clean slab without Ni cluster, computed from relaxed DFT-D3 reference at 0 K, used as force field validation benchmark)"
+          "description": "CeO2(111) cleavage surface energy (clean slab without Ni cluster, computed from relaxed DFT-D3 reference at 0 K, used as force field validation benchmark)",
+          "property_designator": "IAO:0000109"
         },
         {
           "value": "-1.83 eV/atom",
-          "description": "time-averaged Ni-CeO2 adhesion energy per Ni atom (13-atom cluster) relative to bulk Ni cohesive energy and clean CeO2(111) slab; computed from 800 ps production trajectory"
+          "description": "time-averaged Ni-CeO2 adhesion energy per Ni atom (13-atom cluster) relative to bulk Ni cohesive energy and clean CeO2(111) slab; computed from 800 ps production trajectory",
+          "property_designator": "IAO:0000109"
         },
         {
           "value": "3.8 Ang",
-          "description": "first-shell Ni-O coordination distance at Ni cluster / CeO2 interface (peak of Ni-O radial distribution function, production trajectory average)"
+          "description": "first-shell Ni-O coordination distance at Ni cluster / CeO2 interface (peak of Ni-O radial distribution function, production trajectory average)",
+          "property_designator": "IAO:0000109"
         },
         {
           "value": "0.42",
-          "description": "fraction of Ni atoms in direct contact with CeO2 surface (Ni-O bond order > 0.3) averaged over production trajectory; measures cluster wetting / spreading"
+          "description": "fraction of Ni atoms in direct contact with CeO2 surface (Ni-O bond order > 0.3) averaged over production trajectory; measures cluster wetting / spreading",
+          "property_designator": "IAO:0000109"
         }
       ]
     }
