@@ -441,7 +441,7 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000067",
+        "id": "voc4cat:0000067",
         "title": "X-ray fluorescence"
       },
       "evaluated_entity": [
@@ -473,7 +473,7 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0000215",
+        "id": "voc4cat:0000215",
         "title": "density functional theory"
       },
       "evaluated_entity": [

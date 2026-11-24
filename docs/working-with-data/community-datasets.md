@@ -15,7 +15,18 @@ All six records are part of CoreMeta4Cat's test suite (`tests/data/valid/`), so 
 against the schema on every change. The [usage patterns](usage-patterns.md) are small excerpts of
 these records.
 
-| # | Dataset | Field | Activities in the record | Sources |
+!!! note "Where these records come from"
+    The CoreMeta4Cat records are not part of the Repo4Cat deposits. A deposit keeps the files as its
+    authors submitted them, so each dataset link on this page leads to the source data, not to a
+    CoreMeta4Cat record. Some deposits also contain metadata files of their own: Dataset 1, for
+    example, includes JSON files for its experiments. These are not CoreMeta4Cat records.
+
+    The records on this page were created by the CoreMeta4Cat team with the help of a large language
+    model, from the files of each deposit and from the publication it accompanies. Each section below
+    offers its record for download as YAML, JSON and RDF. If you find an error in a record, please
+    [open an issue](https://github.com/nfdi4cat/CoreMeta4Cat/issues).
+
+| # | Dataset | Topics | Activities in the record | Sources |
 |---|---|---|---|---|
 | 1 | [CO/CO₂ methanation over nickel](#2d6m-exeb) | heterogeneous catalysis | 1 characterization, 3 reactions | deposit |
 | 2 | [P-modified Pd catalysts for selective hydrogenation](#32x1-99x6) | heterogeneous catalysis | 5 characterizations, 4 reactions | deposit |
@@ -27,6 +38,27 @@ these records.
 "Deposit + article" means the repository files alone did not contain everything CoreMeta4Cat
 asks for. The missing pieces (synthesis routes, instruments, software, reactor) came from the
 publication.
+
+## How each record is identified
+
+CoreMeta4Cat identifies data with vocabulary terms on two levels (see
+[Model Structure](../index.md#model-structure)). At the **conceptual level** (Layer 1), a dataset is
+classified by its catalysis research field and by the type of each reaction it describes. At the
+**class level** (Layer 2), each activity is typed by a term for its technique or method, and each
+reactor by its reactor type. The table lists the terms each record uses; the
+[usage patterns](usage-patterns.md) show how they are written.
+
+| # | Conceptual level: research field · reaction type | Class level: techniques and methods |
+|---|---|---|
+| 1 | heterogeneous catalysis (`voc4cat:0007001`) · hydrogenation (`voc4cat:0000260`), CO2 hydrogenation (`voc4cat:0000259`) | gas chromatography (`voc4cat:0000130`) |
+| 2 | heterogeneous catalysis (`voc4cat:0007001`) · hydrogenation (`voc4cat:0000260`) | BET analysis (`enm:0000064`), DRIFTS (`CHMO:0000645`), ICP-AES (`CHMO:0000267`), infrared spectroscopy (`CHMO:0000630`), powder XRD (`CHMO:0000158`) |
+| 3 | heterogeneous catalysis (`voc4cat:0007001`) · carbonylation (`voc4cat:0000247`) | DRIFTS (`CHMO:0000645`), powder XRD (`CHMO:0000158`), transmission electron microscopy (`voc4cat:0000078`), XPS (`CHMO:0000404`); CO chemisorption has no term yet |
+| 4 | heterogeneous catalysis (`voc4cat:0007001`) · CO2 hydrogenation (`voc4cat:0000259`) | co-precipitation (`voc4cat:0007795`), impregnation (`voc4cat:0007028`), X-ray fluorescence (`voc4cat:0000067`), density functional theory (`voc4cat:0000215`), fixed-bed reactor (`coremeta4cat:FixedBedReactor`); the machine-learned-potential screenings have no term yet |
+| 5 | heterogeneous catalysis (`voc4cat:0007001`) · decomposition reaction (`SIO:010511`) | impregnation (`voc4cat:0007028`), temperature-programmed reduction (`CHMO:0002908`), microkinetic modelling (`coremeta4cat:Microkinetics`), fixed-bed reactor (`coremeta4cat:FixedBedReactor`); the support preparation has no term yet |
+| 6 | biocatalysis (`voc4cat:0000204`) · no reaction in the record | molecular dynamics (`NCIT:C18097`); protein preparation, docking and MM/GBSA have no term yet |
+
+Chemicals, such as reactants, products and the elements of a catalyst, are identified by ChEBI
+terms.
 
 ---
 

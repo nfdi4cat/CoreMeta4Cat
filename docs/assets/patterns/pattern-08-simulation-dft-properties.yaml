@@ -7,7 +7,7 @@ software_package:
 - Atomic Simulation Environment (ASE), structure generation
 - pymatgen, structure generation
 rdf_type:
-  id: VOC4CAT:0000215
+  id: voc4cat:0000215
   title: density functional theory
 evaluated_entity:
 - id: coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites

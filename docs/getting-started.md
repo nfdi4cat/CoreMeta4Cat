@@ -377,7 +377,8 @@ Levels 1 and 2 require no programming knowledge and no changes to your existing 
 
 ## Next steps
 
-- **Browse the full field reference** for each pillar → [Schema Reference](elements/overview.md)
 - **Understand the design** behind CoreMeta4Cat → [Design Patterns](design-patterns.md)
+- **Browse the full field reference** for each pillar → [Schema Reference](elements/overview.md)
+- **See real records and reusable examples** → [Working with Data](working-with-data/index.md)
 - **Add a field not yet in the schema** → [How to Extend](how-to-extend.md)
-- **Schema source and issue tracker** → [CoreMeta4Cat on GitHub](https://github.com/HendrikBorgelt/CoreMeta4Cat)
+- **Schema source and issue tracker** → [CoreMeta4Cat on GitHub](https://github.com/nfdi4cat/CoreMeta4Cat)
