@@ -806,5 +806,5 @@ is_about_activity:
     id: coremeta4cat:REAC_32x1-99x6_Citral_SiO2_product_id
     plan_designator: OBI:0000272
 rdf_type:
-  id: voc4cat:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis

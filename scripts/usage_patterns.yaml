@@ -44,7 +44,7 @@ sections:
           and where the files are.
         use_case: >-
           A deposit of thermocatalytic NH₃ decomposition data. The research field is
-          *heterogeneous catalysis* (`VOC4CAT:0007001`); the dataset was produced by, among other
+          *heterogeneous catalysis* (`voc4cat:0007001`); the dataset was produced by, among other
           activities, a temperature-programmed reduction, linked under `was_generated_by`.
         notes:
           - >-
@@ -147,6 +147,7 @@ sections:
           id: true
           title: true
           description: true
+          rdf_type: true
           was_generated_by:
             _ids: ["coremeta4cat:SYN_6mxw-xsrd_gen2_step1", "coremeta4cat:SYN_6mxw-xsrd_gen2_step2"]
             id: true
@@ -282,6 +283,7 @@ sections:
         keep:
           id: true
           title: true
+          rdf_type: true
           catalyst_mass: true
           used_reactor:
             id: true
@@ -403,6 +405,7 @@ sections:
         keep:
           id: true
           title: true
+          rdf_type: true
           used_catalyst: {_limit: 1, id: true, title: true, has_quantitative_attribute: 1}
           used_reactor: {id: true, reactor_designator: true, title: true}
           reactor_temperature_range: true
@@ -419,13 +422,17 @@ sections:
           Make records searchable across datasets by classifying them with terms from controlled
           vocabularies instead of free text.
         use_case: >-
-          CO methanation classified by its Voc4Cat reaction term, with carbon monoxide identified
-          by its ChEBI term.
+          CO methanation classified by the Voc4Cat reaction term *hydrogenation*
+          (`voc4cat:0000260`), with carbon monoxide identified by its ChEBI term.
         notes:
           - >-
             `rdf_type` takes an object with the term's CURIE (`id`) and a readable label
             (`title`). Voc4Cat covers catalysis-specific terms; CHEBI, CHMO and NCIT are used for
             chemicals, techniques and general concepts.
+          - >-
+            The reaction type is mandatory. Voc4Cat has no term for methanation yet, so the
+            reaction uses the closest broader term, *hydrogenation*, and keeps the specific name
+            in `reaction_name`.
         keep:
           id: true
           title: true

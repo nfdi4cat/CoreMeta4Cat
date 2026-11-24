@@ -55,10 +55,11 @@ The inner layer defines mandatory baseline metadata, enabling consistent categor
 
 | Field | Priority | Description |
 |---|---|---|
-| **Catalysis Research Field** | Mandatory | Type of catalysis: homogeneous, heterogeneous, electrocatalysis, hybrid, or other |
-| **Reaction Type** | Mandatory | The catalytic reaction under investigation (e.g. hydrogenation, oxidation, hydroformylation) |
-| **Active Site** | Recommended | Primary species responsible for catalytic activity — molecule, element, or other species |
-| **Identifier** | Recommended | User-defined label(s) for identifying the catalyst |
+| **Catalysis Research Field** | Mandatory | Type of catalysis: homogeneous, heterogeneous, bio-, electro-, photo- or hybrid catalysis, or other. Several can be given, e.g. biocatalysis and electrocatalysis for bioelectrocatalysis |
+| **Reaction Type** | Mandatory | The catalytic reaction under investigation (e.g. hydrogenation, oxidation, hydroformylation), given for every reaction in the dataset |
+| **Identifier** | Mandatory | Unique identifier of the dataset, as in DCAT-AP+ and ChemDCAT-AP |
+
+The active site is not part of this layer: a dataset can contain several catalysts, and the active site is often not known, so it belongs to the description of the individual catalyst.
 
 ---
 

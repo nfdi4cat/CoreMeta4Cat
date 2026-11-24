@@ -17,6 +17,10 @@
       "description": "N2 flow: 10 mL/min (STP); used as internal standard for GC molar balance"
     }
   ],
+  "rdf_type": {
+    "id": "CHMO:0001446",
+    "title": "catalytic reforming"
+  },
   "used_reactant": [
     {
       "id": "https://pubchem.ncbi.nlm.nih.gov/compound/297",

@@ -5202,10 +5202,19 @@ class CatalyticReaction(ChemicalReaction):
                                                           'range': 'ProductIdentificationMethod',
                                                           'recommended': True},
                         'rdf_type': {'description': 'The type of catalytic reaction as '
-                                                    'an ontology term (e.g. '
-                                                    'voc4cat:0007010\n'
-                                                    'for a specific reaction type, or '
-                                                    'a ChemO/RXNO term).\n'
+                                                    'an ontology term, e.g. '
+                                                    'voc4cat:0000259\n'
+                                                    '(CO2 hydrogenation), or a term '
+                                                    'from RXNO, CHMO or SIO. Mandatory '
+                                                    'for\n'
+                                                    'every reaction (Layer 1). If no '
+                                                    'specific term exists, use the '
+                                                    'closest\n'
+                                                    'broader one (e.g. '
+                                                    'voc4cat:0000260, hydrogenation, '
+                                                    'for CO methanation)\n'
+                                                    'and keep the specific name in '
+                                                    'reaction_name.\n'
                                                     '\n'
                                                     'This is the sole reaction-type '
                                                     'classification mechanism '
@@ -5216,18 +5225,13 @@ class CatalyticReaction(ChemicalReaction):
                                                     'slot + ReactionType class '
                                                     'hierarchy (cf. PR #118, since '
                                                     'superseded here).\n'
-                                                    'Kept `recommended` rather than '
-                                                    '`required` for the same reason '
-                                                    'as\n'
-                                                    'catalyst_type below: see '
-                                                    'nfdi4cat/CoreMeta4Cat#117 for the '
-                                                    'cardinality\n'
-                                                    'discussion and '
+                                                    'See nfdi4cat/CoreMeta4Cat#117 for '
+                                                    'the cardinality discussion and\n'
                                                     'nfdi4cat/CoreMeta4Cat#116 for the '
-                                                    'classification-mechanism\n'
+                                                    'classification-mechanism '
                                                     'discussion.',
                                      'name': 'rdf_type',
-                                     'recommended': True},
+                                     'required': True},
                         'used_reactor': {'description': 'The reactor in which the '
                                                         'Reaction takes place.\n'
                                                         'Must be a ChemicalReactor '
@@ -5512,16 +5516,17 @@ product_identification_method, ...) when loaded.""", json_schema_extra = { "link
          'slot_uri': 'dcterms:isPartOf'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
          'slot_uri': 'dcterms:type'} })
-    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The type of catalytic reaction as an ontology term (e.g. voc4cat:0007010
-for a specific reaction type, or a ChemO/RXNO term).
+    rdf_type: DefinedTerm = Field(default=..., description="""The type of catalytic reaction as an ontology term, e.g. voc4cat:0000259
+(CO2 hydrogenation), or a term from RXNO, CHMO or SIO. Mandatory for
+every reaction (Layer 1). If no specific term exists, use the closest
+broader one (e.g. voc4cat:0000260, hydrogenation, for CO methanation)
+and keep the specific name in reaction_name.
 
 This is the sole reaction-type classification mechanism (DCAT-AP-PLUS
 Pattern 3) -- deliberately not duplicated by a dedicated has_reaction_type
 slot + ReactionType class hierarchy (cf. PR #118, since superseded here).
-Kept `recommended` rather than `required` for the same reason as
-catalyst_type below: see nfdi4cat/CoreMeta4Cat#117 for the cardinality
-discussion and nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism
-discussion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+See nfdi4cat/CoreMeta4Cat#117 for the cardinality discussion and
+nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism discussion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
          'in_subset': ['domain_agnostic_core'],
          'recommended': True,
          'slot_uri': 'rdf:type'} })
@@ -28241,12 +28246,14 @@ class CatalysisDataset(Dataset, ClassifierMixin):
     """
     A dcat:Dataset that contains research data in the field of catalysis.
 
-    The catalysis research field is expressed via rdf_type using a voc4cat
-    term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).
+    The catalysis research field is expressed via rdf_type using voc4cat
+    terms from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).
     For example, a dataset from heterogeneous catalysis research would carry:
       rdf_type:
-        id: voc4cat:0007001
-        title: \"heterogeneous catalysis\"
+        - id: voc4cat:0007001
+          title: \"heterogeneous catalysis\"
+    Interdisciplinary work lists every field that applies, e.g. biocatalysis
+    and electrocatalysis for bioelectrocatalysis.
 
     The four CoreMeta4Cat minimum information pillars are linked via the slots
     below, each pointing to the corresponding DataGeneratingActivity or
@@ -28281,19 +28288,26 @@ class CatalysisDataset(Dataset, ClassifierMixin):
                                                    'description': 'Classify the '
                                                                   'dataset by '
                                                                   'catalysis research '
-                                                                  'field using '
+                                                                  'field(s) using '
                                                                   'voc4cat.',
-                                                   'obligation_level': 'RECOMMENDED',
+                                                   'obligation_level': 'REQUIRED',
                                                    'range': 'CatalysisResearchFieldEnum'}],
-                                     'description': 'The catalysis research field, '
-                                                    'provided as a voc4cat term from\n'
+                                     'description': 'The catalysis research field(s), '
+                                                    'provided as voc4cat terms from\n'
                                                     'CatalysisResearchFieldEnum. This '
                                                     'is the primary '
                                                     'machine-actionable\n'
                                                     "classification of the dataset's "
-                                                    'domain.',
+                                                    'domain (Layer 1) and is '
+                                                    'mandatory.\n'
+                                                    'Several fields can be given for '
+                                                    'interdisciplinary work, e.g.\n'
+                                                    'biocatalysis and electrocatalysis '
+                                                    'for bioelectrocatalysis.',
+                                     'inlined_as_list': True,
+                                     'multivalued': True,
                                      'name': 'rdf_type',
-                                     'recommended': True},
+                                     'required': True},
                         'was_generated_by': {'description': 'The '
                                                             'DataGeneratingActivity '
                                                             '(Synthesis, '
@@ -28309,12 +28323,14 @@ class CatalysisDataset(Dataset, ClassifierMixin):
 
     type: Optional[list[DefinedTerm]] = Field(default=None, description="""A type of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
          'slot_uri': 'dcterms:type'} })
-    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The catalysis research field, provided as a voc4cat term from
+    rdf_type: list[DefinedTerm] = Field(default=..., description="""The catalysis research field(s), provided as voc4cat terms from
 CatalysisResearchFieldEnum. This is the primary machine-actionable
-classification of the dataset's domain.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+classification of the dataset's domain (Layer 1) and is mandatory.
+Several fields can be given for interdisciplinary work, e.g.
+biocatalysis and electrocatalysis for bioelectrocatalysis.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Classify the dataset by catalysis research '
-                                      'field using voc4cat.',
-                       'obligation_level': 'RECOMMENDED',
+                                      'field(s) using voc4cat.',
+                       'obligation_level': 'REQUIRED',
                        'range': 'CatalysisResearchFieldEnum'}],
          'domain_of': ['ClassifierMixin'],
          'in_subset': ['domain_agnostic_core'],

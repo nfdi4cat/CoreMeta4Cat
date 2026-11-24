@@ -46,7 +46,7 @@
     "label": "CatalysisDataset",
     "field": "was_generated_by",
     "as": null,
-    "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using a voc4cat term from CatalysisResearchFieldEnum …"
+    "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using voc4cat terms from CatalysisResearchFieldEnum …"
    }
   ],
   "Characterization": [
@@ -55,7 +55,7 @@
     "label": "CatalysisDataset",
     "field": "was_generated_by",
     "as": null,
-    "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using a voc4cat term from CatalysisResearchFieldEnum …"
+    "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using voc4cat terms from CatalysisResearchFieldEnum …"
    }
   ],
   "CatalyticReaction": [
@@ -71,7 +71,7 @@
     "label": "CatalysisDataset",
     "field": "is_about_activity",
     "as": null,
-    "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using a voc4cat term from CatalysisResearchFieldEnum …"
+    "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using voc4cat terms from CatalysisResearchFieldEnum …"
    }
   ],
   "Simulation": [
@@ -80,7 +80,7 @@
     "label": "CatalysisDataset",
     "field": "was_generated_by",
     "as": null,
-    "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using a voc4cat term from CatalysisResearchFieldEnum …"
+    "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using voc4cat terms from CatalysisResearchFieldEnum …"
    }
   ]
  },
@@ -88,16 +88,16 @@
   "CatalysisDataset": {
    "label": "CatalysisDataset",
    "role": "Dataset",
-   "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using a voc4cat term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).",
+   "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using voc4cat terms from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).",
    "fields": [
     {
      "name": "rdf_type",
      "range": "CatalysisResearchFieldEnum",
      "kind": "enum",
-     "requirement": "R",
-     "multivalued": false,
+     "requirement": "M",
+     "multivalued": true,
      "unit": "",
-     "description": "The catalysis research field, provided as a voc4cat term from CatalysisResearchFieldEnum. This is the primary machine-actionable classification of the dataset's domain.",
+     "description": "The catalysis research field(s), provided as voc4cat terms from CatalysisResearchFieldEnum. This is the primary machine-actionable classification of the dataset's domain (Layer 1) and is mandatory.",
      "targets": []
     },
     {

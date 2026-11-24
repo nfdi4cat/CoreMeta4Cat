@@ -1188,9 +1188,11 @@
       ]
     }
   ],
-  "rdf_type": {
-    "id": "voc4cat:0007001",
-    "title": "heterogeneous catalysis"
-  },
+  "rdf_type": [
+    {
+      "id": "voc4cat:0007001",
+      "title": "heterogeneous catalysis"
+    }
+  ],
   "@type": "CatalysisDataset"
 }

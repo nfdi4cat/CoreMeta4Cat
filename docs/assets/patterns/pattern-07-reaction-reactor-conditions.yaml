@@ -1,6 +1,9 @@
 id: coremeta4cat:REAC_b74m-m6rp_NH3_decomposition
 title:
 - NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)
+rdf_type:
+  id: SIO:010511
+  title: decomposition reaction
 catalyst_mass:
 - value: 300
   has_quantity_type: http://qudt.org/vocab/quantitykind/Mass

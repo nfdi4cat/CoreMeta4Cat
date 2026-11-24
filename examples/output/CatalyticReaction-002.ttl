@@ -1,6 +1,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix SIO: <http://semanticscience.org/resource/SIO_> .
 @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
 @prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix RO: <http://purl.obolibrary.org/obo/RO_> .
@@ -9,6 +10,9 @@
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
+CHMO:0001446 schema1:name "catalytic reforming" ;
+	a schema1:DefinedTerm .
 <https://pubchem.ncbi.nlm.nih.gov/compound/280> dcterms:title "CO2 (99.998% purity, Linde)" ;
 	a SIO:010411 .
 <https://pubchem.ncbi.nlm.nih.gov/compound/297> dcterms:title "CH4 (99.995% purity, Linde)" ;
@@ -32,7 +36,7 @@ coremeta4cat:REACT_003_FixedBed_DRM dcterms:description "quartz tube reactor, 8 
 	a voc4cat:0007018 .
 coremeta4cat:REAC_002_DRM_NiCeO2 RO:0004009 <https://pubchem.ncbi.nlm.nih.gov/compound/280> , <https://pubchem.ncbi.nlm.nih.gov/compound/297> , <https://pubchem.ncbi.nlm.nih.gov/compound/947> ;
 	RXNO:0000425 coremeta4cat:CAT_002_NiCeO2 ;
-	a coremeta4cat:CatalyticReaction ;
+	a CHMO:0001446 , coremeta4cat:CatalyticReaction ;
 	prov:used coremeta4cat:FEED_004_CH4_DRM , coremeta4cat:FEED_005_CO2_DRM , coremeta4cat:FEED_006_N2_standard ;
 	prov:wasAssociatedWith coremeta4cat:REACT_003_FixedBed_DRM ;
 	coremeta4cat:feed_composition_range _:c14n0 , _:c14n5 ;
