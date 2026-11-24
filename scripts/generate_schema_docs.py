@@ -281,6 +281,29 @@ def expand_curie(schema: dict, value: str) -> str:
     return base + local if base.endswith(("/", "#")) else base + local
 
 
+# LinkML mapping slots (SKOS mapping relations) and their display labels, in display order.
+MAPPING_KINDS = [
+    ("exact_mappings",   "exact match"),
+    ("close_mappings",   "close match"),
+    ("broad_mappings",   "broader match"),
+    ("narrow_mappings",  "narrower match"),
+    ("related_mappings", "related match"),
+]
+
+
+def format_mappings_markdown(schema: dict, element_def: dict) -> str:
+    """Render a class's or slot's mappings to other vocabularies (e.g. PaNET) as one line.
+
+    Each mapping is labelled with its SKOS relation and links to the expanded IRI.
+    Returns an empty string when the element has no mappings.
+    """
+    parts = []
+    for key, label in MAPPING_KINDS:
+        for curie in element_def.get(key) or []:
+            parts.append(f"{label} [`{curie}`]({expand_curie(schema, curie)})")
+    return f"**Mappings:** {'; '.join(parts)}\n\n" if parts else ""
+
+
 def get_slot_cardinality(schema: dict, class_name: str,
                          slot_name: str, slot_details: dict) -> str:
     class_def = schema.get("classes", {}).get(class_name, {})
@@ -349,6 +372,7 @@ def format_class_markdown(schema: dict, class_name: str, level: int = 3,
     md += f"**Description:** {description}\n\n"
     if class_uri:
         md += f"**CURIE:** [`{class_uri}`]({expand_curie(schema, class_uri)})\n\n"
+    md += format_mappings_markdown(schema, class_def)
     md += f"**Schema Reference:** [{class_name}](./elements/classes/{class_name}.md)\n\n"
 
     slots = get_all_class_slots(schema, class_name)
@@ -394,6 +418,7 @@ def format_slot_markdown(schema: dict, slot_name: str, slot_details: dict,
     md += f"**Cardinality:** {striped}\n\n"
     if slot_uri:
         md += f"**CURIE:** [`{slot_uri}`]({expand_curie(schema, slot_uri)})\n\n"
+    md += format_mappings_markdown(schema, slot_details)
     md += f"**Schema Reference:** [{slot_name}](./elements/slots/{slot_name}.md)\n\n"
     if unit and unit.get("ucum_code"):
         md += f"**Unit:** {unit['ucum_code']}\n\n"
@@ -435,6 +460,8 @@ LEGEND = """\
 - **Cardinality:** This controls how many entries a specific data field must have. It defines if a field is required or optional, and whether it can accept a single value versus a list of multiple values.
 
 - **CURIE:** A CURIE (Compact URI) is a short, easy-to-read reference that acts as a useful shortcut for a long, complex web address. Instead of seeing a full URL, you will see a two-part reference like gene:symbol, where the parts are separated by a colon. The first part is the prefix (a short code for the source website), and the second is the local identifier for the specific item. This structure is much easier to read and type, making the schema less cluttered and reducing errors. The full web link (URI) for the CURIE is always available if you click the provided link.
+
+- **Mappings:** Links to terms with the same or a related meaning in other vocabularies and ontologies, such as PaNET (the Photon and Neutron Experimental Techniques ontology). The label states the relation: an *exact match* describes the same concept, a *close match* a concept similar enough to be used interchangeably in some contexts, a *broader match* or *narrower match* a more general or more specific concept, and a *related match* an associated but different concept. Mappings follow the SKOS standard and allow data described with CoreMeta4Cat to be connected with data described using these vocabularies.
 
 - **Schema Reference:** This link directs you to the complete, technical documentation for this part of the schema. This detailed view is generated automatically by LinkML's documentation tool and provides all underlying rules, data types, and complex relationships for expert users and developers.
 
@@ -500,6 +527,7 @@ def generate_markdown_for_main_class(schema: dict, main_class: str, output_file:
         md += "**Abstract Class**\n\n"
     if class_uri:
         md += f"**CURIE:** [`{class_uri}`]({class_uri})\n\n"
+    md += format_mappings_markdown(schema, main_class_def)
 
     # Interactive class map, drawn by docs/javascripts/schema_classmap.js from
     # docs/assets/schema_graph.json (written by main() via schema_graph.py).

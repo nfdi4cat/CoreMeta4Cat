@@ -92,6 +92,7 @@ prefixes:
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   CHMO: http://purl.obolibrary.org/obo/CHMO_
   enm: http://purl.enanomapper.org/onto/
+  panet: http://purl.org/pan-science/PaNET/
   CHEBI: http://purl.obolibrary.org/obo/CHEBI_
   RO: http://purl.obolibrary.org/obo/RO_
   RXNO: http://purl.obolibrary.org/obo/RXNO_

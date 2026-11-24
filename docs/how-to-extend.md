@@ -30,7 +30,28 @@ These rules apply when extending any part of CoreMeta4Cat.
 | New mixin (slot group) | *(no parent — mixin: true)* | Appropriate subprofile |
 | New shared slot | *(no class — top-level slot)* | `coremeta4cat_common.yaml` |
 
-**Rule 3 — Register an ontology term.** Every new class should have a `class_uri:` pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, …). If no suitable term exists yet, use a provisional coremeta4cat-prefixed URI (`coremeta4cat:MyNewClass`) and open a Voc4Cat issue to request a proper term.
+**Rule 3 — Register an ontology term.** Every new class should have a `class_uri:` pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, PaNET, …). Reuse an existing term before requesting a new one. If no suitable term exists yet, use a provisional coremeta4cat-prefixed URI (`coremeta4cat:MyNewClass`) and open a Voc4Cat issue to request a proper term.
+
+If the same concept, or a broader or narrower one, is also defined in another community vocabulary, record the correspondence as a mapping: `exact_mappings` for the same concept, `close_mappings` for a near-equivalent, `broad_mappings` when the other term is more general and `narrow_mappings` when it is more specific (SKOS `exactMatch`, `closeMatch`, `broadMatch`, `narrowMatch`). Declare the prefix in the file's `prefixes:` block. For example, nine techniques of the Characterization data class, from X-ray diffraction to electron microscopy, are mapped to [PaNET](http://purl.org/pan-science/PaNET/PaNET.owl), the Photon and Neutron Experimental Techniques ontology:
+
+```yaml
+prefixes:
+  panet: http://purl.org/pan-science/PaNET/
+
+classes:
+  XPS:
+    is_a: CharacterizationTechnique
+    class_uri: CHMO:0000404
+    exact_mappings:
+      - panet:PaNET01204   # x-ray photoelectron spectroscopy
+  DRIFTS:
+    is_a: CharacterizationTechnique
+    class_uri: CHMO:0000645
+    broad_mappings:
+      - panet:PaNET01109   # infrared spectroscopy, more general than DRIFTS
+```
+
+Mappings are shown on the data class pages and in the schema reference. Do not replace an existing `class_uri` to align with another vocabulary: datasets use it as the type designator (`plan_designator`), so add a mapping instead.
 
 **Rule 4 — Declare slots in the right file.** Slots used by exactly one class go in that class's subprofile file. Slots shared by two or more classes go in `coremeta4cat_common.yaml`.
 
@@ -200,7 +221,9 @@ Use the same pattern as for preparation method slots (see above). Place them in 
 ```yaml
 NeutronDiffraction:
   is_a: CharacterizationTechnique
-  class_uri: CHMO:0000957
+  class_uri: CHMO:0000699   # neutron powder diffraction
+  exact_mappings:
+    - panet:PaNET01100      # neutron powder diffraction
   description: |-
     Neutron powder diffraction for structure determination, particularly
     sensitive to light elements and magnetic ordering.
@@ -233,6 +256,9 @@ slots:
     unit:
       ucum_code: deg
 ```
+
+!!! tip "Other neutron techniques"
+    Inelastic neutron scattering (`CHMO:0000192`; PaNET `PaNET01245`, inelastic neutron spectroscopy) and quasi-elastic neutron scattering (`CHMO:0000190`; PaNET has only the more general `PaNET01035`, quasielastic scattering) can be added the same way: the CHMO term as `class_uri`, the PaNET term in `exact_mappings` or `broad_mappings` (see [Rule 3](#general-rules)).
 
 ---
 
@@ -454,6 +480,7 @@ Before submitting a pull request with a new extension:
 
 - [ ] New class uses `is_a:` with the correct parent (see [General rules](#general-rules))
 - [ ] `class_uri:` is set (Voc4Cat / ontology term, or `coremeta4cat:` placeholder with issue link)
+- [ ] Equivalent, broader or narrower terms in other community vocabularies are recorded as mappings (`exact_mappings`, `broad_mappings`, …), with their prefix declared
 - [ ] Existing mixins are applied before adding new slots
 - [ ] Slots exclusive to this class are declared in the correct subprofile file
 - [ ] Slots shared across subprofiles are declared in `coremeta4cat_common.yaml`

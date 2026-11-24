@@ -29,6 +29,8 @@ Computational approaches are organized under the parent field simulation method,
 
 - **CURIE:** A CURIE (Compact URI) is a short, easy-to-read reference that acts as a useful shortcut for a long, complex web address. Instead of seeing a full URL, you will see a two-part reference like gene:symbol, where the parts are separated by a colon. The first part is the prefix (a short code for the source website), and the second is the local identifier for the specific item. This structure is much easier to read and type, making the schema less cluttered and reducing errors. The full web link (URI) for the CURIE is always available if you click the provided link.
 
+- **Mappings:** Links to terms with the same or a related meaning in other vocabularies and ontologies, such as PaNET (the Photon and Neutron Experimental Techniques ontology). The label states the relation: an *exact match* describes the same concept, a *close match* a concept similar enough to be used interchangeably in some contexts, a *broader match* or *narrower match* a more general or more specific concept, and a *related match* an associated but different concept. Mappings follow the SKOS standard and allow data described with CoreMeta4Cat to be connected with data described using these vocabularies.
+
 - **Schema Reference:** This link directs you to the complete, technical documentation for this part of the schema. This detailed view is generated automatically by LinkML's documentation tool and provides all underlying rules, data types, and complex relationships for expert users and developers.
 
 - **Slots:** A Slot represents an individual data field or attribute that belongs to a specific Class (entity type) within the schema. If a Class defines an entity like 'Book', the Slots define the individual pieces of information about that book, such as the 'title', 'author', and 'ISBN'. Essentially, Slots are the essential building blocks that define the characteristics and permissible data for every record in the schema.
@@ -1168,6 +1170,8 @@ stability screening.
 **Description:** A physical quantity that quantitatively expresses the attribute of hotness or coldness.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0000146`](http://purl.obolibrary.org/obo/PATO_0000146)
 
 **Schema Reference:** [Temperature](./elements/classes/Temperature.md)
 
@@ -3529,6 +3533,8 @@ stiff ODE solver, steady-state Newton method).
 **Description:** No description available
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001025`](http://purl.obolibrary.org/obo/PATO_0001025)
 
 **Schema Reference:** [Pressure](./elements/classes/Pressure.md)
 
