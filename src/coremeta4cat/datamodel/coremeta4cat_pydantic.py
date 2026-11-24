@@ -224,6 +224,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                           'prefix_reference': 'https://hdl.handle.net/'},
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
+                  'panet': {'prefix_prefix': 'panet',
+                            'prefix_reference': 'http://purl.org/pan-science/PaNET/'},
                   'prov': {'prefix_prefix': 'prov',
                            'prefix_reference': 'http://www.w3.org/ns/prov#'},
                   'qudt': {'prefix_prefix': 'qudt',
@@ -8798,6 +8800,7 @@ class PowderXRD(CharacterizationTechnique, XRaySourceMixin):
     Powder X-ray diffraction for phase identification and structural analysis.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000158',
+         'exact_mappings': ['panet:PaNET01101'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin']})
 
@@ -8984,6 +8987,7 @@ class SingleCrystalXRD(CharacterizationTechnique, XRaySourceMixin):
     Single crystal X-ray diffraction for structure determination.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000852',
+         'exact_mappings': ['panet:PaNET01102'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin']})
 
@@ -9127,6 +9131,7 @@ class XRayAbsorptionSpectroscopy(CharacterizationTechnique, EnergyRangeMixin, XR
     X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000286',
+         'exact_mappings': ['panet:PaNET01196'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin', 'EnergyRangeMixin']})
 
@@ -9312,6 +9317,7 @@ class XPS(CharacterizationTechnique, EnergyRangeMixin, XRaySourceMixin):
     X-ray photoelectron spectroscopy for surface elemental and chemical state analysis.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000404',
+         'exact_mappings': ['panet:PaNET01204'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin', 'EnergyRangeMixin']})
 
@@ -9613,6 +9619,7 @@ class InfraredSpectroscopy(CharacterizationTechnique):
     Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000630',
+         'exact_mappings': ['panet:PaNET01109'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     has_operation_mode: Optional[list[OperationMode]] = Field(default=None, description="""Operation mode of an instrument or process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
@@ -9795,7 +9802,8 @@ class DRIFTS(CharacterizationTechnique):
     Diffuse reflectance infrared Fourier transform spectroscopy for in-situ
     surface species identification under reactive gas conditions.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000645',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['panet:PaNET01109'],
+         'class_uri': 'CHMO:0000645',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     adsorption_gas: Optional[list[ChemicalEntity]] = Field(default=None, description="""Probe gas adsorbed during in-situ DRIFTS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'],
@@ -9992,6 +10000,7 @@ class RamanSpectroscopy(CharacterizationTechnique):
     Raman spectroscopy for vibrational and structural characterization.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000069',
+         'exact_mappings': ['panet:PaNET01195'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     excitation_laser_wavelength: Optional[list[LengthQuantity]] = Field(default=None, description="""Wavelength of excitation laser used in Raman spectroscopy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy'],
@@ -10349,7 +10358,8 @@ class TransmissionElectronMicroscopy(CharacterizationTechnique, ElectronMicrosco
     """
     TEM for atomic-resolution imaging and diffraction of catalyst particles.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000078',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['panet:PaNET01145'],
+         'class_uri': 'voc4cat:0000078',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ElectronMicroscopyMixin']})
 
@@ -10484,7 +10494,8 @@ class ScanningElectronMicroscopy(CharacterizationTechnique, ElectronMicroscopyMi
     """
     SEM for surface morphology and particle size/shape imaging.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000075',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['panet:PaNET01145'],
+         'class_uri': 'voc4cat:0000075',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ElectronMicroscopyMixin']})
 

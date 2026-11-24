@@ -30,6 +30,8 @@ Core fields include reactor design type, operational parameters, and product ide
 
 - **CURIE:** A CURIE (Compact URI) is a short, easy-to-read reference that acts as a useful shortcut for a long, complex web address. Instead of seeing a full URL, you will see a two-part reference like gene:symbol, where the parts are separated by a colon. The first part is the prefix (a short code for the source website), and the second is the local identifier for the specific item. This structure is much easier to read and type, making the schema less cluttered and reducing errors. The full web link (URI) for the CURIE is always available if you click the provided link.
 
+- **Mappings:** Links to terms with the same or a related meaning in other vocabularies and ontologies, such as PaNET (the Photon and Neutron Experimental Techniques ontology). The label states the relation: an *exact match* describes the same concept, a *close match* a concept similar enough to be used interchangeably in some contexts, a *broader match* or *narrower match* a more general or more specific concept, and a *related match* an associated but different concept. Mappings follow the SKOS standard and allow data described with CoreMeta4Cat to be connected with data described using these vocabularies.
+
 - **Schema Reference:** This link directs you to the complete, technical documentation for this part of the schema. This detailed view is generated automatically by LinkML's documentation tool and provides all underlying rules, data types, and complex relationships for expert users and developers.
 
 - **Slots:** A Slot represents an individual data field or attribute that belongs to a specific Class (entity type) within the schema. If a Class defines an entity like 'Book', the Slots define the individual pieces of information about that book, such as the 'title', 'author', and 'ISBN'. Essentially, Slots are the essential building blocks that define the characteristics and permissible data for every record in the schema.
@@ -61,6 +63,8 @@ Core fields include reactor design type, operational parameters, and product ide
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0000125`](http://purl.obolibrary.org/obo/PATO_0000125)
+
 **Schema Reference:** [Mass](./elements/classes/Mass.md)
 
 <p>
@@ -77,6 +81,8 @@ Core fields include reactor design type, operational parameters, and product ide
 **Description:** A Mass (physical quality) that quantifies the mass of a homogeneous ChemicalSubstance containing 6.02 x 10^23 atoms or molecules.
 
 **CURIE:** [`AFR:0002409`](http://purl.allotrope.org/ontologies/result#AFR_0002409)
+
+**Mappings:** close match [`PATO:0001681`](http://purl.obolibrary.org/obo/PATO_0001681)
 
 **Schema Reference:** [MolarMass](./elements/classes/MolarMass.md)
 
@@ -327,6 +333,8 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0001025`](http://purl.obolibrary.org/obo/PATO_0001025)
+
 **Schema Reference:** [Pressure](./elements/classes/Pressure.md)
 
 <p>
@@ -402,6 +410,8 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** A quantitative measure of elapsed time (duration of a process step).
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001309`](http://purl.obolibrary.org/obo/PATO_0001309)
 
 **Schema Reference:** [Duration](./elements/classes/Duration.md)
 
@@ -630,6 +640,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0000146`](http://purl.obolibrary.org/obo/PATO_0000146)
+
 **Schema Reference:** [Temperature](./elements/classes/Temperature.md)
 
 <p>
@@ -698,6 +710,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0000918`](http://purl.obolibrary.org/obo/PATO_0000918)
+
 **Schema Reference:** [Volume](./elements/classes/Volume.md)
 
 <p>
@@ -733,6 +747,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Description:** A measure of the mass per unit volume of a substance.
 
 **CURIE:** [`SIO:001406`](http://semanticscience.org/resource/SIO_001406)
+
+**Mappings:** close match [`PATO:0001019`](http://purl.obolibrary.org/obo/PATO_0001019)
 
 **Schema Reference:** [Density](./elements/classes/Density.md)
 
@@ -802,6 +818,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`CHMO:0002820`](http://purl.obolibrary.org/obo/CHMO_0002820)
 
+**Mappings:** exact match [`EDAM:2140`](http://edamontology.org/data_2140); exact match [`NCIT:C41185`](http://purl.obolibrary.org/obo/NCIT_C41185); exact match [`voc4cat:0007244`](https://w3id.org/nfdi4cat/voc4cat_0007244); exact match [`AFR:0002036`](http://purl.allotrope.org/ontologies/result#AFR_0002036); close match [`PATO:0000033`](http://purl.obolibrary.org/obo/PATO_0000033); narrower match [`CHMO:0002822`](http://purl.obolibrary.org/obo/CHMO_0002822)
+
 **Schema Reference:** [Concentration](./elements/classes/Concentration.md)
 
 <p>
@@ -838,6 +856,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`SIO:001089`](http://semanticscience.org/resource/SIO_001089)
 
+**Mappings:** exact match [`NCIT:C45997`](http://purl.obolibrary.org/obo/NCIT_C45997); exact match [`AFR:0001142`](http://purl.allotrope.org/ontologies/result#AFR_0001142); close match [`PATO:0001842`](http://purl.obolibrary.org/obo/PATO_0001842)
+
 **Schema Reference:** [PHValue](./elements/classes/PHValue.md)
 
 <p>
@@ -862,6 +882,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Cardinality:**  Recommended, Multivalued
 
 **CURIE:** [`BFO:0000051`](http://purl.obolibrary.org/obo/BFO_0000051)
+
+**Mappings:** close match [`AFX:0000940`](http://purl.allotrope.org/ontologies/property#AFX_0000940)
 
 **Schema Reference:** [composed_of](./elements/slots/composed_of.md)
 
@@ -1124,6 +1146,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0000070`](http://purl.obolibrary.org/obo/PATO_0000070)
+
 **Schema Reference:** [AmountOfSubstance](./elements/classes/AmountOfSubstance.md)
 
 <p>
@@ -1171,6 +1195,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Description:** A ChemicalSubstance that is consumed or transformed in a ChemicalReaction.
 
 **CURIE:** [`SIO:010411`](http://semanticscience.org/resource/SIO_010411)
+
+**Mappings:** exact match [`NCIT:C802`](http://purl.obolibrary.org/obo/NCIT_C802); exact match [`voc4cat:0000101`](https://w3id.org/nfdi4cat/voc4cat_0000101); close match [`OBI:0001879`](http://purl.obolibrary.org/obo/OBI_0001879); close match [`PROCO:0000029`](http://purl.obolibrary.org/obo/PROCO_0000029)
 
 **Schema Reference:** [Reagent](./elements/classes/Reagent.md)
 
@@ -1481,6 +1507,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`BFO:0000051`](http://purl.obolibrary.org/obo/BFO_0000051)
 
+**Mappings:** close match [`AFX:0000940`](http://purl.allotrope.org/ontologies/property#AFX_0000940)
+
 **Schema Reference:** [composed_of](./elements/slots/composed_of.md)
 
 **Data Type Class Details:**
@@ -1567,6 +1595,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Description:** A chemical substance that is produced by a ChemicalReaction.
 
 **CURIE:** [`NCIT:C48810`](http://purl.obolibrary.org/obo/NCIT_C48810)
+
+**Mappings:** exact match [`voc4cat:0000194`](https://w3id.org/nfdi4cat/voc4cat_0000194); close match [`ENVO:2000000`](http://purl.obolibrary.org/obo/ENVO_2000000)
 
 **Schema Reference:** [ChemicalProduct](./elements/classes/ChemicalProduct.md)
 
@@ -1845,6 +1875,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`BFO:0000051`](http://purl.obolibrary.org/obo/BFO_0000051)
 
+**Mappings:** close match [`AFX:0000940`](http://purl.allotrope.org/ontologies/property#AFX_0000940)
+
 **Schema Reference:** [composed_of](./elements/slots/composed_of.md)
 
 **Data Type Class Details:**
@@ -1931,6 +1963,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Description:** A ChemicalSubstance or MaterialEntity that initiates or accelerates a ChemicalReaction without itself being affected.
 
 **CURIE:** [`SIO:010344`](http://semanticscience.org/resource/SIO_010344)
+
+**Mappings:** exact match [`voc4cat:0000194`](https://w3id.org/nfdi4cat/voc4cat_0000194); exact match [`NCIT:C48810`](http://purl.obolibrary.org/obo/NCIT_C48810); close match [`CHEBI:35223`](http://purl.obolibrary.org/obo/CHEBI_35223)
 
 **Schema Reference:** [Catalyst](./elements/classes/Catalyst.md)
 
@@ -2042,6 +2076,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Cardinality:**  Recommended, Multivalued
 
 **CURIE:** [`BFO:0000051`](http://purl.obolibrary.org/obo/BFO_0000051)
+
+**Mappings:** close match [`AFX:0000940`](http://purl.allotrope.org/ontologies/property#AFX_0000940)
 
 **Schema Reference:** [composed_of](./elements/slots/composed_of.md)
 
@@ -2328,6 +2364,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`SIO:010417`](http://semanticscience.org/resource/SIO_010417)
 
+**Mappings:** exact match [`voc4cat:0007246`](https://w3id.org/nfdi4cat/voc4cat_0007246); exact match [`NCIT:C45790`](http://purl.obolibrary.org/obo/NCIT_C45790)
+
 **Schema Reference:** [DissolvingSubstance](./elements/classes/DissolvingSubstance.md)
 
 **Slots**
@@ -2442,6 +2480,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Cardinality:**  Recommended, Multivalued
 
 **CURIE:** [`BFO:0000051`](http://purl.obolibrary.org/obo/BFO_0000051)
+
+**Mappings:** close match [`AFX:0000940`](http://purl.allotrope.org/ontologies/property#AFX_0000940)
 
 **Schema Reference:** [composed_of](./elements/slots/composed_of.md)
 
@@ -2746,6 +2786,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Description:** A reactor is a container for controlling a biological or chemical reaction or process.
 
 **CURIE:** [`AFE:0000153`](http://purl.allotrope.org/ontologies/equipment#AFE_0000153)
+
+**Mappings:** exact match [`voc4cat:0007017`](https://w3id.org/nfdi4cat/voc4cat_0007017)
 
 **Schema Reference:** [Reactor](./elements/classes/Reactor.md)
 
@@ -3618,6 +3660,8 @@ revolutions per unit time (e.g. revolutions per minute).
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0002154`](http://purl.obolibrary.org/obo/PATO_0002154)
+
 **Schema Reference:** [AngularVelocity](./elements/classes/AngularVelocity.md)
 
 <p>
@@ -3715,6 +3759,8 @@ of pipes and valves connected to the reactor is not included.
 **Description:** A quantitative measure of length or spatial dimension (nm, mm, cm).
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001708`](http://purl.obolibrary.org/obo/PATO_0001708)
 
 **Schema Reference:** [LengthQuantity](./elements/classes/LengthQuantity.md)
 
@@ -4931,6 +4977,8 @@ the slurry suspension.
 **Description:** Volume of fluid passing a given point per unit time.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001574`](http://purl.obolibrary.org/obo/PATO_0001574)
 
 **Schema Reference:** [VolumeFlowRate](./elements/classes/VolumeFlowRate.md)
 
@@ -6301,6 +6349,8 @@ rules as plan_designator.
 
 **CURIE:** [`CHMO:0002855`](http://purl.obolibrary.org/obo/CHMO_0002855)
 
+**Mappings:** exact match [`voc4cat:0005005`](https://w3id.org/nfdi4cat/voc4cat_0005005)
+
 **Schema Reference:** [Yield](./elements/classes/Yield.md)
 
 <p>
@@ -6336,6 +6386,8 @@ rules as plan_designator.
 **Description:** A process that leads to the transformation of one set of chemical substances to another and that is the subject matter of a DataGeneratingActivity.
 
 **CURIE:** [`SIO:010345`](http://semanticscience.org/resource/SIO_010345)
+
+**Mappings:** exact match [`MOP:0000543`](http://purl.obolibrary.org/obo/MOP_0000543); exact match [`REX:0000002`](http://purl.obolibrary.org/obo/REX_0000002); exact match [`AFP:0003711`](http://purl.allotrope.org/ontologies/process#AFP_0003711); narrower match [`RXNO:0000329`](http://purl.obolibrary.org/obo/RXNO_0000329)
 
 **Schema Reference:** [ChemicalReaction](./elements/classes/ChemicalReaction.md)
 

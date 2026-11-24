@@ -29,6 +29,8 @@ The class follows a hierarchical structure in which selection of a characterizat
 
 - **CURIE:** A CURIE (Compact URI) is a short, easy-to-read reference that acts as a useful shortcut for a long, complex web address. Instead of seeing a full URL, you will see a two-part reference like gene:symbol, where the parts are separated by a colon. The first part is the prefix (a short code for the source website), and the second is the local identifier for the specific item. This structure is much easier to read and type, making the schema less cluttered and reducing errors. The full web link (URI) for the CURIE is always available if you click the provided link.
 
+- **Mappings:** Links to terms with the same or a related meaning in other vocabularies and ontologies, such as PaNET (the Photon and Neutron Experimental Techniques ontology). The label states the relation: an *exact match* describes the same concept, a *close match* a concept similar enough to be used interchangeably in some contexts, a *broader match* or *narrower match* a more general or more specific concept, and a *related match* an associated but different concept. Mappings follow the SKOS standard and allow data described with CoreMeta4Cat to be connected with data described using these vocabularies.
+
 - **Schema Reference:** This link directs you to the complete, technical documentation for this part of the schema. This detailed view is generated automatically by LinkML's documentation tool and provides all underlying rules, data types, and complex relationships for expert users and developers.
 
 - **Slots:** A Slot represents an individual data field or attribute that belongs to a specific Class (entity type) within the schema. If a Class defines an entity like 'Book', the Slots define the individual pieces of information about that book, such as the 'title', 'author', and 'ISBN'. Essentially, Slots are the essential building blocks that define the characteristics and permissible data for every record in the schema.
@@ -260,6 +262,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`CHMO:0000158`](http://purl.obolibrary.org/obo/CHMO_0000158)
 
+**Mappings:** exact match [`panet:PaNET01101`](http://purl.org/pan-science/PaNET/PaNET01101)
+
 **Schema Reference:** [PowderXRD](./elements/classes/PowderXRD.md)
 
 **Slots**
@@ -476,6 +480,8 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0000146`](http://purl.obolibrary.org/obo/PATO_0000146)
+
 **Schema Reference:** [Temperature](./elements/classes/Temperature.md)
 
 <p>
@@ -512,6 +518,8 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0002154`](http://purl.obolibrary.org/obo/PATO_0002154)
+
 **Schema Reference:** [AngularVelocity](./elements/classes/AngularVelocity.md)
 
 <p>
@@ -547,6 +555,8 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **Description:** A quantitative measure of elapsed time (duration of a process step).
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001309`](http://purl.obolibrary.org/obo/PATO_0001309)
 
 **Schema Reference:** [Duration](./elements/classes/Duration.md)
 
@@ -655,6 +665,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Description:** Single crystal X-ray diffraction for structure determination.
 
 **CURIE:** [`CHMO:0000852`](http://purl.obolibrary.org/obo/CHMO_0000852)
+
+**Mappings:** exact match [`panet:PaNET01102`](http://purl.org/pan-science/PaNET/PaNET01102)
 
 **Schema Reference:** [SingleCrystalXRD](./elements/classes/SingleCrystalXRD.md)
 
@@ -786,6 +798,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`voc4cat:0000286`](https://w3id.org/nfdi4cat/voc4cat_0000286)
 
+**Mappings:** exact match [`panet:PaNET01196`](http://purl.org/pan-science/PaNET/PaNET01196)
+
 **Schema Reference:** [XRayAbsorptionSpectroscopy](./elements/classes/XRayAbsorptionSpectroscopy.md)
 
 **Slots**
@@ -882,6 +896,8 @@ process (e.g. "transmission", "reflection", "AC", "DC", "full-scan").
 **Description:** A quantitative measure of energy (eV, keV, kJ/mol, etc.).
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001021`](http://purl.obolibrary.org/obo/PATO_0001021)
 
 **Schema Reference:** [EnergyQuantity](./elements/classes/EnergyQuantity.md)
 
@@ -1119,6 +1135,8 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`CHMO:0000404`](http://purl.obolibrary.org/obo/CHMO_0000404)
 
+**Mappings:** exact match [`panet:PaNET01204`](http://purl.org/pan-science/PaNET/PaNET01204)
+
 **Schema Reference:** [XPS](./elements/classes/XPS.md)
 
 **Slots**
@@ -1246,6 +1264,8 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** A quantitative measure of length or spatial dimension (nm, mm, cm).
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001708`](http://purl.obolibrary.org/obo/PATO_0001708)
 
 **Schema Reference:** [LengthQuantity](./elements/classes/LengthQuantity.md)
 
@@ -1625,6 +1645,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`CHMO:0000630`](http://purl.obolibrary.org/obo/CHMO_0000630)
 
+**Mappings:** exact match [`panet:PaNET01109`](http://purl.org/pan-science/PaNET/PaNET01109)
+
 **Schema Reference:** [InfraredSpectroscopy](./elements/classes/InfraredSpectroscopy.md)
 
 **Slots**
@@ -1880,6 +1902,8 @@ surface species identification under reactive gas conditions.
 
 **CURIE:** [`CHMO:0000645`](http://purl.obolibrary.org/obo/CHMO_0000645)
 
+**Mappings:** broader match [`panet:PaNET01109`](http://purl.org/pan-science/PaNET/PaNET01109)
+
 **Schema Reference:** [DRIFTS](./elements/classes/DRIFTS.md)
 
 **Slots**
@@ -2112,6 +2136,8 @@ surface species identification under reactive gas conditions.
 
 **CURIE:** [`AFR:0002409`](http://purl.allotrope.org/ontologies/result#AFR_0002409)
 
+**Mappings:** close match [`PATO:0001681`](http://purl.obolibrary.org/obo/PATO_0001681)
+
 **Schema Reference:** [MolarMass](./elements/classes/MolarMass.md)
 
 <p>
@@ -2192,6 +2218,8 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 **Description:** Volume of fluid passing a given point per unit time.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001574`](http://purl.obolibrary.org/obo/PATO_0001574)
 
 **Schema Reference:** [VolumeFlowRate](./elements/classes/VolumeFlowRate.md)
 
@@ -2448,6 +2476,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`voc4cat:0000069`](https://w3id.org/nfdi4cat/voc4cat_0000069)
 
+**Mappings:** exact match [`panet:PaNET01195`](http://purl.org/pan-science/PaNET/PaNET01195)
+
 **Schema Reference:** [RamanSpectroscopy](./elements/classes/RamanSpectroscopy.md)
 
 **Slots**
@@ -2505,6 +2535,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Description:** Rate of energy transfer per unit time (e.g. laser power in mW).
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001230`](http://purl.obolibrary.org/obo/PATO_0001230)
 
 **Schema Reference:** [PowerQuantity](./elements/classes/PowerQuantity.md)
 
@@ -2987,6 +3019,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`voc4cat:0000078`](https://w3id.org/nfdi4cat/voc4cat_0000078)
 
+**Mappings:** broader match [`panet:PaNET01145`](http://purl.org/pan-science/PaNET/PaNET01145)
+
 **Schema Reference:** [TransmissionElectronMicroscopy](./elements/classes/TransmissionElectronMicroscopy.md)
 
 **Slots**
@@ -3108,6 +3142,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0001464`](http://purl.obolibrary.org/obo/PATO_0001464)
+
 **Schema Reference:** [ElectricPotential](./elements/classes/ElectricPotential.md)
 
 <p>
@@ -3153,6 +3189,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Description:** SEM for surface morphology and particle size/shape imaging.
 
 **CURIE:** [`voc4cat:0000075`](https://w3id.org/nfdi4cat/voc4cat_0000075)
+
+**Mappings:** broader match [`panet:PaNET01145`](http://purl.org/pan-science/PaNET/PaNET01145)
 
 **Schema Reference:** [ScanningElectronMicroscopy](./elements/classes/ScanningElectronMicroscopy.md)
 
@@ -3480,6 +3518,8 @@ conditions during a process (e.g. "air", "N2", "5% H2/Ar").
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0000125`](http://purl.obolibrary.org/obo/PATO_0000125)
+
 **Schema Reference:** [Mass](./elements/classes/Mass.md)
 
 <p>
@@ -3597,6 +3637,8 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** Rate of temperature change per unit time during a thermal ramp.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** exact match [`voc4cat:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
 
 **Schema Reference:** [HeatingRate](./elements/classes/HeatingRate.md)
 
@@ -4618,6 +4660,8 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** A QuantitativeAttribute of a ChemicalSubstance that represents the amount of a constituent divided by the volume of the mixture.
 
 **CURIE:** [`CHMO:0002820`](http://purl.obolibrary.org/obo/CHMO_0002820)
+
+**Mappings:** exact match [`EDAM:2140`](http://edamontology.org/data_2140); exact match [`NCIT:C41185`](http://purl.obolibrary.org/obo/NCIT_C41185); exact match [`voc4cat:0007244`](https://w3id.org/nfdi4cat/voc4cat_0007244); exact match [`AFR:0002036`](http://purl.allotrope.org/ontologies/result#AFR_0002036); close match [`PATO:0000033`](http://purl.obolibrary.org/obo/PATO_0000033); narrower match [`CHMO:0002822`](http://purl.obolibrary.org/obo/CHMO_0002822)
 
 **Schema Reference:** [Concentration](./elements/classes/Concentration.md)
 
@@ -6846,6 +6890,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Description:** A measure of regions in three-dimensional space.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0000918`](http://purl.obolibrary.org/obo/PATO_0000918)
 
 **Schema Reference:** [Volume](./elements/classes/Volume.md)
 

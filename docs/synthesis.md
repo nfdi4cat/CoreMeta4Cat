@@ -30,6 +30,8 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 - **CURIE:** A CURIE (Compact URI) is a short, easy-to-read reference that acts as a useful shortcut for a long, complex web address. Instead of seeing a full URL, you will see a two-part reference like gene:symbol, where the parts are separated by a colon. The first part is the prefix (a short code for the source website), and the second is the local identifier for the specific item. This structure is much easier to read and type, making the schema less cluttered and reducing errors. The full web link (URI) for the CURIE is always available if you click the provided link.
 
+- **Mappings:** Links to terms with the same or a related meaning in other vocabularies and ontologies, such as PaNET (the Photon and Neutron Experimental Techniques ontology). The label states the relation: an *exact match* describes the same concept, a *close match* a concept similar enough to be used interchangeably in some contexts, a *broader match* or *narrower match* a more general or more specific concept, and a *related match* an associated but different concept. Mappings follow the SKOS standard and allow data described with CoreMeta4Cat to be connected with data described using these vocabularies.
+
 - **Schema Reference:** This link directs you to the complete, technical documentation for this part of the schema. This detailed view is generated automatically by LinkML's documentation tool and provides all underlying rules, data types, and complex relationships for expert users and developers.
 
 - **Slots:** A Slot represents an individual data field or attribute that belongs to a specific Class (entity type) within the schema. If a Class defines an entity like 'Book', the Slots define the individual pieces of information about that book, such as the 'title', 'author', and 'ISBN'. Essentially, Slots are the essential building blocks that define the characteristics and permissible data for every record in the schema.
@@ -344,6 +346,8 @@ Metadata are organized hierarchically based on the selected synthesis method. Me
 
 **CURIE:** [`AFR:0002409`](http://purl.allotrope.org/ontologies/result#AFR_0002409)
 
+**Mappings:** close match [`PATO:0001681`](http://purl.obolibrary.org/obo/PATO_0001681)
+
 **Schema Reference:** [MolarMass](./elements/classes/MolarMass.md)
 
 <p>
@@ -477,6 +481,8 @@ Precursors are consumed or transformed during the preparation process.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0000125`](http://purl.obolibrary.org/obo/PATO_0000125)
+
 **Schema Reference:** [Mass](./elements/classes/Mass.md)
 
 <p>
@@ -501,6 +507,8 @@ Precursors are consumed or transformed during the preparation process.
 **Cardinality:**  Optional
 
 **CURIE:** [`prov:wasDerivedFrom`](http://www.w3.org/ns/prov#wasDerivedFrom)
+
+**Mappings:** exact match [`SIO:000244`](http://semanticscience.org/resource/SIO_000244); close match [`BFO:0000050`](http://purl.obolibrary.org/obo/BFO_0000050); close match [`dcterms:partOf`](http://purl.org/dc/terms/partOf)
 
 **Schema Reference:** [derived_from](./elements/slots/derived_from.md)
 
@@ -570,6 +578,8 @@ Precursors are consumed or transformed during the preparation process.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0000146`](http://purl.obolibrary.org/obo/PATO_0000146)
+
 **Schema Reference:** [Temperature](./elements/classes/Temperature.md)
 
 <p>
@@ -638,6 +648,8 @@ Precursors are consumed or transformed during the preparation process.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** close match [`PATO:0000918`](http://purl.obolibrary.org/obo/PATO_0000918)
+
 **Schema Reference:** [Volume](./elements/classes/Volume.md)
 
 <p>
@@ -674,6 +686,8 @@ Precursors are consumed or transformed during the preparation process.
 
 **CURIE:** [`SIO:001406`](http://semanticscience.org/resource/SIO_001406)
 
+**Mappings:** close match [`PATO:0001019`](http://purl.obolibrary.org/obo/PATO_0001019)
+
 **Schema Reference:** [Density](./elements/classes/Density.md)
 
 <p>
@@ -709,6 +723,8 @@ Precursors are consumed or transformed during the preparation process.
 **Description:** No description available
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001025`](http://purl.obolibrary.org/obo/PATO_0001025)
 
 **Schema Reference:** [Pressure](./elements/classes/Pressure.md)
 
@@ -772,6 +788,8 @@ is expressed via rdf_type using a voc4cat term.
 **Cardinality:**  Optional
 
 **CURIE:** [`prov:wasDerivedFrom`](http://www.w3.org/ns/prov#wasDerivedFrom)
+
+**Mappings:** exact match [`SIO:000244`](http://semanticscience.org/resource/SIO_000244); close match [`BFO:0000050`](http://purl.obolibrary.org/obo/BFO_0000050); close match [`dcterms:partOf`](http://purl.org/dc/terms/partOf)
 
 **Schema Reference:** [derived_from](./elements/slots/derived_from.md)
 
@@ -1126,6 +1144,8 @@ precursor is brought into contact with the support material.
 **Description:** A quantitative measure of elapsed time (duration of a process step).
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001309`](http://purl.obolibrary.org/obo/PATO_0001309)
 
 **Schema Reference:** [Duration](./elements/classes/Duration.md)
 
@@ -1539,6 +1559,8 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
 
+**Mappings:** exact match [`voc4cat:0008116`](https://w3id.org/nfdi4cat/voc4cat_0008116)
+
 **Schema Reference:** [HeatingRate](./elements/classes/HeatingRate.md)
 
 <p>
@@ -1574,6 +1596,8 @@ interval rather than a point value. Provide the shared unit as a QUDT DefinedTer
 **Description:** Volume of fluid passing a given point per unit time.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001574`](http://purl.obolibrary.org/obo/PATO_0001574)
 
 **Schema Reference:** [VolumeFlowRate](./elements/classes/VolumeFlowRate.md)
 
@@ -1704,6 +1728,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`CHMO:0002820`](http://purl.obolibrary.org/obo/CHMO_0002820)
 
+**Mappings:** exact match [`EDAM:2140`](http://edamontology.org/data_2140); exact match [`NCIT:C41185`](http://purl.obolibrary.org/obo/NCIT_C41185); exact match [`voc4cat:0007244`](https://w3id.org/nfdi4cat/voc4cat_0007244); exact match [`AFR:0002036`](http://purl.allotrope.org/ontologies/result#AFR_0002036); close match [`PATO:0000033`](http://purl.obolibrary.org/obo/PATO_0000033); narrower match [`CHMO:0002822`](http://purl.obolibrary.org/obo/CHMO_0002822)
+
 **Schema Reference:** [Concentration](./elements/classes/Concentration.md)
 
 <p>
@@ -1740,6 +1766,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 
 **CURIE:** [`SIO:001089`](http://semanticscience.org/resource/SIO_001089)
 
+**Mappings:** exact match [`NCIT:C45997`](http://purl.obolibrary.org/obo/NCIT_C45997); exact match [`AFR:0001142`](http://purl.allotrope.org/ontologies/result#AFR_0001142); close match [`PATO:0001842`](http://purl.obolibrary.org/obo/PATO_0001842)
+
 **Schema Reference:** [PHValue](./elements/classes/PHValue.md)
 
 <p>
@@ -1775,6 +1803,8 @@ VOC4CAT). In RDF it becomes the plan's rdf:type.
 **Description:** Rate of rotational motion, typically expressed in revolutions per minute.
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0002154`](http://purl.obolibrary.org/obo/PATO_0002154)
 
 **Schema Reference:** [AngularVelocity](./elements/classes/AngularVelocity.md)
 
@@ -2869,6 +2899,8 @@ properties or deposit active components.
 **Description:** Rate of energy transfer per unit time (e.g. laser power in mW).
 
 **CURIE:** [`qudt:Quantity`](http://qudt.org/schema/qudt/Quantity)
+
+**Mappings:** close match [`PATO:0001230`](http://purl.obolibrary.org/obo/PATO_0001230)
 
 **Schema Reference:** [PowerQuantity](./elements/classes/PowerQuantity.md)
 
