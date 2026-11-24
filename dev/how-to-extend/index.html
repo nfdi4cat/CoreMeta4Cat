@@ -1408,7 +1408,24 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Rule 3 — Register an ontology term.</strong> Every new class should have a <code>class_uri:</code> pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, …). If no suitable term exists yet, use a provisional coremeta4cat-prefixed URI (<code>coremeta4cat:MyNewClass</code>) and open a Voc4Cat issue to request a proper term.</p>
+<p><strong>Rule 3 — Register an ontology term.</strong> Every new class should have a <code>class_uri:</code> pointing to a term in an established ontology (Voc4Cat, CHMO, OBI, NCIT, PaNET, …). Reuse an existing term before requesting a new one. If no suitable term exists yet, use a provisional coremeta4cat-prefixed URI (<code>coremeta4cat:MyNewClass</code>) and open a Voc4Cat issue to request a proper term.</p>
+<p>If the same concept, or a broader or narrower one, is also defined in another community vocabulary, record the correspondence as a mapping: <code>exact_mappings</code> for the same concept, <code>close_mappings</code> for a near-equivalent, <code>broad_mappings</code> when the other term is more general and <code>narrow_mappings</code> when it is more specific (SKOS <code>exactMatch</code>, <code>closeMatch</code>, <code>broadMatch</code>, <code>narrowMatch</code>). Declare the prefix in the file's <code>prefixes:</code> block. For example, nine techniques of the Characterization data class, from X-ray diffraction to electron microscopy, are mapped to <a href="http://purl.org/pan-science/PaNET/PaNET.owl">PaNET</a>, the Photon and Neutron Experimental Techniques ontology:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">prefixes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">panet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://purl.org/pan-science/PaNET/</span>
+
+<span class="nt">classes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">XPS</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CharacterizationTechnique</span>
+<span class="w">    </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0000404</span>
+<span class="w">    </span><span class="nt">exact_mappings</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">panet:PaNET01204</span><span class="w">   </span><span class="c1"># x-ray photoelectron spectroscopy</span>
+<span class="w">  </span><span class="nt">DRIFTS</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CharacterizationTechnique</span>
+<span class="w">    </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0000645</span>
+<span class="w">    </span><span class="nt">broad_mappings</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">panet:PaNET01109</span><span class="w">   </span><span class="c1"># infrared spectroscopy, more general than DRIFTS</span>
+</code></pre></div>
+<p>Mappings are shown on the data class pages and in the schema reference. Do not replace an existing <code>class_uri</code> to align with another vocabulary: datasets use it as the type designator (<code>plan_designator</code>), so add a mapping instead.</p>
 <p><strong>Rule 4 — Declare slots in the right file.</strong> Slots used by exactly one class go in that class's subprofile file. Slots shared by two or more classes go in <code>coremeta4cat_common.yaml</code>.</p>
 <p><strong>Rule 5 — Apply existing mixins before adding new slots.</strong> If your new class needs drying, calcination, precipitation, or thermal process parameters, apply the appropriate mixin rather than redeclaring those slots. Only add method-specific slots beyond what the mixin provides.</p>
 <p><strong>Rule 6 — Mark obligation levels.</strong> Every slot in a new class should have either <code>required: true</code> (Mandatory), <code>recommended: true</code> (Recommended), or neither (Optional). Do not leave obligations implicit.</p>
@@ -1596,7 +1613,9 @@
 <h3 id="minimal-complete-example-neutrondiffraction">Minimal complete example — NeutronDiffraction</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">NeutronDiffraction</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CharacterizationTechnique</span>
-<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0000957</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0000699</span><span class="w">   </span><span class="c1"># neutron powder diffraction</span>
+<span class="w">  </span><span class="nt">exact_mappings</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">panet:PaNET01100</span><span class="w">      </span><span class="c1"># neutron powder diffraction</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
 <span class="w">    </span><span class="no">Neutron powder diffraction for structure determination, particularly</span>
 <span class="w">    </span><span class="no">sensitive to light elements and magnetic ordering.</span>
@@ -1629,6 +1648,10 @@
 <span class="w">    </span><span class="nt">unit</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">ucum_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deg</span>
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Other neutron techniques</p>
+<p>Inelastic neutron scattering (<code>CHMO:0000192</code>; PaNET <code>PaNET01245</code>, inelastic neutron spectroscopy) and quasi-elastic neutron scattering (<code>CHMO:0000190</code>; PaNET has only the more general <code>PaNET01035</code>, quasielastic scattering) can be added the same way: the CHMO term as <code>class_uri</code>, the PaNET term in <code>exact_mappings</code> or <code>broad_mappings</code> (see <a href="#general-rules">Rule 3</a>).</p>
+</div>
 <hr />
 <h2 id="adding-a-reactor-type">Adding a reactor type</h2>
 <p>New reactor geometries or operating modes are added to <code>coremeta4cat_reaction_ap.yaml</code> as <code>ChemicalReactor</code> subclasses. <code>ChemicalReactor</code> is itself an abstract specialization of chemdcat-ap's generic <code>Reactor</code> class (see <a href="../design-patterns/#pattern-5-specializing-chemdcat-ap-inheritance">Pattern 5</a> in Design Patterns) -- new reactor types inherit that chain, they don't need to redeclare anything from it.</p>
@@ -1801,6 +1824,7 @@
 <ul>
 <li>[ ] New class uses <code>is_a:</code> with the correct parent (see <a href="#general-rules">General rules</a>)</li>
 <li>[ ] <code>class_uri:</code> is set (Voc4Cat / ontology term, or <code>coremeta4cat:</code> placeholder with issue link)</li>
+<li>[ ] Equivalent, broader or narrower terms in other community vocabularies are recorded as mappings (<code>exact_mappings</code>, <code>broad_mappings</code>, …), with their prefix declared</li>
 <li>[ ] Existing mixins are applied before adding new slots</li>
 <li>[ ] Slots exclusive to this class are declared in the correct subprofile file</li>
 <li>[ ] Slots shared across subprofiles are declared in <code>coremeta4cat_common.yaml</code></li>

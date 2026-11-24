@@ -110,6 +110,9 @@ prefixes:
   enm:
     prefix_prefix: enm
     prefix_reference: http://purl.enanomapper.org/onto/
+  panet:
+    prefix_prefix: panet
+    prefix_reference: http://purl.org/pan-science/PaNET/
   CHEBI:
     prefix_prefix: CHEBI
     prefix_reference: http://purl.obolibrary.org/obo/CHEBI_
@@ -15050,6 +15053,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     exact_mappings:
     - CHMO:0000158
+    - panet:PaNET01101
     is_a: CharacterizationTechnique
     mixins:
     - XRaySourceMixin
@@ -15077,6 +15081,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     exact_mappings:
     - CHMO:0000852
+    - panet:PaNET01102
     is_a: CharacterizationTechnique
     mixins:
     - XRaySourceMixin
@@ -15099,6 +15104,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     exact_mappings:
     - voc4cat:0000286
+    - panet:PaNET01196
     is_a: CharacterizationTechnique
     mixins:
     - XRaySourceMixin
@@ -15130,6 +15136,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     exact_mappings:
     - CHMO:0000404
+    - panet:PaNET01204
     is_a: CharacterizationTechnique
     mixins:
     - XRaySourceMixin
@@ -15181,6 +15188,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     exact_mappings:
     - CHMO:0000630
+    - panet:PaNET01109
     is_a: CharacterizationTechnique
     slots:
     - title
@@ -15207,6 +15215,8 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     exact_mappings:
     - CHMO:0000645
+    broad_mappings:
+    - panet:PaNET01109
     is_a: CharacterizationTechnique
     slots:
     - title
@@ -15234,6 +15244,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     exact_mappings:
     - voc4cat:0000069
+    - panet:PaNET01195
     is_a: CharacterizationTechnique
     slots:
     - title
@@ -15288,6 +15299,8 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     exact_mappings:
     - voc4cat:0000078
+    broad_mappings:
+    - panet:PaNET01145
     is_a: CharacterizationTechnique
     mixins:
     - ElectronMicroscopyMixin
@@ -15310,6 +15323,8 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     exact_mappings:
     - voc4cat:0000075
+    broad_mappings:
+    - panet:PaNET01145
     is_a: CharacterizationTechnique
     mixins:
     - ElectronMicroscopyMixin
@@ -20366,6 +20381,6 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.12.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-11-24T09:49:20'
-source_file_size: 14821
+source_file_date: '2026-11-24T13:34:00'
+source_file_size: 14865
 
