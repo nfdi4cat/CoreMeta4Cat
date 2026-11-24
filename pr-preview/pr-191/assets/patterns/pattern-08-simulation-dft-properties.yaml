@@ -1,0 +1,27 @@
+id: coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites
+activity_designator: Simulation
+title:
+- DFT binding energies of OH and CO at 17 oxide surface sites
+software_package:
+- VASP
+- Atomic Simulation Environment (ASE), structure generation
+- pymatgen, structure generation
+rdf_type:
+  id: VOC4CAT:0000215
+  title: density functional theory
+evaluated_entity:
+- id: coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites
+  title: CuGa2O4 surface models, pristine and with 7 dopants
+realized_plan:
+  id: coremeta4cat:SIM_6mxw-xsrd_DFT_method
+  plan_designator: coremeta4cat:DFT
+  title: periodic DFT, PBE, PAW
+  exchange_correlation_functional:
+  - PBE
+calculated_property:
+- value: -1.87 to 1.41 eV (17 sites)
+  description: OH binding energy; range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); reference
+    state not defined in the main text
+- value: -2.20 to 0.51 eV (17 sites)
+  description: CO binding energy; range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest); referenced
+    to gas-phase CO
