@@ -1,0 +1,57 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
+SIO:010511 schema1:name "decomposition reaction" ;
+	a schema1:DefinedTerm .
+coremeta4cat:REAC_b74m-m6rp_FTIR dcterms:description "MKS Instruments MG2030 FTIR spectrometer, continuous analysis of the effluent gas" ;
+	dcterms:title "online FTIR gas analysis" ;
+	a OBI:0000272 .
+coremeta4cat:REAC_b74m-m6rp_NH3_decomposition dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
+	a SIO:010511 , coremeta4cat:CatalyticReaction ;
+	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
+	coremeta4cat:feed_composition_range _:c14n5 ;
+	voc4cat:0000118 _:c14n3 ;
+	voc4cat:0000129 coremeta4cat:REAC_b74m-m6rp_FTIR ;
+	voc4cat:0007032 _:c14n2 ;
+	voc4cat:0008141 _:c14n1 .
+coremeta4cat:REAC_b74m-m6rp_reactor dcterms:title "quartz glass tubular packed-bed reactor" ;
+	a coremeta4cat:FixedBedReactor ;
+	coremeta4cat:catalyst_bed_diameter _:c14n0 ;
+	voc4cat:0008217 _:c14n4 ;
+	voc4cat:0008218 "silica particles, 700 mg, 120-250 um" .
+_:c14n0 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+	qudt:unit <https://qudt.org/vocab/unit/CentiM> ;
+	a qudt:Quantity ;
+	prov:value "0.8"^^xsd:float .
+_:c14n1 dcterms:description "Catalyst granulate per test, mixed with 700 mg silica" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
+	a qudt:Quantity ;
+	prov:value "300.0"^^xsd:float .
+_:c14n2 dcterms:description "Ramp 473-873 K at 2 K/min; deposited inlet temperature 200-601 C" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "873.15"^^xsd:float ;
+	coremeta4cat:minValue "473.15"^^xsd:float .
+_:c14n3 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n4 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+	qudt:unit <https://qudt.org/vocab/unit/CentiM> ;
+	a qudt:Quantity ;
+	prov:value "1.2"^^xsd:float .
+_:c14n5 dcterms:description "NH3 at the inlet (500, 1000, 3000 ppm), balance Ar" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MoleFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PPM> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "3000.0"^^xsd:float ;
+	coremeta4cat:minValue "500.0"^^xsd:float .
