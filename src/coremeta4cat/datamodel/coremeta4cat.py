@@ -2331,12 +2331,14 @@ class CatalysisDataset(Dataset):
     """
     A dcat:Dataset that contains research data in the field of catalysis.
 
-    The catalysis research field is expressed via rdf_type using a voc4cat
-    term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).
+    The catalysis research field is expressed via rdf_type using voc4cat
+    terms from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).
     For example, a dataset from heterogeneous catalysis research would carry:
     rdf_type:
-    id: voc4cat:0007001
+    - id: voc4cat:0007001
     title: "heterogeneous catalysis"
+    Interdisciplinary work lists every field that applies, e.g. biocatalysis
+    and electrocatalysis for bioelectrocatalysis.
 
     The four CoreMeta4Cat minimum information pillars are linked via the slots
     below, each pointing to the corresponding DataGeneratingActivity or
@@ -2352,7 +2354,7 @@ class CatalysisDataset(Dataset):
     id: Union[str, CatalysisDatasetId] = None
     description: Union[str, list[str]] = None
     title: Union[str, list[str]] = None
-    rdf_type: Optional[Union[dict, "DefinedTerm"]] = None
+    rdf_type: Union[dict[Union[str, DefinedTermId], Union[dict, "DefinedTerm"]], list[Union[dict, "DefinedTerm"]]] = empty_dict()
     was_generated_by: Optional[Union[dict[Union[str, CatalysisDataGeneratingActivityId], Union[dict, CatalysisDataGeneratingActivity]], list[Union[dict, CatalysisDataGeneratingActivity]]]] = empty_dict()
     is_about_activity: Optional[Union[dict[Union[str, CatalyticReactionId], Union[dict, "CatalyticReaction"]], list[Union[dict, "CatalyticReaction"]]]] = empty_dict()
     is_about_entity: Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]] = empty_dict()
@@ -2363,8 +2365,9 @@ class CatalysisDataset(Dataset):
         if not isinstance(self.id, CatalysisDatasetId):
             self.id = CatalysisDatasetId(self.id)
 
-        if self.rdf_type is not None and not isinstance(self.rdf_type, DefinedTerm):
-            self.rdf_type = DefinedTerm(**as_dict(self.rdf_type))
+        if self._is_empty(self.rdf_type):
+            self.MissingRequiredField("rdf_type")
+        self._normalize_inlined_as_list(slot_name="rdf_type", slot_type=DefinedTerm, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="was_generated_by", slot_type=CatalysisDataGeneratingActivity, key_name="id", keyed=True)
 
@@ -3359,6 +3362,7 @@ class CatalyticReaction(ChemicalReaction):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CatalyticReaction
 
     id: Union[str, CatalyticReactionId] = None
+    rdf_type: Union[dict, DefinedTerm] = None
     used_reactor: Union[dict[Union[str, ChemicalReactorId], Union[dict, ChemicalReactor]], list[Union[dict, ChemicalReactor]]] = empty_dict()
     catalyst_mass: Optional[Union[Union[dict, "Mass"], list[Union[dict, "Mass"]]]] = empty_list()
     catalyst_type: Optional[Union[Union[str, "CatalysisResearchFieldEnum"], list[Union[str, "CatalysisResearchFieldEnum"]]]] = empty_list()
@@ -3370,7 +3374,6 @@ class CatalyticReaction(ChemicalReaction):
     feed_composition_range: Optional[Union[Union[dict, QuantitativeRange], list[Union[dict, QuantitativeRange]]]] = empty_list()
     has_experiment_duration: Optional[Union[dict, "Duration"]] = None
     product_identification_method: Optional[Union[dict[Union[str, ProductIdentificationMethodId], Union[dict, "ProductIdentificationMethod"]], list[Union[dict, "ProductIdentificationMethod"]]]] = empty_dict()
-    rdf_type: Optional[Union[dict, DefinedTerm]] = None
     has_reaction_step: Optional[Union[dict[Union[str, CatalyticReactionId], Union[dict, "CatalyticReaction"]], list[Union[dict, "CatalyticReaction"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -3378,6 +3381,11 @@ class CatalyticReaction(ChemicalReaction):
             self.MissingRequiredField("id")
         if not isinstance(self.id, CatalyticReactionId):
             self.id = CatalyticReactionId(self.id)
+
+        if self._is_empty(self.rdf_type):
+            self.MissingRequiredField("rdf_type")
+        if not isinstance(self.rdf_type, DefinedTerm):
+            self.rdf_type = DefinedTerm(**as_dict(self.rdf_type))
 
         if self._is_empty(self.used_reactor):
             self.MissingRequiredField("used_reactor")
@@ -3413,9 +3421,6 @@ class CatalyticReaction(ChemicalReaction):
             self.has_experiment_duration = Duration(**as_dict(self.has_experiment_duration))
 
         self._normalize_inlined_as_list(slot_name="product_identification_method", slot_type=ProductIdentificationMethod, key_name="id", keyed=True)
-
-        if self.rdf_type is not None and not isinstance(self.rdf_type, DefinedTerm):
-            self.rdf_type = DefinedTerm(**as_dict(self.rdf_type))
 
         self._normalize_inlined_as_list(slot_name="has_reaction_step", slot_type=CatalyticReaction, key_name="id", keyed=True)
 
@@ -11108,7 +11113,7 @@ slots.quantitativeAttribute__unit = Slot(uri=QUDT.unit, name="quantitativeAttrib
                    model_uri=COREMETA4CAT.quantitativeAttribute__unit, domain=None, range=Optional[Union[str, DefinedTermId]])
 
 slots.CatalysisDataset_rdf_type = Slot(uri=RDF.type, name="CatalysisDataset_rdf_type", curie=RDF.curie('type'),
-                   model_uri=COREMETA4CAT.CatalysisDataset_rdf_type, domain=CatalysisDataset, range=Optional[Union[dict, "DefinedTerm"]])
+                   model_uri=COREMETA4CAT.CatalysisDataset_rdf_type, domain=CatalysisDataset, range=Union[dict[Union[str, DefinedTermId], Union[dict, "DefinedTerm"]], list[Union[dict, "DefinedTerm"]]])
 
 slots.CatalysisDataset_was_generated_by = Slot(uri=PROV.wasGeneratedBy, name="CatalysisDataset_was_generated_by", curie=PROV.curie('wasGeneratedBy'),
                    model_uri=COREMETA4CAT.CatalysisDataset_was_generated_by, domain=CatalysisDataset, range=Optional[Union[dict[Union[str, CatalysisDataGeneratingActivityId], Union[dict, CatalysisDataGeneratingActivity]], list[Union[dict, CatalysisDataGeneratingActivity]]]])
@@ -11159,7 +11164,7 @@ slots.Characterization_rdf_type = Slot(uri=RDF.type, name="Characterization_rdf_
                    model_uri=COREMETA4CAT.Characterization_rdf_type, domain=Characterization, range=Optional[Union[dict, "DefinedTerm"]])
 
 slots.CatalyticReaction_rdf_type = Slot(uri=RDF.type, name="CatalyticReaction_rdf_type", curie=RDF.curie('type'),
-                   model_uri=COREMETA4CAT.CatalyticReaction_rdf_type, domain=CatalyticReaction, range=Optional[Union[dict, DefinedTerm]])
+                   model_uri=COREMETA4CAT.CatalyticReaction_rdf_type, domain=CatalyticReaction, range=Union[dict, DefinedTerm])
 
 slots.CatalyticReaction_used_reactor = Slot(uri=PROV.wasAssociatedWith, name="CatalyticReaction_used_reactor", curie=PROV.curie('wasAssociatedWith'),
                    model_uri=COREMETA4CAT.CatalyticReaction_used_reactor, domain=CatalyticReaction, range=Union[dict[Union[str, ChemicalReactorId], Union[dict, ChemicalReactor]], list[Union[dict, ChemicalReactor]]])

@@ -113,17 +113,18 @@ classes:
     slot_usage:
       rdf_type:
         description: |-
-          The type of catalytic reaction as an ontology term (e.g. voc4cat:0007010
-          for a specific reaction type, or a ChemO/RXNO term).
+          The type of catalytic reaction as an ontology term, e.g. voc4cat:0000259
+          (CO2 hydrogenation), or a term from RXNO, CHMO or SIO. Mandatory for
+          every reaction (Layer 1). If no specific term exists, use the closest
+          broader one (e.g. voc4cat:0000260, hydrogenation, for CO methanation)
+          and keep the specific name in reaction_name.
 
           This is the sole reaction-type classification mechanism (DCAT-AP-PLUS
           Pattern 3) -- deliberately not duplicated by a dedicated has_reaction_type
           slot + ReactionType class hierarchy (cf. PR #118, since superseded here).
-          Kept `recommended` rather than `required` for the same reason as
-          catalyst_type below: see nfdi4cat/CoreMeta4Cat#117 for the cardinality
-          discussion and nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism
-          discussion.
-        recommended: true
+          See nfdi4cat/CoreMeta4Cat#117 for the cardinality discussion and
+          nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism discussion.
+        required: true
       used_reactor:
         description: |-
           The reactor in which the Reaction takes place.

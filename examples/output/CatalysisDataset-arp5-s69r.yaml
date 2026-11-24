@@ -461,5 +461,5 @@ is_about_activity:
     id: coremeta4cat:REAC_arp5-s69r_Phenoxy_product_id
     plan_designator: OBI:0000272
 rdf_type:
-  id: voc4cat:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis

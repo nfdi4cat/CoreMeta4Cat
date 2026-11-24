@@ -13,7 +13,7 @@ description:
   STEM additionally covers a recycled/spent Pd3P/SiO2 sample recovered after catalytic testing; STEM method
   details are documented but no STEM image/data files are included in the deposited dataset.'
 rdf_type:
-  id: voc4cat:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis
 keyword:
 - Chemistry

@@ -411,8 +411,8 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0007001",
-        "title": "heterogeneous catalysis"
+        "id": "SIO:010511",
+        "title": "decomposition reaction"
       },
       "used_reactant": [
         {
@@ -623,9 +623,11 @@
       ]
     }
   ],
-  "rdf_type": {
-    "id": "VOC4CAT:0007001",
-    "title": "heterogeneous catalysis"
-  },
+  "rdf_type": [
+    {
+      "id": "voc4cat:0007001",
+      "title": "heterogeneous catalysis"
+    }
+  ],
   "@type": "CatalysisDataset"
 }

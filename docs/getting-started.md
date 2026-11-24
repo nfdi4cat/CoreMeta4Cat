@@ -325,6 +325,41 @@ linkml-validate \
 
 Validation reports which mandatory fields are missing, which values fall outside the expected type or controlled vocabulary, and which cross-record links are incomplete. You do not need to reach full validation compliance in one step — treat it as a diagnostic tool that tells you where the gaps are and helps you prioritise what to add next.
 
+### Checking recommended fields
+
+By default, `linkml-validate` only enforces mandatory fields. LinkML can also list the recommended fields a record leaves empty. Save this configuration as `recommended.yaml`:
+
+```yaml
+plugins:
+  JsonschemaValidationPlugin:
+    closed: true
+  RecommendedSlotsPlugin: {}
+```
+
+and pass it to the same command:
+
+```bash
+linkml-validate \
+  --schema coremeta4cat.yaml \
+  --target-class CatalysisDataset \
+  --config recommended.yaml \
+  synthesis_records.json > report.txt
+```
+
+Every missing recommended field appears as a `[WARN]` line in `report.txt`; mandatory fields still appear as `[ERROR]`. This includes the recommended fields that CoreMeta4Cat inherits from DCAT-AP+ and ChemDCAT-AP. To see only those of the CoreMeta4Cat data classes:
+
+```bash
+grep -E "on class '(CatalysisDataset|Synthesis|Characterization|CatalyticReaction|Simulation)'" report.txt
+```
+
+If your repository or project requires recommended fields, let the check fail when any are missing:
+
+```bash
+! grep -q '^\[WARN\]' report.txt
+```
+
+The check looks at each field's class as declared in the schema. The parameters of a specific method or technique (for example `PowderXRD` or `TPR`) are checked when that record is validated on its own, with its class as `--target-class`.
+
 ---
 
 ## What each level gives you

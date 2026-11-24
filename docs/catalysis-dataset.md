@@ -24,12 +24,12 @@ The overview below shows only what CoreMeta4Cat adds to `dcat:Dataset`. Where th
 
 | Field | Range | Cardinality | Purpose |
 |---|---|---|---|
-| `rdf_type` | `CatalysisResearchFieldEnum` (via `bindings`) | Recommended | **Layer 1** -- the coarsest possible classification: which field of catalysis this dataset belongs to. |
-| `was_generated_by` | `DataGeneratingActivity` | Recommended, Multivalued | **Layer 2** -- the activity/activities that *produced* this dataset's data: `Synthesis`, `Characterization`, and/or `Simulation` instances. |
+| `rdf_type` | `CatalysisResearchFieldEnum` (via `bindings`) | Mandatory, Multivalued | **Layer 1** -- the coarsest possible classification: which field(s) of catalysis this dataset belongs to. |
+| `was_generated_by` | `DataGeneratingActivity` | Mandatory, Multivalued | **Layer 2** -- the activity/activities that *produced* this dataset's data: `Synthesis`, `Characterization`, and/or `Simulation` instances. |
 | `is_about_activity` | `EvaluatedActivity` | Recommended, Multivalued | **Layer 2** -- the catalytic `Reaction` this dataset is *about*, without having generated it. |
 | `is_about_entity` | `EvaluatedEntity` | Recommended, Multivalued | **Layer 2** -- the catalyst sample or material this dataset concerns. |
 
-All four are Recommended, not Mandatory: a dataset can legitimately carry only a subset (e.g. a pure simulation dataset has no `is_about_entity`).
+`rdf_type` is Mandatory, and so is `was_generated_by`, which DCAT-AP+ requires for every dataset. `is_about_activity` and `is_about_entity` are Recommended: a dataset can legitimately leave them out (e.g. a pure simulation dataset has no `is_about_entity`). The dataset's `id` is Mandatory as well, as in DCAT-AP+ and ChemDCAT-AP.
 
 ## Layer 1: classifying the research field
 
@@ -37,8 +37,18 @@ All four are Recommended, not Mandatory: a dataset can legitimately carry only a
 
 ```yaml
 rdf_type:
-  id: VOC4CAT:0007001
-  title: "heterogeneous catalysis"
+  - id: voc4cat:0007001
+    title: "heterogeneous catalysis"
+```
+
+`rdf_type` is a list, so work that spans more than one field lists each of them, for example bioelectrocatalysis:
+
+```yaml
+rdf_type:
+  - id: voc4cat:0000204
+    title: "biocatalysis"
+  - id: voc4cat:0000216
+    title: "electrocatalysis"
 ```
 
 **`CatalysisResearchFieldEnum` permissible values:**
@@ -53,7 +63,7 @@ rdf_type:
 | `hybrid_catalysis` | -- | Combination of two or more of the above approaches. |
 | `other` | -- | Any catalysis research field not covered by the terms above. |
 
-This is a dataset-wide, single classification axis -- it says nothing about *how* a specific reaction was run. That's a separate, per-reaction concern: `CatalyticReaction.catalyst_type` uses the same `CatalysisResearchFieldEnum` values to record the catalytic regime of one particular reaction (see [Reaction: catalyst_type](reaction.md)), independent of whatever this dataset's own `rdf_type` says. A heterogeneous-catalysis dataset (`rdf_type`) can, for instance, still contain a reaction step run under homogeneous conditions as a control experiment (`catalyst_type`) -- the two fields are deliberately decoupled.
+This is a dataset-wide classification axis -- it says nothing about *how* a specific reaction was run. That's a separate, per-reaction concern: `CatalyticReaction.catalyst_type` uses the same `CatalysisResearchFieldEnum` values to record the catalytic regime of one particular reaction (see [Reaction: catalyst_type](reaction.md)), independent of whatever this dataset's own `rdf_type` says. A heterogeneous-catalysis dataset (`rdf_type`) can, for instance, still contain a reaction step run under homogeneous conditions as a control experiment (`catalyst_type`) -- the two fields are deliberately decoupled.
 
 ## Layer 2: linking the pillars
 
@@ -75,15 +85,15 @@ type: CatalysisDataset
 
 # Layer 1 -- global classification
 rdf_type:
-  id: VOC4CAT:0007001
-  title: "heterogeneous catalysis"
+  - id: voc4cat:0007001
+    title: "heterogeneous catalysis"
 
 # Layer 2 -- three activities produced this dataset's data...
 was_generated_by:
   - id: "coremeta4cat:SYN_001_NiCeO2"
     type: Synthesis
     rdf_type:
-      id: VOC4CAT:0007016
+      id: voc4cat:0007028
       title: "impregnation"
     nominal_composition: "10wt% Ni/CeO2"
     had_output_entity:
@@ -115,6 +125,9 @@ was_generated_by:
 is_about_activity:
   - id: "coremeta4cat:REAC_002_DRM_NiCeO2"
     type: CatalyticReaction
+    rdf_type:                               # reaction type (Layer 1, mandatory)
+      id: CHMO:0001446
+      title: "catalytic reforming"
     used_catalyst:
       id: "coremeta4cat:CAT_002_NiCeO2"     # same catalyst sample again
     catalyst_type:

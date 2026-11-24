@@ -291,8 +291,8 @@ is_about_activity:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
   rdf_type:
-    id: VOC4CAT:0007001
-    title: heterogeneous catalysis
+    id: SIO:010511
+    title: decomposition reaction
   used_reactant:
   - id: coremeta4cat:REAC_b74m-m6rp_NH3
     title: ammonia
@@ -429,5 +429,5 @@ is_about_activity:
     id: coremeta4cat:REAC_b74m-m6rp_FTIR
     plan_designator: OBI:0000272
 rdf_type:
-  id: VOC4CAT:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis

@@ -28,6 +28,9 @@ title:
   - "Methanol synthesis over Cu/ZnO/Al2O3: synthesis and catalytic performance dataset"
 description:
   - "Dataset covering preparation of Cu/ZnO/Al2O3 methanol synthesis catalyst by incipient wetness impregnation and catalytic performance in CO2 hydrogenation at 50 bar, 200-300 deg C."
+rdf_type:
+  - id: voc4cat:0007001
+    title: "heterogeneous catalysis"
 was_generated_by:
   - id: "coremeta4cat:SYNTH_001_Pt_Al2O3"
     activity_designator: "Synthesis"

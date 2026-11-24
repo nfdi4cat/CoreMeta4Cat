@@ -10,6 +10,9 @@ is_about_entity:
 - description: 63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)
   id: coremeta4cat:CAT_001_CuZnO_Al2O3
   title: Cu/ZnO/Al2O3 methanol synthesis catalyst
+rdf_type:
+- id: voc4cat:0007001
+  title: heterogeneous catalysis
 title:
 - 'Methanol synthesis over Cu/ZnO/Al2O3: synthesis and catalytic performance dataset'
 was_generated_by:
@@ -126,6 +129,9 @@ is_about_activity:
       calculated from N2-normalised molar flows'
     id: coremeta4cat:REAC_002_GC_method
     title: online dual-column gas chromatography (TCD)
+  rdf_type:
+    id: CHMO:0001446
+    title: catalytic reforming
   reactor_temperature_range:
   - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
     max_value: 800
@@ -162,6 +168,9 @@ is_about_entity:
     slab; ReaxFF MD model representing Ni/CeO2 metal-support interface
   id: coremeta4cat:SLAB_002_CeO2_111_Ni13
   title: Ni13/CeO2(111) computational model
+rdf_type:
+- id: voc4cat:0007001
+  title: heterogeneous catalysis
 title:
 - 'NiO/CeO2 dry methane reforming catalyst: co-precipitation synthesis, multi-technique
   characterization, catalytic performance, and computational interface study'
@@ -381,8 +390,8 @@ is_about_activity:
     id: coremeta4cat:REAC_2d6m-exeb_CO_product_id
     title: CO conversion from outlet gas composition
   rdf_type:
-    id: voc4cat:0007010
-    title: CO methanation
+    id: voc4cat:0000260
+    title: hydrogenation
   reaction_name:
   - CO methanation
   reactor_temperature_range:
@@ -530,8 +539,8 @@ is_about_activity:
     id: coremeta4cat:REAC_2d6m-exeb_CO2_product_id
     title: CO2 conversion from outlet gas composition
   rdf_type:
-    id: voc4cat:0007011
-    title: CO2 methanation
+    id: voc4cat:0000259
+    title: CO2 hydrogenation
   reaction_name:
   - CO2 methanation
   reactor_temperature_range:
@@ -755,8 +764,8 @@ is_about_activity:
     id: coremeta4cat:REAC_2d6m-exeb_mixed_product_id
     title: CO and CO2 conversion from outlet gas composition
   rdf_type:
-    id: voc4cat:0007010
-    title: CO methanation
+    id: voc4cat:0000260
+    title: hydrogenation
   reaction_name:
   - CO/CO2 co-methanation
   reactor_temperature_range:
@@ -907,7 +916,7 @@ publisher:
   name:
   - NFDI4Cat Central Data Repository
 rdf_type:
-  id: voc4cat:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis
 title:
 - 'Dataset for Publication: Reaction Kinetics of CO and CO2 Methanation over Nickel'
@@ -1508,7 +1517,7 @@ publisher:
   name:
   - NFDI4Cat Central Data Repository
 rdf_type:
-  id: voc4cat:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis
 release_date: '2026-03-11'
 title:
@@ -1838,6 +1847,9 @@ is_about_activity:
   id: coremeta4cat:REAC_6mxw-xsrd_CO2_hydrogenation
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  rdf_type:
+    id: voc4cat:0000259
+    title: CO2 hydrogenation
   reaction_name:
   - hydrogenation of CO2/CO to methanol and dimethyl ether
   reactor_temperature_range:
@@ -1965,6 +1977,9 @@ is_about_activity:
   id: coremeta4cat:REAC_6mxw-xsrd_screening
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  rdf_type:
+    id: voc4cat:0000259
+    title: CO2 hydrogenation
   reaction_name:
   - hydrogenation of CO2/CO to methanol and dimethyl ether
   reactor_temperature_range:
@@ -2066,7 +2081,7 @@ publisher:
   name:
   - NFDI4Cat Central Data Repository
 rdf_type:
-  id: VOC4CAT:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis
 title:
 - Copper Gallium Aluminum Mixed Metal Oxides as Alternative Catalyst Candidates for
@@ -2528,7 +2543,7 @@ publisher:
   name:
   - NFDI4Cat Central Data Repository
 rdf_type:
-  id: VOC4CAT:0000204
+- id: voc4cat:0000204
   title: biocatalysis
 title:
 - 'Datasets for Publication: Navigating the Sequence-Function Landscape: AI-Driven
@@ -2944,7 +2959,7 @@ publisher:
   name:
   - NFDI4Cat Central Data Repository
 rdf_type:
-  id: voc4cat:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis
 title:
 - Carbonylation catalysis of aryl halides through active-site engineering
@@ -3196,8 +3211,8 @@ is_about_activity:
     id: coremeta4cat:REAC_b74m-m6rp_FTIR
     title: online FTIR gas analysis
   rdf_type:
-    id: VOC4CAT:0007001
-    title: heterogeneous catalysis
+    id: SIO:010511
+    title: decomposition reaction
   reaction_name:
   - thermocatalytic ammonia decomposition
   reactor_temperature_range:
@@ -3322,7 +3337,7 @@ publisher:
   name:
   - NFDI4Cat Central Data Repository
 rdf_type:
-  id: VOC4CAT:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis
 title:
 - 'Dataset for Publication: Experimental and Microkinetic Investigation of Thermo-Catalytic
@@ -3577,6 +3592,9 @@ product_identification_method:
     Sieve 5A and Poraplot Q; products: MeOH, CO, CH4, H2O quantified'
   id: coremeta4cat:REAC_001_GC_method
   title: online gas chromatography
+rdf_type:
+  id: voc4cat:0000259
+  title: CO2 hydrogenation
 reactor_temperature_range:
 - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
   max_value: 300
@@ -3639,6 +3657,9 @@ product_identification_method:
     calculated from N2-normalised molar flows'
   id: coremeta4cat:REAC_002_GC_method
   title: online dual-column gas chromatography (TCD)
+rdf_type:
+  id: CHMO:0001446
+  title: catalytic reforming
 reactor_temperature_range:
 - has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
   max_value: 800

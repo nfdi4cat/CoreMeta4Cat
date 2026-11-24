@@ -194,6 +194,9 @@ is_about_activity:
     title: N2 internal standard (99.999%, Linde)
     description: 'N2 flow: 10 mL/min (STP); used as internal standard for GC molar
       balance'
+  rdf_type:
+    id: CHMO:0001446
+    title: catalytic reforming
   used_reactant:
   - id: https://pubchem.ncbi.nlm.nih.gov/compound/297
     title: CH4 (99.995% purity, Linde)
@@ -253,3 +256,6 @@ is_about_activity:
       calculated from N2-normalised molar flows'
     id: coremeta4cat:REAC_002_GC_method
     plan_designator: OBI:0000272
+rdf_type:
+- id: voc4cat:0007001
+  title: heterogeneous catalysis

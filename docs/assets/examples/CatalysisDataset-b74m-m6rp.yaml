@@ -18,7 +18,7 @@ description:
   and variation of inlet NH3, GHSV and pressure. File names follow the figures of a version of the article;
   from Fig6 on they do not match the published figure numbers.'
 rdf_type:
-  id: VOC4CAT:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis
 keyword:
 - Ammonia decomposition
@@ -281,8 +281,8 @@ is_about_activity:
     621/676 K, 1Ru/1Ba/YSZ 536/589 K, 1Ru/1Ba/Ni-YSZ 621/688 K. The deposited curve for 0.5Ru/0.5Ba/Ni-BCZY
     is unreadable (lost decimal separators); its T10/T50 survive only in the article.'
   rdf_type:
-    id: VOC4CAT:0007001
-    title: heterogeneous catalysis
+    id: SIO:010511
+    title: decomposition reaction
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:

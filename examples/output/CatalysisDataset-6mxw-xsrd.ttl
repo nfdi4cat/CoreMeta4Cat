@@ -152,7 +152,7 @@ coremeta4cat:REAC_6mxw-xsrd_CO2_hydrogenation RO:0004008 coremeta4cat:PROD_6mxw-
 	RXNO:0000425 coremeta4cat:CAT_6mxw-xsrd_G1_500 , coremeta4cat:CAT_6mxw-xsrd_G1_600 , coremeta4cat:CAT_6mxw-xsrd_G1_700 , coremeta4cat:CAT_6mxw-xsrd_G2_450_250 , coremeta4cat:CAT_6mxw-xsrd_G2_450_350 , coremeta4cat:CAT_6mxw-xsrd_G2_550_250 , coremeta4cat:CAT_6mxw-xsrd_G2_550_350 ;
 	dcterms:description "Gas-phase testing of the first-generation (Cu0.465Ga0.07Al0.465, calcined at 500, 600 and 700 C) and second-generation (Cu0.85Al0.15 with 1 wt% Ga, two calcination steps) catalysts under all 17 conditions of the test protocol: 80 bar, 225-300 C, GHSV 3000 and 6000 h-1, CO2 13-27.1 vol%, CO 0-15.8 vol%, H2 36.7-76 vol%, 5 vol% Ar, balance N2 (0-26.7 vol%), H2/COx 1.2-4. Pretreatment: 2 h at 300 C and 20 bar under 10 vol% Ar in N2 (GHSV 6000 h-1, 48 L/h), then in-situ reduction in the syngas feed. Products are methanol and dimethyl ether, with methane as a minor by-product. Conversions and yields are reported in the article's figures only; they are not deposited." ;
 	dcterms:title "CO2/CO hydrogenation over optimized Cu-Ga-Al mixed metal oxides (17 conditions, 7 catalysts)" ;
-	a coremeta4cat:CatalyticReaction ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0000259 ;
 	adms:identifier _:c14n0 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_6mxw-xsrd_reactor ;
 	coremeta4cat:feed_composition_range _:c14n2 , _:c14n20 , _:c14n39 , _:c14n41 , _:c14n49 ;
@@ -178,7 +178,7 @@ coremeta4cat:REAC_6mxw-xsrd_screening RO:0004008 coremeta4cat:PROD_6mxw-xsrd_CH4
 	RXNO:0000425 coremeta4cat:CAT_6mxw-xsrd_Cu0.33Ga0.33Al0.33 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.15Ga0.07Al0.78 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.25Ga0.07Al0.68 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.25Ga0.25Al0.50 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.25Ga0.50Al0.25 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.33Ga0.07Al0.60 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.33Ga0.60Al0.07 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.40Ga0.07Al0.53 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.40Ga0.20Al0.40 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.50Ga0.25Al0.25 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.60Al0.40 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.60Ga0.20Al0.20 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.60Ga0.40 ;
 	dcterms:description "Initial activity screening of 13 compositions calcined at 600 C (Cu 0.15-0.6, Al 0-0.78, Ga 0-0.6 metal fractions) under conditions 1-8 of the test protocol: 80 bar, 225-300 C, GHSV 3000 h-1 (condition 1: 6000 h-1), CO2 13-27.1 vol%, CO 0-15.8 vol%, H2 63.3-76 vol%, 5 vol% Ar, N2 balance. Same 16-fold fixed-bed reactor and pretreatment as the optimized catalysts. The highest combined MeOH + DME yields were found for Cu0.40Ga0.07Al0.53 and Cu0.33Ga0.07Al0.60 (article, section 3.3); yields are not deposited." ;
 	dcterms:title "Activity screening of 13 Cu-Ga-Al mixed metal oxides for CO2/CO hydrogenation (8 conditions)" ;
-	a coremeta4cat:CatalyticReaction ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0000259 ;
 	adms:identifier _:c14n5 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_6mxw-xsrd_reactor ;
 	coremeta4cat:feed_composition_range _:c14n11 , _:c14n23 , _:c14n26 ;
@@ -304,6 +304,8 @@ coremeta4cat:SYN_6mxw-xsrd_gen2_step2_method dcterms:description "Aqueous Ga(NO3
 voc4cat:0000067 schema1:name "X-ray fluorescence" ;
 	a schema1:DefinedTerm .
 voc4cat:0000215 schema1:name "density functional theory" ;
+	a schema1:DefinedTerm .
+voc4cat:0000259 schema1:name "CO2 hydrogenation" ;
 	a schema1:DefinedTerm .
 voc4cat:0007001 schema1:name "heterogeneous catalysis" ;
 	a schema1:DefinedTerm .

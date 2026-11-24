@@ -98,8 +98,8 @@ is_about_activity:
   - description: Related publication DOI
     notation: doi:10.1021/acs.iecr.1c00389
   rdf_type:
-    id: voc4cat:0007010
-    title: CO methanation
+    id: voc4cat:0000260
+    title: hydrogenation
   used_reactant:
   - id: coremeta4cat:REAC_2d6m-exeb_CO
     title: carbon monoxide
@@ -248,8 +248,8 @@ is_about_activity:
   - description: Related publication DOI
     notation: doi:10.1021/acs.iecr.1c00389
   rdf_type:
-    id: voc4cat:0007011
-    title: CO2 methanation
+    id: voc4cat:0000259
+    title: CO2 hydrogenation
   used_reactant:
   - id: coremeta4cat:REAC_2d6m-exeb_CO2
     title: carbon dioxide
@@ -476,8 +476,8 @@ is_about_activity:
   - description: Related publication DOI
     notation: doi:10.1021/acs.iecr.1c00389
   rdf_type:
-    id: voc4cat:0007010
-    title: CO methanation
+    id: voc4cat:0000260
+    title: hydrogenation
   used_reactant:
   - id: coremeta4cat:REAC_2d6m-exeb_CO_mixed
     title: carbon monoxide
@@ -622,5 +622,5 @@ is_about_activity:
     id: coremeta4cat:REAC_2d6m-exeb_mixed_product_id
     plan_designator: OBI:0000272
 rdf_type:
-  id: voc4cat:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis

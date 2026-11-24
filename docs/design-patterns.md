@@ -26,10 +26,10 @@ Every CoreMeta4Cat record starts with a **`CatalysisDataset`**. This is a `dcat:
 id: ex:dataset-001
 type: CatalysisDataset                  # → dcat:Dataset
 
-# Layer 1: global classification
+# Layer 1: global classification (one or more research fields)
 rdf_type:
-  id: voc4cat:0007001
-  title: "heterogeneous catalysis"
+  - id: voc4cat:0007001
+    title: "heterogeneous catalysis"
 
 # Layer 2: links to the four data classes
 was_generated_by:
@@ -156,12 +156,12 @@ Twelve calculated property classes capture the type of computed output: `Electro
 
 Rather than defining a fixed class hierarchy for every type of catalysis or every synthesis method, CoreMeta4Cat uses a single `rdf_type` slot on each class to carry a controlled vocabulary term from Voc4Cat, CHMO, or another ontology. This keeps the schema compact while staying fully machine-actionable.
 
-**On CatalysisDataset** — classify the catalysis research field:
+**On CatalysisDataset** — classify the catalysis research field (mandatory; a list, so several fields can be given):
 
 ```yaml
 rdf_type:
-  id: VOC4CAT:0007001
-  title: "heterogeneous catalysis"
+  - id: voc4cat:0007001
+    title: "heterogeneous catalysis"
 ```
 
 **On Synthesis** — classify the preparation method type:
@@ -169,7 +169,7 @@ rdf_type:
 ```yaml
 type: Synthesis
 rdf_type:
-  id: voc4cat:0007016
+  id: voc4cat:0007028
   title: "impregnation"
 realized_plan:
   type: Impregnation    # the concrete method class with all parameter slots
@@ -240,8 +240,8 @@ This separation means a single `PreparationMethod` record could in principle be 
 
 `Plan` (external, DCAT-AP-PLUS) only carries `title`/`description` — no `id`. Rather than repeat an `id` slot on each of `PreparationMethod`, `CharacterizationTechnique`, `SimulationMethod`, and `ProductIdentificationMethod` individually, CoreMeta4Cat inserts one shared intermediate class, `CatalysisPlan` (`is_a: Plan`, abstract), that adds `id` once; all four then specialize `CatalysisPlan` instead of `Plan` directly. `realized_plan` itself needed `inlined: true` added explicitly on each of its class-level overrides (on `Synthesis`, `Characterization`, `Simulation`) once its range became identifier-bearing — LinkML's default for a single-valued, class-typed slot switches from "inline the whole object" to "reference by id" the moment the range class gains an identifier slot, unless told otherwise.
 
-!!! note "A LinkML JSON Schema quirk worth knowing"
-    Slots marked `recommended: true` (not `required: true`) still show up in the generated JSON Schema's `required` array — `gen-json-schema` has no native "recommended" tier to fall back to, so it folds recommended into required rather than dropping the distinction. In practice this means every Recommended field on a class needs a value for an instance to validate via `linkml-run-examples` (or any other JSON-Schema-based validator), not just Mandatory ones.
+!!! note "Recommended fields and validation"
+    Only slots marked `required: true` end up in the generated JSON Schema's `required` array. Slots marked `recommended: true` do not, so a record validates as soon as its Mandatory fields are present. To also list the Recommended fields a record leaves empty, run `linkml-validate` with LinkML's recommended-slot check, as shown in [Getting Started, Level 4](getting-started.md#level-4-validating-against-the-full-schema).
 
 ---
 

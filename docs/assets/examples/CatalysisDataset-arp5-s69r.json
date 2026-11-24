@@ -6,10 +6,12 @@
   "description": [
     "Catalyst characterization (PXRD, DRIFT, CO chemisorption, XPS, STEM) and catalytic testing data for Pd3P/SiO2 (a phosphorus-modified palladium phosphide catalyst, internal code ARNE01) compared against an unmodified Pd/SiO2 reference (ARNE02), for Pd-catalyzed carbonylation reactions of aryl iodides. 31 batch reactor runs span three reaction types: alkoxycarbonylation (27 runs; mainly iodobenzene + ethanol -> ethyl benzoate, exploring reaction time, base, temperature, and substrate/nucleophile scope), phenoxycarbonylation (1 run, phenol nucleophile), and aminocarbonylation (3 runs, aniline nucleophile, 100-140 C). PXRD additionally covers two further Pd3P/SiO2 loading variants (1 wt% and 10 wt% Pd), and STEM additionally covers a recycled/spent Pd3P/SiO2 sample recovered after catalytic testing; STEM method details are documented but no STEM image/data files are included in the deposited dataset."
   ],
-  "rdf_type": {
-    "id": "voc4cat:0007001",
-    "title": "heterogeneous catalysis"
-  },
+  "rdf_type": [
+    {
+      "id": "voc4cat:0007001",
+      "title": "heterogeneous catalysis"
+    }
+  ],
   "keyword": [
     "Chemistry",
     "Catalysis",
