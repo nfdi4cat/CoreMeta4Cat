@@ -5,7 +5,7 @@ description: Six real published datasets, described end-to-end with CoreMeta4Cat
 
 # Community datasets
 
-This page shows six **complete, real** metadata records, built for datasets that are published
+This page shows six **real** metadata records, built for datasets that are published
 on [repository.nfdi4cat.org](https://repository.nfdi4cat.org), NFDI4Cat's data repository
 ("Repo4Cat"). Nothing here is a schema reference. Each record shows what a finished CoreMeta4Cat
 description looks like once real data goes into it, so you have something concrete to compare
@@ -29,8 +29,8 @@ these records.
 | # | Dataset | Topics | Activities in the record | Sources |
 |---|---|---|---|---|
 | 1 | [CO/CO₂ methanation over nickel](#2d6m-exeb) | heterogeneous catalysis | 1 characterization, 3 reactions | deposit |
-| 2 | [P-modified Pd catalysts for selective hydrogenation](#32x1-99x6) | heterogeneous catalysis | 5 characterizations, 4 reactions | deposit |
-| 3 | [Palladium phosphide catalysts for carbonylation](#arp5-s69r) | heterogeneous catalysis | 5 characterizations, 3 reactions | deposit |
+| 2 | [P-modified Pd catalysts for selective hydrogenation](#32x1-99x6) | heterogeneous catalysis | 2 syntheses, 5 characterizations, 4 reactions | deposit + article |
+| 3 | [Palladium phosphide catalysts for carbonylation](#arp5-s69r) | heterogeneous catalysis | 2 syntheses, 5 characterizations, 3 reactions | deposit + article |
 | 4 | [Cu–Ga–Al mixed oxides for CO₂ to methanol/DME](#6mxw-xsrd) | heterogeneous catalysis, DFT, ML potentials | 4 syntheses, 1 characterization, 3 simulations, 2 reactions | deposit + article |
 | 5 | [NH₃ decomposition over Ru/Ni-BCZY](#b74m-m6rp) | heterogeneous catalysis, microkinetics | 2 syntheses, 1 characterization, 2 simulations, 1 reaction | deposit + article |
 | 6 | [Amine transaminase molecular dynamics](#8ppb-aeky) | biocatalysis, simulation | 4 simulations | deposit + article |
@@ -51,8 +51,8 @@ reactor by its reactor type. The table lists the terms each record uses; the
 | # | Conceptual level: research field · reaction type | Class level: techniques and methods |
 |---|---|---|
 | 1 | heterogeneous catalysis (`voc4cat:0007001`) · hydrogenation (`voc4cat:0000260`), CO2 hydrogenation (`voc4cat:0000259`) | gas chromatography (`voc4cat:0000130`) |
-| 2 | heterogeneous catalysis (`voc4cat:0007001`) · hydrogenation (`voc4cat:0000260`) | BET analysis (`enm:0000064`), DRIFTS (`CHMO:0000645`), ICP-AES (`CHMO:0000267`), infrared spectroscopy (`CHMO:0000630`), powder XRD (`CHMO:0000158`) |
-| 3 | heterogeneous catalysis (`voc4cat:0007001`) · carbonylation (`voc4cat:0000247`) | DRIFTS (`CHMO:0000645`), powder XRD (`CHMO:0000158`), transmission electron microscopy (`voc4cat:0000078`), XPS (`CHMO:0000404`); CO chemisorption has no term yet |
+| 2 | heterogeneous catalysis (`voc4cat:0007001`) · hydrogenation (`voc4cat:0000260`) | impregnation (`voc4cat:0007028`), BET analysis (`enm:0000064`), DRIFTS (`CHMO:0000645`), ICP-AES (`CHMO:0000267`), infrared spectroscopy (`CHMO:0000630`), powder XRD (`CHMO:0000158`) |
+| 3 | heterogeneous catalysis (`voc4cat:0007001`) · carbonylation (`voc4cat:0000247`) | impregnation (`voc4cat:0007028`), DRIFTS (`CHMO:0000645`), powder XRD (`CHMO:0000158`), transmission electron microscopy (`voc4cat:0000078`), XPS (`CHMO:0000404`); CO chemisorption has no term yet |
 | 4 | heterogeneous catalysis (`voc4cat:0007001`) · CO2 hydrogenation (`voc4cat:0000259`) | co-precipitation (`voc4cat:0007795`), impregnation (`voc4cat:0007028`), X-ray fluorescence (`voc4cat:0000067`), density functional theory (`voc4cat:0000215`), fixed-bed reactor (`coremeta4cat:FixedBedReactor`); the machine-learned-potential screenings have no term yet |
 | 5 | heterogeneous catalysis (`voc4cat:0007001`) · decomposition reaction (`SIO:010511`) | impregnation (`voc4cat:0007028`), temperature-programmed reduction (`CHMO:0002908`), microkinetic modelling (`coremeta4cat:Microkinetics`), fixed-bed reactor (`coremeta4cat:FixedBedReactor`); the support preparation has no term yet |
 | 6 | biocatalysis (`voc4cat:0000204`) · no reaction in the record | molecular dynamics (`NCIT:C18097`); protein preparation, docking and MM/GBSA have no term yet |
@@ -101,14 +101,22 @@ organised: 4 pieces instead of 16.
 
 This dataset investigates how phosphorus modification of the support tunes Pd-catalyzed
 selective hydrogenation, across 10 Pd/P catalysts (Al₂O₃ and SiO₂ supports, 0–5 wt% P). It
-combines five characterization techniques with catalytic testing of two substrates (cinnamyl
-alcohol and citral) on both supports.
+combines five characterization techniques with catalytic testing of two substrates (cinnamaldehyde
+and citral) on both supports.
 
 The CoreMeta4Cat record groups this into:
 
+- **2 `Synthesis`** (`was_generated_by`): the phosphorus modification of alumina and silica with
+  NH₄H₂PO₄, then the Pd impregnation of the modified and unmodified supports. The modified supports
+  link the two steps: they are the output of the first and an input of the second.
 - **5 `Characterization`s** (`was_generated_by`): one per technique (BET, ICP-AES, PXRD, DRIFT,
   IR), each covering every catalyst that technique was applied to.
 - **4 `CatalyticReaction`s** (`is_about_activity`): one per substrate and support.
+
+**Sources:** the deposit has the characterization results and the catalytic test data; the two
+synthesis steps, the support pretreatment and the precursor amounts come from the article
+([Rang et al., ChemRxiv 2026](https://doi.org/10.26434/chemrxiv.15007916/v1){:target="_blank"}).
+Not yet in the record: the sample preparation for each characterization technique.
 
 **Patterns from this dataset:** [One technique, many samples](usage-patterns.md#characterization-many-samples)
 
@@ -133,8 +141,18 @@ catalyst.
 
 The CoreMeta4Cat record groups this into:
 
-- **5 `Characterization`s** (`was_generated_by`): PXRD, DRIFT, CO chemisorption, XPS, STEM.
+- **2 `Synthesis`** (`was_generated_by`): Pd₃P/SiO₂ and the Pd/SiO₂ reference, both by incipient
+  wetness impregnation and thermal treatment in hydrogen; they share one preparation method.
+- **5 `Characterization`s** (`was_generated_by`): PXRD, DRIFT (with its argon pretreatment), CO
+  chemisorption, XPS and STEM (both with their sample preparation).
 - **3 `CatalyticReaction`s** (`is_about_activity`): one per reaction type.
+
+**Sources:** the deposit has the characterization and catalytic test data; the synthesis, the DRIFT
+pretreatment and the sample preparation for STEM and XPS come from the article
+([Neyyathala et al., J. Catal. 456 (2026) 116733](https://doi.org/10.1016/j.jcat.2026.116733){:target="_blank"}).
+The article gives synthesis amounts only for the 5 wt% Pd catalysts, so the 1 and 10 wt% Pd₃P/SiO₂
+samples measured by PXRD have no synthesis in the record. The catalysts were used in the catalytic
+tests as synthesized, without further activation.
 
 [:material-download: YAML](../assets/examples/CatalysisDataset-arp5-s69r.yaml){ .md-button }
 [:material-download: JSON](../assets/examples/CatalysisDataset-arp5-s69r.json){ .md-button }

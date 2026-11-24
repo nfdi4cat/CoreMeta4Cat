@@ -14,6 +14,169 @@ description:
 title:
 - Carbonylation catalysis of aryl halides through active-site engineering
 was_generated_by:
+- id: coremeta4cat:SYN_arp5-s69r_Pd3P_SiO2
+  title:
+  - Pd3P/SiO2 (5 wt% Pd) by incipient wetness impregnation and thermal treatment in
+    hydrogen
+  description:
+  - Pd(OAc)2 and H3PO4 dissolved in concentrated hydrochloric acid, impregnated onto
+    silica, dried and treated in hydrogen at 400 C, following a previously reported
+    procedure (article, section 2.2, ref. 44). The article gives the amounts for the
+    5 wt% Pd catalyst only.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  had_input_entity:
+  - id: coremeta4cat:PREC_arp5-s69r_PdOAc2
+    title: palladium(II) acetate, Pd(OAc)2 (Sigma-Aldrich, >=99.99%)
+    precursor_quantity:
+    - value: 100.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/MilliGM
+  - id: coremeta4cat:PREC_arp5-s69r_H3PO4
+    title: phosphoric acid, 85 wt% (Sigma-Aldrich)
+    rdf_type:
+      id: CHEBI:26078
+      title: phosphoric acid
+    has_volume:
+    - value: 10.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Volume
+      unit: https://qudt.org/vocab/unit/MicroL
+  - id: coremeta4cat:SUP_arp5-s69r_SiO2
+    title: silica, Cariact Q 20C (Fuji Silysia Chemical)
+    rdf_type:
+      id: CHEBI:30563
+      title: silicon dioxide
+    precursor_quantity:
+    - value: 0.94
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/GM
+  had_output_entity:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+  carried_out_by:
+  - id: coremeta4cat:DEV_arp5-s69r_furnace
+    title: box furnace with a quartz Schlenk tube (pressure relief valve)
+  realized_plan:
+    title: incipient wetness impregnation, drying, thermal treatment in hydrogen
+    description: Precursors dissolved in concentrated hydrochloric acid by sonication
+      and added dropwise to the silica; dried 12 h at 60 C; then heated at 50 C/min
+      to 400 C and held 8 h in pure hydrogen in an evacuated and H2-filled quartz
+      Schlenk tube. The hydrogen treatment is recorded in the calcination fields.
+    id: coremeta4cat:SYN_arp5-s69r_IWI_H2_method
+    plan_designator: voc4cat:0007028
+    impregnation_type:
+    - incipient_wetness
+    has_drying_temperature:
+    - value: 333.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      value: 12.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_temperature_range:
+    - min_value: 673.15
+      max_value: 673.15
+      unit: https://qudt.org/vocab/unit/K
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    has_calcination_dwelling_time:
+      value: 8.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_atmosphere:
+    - value: pure hydrogen (Air Liquide, 99.999%)
+    has_calcination_heating_rate:
+    - value: 50.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+  activity_designator: Synthesis
+  nominal_composition:
+  - 'Pd3P/SiO2: 5 wt% Pd'
+  catalyst_measured_properties:
+  - 'Pd loading by ICP-AES: 4.95 wt%'
+  - 'Mean particle size by HAADF-STEM: 5.6 nm'
+  - Pd3P phase confirmed by PXRD and HRTEM lattice fringes (article, section 3.1)
+  storage_conditions:
+  - Used directly or stored in an Ar-filled glovebox (MBraun) before use or analysis
+  catalyst_support:
+  - silica, Cariact Q 20C (Fuji Silysia Chemical)
+  solvent:
+  - id: coremeta4cat:SOLV_arp5-s69r_HCl
+    title: concentrated hydrochloric acid, 37% (Thermo Scientific Chemicals)
+    rdf_type:
+      id: CHEBI:749659
+      title: hydrochloric acid
+- id: coremeta4cat:SYN_arp5-s69r_Pd_SiO2
+  title:
+  - Pd/SiO2 (5 wt% Pd) reference catalyst, prepared like Pd3P/SiO2 without phosphoric
+    acid
+  description:
+  - Same procedure as SYN_arp5-s69r_Pd3P_SiO2, without H3PO4 (article, section 2.2).
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  had_input_entity:
+  - id: coremeta4cat:PREC_arp5-s69r_PdOAc2
+    title: palladium(II) acetate, Pd(OAc)2 (Sigma-Aldrich, >=99.99%)
+  - id: coremeta4cat:SUP_arp5-s69r_SiO2
+    title: silica, Cariact Q 20C (Fuji Silysia Chemical)
+    rdf_type:
+      id: CHEBI:30563
+      title: silicon dioxide
+  had_output_entity:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+  carried_out_by:
+  - id: coremeta4cat:DEV_arp5-s69r_furnace
+    title: box furnace with a quartz Schlenk tube (pressure relief valve)
+  realized_plan:
+    title: incipient wetness impregnation, drying, thermal treatment in hydrogen
+    description: Precursors dissolved in concentrated hydrochloric acid by sonication
+      and added dropwise to the silica; dried 12 h at 60 C; then heated at 50 C/min
+      to 400 C and held 8 h in pure hydrogen in an evacuated and H2-filled quartz
+      Schlenk tube. The hydrogen treatment is recorded in the calcination fields.
+    id: coremeta4cat:SYN_arp5-s69r_IWI_H2_method
+    plan_designator: voc4cat:0007028
+    impregnation_type:
+    - incipient_wetness
+    has_drying_temperature:
+    - value: 333.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      value: 12.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_temperature_range:
+    - min_value: 673.15
+      max_value: 673.15
+      unit: https://qudt.org/vocab/unit/K
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    has_calcination_dwelling_time:
+      value: 8.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_atmosphere:
+    - value: pure hydrogen (Air Liquide, 99.999%)
+    has_calcination_heating_rate:
+    - value: 50.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+  activity_designator: Synthesis
+  nominal_composition:
+  - 'Pd/SiO2: 5 wt% Pd'
+  catalyst_measured_properties:
+  - 'Mean particle size by HAADF-STEM: 6.6 nm'
+  - Face-centred cubic Pd phase by PXRD (article, section 3.1)
+  storage_conditions:
+  - Used directly or stored in an Ar-filled glovebox (MBraun) before use or analysis
+  catalyst_support:
+  - silica, Cariact Q 20C (Fuji Silysia Chemical)
+  solvent:
+  - id: coremeta4cat:SOLV_arp5-s69r_HCl
+    title: concentrated hydrochloric acid, 37% (Thermo Scientific Chemicals)
+    rdf_type:
+      id: CHEBI:749659
+      title: hydrochloric acid
 - id: coremeta4cat:CHAR_arp5-s69r_COChemisorption
   title:
   - CO chemisorption analysis (2 catalysts)
@@ -74,6 +237,9 @@ was_generated_by:
     id: coremeta4cat:CHAR_arp5-s69r_DRIFT_method
     plan_designator: OBI:0000272
   activity_designator: Characterization
+  has_sample_pretreatment:
+  - value: 1 h in argon (50 mL/min) at 150 C to remove physisorbed water, then cooled
+      to 30 C before CO dosing
 - id: coremeta4cat:CHAR_arp5-s69r_PXRD
   title:
   - Powder XRD phase analysis (4 catalysts)
@@ -151,6 +317,9 @@ was_generated_by:
     id: coremeta4cat:CHAR_arp5-s69r_STEM_method
     plan_designator: OBI:0000272
   activity_designator: Characterization
+  sample_preparation:
+  - Dispersed in ethanol, a drop placed on a Cu grid with an amorphous carbon film,
+    dried at 60 C overnight
 - id: coremeta4cat:CHAR_arp5-s69r_XPS
   title:
   - X-ray photoelectron spectroscopy (2 catalysts, Pd 3d and P 2p)
@@ -180,6 +349,9 @@ was_generated_by:
     id: coremeta4cat:CHAR_arp5-s69r_XPS_method
     plan_designator: OBI:0000272
   activity_designator: Characterization
+  sample_preparation:
+  - Stored under inert atmosphere in a glovebox and transferred with minimal exposure
+    to air; no further pretreatment
 creator:
 - name:
   - Neyyathala, Arjun
@@ -211,6 +383,9 @@ dataset_distribution:
   licence:
     title: CC BY 4.0
     id: https://creativecommons.org/licenses/by/4.0/
+is_referenced_by:
+- title: Neyyathala et al., J. Catal. 456 (2026) 116733
+  id: https://doi.org/10.1016/j.jcat.2026.116733
 keyword:
 - Chemistry
 - Catalysis
