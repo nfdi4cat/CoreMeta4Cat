@@ -1,0 +1,830 @@
+# Crosswalk: TestDataSet_CoreMeta4Cat.xlsx -> CoreMeta4Cat CatalysisDataset
+#
+# Read by xlsx_to_coremeta4cat.py (next to this file). One entry per spreadsheet column (table sheets)
+# or row (key-value sheets). Every non-empty cell of the workbook must be covered by an entry,
+# otherwise the parser stops. Format: see PARSER_BUILD_NOTES.md, section "Crosswalk format".
+#
+# basis (how the target was chosen):
+#   direct         the header term or label names the target slot/class; value used as given
+#   deduced        follows from the workbook itself (layout, another cell, a physical limit);
+#                  the reason is in `why`
+#   schema-forced  the schema has no dedicated slot; the generic DCAT-AP-PLUS attribute
+#                  pattern is used instead; the reason is in `why`
+#   (fallback      set by the parser when a value cannot be converted and goes to the
+#                  entry's `fallback` target instead)
+# flag: an open question for the data provider (collected in parse_report.md).
+
+workbook: ../source/TestDataSet_CoreMeta4Cat.xlsx
+supplement: supplement.yaml
+output: ../metadata/CatalysisDataset-JLCAT03.yaml
+provenance: ../metadata/source_documentation.yaml
+report: ../metadata/parse_report.md
+
+root_class: CatalysisDataset
+id_prefix: "coremeta4cat:"
+
+qudt:
+  # Namespaces as used by every other CoreMeta4Cat example record. QUDT itself declares
+  # http://qudt.org/vocab/unit/ for units; see PARSER_BUILD_NOTES.md, "Units".
+  unit_ns: "https://qudt.org/vocab/unit/"
+  kind_ns: "http://qudt.org/vocab/quantitykind/"
+
+# Unit text as written in the workbook -> QUDT unit local name (all checked on qudt.org, v3.5.4).
+units:
+  "wt.%": PERCENT
+  "mg": MilliGM
+  "degC": DEG_C
+  "K/h": K-PER-HR
+  "h": HR
+  "bar": BAR
+  "ml": MilliL
+  "mL": MilliL
+  "rpm": REV-PER-MIN
+  "mm": MilliM
+  "%": PERCENT
+  "nl/h":
+    qudt: null
+    note: >-
+      Read as normal litres per hour (nanolitres per hour, the literal SI reading of "nl",
+      is implausible for a calcination gas flow). QUDT has no unit for normal litres, so no
+      unit IRI is set; the unit text is kept in the description.
+
+sheets:
+
+  # ------------------------------------------------------------------ Synthesis
+  Synthesis:
+    layout: table          # header row, unit row, one record per data row
+    header_row: 1
+    unit_row: 2
+    first_data_row: 3
+    key_column: B          # catalyst ID: record key and join key to the other sheets
+    record:
+      class: Synthesis
+      list: was_generated_by
+      id: "SYN_{key}"
+      set: {activity_designator: Synthesis}
+    ids:
+      realized_plan: "SYN_{key}_method"
+      "had_output_entity[catalyst]": "CAT_{key}"
+      "^is_about_entity[cat_{key}]": "CAT_{key}"
+      "had_input_entity[precursor_1]": "PREC_{key}_1"
+      "had_input_entity[precursor_2]": "PREC_{key}_2"
+      "had_input_entity[support]": "PREC_{key}_support"
+      "solvent[solvent]": "CHEM_{slug:I}"
+      "carried_out_by[calcination_device]": "DEV_{key}_calcination"
+    columns:
+      - col: B
+        header: catalyst ID voc4cat:0008134
+        to: "had_output_entity[catalyst].other_identifier[]"
+        as: identifier
+        attrs: {description: "catalyst identifier (voc4cat:0008134) assigned in the source workbook"}
+        basis: schema-forced
+        why: >-
+          voc4cat:0008134 is 'catalyst identifier'. The schema has no slot with this term; the
+          lab identifier of the catalyst produced in this row is kept as other_identifier of the
+          CatalystSample, and it is the join key to the Character and Reaction sheets
+          (Character!C1, Reaction!N3 carry the same value).
+      - col: B
+        header: catalyst ID voc4cat:0008134
+        to: "^is_about_entity[cat_{key}]"
+        as: ref
+        basis: deduced
+        why: >-
+          All three sheets describe this catalyst (same catalyst ID), so the dataset is about it.
+      - col: C
+        header: nominal composition
+        to: "nominal_composition[]"
+        as: text
+        basis: direct
+        why: Header is the slot name nominal_composition (Synthesis).
+      - col: C
+        header: nominal composition
+        to: ["had_output_entity[catalyst].title", "^is_about_entity[cat_{key}].title"]
+        as: text
+        basis: deduced
+        why: >-
+          The nominal composition in this row describes the catalyst produced in this row;
+          used as its display title.
+      - col: D
+        header: metal loading voc4cat:0008106
+        to: "had_output_entity[catalyst].has_quantitative_attribute[]"
+        as: quantity
+        kind: MassFraction
+        attrs:
+          title: metal loading
+          rdf_type: {id: "voc4cat:0008106", title: metal loading}
+        basis: schema-forced
+        why: >-
+          voc4cat:0008106 'metal loading' is defined as the weight percentage of active metal
+          relative to the total supported-catalyst mass, i.e. a property of the catalyst. The
+          schema has no metal-loading slot, so it is a generic QuantitativeAttribute of the
+          CatalystSample, typed with the voc4cat term via rdf_type.
+        flag: >-
+          Is the metal loading (5 wt.%) the nominal value or a measured one? It agrees with the
+          precursor masses (100.9 mg Pt(NH3)4(NO3)2 on 957.9 mg Al2O3 gives 5.0 wt.% Pt), which
+          suggests nominal. A measured value would belong in catalyst_measured_properties.
+      - col: E
+        header: storage conditions (voc4cat:0008105)
+        to: "storage_conditions[]"
+        as: text
+        basis: direct
+        why: voc4cat:0008105 is the slot_uri of storage_conditions (Synthesis).
+      - col: F
+        header: catalyst support VOC4CAT:0008104
+        to: "catalyst_support[]"
+        as: text
+        basis: direct
+        why: voc4cat:0008104 is the slot_uri of catalyst_support (Synthesis).
+      - col: F
+        header: catalyst support VOC4CAT:0008104
+        to: "had_input_entity[support].title"
+        as: text
+        basis: deduced
+        why: >-
+          The support has its own quantity (column H) and InChI (column G), so it is an input
+          material of the impregnation. catalyst_support is a plain string slot and cannot hold
+          either; had_input_entity is the only slot for input materials (see column H).
+      - col: G
+        header: support Inchi
+        to: "had_input_entity[support].has_qualitative_attribute[]"
+        as: qualitative
+        attrs:
+          title: InChI
+          rdf_type: {id: "CHEMINF:000113", title: InChI descriptor}
+        basis: schema-forced
+        why: >-
+          Precursor (a MaterialSample) has no inchi slot; the InChI is attached as a generic
+          QualitativeAttribute typed CHEMINF:000113, the class_uri of the schema's InChi class.
+      - col: H
+        header: catalyst support quantity
+        to: "had_input_entity[support].precursor_quantity[]"
+        as: quantity
+        kind: Mass
+        basis: schema-forced
+        why: >-
+          The schema has no slot for the amount of support. Synthesis.had_input_entity accepts
+          only Precursor, whose precursor_quantity is a Mass, so the support is listed as an
+          input entity of class Precursor. voc4cat defines precursor as a starting material
+          transformed during the synthesis of a catalyst, which covers an impregnated support.
+      - col: I
+        header: Solvent VOC4CAT:0007246
+        to: "solvent[solvent].title"
+        as: text
+        basis: direct
+        why: voc4cat:0007246 is the slot_uri of solvent (Synthesis; range ChemicalEntity).
+      - col: J
+        header: solvent Inchi
+        to: "solvent[solvent].inchi[]"
+        as: qualitative
+        basis: direct
+        why: ChemicalEntity has an inchi slot (range InChi).
+      - col: K
+        header: Precursor 1 VOC4CAT:0007794
+        to: "had_input_entity[precursor_1].title"
+        as: text
+        basis: direct
+        why: voc4cat:0007794 is the class_uri of Precursor, the range of had_input_entity.
+      - col: L
+        header: Precursor 1 Inchi
+        to: "had_input_entity[precursor_1].has_qualitative_attribute[]"
+        as: qualitative
+        attrs:
+          title: InChI
+          rdf_type: {id: "CHEMINF:000113", title: InChI descriptor}
+        basis: schema-forced
+        why: Same as column G (Precursor has no inchi slot).
+      - col: M
+        header: precursor quantity 1 VOC4CAT:0008118
+        to: "had_input_entity[precursor_1].precursor_quantity[]"
+        as: quantity
+        kind: Mass
+        basis: direct
+        why: voc4cat:0008118 is the slot_uri of precursor_quantity (Precursor).
+      - col: N
+        header: Precursor 2 VOC4CAT:0007794
+        to: "had_input_entity[precursor_2].title"
+        as: text
+        basis: direct
+        why: As column K. Empty in this workbook; the item is only created when filled.
+      - col: O
+        header: precursor quantity 2 VOC4CAT:0008118
+        to: "had_input_entity[precursor_2].precursor_quantity[]"
+        as: quantity
+        kind: Mass
+        basis: direct
+        why: As column M. Empty in this workbook.
+      - col: P
+        header: PreparationMethod VOC4CAT:0007016
+        to: realized_plan.plan_designator
+        as: enum
+        values: {Impregnation: "voc4cat:0007028"}
+        basis: deduced
+        why: >-
+          voc4cat:0007016 is the class_uri of the abstract PreparationMethod. The value
+          'Impregnation' names its subclass Impregnation (class_uri voc4cat:0007028, voc4cat
+          'impregnation'), which the plan declares with plan_designator so that its
+          impregnation, drying and calcination slots can be used.
+      - col: P
+        header: PreparationMethod VOC4CAT:0007016
+        to: realized_plan.title
+        as: text
+        basis: direct
+        why: The preparation method name is used as the title of the realized plan.
+      - col: Q
+        header: impregnation type VOC4CAT:0008119
+        to: "realized_plan.impregnation_type[]"
+        as: enum
+        values: {"incipient wetness impregnation (voc4cat:0007806)": incipient_wetness}
+        basis: direct
+        why: >-
+          voc4cat:0008119 is the slot_uri of impregnation_type. The cell names voc4cat:0007806
+          'incipient wetness impregnation', which is the permissible value incipient_wetness of
+          ImpregnationTypeEnum (the enum value has no `meaning` yet).
+      - col: R
+        header: impregnation temperature VOC4CAT:0008121
+        to: "realized_plan.impregnation_temperature[]"
+        as: quantity
+        kind: Temperature
+        basis: direct
+        why: voc4cat:0008121 is the slot_uri of impregnation_temperature (Impregnation).
+      - col: S
+        header: drying device VOC4CAT:0008122
+        to: "realized_plan.drying_device[]"
+        as: text
+        basis: direct
+        why: voc4cat:0008122 is the slot_uri of drying_device (DryingMixin, used by Impregnation).
+      - col: T
+        header: drying duration VOC4CAT:0008206
+        to: realized_plan.has_drying_duration
+        as: quantity
+        kind: Time
+        fallback: {to: realized_plan.description, label: "drying duration (as given)"}
+        basis: direct
+        why: >-
+          voc4cat:0008206 is the slot_uri of has_drying_duration. A Duration needs a number;
+          the text 'over night' is kept verbatim in the plan description instead.
+        flag: Drying duration is 'over night' with no unit. Please give a number of hours.
+      - col: U
+        header: drying atmosphere VOC4CAT:0008208
+        to: "realized_plan.has_drying_atmosphere[]"
+        as: qualitative
+        basis: direct
+        why: voc4cat:0008208 is the slot_uri of has_drying_atmosphere (DryingMixin).
+      - col: V
+        header: drying temperature VOC4CAT:0008207
+        to: "realized_plan.has_drying_temperature[]"
+        as: quantity
+        kind: Temperature
+        basis: direct
+        why: voc4cat:0008207 is the slot_uri of has_drying_temperature (DryingMixin).
+      - col: W
+        header: calcination atmosphere SIO:000008
+        to: "realized_plan.has_calcination_atmosphere[]"
+        as: qualitative
+        basis: direct
+        why: >-
+          Label names has_calcination_atmosphere (CalcinationMixin). SIO:000008 is its slot_uri,
+          but also that of many other slots, so the label decides.
+        flag: >-
+          Calcination is listed under 5 % H2/N2, a reducing gas. Please confirm the step was a
+          calcination and not a reduction (the schema's Impregnation has no reduction step).
+      - col: X
+        header: calcination device
+        to: "carried_out_by[calcination_device].title"
+        as: text
+        attrs: {description: "device used for the calcination step (column 'calcination device')"}
+        basis: deduced
+        why: >-
+          No calcination-device slot exists. Synthesis.carried_out_by takes the equipment used
+          in the preparation (its description names furnaces), so the tube furnace is a Device
+          there; its role is kept in the description.
+      - col: Y
+        header: calcination heating rate VOC4CAT:0008116
+        to: "realized_plan.has_calcination_heating_rate[]"
+        as: quantity
+        kind: TemperaturePerTime
+        basis: direct
+        why: voc4cat:0008116 is the slot_uri of has_calcination_heating_rate (CalcinationMixin).
+      - col: Z
+        header: calcination gas flow rate VOC4CAT:0000056
+        to: "realized_plan.has_calcination_gas_flow_rate[]"
+        as: quantity
+        kind: VolumeFlowRate
+        basis: direct
+        why: voc4cat:0000056 is the slot_uri of has_calcination_gas_flow_rate (CalcinationMixin).
+        flag: >-
+          'nl/h' is read as normal litres per hour. Please confirm and state the reference
+          conditions (e.g. 0 degC and 1.01325 bar); QUDT has no normal-litre unit.
+      - col: AA
+        header: calcination dwelling time VOC4CAT:0000060
+        to: realized_plan.has_calcination_dwelling_time
+        as: quantity
+        kind: Time
+        basis: direct
+        why: voc4cat:0000060 is the slot_uri of has_calcination_dwelling_time (CalcinationMixin).
+      - col: AB
+        header: calcination final temperature voc4cat:0000058
+        to: "realized_plan.has_calcination_temperature_range[]"
+        as: range_max
+        kind: Temperature
+        attrs: {description: "final calcination temperature (voc4cat:0000058); initial temperature not stated"}
+        basis: deduced
+        why: >-
+          voc4cat:0000058 'calcination final temperature' has no slot of its own: the schema
+          collapses initial and final calcination temperature into
+          has_calcination_temperature_range ("initial -> final"), so the final temperature is
+          the max_value. min_value stays empty.
+        flag: Initial temperature of the calcination programme is not given.
+
+  # ------------------------------------------------------------------ Character
+  Character:
+    layout: key_value      # one record per sheet: label | term | value
+    label_column: A
+    term_column: B
+    value_column: C
+    key_row: 1             # catalyst ID
+    record:
+      class: Characterization
+      list: was_generated_by
+      id: "CHAR_{key}_PXRD"
+      set: {activity_designator: Characterization}
+    ids:
+      "evaluated_entity[catalyst]": "CAT_{key}"
+      "carried_out_by[instrument]": "DEV_{key}_PXRD"
+    rows:
+      - row: 1
+        label: catalyst ID
+        to: "evaluated_entity[catalyst]"
+        as: ref
+        basis: direct
+        why: >-
+          voc4cat:0008134 'catalyst identifier'; same value as Synthesis!B3, so the
+          characterized sample is the catalyst produced there (same IRI).
+      - row: 2
+        label: sample state
+        to: "sample_state[]"
+        as: enum
+        values: {solid: solid}
+        basis: direct
+        why: Term coremeta4cat:sample_state is the slot; 'solid' is a SampleStateEnum value.
+      - row: 3
+        label: sample description
+        to: "sample_description[]"
+        as: text
+        basis: direct
+        why: Term coremeta4cat:sample_description is the slot.
+      - row: 4
+        label: sample preparation
+        to: "sample_preparation[]"
+        as: text
+        basis: direct
+        why: Term allotrope.quality:0001159 is the slot_uri of sample_preparation.
+      - row: 5
+        label: has sample pretreatment
+        to: "has_sample_pretreatment[]"
+        as: qualitative
+        basis: direct
+        why: Label is the slot name has_sample_pretreatment (range SamplePretreatment).
+      - row: 6
+        label: SamplePretreatment
+        confirm: 5
+        why: Class row naming the range of row 5 (voc4cat:0000122); repeats its value.
+      - row: 7
+        label: realized plan
+        structural: Slot name realized_plan; introduces the protocol block (rows 8-24), no value.
+      - row: 8
+        label: CharacterizationTechnique
+        to: realized_plan.plan_designator
+        as: enum
+        values: {Powder XRD: "CHMO:0000158"}
+        basis: deduced
+        why: >-
+          OBI:0000272 is the class_uri of the abstract CharacterizationTechnique; the value
+          'Powder XRD' and the next row (PowderXRD, CHMO:0000158) name the subclass PowderXRD,
+          declared with plan_designator so that its slots (rows 10-24) can be used.
+      - row: 8
+        label: CharacterizationTechnique
+        to: rdf_type
+        as: enum
+        values: {Powder XRD: {id: "CHMO:0000158", title: powder X-ray diffraction}}
+        basis: deduced
+        why: >-
+          Characterization.rdf_type takes the technique as an ontology term (its slot_usage
+          gives CHMO:0000158 for powder XRD), following DCAT-AP-PLUS pattern 3.
+      - row: 9
+        label: PowderXRD
+        structural: >-
+          Class row naming the subclass; no value. The parser checks that its term is
+          CHMO:0000158, the designator taken from row 8.
+        expect_term: "CHMO:0000158"
+      - row: 10
+        label: has two theta range
+        to: "realized_plan.has_two_theta_range[]"
+        as: range
+        kind: PlaneAngle
+        unit: DEG
+        unit_note: >-
+          No unit given. 2theta cannot exceed 180 degrees (pi rad), so an upper bound of 90 is
+          only possible in degrees.
+        basis: direct
+        why: Term coremeta4cat:hasTwoThetaRange is the slot_uri of has_two_theta_range.
+        flag: Please add the unit of the 2theta range (assumed degree).
+      - row: 11
+        label: title
+        to: realized_plan.title
+        as: text
+        basis: deduced
+        why: >-
+          Rows 10-24 sit in the PowderXRD block and repeat the slot list of the PowderXRD class
+          page, where title, description and id are the protocol's own (inherited from Plan
+          and CatalysisPlan). Mapped to the PowderXRD protocol accordingly.
+        flag: >-
+          Rows 11, 12 and 22 (title 'PXRD of catalyst', description 'PXRD of JLCAT03', id
+          'JLCAT-PXRD-03') were read as title, description and id of the PowderXRD protocol,
+          because that is the block they are in. They read like the title, description and ID
+          of the measurement itself (the Characterization activity). Which one is meant?
+      - row: 12
+        label: description
+        to: realized_plan.description
+        as: text
+        basis: deduced
+        why: As row 11.
+      - row: 13
+        label: step size
+        to: "realized_plan.step_size[]"
+        as: number
+        basis: direct
+        why: Term allotrope.result:0000950 is the slot_uri of step_size (a unitless float).
+        flag: Unit of the step size is not given (degree 2theta assumed by readers, not recorded).
+      - row: 15
+        label: OperationMode
+        to: "realized_plan.has_operation_mode[]"
+        as: qualitative
+        basis: direct
+        why: >-
+          voc4cat:0000108 is the class_uri of OperationMode, the range of has_operation_mode
+          (PowderXRD). Here the class row itself carries the value.
+      - row: 17
+        label: Atmosphere
+        to: "realized_plan.has_atmosphere[]"
+        as: qualitative
+        basis: direct
+        why: >-
+          coremeta4cat:Atmosphere is the class_uri of Atmosphere, the range of has_atmosphere
+          (PowderXRD). The class row carries the value.
+      - row: 18
+        label: sample spinning speed
+        to: "realized_plan.sample_spinning_speed[]"
+        as: quantity
+        kind: AngularVelocity
+        basis: direct
+        why: Term coremeta4cat:sample_spinning_speed is the slot (range AngularVelocity).
+        flag: Unit of the sample spinning speed (30) is not given.
+      - row: 19
+        label: AngularVelocity
+        structural: Class row naming the range of row 18 (qudt:Quantity); no value.
+      - row: 20
+        label: has experiment duration
+        to: realized_plan.has_experiment_duration
+        as: quantity
+        kind: Time
+        basis: direct
+        why: >-
+          Label is the slot name has_experiment_duration (PowderXRD). The term SIO:000008 given
+          is not this slot's slot_uri (voc4cat:0000111); the label decides.
+        flag: Unit of the experiment duration (80) is not given.
+      - row: 21
+        label: Duration
+        confirm: 20
+        why: Class row naming the range of row 20; repeats its value.
+      - row: 22
+        label: id
+        to: realized_plan.id
+        as: id
+        basis: deduced
+        why: As row 11 (inside the PowderXRD block, so the protocol's id).
+      - row: 23
+        label: xray source
+        to: "realized_plan.xray_source[]"
+        as: text
+        basis: direct
+        why: Term OBI:0001138 is the slot_uri of xray_source (XRaySourceMixin).
+      - row: 24
+        label: monochromator
+        to: "realized_plan.monochromator[]"
+        as: text
+        basis: direct
+        why: Term CHMO:0002120 is the slot_uri of monochromator (XRaySourceMixin).
+
+  # ------------------------------------------------------------------ Reaction
+  Reaction:
+    layout: table
+    header_row: 1
+    unit_row: 2
+    first_data_row: 3
+    key_column: A          # test ID
+    record:
+      class: CatalyticReaction
+      list: is_about_activity
+      id: "REAC_{key}"
+    ids:
+      "used_catalyst[catalyst]": "CAT_{slug:N}"
+      "used_starting_material[sm]": "SM_{key}_{slug:K}"
+      "used_starting_material[sm].composed_of[chem]": "CHEM_{slug:K}"
+      "used_solvent[solvent]": "SOLV_{key}_{slug:O}"
+      "used_solvent[solvent].composed_of[chem]": "CHEM_{slug:O}"
+      "used_reactor[reactor]": "DEV_{slug:S}"
+      "product_identification_method[method]": "REAC_{key}_product_id"
+      "generated_product[p1]": "PROD_{key}_{slug:AA}"
+      "generated_product[p1].composed_of[chem]": "CHEM_{slug:AA}"
+      "generated_product[p2]": "PROD_{key}_{slug:AD}"
+      "generated_product[p2].composed_of[chem]": "CHEM_{slug:AD}"
+    columns:
+      - col: A
+        header: test ID
+        to: "other_identifier[]"
+        as: identifier
+        attrs: {description: "test identifier assigned in the source workbook"}
+        basis: direct
+        why: Lab identifier of the catalytic test; kept as other_identifier of the reaction.
+      - col: B
+        header: catalyst mass (voc4cat:0008141)
+        to: "catalyst_mass[]"
+        as: quantity
+        kind: Mass
+        basis: direct
+        why: voc4cat:0008141 is the slot_uri of catalyst_mass (CatalyticReaction).
+      - col: C
+        header: catalyst type (voc4cat:0007014)
+        to: "catalyst_type[]"
+        as: enum
+        values: {heterogeneous: heterogeneous_catalysis}
+        basis: direct
+        why: >-
+          voc4cat:0007014 is the slot_uri of catalyst_type; 'heterogeneous' is the
+          CatalysisResearchFieldEnum value heterogeneous_catalysis (voc4cat:0007001).
+      - col: C
+        header: catalyst type (voc4cat:0007014)
+        to: "^rdf_type"
+        as: enum
+        values: {heterogeneous: {id: "voc4cat:0007001", title: heterogeneous catalysis}}
+        basis: deduced
+        why: >-
+          The dataset's research field (CatalysisDataset.rdf_type, CatalysisResearchFieldEnum)
+          follows from the catalytic regime of its only reaction.
+      - col: D
+        header: catalyst form (voc4cat:0000016)
+        to: "catalyst_form[]"
+        as: enum
+        values: {powder: powdered}
+        basis: direct
+        why: >-
+          voc4cat:0000016 is the slot_uri of catalyst_form; 'powder' is the CatalystFormEnum
+          value powdered (voc4cat:0000017 'powdered catalyst').
+      - col: E
+        header: reaction name (voc4cat:0007009)
+        to: "reaction_name[]"
+        as: text
+        basis: direct
+        why: voc4cat:0007009 is the slot_uri of reaction_name.
+      - col: F
+        header: reactor temperature range (voc4cat:0007032)
+        to: "reactor_temperature_range[]"
+        as: range
+        kind: Temperature
+        basis: direct
+        why: >-
+          voc4cat:0007032 is the slot_uri of reactor_temperature_range; '50-100' is split
+          into min_value and max_value.
+      - col: G
+        header: atmosphere (voc4cat:0007809)
+        to: "has_atmosphere[]"
+        as: qualitative
+        basis: direct
+        why: voc4cat:0007809 is the slot_uri of has_atmosphere (CatalyticReaction).
+      - col: H
+        header: experiment pressure (voc4cat:0000118)
+        to: "experiment_pressure[]"
+        as: quantity
+        kind: Pressure
+        basis: direct
+        why: voc4cat:0000118 is the slot_uri of experiment_pressure.
+      - col: I
+        header: experiment duration (voc4cat:0000111)
+        to: has_experiment_duration
+        as: quantity
+        kind: Time
+        basis: direct
+        why: voc4cat:0000111 is the slot_uri of has_experiment_duration.
+      - col: J
+        header: Product identification method (voc4cat:0000129)
+        to: product_identification_method[method].title
+        as: text
+        basis: direct
+        why: voc4cat:0000129 is the slot_uri of product_identification_method.
+      - col: J
+        header: Product identification method (voc4cat:0000129)
+        to: product_identification_method[method].rdf_type
+        as: enum
+        values: {GCMS: {id: "CHMO:0000497", title: gas chromatography-mass spectrometry}}
+        basis: schema-forced
+        why: >-
+          'GCMS' is the schema's GCMS class (class_uri CHMO:0000497), but it is a
+          CharacterizationTechnique, and product_identification_method only accepts
+          ProductIdentificationMethod, whose plan_designator allows nothing else. The technique
+          is therefore given as rdf_type.
+      - col: K
+        header: starting material (PROCO:0000029)
+        to: ["used_starting_material[sm].title", "used_starting_material[sm].composed_of[chem].title"]
+        as: text
+        basis: direct
+        why: >-
+          PROCO:0000029 is the class_uri of StartingMaterial, the range of
+          used_starting_material. The substance named is also its constituent ChemicalEntity,
+          which carries the InChI (column L).
+      - col: L
+        header: starting material (InChi)
+        to: "used_starting_material[sm].composed_of[chem].inchi[]"
+        as: qualitative
+        basis: direct
+        why: >-
+          StartingMaterial has no inchi slot of its own; its chemical identity is given by
+          composed_of -> ChemicalEntity, which has inchi.
+      - col: M
+        header: starting material volume SIO:000008
+        to: "used_starting_material[sm].has_volume[]"
+        as: quantity
+        kind: Volume
+        basis: direct
+        why: Label names has_volume (StartingMaterial); SIO:000008 is its slot_uri.
+      - col: N
+        header: catalyst ID voc4cat:0008134
+        to: "used_catalyst[catalyst]"
+        as: ref
+        basis: direct
+        why: >-
+          Same catalyst ID as Synthesis!B3, so the catalyst used is the one produced there
+          (same IRI).
+      - col: O
+        header: Solvent VOC4CAT:0007246
+        to: ["used_solvent[solvent].title", "used_solvent[solvent].composed_of[chem].title"]
+        as: text
+        basis: direct
+        why: >-
+          voc4cat:0007246 is an exact mapping of DissolvingSubstance, the range of used_solvent.
+          The InChI goes to the constituent ChemicalEntity, as in column K.
+      - col: P
+        header: solvent Inchi
+        to: "used_solvent[solvent].composed_of[chem].inchi[]"
+        as: qualitative
+        basis: direct
+        why: As column L.
+      - col: Q
+        header: Solvent volume (SIO:000008)
+        to: "used_solvent[solvent].has_volume[]"
+        as: quantity
+        kind: Volume
+        basis: direct
+        why: Label names has_volume (DissolvingSubstance); SIO:000008 is its slot_uri.
+      - col: R
+        header: Reactor (AFE:0000153)
+        to: used_reactor[reactor].reactor_designator
+        as: enum
+        values: {"Autoclave (NCIT:C93052)": "NCIT:C93052"}
+        basis: direct
+        why: >-
+          AFE:0000153 is the class_uri of Reactor; the value names NCIT:C93052, the class_uri
+          of the subclass Autoclave, declared with reactor_designator so that its slots
+          (columns U-Y) can be used.
+      - col: R
+        header: Reactor (AFE:0000153)
+        to: used_reactor[reactor].title
+        as: text
+        strip_curie: true
+        basis: direct
+        why: Reactor name without the term in brackets.
+      - col: S
+        header: device ID (AFR_0002018)
+        to: "used_reactor[reactor].other_identifier[]"
+        as: identifier
+        attrs: {description: "device identifier (AFR_0002018) assigned in the source workbook"}
+        basis: direct
+        why: >-
+          AFR_0002018 is the Allotrope term 'device identifier'; kept as other_identifier of
+          the reactor and used in its IRI.
+      - col: T
+        header: operation mode (voc4cat:0000108)
+        to: "used_reactor[reactor].has_qualitative_attribute[]"
+        as: qualitative
+        attrs:
+          title: operation mode
+          rdf_type: {id: "voc4cat:0000108", title: operation mode}
+        basis: schema-forced
+        why: >-
+          voc4cat:0000108 'operation mode' is how reactants enter and products leave the
+          reaction chamber (batch, continuous flow). Neither CatalyticReaction nor Autoclave
+          has an operation-mode slot (has_operation_mode is only on characterization
+          techniques), so it is a generic QualitativeAttribute of the reactor, typed with the
+          voc4cat term. The column sits among the reactor columns (R-Y).
+      - col: U
+        header: stirrer type (voc4cat:0008113)
+        to: "used_reactor[reactor].reactor_stirrer_type[]"
+        as: text
+        basis: direct
+        why: >-
+          voc4cat:0008113 is the slot_uri of both stirrer_type (synthesis) and
+          reactor_stirrer_type (Autoclave); this is the reactor's.
+      - col: V
+        header: stirring rate (voc4cat:0008114)
+        to: "used_reactor[reactor].stirring_rate[]"
+        as: quantity
+        kind: AngularVelocity
+        basis: direct
+        why: >-
+          voc4cat:0008114 is the slot_uri of stirring_rate (Autoclave) and of has_stirring_speed
+          (synthesis); this is the reactor's.
+      - col: W
+        header: stirrer diameter (voc4cat:0008115)
+        to: "used_reactor[reactor].stirrer_diameter[]"
+        as: quantity
+        kind: Length
+        basis: direct
+        why: voc4cat:0008115 is the slot_uri of stirrer_diameter (Autoclave).
+      - col: X
+        header: reaction chamber volume (voc4cat:0000153)
+        to: "used_reactor[reactor].reactor_working_volume[]"
+        as: quantity
+        kind: Volume
+        basis: direct
+        why: voc4cat:0000153 is the slot_uri of reactor_working_volume (Autoclave).
+        flag: >-
+          voc4cat:0000153 counts connected pipes and valves in the chamber volume, the schema
+          slot excludes them. Which does the 10 mL refer to?
+      - col: Y
+        header: reaction chamber shape (voc4cat:0000155)
+        to: "used_reactor[reactor].reaction_chamber_shape[]"
+        as: text
+        basis: direct
+        why: voc4cat:0000155 is the slot_uri of reaction_chamber_shape (Autoclave).
+      - col: Z
+        header: reaction temperature (voc4cat:0007013)
+        to: "has_temperature[]"
+        as: quantity
+        kind: Temperature
+        unit: DEG_C
+        unit_note: >-
+          No unit given. The reactor temperature range of the same test (column F) is 50-100
+          degC; 100 is consistent with it only in degC (100 K or 100 degF would lie outside).
+        basis: direct
+        why: >-
+          voc4cat:0007013 'reaction temperature' has no slot of its own;
+          ChemicalReaction.has_temperature is "the Temperature at which a ChemicalReaction
+          takes place".
+        flag: Please add the unit of the reaction temperature (assumed degC).
+      - col: AA
+        header: generated product 1 RO:0004008
+        to: ["generated_product[p1].title", "generated_product[p1].composed_of[chem].title"]
+        as: text
+        basis: direct
+        why: RO:0004008 is the slot_uri of generated_product (range ChemicalProduct).
+      - col: AB
+        header: generated product 1 InChi
+        to: "generated_product[p1].composed_of[chem].inchi[]"
+        as: qualitative
+        basis: direct
+        why: As column L.
+      - col: AC
+        header: generated product 1 yeild (SIO:000008)
+        to: "has_yield[]"
+        as: quantity
+        kind: Dimensionless
+        describe: "yield of generated product 1 ({raw:AA})"
+        basis: direct
+        why: >-
+          Label names has_yield (CatalyticReaction; SIO:000008 is its slot_uri). The schema
+          cannot link a yield to a product, so the product is named in the description.
+      - col: AD
+        header: generated product 2 RO:0004008
+        to: ["generated_product[p2].title", "generated_product[p2].composed_of[chem].title"]
+        as: text
+        basis: direct
+        why: As column AA.
+      - col: AE
+        header: generated product 2 InChi
+        to: "generated_product[p2].composed_of[chem].inchi[]"
+        as: qualitative
+        basis: direct
+        why: As column L.
+      - col: AF
+        header: generated product 2 yeild (SIO:000008)
+        to: "has_yield[]"
+        as: quantity
+        kind: Dimensionless
+        unit: PERCENT
+        unit_note: >-
+          No unit given. Same quantity as column AC, whose unit is %; a value of 22 also rules
+          out a fraction (which would be at most 1).
+        describe: "yield of generated product 2 ({raw:AD})"
+        basis: direct
+        why: As column AC.
+        flag: Please add the unit of the second yield (assumed %).

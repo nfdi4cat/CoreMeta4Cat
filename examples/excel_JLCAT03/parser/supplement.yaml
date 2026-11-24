@@ -1,0 +1,49 @@
+# Supplement: everything the record needs that is NOT in the workbook.
+#
+# Read by xlsx_to_coremeta4cat.py together with crosswalk.yaml. Each entry says where its
+# value comes from (`source`) and why it is needed (`why`). Entries marked `placeholder: true` fill
+# a field the schema requires but the source does not give; they state the absence instead of
+# inventing a value. Run the parser with --no-placeholders to see what validation reports without
+# them (the list of dead ends).
+
+dataset:
+  - to: id
+    value: "coremeta4cat:DS_excel_JLCAT03"
+    source: curator
+    why: >-
+      Required. The dataset has no persistent identifier yet; minted from the catalyst ID, following
+      the coremeta4cat:DS_... pattern of the other example datasets without a PID.
+  - to: "title[]"
+    value: "Pt/Al2O3 catalyst JLCAT03: incipient wetness impregnation, powder XRD and styrene epoxidation"
+    source: curator
+    why: >-
+      Required. Not given by the data provider; composed only from workbook values
+      (Synthesis!C3, B3, Q3; Character!C8; Reaction!K3, E3).
+  - to: "description[]"
+    value: >-
+      The example involves the synthesis of an alumina-supported Pt catalyst via incipient wetness
+      impregnation, its characterization using powder X-ray diffraction (PXRD), and its subsequent
+      application in the epoxidation of styrene in an autoclave under an O₂ atmosphere.
+    source: data provider's accompanying text (source/provider_note.md), verbatim
+    why: Required.
+
+records:
+  Synthesis:
+    - to: "catalyst_measured_properties[]"
+      value: "No measured properties of the catalyst are given in the source workbook."
+      placeholder: true
+      source: curator
+      why: >-
+        Required by Synthesis. The workbook has no measured property (metal loading is
+        apparently nominal, the PXRD sheet gives settings but no result).
+  Character:
+    - to: "carried_out_by[instrument]"
+      value:
+        title: X-ray diffractometer
+        description: Instrument not specified in the source workbook.
+      placeholder: true
+      source: curator
+      why: >-
+        Required by Characterization. A powder XRD measurement implies a diffractometer, but the
+        workbook does not name it; same wording as for the unnamed diffractometer in the
+        32x1-99x6 record.

@@ -1,0 +1,482 @@
+{
+  "id": "coremeta4cat:DS_excel_JLCAT03",
+  "description": [
+    "The example involves the synthesis of an alumina-supported Pt catalyst via incipient wetness impregnation, its characterization using powder X-ray diffraction (PXRD), and its subsequent application in the epoxidation of styrene in an autoclave under an O₂ atmosphere."
+  ],
+  "title": [
+    "Pt/Al2O3 catalyst JLCAT03: incipient wetness impregnation, powder XRD and styrene epoxidation"
+  ],
+  "was_generated_by": [
+    {
+      "id": "coremeta4cat:SYN_JLCAT03",
+      "had_input_entity": [
+        {
+          "id": "coremeta4cat:PREC_JLCAT03_support",
+          "title": "Al2O3",
+          "has_qualitative_attribute": [
+            {
+              "value": "InChI=1S/2Al.3O/q2*+3;3*-2",
+              "title": "InChI",
+              "rdf_type": {
+                "id": "CHEMINF:000113",
+                "title": "InChI descriptor"
+              }
+            }
+          ],
+          "precursor_quantity": [
+            {
+              "value": 957.9,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
+              "unit": "https://qudt.org/vocab/unit/MilliGM"
+            }
+          ]
+        },
+        {
+          "id": "coremeta4cat:PREC_JLCAT03_1",
+          "title": "Pt(NH3)4(NO3)2",
+          "has_qualitative_attribute": [
+            {
+              "value": "InChI=1S/2NO3.4H3N.Pt/c2*2-1(3)4;;;;;/h;;4*1H3;/q2*-1;;;;;+2",
+              "title": "InChI",
+              "rdf_type": {
+                "id": "CHEMINF:000113",
+                "title": "InChI descriptor"
+              }
+            }
+          ],
+          "precursor_quantity": [
+            {
+              "value": 100.9,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
+              "unit": "https://qudt.org/vocab/unit/MilliGM"
+            }
+          ]
+        }
+      ],
+      "had_output_entity": [
+        {
+          "id": "coremeta4cat:CAT_JLCAT03",
+          "title": "Pt/Al2O3 (5 wt.%)",
+          "other_identifier": [
+            {
+              "description": "catalyst identifier (voc4cat:0008134) assigned in the source workbook",
+              "notation": "JLCAT03"
+            }
+          ],
+          "has_quantitative_attribute": [
+            {
+              "value": 5.0,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+              "title": "metal loading",
+              "unit": "https://qudt.org/vocab/unit/PERCENT",
+              "rdf_type": {
+                "id": "voc4cat:0008106",
+                "title": "metal loading"
+              }
+            }
+          ]
+        }
+      ],
+      "carried_out_by": [
+        {
+          "id": "coremeta4cat:DEV_JLCAT03_calcination",
+          "title": "tube furnace"
+        }
+      ],
+      "realized_plan": {
+        "title": "Impregnation",
+        "description": "drying duration (as given): over night",
+        "id": "coremeta4cat:SYN_JLCAT03_method",
+        "plan_designator": "voc4cat:0007028",
+        "impregnation_type": [
+          "incipient_wetness"
+        ],
+        "impregnation_temperature": [
+          {
+            "value": 25.0,
+            "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature",
+            "unit": "https://qudt.org/vocab/unit/DEG_C"
+          }
+        ],
+        "drying_device": [
+          "oven"
+        ],
+        "has_drying_temperature": [
+          {
+            "value": 70.0,
+            "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature",
+            "unit": "https://qudt.org/vocab/unit/DEG_C"
+          }
+        ],
+        "has_drying_atmosphere": [
+          {
+            "value": "air"
+          }
+        ],
+        "has_calcination_temperature_range": [
+          {
+            "description": "final calcination temperature (voc4cat:0000058); initial temperature not stated",
+            "max_value": 700.0,
+            "unit": "https://qudt.org/vocab/unit/DEG_C",
+            "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature"
+          }
+        ],
+        "has_calcination_dwelling_time": {
+          "value": 4.0,
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Time",
+          "unit": "https://qudt.org/vocab/unit/HR"
+        },
+        "has_calcination_atmosphere": [
+          {
+            "value": "5 % H2/N2"
+          }
+        ],
+        "has_calcination_heating_rate": [
+          {
+            "value": 500.0,
+            "has_quantity_type": "http://qudt.org/vocab/quantitykind/TemperaturePerTime",
+            "unit": "https://qudt.org/vocab/unit/K-PER-HR"
+          }
+        ],
+        "has_calcination_gas_flow_rate": [
+          {
+            "value": 15.0,
+            "has_quantity_type": "http://qudt.org/vocab/quantitykind/VolumeFlowRate",
+            "description": "15 nl/h as given in the workbook; there is no QUDT unit for 'nl/h'"
+          }
+        ]
+      },
+      "activity_designator": "Synthesis",
+      "nominal_composition": [
+        "Pt/Al2O3 (5 wt.%)"
+      ],
+      "catalyst_measured_properties": [
+        "No measured properties of the catalyst are given in the source workbook."
+      ],
+      "storage_conditions": [
+        "ambient"
+      ],
+      "catalyst_support": [
+        "Al2O3"
+      ],
+      "solvent": [
+        {
+          "id": "coremeta4cat:CHEM_water",
+          "title": "water",
+          "inchi": [
+            {
+              "value": "InChI=1S/H2O/h1H2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "coremeta4cat:CHAR_JLCAT03_PXRD",
+      "carried_out_by": [
+        {
+          "id": "coremeta4cat:DEV_JLCAT03_PXRD",
+          "title": "X-ray diffractometer",
+          "description": "Instrument not specified in the source workbook."
+        }
+      ],
+      "rdf_type": {
+        "id": "CHMO:0000158",
+        "title": "powder X-ray diffraction"
+      },
+      "evaluated_entity": [
+        {
+          "id": "coremeta4cat:CAT_JLCAT03"
+        }
+      ],
+      "realized_plan": {
+        "title": "PXRD of catalyst",
+        "description": "PXRD of JLCAT03",
+        "id": "coremeta4cat:JLCAT-PXRD-03",
+        "plan_designator": "CHMO:0000158",
+        "has_two_theta_range": [
+          {
+            "min_value": 2.0,
+            "max_value": 90.0,
+            "unit": "https://qudt.org/vocab/unit/DEG",
+            "has_quantity_type": "http://qudt.org/vocab/quantitykind/PlaneAngle"
+          }
+        ],
+        "step_size": [
+          0.5
+        ],
+        "has_operation_mode": [
+          {
+            "value": "transmission"
+          }
+        ],
+        "has_atmosphere": [
+          {
+            "value": "ambient"
+          }
+        ],
+        "sample_spinning_speed": [
+          {
+            "value": 30.0,
+            "has_quantity_type": "http://qudt.org/vocab/quantitykind/AngularVelocity"
+          }
+        ],
+        "has_experiment_duration": {
+          "value": 80.0,
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Time"
+        },
+        "xray_source": [
+          "Cu k alpha"
+        ],
+        "monochromator": [
+          "Ge-monochromatized"
+        ]
+      },
+      "activity_designator": "Characterization",
+      "sample_state": [
+        "solid"
+      ],
+      "sample_description": [
+        "supported catalyst"
+      ],
+      "sample_preparation": [
+        "powder attached to tape"
+      ],
+      "has_sample_pretreatment": [
+        {
+          "value": "grinding"
+        }
+      ]
+    }
+  ],
+  "is_about_entity": [
+    {
+      "id": "coremeta4cat:CAT_JLCAT03",
+      "title": "Pt/Al2O3 (5 wt.%)"
+    }
+  ],
+  "is_about_activity": [
+    {
+      "id": "coremeta4cat:REAC_JLCATTEST03",
+      "other_identifier": [
+        {
+          "description": "test identifier assigned in the source workbook",
+          "notation": "JLCATTEST03"
+        }
+      ],
+      "used_starting_material": [
+        {
+          "id": "coremeta4cat:SM_JLCATTEST03_styrene",
+          "title": "styrene",
+          "has_volume": [
+            {
+              "value": 0.5,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Volume",
+              "unit": "https://qudt.org/vocab/unit/MilliL"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CHEM_styrene",
+              "title": "styrene",
+              "inchi": [
+                {
+                  "value": "InChI=1S/C8H8/c1-2-8-6-4-3-5-7-8/h2-7H,1H2"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "generated_product": [
+        {
+          "id": "coremeta4cat:PROD_JLCATTEST03_styrene-oxide",
+          "title": "styrene oxide",
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CHEM_styrene-oxide",
+              "title": "styrene oxide",
+              "inchi": [
+                {
+                  "value": "InChI=1S/C8H8O/c1-2-4-7(5-3-1)8-6-9-8/h1-5,8H,6H2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "coremeta4cat:PROD_JLCATTEST03_benzaldehyde",
+          "title": "benzaldehyde",
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CHEM_benzaldehyde",
+              "title": "benzaldehyde",
+              "inchi": [
+                {
+                  "value": "InChI=1S/C7H6O/c8-6-7-4-2-1-3-5-7/h1-6H"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "used_catalyst": [
+        {
+          "id": "coremeta4cat:CAT_JLCAT03"
+        }
+      ],
+      "used_solvent": [
+        {
+          "id": "coremeta4cat:SOLV_JLCATTEST03_1-4-dioxane",
+          "title": "1,4 dioxane",
+          "has_volume": [
+            {
+              "value": 5.0,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Volume",
+              "unit": "https://qudt.org/vocab/unit/MilliL"
+            }
+          ],
+          "composed_of": [
+            {
+              "id": "coremeta4cat:CHEM_1-4-dioxane",
+              "title": "1,4 dioxane",
+              "inchi": [
+                {
+                  "value": "InChI=1S/C4H8O2/c1-2-6-4-3-5-1/h1-4H2"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "used_reactor": [
+        {
+          "id": "coremeta4cat:DEV_MBR01",
+          "title": "Autoclave",
+          "other_identifier": [
+            {
+              "description": "device identifier (AFR_0002018) assigned in the source workbook",
+              "notation": "MBR01"
+            }
+          ],
+          "has_qualitative_attribute": [
+            {
+              "value": "batch",
+              "title": "operation mode",
+              "rdf_type": {
+                "id": "voc4cat:0000108",
+                "title": "operation mode"
+              }
+            }
+          ],
+          "reactor_designator": "NCIT:C93052",
+          "reactor_stirrer_type": [
+            "magnetic"
+          ],
+          "stirring_rate": [
+            {
+              "value": 500.0,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/AngularVelocity",
+              "unit": "https://qudt.org/vocab/unit/REV-PER-MIN"
+            }
+          ],
+          "stirrer_diameter": [
+            {
+              "value": 10.0,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Length",
+              "unit": "https://qudt.org/vocab/unit/MilliM"
+            }
+          ],
+          "reactor_working_volume": [
+            {
+              "value": 10.0,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Volume",
+              "unit": "https://qudt.org/vocab/unit/MilliL"
+            }
+          ],
+          "reaction_chamber_shape": [
+            "cylinder"
+          ]
+        }
+      ],
+      "has_temperature": [
+        {
+          "value": 100.0,
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature",
+          "unit": "https://qudt.org/vocab/unit/DEG_C"
+        }
+      ],
+      "has_yield": [
+        {
+          "value": 20.0,
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Dimensionless",
+          "description": "yield of generated product 1 (styrene oxide)",
+          "unit": "https://qudt.org/vocab/unit/PERCENT"
+        },
+        {
+          "value": 22.0,
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Dimensionless",
+          "description": "yield of generated product 2 (benzaldehyde)",
+          "unit": "https://qudt.org/vocab/unit/PERCENT"
+        }
+      ],
+      "catalyst_mass": [
+        {
+          "value": 10.0,
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
+          "unit": "https://qudt.org/vocab/unit/MilliGM"
+        }
+      ],
+      "catalyst_type": [
+        "heterogeneous_catalysis"
+      ],
+      "catalyst_form": [
+        "powdered"
+      ],
+      "reaction_name": [
+        "epoxidation"
+      ],
+      "reactor_temperature_range": [
+        {
+          "min_value": 50.0,
+          "max_value": 100.0,
+          "unit": "https://qudt.org/vocab/unit/DEG_C",
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature"
+        }
+      ],
+      "has_atmosphere": [
+        {
+          "value": "Oxygen"
+        }
+      ],
+      "experiment_pressure": [
+        {
+          "value": 1.0,
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Pressure",
+          "unit": "https://qudt.org/vocab/unit/BAR"
+        }
+      ],
+      "has_experiment_duration": {
+        "value": 12.0,
+        "has_quantity_type": "http://qudt.org/vocab/quantitykind/Time",
+        "unit": "https://qudt.org/vocab/unit/HR"
+      },
+      "product_identification_method": [
+        {
+          "title": "GCMS",
+          "rdf_type": {
+            "id": "CHMO:0000497",
+            "title": "gas chromatography-mass spectrometry"
+          },
+          "id": "coremeta4cat:REAC_JLCATTEST03_product_id",
+          "plan_designator": "OBI:0000272"
+        }
+      ]
+    }
+  ],
+  "rdf_type": {
+    "id": "voc4cat:0007001",
+    "title": "heterogeneous catalysis"
+  },
+  "@type": "CatalysisDataset"
+}
