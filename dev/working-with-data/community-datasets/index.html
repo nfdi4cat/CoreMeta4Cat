@@ -1209,7 +1209,7 @@
 
 
 <h1 id="community-datasets">Community datasets</h1>
-<p>This page shows six <strong>complete, real</strong> metadata records, built for datasets that are published
+<p>This page shows six <strong>real</strong> metadata records, built for datasets that are published
 on <a href="https://repository.nfdi4cat.org">repository.nfdi4cat.org</a>, NFDI4Cat's data repository
 ("Repo4Cat"). Nothing here is a schema reference. Each record shows what a finished CoreMeta4Cat
 description looks like once real data goes into it, so you have something concrete to compare
@@ -1250,15 +1250,15 @@ offers its record for download as YAML, JSON and RDF. If you find an error in a 
 <td>2</td>
 <td><a href="#32x1-99x6">P-modified Pd catalysts for selective hydrogenation</a></td>
 <td>heterogeneous catalysis</td>
-<td>5 characterizations, 4 reactions</td>
-<td>deposit</td>
+<td>2 syntheses, 5 characterizations, 4 reactions</td>
+<td>deposit + article</td>
 </tr>
 <tr>
 <td>3</td>
 <td><a href="#arp5-s69r">Palladium phosphide catalysts for carbonylation</a></td>
 <td>heterogeneous catalysis</td>
-<td>5 characterizations, 3 reactions</td>
-<td>deposit</td>
+<td>2 syntheses, 5 characterizations, 3 reactions</td>
+<td>deposit + article</td>
 </tr>
 <tr>
 <td>4</td>
@@ -1310,12 +1310,12 @@ reactor by its reactor type. The table lists the terms each record uses; the
 <tr>
 <td>2</td>
 <td>heterogeneous catalysis (<code>voc4cat:0007001</code>) · hydrogenation (<code>voc4cat:0000260</code>)</td>
-<td>BET analysis (<code>enm:0000064</code>), DRIFTS (<code>CHMO:0000645</code>), ICP-AES (<code>CHMO:0000267</code>), infrared spectroscopy (<code>CHMO:0000630</code>), powder XRD (<code>CHMO:0000158</code>)</td>
+<td>impregnation (<code>voc4cat:0007028</code>), BET analysis (<code>enm:0000064</code>), DRIFTS (<code>CHMO:0000645</code>), ICP-AES (<code>CHMO:0000267</code>), infrared spectroscopy (<code>CHMO:0000630</code>), powder XRD (<code>CHMO:0000158</code>)</td>
 </tr>
 <tr>
 <td>3</td>
 <td>heterogeneous catalysis (<code>voc4cat:0007001</code>) · carbonylation (<code>voc4cat:0000247</code>)</td>
-<td>DRIFTS (<code>CHMO:0000645</code>), powder XRD (<code>CHMO:0000158</code>), transmission electron microscopy (<code>voc4cat:0000078</code>), XPS (<code>CHMO:0000404</code>); CO chemisorption has no term yet</td>
+<td>impregnation (<code>voc4cat:0007028</code>), DRIFTS (<code>CHMO:0000645</code>), powder XRD (<code>CHMO:0000158</code>), transmission electron microscopy (<code>voc4cat:0000078</code>), XPS (<code>CHMO:0000404</code>); CO chemisorption has no term yet</td>
 </tr>
 <tr>
 <td>4</td>
@@ -1367,14 +1367,21 @@ Rang, F.; Hanf, S.; Holtermann, B.; Eggeler, Y.; Barth, S.; Grunwaldt, J.-D. (20
 </div>
 <p>This dataset investigates how phosphorus modification of the support tunes Pd-catalyzed
 selective hydrogenation, across 10 Pd/P catalysts (Al₂O₃ and SiO₂ supports, 0–5 wt% P). It
-combines five characterization techniques with catalytic testing of two substrates (cinnamyl
-alcohol and citral) on both supports.</p>
+combines five characterization techniques with catalytic testing of two substrates (cinnamaldehyde
+and citral) on both supports.</p>
 <p>The CoreMeta4Cat record groups this into:</p>
 <ul>
+<li><strong>2 <code>Synthesis</code></strong> (<code>was_generated_by</code>): the phosphorus modification of alumina and silica with
+  NH₄H₂PO₄, then the Pd impregnation of the modified and unmodified supports. The modified supports
+  link the two steps: they are the output of the first and an input of the second.</li>
 <li><strong>5 <code>Characterization</code>s</strong> (<code>was_generated_by</code>): one per technique (BET, ICP-AES, PXRD, DRIFT,
   IR), each covering every catalyst that technique was applied to.</li>
 <li><strong>4 <code>CatalyticReaction</code>s</strong> (<code>is_about_activity</code>): one per substrate and support.</li>
 </ul>
+<p><strong>Sources:</strong> the deposit has the characterization results and the catalytic test data; the two
+synthesis steps, the support pretreatment and the precursor amounts come from the article
+(<a href="https://doi.org/10.26434/chemrxiv.15007916/v1" target="_blank">Rang et al., ChemRxiv 2026</a>).
+Not yet in the record: the sample preparation for each characterization technique.</p>
 <p><strong>Patterns from this dataset:</strong> <a href="../usage-patterns/#characterization-many-samples">One technique, many samples</a></p>
 <p><a class="md-button" href="../../assets/examples/CatalysisDataset-32x1-99x6.yaml"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> YAML</a>
 <a class="md-button" href="../../assets/examples/CatalysisDataset-32x1-99x6.json"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> JSON</a>
@@ -1392,9 +1399,18 @@ characterized by five techniques; PXRD also covers two further loading variants,
 catalyst.</p>
 <p>The CoreMeta4Cat record groups this into:</p>
 <ul>
-<li><strong>5 <code>Characterization</code>s</strong> (<code>was_generated_by</code>): PXRD, DRIFT, CO chemisorption, XPS, STEM.</li>
+<li><strong>2 <code>Synthesis</code></strong> (<code>was_generated_by</code>): Pd₃P/SiO₂ and the Pd/SiO₂ reference, both by incipient
+  wetness impregnation and thermal treatment in hydrogen; they share one preparation method.</li>
+<li><strong>5 <code>Characterization</code>s</strong> (<code>was_generated_by</code>): PXRD, DRIFT (with its argon pretreatment), CO
+  chemisorption, XPS and STEM (both with their sample preparation).</li>
 <li><strong>3 <code>CatalyticReaction</code>s</strong> (<code>is_about_activity</code>): one per reaction type.</li>
 </ul>
+<p><strong>Sources:</strong> the deposit has the characterization and catalytic test data; the synthesis, the DRIFT
+pretreatment and the sample preparation for STEM and XPS come from the article
+(<a href="https://doi.org/10.1016/j.jcat.2026.116733" target="_blank">Neyyathala et al., J. Catal. 456 (2026) 116733</a>).
+The article gives synthesis amounts only for the 5 wt% Pd catalysts, so the 1 and 10 wt% Pd₃P/SiO₂
+samples measured by PXRD have no synthesis in the record. The catalysts were used in the catalytic
+tests as synthesized, without further activation.</p>
 <p><a class="md-button" href="../../assets/examples/CatalysisDataset-arp5-s69r.yaml"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> YAML</a>
 <a class="md-button" href="../../assets/examples/CatalysisDataset-arp5-s69r.json"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> JSON</a>
 <a class="md-button" href="../../assets/examples/CatalysisDataset-arp5-s69r.ttl"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> RDF</a></p>
