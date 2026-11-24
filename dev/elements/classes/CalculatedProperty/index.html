@@ -495,7 +495,9 @@
 <p><em>Abstract QualitativeAttribute representing a property computed by a</em></p>
 <p><em>Simulation. Concrete subclasses carry the property-specific output</em></p>
 <p><em>values and the computational settings used to produce them.</em></p>
-<p><em>Linked from Simulation via the calculated_property slot.</em></p>
+<p><em>Linked from Simulation via the calculated_property slot. An entry</em></p>
+<p><em>declares its concrete subclass with property_designator, e.g.</em></p>
+<p><em>coremeta4cat:AdsorptionEnergetics.</em></p>
 <div>
 <ul>
 <li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
@@ -545,6 +547,8 @@
 
 
       CalculatedProperty : description
+
+      CalculatedProperty : property_designator
 
       CalculatedProperty : rdf_type
 
@@ -626,32 +630,38 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../../slots/property_designator/">property_designator</a></td>
+<td>0..1 <br/> <a href="../../types/Uriorcurie/">Uriorcurie</a></td>
+<td>Type designator for CalculatedProperty subclasses: the class_uri of the<br/>concrete property an entry of calculated_property is, e.g.<br/>coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.<br/>Needed whenever an entry uses fields of its subclass: calculated_property<br/>ranges over the abstract CalculatedProperty, and without the designator<br/>software cannot tell which property class an entry belongs to. The value<br/>must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../../slots/title/">title</a></td>
-<td>0..1 <br/> <a href="../../types/String/">String</a></td>
+<td>0..1 <br> <a href="../../types/String/">String</a></br></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 <td><a href="../QualitativeAttribute/">QualitativeAttribute</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/description/">description</a></td>
-<td>0..1 <br/> <a href="../../types/String/">String</a></td>
+<td>0..1 <br> <a href="../../types/String/">String</a></br></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 <td><a href="../QualitativeAttribute/">QualitativeAttribute</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/value/">value</a></td>
-<td>1 <br/> <a href="../../types/String/">String</a></td>
+<td>1 <br> <a href="../../types/String/">String</a></br></td>
 <td>The slot to provide the literal value of the QualitativeAttribute.</td>
 <td><a href="../QualitativeAttribute/">QualitativeAttribute</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/type/">type</a></td>
-<td>0..1 <br/> <a href="../DefinedTerm/">DefinedTerm</a></td>
+<td>0..1 <br> <a href="../DefinedTerm/">DefinedTerm</a></br></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
 <td><a href="../ClassifierMixin/">ClassifierMixin</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/rdf_type/">rdf_type</a></td>
-<td>0..1 <em>recommended</em> <br/> <a href="../DefinedTerm/">DefinedTerm</a></td>
+<td>0..1 <em>recommended</em> <br> <a href="../DefinedTerm/">DefinedTerm</a></br></td>
 <td>The slot to specify the ontology class that is instantiated by an entity.</td>
 <td><a href="../ClassifierMixin/">ClassifierMixin</a></td>
 </tr>
@@ -711,10 +721,16 @@
 
 <span class="w">  </span><span class="s">values</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">computational</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">produce</span><span class="nv"> </span><span class="s">them.</span>
 
-<span class="w">  </span><span class="s">Linked</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Simulation</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">calculated_property</span><span class="nv"> </span><span class="s">slot.'</span>
+<span class="w">  </span><span class="s">Linked</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Simulation</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">calculated_property</span><span class="nv"> </span><span class="s">slot.</span><span class="nv"> </span><span class="s">An</span><span class="nv"> </span><span class="s">entry</span>
+
+<span class="w">  </span><span class="s">declares</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">concrete</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">property_designator,</span><span class="nv"> </span><span class="s">e.g.</span>
+
+<span class="w">  </span><span class="s">coremeta4cat:AdsorptionEnergetics.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QualitativeAttribute</span>
 <span class="nt">abstract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">slots</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">property_designator</span>
 <span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IAO:0000109</span>
 </code></pre></div>
 </details>
@@ -727,11 +743,39 @@
 
 <span class="w">  </span><span class="s">values</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">computational</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">used</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">produce</span><span class="nv"> </span><span class="s">them.</span>
 
-<span class="w">  </span><span class="s">Linked</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Simulation</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">calculated_property</span><span class="nv"> </span><span class="s">slot.'</span>
+<span class="w">  </span><span class="s">Linked</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Simulation</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">calculated_property</span><span class="nv"> </span><span class="s">slot.</span><span class="nv"> </span><span class="s">An</span><span class="nv"> </span><span class="s">entry</span>
+
+<span class="w">  </span><span class="s">declares</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">concrete</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">property_designator,</span><span class="nv"> </span><span class="s">e.g.</span>
+
+<span class="w">  </span><span class="s">coremeta4cat:AdsorptionEnergetics.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QualitativeAttribute</span>
 <span class="nt">abstract</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">attributes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">property_designator</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">property_designator</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Type</span><span class="nv"> </span><span class="s">designator</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">CalculatedProperty</span><span class="nv"> </span><span class="s">subclasses:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">class_uri</span>
+<span class="w">      </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span>
+
+<span class="w">      </span><span class="s">concrete</span><span class="nv"> </span><span class="s">property</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">entry</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">calculated_property</span><span class="nv"> </span><span class="s">is,</span><span class="nv"> </span><span class="s">e.g.</span>
+
+<span class="w">      </span><span class="s">coremeta4cat:AdsorptionEnergetics</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">coremeta4cat:TransitionState.</span>
+
+<span class="w">      </span><span class="s">Needed</span><span class="nv"> </span><span class="s">whenever</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">entry</span><span class="nv"> </span><span class="s">uses</span><span class="nv"> </span><span class="s">fields</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">subclass:</span><span class="nv"> </span><span class="s">calculated_property</span>
+
+<span class="w">      </span><span class="s">ranges</span><span class="nv"> </span><span class="s">over</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">abstract</span><span class="nv"> </span><span class="s">CalculatedProperty,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">without</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">designator</span>
+
+<span class="w">      </span><span class="s">software</span><span class="nv"> </span><span class="s">cannot</span><span class="nv"> </span><span class="s">tell</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">property</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">entry</span><span class="nv"> </span><span class="s">belongs</span><span class="nv"> </span><span class="s">to.</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">value</span>
+
+<span class="w">      </span><span class="s">must</span><span class="nv"> </span><span class="s">match</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">class_uri</span><span class="nv"> </span><span class="s">exactly.</span><span class="nv"> </span><span class="s">In</span><span class="nv"> </span><span class="s">RDF</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">becomes</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">entry</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">rdf:type.'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf:type</span>
+<span class="w">    </span><span class="nt">designates_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalculatedProperty</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalculatedProperty</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uriorcurie</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">This slot is described in more detail within the class in which it</span>

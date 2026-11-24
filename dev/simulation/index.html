@@ -933,6 +933,11 @@
 <h1 id="simulation">Simulation</h1>
 <p>The Simulation data class captures metadata describing theoretical and computational studies in catalysis. It documents methodological background, computational settings, and modeling approaches required to interpret simulation results.</p>
 <p>Computational approaches are organized under the parent field simulation method, which includes techniques such as density functional theory, molecular dynamics, microkinetic modeling, and Monte Carlo simulations. Selection of a specific method activates the corresponding method-specific metadata fields necessary to describe model setup and computational parameters.</p>
+<p>The results of a simulation are recorded as calculated properties. Besides general material properties, such as thermodynamic stability, electronic structure or surface energies, these include quantities specific to catalysis: adsorption, reaction and transition-state energetics, electrochemical free energies and catalytic descriptors. Each entry names its property class with <code>property_designator</code>; the <a href="../working-with-data/usage-patterns/">simulation usage pattern</a> shows an example.</p>
+<div class="admonition tip">
+<p class="admonition-title">Theoreticians: help us extend this data class</p>
+<p>The catalysis-specific properties were added only recently, and many methods, settings and quantities used in computational catalysis are still missing. If you miss one, use the <strong>Submit Term Feedback</strong> button next to the closest field, open an <a href="https://github.com/nfdi4cat/CoreMeta4Cat/issues">issue</a>, or propose it through the vocabulary workbook. <a href="../contributing/">How to contribute</a> explains each option.</p>
+</div>
 <p><strong>CURIE:</strong> <a href="NCIT:C48936"><code>NCIT:C48936</code></a></p>
 <div class="cm4c-classmap" data-root="Simulation"
      data-src="../assets/schema_graph.json"
@@ -1001,9 +1006,31 @@ instance. Multiple properties may be computed in a single simulation run.</p>
 <p><strong>Description:</strong> Abstract QualitativeAttribute representing a property computed by a
 Simulation. Concrete subclasses carry the property-specific output
 values and the computational settings used to produce them.
-Linked from Simulation via the calculated_property slot.</p>
+Linked from Simulation via the calculated_property slot. An entry
+declares its concrete subclass with property_designator, e.g.
+coremeta4cat:AdsorptionEnergetics.</p>
 <p><strong>CURIE:</strong> <a href="http://purl.obolibrary.org/obo/IAO_0000109"><code>IAO:0000109</code></a></p>
 <p><strong>Schema Reference:</strong> <a href="../elements/classes/CalculatedProperty/">CalculatedProperty</a></p>
+<p><strong>Slots</strong></p>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20CalculatedProperty target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -1089,6 +1116,25 @@ metric). Zero for phases on the hull; positive values indicate metastability.</p
   </a>
 </p>
 </details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ThermodynamicStability target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -1152,6 +1198,25 @@ describing the coupling between stress and electric polarization.</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/ionic_electronic_contributions/">ionic_electronic_contributions</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ionic_electronic_contributions target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -1234,6 +1299,25 @@ elastic response of the material.</p>
 <p><strong>Unit:</strong> GPa</p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20young_modulus target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -1323,6 +1407,25 @@ periodic interactions between slab images.</p>
   </a>
 </p>
 </details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20Surfaces target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -1360,6 +1463,25 @@ the polarization changes with atomic displacements.</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/born_effective_charges/">born_effective_charges</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20born_effective_charges target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -1505,6 +1627,25 @@ Imaginary modes indicate dynamical instability of the structure.</p>
 </p>
 </details>
 <details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
 <summary><strong>material composition</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Chemical composition of the simulated material (e.g. "Fe2O3", "Pt/CeO2").
 Use empirical formula or SMILES for molecular systems.</p>
@@ -1596,6 +1737,25 @@ volume, bulk modulus, and its pressure derivative.</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/fit_residuals/">fit_residuals</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fit_residuals target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -1766,6 +1926,25 @@ stability screening.</p>
 </p>
 </details>
 <details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
 <summary><strong>material composition</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Chemical composition of the simulated material (e.g. "Fe2O3", "Pt/CeO2").
 Use empirical formula or SMILES for molecular systems.</p>
@@ -1905,6 +2084,25 @@ at the grain boundary (e.g. segregation energy per defect type).</p>
 </p>
 </details>
 <details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
 <summary><strong>material composition</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Chemical composition of the simulated material (e.g. "Fe2O3", "Pt/CeO2").
 Use empirical formula or SMILES for molecular systems.</p>
@@ -1998,6 +2196,25 @@ band structure (e.g. "Gamma-X-M-Gamma-R" for cubic, following SeeK-path conventi
 <p><strong>Unit:</strong> eV</p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20fermi_energy target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -2170,6 +2387,25 @@ polarization endpoint in the Berry-phase polarization calculation.</p>
 </p>
 </details>
 <details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
 <summary><strong>material composition</strong> (Optional, Multivalued)</summary>
 <p><strong>Description:</strong> Chemical composition of the simulated material (e.g. "Fe2O3", "Pt/CeO2").
 Use empirical formula or SMILES for molecular systems.</p>
@@ -2306,6 +2542,25 @@ optical band gap.</p>
 <p><strong>Unit:</strong> eV</p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20excitonic_correction target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -2512,6 +2767,25 @@ Use empirical formula or SMILES for molecular systems.</p>
   </a>
 </p>
 </details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20AdsorptionEnergetics target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -2641,6 +2915,25 @@ Use empirical formula or SMILES for molecular systems.</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/material_composition/">material_composition</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20material_composition target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>
@@ -2791,6 +3084,25 @@ Use empirical formula or SMILES for molecular systems.</p>
   </a>
 </p>
 </details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20TransitionState target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -2912,6 +3224,25 @@ Use empirical formula or SMILES for molecular systems.</p>
   </a>
 </p>
 </details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
 <p>
       <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20ElectrochemicalFreeEnergy target="_blank" class="md-button md-button--primary">
         💡 Submit Term Feedback
@@ -2986,6 +3317,25 @@ Use empirical formula or SMILES for molecular systems.</p>
 <p><strong>Schema Reference:</strong> <a href="../elements/slots/bep_relation/">bep_relation</a></p>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20bep_relation target="_blank" class="md-button md-button--primary">
+    💡 Submit Term Feedback
+  </a>
+</p>
+</details>
+<details>
+<summary><strong>property designator</strong> (Optional)</summary>
+<p><strong>Description:</strong> Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
+<p><strong>Data Type:</strong> uriorcurie</p>
+<p><strong>Cardinality:</strong>  Optional</p>
+<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
+<p><strong>Schema Reference:</strong> <a href="../elements/slots/property_designator/">property_designator</a></p>
+<p>
+  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20property_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>

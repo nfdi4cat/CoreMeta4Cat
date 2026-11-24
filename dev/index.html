@@ -1158,15 +1158,23 @@
 <p>If you are a catalysis researcher, you have probably faced this at some point: you finish a project, archive your data, and six months later — or six years later — someone (including yourself) needs to make sense of it. What reactor was used? What were the exact feed conditions? What does "T" mean in this column? CoreMeta4Cat exists to prevent that problem by defining, in plain language, what information a catalysis dataset needs to include to be understood and reused by others.</p>
 <p><strong>CoreMeta4Cat</strong> is a community-driven metadata standard under <a href="https://nfdi4cat.org">NFDI4Cat</a> that defines the minimum information required for reporting catalysis research data. Built on the <a href="https://www.go-fair.org/fair-principles/">FAIR principles</a> — <strong>F</strong>indable, <strong>A</strong>ccessible, <strong>I</strong>nteroperable, and <strong>R</strong>eusable — it provides a shared language for researchers to describe, share, and discover catalysis datasets across institutions and disciplines.</p>
 <p>The model draws its terminology from <a href="https://nfdi4cat.github.io/voc4cat/">Voc4Cat</a>, NFDI4Cat's controlled vocabulary for catalysis, ensuring standardized semantic representation. Fields are classified as <strong>Mandatory</strong>, <strong>Recommended</strong>, or <strong>Optional</strong>, helping users meet minimum quality thresholds while leaving room for richer annotation.</p>
-<blockquote>
-<p>CoreMeta4Cat is a living standard. Community feedback — submitted via the <strong>Submit Term Feedback</strong> button — continuously shapes the addition, revision, and removal of data fields.</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title">Current status: a starting point, open for contributions</p>
+<p>CoreMeta4Cat is a living standard at an early stage of development. It already covers the four data classes Synthesis, Characterization, Reaction and Simulation and has been applied to real, published datasets (see <a href="working-with-data/community-datasets/">Community datasets</a>). Its coverage is uneven, and we know of gaps:</p>
+<ul>
+<li><strong>Simulation</strong> was only recently extended from general material properties to catalysis-specific ones: adsorption, reaction and transition-state energetics, electrochemical free energies and catalytic descriptors. More methods and properties are needed from the theory community.</li>
+<li><strong>Engineering aspects</strong> beyond laboratory catalytic testing, such as reactor design and process simulation, are not yet included.</li>
+<li><strong>Characterization</strong> does not yet cover every technique, for example quasi-elastic or inelastic neutron scattering.</li>
+<li>The <strong>obligation levels</strong> (Mandatory, Recommended, Optional) have so far been tested on a small number of curated datasets.</li>
+</ul>
+<p>If a field, method or technique you need is missing or classified wrongly, please tell us: use the <strong>Submit Term Feedback</strong> button next to every field, open an <a href="https://github.com/nfdi4cat/CoreMeta4Cat/issues">issue</a>, or propose changes through the vocabulary workbook. <a href="contributing/">How to contribute</a> lists all options; every proposal is discussed openly and included in the next release.</p>
+</div>
 <p><img alt="CoreMeta4Cat model overview" src="images/CoreMeta4Cat_Picture.png" /></p>
 <hr />
 <h2 id="not-sure-where-to-start">Not sure where to start?</h2>
 <p>The most up-to-date list of CoreMeta4Cat metadata fields for all four data classes — Synthesis, Characterization, Reaction, and Simulation — is available as a structured Excel workbook:</p>
 <p><a href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/assets/coremeta4cat_vocabulary.xlsx">⬇ Download the metadata list</a></p>
-<p>We are currently developing a user-friendly <strong>Metadata Checker</strong> tool that will make this process even easier — upload your dataset and the tool will automatically identify which required fields are present, which are missing, and give you a plain-language gap report with a downloadable template to act on. No schema knowledge required. The tool will be available here soon.</p>
+<p>We are also developing a <strong>Metadata Checker</strong>: an ELN-style form for entering and submitting new data along the CoreMeta4Cat fields, with feedback buttons for reporting problems with a field while you work. It is still in development and will be linked here once it is available.</p>
 <hr />
 <h2 id="getting-started">Getting Started</h2>
 <p>Choose the approach that fits your workflow. Both paths are fully compatible with the CoreMeta4Cat standard.</p>

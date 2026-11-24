@@ -236,14 +236,21 @@ is_about_activity:
       loading.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - value: 5.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      description: Pd loading (Overview Reaction Description-2.txt)
     - value: 0.01
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
       description: Catalyst mass used per batch test
+    composed_of:
+    - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd
+      title: palladium
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      has_quantitative_attribute:
+      - value: 5.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        description: Loading (Overview Reaction Description-2.txt)
   used_reactant:
   - id: coremeta4cat:REAC_arp5-s69r_CO
     title: carbon monoxide
@@ -304,28 +311,42 @@ is_about_activity:
       loading.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - value: 5.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      description: Pd loading (Overview Reaction Description-2.txt)
     - value: 0.01
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
       description: Catalyst mass used per batch test
+    composed_of:
+    - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd
+      title: palladium
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      has_quantitative_attribute:
+      - value: 5.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        description: Loading (Overview Reaction Description-2.txt)
   - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
     title: Pd/SiO2 (5 wt% Pd, internal code ARNE02)
     description: Unmodified (phosphorus-free) palladium nanoparticles supported on silica, 5 wt% Pd, 0.5
       mol% metal loading -- reference catalyst for comparison against the Pd3P phosphide.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - value: 5.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      description: Pd loading (Overview Reaction Description-2.txt)
     - value: 0.01
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
       description: Catalyst mass used per batch test
+    composed_of:
+    - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt_Pd
+      title: palladium
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      has_quantitative_attribute:
+      - value: 5.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        description: Loading (Overview Reaction Description-2.txt)
   used_reactant:
   - id: coremeta4cat:REAC_arp5-s69r_CO
     title: carbon monoxide
@@ -390,14 +411,21 @@ is_about_activity:
       loading.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - value: 5.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      description: Pd loading (Overview Reaction Description-2.txt)
     - value: 0.01
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
       description: Catalyst mass used per batch test
+    composed_of:
+    - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd
+      title: palladium
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      has_quantitative_attribute:
+      - value: 5.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        description: Loading (Overview Reaction Description-2.txt)
   used_reactant:
   - id: coremeta4cat:REAC_arp5-s69r_CO
     title: carbon monoxide

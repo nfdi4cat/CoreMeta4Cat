@@ -1764,6 +1764,7 @@
 <span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">property_specific_slot</span>
 </code></pre></div>
+<p>In a dataset, an entry of <code>calculated_property</code> declares its class with <code>property_designator</code>, whose value is the new class's <code>class_uri</code> (here <code>coremeta4cat:MyNewProperty</code>). Without it, software cannot tell which property an entry is, and its property-specific fields are not available. See the <a href="../working-with-data/usage-patterns/">simulation usage pattern</a> for a worked example with <code>AdsorptionEnergetics</code>.</p>
 <hr />
 <h2 id="adding-a-shared-slot">Adding a shared slot</h2>
 <p>If a slot is needed by <strong>two or more subprofiles</strong>, declare it in <code>coremeta4cat_common.yaml</code> rather than in any individual subprofile. This keeps the schema DRY and avoids slot name collisions.</p>

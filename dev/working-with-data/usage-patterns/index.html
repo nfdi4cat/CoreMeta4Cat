@@ -1635,9 +1635,14 @@ which parameters it can carry.</p>
 <p>A <code>CatalyticReaction</code> names the reaction, its catalysts, reactants and products, the reactor
 it ran in and the conditions. Group runs that share reactor and analytics into one record.</p>
 <h3 id="reaction-participants">Pattern 6 – Catalysts, reactants and products</h3>
-<p><strong>Purpose:</strong> Identify what reacted over which catalyst: chemicals as ChEBI terms, catalysts with their nominal loadings.</p>
-<p><strong>Example use case:</strong> Ammonia decomposition over Ru/Ba catalysts on a Ni-BCZY cermet (two of six catalysts shown). Ammonia and argon are reactants, nitrogen and hydrogen products; the loadings are mass fractions in percent.</p>
-<p><strong>Fields used:</strong> <code>reaction_name</code>, <code>rdf_type</code>, <code>catalyst_type</code>, <code>catalyst_form</code>, <code>used_catalyst</code>, <code>has_quantitative_attribute</code>, <code>used_reactant</code>, <code>generated_product</code>, <code>used_reactor</code>, <code>reactor_designator</code></p>
+<p><strong>Purpose:</strong> Identify what reacted over which catalyst: chemicals as ChEBI terms, catalysts with the elements they are composed of and their nominal loadings.</p>
+<p><strong>Example use case:</strong> Ammonia decomposition over Ru/Ba catalysts on a Ni-BCZY cermet (two of six catalysts shown). Ammonia and argon are reactants, nitrogen and hydrogen products. Each catalyst lists ruthenium and barium under <code>composed_of</code>, each with its loading as a mass fraction in percent.</p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>A loading belongs to a component, not to the catalyst as a whole: list the components under <code>composed_of</code>, each with its ChEBI term, and give each its own mass fraction. Properties of the whole catalyst, such as its BET surface area or mass, stay on the catalyst.</li>
+<li>Each component gets its own <code>id</code> (here the catalyst's id plus the element symbol), because its loading applies only within this catalyst. The chemical identity is shared through <code>rdf_type</code>.</li>
+</ul>
+<p><strong>Fields used:</strong> <code>reaction_name</code>, <code>rdf_type</code>, <code>catalyst_type</code>, <code>catalyst_form</code>, <code>used_catalyst</code>, <code>composed_of</code>, <code>has_quantitative_attribute</code>, <code>used_reactant</code>, <code>generated_product</code>, <code>used_reactor</code>, <code>reactor_designator</code></p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio"/><input id="__tabbed_6_2" name="__tabbed_6" type="radio"/><input id="__tabbed_6_3" name="__tabbed_6" type="radio"/><div class="tabbed-labels"><label for="__tabbed_6_1">Graph</label><label for="__tabbed_6_2">YAML</label><label for="__tabbed_6_3">RDF (Turtle)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1648,39 +1653,53 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     n4(["“heterogeneous_catalysis”"])
     n5(["“supported”"])
     n6["0.5Ru/1Ba/Ni-BCZY&lt;br/&gt;«Catalyst»"]
-    n7["0.5 PERCENT&lt;br/&gt;«MassFraction»"]
-    n8["1.0 PERCENT&lt;br/&gt;«MassFraction»"]
-    n9["0.5Ru/0.5Ba/Ni-BCZY&lt;br/&gt;«Catalyst»"]
-    n10["0.5 PERCENT&lt;br/&gt;«MassFraction»"]
-    n11["0.5 PERCENT&lt;br/&gt;«MassFraction»"]
-    n12["ammonia&lt;br/&gt;«Reagent»"]
-    n13["ammonia&lt;br/&gt;CHEBI:16134"]
-    n14["argon (balance)&lt;br/&gt;«Reagent»"]
-    n15["argon atom&lt;br/&gt;CHEBI:49475"]
-    n16["dinitrogen&lt;br/&gt;«ChemicalProduct»"]
-    n17["dinitrogen&lt;br/&gt;CHEBI:17997"]
-    n18["dihydrogen&lt;br/&gt;«ChemicalProduct»"]
-    n19["dihydrogen&lt;br/&gt;CHEBI:18276"]
-    n20["quartz glass tubular packed-bed reactor&lt;br/&gt;«FixedBedReactor»"]
+    n7["ruthenium&lt;br/&gt;«ChemicalEntity»"]
+    n8["ruthenium atom&lt;br/&gt;CHEBI:30682"]
+    n9["0.5 PERCENT&lt;br/&gt;«MassFraction»"]
+    n10["barium&lt;br/&gt;«ChemicalEntity»"]
+    n11["barium atom&lt;br/&gt;CHEBI:32594"]
+    n12["1.0 PERCENT&lt;br/&gt;«MassFraction»"]
+    n13["0.5Ru/0.5Ba/Ni-BCZY&lt;br/&gt;«Catalyst»"]
+    n14["ruthenium&lt;br/&gt;«ChemicalEntity»"]
+    n15["0.5 PERCENT&lt;br/&gt;«MassFraction»"]
+    n16["barium&lt;br/&gt;«ChemicalEntity»"]
+    n17["0.5 PERCENT&lt;br/&gt;«MassFraction»"]
+    n18["ammonia&lt;br/&gt;«Reagent»"]
+    n19["ammonia&lt;br/&gt;CHEBI:16134"]
+    n20["argon (balance)&lt;br/&gt;«Reagent»"]
+    n21["argon atom&lt;br/&gt;CHEBI:49475"]
+    n22["dinitrogen&lt;br/&gt;«ChemicalProduct»"]
+    n23["dinitrogen&lt;br/&gt;CHEBI:17997"]
+    n24["dihydrogen&lt;br/&gt;«ChemicalProduct»"]
+    n25["dihydrogen&lt;br/&gt;CHEBI:18276"]
+    n26["quartz glass tubular packed-bed reactor&lt;br/&gt;«FixedBedReactor»"]
     n1 --&gt;|reaction_name| n2
     n1 --&gt;|rdf_type| n3
     n1 --&gt;|catalyst_type| n4
     n1 --&gt;|catalyst_form| n5
-    n6 --&gt;|has_quantitative_attribute| n7
-    n6 --&gt;|has_quantitative_attribute| n8
+    n7 --&gt;|rdf_type| n8
+    n7 --&gt;|has_quantitative_attribute| n9
+    n6 --&gt;|composed_of| n7
+    n10 --&gt;|rdf_type| n11
+    n10 --&gt;|has_quantitative_attribute| n12
+    n6 --&gt;|composed_of| n10
     n1 --&gt;|used_catalyst| n6
-    n9 --&gt;|has_quantitative_attribute| n10
-    n9 --&gt;|has_quantitative_attribute| n11
-    n1 --&gt;|used_catalyst| n9
-    n12 --&gt;|rdf_type| n13
-    n1 --&gt;|used_reactant| n12
-    n14 --&gt;|rdf_type| n15
-    n1 --&gt;|used_reactant| n14
-    n16 --&gt;|rdf_type| n17
-    n1 --&gt;|generated_product| n16
+    n14 --&gt;|rdf_type| n8
+    n14 --&gt;|has_quantitative_attribute| n15
+    n13 --&gt;|composed_of| n14
+    n16 --&gt;|rdf_type| n11
+    n16 --&gt;|has_quantitative_attribute| n17
+    n13 --&gt;|composed_of| n16
+    n1 --&gt;|used_catalyst| n13
     n18 --&gt;|rdf_type| n19
-    n1 --&gt;|generated_product| n18
-    n1 --&gt;|used_reactor| n20
+    n1 --&gt;|used_reactant| n18
+    n20 --&gt;|rdf_type| n21
+    n1 --&gt;|used_reactant| n20
+    n22 --&gt;|rdf_type| n23
+    n1 --&gt;|generated_product| n22
+    n24 --&gt;|rdf_type| n25
+    n1 --&gt;|generated_product| n24
+    n1 --&gt;|used_reactor| n26
     classDef dataset fill:#cfe9ef,stroke:#00838f,color:#222
     classDef activity fill:#fde2c4,stroke:#c26b00,color:#222
     classDef plan fill:#e3dcf7,stroke:#5b3fb5,color:#222
@@ -1693,10 +1712,10 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     classDef other fill:#ffffff,stroke:#757575,color:#222
     class n1 activity
     class n2,n4,n5 literal
-    class n3,n13,n15,n17,n19 term
-    class n6,n9,n20 agent
-    class n7,n8,n10,n11 quantity
-    class n12,n14,n16,n18 entity</code></pre>
+    class n3,n8,n11,n19,n21,n23,n25 term
+    class n6,n13,n26 agent
+    class n7,n10,n14,n16,n18,n20,n22,n24 entity
+    class n9,n12,n15,n17 quantity</code></pre>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:REAC_b74m-m6rp_NH3_decomposition</span>
@@ -1714,26 +1733,50 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
 <span class="nt">used_catalyst</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5Ru/1Ba/Ni-BCZY</span>
-<span class="w">  </span><span class="nt">has_quantitative_attribute</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">    </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/MassFraction</span>
-<span class="w">    </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/PERCENT</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ru, nominal</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
-<span class="w">    </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/MassFraction</span>
-<span class="w">    </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/PERCENT</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ba, nominal</span>
+<span class="w">  </span><span class="nt">composed_of</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruthenium</span>
+<span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:30682</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruthenium atom</span>
+<span class="w">    </span><span class="nt">has_quantitative_attribute</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">      </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/MassFraction</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/PERCENT</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nominal loading</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ba</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">barium</span>
+<span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:32594</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">barium atom</span>
+<span class="w">    </span><span class="nt">has_quantitative_attribute</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">      </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/MassFraction</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/PERCENT</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nominal loading</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5Ru/0.5Ba/Ni-BCZY</span>
-<span class="w">  </span><span class="nt">has_quantitative_attribute</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">    </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/MassFraction</span>
-<span class="w">    </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/PERCENT</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ru, nominal</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">    </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/MassFraction</span>
-<span class="w">    </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/PERCENT</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ba, nominal</span>
+<span class="w">  </span><span class="nt">composed_of</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ru</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruthenium</span>
+<span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:30682</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruthenium atom</span>
+<span class="w">    </span><span class="nt">has_quantitative_attribute</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">      </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/MassFraction</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/PERCENT</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nominal loading</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ba</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">barium</span>
+<span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:32594</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">barium atom</span>
+<span class="w">    </span><span class="nt">has_quantitative_attribute</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">      </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/MassFraction</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/PERCENT</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nominal loading</span>
 <span class="nt">used_reactant</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:REAC_b74m-m6rp_NH3</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ammonia</span>
@@ -1769,6 +1812,7 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">CHEBI:</span><span class="w"> </span><span class="nv">&lt;http://purl.obolibrary.org/obo/CHEBI_&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">NCIT:</span><span class="w"> </span><span class="nv">&lt;http://purl.obolibrary.org/obo/NCIT_&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">RXNO:</span><span class="w"> </span><span class="nv">&lt;http://purl.obolibrary.org/obo/RXNO_&gt;</span><span class="w"> </span><span class="p">.</span>
+<span class="k">@prefix</span><span class="w"> </span><span class="nn">BFO:</span><span class="w"> </span><span class="nv">&lt;http://purl.obolibrary.org/obo/BFO_&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">RO:</span><span class="w"> </span><span class="nv">&lt;http://purl.obolibrary.org/obo/RO_&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">voc4cat:</span><span class="w"> </span><span class="nv">&lt;https://w3id.org/nfdi4cat/voc4cat_&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">xsd:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span><span class="w"> </span><span class="p">.</span>
@@ -1782,16 +1826,32 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     <span class="kt">a</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">DefinedTerm</span> <span class="p">.</span>
 <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">18276</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">name</span> <span class="s">"dihydrogen"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">DefinedTerm</span> <span class="p">.</span>
+<span class="nn">CHEBI</span><span class="p">:</span><span class="nt">30682</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">name</span> <span class="s">"ruthenium atom"</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">DefinedTerm</span> <span class="p">.</span>
+<span class="nn">CHEBI</span><span class="p">:</span><span class="nt">32594</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">name</span> <span class="s">"barium atom"</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">DefinedTerm</span> <span class="p">.</span>
 <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">49475</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">name</span> <span class="s">"argon atom"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">DefinedTerm</span> <span class="p">.</span>
 <span class="nn">SIO</span><span class="p">:</span><span class="nt">010511</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">name</span> <span class="s">"decomposition reaction"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">DefinedTerm</span> <span class="p">.</span>
-<span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">relation</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n0</span> <span class="p">,</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n3</span> <span class="p">;</span>
+<span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY</span> <span class="nn">BFO</span><span class="p">:</span><span class="nt">0000051</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ba</span> <span class="p">,</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ru</span> <span class="p">;</span>
     <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"0.5Ru/0.5Ba/Ni-BCZY"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">SIO</span><span class="p">:</span><span class="nt">010344</span> <span class="p">.</span>
-<span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">relation</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="p">,</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="p">;</span>
+<span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ba</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">relation</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="p">;</span>
+    <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"barium"</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">23367</span> <span class="p">,</span> <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">32594</span> <span class="p">.</span>
+<span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ru</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">relation</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n3</span> <span class="p">;</span>
+    <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"ruthenium"</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">23367</span> <span class="p">,</span> <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">30682</span> <span class="p">.</span>
+<span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY</span> <span class="nn">BFO</span><span class="p">:</span><span class="nt">0000051</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ba</span> <span class="p">,</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru</span> <span class="p">;</span>
     <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"0.5Ru/1Ba/Ni-BCZY"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">SIO</span><span class="p">:</span><span class="nt">010344</span> <span class="p">.</span>
+<span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ba</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">relation</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n0</span> <span class="p">;</span>
+    <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"barium"</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">23367</span> <span class="p">,</span> <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">32594</span> <span class="p">.</span>
+<span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">relation</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="p">;</span>
+    <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"ruthenium"</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">23367</span> <span class="p">,</span> <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">30682</span> <span class="p">.</span>
 <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">PROD_b74m-m6rp_H2</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"dihydrogen"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">18276</span> <span class="p">,</span> <span class="nn">NCIT</span><span class="p">:</span><span class="nt">C48810</span> <span class="p">.</span>
 <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">PROD_b74m-m6rp_N2</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"dinitrogen"</span> <span class="p">;</span>
@@ -1811,22 +1871,22 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0007014</span> <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0007001</span> <span class="p">.</span>
 <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">REAC_b74m-m6rp_reactor</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"quartz glass tubular packed-bed reactor"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">FixedBedReactor</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n0</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Ba, nominal"</span> <span class="p">;</span>
-    <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/MassFraction&gt;</span> <span class="p">;</span>
-    <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/PERCENT&gt;</span> <span class="p">;</span>
-    <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
-    <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"0.5"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Ba, nominal"</span> <span class="p">;</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n0</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Nominal loading"</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/MassFraction&gt;</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/PERCENT&gt;</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
     <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"1.0"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Ru, nominal"</span> <span class="p">;</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Nominal loading"</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/MassFraction&gt;</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/PERCENT&gt;</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
     <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"0.5"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n3</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Ru, nominal"</span> <span class="p">;</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Nominal loading"</span> <span class="p">;</span>
+    <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/MassFraction&gt;</span> <span class="p">;</span>
+    <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/PERCENT&gt;</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
+    <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"0.5"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n3</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Nominal loading"</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/MassFraction&gt;</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/PERCENT&gt;</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
@@ -2004,12 +2064,13 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
 modelled (<code>evaluated_entity</code>) and the properties it computed (<code>calculated_property</code>).</p>
 <h3 id="simulation-dft-properties">Pattern 8 – A simulation with a typed method and calculated properties</h3>
 <p><strong>Purpose:</strong> Record which code and method produced a set of computed values, and what they were computed for.</p>
-<p><strong>Example use case:</strong> DFT binding energies of OH and CO at doped CuGa₂O₄ sites (VASP, PBE). The plan is declared as <code>DFT</code> (<code>plan_designator: coremeta4cat:DFT</code>) so the functional has its own field.</p>
+<p><strong>Example use case:</strong> DFT binding energies of OH and CO at doped CuGa₂O₄ sites (VASP, PBE). The plan is declared as <code>DFT</code> (<code>plan_designator: coremeta4cat:DFT</code>) so the functional has its own field, and each binding energy as <code>AdsorptionEnergetics</code> (<code>property_designator: coremeta4cat:AdsorptionEnergetics</code>) so the adsorbate and the energy reference have their own fields.</p>
 <p><strong>Notes:</strong></p>
 <ul>
-<li>Adsorption and binding energies have no dedicated property class yet, so value and context go into <code>calculated_property</code> as text.</li>
+<li><code>property_designator</code> works like <code>plan_designator</code>: it names the property class an entry belongs to (adsorption, reaction or transition-state energetics, electrochemical free energy, catalytic descriptors, or one of the material properties). Without it, an entry can only carry a value and a description.</li>
+<li>The deposit gives the binding energies as ranges over 17 sites, so the range stays in <code>value</code>; a single computed energy goes into <code>adsorption_energy</code> as a number in eV.</li>
 </ul>
-<p><strong>Fields used:</strong> <code>activity_designator</code>, <code>software_package</code>, <code>rdf_type</code>, <code>evaluated_entity</code>, <code>realized_plan</code>, <code>plan_designator</code>, <code>exchange_correlation_functional</code>, <code>calculated_property</code></p>
+<p><strong>Fields used:</strong> <code>activity_designator</code>, <code>software_package</code>, <code>rdf_type</code>, <code>evaluated_entity</code>, <code>realized_plan</code>, <code>plan_designator</code>, <code>exchange_correlation_functional</code>, <code>calculated_property</code>, <code>property_designator</code>, <code>adsorbate</code>, <code>material_composition</code>, <code>energy_reference</code></p>
 <div class="tabbed-set tabbed-alternate" data-tabs="8:3"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio"/><input id="__tabbed_8_2" name="__tabbed_8" type="radio"/><input id="__tabbed_8_3" name="__tabbed_8" type="radio"/><div class="tabbed-labels"><label for="__tabbed_8_1">Graph</label><label for="__tabbed_8_2">YAML</label><label for="__tabbed_8_3">RDF (Turtle)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2072,18 +2133,32 @@ modelled (<code>evaluated_entity</code>) and the properties it computed (<code>c
 <span class="w">  </span><span class="nt">exchange_correlation_functional</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PBE</span>
 <span class="nt">calculated_property</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1.87 to 1.41 eV (17 sites)</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OH binding energy; range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); reference</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">state not defined in the main text</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-2.20 to 0.51 eV (17 sites)</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO binding energy; range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest); referenced</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">to gas-phase CO</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">property_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:AdsorptionEnergetics</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OH binding energy</span>
+<span class="w">  </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1.87 to 1.41 eV (17 sites)</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference state is not</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">defined in the main text.</span>
+<span class="w">  </span><span class="nt">adsorbate</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OH</span>
+<span class="w">  </span><span class="nt">material_composition</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">property_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:AdsorptionEnergetics</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO binding energy</span>
+<span class="w">  </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-2.20 to 0.51 eV (17 sites)</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest).</span>
+<span class="w">  </span><span class="nt">adsorbate</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO</span>
+<span class="w">  </span><span class="nt">energy_reference</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO(g)</span>
+<span class="w">  </span><span class="nt">material_composition</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">@prefix</span><span class="w"> </span><span class="nn">rdf:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">coremeta4cat:</span><span class="w"> </span><span class="nv">&lt;https://w3id.org/nfdi4cat/coremeta4cat/&gt;</span><span class="w"> </span><span class="p">.</span>
-<span class="k">@prefix</span><span class="w"> </span><span class="nn">IAO:</span><span class="w"> </span><span class="nv">&lt;http://purl.obolibrary.org/obo/IAO_&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">voc4cat:</span><span class="w"> </span><span class="nv">&lt;https://w3id.org/nfdi4cat/voc4cat_&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">xsd:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">prov:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/ns/prov#&gt;</span><span class="w"> </span><span class="p">.</span>
@@ -2101,12 +2176,19 @@ modelled (<code>evaluated_entity</code>) and the properties it computed (<code>c
     <span class="kt">a</span> <span class="nn">prov</span><span class="p">:</span><span class="nt">Entity</span> <span class="p">.</span>
 <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0000215</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">name</span> <span class="s">"density functional theory"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">DefinedTerm</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n0</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"CO binding energy; range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest); referenced to gas-phase CO"</span> <span class="p">;</span>
-    <span class="kt">a</span> <span class="nn">IAO</span><span class="p">:</span><span class="nt">0000109</span> <span class="p">;</span>
-    <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"-2.20 to 0.51 eV (17 sites)"</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"OH binding energy; range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); reference state not defined in the main text"</span> <span class="p">;</span>
-    <span class="kt">a</span> <span class="nn">IAO</span><span class="p">:</span><span class="nt">0000109</span> <span class="p">;</span>
-    <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"-1.87 to 1.41 eV (17 sites)"</span> <span class="p">.</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n0</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest)."</span> <span class="p">;</span>
+    <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"CO binding energy"</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">AdsorptionEnergetics</span> <span class="p">;</span>
+    <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"-2.20 to 0.51 eV (17 sites)"</span> <span class="p">;</span>
+    <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">adsorbate</span> <span class="s">"CO"</span> <span class="p">;</span>
+    <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">energy_reference</span> <span class="s">"CO(g)"</span> <span class="p">;</span>
+    <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">material_composition</span> <span class="s">"CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn"</span> <span class="p">,</span> <span class="s">"Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr"</span> <span class="p">.</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference state is not defined in the main text."</span> <span class="p">;</span>
+    <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"OH binding energy"</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">AdsorptionEnergetics</span> <span class="p">;</span>
+    <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"-1.87 to 1.41 eV (17 sites)"</span> <span class="p">;</span>
+    <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">adsorbate</span> <span class="s">"OH"</span> <span class="p">;</span>
+    <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">material_composition</span> <span class="s">"CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn"</span> <span class="p">,</span> <span class="s">"Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr"</span> <span class="p">.</span>
 </code></pre></div>
 </div>
 </div>
@@ -2286,13 +2368,13 @@ modelled (<code>evaluated_entity</code>) and the properties it computed (<code>c
 vocabularies.</p>
 <h3 id="quantities">Pattern 11 – Values, ranges and fractions with units</h3>
 <p><strong>Purpose:</strong> Write numbers so that software can compare them: a value or a range, the kind of quantity, and the unit, both as QUDT IRIs.</p>
-<p><strong>Example use case:</strong> A single pressure (1 bar), a temperature range (473.15–873.15 K) and a metal loading as mass fraction (0.5 wt% Ru).</p>
+<p><strong>Example use case:</strong> A single pressure (1 bar), a temperature range (473.15–873.15 K) and a metal loading as mass fraction (0.5 wt% Ru), given on the ruthenium component of the catalyst.</p>
 <p><strong>Notes:</strong></p>
 <ul>
 <li>Use full QUDT IRIs for <code>unit</code> (<code>https://qudt.org/vocab/unit/K</code>), not bare codes like <code>K</code>. Bare codes pass validation but cannot be resolved in RDF.</li>
 <li><code>description</code> on a quantity is the place for context such as "nominal" or "constant across all runs".</li>
 </ul>
-<p><strong>Fields used:</strong> <code>rdf_type</code>, <code>used_catalyst</code>, <code>has_quantitative_attribute</code>, <code>used_reactor</code>, <code>reactor_designator</code>, <code>reactor_temperature_range</code>, <code>experiment_pressure</code></p>
+<p><strong>Fields used:</strong> <code>rdf_type</code>, <code>used_catalyst</code>, <code>composed_of</code>, <code>has_quantitative_attribute</code>, <code>used_reactor</code>, <code>reactor_designator</code>, <code>reactor_temperature_range</code>, <code>experiment_pressure</code></p>
 <div class="tabbed-set tabbed-alternate" data-tabs="11:3"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio"/><input id="__tabbed_11_2" name="__tabbed_11" type="radio"/><input id="__tabbed_11_3" name="__tabbed_11" type="radio"/><div class="tabbed-labels"><label for="__tabbed_11_1">Graph</label><label for="__tabbed_11_2">YAML</label><label for="__tabbed_11_3">RDF (Turtle)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2300,16 +2382,20 @@ vocabularies.</p>
     n1["NH3 decomposition light-off over Ru/Ni-BC…&lt;br/&gt;«CatalyticReaction»"]
     n2["decomposition reaction&lt;br/&gt;SIO:010511"]
     n3["0.5Ru/1Ba/Ni-BCZY&lt;br/&gt;«Catalyst»"]
-    n4["0.5 PERCENT&lt;br/&gt;«MassFraction»"]
-    n5["quartz glass tubular packed-bed reactor&lt;br/&gt;«FixedBedReactor»"]
-    n6["473.15–873.15 K&lt;br/&gt;«Temperature»"]
-    n7["1.0 BAR&lt;br/&gt;«Pressure»"]
+    n4["ruthenium&lt;br/&gt;«ChemicalEntity»"]
+    n5["ruthenium atom&lt;br/&gt;CHEBI:30682"]
+    n6["0.5 PERCENT&lt;br/&gt;«MassFraction»"]
+    n7["quartz glass tubular packed-bed reactor&lt;br/&gt;«FixedBedReactor»"]
+    n8["473.15–873.15 K&lt;br/&gt;«Temperature»"]
+    n9["1.0 BAR&lt;br/&gt;«Pressure»"]
     n1 --&gt;|rdf_type| n2
-    n3 --&gt;|has_quantitative_attribute| n4
+    n4 --&gt;|rdf_type| n5
+    n4 --&gt;|has_quantitative_attribute| n6
+    n3 --&gt;|composed_of| n4
     n1 --&gt;|used_catalyst| n3
-    n1 --&gt;|used_reactor| n5
-    n1 --&gt;|reactor_temperature_range| n6
-    n1 --&gt;|experiment_pressure| n7
+    n1 --&gt;|used_reactor| n7
+    n1 --&gt;|reactor_temperature_range| n8
+    n1 --&gt;|experiment_pressure| n9
     classDef dataset fill:#cfe9ef,stroke:#00838f,color:#222
     classDef activity fill:#fde2c4,stroke:#c26b00,color:#222
     classDef plan fill:#e3dcf7,stroke:#5b3fb5,color:#222
@@ -2321,9 +2407,10 @@ vocabularies.</p>
     classDef literal fill:#eeeeee,stroke:#757575,color:#222
     classDef other fill:#ffffff,stroke:#757575,color:#222
     class n1 activity
-    class n2 term
-    class n3,n5 agent
-    class n4,n6,n7 quantity</code></pre>
+    class n2,n5 term
+    class n3,n7 agent
+    class n4 entity
+    class n6,n8,n9 quantity</code></pre>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:REAC_b74m-m6rp_NH3_decomposition</span>
@@ -2335,11 +2422,17 @@ vocabularies.</p>
 <span class="nt">used_catalyst</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5Ru/1Ba/Ni-BCZY</span>
-<span class="w">  </span><span class="nt">has_quantitative_attribute</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">    </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/MassFraction</span>
-<span class="w">    </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/PERCENT</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ru, nominal</span>
+<span class="w">  </span><span class="nt">composed_of</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruthenium</span>
+<span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHEBI:30682</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ruthenium atom</span>
+<span class="w">    </span><span class="nt">has_quantitative_attribute</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">      </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/MassFraction</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/PERCENT</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Nominal loading</span>
 <span class="nt">used_reactor</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:REAC_b74m-m6rp_reactor</span>
 <span class="w">  </span><span class="nt">reactor_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:FixedBedReactor</span>
@@ -2360,23 +2453,30 @@ vocabularies.</p>
 <div class="highlight"><pre><span></span><code><span class="k">@prefix</span><span class="w"> </span><span class="nn">rdf:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">SIO:</span><span class="w"> </span><span class="nv">&lt;http://semanticscience.org/resource/SIO_&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">coremeta4cat:</span><span class="w"> </span><span class="nv">&lt;https://w3id.org/nfdi4cat/coremeta4cat/&gt;</span><span class="w"> </span><span class="p">.</span>
+<span class="k">@prefix</span><span class="w"> </span><span class="nn">CHEBI:</span><span class="w"> </span><span class="nv">&lt;http://purl.obolibrary.org/obo/CHEBI_&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">RXNO:</span><span class="w"> </span><span class="nv">&lt;http://purl.obolibrary.org/obo/RXNO_&gt;</span><span class="w"> </span><span class="p">.</span>
+<span class="k">@prefix</span><span class="w"> </span><span class="nn">BFO:</span><span class="w"> </span><span class="nv">&lt;http://purl.obolibrary.org/obo/BFO_&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">voc4cat:</span><span class="w"> </span><span class="nv">&lt;https://w3id.org/nfdi4cat/voc4cat_&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">xsd:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">qudt:</span><span class="w"> </span><span class="nv">&lt;http://qudt.org/schema/qudt/&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">prov:</span><span class="w"> </span><span class="nv">&lt;http://www.w3.org/ns/prov#&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">dcterms:</span><span class="w"> </span><span class="nv">&lt;http://purl.org/dc/terms/&gt;</span><span class="w"> </span><span class="p">.</span>
 <span class="k">@prefix</span><span class="w"> </span><span class="nn">schema1:</span><span class="w"> </span><span class="nv">&lt;http://schema.org/&gt;</span><span class="w"> </span><span class="p">.</span>
+<span class="nn">CHEBI</span><span class="p">:</span><span class="nt">30682</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">name</span> <span class="s">"ruthenium atom"</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">DefinedTerm</span> <span class="p">.</span>
 <span class="nn">SIO</span><span class="p">:</span><span class="nt">010511</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">name</span> <span class="s">"decomposition reaction"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">schema1</span><span class="p">:</span><span class="nt">DefinedTerm</span> <span class="p">.</span>
-<span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">relation</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="p">;</span>
+<span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY</span> <span class="nn">BFO</span><span class="p">:</span><span class="nt">0000051</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru</span> <span class="p">;</span>
     <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"0.5Ru/1Ba/Ni-BCZY"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">SIO</span><span class="p">:</span><span class="nt">010344</span> <span class="p">.</span>
+<span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">relation</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="p">;</span>
+    <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"ruthenium"</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">23367</span> <span class="p">,</span> <span class="nn">CHEBI</span><span class="p">:</span><span class="nt">30682</span> <span class="p">.</span>
 <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">REAC_b74m-m6rp_NH3_decomposition</span> <span class="nn">RXNO</span><span class="p">:</span><span class="nt">0000425</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY</span> <span class="p">;</span>
     <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">SIO</span><span class="p">:</span><span class="nt">010511</span> <span class="p">,</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">CatalyticReaction</span> <span class="p">;</span>
     <span class="nn">prov</span><span class="p">:</span><span class="nt">wasAssociatedWith</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">REAC_b74m-m6rp_reactor</span> <span class="p">;</span>
-    <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0000118</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="p">;</span>
+    <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0000118</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="p">;</span>
     <span class="nn">voc4cat</span><span class="p">:</span><span class="nt">0007032</span> <span class="nn">_</span><span class="p">:</span><span class="nt">c14n0</span> <span class="p">.</span>
 <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">REAC_b74m-m6rp_reactor</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">title</span> <span class="s">"quartz glass tubular packed-bed reactor"</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">FixedBedReactor</span> <span class="p">.</span>
@@ -2386,15 +2486,15 @@ vocabularies.</p>
     <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
     <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">maxValue</span> <span class="s">"873.15"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">;</span>
     <span class="nn">coremeta4cat</span><span class="p">:</span><span class="nt">minValue</span> <span class="s">"473.15"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Ru, nominal"</span> <span class="p">;</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n1</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/Pressure&gt;</span> <span class="p">;</span>
+    <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/BAR&gt;</span> <span class="p">;</span>
+    <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
+    <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"1.0"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
+<span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="nn">dcterms</span><span class="p">:</span><span class="nt">description</span> <span class="s">"Nominal loading"</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/MassFraction&gt;</span> <span class="p">;</span>
     <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/PERCENT&gt;</span> <span class="p">;</span>
     <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
     <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"0.5"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
-<span class="nn">_</span><span class="p">:</span><span class="nt">c14n2</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">hasQuantityKind</span> <span class="nv">&lt;http://qudt.org/vocab/quantitykind/Pressure&gt;</span> <span class="p">;</span>
-    <span class="nn">qudt</span><span class="p">:</span><span class="nt">unit</span> <span class="nv">&lt;https://qudt.org/vocab/unit/BAR&gt;</span> <span class="p">;</span>
-    <span class="kt">a</span> <span class="nn">qudt</span><span class="p">:</span><span class="nt">Quantity</span> <span class="p">;</span>
-    <span class="nn">prov</span><span class="p">:</span><span class="nt">value</span> <span class="s">"1.0"</span><span class="p">^^</span><span class="nn">xsd</span><span class="p">:</span><span class="nt">float</span> <span class="p">.</span>
 </code></pre></div>
 </div>
 </div>
