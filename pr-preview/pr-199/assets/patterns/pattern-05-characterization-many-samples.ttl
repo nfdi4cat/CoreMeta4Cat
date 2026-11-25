@@ -15,7 +15,7 @@ coremeta4cat:CAT_32x1-99x6_Al2O3_1P dcterms:title "Pd/1P/Al2O3" ;
 coremeta4cat:CAT_32x1-99x6_Al2O3_2P dcterms:title "Pd/2P/Al2O3" ;
 	a prov:Entity .
 coremeta4cat:CHAR_32x1-99x6_BET dcterms:title "BET surface area analysis (10 catalysts)" ;
-	a enm:0000064 , coremeta4cat:Characterization ;
+	a enm:0000064 , OBI:0000070 ;
 	prov:used coremeta4cat:CAT_32x1-99x6_Al2O3_0P , coremeta4cat:CAT_32x1-99x6_Al2O3_1P , coremeta4cat:CAT_32x1-99x6_Al2O3_2P , coremeta4cat:CHAR_32x1-99x6_BET_method ;
 	prov:wasAssociatedWith coremeta4cat:DEV_32x1-99x6_BET .
 coremeta4cat:CHAR_32x1-99x6_BET_method dcterms:title "N2 physisorption BET method" ;

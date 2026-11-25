@@ -2,6 +2,7 @@
 @prefix SIO: <http://semanticscience.org/resource/SIO_> .
 @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
 @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix PROCO: <http://purl.obolibrary.org/obo/PROCO_> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
 @prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
@@ -10,6 +11,7 @@
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
 @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix REX: <http://purl.obolibrary.org/obo/REX_> .
 @prefix RO: <http://purl.obolibrary.org/obo/RO_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -108,7 +110,7 @@ coremeta4cat:CAT_b74m-m6rp_all dcterms:description "Six catalysts: Ni-BCZY, 1Ru/
 	a prov:Entity .
 coremeta4cat:CHAR_b74m-m6rp_TCD dcterms:description "Temperature-programmed reduction of about 0.1 g Ni-BCZY powder in a quartz reactor, from room temperature to 1223 K at 10 K/min in 10% H2/Ar (50 mL/min); H2 consumption followed by a thermal conductivity detector. Deposited signal 38-951 C." ;
 	dcterms:title "H2-TPR of the Ni-BCZY cermet (article Fig. 1)" ;
-	a CHMO:0002908 , coremeta4cat:Characterization ;
+	a CHMO:0002908 , OBI:0000070 , prov:Activity ;
 	adms:identifier _:c14n17 ;
 	prov:used coremeta4cat:CAT_b74m-m6rp_Ni-BCZY , coremeta4cat:CHAR_b74m-m6rp_TCD_method ;
 	prov:wasAssociatedWith coremeta4cat:DEV_b74m-m6rp_TCD .
@@ -151,7 +153,7 @@ coremeta4cat:REAC_b74m-m6rp_NH3_decomposition RO:0004008 coremeta4cat:PROD_b74m-
 	RXNO:0000425 coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ , coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ , coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_Ni-BCZY ;
 	dcterms:description "Thermocatalytic decomposition of ammonia (2 NH3 -> N2 + 3 H2) measured as light-off curves in a packed bed: NH3 in Ar at 1 bar, GHSV 50,000 h-1, temperature ramped from 473 to 873 K at 2 K/min, after 1.5 h pretreatment at 873 K in 5% H2/Ar and 1 h Ar purge at 473 K. Six catalysts at 1000 ppm NH3 (Fig. 2); 0.5Ru/1Ba/Ni-BCZY and Ni-BCZY also at 500 and 3000 ppm (Fig. 3 and simulation comparisons). Article Table 3 gives T10/T50: Ni-BCZY 656/717 K, 1Ru/Ni-BCZY 621/675 K, 0.5Ru/1Ba/Ni-BCZY 615/675 K, 0.5Ru/0.5Ba/Ni-BCZY 621/676 K, 1Ru/1Ba/YSZ 536/589 K, 1Ru/1Ba/Ni-YSZ 621/688 K. The deposited curve for 0.5Ru/0.5Ba/Ni-BCZY is unreadable (lost decimal separators); its T10/T50 survive only in the article." ;
 	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
-	a SIO:010511 , coremeta4cat:CatalyticReaction ;
+	a REX:0000051 , SIO:010511 ;
 	adms:identifier _:c14n0 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
 	coremeta4cat:feed_composition_range _:c14n38 ;
@@ -173,7 +175,7 @@ coremeta4cat:SIM_b74m-m6rp_MKM_method dcterms:description "Modified Arrhenius ra
 	a coremeta4cat:Microkinetics .
 coremeta4cat:SIM_b74m-m6rp_MKM_parametric dcterms:description "Simulations with the optimized microkinetic mechanism: axial NH3 and conversion profiles over the 12 mm bed at 618-818 K (article Fig. 8); spatially resolved surface coverages at 615 and 818 K (Fig. 9); turnover frequency of the Ru-only, Ni-only and combined models at 498-848 K, computed without reactor effects (Fig. 10); and variation of inlet NH3, GHSV (100-100,000 h-1) and pressure at 615 K or as a function of temperature (Fig. 11). Base case: 1000 ppm NH3 in Ar, 1 bar, GHSV 50,000 h-1, 615 K (= T10 of 0.5Ru/1Ba/Ni-BCZY)." ;
 	dcterms:title "Microkinetic NH3 decomposition: reactor profiles, TOF and parameter variation" ;
-	a coremeta4cat:Simulation ;
+	a PROCO:0000159 , prov:Activity ;
 	adms:identifier _:c14n37 ;
 	prov:used coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY , coremeta4cat:SIM_b74m-m6rp_MKM_parametric_method ;
 	coremeta4cat:calculated_property _:c14n2 , _:c14n25 , _:c14n33 ;
@@ -183,7 +185,7 @@ coremeta4cat:SIM_b74m-m6rp_MKM_parametric_method dcterms:description "Mechanism 
 	a coremeta4cat:Microkinetics .
 coremeta4cat:SIM_b74m-m6rp_MKM_validation dcterms:description "One-dimensional packed-bed reactor simulation (negligible axial diffusion) with a mean-field surface mechanism on Ru and Ni sites, compared with the measured light-off curves at 500, 1000 and 3000 ppm NH3 in Ar, 1 bar, GHSV 50,000 h-1, ramp 2 K/min. Ni steps start from Zhu et al. (Int. J. Green Energy 19 (2022) 1568), Ru steps from Zhang et al. (ACS Sustain. Chem. Eng. 7 (2019) 18038, Ba-promoted Ru on YSZ, coverage-dependent activation energies). Both parameter sets were re-optimized against the 1000 ppm data and validated with the 500 and 3000 ppm data; the optimized set is article Table 4. Surface species: Ru, H-Ru, N-Ru, NH-Ru, NH2-Ru, NH3-Ru, Ni, H-Ni, N-Ni, NH-Ni, NH2-Ni, NH3-Ni." ;
 	dcterms:title "Microkinetic simulation of NH3 decomposition light-off on Ni-BCZY and 0.5Ru/1Ba/Ni-BCZY" ;
-	a coremeta4cat:Simulation ;
+	a PROCO:0000159 , prov:Activity ;
 	adms:identifier _:c14n18 ;
 	prov:used coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_Ni-BCZY , coremeta4cat:SIM_b74m-m6rp_MKM_method ;
 	coremeta4cat:calculated_property _:c14n1 ;
@@ -207,14 +209,14 @@ coremeta4cat:SYN_b74m-m6rp_IWI_method dcterms:description "Because of the low po
 	voc4cat:0008206 _:c14n4 ;
 	voc4cat:0008207 _:c14n11 .
 coremeta4cat:SYN_b74m-m6rp_Ru_Ba_IWI dcterms:title "Ru and Ba on Ni-BCZY, Ni-YSZ and YSZ by stepwise incipient wetness impregnation" ;
-	a coremeta4cat:Synthesis ;
+	a PROCO:0000001 , prov:Activity ;
 	adms:identifier _:c14n22 ;
 	prov:generated coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ , coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ , coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY ;
 	prov:used coremeta4cat:PREC_b74m-m6rp_BaNO3 , coremeta4cat:PREC_b74m-m6rp_RuNO_NO3 , coremeta4cat:SUP_b74m-m6rp_supports , coremeta4cat:SYN_b74m-m6rp_IWI_method ;
 	coremeta4cat:catalyst_measured_properties "Ru distribution and nanoparticle size of 0.5Ru/1Ba/Ni-BCZY by SEM/EDX (article Figs. 4-5; images not deposited)" ;
 	coremeta4cat:nominal_composition "0.5Ru/0.5Ba/Ni-BCZY: 0.5 wt% Ru, 0.5 wt% Ba" , "0.5Ru/1Ba/Ni-BCZY: 0.5 wt% Ru, 1.0 wt% Ba" , "1Ru/1Ba/Ni-YSZ: 1.0 wt% Ru, 1.0 wt% Ba" , "1Ru/1Ba/YSZ: 1.0 wt% Ru, 1.0 wt% Ba" , "1Ru/Ni-BCZY: 1.0 wt% Ru" .
 coremeta4cat:SYN_b74m-m6rp_cermet_supports dcterms:title "Ni-BCZY, Ni-YSZ and YSZ supports from sintered tapes" ;
-	a coremeta4cat:Synthesis ;
+	a PROCO:0000001 , prov:Activity ;
 	adms:identifier _:c14n9 ;
 	prov:generated coremeta4cat:SUP_b74m-m6rp_Ni-BCZY , coremeta4cat:SUP_b74m-m6rp_Ni-YSZ , coremeta4cat:SUP_b74m-m6rp_YSZ ;
 	prov:used coremeta4cat:PREC_b74m-m6rp_8YSZ , coremeta4cat:PREC_b74m-m6rp_BCZY811 , coremeta4cat:PREC_b74m-m6rp_NiO , coremeta4cat:PREC_b74m-m6rp_graphite , coremeta4cat:PREC_b74m-m6rp_tape_organics , coremeta4cat:SYN_b74m-m6rp_tape_casting_method ;

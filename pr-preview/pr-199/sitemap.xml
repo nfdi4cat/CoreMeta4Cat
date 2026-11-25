@@ -169,10 +169,6 @@
          <lastmod>2026-11-25</lastmod>
     </url>
     <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/elements/classes/CatalysisDataGeneratingActivity/</loc>
-         <lastmod>2026-11-25</lastmod>
-    </url>
-    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/elements/classes/CatalysisDataset/</loc>
          <lastmod>2026-11-25</lastmod>
     </url>
@@ -994,10 +990,6 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/elements/slots/activation_energy/</loc>
-         <lastmod>2026-11-25</lastmod>
-    </url>
-    <url>
-         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/elements/slots/activity_designator/</loc>
          <lastmod>2026-11-25</lastmod>
     </url>
     <url>
@@ -2882,6 +2874,18 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/elements/slots/was_generated_by/</loc>
+         <lastmod>2026-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/elements/slots/was_generated_by_characterization/</loc>
+         <lastmod>2026-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/elements/slots/was_generated_by_simulation/</loc>
+         <lastmod>2026-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/elements/slots/was_generated_by_synthesis/</loc>
          <lastmod>2026-11-25</lastmod>
     </url>
     <url>

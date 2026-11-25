@@ -1066,7 +1066,7 @@
 <p class="admonition-title">Theoreticians: help us extend this data class</p>
 <p>The catalysis-specific properties were added only recently, and many methods, settings and quantities used in computational catalysis are still missing. If you miss one, use the <strong>Submit Term Feedback</strong> button next to the closest field, open an <a href="https://github.com/nfdi4cat/CoreMeta4Cat/issues">issue</a>, or propose it through the vocabulary workbook. <a href="../contributing/">How to contribute</a> explains each option.</p>
 </div>
-<p><strong>CURIE:</strong> <a href="coremeta4cat:Simulation"><code>coremeta4cat:Simulation</code></a></p>
+<p><strong>CURIE:</strong> <a href="PROCO:0000159"><code>PROCO:0000159</code></a></p>
 <p><strong>Mappings:</strong> close match <a href="http://purl.obolibrary.org/obo/NCIT_C16461"><code>NCIT:C16461</code></a></p>
 <div class="cm4c-classmap" data-root="Simulation"
      data-src="../assets/schema_graph.json"
@@ -3477,26 +3477,6 @@ must match the class_uri exactly. In RDF it becomes the entry's rdf:type.</p>
 </details>
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calculated_property target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p>
-</details>
-<details open="open">
-<summary><strong>activity designator</strong> (Optional)</summary>
-<p><strong>Description:</strong> Type designator for CatalysisDataGeneratingActivity subclasses: the
-class_uri of the concrete activity, i.e. coremeta4cat:Synthesis,
-coremeta4cat:Characterization or coremeta4cat:Simulation. Only needs to be
-set by hand when nesting one of these inside another object's
-was_generated_by list (e.g. in a combined CatalysisDataset file) -- LinkML
-fills it in automatically when a class is instantiated directly. Write the
-CURIE as shown: the Python loader matches it against the class_uri exactly.
-In RDF it becomes the activity's rdf:type.</p>
-<p><strong>Data Type:</strong> uriorcurie</p>
-<p><strong>Cardinality:</strong>  Optional</p>
-<p><strong>CURIE:</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"><code>rdf:type</code></a></p>
-<p><strong>Schema Reference:</strong> <a href="../elements/slots/activity_designator/">activity_designator</a></p>
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20activity_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p>

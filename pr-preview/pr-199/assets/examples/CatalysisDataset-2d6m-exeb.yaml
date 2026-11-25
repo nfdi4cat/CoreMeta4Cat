@@ -44,6 +44,8 @@ other_identifier:
 - notation: doi:10.1021/acs.iecr.1c00389
   description: Related publication DOI
 was_generated_by:
+- coremeta4cat:CHAR_2d6m-exeb_outlet_gas_analysis
+was_generated_by_characterization:
 - id: coremeta4cat:CHAR_2d6m-exeb_outlet_gas_analysis
   title:
   - Outlet gas composition analysis (all 16 runs)
@@ -74,7 +76,6 @@ was_generated_by:
   other_identifier:
   - notation: doi:10.1021/acs.iecr.1c00389
     description: Related publication DOI
-  activity_designator: coremeta4cat:Characterization
 is_about_activity:
 - id: coremeta4cat:REAC_2d6m-exeb_CO_methanation
   reaction_name:

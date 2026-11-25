@@ -48,8 +48,16 @@ dataset_distribution:
 other_identifier:
 - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
 was_generated_by:
+- coremeta4cat:SYN_6mxw-xsrd_gen1
+- coremeta4cat:SYN_6mxw-xsrd_gen2_step1
+- coremeta4cat:SYN_6mxw-xsrd_gen2_step2
+- coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4
+- coremeta4cat:CHAR_6mxw-xsrd_XRF
+- coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites
+- coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE
+- coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP
+was_generated_by_synthesis:
 - id: coremeta4cat:SYN_6mxw-xsrd_gen1
-  activity_designator: coremeta4cat:Synthesis
   title:
   - Cu0.465Ga0.07Al0.465 mixed metal oxide, three calcination temperatures
   nominal_composition:
@@ -97,7 +105,6 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
 - id: coremeta4cat:SYN_6mxw-xsrd_gen2_step1
-  activity_designator: coremeta4cat:Synthesis
   title:
   - Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C
   nominal_composition:
@@ -140,7 +147,6 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
 - id: coremeta4cat:SYN_6mxw-xsrd_gen2_step2
-  activity_designator: coremeta4cat:Synthesis
   title:
   - 1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at 250 or 350 C
   nominal_composition:
@@ -194,7 +200,6 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
 - id: coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4
-  activity_designator: coremeta4cat:Synthesis
   title:
   - Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination
   nominal_composition:
@@ -302,8 +307,8 @@ was_generated_by:
     - value: clean dry air
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+was_generated_by_characterization:
 - id: coremeta4cat:CHAR_6mxw-xsrd_XRF
-  activity_designator: coremeta4cat:Characterization
   title:
   - XRF elemental analysis (76 Cu-Ga-Al hydrotalcite-like precursors)
   description:
@@ -331,8 +336,8 @@ was_generated_by:
       stated in the main text of the article.
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+was_generated_by_simulation:
 - id: coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites
-  activity_designator: coremeta4cat:Simulation
   title:
   - DFT binding energies of OH and CO at 17 oxide surface sites
   description:
@@ -390,7 +395,6 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
 - id: coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE
-  activity_designator: coremeta4cat:Simulation
   title:
   - MACE-MPA-0 binding-energy screening of OH and CO (31 compositions)
   description:
@@ -429,7 +433,6 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
 - id: coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP
-  activity_designator: coremeta4cat:Simulation
   title:
   - OCP binding-energy screening of OH and CO (37 compositions)
   description:

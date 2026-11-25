@@ -1865,10 +1865,12 @@ voc4cat:XXXXXXX
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
         <span class="k">continue</span>  <span class="c1"># skip empty rows</span>
 
+    <span class="n">synthesis_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"ex:synthesis-</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span>
     <span class="n">record</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"CatalysisDataset"</span><span class="p">,</span>
-        <span class="s2">"was_generated_by"</span><span class="p">:</span> <span class="p">[{</span>
-            <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"Synthesis"</span><span class="p">,</span>
+        <span class="s2">"was_generated_by"</span><span class="p">:</span> <span class="p">[</span><span class="n">synthesis_id</span><span class="p">],</span>                    <span class="c1"># ids of all activities</span>
+        <span class="s2">"was_generated_by_synthesis"</span><span class="p">:</span> <span class="p">[{</span>                        <span class="c1"># each synthesis in full</span>
+            <span class="s2">"id"</span><span class="p">:</span> <span class="n">synthesis_id</span><span class="p">,</span>
             <span class="s2">"nominal_composition"</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Name"</span><span class="p">),</span>           <span class="c1"># dct:title</span>
             <span class="s2">"realized_plan"</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"Impregnation"</span><span class="p">,</span>
@@ -1903,9 +1905,10 @@ voc4cat:XXXXXXX
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CatalysisDataset"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"rdf_type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"voc4cat:0007001"</span><span class="p">,</span><span class="w"> </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"heterogeneous catalysis"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"was_generated_by"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="nt">"was_generated_by"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ex:synthesis-1"</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"was_generated_by_synthesis"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Synthesis"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex:synthesis-1"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"nominal_composition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5wt% Ni/Al2O3"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"realized_plan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Impregnation"</span><span class="p">,</span>

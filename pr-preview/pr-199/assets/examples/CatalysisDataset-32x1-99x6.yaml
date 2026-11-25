@@ -59,6 +59,14 @@ other_identifier:
   description: Methodology reference cited for the DRIFT pseudo-absorbance conversion (not this dataset's
     own publication)
 was_generated_by:
+- coremeta4cat:SYN_32x1-99x6_P_modification
+- coremeta4cat:SYN_32x1-99x6_Pd_impregnation
+- coremeta4cat:CHAR_32x1-99x6_BET
+- coremeta4cat:CHAR_32x1-99x6_DRIFT
+- coremeta4cat:CHAR_32x1-99x6_ICPAES
+- coremeta4cat:CHAR_32x1-99x6_IR
+- coremeta4cat:CHAR_32x1-99x6_PXRD
+was_generated_by_synthesis:
 - id: coremeta4cat:SYN_32x1-99x6_P_modification
   title:
   - Phosphorus modification of alumina and silica by incipient wetness impregnation with NH4H2PO4
@@ -175,7 +183,6 @@ was_generated_by:
       description: normal litres per hour; GHSV 10 h-1
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  activity_designator: coremeta4cat:Synthesis
 - id: coremeta4cat:SYN_32x1-99x6_Pd_impregnation
   title:
   - Pd deposition on unmodified and phosphorus-modified supports by incipient wetness impregnation
@@ -290,7 +297,7 @@ was_generated_by:
       description: normal litres per hour; GHSV 10 h-1
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  activity_designator: coremeta4cat:Synthesis
+was_generated_by_characterization:
 - id: coremeta4cat:CHAR_32x1-99x6_BET
   title:
   - BET surface area analysis (10 catalysts)
@@ -344,7 +351,6 @@ was_generated_by:
       standard BET convention.
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  activity_designator: coremeta4cat:Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_DRIFT
   title:
   - DRIFT CO-adsorption spectroscopy (4 catalysts)
@@ -379,7 +385,6 @@ was_generated_by:
     description: CO adsorption at room temperature; pseudo-absorbance = log(1/reflectance).
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  activity_designator: coremeta4cat:Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_ICPAES
   title:
   - ICP-AES elemental composition analysis (8 catalysts)
@@ -425,7 +430,6 @@ was_generated_by:
     description: 'Elements analyzed: Pd, P. Results reported in wt% (icp_results.txt).'
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  activity_designator: coremeta4cat:Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_IR
   title:
   - Infrared spectroscopy (6 catalysts)
@@ -465,7 +469,6 @@ was_generated_by:
     description: Wavenumber range ~400-3599 cm-1; pseudo-absorbance units.
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  activity_designator: coremeta4cat:Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_PXRD
   title:
   - Powder XRD phase analysis (10 catalysts)
@@ -521,7 +524,6 @@ was_generated_by:
       sample FR507).
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  activity_designator: coremeta4cat:Characterization
 is_about_activity:
 - id: coremeta4cat:REAC_32x1-99x6_CAL_Al2O3
   reaction_name:

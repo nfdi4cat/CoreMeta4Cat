@@ -960,6 +960,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1072,7 +1083,15 @@
 <p><em>This slot is described in more detail within the class in which it is used.</em></p>
 <div>
 <p>URI: <a href="http://www.w3.org/ns/prov#wasGeneratedBy">prov:wasGeneratedBy</a></p>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><strong>was_generated_by</strong><ul>
+<li><a href="../was_generated_by_synthesis/">was_generated_by_synthesis</a></li>
+<li><a href="../was_generated_by_characterization/">was_generated_by_characterization</a></li>
+<li><a href="../was_generated_by_simulation/">was_generated_by_simulation</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -1095,7 +1114,7 @@
 </tr>
 <tr>
 <td><a href="../../classes/CatalysisDataset/">CatalysisDataset</a></td>
-<td>A dcat:Dataset that contains research data in the field of catalysis.<br><br>The catalysis research field is expressed via rdf_type using voc4cat<br>terms from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).<br>For example, a dataset from heterogeneous catalysis research would carry:<br>  rdf_type:<br>    - id: voc4cat:0007001<br>      title: "heterogeneous catalysis"<br>Interdisciplinary work lists every field that applies, e.g. biocatalysis<br>and electrocatalysis for bioelectrocatalysis.<br><br>The four CoreMeta4Cat minimum information pillars are linked via the slots<br>below, each pointing to the corresponding DataGeneratingActivity or<br>EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.</td>
+<td>A dcat:Dataset that contains research data in the field of catalysis.<br><br>The catalysis research field is expressed via rdf_type using voc4cat<br>terms from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).<br>For example, a dataset from heterogeneous catalysis research would carry:<br>  rdf_type:<br>    - id: voc4cat:0007001<br>      title: "heterogeneous catalysis"<br>Interdisciplinary work lists every field that applies, e.g. biocatalysis<br>and electrocatalysis for bioelectrocatalysis.<br><br>The four CoreMeta4Cat minimum information pillars are linked via the slots<br>below, each pointing to the corresponding DataGeneratingActivity or<br>EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.<br>Synthesis, Characterization and Simulation are each described in their<br>own slot (was_generated_by_synthesis, was_generated_by_characterization,<br>was_generated_by_simulation); was_generated_by lists the ids of all of<br>them.</td>
 <td>yes</td>
 </tr>
 <tr>
