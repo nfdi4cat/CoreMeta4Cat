@@ -11,17 +11,14 @@
 #
 # JSON schema notes:
 # - title and description on CatalysisDataset must be arrays (DCAT multivalued).
-# - was_generated_by is typed CatalysisDataGeneratingActivity (Synthesis,
-#   Characterization, Simulation share this ancestor and each needs
-#   activity_designator set here so the LinkML loader knows which concrete
-#   class to construct -- see coremeta4cat_common.yaml. Not needed in the
-#   standalone Synthesis-001/Characterization-NNN.yaml files themselves.
-# - was_generated_by items nested here are the full content of
-#   Synthesis-001.yaml / Characterization-001.yaml / Characterization-002.yaml,
-#   not stubs -- CatalysisDataGeneratingActivity's descendants (Synthesis,
-#   Characterization, Simulation) each have their own required fields, so a
-#   bare id+title stub no longer validates once was_generated_by is narrowed
-#   away from the generic external DataGeneratingActivity.
+# - Each kind of activity has its own slot (was_generated_by_synthesis,
+#   was_generated_by_characterization, was_generated_by_simulation), so the
+#   LinkML loader knows which class to construct without a type designator.
+#   was_generated_by (required by DCAT-AP-PLUS) lists the ids of all of them.
+# - The activities nested here are the full content of Synthesis-001.yaml /
+#   Characterization-001.yaml / Characterization-002.yaml, not stubs --
+#   Synthesis, Characterization and Simulation each have their own required
+#   fields, so a bare id+title stub does not validate.
 
 id: "coremeta4cat:DS_001_MeOH_synthesis_CuZnO"
 title:
@@ -32,8 +29,11 @@ rdf_type:
   - id: voc4cat:0007001
     title: "heterogeneous catalysis"
 was_generated_by:
+  - "coremeta4cat:SYNTH_001_Pt_Al2O3"
+  - "coremeta4cat:CHAR_001_BET_CuZnO_Al2O3"
+  - "coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3"
+was_generated_by_synthesis:
   - id: "coremeta4cat:SYNTH_001_Pt_Al2O3"
-    activity_designator: "coremeta4cat:Synthesis"
     nominal_composition:
       - "5 wt% Pt/Al2O3"
     catalyst_measured_properties:
@@ -58,8 +58,8 @@ was_generated_by:
       id: "coremeta4cat:SYNTH_001_impregnation_method"
       title: "incipient wetness impregnation"
       description: "incipient_wetness, 25 deg C, 12 h"
+was_generated_by_characterization:
   - id: "coremeta4cat:CHAR_001_BET_CuZnO_Al2O3"
-    activity_designator: "coremeta4cat:Characterization"
     carried_out_by:
       - id: "coremeta4cat:DEV_001_Micromeritics_ASAP2020"
         title: "Micromeritics ASAP 2020 surface area and porosimetry analyzer"
@@ -72,7 +72,6 @@ was_generated_by:
       title: "BET surface area measurement"
       description: "N2 physisorption at 77 K, degassing at 300 deg C for 3 h under vacuum prior to measurement"
   - id: "coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3"
-    activity_designator: "coremeta4cat:Characterization"
     carried_out_by:
       - id: "coremeta4cat:DEV_002_Bruker_D8_Advance"
         title: "Bruker D8 Advance diffractometer with Cu K-alpha radiation (1.5406 Ang)"

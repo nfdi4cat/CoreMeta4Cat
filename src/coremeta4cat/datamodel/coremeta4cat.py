@@ -18,30 +18,36 @@
 #
 #   - The four CoreMeta4Cat pillars are modelled as DCAT-AP-PLUS Activity subclasses,
 #     following the same pattern as NMRSpectroscopy (is_a: DataGeneratingActivity).
-#     Synthesis, Characterization, and Simulation specialize CatalysisDataGeneratingActivity
-#     (is_a: DataGeneratingActivity) rather than DataGeneratingActivity directly -- this
-#     coremeta4cat-owned intermediate adds a type designator (activity_designator) so that
-#     was_generated_by (typed CatalysisDataGeneratingActivity) can hold any of the three and
-#     still resolve to the right concrete Python class when loaded. Likewise, is_about_activity
-#     is typed CatalyticReaction directly (not the wider EvaluatedActivity) so it needs no
-#     designator at all:
+#     Each pillar has an ontology term as its class_uri, as chem-dcat-ap does for
+#     SubstanceSample (SIO:001378) or ChemicalEntity (CHEBI:23367), so the RDF of
+#     every activity says what kind of activity it is.
 #
-#       Synthesis      --> is_a: CatalysisDataGeneratingActivity
+#     CatalysisDataset describes the three data-generating pillars in one slot
+#     each: was_generated_by_synthesis, was_generated_by_characterization and
+#     was_generated_by_simulation. All three are prov:wasGeneratedBy in RDF, and
+#     the range of each slot tells software which class its entries are, so no
+#     type designator is needed. was_generated_by itself, which DCAT-AP-PLUS
+#     requires on every Dataset, lists the ids of all these activities.
+#     is_about_activity is typed CatalyticReaction directly (not the wider
+#     EvaluatedActivity), so it needs no designator either:
+#
+#       Synthesis      --> is_a: DataGeneratingActivity, class_uri PROCO:0000001
 #                        Produces a catalyst (MaterialSample) as had_output_entity.
 #                        The PreparationMethod (protocol) is linked via realized_plan.
 #
-#       Characterization --> is_a: CatalysisDataGeneratingActivity
+#       Characterization --> is_a: DataGeneratingActivity, class_uri OBI:0000070
 #                          Produces measurement data about a catalyst or reaction.
 #                          The catalyst/sample is the evaluated_entity.
 #                          The CharacterizationTechnique is linked via realized_plan.
 #
-#       Reaction       --> is_a: CatalyticReaction (via ChemicalReaction, EvaluatedActivity)
+#       Reaction       --> CatalyticReaction (is_a: ChemicalReaction, EvaluatedActivity),
+#                        class_uri REX:0000051
 #                        The catalytic process being studied, NOT a data-generating
 #                        activity itself. Characterization datasets are about this.
 #                        Analogous to the reaction being observed in a reaction
 #                        monitoring dataset.
 #
-#       Simulation     --> is_a: CatalysisDataGeneratingActivity
+#       Simulation     --> is_a: DataGeneratingActivity, class_uri PROCO:0000159
 #                        Generates computational data about a catalyst or reaction.
 #                        The SimulationMethod (protocol) is linked via realized_plan.
 #                        The simulation software is carried_out_by: Software.
@@ -236,19 +242,15 @@ class DataGeneratingActivityId(ActivityId):
     pass
 
 
-class CatalysisDataGeneratingActivityId(DataGeneratingActivityId):
+class SynthesisId(DataGeneratingActivityId):
     pass
 
 
-class SynthesisId(CatalysisDataGeneratingActivityId):
+class CharacterizationId(DataGeneratingActivityId):
     pass
 
 
-class CharacterizationId(CatalysisDataGeneratingActivityId):
-    pass
-
-
-class SimulationId(CatalysisDataGeneratingActivityId):
+class SimulationId(DataGeneratingActivityId):
     pass
 
 
@@ -1708,75 +1710,7 @@ class DataGeneratingActivity(Activity):
 
 
 @dataclass(repr=False)
-class CatalysisDataGeneratingActivity(DataGeneratingActivity):
-    """
-    A CoreMeta4Cat specialization of DCAT-AP-PLUS's DataGeneratingActivity
-    that adds a type designator (activity_designator). Synthesis,
-    Characterization, and Simulation all specialize this class instead of
-    DataGeneratingActivity directly, so that when one of them is nested
-    inside CatalysisDataset.was_generated_by, the LinkML Python loader can
-    tell which concrete subclass a given entry is meant to be and keep its
-    subclass-specific fields (e.g. Characterization.realized_plan) rather
-    than falling back to DataGeneratingActivity's own generic slot
-    definitions.
-
-    activity_designator is filled in automatically by LinkML when a class
-    is instantiated directly (e.g. loading a standalone Synthesis-NNN.yaml
-    file) -- it does not need to be set by hand there. It only needs to be
-    set explicitly in the source data when a Synthesis/Characterization/
-    Simulation instance is nested inside another object's was_generated_by
-    list (e.g. in a combined CatalysisDataset file), so the loader knows
-    which of the three to construct.
-
-    The designator holds the class_uri of the concrete class, and in RDF it
-    becomes the activity's rdf:type. Every subclass therefore needs a
-    class_uri of its own: Synthesis, Characterization and Simulation use
-    coremeta4cat IRIs and give external ontology terms as mappings. A term
-    shared by two subclasses (as OBI:0000070 once was) cannot tell them apart.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["CatalysisDataGeneratingActivity"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:CatalysisDataGeneratingActivity"
-    class_name: ClassVar[str] = "CatalysisDataGeneratingActivity"
-    class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CatalysisDataGeneratingActivity
-
-    id: Union[str, CatalysisDataGeneratingActivityId] = None
-    activity_designator: Optional[Union[str, URIorCURIE]] = None
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        self.activity_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
-
-        super().__post_init__(**kwargs)
-
-
-    def __new__(cls, *args, **kwargs):
-
-        type_designator = "activity_designator"
-        if not type_designator in kwargs:
-            return super().__new__(cls,*args,**kwargs)
-        else:
-            type_designator_value = kwargs[type_designator]
-            target_cls = cls._class_for("class_class_curie", type_designator_value)
-
-
-            if target_cls is None:
-                target_cls = cls._class_for("class_class_uri", type_designator_value)
-
-
-            if target_cls is None:
-                target_cls = cls._class_for("class_model_uri", type_designator_value)
-
-
-            if target_cls is None:
-                raise ValueError(f"Wrong type designator value: class {cls.__name__} "
-                                 f"has no subclass with ['class_class_curie', 'class_class_uri', 'class_model_uri']='{kwargs[type_designator]}'")
-            return super().__new__(target_cls,*args,**kwargs)
-
-
-
-@dataclass(repr=False)
-class Synthesis(CatalysisDataGeneratingActivity):
+class Synthesis(DataGeneratingActivity):
     """
     A DataGeneratingActivity in which a catalyst is prepared.
 
@@ -1791,8 +1725,8 @@ class Synthesis(CatalysisDataGeneratingActivity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Synthesis"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:Synthesis"
+    class_class_uri: ClassVar[URIRef] = PROCO["0000001"]
+    class_class_curie: ClassVar[str] = "PROCO:0000001"
     class_name: ClassVar[str] = "Synthesis"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Synthesis
 
@@ -1852,11 +1786,10 @@ class Synthesis(CatalysisDataGeneratingActivity):
         self._normalize_inlined_as_list(slot_name="carried_out_by", slot_type=Device, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
-        self.activity_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
-class Characterization(CatalysisDataGeneratingActivity):
+class Characterization(DataGeneratingActivity):
     """
     A DataGeneratingActivity in which a catalyst sample or catalytic material
     is characterized using an analytical technique.
@@ -1873,8 +1806,8 @@ class Characterization(CatalysisDataGeneratingActivity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Characterization"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:Characterization"
+    class_class_uri: ClassVar[URIRef] = OBI["0000070"]
+    class_class_curie: ClassVar[str] = "OBI:0000070"
     class_name: ClassVar[str] = "Characterization"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Characterization
 
@@ -1928,11 +1861,10 @@ class Characterization(CatalysisDataGeneratingActivity):
             self.rdf_type = DefinedTerm(**as_dict(self.rdf_type))
 
         super().__post_init__(**kwargs)
-        self.activity_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
-class Simulation(CatalysisDataGeneratingActivity):
+class Simulation(DataGeneratingActivity):
     """
     A DataGeneratingActivity in which a catalyst, catalytic material, or
     catalytic process is modelled computationally.
@@ -1947,8 +1879,8 @@ class Simulation(CatalysisDataGeneratingActivity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Simulation"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:Simulation"
+    class_class_uri: ClassVar[URIRef] = PROCO["0000159"]
+    class_class_curie: ClassVar[str] = "PROCO:0000159"
     class_name: ClassVar[str] = "Simulation"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Simulation
 
@@ -1987,7 +1919,6 @@ class Simulation(CatalysisDataGeneratingActivity):
         self._normalize_inlined_as_list(slot_name="evaluated_entity", slot_type=EvaluatedEntity, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
-        self.activity_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -2359,6 +2290,10 @@ class CatalysisDataset(Dataset):
     The four CoreMeta4Cat minimum information pillars are linked via the slots
     below, each pointing to the corresponding DataGeneratingActivity or
     EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.
+    Synthesis, Characterization and Simulation are each described in their
+    own slot (was_generated_by_synthesis, was_generated_by_characterization,
+    was_generated_by_simulation); was_generated_by lists the ids of all of
+    them.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -2371,7 +2306,10 @@ class CatalysisDataset(Dataset):
     description: Union[str, list[str]] = None
     title: Union[str, list[str]] = None
     rdf_type: Union[dict[Union[str, DefinedTermId], Union[dict, "DefinedTerm"]], list[Union[dict, "DefinedTerm"]]] = empty_dict()
-    was_generated_by: Optional[Union[dict[Union[str, CatalysisDataGeneratingActivityId], Union[dict, CatalysisDataGeneratingActivity]], list[Union[dict, CatalysisDataGeneratingActivity]]]] = empty_dict()
+    was_generated_by: Union[Union[str, DataGeneratingActivityId], list[Union[str, DataGeneratingActivityId]]] = None
+    was_generated_by_synthesis: Optional[Union[dict[Union[str, SynthesisId], Union[dict, Synthesis]], list[Union[dict, Synthesis]]]] = empty_dict()
+    was_generated_by_characterization: Optional[Union[dict[Union[str, CharacterizationId], Union[dict, Characterization]], list[Union[dict, Characterization]]]] = empty_dict()
+    was_generated_by_simulation: Optional[Union[dict[Union[str, SimulationId], Union[dict, Simulation]], list[Union[dict, Simulation]]]] = empty_dict()
     is_about_activity: Optional[Union[dict[Union[str, CatalyticReactionId], Union[dict, "CatalyticReaction"]], list[Union[dict, "CatalyticReaction"]]]] = empty_dict()
     is_about_entity: Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]] = empty_dict()
 
@@ -2385,7 +2323,17 @@ class CatalysisDataset(Dataset):
             self.MissingRequiredField("rdf_type")
         self._normalize_inlined_as_list(slot_name="rdf_type", slot_type=DefinedTerm, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="was_generated_by", slot_type=CatalysisDataGeneratingActivity, key_name="id", keyed=True)
+        if self._is_empty(self.was_generated_by):
+            self.MissingRequiredField("was_generated_by")
+        if not isinstance(self.was_generated_by, list):
+            self.was_generated_by = [self.was_generated_by] if self.was_generated_by is not None else []
+        self.was_generated_by = [v if isinstance(v, DataGeneratingActivityId) else DataGeneratingActivityId(v) for v in self.was_generated_by]
+
+        self._normalize_inlined_as_list(slot_name="was_generated_by_synthesis", slot_type=Synthesis, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="was_generated_by_characterization", slot_type=Characterization, key_name="id", keyed=True)
+
+        self._normalize_inlined_as_list(slot_name="was_generated_by_simulation", slot_type=Simulation, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="is_about_activity", slot_type=CatalyticReaction, key_name="id", keyed=True)
 
@@ -3359,8 +3307,8 @@ class CatalyticReaction(ChemicalReaction):
 
     For operando experiments (e.g. in-situ XRD during a reaction), the dataset
     carries both:
-    was_generated_by: Characterization  (the measurement producing data)
-    is_about_activity: Reaction         (the catalytic process being monitored)
+    was_generated_by_characterization: Characterization  (the measurement producing data)
+    is_about_activity: CatalyticReaction  (the catalytic process being monitored)
 
     The reactor is linked via the inherited used_reactor slot (is_a:
     carried_out_by), narrowed here to require a ChemicalReactor instance
@@ -3372,8 +3320,8 @@ class CatalyticReaction(ChemicalReaction):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["CatalyticReaction"]
-    class_class_curie: ClassVar[str] = "coremeta4cat:CatalyticReaction"
+    class_class_uri: ClassVar[URIRef] = REX["0000051"]
+    class_class_curie: ClassVar[str] = "REX:0000051"
     class_name: ClassVar[str] = "CatalyticReaction"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CatalyticReaction
 
@@ -9712,6 +9660,15 @@ class PhysicalStateEnum(EnumDefinitionImpl):
 class slots:
     pass
 
+slots.was_generated_by_synthesis = Slot(uri=PROV.wasGeneratedBy, name="was_generated_by_synthesis", curie=PROV.curie('wasGeneratedBy'),
+                   model_uri=COREMETA4CAT.was_generated_by_synthesis, domain=None, range=Optional[Union[dict[Union[str, SynthesisId], Union[dict, Synthesis]], list[Union[dict, Synthesis]]]])
+
+slots.was_generated_by_characterization = Slot(uri=PROV.wasGeneratedBy, name="was_generated_by_characterization", curie=PROV.curie('wasGeneratedBy'),
+                   model_uri=COREMETA4CAT.was_generated_by_characterization, domain=None, range=Optional[Union[dict[Union[str, CharacterizationId], Union[dict, Characterization]], list[Union[dict, Characterization]]]])
+
+slots.was_generated_by_simulation = Slot(uri=PROV.wasGeneratedBy, name="was_generated_by_simulation", curie=PROV.curie('wasGeneratedBy'),
+                   model_uri=COREMETA4CAT.was_generated_by_simulation, domain=None, range=Optional[Union[dict[Union[str, SimulationId], Union[dict, Simulation]], list[Union[dict, Simulation]]]])
+
 slots.adsorbate = Slot(uri=COREMETA4CAT.adsorbate, name="adsorbate", curie=COREMETA4CAT.curie('adsorbate'),
                    model_uri=COREMETA4CAT.adsorbate, domain=None, range=Optional[Union[str, list[str]]])
 
@@ -9798,9 +9755,6 @@ slots.scaling_relation = Slot(uri=COREMETA4CAT.scaling_relation, name="scaling_r
 
 slots.bep_relation = Slot(uri=COREMETA4CAT.bep_relation, name="bep_relation", curie=COREMETA4CAT.curie('bep_relation'),
                    model_uri=COREMETA4CAT.bep_relation, domain=None, range=Optional[Union[str, list[str]]])
-
-slots.activity_designator = Slot(uri=RDF.type, name="activity_designator", curie=RDF.curie('type'),
-                   model_uri=COREMETA4CAT.activity_designator, domain=None, range=Optional[Union[str, URIorCURIE]])
 
 slots.plan_designator = Slot(uri=RDF.type, name="plan_designator", curie=RDF.curie('type'),
                    model_uri=COREMETA4CAT.plan_designator, domain=None, range=Optional[Union[str, URIorCURIE]])
@@ -11186,7 +11140,7 @@ slots.CatalysisDataset_rdf_type = Slot(uri=RDF.type, name="CatalysisDataset_rdf_
                    model_uri=COREMETA4CAT.CatalysisDataset_rdf_type, domain=CatalysisDataset, range=Union[dict[Union[str, DefinedTermId], Union[dict, "DefinedTerm"]], list[Union[dict, "DefinedTerm"]]])
 
 slots.CatalysisDataset_was_generated_by = Slot(uri=PROV.wasGeneratedBy, name="CatalysisDataset_was_generated_by", curie=PROV.curie('wasGeneratedBy'),
-                   model_uri=COREMETA4CAT.CatalysisDataset_was_generated_by, domain=CatalysisDataset, range=Optional[Union[dict[Union[str, CatalysisDataGeneratingActivityId], Union[dict, CatalysisDataGeneratingActivity]], list[Union[dict, CatalysisDataGeneratingActivity]]]])
+                   model_uri=COREMETA4CAT.CatalysisDataset_was_generated_by, domain=CatalysisDataset, range=Union[Union[str, DataGeneratingActivityId], list[Union[str, DataGeneratingActivityId]]])
 
 slots.CatalysisDataset_is_about_activity = Slot(uri=DCTERMS.subject, name="CatalysisDataset_is_about_activity", curie=DCTERMS.curie('subject'),
                    model_uri=COREMETA4CAT.CatalysisDataset_is_about_activity, domain=CatalysisDataset, range=Optional[Union[dict[Union[str, CatalyticReactionId], Union[dict, "CatalyticReaction"]], list[Union[dict, "CatalyticReaction"]]]])

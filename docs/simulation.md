@@ -14,7 +14,7 @@ The results of a simulation are recorded as calculated properties. Besides gener
 !!! tip "Theoreticians: help us extend this data class"
     The catalysis-specific properties were added only recently, and many methods, settings and quantities used in computational catalysis are still missing. If you miss one, use the **Submit Term Feedback** button next to the closest field, open an [issue](https://github.com/nfdi4cat/CoreMeta4Cat/issues), or propose it through the vocabulary workbook. [How to contribute](contributing.md) explains each option.
 
-**CURIE:** [`coremeta4cat:Simulation`](coremeta4cat:Simulation)
+**CURIE:** [`PROCO:0000159`](PROCO:0000159)
 
 **Mappings:** close match [`NCIT:C16461`](http://purl.obolibrary.org/obo/NCIT_C16461)
 
@@ -3435,32 +3435,6 @@ must match the class_uri exactly. In RDF it becomes the entry's rdf:type.
 
 <p>
   <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20calculated_property target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1" open>
-<summary><strong>activity designator</strong> (Optional)</summary>
-
-**Description:** Type designator for CatalysisDataGeneratingActivity subclasses: the
-class_uri of the concrete activity, i.e. coremeta4cat:Synthesis,
-coremeta4cat:Characterization or coremeta4cat:Simulation. Only needs to be
-set by hand when nesting one of these inside another object's
-was_generated_by list (e.g. in a combined CatalysisDataset file) -- LinkML
-fills it in automatically when a class is instantiated directly. Write the
-CURIE as shown: the Python loader matches it against the class_uri exactly.
-In RDF it becomes the activity's rdf:type.
-
-**Data Type:** uriorcurie
-
-**Cardinality:**  Optional
-
-**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
-
-**Schema Reference:** [activity_designator](./elements/slots/activity_designator.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20activity_designator target="_blank" class="md-button md-button--primary">
     💡 Submit Term Feedback
   </a>
 </p></details>

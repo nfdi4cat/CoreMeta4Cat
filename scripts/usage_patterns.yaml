@@ -45,13 +45,17 @@ sections:
         use_case: >-
           A deposit of thermocatalytic NH₃ decomposition data. The research field is
           *heterogeneous catalysis* (`voc4cat:0007001`); the dataset was produced by, among other
-          activities, a temperature-programmed reduction, linked under `was_generated_by`.
+          activities, a temperature-programmed reduction, described under
+          `was_generated_by_characterization`.
         notes:
           - >-
-            `activity_designator` tells software which kind of activity an entry of
-            `was_generated_by` is (`coremeta4cat:Synthesis`, `coremeta4cat:Characterization` or
-            `coremeta4cat:Simulation`) and becomes its `rdf:type` in RDF. It is needed whenever
-            activities are nested inside a dataset record.
+            Each activity is described under the field for its kind:
+            `was_generated_by_synthesis`, `was_generated_by_characterization` or
+            `was_generated_by_simulation`. The field tells software which kind it is, and in RDF
+            the activity gets the matching class (here OBI:0000070, assay).
+          - >-
+            `was_generated_by` lists the ids of all activities; DCAT-AP-PLUS requires it on every
+            dataset. In RDF both fields become the same `prov:wasGeneratedBy` links.
           - >-
             `is_referenced_by` links the dataset to the article; the article usually cites the
             dataset only by its handle, so this is the way back.
@@ -65,10 +69,10 @@ sections:
           publisher: true
           is_referenced_by: true
           dataset_distribution: true
-          was_generated_by:
+          was_generated_by: {_ids: ["coremeta4cat:CHAR_b74m-m6rp_TCD"]}
+          was_generated_by_characterization:
             _ids: ["coremeta4cat:CHAR_b74m-m6rp_TCD"]
             id: true
-            activity_designator: true
             title: true
             rdf_type: true
             carried_out_by: true
@@ -86,7 +90,7 @@ sections:
         dataset: 6mxw-xsrd
         dataset_label: "Dataset 4 (Cu–Ga–Al mixed oxides)"
         source: tests/data/valid/CatalysisDataset-6mxw-xsrd.yaml
-        select: "was_generated_by[id=coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4]"
+        select: "was_generated_by_synthesis[id=coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4]"
         class: Synthesis
         purpose: >-
           Record what went into a catalyst, how much of it, and the conditions of the preparation
@@ -106,7 +110,6 @@ sections:
             others a single value (e.g. `has_aging_duration`). The schema reference shows which.
         keep:
           id: true
-          activity_designator: true
           title: true
           nominal_composition: true
           catalyst_measured_properties: true
@@ -149,10 +152,10 @@ sections:
           title: true
           description: true
           rdf_type: true
-          was_generated_by:
+          was_generated_by: {_ids: ["coremeta4cat:SYN_6mxw-xsrd_gen2_step1", "coremeta4cat:SYN_6mxw-xsrd_gen2_step2"]}
+          was_generated_by_synthesis:
             _ids: ["coremeta4cat:SYN_6mxw-xsrd_gen2_step1", "coremeta4cat:SYN_6mxw-xsrd_gen2_step2"]
             id: true
-            activity_designator: true
             title: true
             nominal_composition: true
             catalyst_measured_properties: true
@@ -176,7 +179,7 @@ sections:
         dataset: b74m-m6rp
         dataset_label: "Dataset 5 (NH₃ decomposition)"
         source: tests/data/valid/CatalysisDataset-b74m-m6rp.yaml
-        select: "was_generated_by[id=coremeta4cat:CHAR_b74m-m6rp_TCD]"
+        select: "was_generated_by_characterization[id=coremeta4cat:CHAR_b74m-m6rp_TCD]"
         class: Characterization
         purpose: >-
           Say which technique was used, on which sample, with which instrument, and record the
@@ -192,7 +195,6 @@ sections:
             term here.
         keep:
           id: true
-          activity_designator: true
           title: true
           rdf_type: true
           carried_out_by: true
@@ -210,7 +212,7 @@ sections:
         dataset: 32x1-99x6
         dataset_label: "Dataset 2 (P-modified Pd catalysts)"
         source: tests/data/valid/CatalysisDataset-32x1-99x6.yaml
-        select: "was_generated_by[id=coremeta4cat:CHAR_32x1-99x6_BET]"
+        select: "was_generated_by_characterization[id=coremeta4cat:CHAR_32x1-99x6_BET]"
         class: Characterization
         purpose: >-
           Keep records short when one technique is applied to a whole sample series: one
@@ -221,7 +223,6 @@ sections:
           source and is described as such.
         keep:
           id: true
-          activity_designator: true
           title: true
           rdf_type: true
           carried_out_by: true
@@ -319,7 +320,7 @@ sections:
         dataset: 6mxw-xsrd
         dataset_label: "Dataset 4 (Cu–Ga–Al mixed oxides)"
         source: tests/data/valid/CatalysisDataset-6mxw-xsrd.yaml
-        select: "was_generated_by[id=coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites]"
+        select: "was_generated_by_simulation[id=coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites]"
         class: Simulation
         purpose: >-
           Record which code and method produced a set of computed values, and what they were
@@ -341,7 +342,6 @@ sections:
             `value`; a single computed energy goes into `adsorption_energy` as a number in eV.
         keep:
           id: true
-          activity_designator: true
           title: true
           software_package: true
           rdf_type: true
@@ -354,7 +354,7 @@ sections:
         dataset: 8ppb-aeky
         dataset_label: "Dataset 6 (transaminase MD)"
         source: tests/data/valid/CatalysisDataset-8ppb-aeky.yaml
-        select: "was_generated_by[id=coremeta4cat:SIM_8ppb-aeky_MMGBSA]"
+        select: "was_generated_by_simulation[id=coremeta4cat:SIM_8ppb-aeky_MMGBSA]"
         class: Simulation
         purpose: >-
           Report computed values that only make sense relative to a reference, and name the
@@ -364,7 +364,6 @@ sections:
           transaminase, reported as ΔΔG relative to the parent enzyme 3FCR-4M.
         keep:
           id: true
-          activity_designator: true
           title: true
           software_package: true
           evaluated_entity: {id: true, title: true}
@@ -376,7 +375,7 @@ sections:
         dataset: 8ppb-aeky
         dataset_label: "Dataset 6 (transaminase MD)"
         source: tests/data/valid/CatalysisDataset-8ppb-aeky.yaml
-        select: "was_generated_by[id=coremeta4cat:SIM_8ppb-aeky_MD]"
+        select: "was_generated_by_simulation[id=coremeta4cat:SIM_8ppb-aeky_MD]"
         class: Simulation
         purpose: >-
           Describe workflow steps such as structure preparation, docking or molecular dynamics,
@@ -390,7 +389,6 @@ sections:
             `calculated_property` is recommended, not mandatory, for exactly this case.
         keep:
           id: true
-          activity_designator: true
           title: true
           software_package: true
           evaluated_entity: {_limit: 1, id: true, title: true}

@@ -2,6 +2,7 @@
 @prefix SIO: <http://semanticscience.org/resource/SIO_> .
 @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix REX: <http://purl.obolibrary.org/obo/REX_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
@@ -14,7 +15,7 @@ coremeta4cat:REAC_b74m-m6rp_FTIR dcterms:description "MKS Instruments MG2030 FTI
 	dcterms:title "online FTIR gas analysis" ;
 	a OBI:0000272 .
 coremeta4cat:REAC_b74m-m6rp_NH3_decomposition dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
-	a SIO:010511 , coremeta4cat:CatalyticReaction ;
+	a REX:0000051 , SIO:010511 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
 	coremeta4cat:feed_composition_range _:c14n5 ;
 	voc4cat:0000118 _:c14n3 ;

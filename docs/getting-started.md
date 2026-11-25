@@ -237,10 +237,12 @@ for row in ws.iter_rows(min_row=2, values_only=True):
     if not any(data.values()):
         continue  # skip empty rows
 
+    synthesis_id = f"ex:synthesis-{len(records) + 1}"
     record = {
         "type": "CatalysisDataset",
-        "was_generated_by": [{
-            "type": "Synthesis",
+        "was_generated_by": [synthesis_id],                    # ids of all activities
+        "was_generated_by_synthesis": [{                        # each synthesis in full
+            "id": synthesis_id,
             "nominal_composition": data.get("Name"),           # dct:title
             "realized_plan": {
                 "type": "Impregnation",
@@ -280,9 +282,10 @@ Running this converter produces a record like the following, which is a valid Co
 {
   "type": "CatalysisDataset",
   "rdf_type": { "id": "voc4cat:0007001", "title": "heterogeneous catalysis" },
-  "was_generated_by": [
+  "was_generated_by": ["ex:synthesis-1"],
+  "was_generated_by_synthesis": [
     {
-      "type": "Synthesis",
+      "id": "ex:synthesis-1",
       "nominal_composition": "5wt% Ni/Al2O3",
       "realized_plan": {
         "type": "Impregnation",

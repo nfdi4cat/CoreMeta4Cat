@@ -35,7 +35,6 @@ realized_plan:
     hold for 4 h in static air, natural cooling'
   id: coremeta4cat:SYNTH_002_coprecipitation_method
   plan_designator: voc4cat:0007016
-activity_designator: coremeta4cat:Synthesis
 nominal_composition:
 - 15 wt% NiO/CeO2
 catalyst_measured_properties:

@@ -29,11 +29,12 @@ CoreMeta4Cat organises metadata in two layers.
 
 ```
 CatalysisDataset
- ├── catalysis research field          [Layer 1 — applies to all]
- ├── reaction type                     [Layer 1 — on each Reaction]
- ├── was_generated_by → Synthesis      [Layer 2 — data-class specific]
- ├── was_generated_by → Characterization
- ├── was_generated_by → Simulation
+ ├── catalysis research field                     [Layer 1 — applies to all]
+ ├── reaction type                                [Layer 1 — on each Reaction]
+ ├── was_generated_by → ids of all activities     [Layer 2 — data-class specific]
+ ├── was_generated_by_synthesis → Synthesis
+ ├── was_generated_by_characterization → Characterization
+ ├── was_generated_by_simulation → Simulation
  └── is_about_activity → Reaction
 ```
 
@@ -95,6 +96,12 @@ title: "CO oxidation activity of 1wt% Pt/Al2O3 at 200–400°C"
 catalysis_research_field: heterogeneous catalysis
 
 was_generated_by:
+  - ex:gc-analysis-001      # ids of the activities that produced the data
+was_generated_by_characterization:
+  - id: ex:gc-analysis-001
+    title: "GC analysis of the reactor outlet"
+
+is_about_activity:          # the reaction the data is about
   - type: Reaction
     catalyst_mass: 100.0    # mg
     reactant:

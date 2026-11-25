@@ -14,8 +14,10 @@ rdf_type:
 - id: voc4cat:0007001
   title: heterogeneous catalysis
 was_generated_by:
+- coremeta4cat:SYN_6mxw-xsrd_gen2_step1
+- coremeta4cat:SYN_6mxw-xsrd_gen2_step2
+was_generated_by_synthesis:
 - id: coremeta4cat:SYN_6mxw-xsrd_gen2_step1
-  activity_designator: coremeta4cat:Synthesis
   title:
   - Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C
   nominal_composition:
@@ -43,7 +45,6 @@ was_generated_by:
       unit: https://qudt.org/vocab/unit/K
       description: 450 or 550 C
 - id: coremeta4cat:SYN_6mxw-xsrd_gen2_step2
-  activity_designator: coremeta4cat:Synthesis
   title:
   - 1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at 250 or 350 C
   nominal_composition:

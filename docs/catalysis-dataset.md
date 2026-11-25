@@ -5,13 +5,13 @@ description: The entry-point class, its global classification enum, and how to c
 
 # CatalysisDataset
 
-`CatalysisDataset` is the entry point for every CoreMeta4Cat record. It is a `dcat:Dataset` -- fully compatible with plain DCAT and DCAT-AP -- extended with a global classification field and four link slots that connect to the [four CoreMeta4Cat pillars](design-patterns.md#the-four-data-classes): [Synthesis](synthesis.md), [Characterization](characterization.md), [Reaction](reaction.md), and [Simulation](simulation.md).
+`CatalysisDataset` is the entry point for every CoreMeta4Cat record. It is a `dcat:Dataset` -- fully compatible with plain DCAT and DCAT-AP -- extended with a global classification field and link slots that connect to the [four CoreMeta4Cat pillars](design-patterns.md#the-four-data-classes): [Synthesis](synthesis.md), [Characterization](characterization.md), [Reaction](reaction.md), and [Simulation](simulation.md).
 
 This page is the reference for `CatalysisDataset` itself: its fields, the `CatalysisResearchFieldEnum` classification vocabulary, and a worked example of combining several pillars into a single dataset. For the conceptual background on *why* it's structured this way, see [Design Patterns: The entry point](design-patterns.md#the-entry-point-catalysisdataset) and [Pattern 1: Classification via rdf_type](design-patterns.md#pattern-1-classification-via-rdf_type).
 
 ## Fields
 
-The overview below shows only what CoreMeta4Cat adds to `dcat:Dataset`. Where the schema points to a generic or helper class, the overview shows the specific CoreMeta4Cat classes instead: `was_generated_by` leads to Synthesis, Characterization or Simulation, and `is_about_entity` to a precursor or catalyst sample. Each data class opens its own page.
+The overview below shows only what CoreMeta4Cat adds to `dcat:Dataset`. Where the schema points to a generic or helper class, the overview shows the specific CoreMeta4Cat classes instead: `was_generated_by` leads to Synthesis, Characterization or Simulation, each of which also has its own field, and `is_about_entity` leads to a precursor or catalyst sample. Each data class opens its own page.
 
 <div class="cm4c-classmap" data-root="CatalysisDataset" data-mode="overview"
      data-src="../assets/schema_graph.json"
@@ -20,16 +20,19 @@ The overview below shows only what CoreMeta4Cat adds to `dcat:Dataset`. Where th
 <p>The interactive overview needs JavaScript. The table below lists the same fields.</p>
 </div>
 
-`CatalysisDataset` has four fields beyond the ones it inherits from `dcat:Dataset` (`id`, `title`, `description`, ...):
+`CatalysisDataset` has these fields beyond the ones it inherits from `dcat:Dataset` (`id`, `title`, `description`, ...):
 
 | Field | Range | Cardinality | Purpose |
 |---|---|---|---|
 | `rdf_type` | `CatalysisResearchFieldEnum` (via `bindings`) | Mandatory, Multivalued | **Layer 1** -- the coarsest possible classification: which field(s) of catalysis this dataset belongs to. |
-| `was_generated_by` | `DataGeneratingActivity` | Mandatory, Multivalued | **Layer 2** -- the activity/activities that *produced* this dataset's data: `Synthesis`, `Characterization`, and/or `Simulation` instances. |
+| `was_generated_by` | `DataGeneratingActivity` (ids) | Mandatory, Multivalued | **Layer 2** -- the ids of all activities that *produced* this dataset's data. Each of them is described in one of the three fields below. |
+| `was_generated_by_synthesis` | `Synthesis` | Optional, Multivalued | **Layer 2** -- the syntheses (catalyst preparations) that produced data, described in full. |
+| `was_generated_by_characterization` | `Characterization` | Optional, Multivalued | **Layer 2** -- the characterizations (measurements) that produced data, described in full. |
+| `was_generated_by_simulation` | `Simulation` | Optional, Multivalued | **Layer 2** -- the simulations that produced data, described in full. |
 | `is_about_activity` | `EvaluatedActivity` | Recommended, Multivalued | **Layer 2** -- the catalytic `Reaction` this dataset is *about*, without having generated it. |
 | `is_about_entity` | `EvaluatedEntity` | Recommended, Multivalued | **Layer 2** -- the catalyst sample or material this dataset concerns. |
 
-`rdf_type` is Mandatory, and so is `was_generated_by`, which DCAT-AP+ requires for every dataset. `is_about_activity` and `is_about_entity` are Recommended: a dataset can legitimately leave them out (e.g. a pure simulation dataset has no `is_about_entity`). The dataset's `id` is Mandatory as well, as in DCAT-AP+ and ChemDCAT-AP.
+`rdf_type` is Mandatory, and so is `was_generated_by`, which DCAT-AP+ requires for every dataset. Every activity listed there is described under the field for its kind. `is_about_activity` and `is_about_entity` are Recommended: a dataset can legitimately leave them out (e.g. a pure simulation dataset has no `is_about_entity`). The dataset's `id` is Mandatory as well, as in DCAT-AP+ and ChemDCAT-AP.
 
 ## Layer 1: classifying the research field
 
@@ -67,15 +70,16 @@ This is a dataset-wide classification axis -- it says nothing about *how* a spec
 
 ## Layer 2: linking the pillars
 
-Layer 2 is where a `CatalysisDataset` actually points at the substance of the record. Three slots cover it, and all three are multivalued -- a single dataset can reference several activities of the same kind at once (e.g. two separate `Characterization` runs):
+Layer 2 is where a `CatalysisDataset` actually points at the substance of the record. All its fields are multivalued -- a single dataset can reference several activities of the same kind at once (e.g. two separate `Characterization` runs):
 
-- **`was_generated_by`** -- activities that *produced* this dataset's data. Only `Synthesis`, `Characterization`, and `Simulation` make sense here, since only they are `DataGeneratingActivity` subclasses.
+- **`was_generated_by_synthesis`, `was_generated_by_characterization`, `was_generated_by_simulation`** -- activities that *produced* this dataset's data, each described under the field for its kind. The field tells software which class an activity is, so no type designator is needed, and in RDF each activity gets that class as its type: `PROCO:0000001` (synthetic chemical process), `OBI:0000070` (assay) or `PROCO:0000159` (in-silico modeling). All three fields are `prov:wasGeneratedBy` in RDF.
+- **`was_generated_by`** -- the ids of all these activities. DCAT-AP+ requires this field on every dataset; in RDF it gives the same `prov:wasGeneratedBy` links.
 - **`is_about_activity`** -- the catalytic process this dataset *describes*, without having generated it. `Reaction` (schema name `CatalyticReaction`) is not a `DataGeneratingActivity` -- see the [🔬 deep dive on this distinction](design-patterns.md#deep-dive-the-evaluatedactivity-distinction) -- so it is linked here instead of via `was_generated_by`.
 - **`is_about_entity`** -- the catalyst sample or material the dataset concerns, independent of which activity produced or observed it.
 
 ## Combining multiple pillars into one dataset
 
-A single `CatalysisDataset` is not limited to one pillar. The most common real-world case spans several: a catalyst is synthesized, then tested in a reaction, and both the catalyst itself and the reaction products are separately characterized afterwards. All of that can live in one dataset, because `was_generated_by` and `is_about_activity` are both multivalued.
+A single `CatalysisDataset` is not limited to one pillar. The most common real-world case spans several: a catalyst is synthesized, then tested in a reaction, and both the catalyst itself and the reaction products are separately characterized afterwards. All of that can live in one dataset, because all the activity fields are multivalued.
 
 The example below reports the full lifecycle of a Ni/CeO2 catalyst used for dry methane reforming (DRM): synthesis, the catalytic reaction, characterization of the catalyst (post-synthesis XRD), and characterization of the reaction products (a dedicated GC-MS run, separate from the inline `product_identification_method` recorded on the `Reaction` itself).
 
@@ -88,10 +92,15 @@ rdf_type:
   - id: voc4cat:0007001
     title: "heterogeneous catalysis"
 
-# Layer 2 -- three activities produced this dataset's data...
+# Layer 2 -- three activities produced this dataset's data: their ids...
 was_generated_by:
+  - "coremeta4cat:SYN_001_NiCeO2"
+  - "coremeta4cat:CHAR_001_NiCeO2_XRD"
+  - "coremeta4cat:CHAR_002_DRM_products_GCMS"
+
+# ...and each one in full, under the field for its kind
+was_generated_by_synthesis:
   - id: "coremeta4cat:SYN_001_NiCeO2"
-    type: Synthesis
     rdf_type:
       id: voc4cat:0007028
       title: "impregnation"
@@ -101,8 +110,8 @@ was_generated_by:
         type: CatalystSample
         title: "Ni/CeO2"
 
+was_generated_by_characterization:
   - id: "coremeta4cat:CHAR_001_NiCeO2_XRD"
-    type: Characterization
     rdf_type:
       id: CHMO:0000158
       title: "powder X-ray diffraction"
@@ -112,7 +121,6 @@ was_generated_by:
       type: PowderXRD
 
   - id: "coremeta4cat:CHAR_002_DRM_products_GCMS"
-    type: Characterization
     rdf_type:
       id: CHMO:0000497
       title: "gas chromatography-mass spectrometry"

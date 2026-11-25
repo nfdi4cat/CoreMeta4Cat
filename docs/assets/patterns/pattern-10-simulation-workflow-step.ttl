@@ -1,5 +1,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix PROCO: <http://purl.obolibrary.org/obo/PROCO_> .
 @prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -7,7 +8,7 @@
 coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex dcterms:title "3FCR-4M with cofactor-bound substrate 2a" ;
 	a prov:Entity .
 coremeta4cat:SIM_8ppb-aeky_MD dcterms:title "Molecular dynamics of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16" ;
-	a coremeta4cat:Simulation ;
+	a PROCO:0000159 ;
 	prov:used coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex , coremeta4cat:SIM_8ppb-aeky_MD_method ;
 	coremeta4cat:software_package "Desmond (Schrodinger suite)" , "Simulation Interaction Diagram and Schrodinger Python API, analysis" .
 coremeta4cat:SIM_8ppb-aeky_MD_method dcterms:title "molecular dynamics: setup, minimisation, equilibration, production" ;

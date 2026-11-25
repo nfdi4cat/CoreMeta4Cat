@@ -7,18 +7,19 @@
 #
 # JSON schema notes (same as CatalysisDataset-001):
 # - title and description must be arrays (DCAT multivalued).
-# - was_generated_by is typed CatalysisDataGeneratingActivity (Synthesis,
-#   Characterization, Simulation); each item needs activity_designator set
-#   here so the loader knows which concrete class to construct.
+# - Each kind of activity has its own slot (was_generated_by_synthesis,
+#   was_generated_by_characterization, was_generated_by_simulation), so the
+#   loader knows which class to construct without a type designator.
+#   was_generated_by (required by DCAT-AP-PLUS) lists the ids of all of them.
 # - is_about_activity is typed CatalyticReaction directly (not the wider
-#   EvaluatedActivity), so no designator is needed there -- but it does mean
+#   EvaluatedActivity) for the same reason -- but it does mean
 #   the dry-methane-reforming CatalyticReaction (previously listed here as a
 #   was_generated_by stub, which was never correct -- a Reaction is not a
 #   DataGeneratingActivity) now lives under is_about_activity instead, with
 #   its full required fields (used_reactor, product_identification_method).
-# - was_generated_by/is_about_activity items nested here are the full content
-#   of Synthesis-002.yaml / Characterization-003.yaml / Characterization-004.yaml /
-#   Simulation-002.yaml / CatalyticReaction-002.yaml, not stubs.
+# - The activities nested here are the full content of Synthesis-002.yaml /
+#   Characterization-003.yaml / Characterization-004.yaml / Simulation-002.yaml /
+#   CatalyticReaction-002.yaml, not stubs.
 
 id: "coremeta4cat:DS_002_DRM_NiO_CeO2"
 title:
@@ -29,8 +30,12 @@ rdf_type:
   - id: voc4cat:0007001
     title: "heterogeneous catalysis"
 was_generated_by:
+  - "coremeta4cat:SYNTH_002_NiO_CeO2"
+  - "coremeta4cat:CHAR_003_XPS_NiO_CeO2"
+  - "coremeta4cat:CHAR_004_TPR_NiO_CeO2"
+  - "coremeta4cat:SIM_002_MD_Ni_CeO2_111"
+was_generated_by_synthesis:
   - id: "coremeta4cat:SYNTH_002_NiO_CeO2"
-    activity_designator: "coremeta4cat:Synthesis"
     nominal_composition:
       - "15 wt% NiO/CeO2"
     catalyst_measured_properties:
@@ -72,8 +77,8 @@ was_generated_by:
       id: "coremeta4cat:SYNTH_002_coprecipitation_method"
       title: "co-precipitation"
       description: "aqueous solutions of Ni(NO3)2 (0.5 M) and Ce(NO3)3 (0.5 M) mixed in stoichiometric ratio; precipitant: 1 M Na2CO3 solution added dropwise at 2 mL/min; target pH 8.5 maintained by feedback addition; mixing: 600 rpm mechanical stirring at 60 deg C for 2 h; aging: 12 h at 60 deg C without stirring; filtration: vacuum filtration through Whatman grade 4 filter paper; washing: 5 successive deionized water washes until conductivity < 5 uS/cm (Na+ removal); drying: 120 deg C for 12 h in static air oven; calcination: 5 deg C/min ramp to 500 deg C, isothermal hold for 4 h in static air, natural cooling"
+was_generated_by_characterization:
   - id: "coremeta4cat:CHAR_003_XPS_NiO_CeO2"
-    activity_designator: "coremeta4cat:Characterization"
     carried_out_by:
       - id: "coremeta4cat:DEV_003_Thermo_KAlpha_XPS"
         title: "Thermo Scientific K-Alpha+ XPS spectrometer"
@@ -98,7 +103,6 @@ was_generated_by:
       title: "X-ray photoelectron spectroscopy (XPS)"
       description: "monochromatic Al K-alpha (1486.6 eV); base pressure 5e-9 mbar; survey scan: 0-1350 eV, 1.0 eV step, 50 ms dwell, 3 scans, pass energy 200 eV; high-resolution regions: Ni 2p3/2 (845-895 eV), Ce 3d (875-935 eV), O 1s (525-540 eV), C 1s (280-295 eV); step size 0.1 eV, 20 scans each, pass energy 50 eV; spot size 400 um; lens mode: large area XL; charge compensation: dual-beam flood gun (1 eV electrons + 10 eV Ar+); binding energy scale calibrated to C 1s adventitious carbon at 284.8 eV; Shirley background subtraction; peak fitting: Voigt profiles (CasaXPS v2.3.25); atomic concentrations from Scofield sensitivity factors corrected for transmission function"
   - id: "coremeta4cat:CHAR_004_TPR_NiO_CeO2"
-    activity_designator: "coremeta4cat:Characterization"
     carried_out_by:
       - id: "coremeta4cat:DEV_005_Micromeritics_AutoChem"
         title: "Micromeritics AutoChem II 2920 chemisorption analyzer"
@@ -116,8 +120,8 @@ was_generated_by:
       id: "coremeta4cat:CHAR_004_TPR_method"
       title: "H2 temperature-programmed reduction (H2-TPR)"
       description: "reducing gas: 5 vol% H2/Ar, total flow 50 mL/min (calibrated Brooks MFC); temperature programme: 50 deg C to 900 deg C at 10 deg C/min; isothermal hold: 30 min at 900 deg C; H2O trap: molecular sieve 3A between reactor outlet and TCD to prevent TCD signal interference; baseline: Ar flow for 30 min at 50 deg C before switching to H2/Ar; H2 consumption quantified by integration of TCD signal, calibrated against CuO reference standard (99.9%, 10 mg, single reduction peak at 310 deg C); NiO reduction: expected peaks at 280-350 deg C (NiO weakly interacting with CeO2) and 400-600 deg C (NiO strongly interacting); CeO2 surface reduction: 600-900 deg C"
+was_generated_by_simulation:
   - id: "coremeta4cat:SIM_002_MD_Ni_CeO2_111"
-    activity_designator: "coremeta4cat:Simulation"
     software_package:
       - "LAMMPS (29 Sep 2021 stable release, OpenMP build)"
       - "OVITO 3.7.11 (structure analysis, RDF, CNA, cluster tracking)"

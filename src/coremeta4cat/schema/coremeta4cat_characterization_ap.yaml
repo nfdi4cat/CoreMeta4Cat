@@ -148,10 +148,8 @@ classes:
   # ==================== CHARACTERIZATION ACTIVITY ====================
 
   Characterization:
-    is_a: CatalysisDataGeneratingActivity
-    class_uri: coremeta4cat:Characterization   # own IRI, see CatalysisDataGeneratingActivity
-    broad_mappings:
-    - OBI:0000070   # assay
+    is_a: DataGeneratingActivity
+    class_uri: OBI:0000070   # assay; the specific technique goes into rdf_type
     description: |-
       A DataGeneratingActivity in which a catalyst sample or catalytic material
       is characterized using an analytical technique.

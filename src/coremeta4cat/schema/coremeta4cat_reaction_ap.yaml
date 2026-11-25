@@ -27,8 +27,8 @@ description: |-
 
   The Reaction is NOT a DataGeneratingActivity. It is the catalytic process
   that a dataset is *about*, linked via is_about_activity on CatalysisDataset.
-  A Characterization activity that runs during the reaction (e.g. operando XRD)
-  will carry both was_generated_by: Characterization and is_about_activity: Reaction.
+  A dataset from a Characterization that runs during the reaction (e.g. operando
+  XRD) carries both was_generated_by_characterization and is_about_activity.
 
   OperationParameters design decision:
   -------------------------------------
@@ -58,6 +58,7 @@ prefixes:
   OBI: http://purl.obolibrary.org/obo/OBI_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   SIO: http://semanticscience.org/resource/SIO_
+  REX: http://purl.obolibrary.org/obo/REX_
   allotrope.result: http://purl.allotrope.org/ontologies/result#AFR_
 
 default_prefix: coremeta4cat
@@ -76,6 +77,7 @@ classes:
 
   CatalyticReaction:
     is_a: ChemicalReaction
+    class_uri: REX:0000051   # catalytic reaction
     description: |-
       A ChemicalReaction (chemdcat-ap) specialization representing the
       catalytic reaction being studied. Inherits the generic reaction slots
@@ -89,8 +91,8 @@ classes:
 
       For operando experiments (e.g. in-situ XRD during a reaction), the dataset
       carries both:
-        was_generated_by: Characterization  (the measurement producing data)
-        is_about_activity: Reaction         (the catalytic process being monitored)
+        was_generated_by_characterization: Characterization  (the measurement producing data)
+        is_about_activity: CatalyticReaction  (the catalytic process being monitored)
 
       The reactor is linked via the inherited used_reactor slot (is_a:
       carried_out_by), narrowed here to require a ChemicalReactor instance

@@ -8,6 +8,30 @@
   ],
   "was_generated_by": [
     {
+      "id": "coremeta4cat:SYNTH_001_Pt_Al2O3"
+    },
+    {
+      "id": "coremeta4cat:CHAR_001_BET_CuZnO_Al2O3"
+    },
+    {
+      "id": "coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3"
+    }
+  ],
+  "is_about_entity": [
+    {
+      "id": "coremeta4cat:CAT_001_CuZnO_Al2O3",
+      "title": "Cu/ZnO/Al2O3 methanol synthesis catalyst",
+      "description": "63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)"
+    }
+  ],
+  "rdf_type": [
+    {
+      "id": "voc4cat:0007001",
+      "title": "heterogeneous catalysis"
+    }
+  ],
+  "was_generated_by_synthesis": [
+    {
       "id": "coremeta4cat:SYNTH_001_Pt_Al2O3",
       "had_input_entity": [
         {
@@ -28,7 +52,6 @@
         "id": "coremeta4cat:SYNTH_001_impregnation_method",
         "plan_designator": "voc4cat:0007016"
       },
-      "activity_designator": "coremeta4cat:Synthesis",
       "nominal_composition": [
         "5 wt% Pt/Al2O3"
       ],
@@ -52,7 +75,9 @@
           "value": "reduction in H2 at 400 deg C for 2 hours prior to catalytic testing"
         }
       ]
-    },
+    }
+  ],
+  "was_generated_by_characterization": [
     {
       "id": "coremeta4cat:CHAR_001_BET_CuZnO_Al2O3",
       "carried_out_by": [
@@ -73,8 +98,7 @@
         "description": "N2 physisorption at 77 K, degassing at 300 deg C for 3 h under vacuum prior to measurement",
         "id": "coremeta4cat:CHAR_001_BET_method",
         "plan_designator": "OBI:0000272"
-      },
-      "activity_designator": "coremeta4cat:Characterization"
+      }
     },
     {
       "id": "coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3",
@@ -96,21 +120,7 @@
         "description": "Cu K-alpha, 2theta range 5 to 80 deg, step size 0.02 deg, scan rate 1 deg/min, Rietveld refinement for phase quantification",
         "id": "coremeta4cat:CHAR_002_XRD_method",
         "plan_designator": "OBI:0000272"
-      },
-      "activity_designator": "coremeta4cat:Characterization"
-    }
-  ],
-  "is_about_entity": [
-    {
-      "id": "coremeta4cat:CAT_001_CuZnO_Al2O3",
-      "title": "Cu/ZnO/Al2O3 methanol synthesis catalyst",
-      "description": "63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)"
-    }
-  ],
-  "rdf_type": [
-    {
-      "id": "voc4cat:0007001",
-      "title": "heterogeneous catalysis"
+      }
     }
   ],
   "@type": "CatalysisDataset"

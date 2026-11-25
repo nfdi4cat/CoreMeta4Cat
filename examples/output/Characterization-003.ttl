@@ -12,7 +12,7 @@ coremeta4cat:CAT_002_NiO_CeO2 dcterms:description "15 wt% NiO on CeO2 support, c
 coremeta4cat:CHAR_003_XPS_NiO_CeO2 <http://purl.allotrope.org/ontologies/quality#AFQ_0001159> "lightly pressed into indium foil to obtain flat surface; mounted on sample stub with copper tape; no Ar+ sputtering performed" ;
 	<http://purl.allotrope.org/ontologies/result#AFR_0000317> "128-channel 2D delay-line detector (DLD)" ;
 	SIO:000008 _:c14n0 ;
-	a coremeta4cat:Characterization ;
+	a OBI:0000070 ;
 	prov:used coremeta4cat:CAT_002_NiO_CeO2 , coremeta4cat:CHAR_003_XPS_method ;
 	prov:wasAssociatedWith coremeta4cat:DEV_003_Thermo_KAlpha_XPS , coremeta4cat:DEV_004_AlKalpha_source ;
 	coremeta4cat:sample_description "NiO/CeO2 co-precipitated catalyst (SYNTH_002), calcined at 500 deg C, as-prepared (non-reduced), ca. 10 mg pressed into indium foil" ;

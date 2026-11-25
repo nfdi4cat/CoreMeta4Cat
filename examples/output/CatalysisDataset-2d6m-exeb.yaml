@@ -12,40 +12,6 @@ title:
 - 'Dataset for Publication: Reaction Kinetics of CO and CO2 Methanation over Nickel'
 was_generated_by:
 - id: coremeta4cat:CHAR_2d6m-exeb_outlet_gas_analysis
-  title:
-  - Outlet gas composition analysis (all 16 runs)
-  description:
-  - 'Steady-state outlet gas composition analysis used to determine CO/CO2 conversion
-    for all 16 catalyst screening runs (CO methanation: Exp2, 3, 4, 12; CO2 methanation:
-    Exp7, 8, 9, 13, 14, 15, 16, 17; mixed CO/CO2 methanation: Exp11, 18, 19, 20).
-    Dataset files do not name a specific instrument model; gas chromatography is the
-    standard analytical method for this reaction class and is assumed here.'
-  other_identifier:
-  - description: Related publication DOI
-    notation: doi:10.1021/acs.iecr.1c00389
-  carried_out_by:
-  - id: coremeta4cat:DEV_2d6m-exeb_GC
-    title: gas chromatograph
-    description: Instrument model not specified in the source dataset files.
-  rdf_type:
-    id: voc4cat:0000130
-    title: gas chromatography
-  evaluated_entity:
-  - id: coremeta4cat:CAT_2d6m-exeb_all
-    title: 16 supported Ni catalyst samples (this screening series)
-    description: 'Supported Ni catalysts on Al2O3, SiO2, ZrO2, TiO2, and MgAl2O4,
-      Ni loading 5-40.8 wt%, screened for CO methanation, CO2 methanation, and mixed
-      CO/CO2 methanation (see the corresponding CatalyticReaction entries for per-catalyst
-      detail: used_catalyst in coremeta4cat:REAC_2d6m-exeb_CO_methanation, coremeta4cat:REAC_2d6m-exeb_CO2_methanation,
-      coremeta4cat:REAC_2d6m-exeb_mixed_methanation).'
-  realized_plan:
-    title: Outlet gas GC method
-    description: Analytical protocol for determining reactant/product mole fractions
-      from the reactor outlet stream. Method parameters not specified in the source
-      dataset files.
-    id: coremeta4cat:CHAR_2d6m-exeb_GC_method
-    plan_designator: OBI:0000272
-  activity_designator: coremeta4cat:Characterization
 creator:
 - name:
   - Schmider, Daniel
@@ -736,3 +702,38 @@ is_about_activity:
 rdf_type:
 - id: voc4cat:0007001
   title: heterogeneous catalysis
+was_generated_by_characterization:
+- id: coremeta4cat:CHAR_2d6m-exeb_outlet_gas_analysis
+  title:
+  - Outlet gas composition analysis (all 16 runs)
+  description:
+  - 'Steady-state outlet gas composition analysis used to determine CO/CO2 conversion
+    for all 16 catalyst screening runs (CO methanation: Exp2, 3, 4, 12; CO2 methanation:
+    Exp7, 8, 9, 13, 14, 15, 16, 17; mixed CO/CO2 methanation: Exp11, 18, 19, 20).
+    Dataset files do not name a specific instrument model; gas chromatography is the
+    standard analytical method for this reaction class and is assumed here.'
+  other_identifier:
+  - description: Related publication DOI
+    notation: doi:10.1021/acs.iecr.1c00389
+  carried_out_by:
+  - id: coremeta4cat:DEV_2d6m-exeb_GC
+    title: gas chromatograph
+    description: Instrument model not specified in the source dataset files.
+  rdf_type:
+    id: voc4cat:0000130
+    title: gas chromatography
+  evaluated_entity:
+  - id: coremeta4cat:CAT_2d6m-exeb_all
+    title: 16 supported Ni catalyst samples (this screening series)
+    description: 'Supported Ni catalysts on Al2O3, SiO2, ZrO2, TiO2, and MgAl2O4,
+      Ni loading 5-40.8 wt%, screened for CO methanation, CO2 methanation, and mixed
+      CO/CO2 methanation (see the corresponding CatalyticReaction entries for per-catalyst
+      detail: used_catalyst in coremeta4cat:REAC_2d6m-exeb_CO_methanation, coremeta4cat:REAC_2d6m-exeb_CO2_methanation,
+      coremeta4cat:REAC_2d6m-exeb_mixed_methanation).'
+  realized_plan:
+    title: Outlet gas GC method
+    description: Analytical protocol for determining reactant/product mole fractions
+      from the reactor outlet stream. Method parameters not specified in the source
+      dataset files.
+    id: coremeta4cat:CHAR_2d6m-exeb_GC_method
+    plan_designator: OBI:0000272

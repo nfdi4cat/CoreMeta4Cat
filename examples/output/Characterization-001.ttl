@@ -7,7 +7,7 @@
 coremeta4cat:CAT_001_CuZnO_Al2O3 dcterms:description "63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)" ;
 	dcterms:title "Cu/ZnO/Al2O3 methanol synthesis catalyst" ;
 	a prov:Entity .
-coremeta4cat:CHAR_001_BET_CuZnO_Al2O3 a coremeta4cat:Characterization ;
+coremeta4cat:CHAR_001_BET_CuZnO_Al2O3 a OBI:0000070 ;
 	prov:used coremeta4cat:CAT_001_CuZnO_Al2O3 , coremeta4cat:CHAR_001_BET_method ;
 	prov:wasAssociatedWith coremeta4cat:DEV_001_Micromeritics_ASAP2020 .
 coremeta4cat:CHAR_001_BET_method dcterms:description "N2 physisorption at 77 K, degassing at 300 deg C for 3 h under vacuum prior to measurement" ;
