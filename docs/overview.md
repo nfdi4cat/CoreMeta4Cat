@@ -43,26 +43,28 @@ CatalysisDataset
 
 ### Synthesis
 
-Reproducibility of catalyst synthesis is one of the most persistent challenges in catalysis research. The Synthesis data class defines the minimum metadata for twelve preparation methods — from common routes such as Impregnation and Co-Precipitation to more specialised techniques like Atomic Layer Deposition, Flame Spray Pyrolysis, and Exsolution Synthesis.
+Reproducibility of catalyst synthesis is one of the most persistent challenges in catalysis research. The Synthesis data class defines the minimum metadata for fifteen preparation methods — from common routes such as Impregnation and Co-Precipitation to more specialised techniques like Atomic Layer Deposition, Flame Spray Pyrolysis, and Exsolution Synthesis.
 
 Method-specific parameter sets are organized into concrete preparation method types. Cross-cutting steps shared across methods (drying, calcination, precipitation) are defined once and reused, so the same parameter is never described differently depending on which method it appears in.
 
 | Preparation method | Key shared steps |
 |---|---|
-| Impregnation | Drying, Calcination |
-| Co-Precipitation | Precipitation, Drying, Calcination |
-| Deposition-Precipitation | Precipitation, Drying, Calcination |
+| Impregnation, Sonochemical | Drying, Calcination |
+| Co-Precipitation, Deposition-Precipitation | Precipitation, Drying, Calcination |
+| Sol-Gel, Molecular Synthesis | Drying |
+| Exsolution | Calcination |
 | Solvothermal, Plasma-Assisted, Combustion, Microwave-Assisted, Mechanochemical, Sublimation | Thermal process |
-| Sol-Gel, Flame Spray Pyrolysis, Atomic Layer Deposition, Exsolution | Method-specific only |
+| Flame Spray Pyrolysis, Atomic Layer Deposition | Method-specific only |
 
 ### Characterization
 
-The Characterization data class covers twenty-eight analytical techniques currently used in catalysis. Each technique is modelled with slots for instrument parameters, sample state, and measurement conditions. Cross-cutting parameter groups are shared across related techniques:
+The Characterization data class covers twenty-seven analytical techniques currently used in catalysis. Each technique is modelled with slots for instrument parameters, sample state, and measurement conditions. Cross-cutting parameter groups are shared across related techniques:
 
-- X-ray source parameters — shared by Powder XRD, Single Crystal XRD, XPS, EDX
+- X-ray source parameters — shared by Powder XRD, Single Crystal XRD, XPS, XAS
 - Electron microscopy parameters — shared by TEM, SEM
 - Temperature program parameters — shared by TPR, TPO, Thermogravimetry
-- Chromatography and mass range parameters — shared by GC, GC-MS, HPLC, HPLC-MS
+- Chromatography parameters — shared by GC-MS, HPLC-MS, size exclusion chromatography
+- Mass range parameters — shared by GC-MS, ESI-MS
 
 ### Reaction
 
@@ -81,33 +83,67 @@ Eight reactor design types are currently defined:
 
 ### Simulation
 
-The Simulation data class covers four major computational method classes: DFT, Molecular Dynamics, Microkinetics, and Monte Carlo. The simulation software used is recorded alongside the method. Twelve calculated property types — such as electronic structure, band gap, phonon dispersion, and thermodynamic stability — capture the computed output.
+The Simulation data class covers four major computational method classes: DFT, Molecular Dynamics, Microkinetics, and Monte Carlo. The simulation software used is recorded alongside the method. Seventeen calculated property types capture the computed output — from material properties such as electronic structure, band gap, phonon dispersion, and thermodynamic stability to catalysis-specific ones such as adsorption energetics, reaction energetics, and transition states.
 
 ---
 
 ## What does a CoreMeta4Cat record look like?
 
-Here is a minimal example showing how a reaction dataset is described. Every class and property links to a controlled vocabulary term and can be validated and converted to RDF using standard tooling:
+Here is a small example showing how a reaction dataset is described: the GC-MS measurement that produced the data, and the catalytic reaction the data is about. Every class and property links to a controlled vocabulary term, and the record validates and converts to RDF with standard LinkML tooling:
 
 ```yaml
 id: ex:dataset-001
-title: "CO oxidation activity of 1wt% Pt/Al2O3 at 200–400°C"
-catalysis_research_field: heterogeneous catalysis
+title:
+  - "CO oxidation activity of 1wt% Pt/Al2O3 at 200–400 °C"
+description:
+  - "Light-off test in a fixed-bed reactor, products analysed by online GC-MS."
+rdf_type:                                 # catalysis research field (Layer 1)
+  - id: voc4cat:0007001
+    title: "heterogeneous catalysis"
 
-was_generated_by:
-  - type: Reaction
-    catalyst_mass: 100.0    # mg
-    reactant:
-      - "1 vol% CO in N2"
-      - "2 vol% O2 in N2"
-    reactor_temperature_range: "200–400 °C"
-    experiment_pressure: 1.0    # bar
+was_generated_by:                         # the measurement that produced the data
+  - id: ex:gcms-001
+    activity_designator: Characterization
     carried_out_by:
-      type: FixedBedReactor
+      - id: ex:gcms-instrument-001
+        title: "online GC-MS"
+    evaluated_activity:
+      - id: ex:reaction-001
+    realized_plan:
+      id: ex:gcms-method-001
+      plan_designator: CHMO:0000497       # GCMS
+      title: "online GC-MS of the reactor effluent"
 
-is_about_entity:
-  - type: CatalystSample
-    nominal_composition: "1wt% Pt/Al2O3"
+is_about_activity:                        # the catalytic reaction the data is about
+  - id: ex:reaction-001
+    rdf_type:                             # reaction type (Layer 1)
+      id: voc4cat:0000289
+      title: "CO oxidation"
+    catalyst_mass:
+      - value: 100.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+        unit: https://qudt.org/vocab/unit/MilliGM
+    used_reactant:
+      - id: ex:feed-co
+        title: "1 vol% CO in N2"
+      - id: ex:feed-o2
+        title: "2 vol% O2 in N2"
+    reactor_temperature_range:
+      - min_value: 200.0
+        max_value: 400.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+        unit: https://qudt.org/vocab/unit/DEG_C
+    experiment_pressure:
+      - value: 1.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+        unit: https://qudt.org/vocab/unit/BAR
+    used_reactor:
+      - id: ex:reactor-001
+        reactor_designator: coremeta4cat:FixedBedReactor
+
+is_about_entity:                          # the catalyst
+  - id: ex:catalyst-001
+    title: "1wt% Pt/Al2O3"
 ```
 
 ---

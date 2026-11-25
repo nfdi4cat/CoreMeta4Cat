@@ -86,7 +86,7 @@ Before declaring any slots, check whether the method includes a drying step, cal
 ```yaml
 MyNewMethod:
   is_a: PreparationMethod
-  class_uri: VOC4CAT:XXXXXXX   # register a real term, or use coremeta4cat: prefix temporarily
+  class_uri: voc4cat:XXXXXXX   # register a real term, or use coremeta4cat: prefix temporarily
   mixins:
     - DryingMixin              # if the method has a drying step
     - CalcinationMixin         # if the method has a calcination step
@@ -190,13 +190,16 @@ The characterisation subprofile provides these mixins — apply all that fit:
 
 | Mixin | Covers |
 |---|---|
-| `XRaySourceMixin` | X-ray source type, anode, wavelength |
-| `ElectronMicroscopyMixin` | Accelerating voltage, detector, magnification |
-| `TemperatureProgramMixin` | Ramp rate, hold temperature, atmosphere |
-| `ChromatographyMixin` | Column type, carrier gas, injection volume |
-| `MassRangeMixin` | Mass range, ionisation mode, resolution |
-| `PhotoluminescenceMixin` | Excitation wavelength, emission range |
-| `ElectrochemistryMixin` | Scan rate, potential range, electrolyte |
+| `XRaySourceMixin` | X-ray source, monochromator |
+| `EnergyRangeMixin` | Energy range |
+| `ElectronMicroscopyMixin` | Gun type, acceleration voltage, magnification setting |
+| `TemperatureProgramMixin` | Temperature range, heating rate, heating procedure |
+| `ChromatographyMixin` | Column type, eluent, flow rate, injection volume, external and internal standard |
+| `MassRangeMixin` | m/z range |
+| `PhotoluminescenceMixin` | Excitation and emission wavelength, optical filter, temperature |
+| `ElectrochemistryMixin` | Reference, working and counter electrode, electrolyte composition and concentration, atmosphere, temperature |
+
+[Design Patterns: Pattern 3](design-patterns.md#pattern-3-mixin-classes) lists the exact slot names and which techniques use each mixin.
 
 **2. Declare the new class.**
 
@@ -273,7 +276,7 @@ New reactor types are simpler than new preparation methods — there are current
 ```yaml
 MyNewReactor:
   is_a: ChemicalReactor
-  class_uri: VOC4CAT:XXXXXXX
+  class_uri: voc4cat:XXXXXXX
   description: |-
     Brief description of the reactor geometry and typical operating conditions.
   slots:
@@ -329,9 +332,9 @@ New computational approaches are added to `coremeta4cat_simulation_ap.yaml` as `
 
 ### Step-by-step
 
-**1. Check the `DFTSettingsMixin` if the method uses a plane-wave basis.**
+**1. Reuse the slots of the closest existing method.**
 
-The simulation subprofile provides `DFTSettingsMixin` (exchange-correlation functional, k-point mesh, energy cutoff, pseudopotential type) for DFT-based methods. If your new method is DFT-derived (e.g. DFT+U, hybrid-DFT, GW), apply this mixin.
+Each method class carries the settings of its calculations: `DFT`, for example, has `exchange_correlation_functional`, `energy_cutoff`, `convergence_criteria`, `dft_u_parameters` and `spin_polarization`. If your new method is DFT-derived (e.g. hybrid-DFT, GW), list the existing `DFT` slots it needs instead of declaring new ones; DFT+U is already covered by `dft_u_parameters`. (`DFTSettingsMixin` is not for methods: it adds DFT settings to the calculated properties computed with periodic DFT, see [Adding a calculated property](#adding-a-calculated-property).)
 
 **2. Declare the class and its specific slots.**
 
@@ -339,11 +342,10 @@ The simulation subprofile provides `DFTSettingsMixin` (exchange-correlation func
 MyNewSimulationMethod:
   is_a: SimulationMethod
   class_uri: NCIT:XXXXXXX   # or coremeta4cat: prefix temporarily
-  mixins:
-    - DFTSettingsMixin      # if DFT-based
   description: |-
     Description of the theoretical approach and its typical use cases in catalysis.
   slots:
+    - exchange_correlation_functional   # existing DFT slot, if DFT-based
     - method_specific_slot
 ```
 
@@ -388,7 +390,7 @@ slots:
 
 ## Adding a calculated property
 
-New computed outputs are added to `coremeta4cat_simulation_ap.yaml` as `CalculatedProperty` subclasses.
+New computed outputs are added to `coremeta4cat_simulation_ap.yaml` as `CalculatedProperty` subclasses. Two mixins are available: `DFTSettingsMixin` (energy cutoff, convergence criteria, k-point mesh) for properties computed with periodic DFT, and `MaterialDescriptorMixin` (material composition, crystal structure) for properties of a specific material.
 
 ```yaml
 MyNewProperty:
@@ -470,7 +472,7 @@ CoreMeta4Cat sits at the top of a layered import chain:
 coremeta4cat.yaml  →  coremeta4cat_common.yaml  →  chem_dcat_ap  →  …  →  dcat_ap_plus
 ```
 
-If you need to introduce a new intermediate chemistry layer (e.g. a `polymer_catalysis_ap` that adds polymer-specific base classes used across multiple data classes), add it between `catcore_common` and the first data class module that needs it. Import it in `catcore_common.yaml` via the `imports:` key, and document the new layer in the import hierarchy diagram in `catcore.yaml`.
+If you need to introduce a new intermediate chemistry layer (e.g. a `polymer_catalysis_ap` that adds polymer-specific base classes used across multiple data classes), add it between `coremeta4cat_common` and the first data class module that needs it. Import it in `coremeta4cat_common.yaml` via the `imports:` key, and document the new layer in the import hierarchy diagram in `coremeta4cat.yaml`.
 
 Do not import new intermediate layers directly in individual data class files — this would create hidden import order dependencies and make the schema harder to reason about.
 

@@ -59,10 +59,10 @@ The workbook has five sheets:
 
 | Sheet | What it shows |
 |---|---|
-| **CoreMeta4Cat** | The minimal global field set — catalyst type, support, metal, metal loading, additive, reaction type — with the CURIE for each |
-| **Synthesis** | The full hierarchy of synthesis fields, organised by synthesis step (solvation, mixing, milling, pH adjustment, filtration, crystallisation, washing, dilution, impregnation, drying, calcination, sieving, pelleting), with the corresponding CURIE shown in each column header |
-| **Characterization** | Method parameter fields and result fields for the characterisation techniques currently in CoreMeta4Cat, showing which ontology terms apply to which measurement parameters and result types |
-| **Reaction** | The full hierarchy of reaction / catalytic test fields — reactor type, operation mode, reactants, solvent, products, analysis — with CURIEs |
+| **CoreMeta4Cat** | The Layer 1 fields every catalysis dataset carries — the research field (`rdf type`), the activity that generated the data, and the reaction and catalyst the dataset is about — with the CURIE for each |
+| **Synthesis** | The synthesis fields, organised by preparation method (impregnation, co-precipitation, sol-gel, solvothermal, …), including the step parameters each method shares, such as drying and calcination, with the CURIE for each field |
+| **Characterization** | The method parameter fields of the characterisation techniques currently in CoreMeta4Cat, with the ontology term for each technique and parameter |
+| **Reaction** | The reaction / catalytic test fields — reactor type, reaction conditions, reactants, solvent, products, product analysis — with CURIEs |
 | **Simulation** | Fields for computational simulations — simulation method (DFT, molecular dynamics, microkinetics, Monte Carlo) and the calculated properties they produce — with CURIEs |
 
 Use this workbook to find the right term for a concept you want to annotate, and to understand how fields nest within each other (e.g. which parameters belong under a calcination step versus a drying step).
@@ -138,72 +138,70 @@ The most lightweight form of CoreMeta4Cat adoption is to take your **existing ex
 
 Each column header in your sheet gets a CURIE added alongside it, whether in a second header row, as a cell comment, or simply appended to the header text. There is no prescribed format — what matters is that the machine-readable term is present and unambiguous.
 
-The vocabulary reference workbook uses a two-line pattern in each column header as a model:
+A simple pattern is a two-line header: your own label, then the CURIE from the `uri` column of the reference workbook:
 
 ```
 Human-readable label
 voc4cat:XXXXXXX
 ```
 
-Here are some representative examples drawn from the reference workbook:
+Here are some typical column headers, with the CURIE and the field they correspond to in the reference workbook:
 
 **Synthesis fields:**
 
-| Label in reference workbook | CURIE | Meaning |
+| Column in your sheet (example) | CURIE | Field in the reference workbook |
 |---|---|---|
-| `institution` | `voc4cat:0007842` | Institution where the catalyst was prepared |
-| `catalyst` | `voc4cat:0007014` | Catalyst type |
-| `Preparation method` | `voc4cat:0007016` | Synthesis method |
-| `Support` | `voc4cat:0007825` | Support material |
-| `Precursor 1` | `voc4cat:0007794` | First precursor compound |
-| `Precursor 1 amount` | `voc4cat:0007038` | Mass of precursor used |
-| `Metal loading, nominal (wt%)` | `voc4cat:0007815` | Nominal metal loading |
-| `calcination final temperature` | `voc4cat:0000058` | Final calcination temperature |
-| `calcination heating rate` | `voc4cat:0000059` | Heating rate during calcination |
-| `calcination dwelling time` | `voc4cat:0000060` | Hold time at calcination temperature |
+| `Preparation method` | `voc4cat:0007016` | `PreparationMethod`; each method has its own class, e.g. `Impregnation` (`voc4cat:0007028`) |
+| `Support` | `voc4cat:0008104` | `catalyst support` |
+| `Metal loading, nominal (wt%)` | `coremeta4cat:nominal_composition` | `nominal composition`, e.g. 5 wt% Ni on Al₂O₃ |
+| `Precursor 1` | `voc4cat:0007794` | `Precursor` |
+| `Precursor 1 amount` | `voc4cat:0008118` | `precursor quantity` |
+| `calcination final temperature` | `coremeta4cat:hasCalcinationTemperatureRange` | `has calcination temperature range` |
+| `calcination heating rate` | `voc4cat:0008116` | `has calcination heating rate` |
+| `calcination dwelling time` | `voc4cat:0000060` | `has calcination dwelling time` |
 
 **Reaction / catalytic test fields:**
 
-| Label in reference workbook | CURIE | Meaning |
+| Column in your sheet (example) | CURIE | Field in the reference workbook |
 |---|---|---|
-| `Reaction type` | `voc4cat:0007010` | Type of catalytic reaction |
-| `Catalyst mass [g]` | `voc4cat:0007792` | Mass of catalyst loaded |
-| `Reactor` | `voc4cat:0007017` | Reactor type |
-| `operation mode` | `voc4cat:0000108` | Batch or flow operation |
-| `Reactor temperature` | `voc4cat:0007032` | Reactor temperature range |
-| `Solvent` | `voc4cat:0007246` | Reaction solvent |
+| `Reaction type` | `voc4cat:0007010` | the reaction's `rdf type` (Layer 1), e.g. hydrogenation (`voc4cat:0000260`) |
+| `Catalyst mass [g]` | `voc4cat:0008141` | `catalyst mass` |
+| `Catalyst form` | `voc4cat:0000016` | `catalyst form` |
+| `Reactor` | `voc4cat:0007018` | `ChemicalReactor`; each reactor type has its own class, e.g. `FixedBedReactor` |
+| `Reactor temperature` | `voc4cat:0007032` | `reactor temperature range` |
+| `Pressure` | `voc4cat:0000118` | `experiment pressure` |
+| `Solvent` | `SIO:010417` | `used solvent` (`DissolvingSubstance`) |
 
-**Characterisation result fields:**
+**Characterisation techniques:**
 
-| Technique | Key result fields and terms |
-|---|---|
-| BET analysis (`AFP:0003761`) | Specific surface area (`voc4cat`), pore volume, average pore diameter |
-| Powder XRD (`CHMO:0000158`) | Phase identification, crystallite size (Scherrer), phase quantification |
-| XPS (`CHMO:0000404`) | Assigned species, binding energy, oxidation state, elemental concentration |
-| ICP-OES | Chemical element (`SIO`), concentration (`afo`) |
-| GC / GC-MS (`CHMO:0000497`) | Retention time (`voc4cat`), peak area |
-| TEM (`CHMO:0000080`) | Average particle size (`voc4cat`), particle shape |
-| UV-Vis (`CHMO:0000292`) | Wavelength (`voc4cat`), absorbance, attenuation coefficient |
-| NMR (liquid) | Chemical shift (`NMRCV`), signal intensity, multiplet feature |
+| Technique (class in the workbook) | CURIE | Key method parameter fields |
+|---|---|---|
+| BET analysis (`BET`) | `enm:0000064` | adsorbate gas, degassing temperature, measurement temperature |
+| Powder XRD (`PowderXRD`) | `CHMO:0000158` | 2θ range, step size, X-ray source, monochromator |
+| XPS (`XPS`) | `CHMO:0000404` | X-ray source, pass energy, spot size, energy range |
+| ICP-OES / ICP-AES (`ICPAES`) | `CHMO:0000267` | element analysed, calibration method, detection limit |
+| GC-MS (`GCMS`) | `CHMO:0000497` | carrier gas, column type, oven temperature range, split ratio |
+| TEM (`TransmissionElectronMicroscopy`) | `voc4cat:0000078` | gun type, acceleration voltage, magnification setting |
+| UV-Vis (`UVVisSpectroscopy`) | `voc4cat:0000079` | wavelength range, path length, solvent |
+| NMR (`NMRSpectroscopy`) | `voc4cat:0000073` | acquisition nucleus, solvent, irradiation frequency, pulse sequence |
 
-You do not need to annotate every column at once. Starting with the most essential fields — **catalyst type, support, metal loading, and reaction type** — already makes your spreadsheet far more comparable against data from other groups, because you are now using the same vocabulary terms.
+The characterisation fields describe how a measurement was made, not its results. Result columns can be annotated with Voc4Cat terms where they exist, for example specific surface area (`voc4cat:0000013`), retention time (`voc4cat:0007260`) or particle size (`voc4cat:0008212`).
+
+You do not need to annotate every column at once. Starting with the most essential fields — **catalyst type, catalyst composition and support, and reaction type** — already makes your spreadsheet far more comparable against data from other groups, because you are now using the same vocabulary terms.
 
 !!! info "What are CURIEs?"
     A CURIE (Compact URI) like `voc4cat:0007014` is shorthand for a full web address: `https://w3id.org/nfdi4cat/voc4cat_0007014`. Every CoreMeta4Cat term — whether it comes from Voc4Cat or another controlled vocabulary such as CHMO or QUDT — resolves to a human-readable definition at its CURIE's address. This means a computer — or another researcher — can unambiguously identify what each field means, regardless of what language your column header is written in. That is the foundation of interoperability.
 
 ### The CoreMeta4Cat minimal field set
 
-The **CoreMeta4Cat** sheet in the reference workbook shows the smallest useful annotation set — fields that apply to every catalysis dataset regardless of data class. If you annotate nothing else, annotating these fields is already a meaningful step:
+The **CoreMeta4Cat** sheet in the reference workbook lists the Layer 1 fields that apply to every catalysis dataset, regardless of data class: the research field (`rdf type`), the activity that generated the data (`was generated by`), and, recommended, the reaction and the catalyst the dataset is about (`is about activity`, `is about entity`). In a spreadsheet, the columns that feed these fields are the ones to annotate first. If you annotate nothing else, annotating these is already a meaningful step:
 
-| Field | CURIE | Notes |
+| Column | CURIE | Notes |
 |---|---|---|
-| Catalyst type | `voc4cat:0007014` | Choose from: heterogeneous (`voc4cat:0007003`), homogeneous (`voc4cat:0007804`), hybrid (`voc4cat:0007805`), biocatalyst |
-| Support | `voc4cat:0007825` | e.g. Al₂O₃, SiO₂, TiO₂, carbon |
-| Metal | — | e.g. Ni, Pd, Pt, Cu |
-| Metal loading (wt%) | `voc4cat:0007815` | Nominal loading |
-| Additive | `voc4cat:0007793` | Dopant (`voc4cat:0007847`), molecular modifier, or ligand (`voc4cat:0007809`) |
-| Molar ratio metal : additive | — | e.g. 1:0.1 |
-| Reaction type | `voc4cat:0007010` | Use RXNO terms where available |
+| Catalyst type | `voc4cat:0007014` | Becomes the research field. One or more of: heterogeneous (`voc4cat:0007001`), homogeneous (`voc4cat:0000294`), bio- (`voc4cat:0000204`), electro- (`voc4cat:0000216`) or photocatalysis (`voc4cat:0000001`) |
+| Reaction type | `voc4cat:0007010` | A Voc4Cat reaction term, e.g. hydrogenation (`voc4cat:0000260`) or CO₂ hydrogenation (`voc4cat:0000259`) |
+| Catalyst composition | `coremeta4cat:nominal_composition` | e.g. 5 wt% Ni on Al₂O₃; metal, loading and support can also be separate columns |
+| Support | `voc4cat:0008104` | e.g. Al₂O₃, SiO₂, TiO₂, carbon |
 
 ---
 
@@ -221,88 +219,174 @@ The CURIE annotations you added in Level 2 do most of the work: they are the map
 
 ### What a minimal converter looks like
 
+The example sheet has one row per synthesis, with the column labels from Level 2 plus one measured
+property (here the BET surface area), because every synthesis record needs at least one.
+
 ```python
-import openpyxl, json
+import json
+import openpyxl
+
+BASE = "https://example.org/my-group/"  # your own namespace for identifiers
+
+# Sheet values mapped to vocabulary terms
+RESEARCH_FIELD = {
+    "heterogeneous": {"id": "voc4cat:0007001", "title": "heterogeneous catalysis"},
+    "homogeneous": {"id": "voc4cat:0000294", "title": "homogeneous catalysis"},
+}
+METHOD = {  # preparation method -> class_uri of the CoreMeta4Cat method class
+    "impregnation": "voc4cat:0007028",
+    "co-precipitation": "voc4cat:0007795",
+}
+
+
+def quantity(value, kind, unit):
+    """A value with its QUDT quantity kind and unit."""
+    return {"value": value,
+            "has_quantity_type": f"http://qudt.org/vocab/quantitykind/{kind}",
+            "unit": f"https://qudt.org/vocab/unit/{unit}"}
+
 
 wb = openpyxl.load_workbook("my_synthesis_data.xlsx")
 ws = wb["Synthesis"]
-
-# Read column headers — these carry the CURIE annotations
-# so you know exactly which column maps to which CoreMeta4Cat field
 headers = [cell.value for cell in ws[1]]
 
 records = []
-for row in ws.iter_rows(min_row=2, values_only=True):
+for n, row in enumerate(ws.iter_rows(min_row=2, values_only=True), start=1):
     data = dict(zip(headers, row))
     if not any(data.values()):
         continue  # skip empty rows
+    name = data["Name"]
+    method = data["Preparation method"]                     # voc4cat:0007016
+    temperature = data["calcination final temperature"]     # in deg C
+    catalyst = {"id": f"{BASE}catalyst-{n}", "title": name}
 
-    record = {
-        "type": "CatalysisDataset",
+    records.append({
+        "id": f"{BASE}dataset-{n}",
+        "title": [f"Synthesis of {name}"],
+        "description": [f"Converted from my_synthesis_data.xlsx, row {n + 1}."],
+        "rdf_type": [RESEARCH_FIELD[data["Catalyst type"]]],  # voc4cat:0007014
         "was_generated_by": [{
-            "type": "Synthesis",
-            "nominal_composition": data.get("Name"),           # dct:title
-            "realized_plan": {
-                "type": "Impregnation",
-                # voc4cat:0000058 — calcination final temperature
-                "calcination_final_temperature":
-                    data.get("calcination final temperature"),
-                # voc4cat:0000060 — calcination dwelling time
-                "calcination_dwelling_time":
-                    data.get("calcination dwelling time"),
-            },
+            "id": f"{BASE}synthesis-{n}",
+            "activity_designator": "Synthesis",
+            "title": [f"{method} of {name}"],
+            "nominal_composition": [
+                f"{data['Metal loading, nominal (wt%)']} wt% {data['Metal']} on {data['Support']}"],
+            "catalyst_measured_properties": [
+                f"BET surface area: {data['BET surface area (m2/g)']} m2/g"],
+            "catalyst_support": [data["Support"]],             # voc4cat:0008104
             "had_input_entity": [{
-                "type": "Precursor",
-                "name": data.get("Precursor 1"),               # voc4cat:0007794
-                "precursor_quantity": data.get("Precursor 1 amount")  # voc4cat:0007038
-            }]
+                "id": f"{BASE}precursor-{n}-1",
+                "title": data["Precursor 1"],                   # voc4cat:0007794
+                "precursor_quantity": [                         # voc4cat:0008118
+                    quantity(data["Precursor 1 amount"], "Mass", "GM")],
+            }],
+            "had_output_entity": [catalyst],
+            "realized_plan": {
+                "id": f"{BASE}method-{n}",
+                "plan_designator": METHOD[method],              # which method class this is
+                "title": method,
+                "has_calcination_temperature_range": [{
+                    "min_value": temperature, "max_value": temperature,
+                    "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature",
+                    "unit": "https://qudt.org/vocab/unit/DEG_C"}],
+                "has_calcination_dwelling_time":                # voc4cat:0000060
+                    quantity(data["calcination dwelling time"], "Time", "HR"),
+            },
         }],
-        "is_about_entity": [{
-            "type": "CatalystSample",
-            "support": data.get("Support"),                    # voc4cat:0007825
-            "metal_loading_nominal":
-                data.get("Metal loading, nominal (wt%)")       # voc4cat:0007815
-        }]
-    }
-    records.append(record)
+        "is_about_entity": [catalyst],
+    })
 
-with open("synthesis_records.json", "w") as f:
+with open("synthesis_records.json", "w", encoding="utf-8") as f:
     json.dump(records, f, indent=2, ensure_ascii=False)
 ```
 
-The column names passed to `data.get(...)` are the same human-readable labels you already have in your sheet header. The CURIEs in the comments document the semantic meaning of each mapping for anyone reading the script later.
+The column names used in `data[...]` are the same human-readable labels you already have in your sheet
+header, and the CURIEs in the comments document the meaning of each mapping. Three things turn the sheet
+into a valid record: every dataset, activity, method and entity gets an identifier in your own namespace
+(`BASE`); sheet values such as the catalyst type and the preparation method are mapped to vocabulary terms
+(`RESEARCH_FIELD`, `METHOD`); and numbers are written with their quantity kind and unit (`quantity()`).
+`plan_designator` tells software which method class the plan belongs to (here `Impregnation`), which makes
+the calcination fields of that class available.
 
 ### The resulting JSON record
 
-Running this converter produces a record like the following, which is a valid CoreMeta4Cat JSON instance:
+Running this converter on a row for a 5 wt% Ni/Al₂O₃ catalyst produces the following record, which passes
+the validation shown in Level 4:
 
 ```json
 {
-  "type": "CatalysisDataset",
-  "rdf_type": { "id": "voc4cat:0007001", "title": "heterogeneous catalysis" },
+  "id": "https://example.org/my-group/dataset-1",
+  "title": [
+    "Synthesis of 5Ni/Al2O3"
+  ],
+  "description": [
+    "Converted from my_synthesis_data.xlsx, row 2."
+  ],
+  "rdf_type": [
+    {
+      "id": "voc4cat:0007001",
+      "title": "heterogeneous catalysis"
+    }
+  ],
   "was_generated_by": [
     {
-      "type": "Synthesis",
-      "nominal_composition": "5wt% Ni/Al2O3",
-      "realized_plan": {
-        "type": "Impregnation",
-        "calcination_final_temperature": 500.0,
-        "calcination_dwelling_time": 4.0
-      },
+      "id": "https://example.org/my-group/synthesis-1",
+      "activity_designator": "Synthesis",
+      "title": [
+        "impregnation of 5Ni/Al2O3"
+      ],
+      "nominal_composition": [
+        "5 wt% Ni on Al2O3"
+      ],
+      "catalyst_measured_properties": [
+        "BET surface area: 182 m2/g"
+      ],
+      "catalyst_support": [
+        "Al2O3"
+      ],
       "had_input_entity": [
         {
-          "type": "Precursor",
-          "name": "Ni(NO3)2·6H2O",
-          "precursor_quantity": 1.24
+          "id": "https://example.org/my-group/precursor-1-1",
+          "title": "Ni(NO3)2·6H2O",
+          "precursor_quantity": [
+            {
+              "value": 1.24,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Mass",
+              "unit": "https://qudt.org/vocab/unit/GM"
+            }
+          ]
         }
-      ]
+      ],
+      "had_output_entity": [
+        {
+          "id": "https://example.org/my-group/catalyst-1",
+          "title": "5Ni/Al2O3"
+        }
+      ],
+      "realized_plan": {
+        "id": "https://example.org/my-group/method-1",
+        "plan_designator": "voc4cat:0007028",
+        "title": "impregnation",
+        "has_calcination_temperature_range": [
+          {
+            "min_value": 500,
+            "max_value": 500,
+            "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature",
+            "unit": "https://qudt.org/vocab/unit/DEG_C"
+          }
+        ],
+        "has_calcination_dwelling_time": {
+          "value": 4,
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Time",
+          "unit": "https://qudt.org/vocab/unit/HR"
+        }
+      }
     }
   ],
   "is_about_entity": [
     {
-      "type": "CatalystSample",
-      "support": "Al2O3",
-      "metal_loading_nominal": 5.0
+      "id": "https://example.org/my-group/catalyst-1",
+      "title": "5Ni/Al2O3"
     }
   ]
 }

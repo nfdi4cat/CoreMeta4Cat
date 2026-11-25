@@ -5,7 +5,7 @@ description: The entry-point class, its global classification enum, and how to c
 
 # CatalysisDataset
 
-`CatalysisDataset` is the entry point for every CoreMeta4Cat record. It is a `dcat:Dataset` -- fully compatible with plain DCAT and DCAT-AP -- extended with a global classification field and four link slots that connect to the [four CoreMeta4Cat pillars](design-patterns.md#the-four-data-classes): [Synthesis](synthesis.md), [Characterization](characterization.md), [Reaction](reaction.md), and [Simulation](simulation.md).
+`CatalysisDataset` is the entry point for every CoreMeta4Cat record. It is a `dcat:Dataset` -- fully compatible with plain DCAT and DCAT-AP -- extended with a global classification field and three link slots that connect to the [four CoreMeta4Cat pillars](design-patterns.md#the-four-data-classes): [Synthesis](synthesis.md), [Characterization](characterization.md), [Reaction](reaction.md), and [Simulation](simulation.md).
 
 This page is the reference for `CatalysisDataset` itself: its fields, the `CatalysisResearchFieldEnum` classification vocabulary, and a worked example of combining several pillars into a single dataset. For the conceptual background on *why* it's structured this way, see [Design Patterns: The entry point](design-patterns.md#the-entry-point-catalysisdataset) and [Pattern 1: Classification via rdf_type](design-patterns.md#pattern-1-classification-via-rdf_type).
 
@@ -25,8 +25,8 @@ The overview below shows only what CoreMeta4Cat adds to `dcat:Dataset`. Where th
 | Field | Range | Cardinality | Purpose |
 |---|---|---|---|
 | `rdf_type` | `CatalysisResearchFieldEnum` (via `bindings`) | Mandatory, Multivalued | **Layer 1** -- the coarsest possible classification: which field(s) of catalysis this dataset belongs to. |
-| `was_generated_by` | `DataGeneratingActivity` | Mandatory, Multivalued | **Layer 2** -- the activity/activities that *produced* this dataset's data: `Synthesis`, `Characterization`, and/or `Simulation` instances. |
-| `is_about_activity` | `EvaluatedActivity` | Recommended, Multivalued | **Layer 2** -- the catalytic `Reaction` this dataset is *about*, without having generated it. |
+| `was_generated_by` | `CatalysisDataGeneratingActivity` | Mandatory, Multivalued | **Layer 2** -- the activity/activities that *produced* this dataset's data: `Synthesis`, `Characterization`, and/or `Simulation` instances. |
+| `is_about_activity` | `CatalyticReaction` | Recommended, Multivalued | **Layer 2** -- the catalytic `Reaction` this dataset is *about*, without having generated it. |
 | `is_about_entity` | `EvaluatedEntity` | Recommended, Multivalued | **Layer 2** -- the catalyst sample or material this dataset concerns. |
 
 `rdf_type` is Mandatory, and so is `was_generated_by`, which DCAT-AP+ requires for every dataset. `is_about_activity` and `is_about_entity` are Recommended: a dataset can legitimately leave them out (e.g. a pure simulation dataset has no `is_about_entity`). The dataset's `id` is Mandatory as well, as in DCAT-AP+ and ChemDCAT-AP.
@@ -55,11 +55,11 @@ rdf_type:
 
 | Value | Voc4Cat term | Description |
 |---|---|---|
-| `heterogeneous_catalysis` | `VOC4CAT:0007001` | Catalyst and reactants are in different phases. |
-| `homogeneous_catalysis` | `VOC4CAT:0000294` | Catalyst and reactants are in the same phase. |
-| `biocatalysis` | `VOC4CAT:0000204` | Use of enzymes or whole cells as catalysts. |
-| `electrocatalysis` | `VOC4CAT:0000216` | Catalysis of electrochemical reactions. |
-| `photocatalysis` | `VOC4CAT:0000001` | Catalysis driven by absorption of light energy by a photocatalyst. |
+| `heterogeneous_catalysis` | `voc4cat:0007001` | Catalyst and reactants are in different phases. |
+| `homogeneous_catalysis` | `voc4cat:0000294` | Catalyst and reactants are in the same phase. |
+| `biocatalysis` | `voc4cat:0000204` | Use of enzymes or whole cells as catalysts. |
+| `electrocatalysis` | `voc4cat:0000216` | Catalysis of electrochemical reactions. |
+| `photocatalysis` | `voc4cat:0000001` | Catalysis driven by absorption of light energy by a photocatalyst. |
 | `hybrid_catalysis` | -- | Combination of two or more of the above approaches. |
 | `other` | -- | Any catalysis research field not covered by the terms above. |
 
@@ -69,7 +69,7 @@ This is a dataset-wide classification axis -- it says nothing about *how* a spec
 
 Layer 2 is where a `CatalysisDataset` actually points at the substance of the record. Three slots cover it, and all three are multivalued -- a single dataset can reference several activities of the same kind at once (e.g. two separate `Characterization` runs):
 
-- **`was_generated_by`** -- activities that *produced* this dataset's data. Only `Synthesis`, `Characterization`, and `Simulation` make sense here, since only they are `DataGeneratingActivity` subclasses.
+- **`was_generated_by`** -- activities that *produced* this dataset's data. Only `Synthesis`, `Characterization`, and `Simulation` make sense here, since only they are `DataGeneratingActivity` subclasses. Each entry names its class with `activity_designator`.
 - **`is_about_activity`** -- the catalytic process this dataset *describes*, without having generated it. `Reaction` (schema name `CatalyticReaction`) is not a `DataGeneratingActivity` -- see the [🔬 deep dive on this distinction](design-patterns.md#deep-dive-the-evaluatedactivity-distinction) -- so it is linked here instead of via `was_generated_by`.
 - **`is_about_entity`** -- the catalyst sample or material the dataset concerns, independent of which activity produced or observed it.
 
@@ -81,7 +81,10 @@ The example below reports the full lifecycle of a Ni/CeO2 catalyst used for dry 
 
 ```yaml
 id: "coremeta4cat:DATASET_001_NiCeO2_DRM"
-type: CatalysisDataset
+title:
+  - "Ni/CeO2 for dry reforming of methane: synthesis, testing and characterization"
+description:
+  - "Impregnation of Ni on CeO2, XRD of the fresh catalyst, and DRM testing with GC-MS product analysis."
 
 # Layer 1 -- global classification
 rdf_type:
@@ -91,47 +94,45 @@ rdf_type:
 # Layer 2 -- three activities produced this dataset's data...
 was_generated_by:
   - id: "coremeta4cat:SYN_001_NiCeO2"
-    type: Synthesis
-    rdf_type:
-      id: voc4cat:0007028
-      title: "impregnation"
-    nominal_composition: "10wt% Ni/CeO2"
+    activity_designator: Synthesis
+    nominal_composition:
+      - "10wt% Ni/CeO2"
     had_output_entity:
       - id: "coremeta4cat:CAT_002_NiCeO2"
-        type: CatalystSample
         title: "Ni/CeO2"
+    realized_plan:
+      id: "coremeta4cat:SYN_001_NiCeO2_method"
+      plan_designator: voc4cat:0007028        # Impregnation
+      title: "impregnation"
 
   - id: "coremeta4cat:CHAR_001_NiCeO2_XRD"
-    type: Characterization
-    rdf_type:
-      id: CHMO:0000158
-      title: "powder X-ray diffraction"
+    activity_designator: Characterization
     evaluated_entity:
-      id: "coremeta4cat:CAT_002_NiCeO2"    # same catalyst sample as above
+      - id: "coremeta4cat:CAT_002_NiCeO2"    # same catalyst sample as above
     realized_plan:
-      type: PowderXRD
+      id: "coremeta4cat:CHAR_001_NiCeO2_XRD_method"
+      plan_designator: CHMO:0000158           # PowderXRD
+      title: "powder X-ray diffraction"
 
   - id: "coremeta4cat:CHAR_002_DRM_products_GCMS"
-    type: Characterization
-    rdf_type:
-      id: CHMO:0000497
-      title: "gas chromatography-mass spectrometry"
-    evaluated_entity:
-      id: "coremeta4cat:REAC_002_DRM_NiCeO2"    # evaluating the reaction's products
+    activity_designator: Characterization
+    evaluated_activity:
+      - id: "coremeta4cat:REAC_002_DRM_NiCeO2"    # evaluating the reaction's products
     realized_plan:
-      type: GCMS
+      id: "coremeta4cat:CHAR_002_DRM_products_GCMS_method"
+      plan_designator: CHMO:0000497           # GCMS
+      title: "gas chromatography-mass spectrometry"
 
 # ...and one Reaction is what this dataset is about, not what generated it
 is_about_activity:
   - id: "coremeta4cat:REAC_002_DRM_NiCeO2"
-    type: CatalyticReaction
     rdf_type:                               # reaction type (Layer 1, mandatory)
       id: CHMO:0001446
       title: "catalytic reforming"
     used_catalyst:
-      id: "coremeta4cat:CAT_002_NiCeO2"     # same catalyst sample again
+      - id: "coremeta4cat:CAT_002_NiCeO2"   # same catalyst sample again
     catalyst_type:
-      - "heterogeneous_catalysis"
+      - heterogeneous_catalysis
 
 is_about_entity:
   - id: "coremeta4cat:CAT_002_NiCeO2"
@@ -140,6 +141,6 @@ is_about_entity:
 A few things worth noticing in this example:
 
 - The same `CatalystSample` (`CAT_002_NiCeO2`) is referenced from four places: the `Synthesis` that produced it (`had_output_entity`), the `Characterization` that measured it directly (`evaluated_entity`), the `Reaction` that consumed it (`used_catalyst`), and the dataset's own `is_about_entity`. This is what actually connects the four pillars into one coherent record -- shared identifiers, not schema-level nesting.
-- The second `Characterization` (`CHAR_002_DRM_products_GCMS`) sets `evaluated_entity` to the *Reaction*, not the catalyst -- because what's being measured there is the reaction's product stream, not the catalyst material. `evaluated_entity` accepts any `EvaluatedEntity`, and a `CatalyticReaction`'s outputs qualify.
+- The second `Characterization` (`CHAR_002_DRM_products_GCMS`) points to the *Reaction* with `evaluated_activity` instead of to the catalyst with `evaluated_entity` -- because what's being measured there is the reaction's product stream, not the catalyst material.
 - `catalyst_type` on the `Reaction` and `rdf_type` on the `CatalysisDataset` both draw from `CatalysisResearchFieldEnum`, but independently -- see the note at the end of the Layer 1 section above.
 - For a real submission, each of `SYN_001_NiCeO2`, `CHAR_001_NiCeO2_XRD`, `CHAR_002_DRM_products_GCMS`, and `REAC_002_DRM_NiCeO2` would carry their own full set of Mandatory/Recommended fields (method parameters, instrument settings, operating conditions, ...); this example only shows the fields relevant to how the four pillars connect. See [Synthesis](synthesis.md), [Characterization](characterization.md), and [Reaction](reaction.md) for the full field lists of each.
