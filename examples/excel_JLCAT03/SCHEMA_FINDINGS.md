@@ -60,14 +60,18 @@ this folder's.
    describes; here it became a typed generic attribute of the reactor.
 10. **voc4cat:0000153 contradicts `reactor_working_volume`.** voc4cat defines the reaction chamber
     volume as including connected pipes and valves. The slot's description says they are excluded.
-11. **Calcination final temperature** (voc4cat:0000058) has no slot. It goes into
-    `has_calcination_temperature_range.max_value`, leaving `min_value` empty. A dedicated slot, or a
-    note in the range's description, would make this mapping explicit.
+    The data provider meant the vessel alone (Q12), i.e. the slot's definition, yet the RDF
+    predicate voc4cat:0000153 still carries voc4cat's definition.
+11. **Calcination final temperature** (voc4cat:0000058) has no slot. Round 1 put it into
+    `has_calcination_temperature_range.max_value`, leaving `min_value` empty. In this record the step
+    turned out to be a reduction (item 18), but the gap remains for real calcinations. A dedicated
+    slot, or a note in the range's description, would make the mapping explicit.
 12. **Reaction temperature** (voc4cat:0007013) is not used. The reaction temperature lands in the
     generic `ChemicalReaction.has_temperature` (SIO:000008); a mapping to the voc4cat term would help.
 13. **`ImpregnationTypeEnum` values have no `meaning`.** `incipient_wetness` could carry
     voc4cat:0007806; the RDF currently gets the literal "incipient_wetness".
-14. **`step_size` is a bare float**, so its unit cannot be recorded.
+14. **`step_size` is a bare float**, so its unit cannot be recorded. The provider gave degrees (Q3);
+    the unit now sits in the protocol's description.
 
 ## Smaller observations
 
@@ -76,5 +80,32 @@ this folder's.
     check for empty recommended slots lists a `rdf_type` for every quantity. The parser therefore
     only reports recommended slots that the domain class lists itself.
 16. **Required instrument for Characterization.** When the instrument is unknown, the requirement is
-    met by a placeholder device ("Instrument not specified"), as in 32x1-99x6 and this record.
+    met by a placeholder device ("Instrument not specified"). 32x1-99x6 does this, and so did this
+    record until the provider named the diffractometer.
 17. **Upstream voc4cat typo**: the prefLabel of voc4cat:0000056 is "calcincation gas flow rate".
+
+## Found with the data provider's answers
+
+18. **No reduction step in the preparation methods.** Impregnation, CoPrecipitation and the others
+    offer drying and calcination slots, but nothing for a reduction in H2-containing gas. That is a
+    common last step for supported metal catalysts, and the one used here (Q10).
+    - The step became a generic Activity under `Synthesis.has_part`. Its parameters are typed
+      attributes, with generic voc4cat terms where voc4cat has one: atmosphere 0007809, heating
+      rate 0008116, gas flow rate 0008109.
+    - voc4cat has no concept for a catalyst reduction step either, only the chemical "reduction"
+      (0000098, used as the step's type), and no generic dwell-time term.
+    - Impregnation also recommends its calcination slots when no calcination took place, so the
+      empty-slot check lists them here.
+    - Possible fix: a reduction (or general thermal treatment) mixin with atmosphere, temperature
+      programme, heating rate, gas flow and hold time.
+19. **A contact person cannot be recorded properly.** The range of `contact_point`, vcard:Kind, has
+    no properties in DCAT-AP-PLUS. `Attribution` (`qualified_attribution`) has only a title and a
+    description, with no agent and no role.
+    - Here the contact person (Q17) is a `qualified_attribution` with the title "contact person" and
+      the name as its description.
+    - No other CoreMeta4Cat record uses either slot.
+    - Upstream fix: vcard:fn and vcard:hasEmail on Kind, or prov:agent and dcat:hadRole on
+      Attribution.
+20. **A licence needs a Distribution.** In DCAT-AP the licence sits on `Distribution`, which
+    requires an access URL. Once the provider names a licence, this example needs a distribution,
+    e.g. pointing at this folder, just to carry it.

@@ -25,70 +25,77 @@ CHMO:0000497 schema1:name "gas chromatography-mass spectrometry" ;
 	a schema1:DefinedTerm .
 CHEMINF:000113 schema1:name "InChI descriptor" ;
 	a schema1:DefinedTerm .
-coremeta4cat:CAT_JLCAT03 dcterms:relation _:c14n17 ;
+coremeta4cat:CAT_JLCAT03 dcterms:relation _:c14n41 ;
 	dcterms:title "Pt/Al2O3 (5 wt.%)" ;
 	a OBI:0000747 , SIO:010344 , prov:Entity ;
-	adms:identifier _:c14n16 .
-coremeta4cat:CHAR_JLCAT03_PXRD <allotrope.quality:0001159> "powder attached to tape" ;
-	SIO:000008 _:c14n32 ;
+	adms:identifier _:c14n17 .
+coremeta4cat:CHAR_JLCAT-PXRD-03 <allotrope.quality:0001159> "powder attached to tape" ;
+	<http://purl.allotrope.org/ontologies/result#AFR_0000317> "dectris mythen 1K" ;
+	dcterms:description "PXRD of JLCAT03" ;
+	dcterms:title "PXRD of catalyst" ;
+	SIO:000008 _:c14n39 ;
 	a "Characterization" , CHMO:0000158 ;
-	prov:used coremeta4cat:CAT_JLCAT03 , coremeta4cat:JLCAT-PXRD-03 ;
-	prov:wasAssociatedWith coremeta4cat:DEV_JLCAT03_PXRD ;
+	adms:identifier _:c14n33 ;
+	prov:used coremeta4cat:CAT_JLCAT03 , coremeta4cat:CHAR_JLCAT-PXRD-03_method ;
+	prov:wasAssociatedWith coremeta4cat:DEV_Stoe-STADI-MP ;
 	coremeta4cat:sample_description "supported catalyst" ;
 	coremeta4cat:sample_state "solid" .
+coremeta4cat:CHAR_JLCAT-PXRD-03_method <http://purl.allotrope.org/ontologies/result#AFR_0000950> "0.5"^^xsd:float ;
+	CHMO:0002120 "Ge-monochromatized" ;
+	OBI:0001138 "Cu k alpha" ;
+	dcterms:description "Step size in degrees 2theta (unit given by the data provider; the step_size slot holds a bare number)." ;
+	SIO:000008 _:c14n0 , _:c14n32 ;
+	a CHMO:0000158 ;
+	coremeta4cat:hasTwoThetaRange _:c14n29 ;
+	coremeta4cat:sample_spinning_speed _:c14n5 ;
+	voc4cat:0000111 _:c14n8 ;
+	voc4cat:0007809 _:c14n21 .
 coremeta4cat:CHEM_1-4-dioxane dcterms:title "1,4 dioxane" ;
-	SIO:000008 _:c14n18 ;
+	SIO:000008 _:c14n19 ;
 	a CHEBI:23367 .
 coremeta4cat:CHEM_benzaldehyde dcterms:title "benzaldehyde" ;
-	SIO:000008 _:c14n25 ;
+	SIO:000008 _:c14n26 ;
 	a CHEBI:23367 .
 coremeta4cat:CHEM_styrene-oxide dcterms:title "styrene oxide" ;
-	SIO:000008 _:c14n29 ;
+	SIO:000008 _:c14n28 ;
 	a CHEBI:23367 .
 coremeta4cat:CHEM_styrene dcterms:title "styrene" ;
-	SIO:000008 _:c14n1 ;
+	SIO:000008 _:c14n2 ;
 	a CHEBI:23367 .
 coremeta4cat:CHEM_water dcterms:title "water" ;
 	SIO:000008 _:c14n23 ;
 	a CHEBI:23367 .
-coremeta4cat:DEV_JLCAT03_PXRD dcterms:description "Instrument not specified in the source workbook." ;
-	dcterms:title "X-ray diffractometer" ;
+coremeta4cat:DEV_JLCAT03_tube-furnace dcterms:title "tube furnace" ;
 	a prov:Agent .
-coremeta4cat:DEV_JLCAT03_calcination dcterms:title "tube furnace" ;
-	a prov:Agent .
-coremeta4cat:DEV_MBR01 dcterms:relation _:c14n4 ;
+coremeta4cat:DEV_MBR01 dcterms:relation _:c14n6 ;
 	dcterms:title "Autoclave" ;
 	a NCIT:C93052 ;
-	adms:identifier _:c14n34 ;
-	voc4cat:0000153 _:c14n20 ;
+	adms:identifier _:c14n35 ;
+	coremeta4cat:batch_duration _:c14n34 ;
+	coremeta4cat:vessel_material "stainless steel" ;
+	voc4cat:0000153 _:c14n4 ;
 	voc4cat:0000155 "cylinder" ;
+	voc4cat:0000156 "stainless steel" ;
 	voc4cat:0008113 "magnetic" ;
 	voc4cat:0008114 _:c14n30 ;
-	voc4cat:0008115 _:c14n7 .
-coremeta4cat:DS_excel_JLCAT03 dcterms:description "The example involves the synthesis of an alumina-supported Pt catalyst via incipient wetness impregnation, its characterization using powder X-ray diffraction (PXRD), and its subsequent application in the epoxidation of styrene in an autoclave under an O₂ atmosphere." ;
+	voc4cat:0008115 _:c14n10 .
+coremeta4cat:DEV_Stoe-STADI-MP dcterms:title "Stoe STADI-MP diffractometer" ;
+	a prov:Agent .
+coremeta4cat:DS_excel_JLCAT03 dcterms:description "Alumina supported Pt catalyst was synthesized with incipient wetness impregnation and applied in the liquid phase epoxidation reaction of styrene." ;
 	dcterms:subject coremeta4cat:CAT_JLCAT03 , coremeta4cat:REAC_JLCATTEST03 ;
-	dcterms:title "Pt/Al2O3 catalyst JLCAT03: incipient wetness impregnation, powder XRD and styrene epoxidation" ;
+	dcterms:title "Supported Pt catalyst for the epoxidation of styrene" ;
 	a dcat:Dataset , voc4cat:0007001 ;
-	prov:wasGeneratedBy coremeta4cat:CHAR_JLCAT03_PXRD , coremeta4cat:SYN_JLCAT03 .
-coremeta4cat:JLCAT-PXRD-03 <http://purl.allotrope.org/ontologies/result#AFR_0000950> "0.5"^^xsd:float ;
-	CHMO:0002120 "Ge-monochromatized" ;
-	OBI:0001138 "Cu k alpha" ;
-	dcterms:description "PXRD of JLCAT03" ;
-	dcterms:title "PXRD of catalyst" ;
-	SIO:000008 _:c14n27 ;
-	a CHMO:0000158 ;
-	coremeta4cat:hasTwoThetaRange _:c14n13 ;
-	coremeta4cat:sample_spinning_speed _:c14n36 ;
-	voc4cat:0000111 _:c14n0 ;
-	voc4cat:0007809 _:c14n3 .
-coremeta4cat:PREC_JLCAT03_1 dcterms:relation _:c14n26 ;
+	dcat:keyword "epoxidation" , "styrene oxide" , "supported catalyst" ;
+	prov:qualifiedAttribution _:c14n42 ;
+	prov:wasGeneratedBy coremeta4cat:CHAR_JLCAT-PXRD-03 , coremeta4cat:SYN_JLCAT03 .
+coremeta4cat:PREC_JLCAT03_1 dcterms:relation _:c14n27 ;
 	dcterms:title "Pt(NH3)4(NO3)2" ;
 	a voc4cat:0007794 ;
-	voc4cat:0008118 _:c14n14 .
-coremeta4cat:PREC_JLCAT03_support dcterms:relation _:c14n6 ;
+	voc4cat:0008118 _:c14n16 .
+coremeta4cat:PREC_JLCAT03_support dcterms:relation _:c14n9 ;
 	dcterms:title "Al2O3" ;
 	a voc4cat:0007794 ;
-	voc4cat:0008118 _:c14n40 .
+	voc4cat:0008118 _:c14n46 .
 coremeta4cat:PROD_JLCATTEST03_benzaldehyde BFO:0000051 coremeta4cat:CHEM_benzaldehyde ;
 	dcterms:title "benzaldehyde" ;
 	a NCIT:C48810 .
@@ -96,141 +103,159 @@ coremeta4cat:PROD_JLCATTEST03_styrene-oxide BFO:0000051 coremeta4cat:CHEM_styren
 	dcterms:title "styrene oxide" ;
 	a NCIT:C48810 .
 coremeta4cat:REAC_JLCATTEST03 RO:0004008 coremeta4cat:PROD_JLCATTEST03_benzaldehyde , coremeta4cat:PROD_JLCATTEST03_styrene-oxide ;
-	RO:0004009 coremeta4cat:SM_JLCATTEST03_styrene ;
+	RO:0004009 coremeta4cat:REAG_JLCATTEST03_oxygen , coremeta4cat:SM_JLCATTEST03_styrene ;
 	RXNO:0000425 coremeta4cat:CAT_JLCAT03 ;
-	SIO:000008 _:c14n12 , _:c14n24 , _:c14n8 ;
+	SIO:000008 _:c14n12 , _:c14n15 , _:c14n25 ;
 	a coremeta4cat:CatalyticReaction ;
-	adms:identifier _:c14n39 ;
+	adms:identifier _:c14n45 ;
 	prov:wasAssociatedWith coremeta4cat:DEV_MBR01 , coremeta4cat:SOLV_JLCATTEST03_1-4-dioxane ;
 	voc4cat:0000016 voc4cat:0000017 ;
-	voc4cat:0000111 _:c14n2 ;
-	voc4cat:0000118 _:c14n11 ;
+	voc4cat:0000111 _:c14n3 ;
+	voc4cat:0000118 _:c14n14 ;
 	voc4cat:0000129 coremeta4cat:REAC_JLCATTEST03_product_id ;
 	voc4cat:0007009 "epoxidation" ;
 	voc4cat:0007014 voc4cat:0007001 ;
 	voc4cat:0007032 _:c14n31 ;
-	voc4cat:0007809 _:c14n5 ;
-	voc4cat:0008141 _:c14n38 .
+	voc4cat:0007809 _:c14n7 ;
+	voc4cat:0008141 _:c14n44 .
 coremeta4cat:REAC_JLCATTEST03_product_id dcterms:title "GCMS" ;
 	a CHMO:0000497 , OBI:0000272 .
+coremeta4cat:REAG_JLCATTEST03_oxygen dcterms:description "listed as reactant by the data provider; also the atmosphere of the test (Reaction!G3)" ;
+	dcterms:title "oxygen" ;
+	a SIO:010411 .
 coremeta4cat:SM_JLCATTEST03_styrene BFO:0000051 coremeta4cat:CHEM_styrene ;
 	dcterms:title "styrene" ;
 	SIO:000008 _:c14n22 ;
 	a PROCO:0000029 .
 coremeta4cat:SOLV_JLCATTEST03_1-4-dioxane BFO:0000051 coremeta4cat:CHEM_1-4-dioxane ;
 	dcterms:title "1,4 dioxane" ;
-	SIO:000008 _:c14n37 ;
+	SIO:000008 _:c14n40 ;
 	a SIO:010417 .
-coremeta4cat:SYN_JLCAT03 a "Synthesis" ;
+coremeta4cat:SYN_JLCAT03 dcterms:hasPart coremeta4cat:SYN_JLCAT03_reduction ;
+	a "Synthesis" ;
 	prov:generated coremeta4cat:CAT_JLCAT03 ;
 	prov:used coremeta4cat:PREC_JLCAT03_1 , coremeta4cat:PREC_JLCAT03_support , coremeta4cat:SYN_JLCAT03_method ;
-	prov:wasAssociatedWith coremeta4cat:DEV_JLCAT03_calcination ;
-	coremeta4cat:catalyst_measured_properties "No measured properties of the catalyst are given in the source workbook." ;
+	coremeta4cat:catalyst_measured_properties "Phase seen in PXRD is Pt" ;
 	coremeta4cat:nominal_composition "Pt/Al2O3 (5 wt.%)" ;
 	voc4cat:0007246 coremeta4cat:CHEM_water ;
 	voc4cat:0008104 "Al2O3" ;
 	voc4cat:0008105 "ambient" .
 coremeta4cat:SYN_JLCAT03_method dcterms:description "drying duration (as given): over night" ;
 	dcterms:title "Impregnation" ;
-	SIO:000008 _:c14n15 ;
 	a voc4cat:0007028 ;
-	coremeta4cat:hasCalcinationTemperatureRange _:c14n10 ;
-	voc4cat:0000056 _:c14n21 ;
-	voc4cat:0000060 _:c14n28 ;
-	voc4cat:0008116 _:c14n33 ;
 	voc4cat:0008119 "incipient_wetness" ;
-	voc4cat:0008121 _:c14n19 ;
+	voc4cat:0008121 _:c14n20 ;
 	voc4cat:0008122 "oven" ;
-	voc4cat:0008207 _:c14n9 ;
-	voc4cat:0008208 _:c14n35 .
+	voc4cat:0008206 _:c14n38 ;
+	voc4cat:0008207 _:c14n13 ;
+	voc4cat:0008208 _:c14n36 .
+coremeta4cat:SYN_JLCAT03_reduction dcterms:description "Thermal treatment after drying, recorded in the calcination columns of the workbook (Synthesis!W3-AB3). According to the data provider it was a reduction only; no calcination in air took place." ;
+	dcterms:relation _:c14n1 , _:c14n11 , _:c14n18 , _:c14n24 , _:c14n37 , _:c14n43 ;
+	dcterms:title "reduction in 5 % H2/N2" ;
+	a prov:Activity , voc4cat:0000098 ;
+	prov:wasAssociatedWith coremeta4cat:DEV_JLCAT03_tube-furnace .
+voc4cat:0000098 schema1:name "reduction" ;
+	a schema1:DefinedTerm .
 voc4cat:0000108 schema1:name "operation mode" ;
 	a schema1:DefinedTerm .
 voc4cat:0007001 schema1:name "heterogeneous catalysis" ;
 	a schema1:DefinedTerm .
+voc4cat:0007809 schema1:name "atmosphere" ;
+	a schema1:DefinedTerm .
 voc4cat:0008106 schema1:name "metal loading" ;
 	a schema1:DefinedTerm .
-_:c14n0 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
-	a qudt:Quantity ;
-	prov:value "80.0"^^xsd:float .
-_:c14n1 a CHEMINF:000113 ;
-	prov:value "InChI=1S/C8H8/c1-2-8-6-4-3-5-7-8/h2-7H,1H2" .
-_:c14n10 dcterms:description "final calcination temperature (voc4cat:0000058); initial temperature not stated" ;
+voc4cat:0008109 schema1:name "gas flow rate" ;
+	a schema1:DefinedTerm .
+voc4cat:0008116 schema1:name "heating rate" ;
+	a schema1:DefinedTerm .
+_:c14n0 dcterms:description "room temperature" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
 	qudt:unit <https://qudt.org/vocab/unit/DEG_C> ;
 	a qudt:Quantity ;
-	coremeta4cat:maxValue "700.0"^^xsd:float .
-_:c14n11 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	prov:value "25.0"^^xsd:float .
+_:c14n1 dcterms:title "final temperature" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/DEG_C> ;
+	a qudt:Quantity ;
+	prov:value "700.0"^^xsd:float .
+_:c14n10 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
+	qudt:unit <https://qudt.org/vocab/unit/MilliM> ;
+	a qudt:Quantity ;
+	prov:value "10.0"^^xsd:float .
+_:c14n11 dcterms:title "heating rate" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/TemperaturePerTime> ;
+	qudt:unit <https://qudt.org/vocab/unit/K-PER-HR> ;
+	a qudt:Quantity , voc4cat:0008116 ;
+	prov:value "500.0"^^xsd:float .
+_:c14n12 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/DEG_C> ;
+	a qudt:Quantity ;
+	prov:value "100.0"^^xsd:float .
+_:c14n13 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/DEG_C> ;
+	a qudt:Quantity ;
+	prov:value "70.0"^^xsd:float .
+_:c14n14 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
 	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
 	a qudt:Quantity ;
 	prov:value "1.0"^^xsd:float .
-_:c14n12 dcterms:description "yield of generated product 1 (styrene oxide)" ;
+_:c14n15 dcterms:description "yield of generated product 1 (styrene oxide)" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Dimensionless> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
 	a CHMO:0002855 ;
 	prov:value "20.0"^^xsd:float .
-_:c14n13 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/PlaneAngle> ;
-	qudt:unit <https://qudt.org/vocab/unit/DEG> ;
-	a qudt:Quantity ;
-	coremeta4cat:maxValue "90.0"^^xsd:float ;
-	coremeta4cat:minValue "2.0"^^xsd:float .
-_:c14n14 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+_:c14n16 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
 	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
 	a qudt:Quantity ;
 	prov:value "100.9"^^xsd:float .
-_:c14n15 a voc4cat:0000055 ;
-	prov:value "5 % H2/N2" .
-_:c14n16 dcterms:description "catalyst identifier (voc4cat:0008134) assigned in the source workbook" ;
+_:c14n17 dcterms:description "catalyst identifier (voc4cat:0008134) assigned in the source workbook" ;
 	a adms:Identifier ;
 	skos:notation "JLCAT03" .
-_:c14n17 dcterms:title "metal loading" ;
-	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
-	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
-	a qudt:Quantity , voc4cat:0008106 ;
-	prov:value "5.0"^^xsd:float .
-_:c14n18 a CHEMINF:000113 ;
+_:c14n18 dcterms:title "atmosphere" ;
+	a prov:Entity , voc4cat:0007809 ;
+	prov:value "5 % H2/N2" .
+_:c14n19 a CHEMINF:000113 ;
 	prov:value "InChI=1S/C4H8O2/c1-2-6-4-3-5-1/h1-4H2" .
-_:c14n19 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+_:c14n2 a CHEMINF:000113 ;
+	prov:value "InChI=1S/C8H8/c1-2-8-6-4-3-5-7-8/h2-7H,1H2" .
+_:c14n20 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
 	qudt:unit <https://qudt.org/vocab/unit/DEG_C> ;
 	a qudt:Quantity ;
 	prov:value "25.0"^^xsd:float .
-_:c14n2 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
-	qudt:unit <https://qudt.org/vocab/unit/HR> ;
-	a qudt:Quantity ;
-	prov:value "12.0"^^xsd:float .
-_:c14n20 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Volume> ;
-	qudt:unit <https://qudt.org/vocab/unit/MilliL> ;
-	a qudt:Quantity ;
-	prov:value "10.0"^^xsd:float .
-_:c14n21 dcterms:description "15 nl/h as given in the workbook; there is no QUDT unit for 'nl/h'" ;
-	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/VolumeFlowRate> ;
-	a qudt:Quantity ;
-	prov:value "15.0"^^xsd:float .
+_:c14n21 a coremeta4cat:Atmosphere ;
+	prov:value "ambient" .
 _:c14n22 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Volume> ;
 	qudt:unit <https://qudt.org/vocab/unit/MilliL> ;
 	a qudt:Quantity ;
 	prov:value "0.5"^^xsd:float .
 _:c14n23 a CHEMINF:000113 ;
 	prov:value "InChI=1S/H2O/h1H2" .
-_:c14n24 dcterms:description "yield of generated product 2 (benzaldehyde)" ;
+_:c14n24 dcterms:title "dwelling time at the final temperature" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+	qudt:unit <https://qudt.org/vocab/unit/HR> ;
+	a qudt:Quantity ;
+	prov:value "4.0"^^xsd:float .
+_:c14n25 dcterms:description "yield of generated product 2 (benzaldehyde)" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Dimensionless> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
 	a CHMO:0002855 ;
 	prov:value "22.0"^^xsd:float .
-_:c14n25 a CHEMINF:000113 ;
+_:c14n26 a CHEMINF:000113 ;
 	prov:value "InChI=1S/C7H6O/c8-6-7-4-2-1-3-5-7/h1-6H" .
-_:c14n26 dcterms:title "InChI" ;
+_:c14n27 dcterms:title "InChI" ;
 	a CHEMINF:000113 , prov:Entity ;
 	prov:value "InChI=1S/2NO3.4H3N.Pt/c2*2-1(3)4;;;;;/h;;4*1H3;/q2*-1;;;;;+2" .
-_:c14n27 a voc4cat:0000108 ;
-	prov:value "transmission" .
-_:c14n28 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+_:c14n28 a CHEMINF:000113 ;
+	prov:value "InChI=1S/C8H8O/c1-2-4-7(5-3-1)8-6-9-8/h1-5,8H,6H2" .
+_:c14n29 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/PlaneAngle> ;
+	qudt:unit <https://qudt.org/vocab/unit/DEG> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "90.0"^^xsd:float ;
+	coremeta4cat:minValue "2.0"^^xsd:float .
+_:c14n3 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
 	qudt:unit <https://qudt.org/vocab/unit/HR> ;
 	a qudt:Quantity ;
-	prov:value "4.0"^^xsd:float .
-_:c14n29 a CHEMINF:000113 ;
-	prov:value "InChI=1S/C8H8O/c1-2-4-7(5-3-1)8-6-9-8/h1-5,8H,6H2" .
-_:c14n3 a coremeta4cat:Atmosphere ;
-	prov:value "ambient" .
+	prov:value "12.0"^^xsd:float .
 _:c14n30 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/AngularVelocity> ;
 	qudt:unit <https://qudt.org/vocab/unit/REV-PER-MIN> ;
 	a qudt:Quantity ;
@@ -240,52 +265,80 @@ _:c14n31 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
 	a qudt:Quantity ;
 	coremeta4cat:maxValue "100.0"^^xsd:float ;
 	coremeta4cat:minValue "50.0"^^xsd:float .
-_:c14n32 a voc4cat:0000122 ;
-	prov:value "grinding" .
-_:c14n33 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/TemperaturePerTime> ;
-	qudt:unit <https://qudt.org/vocab/unit/K-PER-HR> ;
+_:c14n32 a voc4cat:0000108 ;
+	prov:value "transmission" .
+_:c14n33 dcterms:description "measurement identifier assigned in the source workbook" ;
+	a adms:Identifier ;
+	skos:notation "JLCAT-PXRD-03" .
+_:c14n34 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+	qudt:unit <https://qudt.org/vocab/unit/HR> ;
 	a qudt:Quantity ;
-	prov:value "500.0"^^xsd:float .
-_:c14n34 dcterms:description "device identifier (AFR_0002018) assigned in the source workbook" ;
+	prov:value "12.0"^^xsd:float .
+_:c14n35 dcterms:description "device identifier (AFR_0002018) assigned in the source workbook" ;
 	a adms:Identifier ;
 	skos:notation "MBR01" .
-_:c14n35 a coremeta4cat:Atmosphere ;
+_:c14n36 a coremeta4cat:Atmosphere ;
 	prov:value "air" .
-_:c14n36 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/AngularVelocity> ;
+_:c14n37 dcterms:description "room temperature" ;
+	dcterms:title "starting temperature" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/DEG_C> ;
 	a qudt:Quantity ;
-	prov:value "30.0"^^xsd:float .
-_:c14n37 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Volume> ;
+	prov:value "25.0"^^xsd:float .
+_:c14n38 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+	qudt:unit <https://qudt.org/vocab/unit/HR> ;
+	a qudt:Quantity ;
+	prov:value "12.0"^^xsd:float .
+_:c14n39 a voc4cat:0000122 ;
+	prov:value "grinding" .
+_:c14n4 dcterms:description "vessel only, without fittings or connections (data provider, Q12)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Volume> ;
+	qudt:unit <https://qudt.org/vocab/unit/MilliL> ;
+	a qudt:Quantity ;
+	prov:value "10.0"^^xsd:float .
+_:c14n40 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Volume> ;
 	qudt:unit <https://qudt.org/vocab/unit/MilliL> ;
 	a qudt:Quantity ;
 	prov:value "5.0"^^xsd:float .
-_:c14n38 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+_:c14n41 dcterms:description "nominal value (data provider, Q9)" ;
+	dcterms:title "metal loading" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity , voc4cat:0008106 ;
+	prov:value "5.0"^^xsd:float .
+_:c14n42 dcterms:description "Arjun Neyyathala" ;
+	dcterms:title "contact person" ;
+	a prov:Attribution .
+_:c14n43 dcterms:description "normal litres per hour ('nl/h' in the workbook) at NTP (data provider, Q7)" ;
+	dcterms:title "gas flow rate" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/VolumeFlowRate> ;
+	qudt:unit <https://qudt.org/vocab/unit/L-PER-HR> ;
+	a qudt:Quantity , voc4cat:0008109 ;
+	prov:value "15.0"^^xsd:float .
+_:c14n44 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
 	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
 	a qudt:Quantity ;
 	prov:value "10.0"^^xsd:float .
-_:c14n39 dcterms:description "test identifier assigned in the source workbook" ;
+_:c14n45 dcterms:description "test identifier assigned in the source workbook" ;
 	a adms:Identifier ;
 	skos:notation "JLCATTEST03" .
-_:c14n4 dcterms:title "operation mode" ;
-	a prov:Entity , voc4cat:0000108 ;
-	prov:value "batch" .
-_:c14n40 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+_:c14n46 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
 	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
 	a qudt:Quantity ;
 	prov:value "957.9"^^xsd:float .
-_:c14n5 a coremeta4cat:Atmosphere ;
+_:c14n5 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/AngularVelocity> ;
+	qudt:unit <https://qudt.org/vocab/unit/REV-PER-MIN> ;
+	a qudt:Quantity ;
+	prov:value "30.0"^^xsd:float .
+_:c14n6 dcterms:title "operation mode" ;
+	a prov:Entity , voc4cat:0000108 ;
+	prov:value "batch" .
+_:c14n7 a coremeta4cat:Atmosphere ;
 	prov:value "Oxygen" .
-_:c14n6 dcterms:title "InChI" ;
+_:c14n8 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+	qudt:unit <https://qudt.org/vocab/unit/MIN> ;
+	a qudt:Quantity ;
+	prov:value "80.0"^^xsd:float .
+_:c14n9 dcterms:title "InChI" ;
 	a CHEMINF:000113 , prov:Entity ;
 	prov:value "InChI=1S/2Al.3O/q2*+3;3*-2" .
-_:c14n7 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Length> ;
-	qudt:unit <https://qudt.org/vocab/unit/MilliM> ;
-	a qudt:Quantity ;
-	prov:value "10.0"^^xsd:float .
-_:c14n8 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
-	qudt:unit <https://qudt.org/vocab/unit/DEG_C> ;
-	a qudt:Quantity ;
-	prov:value "100.0"^^xsd:float .
-_:c14n9 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
-	qudt:unit <https://qudt.org/vocab/unit/DEG_C> ;
-	a qudt:Quantity ;
-	prov:value "70.0"^^xsd:float .

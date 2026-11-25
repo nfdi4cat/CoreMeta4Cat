@@ -8,6 +8,32 @@ without guesswork.
 Every value we used, and why, is in `metadata/source_documentation.yaml`. The same questions, with
 cell references, are in `metadata/parse_report.md`.
 
+## Status after your answers (2026-11-24)
+
+Thank you for answering (transcript: `source/provider_answers.md`). With your answers the record
+validates without any placeholder, and all 13 questions below are settled. What changed:
+
+- **Reduction step.** The "calcination" columns now describe a reduction step in 5 % H2/N2 (your
+  answer to question 10). It is recorded as a separate step of the synthesis, because the schema's
+  impregnation method has a calcination step but no reduction step.
+- **PXRD rows 11, 12 and 22.** Their title, description and ID now belong to the PXRD measurement
+  (question 8).
+- **New values.** The units, the drying time, the diffractometer, the measured phase and oxygen as
+  reactant are now in the record. So are the dataset's title, description, keywords and contact
+  person.
+
+Still open:
+
+1. **Licence.** Under which licence may the example be published (e.g. CC BY 4.0)?
+2. **Authors.** Who should be named as creators of the dataset, with ORCID? We did not assume
+   that the contact person is an author.
+3. **NTP.** "NTP" is defined in more than one way. NIST uses 20 °C and 1 atm, while the German
+   normal litre (DIN 1343) refers to 0 °C and 1.01325 bar. Which applies to the 15 nl/h?
+4. **Reaction type** (optional): an ontology term for the reaction type, e.g. an RXNO term for
+   epoxidation.
+
+The first-round feedback follows unchanged.
+
 ## What worked well
 
 - **The vocabulary IDs are right.** All 39 voc4cat IDs in your headers exist and their labels match

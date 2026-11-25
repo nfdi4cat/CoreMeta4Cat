@@ -4,12 +4,15 @@ Example: catalyst JLCAT03, a Pt/Al2O3 catalyst made by incipient wetness impregn
 characterized by powder XRD and tested in styrene epoxidation. A laboratory researcher filled in
 an Excel workbook with CoreMeta4Cat fields (one sheet each for synthesis, characterization and
 reaction). These notes record how that workbook was turned into a validated CoreMeta4Cat record
-and RDF, so the same steps can be repeated for other workbooks.
+and RDF, so the same steps can be repeated for other workbooks. It took two rounds:
+- a first parse of the workbook alone, which produced a list of open questions;
+- a second parse after the data provider answered them (Step 7).
 
 | Where | What |
 |---|---|
 | `source/TestDataSet_CoreMeta4Cat.xlsx` | The workbook as received, unchanged |
-| `source/provider_note.md` | The text sent with it (source of the dataset description) |
+| `source/provider_note.md` | The text sent with it |
+| `source/provider_answers_2026-11-24.docx`, `source/provider_answers.md` | The provider's answers to the open questions, and a verbatim transcript (questions numbered Q1–Q17) |
 | `parser/crosswalk.yaml` | The mapping: one entry per column or row, with target, conversion and reason |
 | `parser/supplement.yaml` | Everything the record needs that is not in the workbook, with its source |
 | `parser/xlsx_to_coremeta4cat.py` | The parser. Its code has no workbook-specific knowledge; that sits in the two YAML files next to it |
@@ -68,9 +71,12 @@ The record has to be defensible value by value, so the parser follows five rules
 5. **Identifiers are minted by fixed rules** from the lab IDs in the workbook (`CAT_JLCAT03`,
    `REAC_JLCATTEST03`, `DEV_MBR01`). The lab IDs themselves are kept as `other_identifier`.
 
-Result for this workbook: 76 value cells; 74 mapped and 2 recognised as repeats. 92 values were
-written, 87 from the workbook and 5 from the supplement, 2 of which are placeholders. Basis of the
-workbook values: 66 direct, 13 deduced, 7 schema-forced, 1 fallback. There are 13 open questions.
+Result for this workbook: 76 value cells; 74 mapped and 2 recognised as repeats.
+
+| | Values written | From the workbook | From the supplement | Placeholders | Basis of workbook values | Open questions |
+|---|---|---|---|---|---|---|
+| Round 1 (workbook only) | 92 | 87 | 5 | 2 | 66 direct, 13 deduced, 7 schema-forced, 1 fallback | 13 |
+| Round 2 (with the answers) | 108 | 87 | 21 | 0 | 65 direct, 9 deduced, 12 schema-forced, 1 fallback | 4 |
 
 ## Step 1: inventory the workbook
 
@@ -109,38 +115,44 @@ Work from the term, then the label, then the layout:
    (SchemaView, with CURIEs expanded to IRIs so that `VOC4CAT:` and `voc4cat:` agree). Most columns
    resolve this way: `voc4cat:0008121` is `impregnation_temperature`.
 2. **Ambiguous terms → label and context.** `SIO:000008` ("has attribute") is the `slot_uri` of
-   dozens of slots, so the label decides: `calcination atmosphere` gives `has_calcination_atmosphere`.
+   dozens of slots, so the label decides: `starting material volume SIO:000008` gives `has_volume`.
    `voc4cat:0008113` and `voc4cat:0008114` belong to both a synthesis slot and a reactor slot; on the
    Reaction sheet they are the reactor's.
 3. **Shape → generated JSON Schema.** `gen-json-schema` shows what is required and what is a list.
-   Examples: `has_yield` is a list (two products are fine), `has_calcination_dwelling_time` is a
+   Examples: `has_yield` is a list (two products are fine), `has_experiment_duration` is a
    single value, and `ProductIdentificationMethod` accepts no other designator.
 4. **Subclass fields need a designator.** An impregnation plan only takes `impregnation_type` if it
    declares `plan_designator: voc4cat:0007028`. The same holds for `reactor_designator` (Autoclave)
    and `activity_designator` (in the combined record). The workbook names the subclass, either in a
    cell value (`Impregnation`, `Autoclave (NCIT:C93052)`) or in a class row (`PowderXRD`).
-5. **Layout.** The Character sheet repeats the slot list of the PowderXRD class page. Rows 11, 12
-   and 22 (`title`, `description`, `id`) therefore sit in the PowderXRD block and were mapped to the
-   protocol. Their wording suggests the measurement itself, so this is an open question.
+5. **Layout is evidence, not proof.** The Character sheet repeats the slot list of the PowderXRD
+   class page. Rows 11, 12 and 22 (`title`, `description`, `id`) sit in the PowderXRD block, so round
+   1 mapped them to the protocol and flagged that their wording suggests the measurement itself. The
+   provider confirmed the measurement (Q8), and round 2 maps them to the Characterization activity.
+6. **Headers can name the wrong process.** Columns W–AB are headed "calcination", but the gas was
+   5 % H2/N2. Round 1 mapped them to the calcination slots and asked. The provider answered that the
+   step was a reduction and no calcination took place (Q10), so round 2 maps them to a reduction
+   step. Term matches are only as good as the provider's choice of term.
 
-Decisions that were not a direct term match:
+Decisions that were not a direct term match (round 2; "Q" numbers are the provider's answers):
 
 | Cell(s) | Decision | Basis and evidence |
 |---|---|---|
-| Synthesis D (metal loading) | Generic quantity of the catalyst sample, typed `voc4cat:0008106` | schema-forced: no metal-loading slot |
+| Synthesis D (metal loading) | Generic quantity of the catalyst sample, typed `voc4cat:0008106`, described as nominal | schema-forced: no metal-loading slot; nominal per Q9 |
 | Synthesis F–H (support, InChI, mass) | Support listed as an input entity of class Precursor | schema-forced: `had_input_entity` only accepts Precursor; no slot for the amount of support |
 | Synthesis G, L (InChI of support and precursor) | Generic qualitative attribute typed `CHEMINF:000113` | schema-forced: Precursor has no `inchi` slot |
-| Synthesis T (`over night`) | Kept verbatim in the plan description | fallback: a Duration needs a number |
-| Synthesis X (calcination device) | Device under `Synthesis.carried_out_by` | deduced: no calcination-device slot |
-| Synthesis AB (final temperature) | `max_value` of `has_calcination_temperature_range` | deduced: the schema folds initial and final temperature into one range |
-| Synthesis Z (`nl/h`) | Value kept, no unit IRI, unit text in the description | no QUDT unit exists |
-| Character C10 (2θ range, no unit) | Unit degree | deduced: 2θ cannot exceed 180° (π rad), so 90 only fits degrees |
+| Synthesis T (`over night`) | Text kept in the plan description; 12 h as `has_drying_duration` | fallback: a Duration needs a number; the number is from Q6 |
+| Synthesis W–AB (`calcination ...`) | A reduction step: generic Activity under `Synthesis.has_part`, typed voc4cat:0000098 'reduction'. Its parameters are typed attributes, using generic voc4cat terms where they exist (atmosphere, heating rate, gas flow rate). The furnace is its `carried_out_by`; the start temperature comes from Q11 | schema-forced: the provider says reduction, not calcination (Q10), and the preparation methods have no reduction step |
+| Synthesis Z (`nl/h`) | Litre per hour, with "normal litres at NTP" in the description | QUDT has no normal-litre unit; reading and NTP confirmed by Q7 |
+| Character C10, C13, C18, C20 (no units) | Degree (2θ range and step size), rpm, min | Q3. The 2θ unit had been deduced, since 2θ cannot exceed 180°. `step_size` holds a bare number, so its unit is stated in the protocol description |
+| Character C11, C12, C22 | Title, description and `other_identifier` of the measurement; the activity and protocol IRIs are minted from C22 | read as the protocol's by layout in round 1; the measurement per Q8 |
 | Character C8 (`Powder XRD`) | Plan designator CHMO:0000158, and activity `rdf_type` | deduced from the cell and the PowderXRD class row |
 | Reaction C (`heterogeneous`) | Also the dataset's research field (`rdf_type`) | deduced: field of its only reaction |
 | Reaction J (`GCMS`) | `rdf_type` CHMO:0000497 on the product identification method | schema-forced: the GCMS class cannot be designated there |
 | Reaction T (`batch`) | Generic attribute of the reactor, typed `voc4cat:0000108` | schema-forced: no operation-mode slot on reactions or reactors |
-| Reaction Z (reaction temperature, no unit) | Unit °C | deduced: the reactor range in column F is 50–100 °C; 100 K or 100 °F would fall outside it |
-| Reaction AF (second yield, no unit) | Unit % | deduced: same quantity as AC (in %); 22 cannot be a fraction |
+| Reaction X (chamber volume) | `reactor_working_volume`, described as vessel only | Q12, which matches the slot's definition, not voc4cat's |
+| Reaction Z (reaction temperature, no unit) | Unit °C | deduced (the reactor range in column F is 50–100 °C), confirmed by Q4 |
+| Reaction AF (second yield, no unit) | Unit % | deduced (same quantity as AC), confirmed by Q5 |
 | Reaction AC, AF (yields) | `has_yield` of the reaction, product named in the description | direct; the schema cannot link a yield to a product |
 
 ## Step 4: write the crosswalk
@@ -218,25 +230,40 @@ record.
 ```yaml
 dataset:                     # fields of the dataset itself
   - to: "title[]"
-    value: "..."
-    source: curator          # or e.g. "data provider's accompanying text"
-    why: Required. Composed only from workbook values (cells ...).
+    value: "Supported Pt catalyst for the epoxidation of styrene"
+    basis: provider          # provider | curator (default) | placeholder
+    source: data provider's answers, Q17
+    why: Required.
 records:                     # added to every record of a sheet
-  Character:
+  Synthesis:
+    - to: realized_plan.has_drying_duration
+      as: quantity           # converted like a workbook cell
+      value: 12
+      unit: HR
+      kind: Time
+      basis: provider
+      source: data provider's answers, Q6
+      why: The workbook says 'over night'; the data provider gave 12 hours.
+  Character:                 # round 1, before the answers:
     - to: "carried_out_by[instrument]"
       value: {title: X-ray diffractometer, description: Instrument not specified in the source workbook.}
       placeholder: true      # left out by --no-placeholders
       source: curator
       why: Required by Characterization; ...
+open_questions:              # listed in parse_report.md with the crosswalk's flags
+  - about: Dataset (Q17)
+    text: No licence was given. ...
 ```
 
 ## Step 5: run, validate, convert
 
 See "Run it" above. In this example:
 
-- The record validates with no issues (`linkml-validate`).
-- Without placeholders, two required slots stay empty: `Synthesis.catalyst_measured_properties` and
-  `Characterization.carried_out_by`. These are the workbook's dead ends.
+- The record validates with no issues (`linkml-validate`), in both rounds.
+- In round 1, without placeholders, two required slots stayed empty:
+  `Synthesis.catalyst_measured_properties` and `Characterization.carried_out_by`. These were the
+  workbook's dead ends. In round 2 the provider's answers fill both, and the record validates
+  without any placeholder.
 - `linkml-convert` produces JSON and Turtle. It loads the record into the Python data model first,
   so a missing designator would fail here even when JSON Schema validation passes.
 
@@ -248,12 +275,21 @@ See "Run it" above. In this example:
 - **Placeholders**: what the supplement had to fill in.
 - **Cell inventory**: every value cell with its status and target(s).
 - **Header terms against targets** (with `--schema`): each term the provider wrote is compared with
-  the slot, class, `rdf_type` or designator its cell was mapped to. Here 52 of 62 terms match. The
-  8 that do not are explained in the crosswalk: no slot carries the term, the "over night" fallback,
-  or a header term that is not the slot's URI. The other 2 are on repeated values.
+  the slot, class, `rdf_type` or designator its cell was mapped to. Round 1: 52 of 62 terms match.
+  Round 2: 49 match. The 11 that do not are explained in the crosswalk:
+  - no slot carries the term (catalyst ID 3×, device identifier, reaction temperature);
+  - the "over night" fallback;
+  - a header term that is not the slot's URI;
+  - four "calcination" terms on what the provider identified as a reduction.
+
+  The other 2 are on repeated values.
 - **Empty slots** (with `--schema`): required slots, plus recommended slots that the domain class
-  itself lists. Here they are: reaction type, reactant, PXRD temperature, detector, vessel
-  materials, and DCAT keyword, contact point and theme.
+  itself lists.
+  - Round 1: reaction type, reactant, PXRD temperature, detector, vessel materials, and DCAT
+    keyword, contact point and theme.
+  - Round 2: the answers fill all of these except the reaction type, and `contact_point`, which
+    cannot hold a name (see `SCHEMA_FINDINGS.md`). The Impregnation calcination slots are now
+    listed as empty, correctly, since no calcination took place.
 
 `metadata/source_documentation.yaml` gives, for every value in the record, its location, the cell
 it came from, the basis and the reason, in the format of the curated datasets' provenance files.
@@ -270,17 +306,50 @@ The parser also refuses workbooks that no longer match the crosswalk. Tested cas
 | `homogeneous` instead of `heterogeneous` | `'homogeneous' is not in the value map` |
 | Repeated value differs (Character!C21 = 90) | `expected to repeat 20 (80), holds 90` |
 
+## Step 7: fold in the provider's answers
+
+Round 1 ends with the open questions of the report, sent to the data provider. They answered in a
+copy of the questions; round 2 works the answers in without touching the workbook.
+
+1. **Keep the answers as a source.** The returned `.docx` goes to `source/` unchanged, and a
+   verbatim Markdown transcript is generated from it. The transcript is not retyped, and it numbers
+   the questions (Q1–Q17), so that provenance can cite them.
+2. **Answers that settle how a cell is read change the crosswalk.**
+   - A unit goes into `unit:` with a `unit_note` citing the question (Q3, Q4, Q5).
+   - A new reading changes the entry's target: the measurement's title and ID (Q8), and the
+     calcination columns becoming a reduction step (Q10).
+   - The entry's `flag` is removed; `answered:` silences an automatic flag (Q6).
+3. **Answers that add values change the supplement**, with `basis: provider` and the question as
+   `source`. Examples: the diffractometer (Q1), measured properties (Q2), drying time (Q6), start
+   temperature (Q11), oxygen as reactant (Q13), and title, description, keywords and contact (Q17).
+   `as: quantity` converts them with the same units table as the workbook.
+4. **Placeholders go.** Whatever is still unanswered is listed under `open_questions` of the
+   supplement. Here that is the licence, the authors, the definition of "NTP", and the optional
+   reaction-type term.
+5. **Rerun, validate, convert.** The workbook stays as received. If the provider later fixes the
+   workbook itself, for example by typing the missing unit into Reaction!AF2, the parser stops at
+   the curator-supplied unit, which then has to go (see the guard rails above).
+
+The answers also change the RDF. The calcination slots of the impregnation plan are gone. The
+record gains a reduction step under the synthesis. The characterization activity takes its IRI
+from the measurement ID.
+
 ## What the RDF looks like
 
 The catalyst is one node linking the three activities:
 
 ```turtle
 coremeta4cat:SYN_JLCAT03 a "Synthesis" ;
+    dcterms:hasPart coremeta4cat:SYN_JLCAT03_reduction ;
     prov:generated coremeta4cat:CAT_JLCAT03 ;
     prov:used coremeta4cat:PREC_JLCAT03_1 , coremeta4cat:PREC_JLCAT03_support , coremeta4cat:SYN_JLCAT03_method .
-coremeta4cat:CHAR_JLCAT03_PXRD a "Characterization" , CHMO:0000158 ;
-    prov:used coremeta4cat:CAT_JLCAT03 , coremeta4cat:JLCAT-PXRD-03 .
+coremeta4cat:SYN_JLCAT03_reduction a prov:Activity , voc4cat:0000098 ;   # reduction step (Q10)
+    prov:wasAssociatedWith coremeta4cat:DEV_JLCAT03_tube-furnace .
+coremeta4cat:CHAR_JLCAT-PXRD-03 a "Characterization" , CHMO:0000158 ;
+    prov:used coremeta4cat:CAT_JLCAT03 , coremeta4cat:CHAR_JLCAT-PXRD-03_method ;
+    prov:wasAssociatedWith coremeta4cat:DEV_Stoe-STADI-MP .
 coremeta4cat:REAC_JLCATTEST03 RXNO:0000425 coremeta4cat:CAT_JLCAT03 ;
+    RO:0004009 coremeta4cat:REAG_JLCATTEST03_oxygen , coremeta4cat:SM_JLCATTEST03_styrene ;
     prov:wasAssociatedWith coremeta4cat:DEV_MBR01 .
 coremeta4cat:SYN_JLCAT03_method a voc4cat:0007028 .   # plan_designator becomes rdf:type
 coremeta4cat:DEV_MBR01 a NCIT:C93052 .                # reactor_designator: Autoclave
@@ -299,8 +368,8 @@ an unexpanded `<allotrope.quality:0001159>`. See `SCHEMA_FINDINGS.md`.
 4. Write one entry per column or row. Start with `basis: direct` term matches. For every other entry
    write the evidence into `why`, and anything you would have to ask into `flag`.
 5. Run until the parser no longer stops, then validate, convert, and read the report.
-6. Send the open questions to the data provider. Change only the crosswalk or supplement, never the
-   generated record.
+6. Send the open questions to the data provider, and fold the answers in as in Step 7. Change only
+   the crosswalk or supplement, never the generated record.
 
 Units: the record uses `https://qudt.org/vocab/unit/...` like every other CoreMeta4Cat example,
 while QUDT itself declares `http://qudt.org/vocab/unit/...`. The choice is one setting

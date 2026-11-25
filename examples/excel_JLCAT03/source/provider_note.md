@@ -1,8 +1,8 @@
 # Text sent by the data provider together with the workbook
 
-Stored verbatim. The dataset-level `description` of the record is the sentence
-"The example involves the synthesis of ..." (see `../parser/supplement.yaml`); the rest is
-intended for the documentation page.
+Stored verbatim. In round 1 the dataset-level `description` of the record was the sentence
+"The example involves the synthesis of ...". Since the provider's answers (`provider_answers.md`,
+Q17), title and description come from there. The text is intended for the documentation page.
 
 ---
 

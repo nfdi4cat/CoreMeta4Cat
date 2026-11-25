@@ -7,7 +7,8 @@
 #   target: where the value sits in the record (ids without the coremeta4cat: prefix)
 #   value:  what was written
 #   source: workbook cell [sheet!cell, header or row label, term] or supplement entry
-#   basis:  direct | deduced | schema-forced | fallback (crosswalk) ; curator | placeholder (supplement)
+#   basis:  direct | deduced | schema-forced | fallback (crosswalk) ;
+#           provider | curator | placeholder (supplement)
 #   note:   why this target, plus where the unit came from
 # ============================================================
 
@@ -19,18 +20,39 @@ entries:
   note: Required. The dataset has no persistent identifier yet; minted from the catalyst ID, following
     the coremeta4cat:DS_... pattern of the other example datasets without a PID.
 - target: (dataset).title
-  value: 'Pt/Al2O3 catalyst JLCAT03: incipient wetness impregnation, powder XRD and styrene epoxidation'
-  source: 'supplement: curator'
-  basis: curator
-  note: Required. Not given by the data provider; composed only from workbook values (Synthesis!C3, B3,
-    Q3; Character!C8; Reaction!K3, E3).
-- target: (dataset).description
-  value: The example involves the synthesis of an alumina-supported Pt catalyst via incipient wetness
-    impregnation, its characterization using powder X-ray diffraction (PXRD), and its subsequent application
-    in the epoxidation of styrene in an autoclave under an O₂ atmosphere.
-  source: 'supplement: data provider''s accompanying text (source/provider_note.md), verbatim'
-  basis: curator
+  value: Supported Pt catalyst for the epoxidation of styrene
+  source: 'supplement: data provider''s answers, Q17'
+  basis: provider
   note: Required.
+- target: (dataset).description
+  value: Alumina supported Pt catalyst was synthesized with incipient wetness impregnation and applied
+    in the liquid phase epoxidation reaction of styrene.
+  source: 'supplement: data provider''s answers, Q17'
+  basis: provider
+  note: Required.
+- target: (dataset).keyword
+  value: epoxidation
+  source: 'supplement: data provider''s answers, Q17'
+  basis: provider
+  note: Recommended by DCAT.
+- target: (dataset).keyword
+  value: supported catalyst
+  source: 'supplement: data provider''s answers, Q17'
+  basis: provider
+  note: Recommended by DCAT.
+- target: (dataset).keyword
+  value: styrene oxide
+  source: 'supplement: data provider''s answers, Q17'
+  basis: provider
+  note: Recommended by DCAT.
+- target: (dataset).qualified_attribution
+  value:
+    title: contact person
+    description: Arjun Neyyathala
+  source: 'supplement: data provider''s answers, Q17'
+  basis: provider
+  note: Named by the data provider as contact person. contact_point (vcard:Kind) has no properties in
+    DCAT-AP-PLUS, and Attribution has only a title and a description, so role and name are text.
 - target: was_generated_by[SYN_JLCAT03].had_output_entity[CAT_JLCAT03].other_identifier
   value:
     notation: JLCAT03
@@ -68,6 +90,7 @@ entries:
     unit: https://qudt.org/vocab/unit/PERCENT
     has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
     title: metal loading
+    description: nominal value (data provider, Q9)
     rdf_type:
       id: voc4cat:0008106
       title: metal loading
@@ -76,7 +99,9 @@ entries:
   note: 'voc4cat:0008106 ''metal loading'' is defined as the weight percentage of active metal relative
     to the total supported-catalyst mass, i.e. a property of the catalyst. The schema has no metal-loading
     slot, so it is a generic QuantitativeAttribute of the CatalystSample, typed with the voc4cat term
-    via rdf_type. unit from the unit row: ''wt.%'' -> PERCENT'
+    via rdf_type. The data provider confirmed that it is the nominal value (Q9), consistent with the precursor
+    masses (100.9 mg Pt(NH3)4(NO3)2 on 957.9 mg Al2O3 gives 5.0 wt.% Pt). unit from the unit row: ''wt.%''
+    -> PERCENT'
 - target: was_generated_by[SYN_JLCAT03].storage_conditions
   value: ambient
   source: TestDataSet_CoreMeta4Cat.xlsx [Synthesis!E3, 'storage conditions (voc4cat:0008105)']
@@ -189,7 +214,8 @@ entries:
   source: TestDataSet_CoreMeta4Cat.xlsx [Synthesis!T3, 'drying duration VOC4CAT:0008206']
   basis: fallback
   note: voc4cat:0008206 is the slot_uri of has_drying_duration. A Duration needs a number; the text 'over
-    night' is kept verbatim in the plan description instead. Not a number, so kept as text.
+    night' is kept verbatim in the plan description instead. The data provider gave 12 hours (Q6); that
+    value comes from the supplement. Not a number, so kept as text.
 - target: was_generated_by[SYN_JLCAT03].realized_plan.has_drying_atmosphere
   value:
     value: air
@@ -205,101 +231,155 @@ entries:
   basis: direct
   note: 'voc4cat:0008207 is the slot_uri of has_drying_temperature (DryingMixin). unit from the unit row:
     ''degC'' -> DEG_C'
-- target: was_generated_by[SYN_JLCAT03].realized_plan.has_calcination_atmosphere
+- target: was_generated_by[SYN_JLCAT03].has_part[SYN_JLCAT03_reduction].has_qualitative_attribute
   value:
     value: 5 % H2/N2
+    title: atmosphere
+    rdf_type:
+      id: voc4cat:0007809
+      title: atmosphere
   source: TestDataSet_CoreMeta4Cat.xlsx [Synthesis!W3, 'calcination atmosphere SIO:000008']
-  basis: direct
-  note: Label names has_calcination_atmosphere (CalcinationMixin). SIO:000008 is its slot_uri, but also
-    that of many other slots, so the label decides.
-- target: was_generated_by[SYN_JLCAT03].carried_out_by[DEV_JLCAT03_calcination].title
+  basis: schema-forced
+  note: Atmosphere of the reduction step (Q10). Generic QualitativeAttribute of the step, typed voc4cat:0007809
+    'atmosphere' (gaseous environment of a process).
+- target: was_generated_by[SYN_JLCAT03].has_part[SYN_JLCAT03_reduction].carried_out_by[DEV_JLCAT03_tube-furnace].title
   value: tube furnace
   source: TestDataSet_CoreMeta4Cat.xlsx [Synthesis!X3, 'calcination device']
   basis: deduced
-  note: No calcination-device slot exists. Synthesis.carried_out_by takes the equipment used in the preparation
-    (its description names furnaces), so the tube furnace is a Device there; its role is kept in the description.
-- target: was_generated_by[SYN_JLCAT03].realized_plan.has_calcination_heating_rate
+  note: The device of the heading's step, which was the reduction (Q10). No device slot exists for it,
+    so it is carried_out_by of the reduction step.
+- target: was_generated_by[SYN_JLCAT03].has_part[SYN_JLCAT03_reduction].has_quantitative_attribute
   value:
     value: 500
     unit: https://qudt.org/vocab/unit/K-PER-HR
     has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+    title: heating rate
+    rdf_type:
+      id: voc4cat:0008116
+      title: heating rate
   source: TestDataSet_CoreMeta4Cat.xlsx [Synthesis!Y3, 'calcination heating rate VOC4CAT:0008116']
-  basis: direct
-  note: 'voc4cat:0008116 is the slot_uri of has_calcination_heating_rate (CalcinationMixin). unit from
-    the unit row: ''K/h'' -> K-PER-HR'
-- target: was_generated_by[SYN_JLCAT03].realized_plan.has_calcination_gas_flow_rate
+  basis: schema-forced
+  note: 'Heating rate of the reduction step (Q10). voc4cat:0008116 is the generic ''heating rate'', so
+    the header''s term applies unchanged. unit from the unit row: ''K/h'' -> K-PER-HR'
+- target: was_generated_by[SYN_JLCAT03].has_part[SYN_JLCAT03_reduction].has_quantitative_attribute
   value:
     value: 15
+    unit: https://qudt.org/vocab/unit/L-PER-HR
     has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFlowRate
-    description: 15 nl/h as given in the workbook; there is no QUDT unit for 'nl/h'
+    title: gas flow rate
+    description: normal litres per hour ('nl/h' in the workbook) at NTP (data provider, Q7)
+    rdf_type:
+      id: voc4cat:0008109
+      title: gas flow rate
   source: TestDataSet_CoreMeta4Cat.xlsx [Synthesis!Z3, 'calcination gas flow rate VOC4CAT:0000056']
-  basis: direct
-  note: 'voc4cat:0000056 is the slot_uri of has_calcination_gas_flow_rate (CalcinationMixin). unit from
-    the unit row: ''nl/h''. Read as normal litres per hour (nanolitres per hour, the literal SI reading
-    of "nl", is implausible for a calcination gas flow). QUDT has no unit for normal litres, so no unit
-    IRI is set; the unit text is kept in the description.'
-- target: was_generated_by[SYN_JLCAT03].realized_plan.has_calcination_dwelling_time
+  basis: schema-forced
+  note: 'Gas flow of the reduction step (Q10). The header''s voc4cat:0000056 is the calcination-specific
+    gas flow rate; voc4cat:0008109 is the generic ''gas flow rate''. unit from the unit row: ''nl/h''
+    -> L-PER-HR. Normal litres per hour; the data provider confirmed this reading and gave NTP as the
+    reference conditions (Q7). QUDT has no unit that includes reference conditions, so the unit is litre
+    per hour and the conditions are stated in the value''s description.'
+- target: was_generated_by[SYN_JLCAT03].has_part[SYN_JLCAT03_reduction].has_quantitative_attribute
   value:
     value: 4
     unit: https://qudt.org/vocab/unit/HR
     has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+    title: dwelling time at the final temperature
   source: TestDataSet_CoreMeta4Cat.xlsx [Synthesis!AA3, 'calcination dwelling time VOC4CAT:0000060']
-  basis: direct
-  note: 'voc4cat:0000060 is the slot_uri of has_calcination_dwelling_time (CalcinationMixin). unit from
-    the unit row: ''h'' -> HR'
-- target: was_generated_by[SYN_JLCAT03].realized_plan.has_calcination_temperature_range
+  basis: schema-forced
+  note: 'Hold time of the reduction step (Q10). The header''s voc4cat:0000060 is calcination-specific
+    and voc4cat has no generic dwell-time term, so only a title is set. unit from the unit row: ''h''
+    -> HR'
+- target: was_generated_by[SYN_JLCAT03].has_part[SYN_JLCAT03_reduction].has_quantitative_attribute
   value:
-    max_value: 700
+    value: 700
     unit: https://qudt.org/vocab/unit/DEG_C
     has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
-    description: final calcination temperature (voc4cat:0000058); initial temperature not stated
+    title: final temperature
   source: TestDataSet_CoreMeta4Cat.xlsx [Synthesis!AB3, 'calcination final temperature voc4cat:0000058']
-  basis: deduced
-  note: 'voc4cat:0000058 ''calcination final temperature'' has no slot of its own: the schema collapses
-    initial and final calcination temperature into has_calcination_temperature_range ("initial -> final"),
-    so the final temperature is the max_value. min_value stays empty. unit from the unit row: ''degC''
-    -> DEG_C'
+  basis: schema-forced
+  note: 'Final temperature of the reduction step (Q10); the starting temperature, 25 degC, comes from
+    the data provider (Q11, supplement). The header''s voc4cat:0000058 is calcination-specific, so only
+    a title is set. unit from the unit row: ''degC'' -> DEG_C'
 - target: was_generated_by[SYN_JLCAT03].catalyst_measured_properties
-  value: No measured properties of the catalyst are given in the source workbook.
-  source: 'supplement: curator'
-  basis: placeholder
-  note: Required by Synthesis. The workbook has no measured property (metal loading is apparently nominal,
-    the PXRD sheet gives settings but no result).
-- target: was_generated_by[CHAR_JLCAT03_PXRD].evaluated_entity[CAT_JLCAT03]
+  value: Phase seen in PXRD is Pt
+  source: 'supplement: data provider''s answers, Q2'
+  basis: provider
+  note: Required by Synthesis. Quoted as given.
+- target: was_generated_by[SYN_JLCAT03].realized_plan.has_drying_duration
+  value:
+    value: 12
+    unit: https://qudt.org/vocab/unit/HR
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+  source: 'supplement: data provider''s answers, Q6'
+  basis: provider
+  note: The workbook says 'over night' (Synthesis!T3, kept in the plan description); the data provider
+    gave 12 hours. unit not in the workbook; given in data provider's answers, Q6
+- target: was_generated_by[SYN_JLCAT03].has_part[SYN_JLCAT03_reduction].title
+  value: reduction in 5 % H2/N2
+  source: 'supplement: data provider''s answers, Q10, and Synthesis!W3 (atmosphere)'
+  basis: provider
+  note: Names the step recorded in the calcination columns (W-AB), which the data provider says was a
+    reduction.
+- target: was_generated_by[SYN_JLCAT03].has_part[SYN_JLCAT03_reduction].description
+  value: Thermal treatment after drying, recorded in the calcination columns of the workbook (Synthesis!W3-AB3).
+    According to the data provider it was a reduction only; no calcination in air took place.
+  source: 'supplement: data provider''s answers, Q10'
+  basis: provider
+  note: Explains why the calcination columns are recorded as a reduction step.
+- target: was_generated_by[SYN_JLCAT03].has_part[SYN_JLCAT03_reduction].rdf_type
+  value:
+    id: voc4cat:0000098
+    title: reduction
+  source: 'supplement: curator, following the data provider''s answer Q10'
+  basis: curator
+  note: voc4cat:0000098 'reduction' (gain of electrons or decrease in oxidation state), checked in voc4cat
+    v2026-10-31. voc4cat has no concept for a catalyst reduction step as such.
+- target: was_generated_by[SYN_JLCAT03].has_part[SYN_JLCAT03_reduction].has_quantitative_attribute
+  value:
+    value: 25
+    unit: https://qudt.org/vocab/unit/DEG_C
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    title: starting temperature
+    description: room temperature
+  source: 'supplement: data provider''s answers, Q11'
+  basis: provider
+  note: Start of the temperature programme; the final temperature is Synthesis!AB3. unit not in the workbook;
+    given in data provider's answers, Q11
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].evaluated_entity[CAT_JLCAT03]
   value: coremeta4cat:CAT_JLCAT03
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C1, 'catalyst ID', term voc4cat:0008134]
   basis: direct
   note: voc4cat:0008134 'catalyst identifier'; same value as Synthesis!B3, so the characterized sample
     is the catalyst produced there (same IRI).
-- target: was_generated_by[CHAR_JLCAT03_PXRD].sample_state
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].sample_state
   value: solid
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C2, 'sample state', term coremeta4cat:sample_state]
   basis: direct
   note: Term coremeta4cat:sample_state is the slot; 'solid' is a SampleStateEnum value.
-- target: was_generated_by[CHAR_JLCAT03_PXRD].sample_description
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].sample_description
   value: supported catalyst
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C3, 'sample description', term coremeta4cat:sample_description]
   basis: direct
   note: Term coremeta4cat:sample_description is the slot.
-- target: was_generated_by[CHAR_JLCAT03_PXRD].sample_preparation
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].sample_preparation
   value: powder attached to tape
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C4, 'sample preparation', term allotrope.quality:0001159]
   basis: direct
   note: Term allotrope.quality:0001159 is the slot_uri of sample_preparation.
-- target: was_generated_by[CHAR_JLCAT03_PXRD].has_sample_pretreatment
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].has_sample_pretreatment
   value:
     value: grinding
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C5, 'has sample pretreatment', term SIO:000008]
   basis: direct
   note: Label is the slot name has_sample_pretreatment (range SamplePretreatment).
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.plan_designator
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].realized_plan.plan_designator
   value: CHMO:0000158
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C8, 'CharacterizationTechnique', term OBI:0000272]
   basis: deduced
   note: OBI:0000272 is the class_uri of the abstract CharacterizationTechnique; the value 'Powder XRD'
     and the next row (PowderXRD, CHMO:0000158) name the subclass PowderXRD, declared with plan_designator
     so that its slots (rows 10-24) can be used.
-- target: was_generated_by[CHAR_JLCAT03_PXRD].rdf_type
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].rdf_type
   value:
     id: CHMO:0000158
     title: powder X-ray diffraction
@@ -307,7 +387,7 @@ entries:
   basis: deduced
   note: Characterization.rdf_type takes the technique as an ontology term (its slot_usage gives CHMO:0000158
     for powder XRD), following DCAT-AP-PLUS pattern 3.
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.has_two_theta_range
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].realized_plan.has_two_theta_range
   value:
     min_value: 2
     max_value: 90
@@ -315,79 +395,105 @@ entries:
     has_quantity_type: http://qudt.org/vocab/quantitykind/PlaneAngle
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C10, 'has two theta range', term coremeta4cat:hasTwoThetaRange]
   basis: direct
-  note: 'Term coremeta4cat:hasTwoThetaRange is the slot_uri of has_two_theta_range. unit not in the workbook;
-    supplied by the curator: No unit given. 2theta cannot exceed 180 degrees (pi rad), so an upper bound
-    of 90 is only possible in degrees.'
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.title
+  note: Term coremeta4cat:hasTwoThetaRange is the slot_uri of has_two_theta_range. unit not in the workbook;
+    degrees, given by the data provider (Q3); it is also the only possible reading, since 2theta cannot
+    exceed 180 degrees (pi rad).
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].title
   value: PXRD of catalyst
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C11, 'title']
-  basis: deduced
-  note: Rows 10-24 sit in the PowderXRD block and repeat the slot list of the PowderXRD class page, where
-    title, description and id are the protocol's own (inherited from Plan and CatalysisPlan). Mapped to
-    the PowderXRD protocol accordingly.
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.description
+  basis: direct
+  note: Row label is the slot name. The row sits in the PowderXRD block, but the data provider confirmed
+    that rows 11, 12 and 22 describe the measurement itself, not the PowderXRD protocol (Q8), so they
+    belong to the Characterization activity.
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].description
   value: PXRD of JLCAT03
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C12, 'description']
-  basis: deduced
-  note: As row 11.
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.step_size
+  basis: direct
+  note: As row 11 (Q8).
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].realized_plan.step_size
   value: 0.5
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C13, 'step size', term allotrope.result:0000950]
   basis: direct
-  note: Term allotrope.result:0000950 is the slot_uri of step_size (a unitless float).
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.has_operation_mode
+  note: Term allotrope.result:0000950 is the slot_uri of step_size, a bare number. The data provider gave
+    the unit as degrees (Q3); since step_size cannot carry a unit, it is stated in the protocol's description
+    (supplement).
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].realized_plan.has_operation_mode
   value:
     value: transmission
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C15, 'OperationMode', term voc4cat:0000108]
   basis: direct
   note: voc4cat:0000108 is the class_uri of OperationMode, the range of has_operation_mode (PowderXRD).
     Here the class row itself carries the value.
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.has_atmosphere
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].realized_plan.has_atmosphere
   value:
     value: ambient
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C17, 'Atmosphere', term coremeta4cat:Atmosphere]
   basis: direct
   note: coremeta4cat:Atmosphere is the class_uri of Atmosphere, the range of has_atmosphere (PowderXRD).
     The class row carries the value.
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.sample_spinning_speed
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].realized_plan.sample_spinning_speed
   value:
     value: 30
+    unit: https://qudt.org/vocab/unit/REV-PER-MIN
     has_quantity_type: http://qudt.org/vocab/quantitykind/AngularVelocity
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C18, 'sample spinning speed', term coremeta4cat:sample_spinning_speed]
   basis: direct
-  note: Term coremeta4cat:sample_spinning_speed is the slot (range AngularVelocity). no unit in the workbook;
-    none recorded
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.has_experiment_duration
+  note: Term coremeta4cat:sample_spinning_speed is the slot (range AngularVelocity). unit not in the workbook;
+    rpm, given by the data provider (Q3).
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].realized_plan.has_experiment_duration
   value:
     value: 80
+    unit: https://qudt.org/vocab/unit/MIN
     has_quantity_type: http://qudt.org/vocab/quantitykind/Time
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C20, 'has experiment duration', term SIO:000008]
   basis: direct
   note: Label is the slot name has_experiment_duration (PowderXRD). The term SIO:000008 given is not this
-    slot's slot_uri (voc4cat:0000111); the label decides. no unit in the workbook; none recorded
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.id
-  value: coremeta4cat:JLCAT-PXRD-03
+    slot's slot_uri (voc4cat:0000111); the label decides. unit not in the workbook; minutes, given by
+    the data provider (Q3).
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].other_identifier
+  value:
+    notation: JLCAT-PXRD-03
+    description: measurement identifier assigned in the source workbook
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C22, 'id']
-  basis: deduced
-  note: As row 11 (inside the PowderXRD block, so the protocol's id).
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.xray_source
+  basis: direct
+  note: The measurement's ID (Q8, as row 11). Kept as other_identifier of the Characterization; the activity's
+    IRI (record id) and its protocol's IRI are minted from it.
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].realized_plan.xray_source
   value: Cu k alpha
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C23, 'xray source', term OBI:0001138]
   basis: direct
   note: Term OBI:0001138 is the slot_uri of xray_source (XRaySourceMixin).
-- target: was_generated_by[CHAR_JLCAT03_PXRD].realized_plan.monochromator
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].realized_plan.monochromator
   value: Ge-monochromatized
   source: TestDataSet_CoreMeta4Cat.xlsx [Character!C24, 'monochromator', term CHMO:0002120]
   basis: direct
   note: Term CHMO:0002120 is the slot_uri of monochromator (XRaySourceMixin).
-- target: was_generated_by[CHAR_JLCAT03_PXRD].carried_out_by[DEV_JLCAT03_PXRD]
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].carried_out_by[DEV_Stoe-STADI-MP]
+  value: coremeta4cat:DEV_Stoe-STADI-MP
+  source: 'supplement: data provider''s answers, Q1'
+  basis: provider
+  note: Required by Characterization. The id is minted from the instrument name.
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].detector_type
+  value: dectris mythen 1K
+  source: 'supplement: data provider''s answers, Q15'
+  basis: provider
+  note: Recommended by Characterization. Quoted as given.
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].realized_plan.has_temperature
   value:
-    title: X-ray diffractometer
-    description: Instrument not specified in the source workbook.
-  source: 'supplement: curator'
-  basis: placeholder
-  note: Required by Characterization. A powder XRD measurement implies a diffractometer, but the workbook
-    does not name it; same wording as for the unnamed diffractometer in the 32x1-99x6 record.
+    value: 25
+    unit: https://qudt.org/vocab/unit/DEG_C
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    description: room temperature
+  source: 'supplement: data provider''s answers, Q15'
+  basis: provider
+  note: Measurement temperature, recommended by PowderXRD. unit not in the workbook; given in data provider's
+    answers, Q15
+- target: was_generated_by[CHAR_JLCAT-PXRD-03].realized_plan.description
+  value: Step size in degrees 2theta (unit given by the data provider; the step_size slot holds a bare
+    number).
+  source: 'supplement: data provider''s answers, Q3'
+  basis: provider
+  note: step_size cannot carry a unit, so the unit is stated in the protocol's description.
 - target: is_about_activity[REAC_JLCATTEST03].other_identifier
   value:
     notation: JLCATTEST03
@@ -597,10 +703,12 @@ entries:
     value: 10
     unit: https://qudt.org/vocab/unit/MilliL
     has_quantity_type: http://qudt.org/vocab/quantitykind/Volume
+    description: vessel only, without fittings or connections (data provider, Q12)
   source: TestDataSet_CoreMeta4Cat.xlsx [Reaction!X3, 'reaction chamber volume (voc4cat:0000153)']
   basis: direct
-  note: 'voc4cat:0000153 is the slot_uri of reactor_working_volume (Autoclave). unit from the unit row:
-    ''mL'' -> MilliL'
+  note: 'voc4cat:0000153 is the slot_uri of reactor_working_volume (Autoclave). voc4cat''s definition
+    includes connected pipes and valves, the slot''s excludes them; the data provider confirmed the vessel
+    alone (Q12), which matches the slot. unit from the unit row: ''mL'' -> MilliL'
 - target: is_about_activity[REAC_JLCATTEST03].used_reactor[DEV_MBR01].reaction_chamber_shape
   value: cylinder
   source: TestDataSet_CoreMeta4Cat.xlsx [Reaction!Y3, 'reaction chamber shape (voc4cat:0000155)']
@@ -614,9 +722,9 @@ entries:
   source: TestDataSet_CoreMeta4Cat.xlsx [Reaction!Z3, 'reaction temperature (voc4cat:0007013)']
   basis: direct
   note: 'voc4cat:0007013 ''reaction temperature'' has no slot of its own; ChemicalReaction.has_temperature
-    is "the Temperature at which a ChemicalReaction takes place". unit not in the workbook; supplied by
-    the curator: No unit given. The reactor temperature range of the same test (column F) is 50-100 degC;
-    100 is consistent with it only in degC (100 K or 100 degF would lie outside).'
+    is "the Temperature at which a ChemicalReaction takes place". unit not in the workbook; degC, confirmed
+    by the data provider (Q4). It was deduced first: the reactor temperature range of the same test (column
+    F) is 50-100 degC, and 100 K or 100 degF would lie outside it.'
 - target: is_about_activity[REAC_JLCATTEST03].generated_product[PROD_JLCATTEST03_styrene-oxide].title
   value: styrene oxide
   source: TestDataSet_CoreMeta4Cat.xlsx [Reaction!AA3, 'generated product 1 RO:0004008']
@@ -668,5 +776,28 @@ entries:
     description: yield of generated product 2 (benzaldehyde)
   source: TestDataSet_CoreMeta4Cat.xlsx [Reaction!AF3, 'generated product 2 yeild (SIO:000008)']
   basis: direct
-  note: 'As column AC. unit not in the workbook; supplied by the curator: No unit given. Same quantity
-    as column AC, whose unit is %; a value of 22 also rules out a fraction (which would be at most 1).'
+  note: 'As column AC. unit not in the workbook; %, confirmed by the data provider (Q5). It was deduced
+    first: same quantity as column AC, whose unit is %, and a value of 22 rules out a fraction.'
+- target: is_about_activity[REAC_JLCATTEST03].used_reactant[REAG_JLCATTEST03_oxygen]
+  value: coremeta4cat:REAG_JLCATTEST03_oxygen
+  source: 'supplement: data provider''s answers, Q13'
+  basis: provider
+  note: Recommended by CatalyticReaction (used_reactant).
+- target: is_about_activity[REAC_JLCATTEST03].used_reactor[DEV_MBR01].reaction_chamber_material
+  value: stainless steel
+  source: 'supplement: data provider''s answers, Q16'
+  basis: provider
+  note: Recommended by Autoclave.
+- target: is_about_activity[REAC_JLCATTEST03].used_reactor[DEV_MBR01].vessel_material
+  value: stainless steel
+  source: 'supplement: data provider''s answers, Q16'
+  basis: provider
+  note: Recommended by Autoclave.
+- target: is_about_activity[REAC_JLCATTEST03].used_reactor[DEV_MBR01].batch_duration
+  value:
+    value: 12
+    unit: https://qudt.org/vocab/unit/HR
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+  source: 'supplement: data provider''s answers, Q16'
+  basis: provider
+  note: Recommended by Autoclave. unit not in the workbook; given in data provider's answers, Q16

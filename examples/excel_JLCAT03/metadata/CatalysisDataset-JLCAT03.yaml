@@ -3,14 +3,20 @@
 # Provenance of every value: source_documentation.yaml; open questions: parse_report.md
 id: coremeta4cat:DS_excel_JLCAT03
 title:
-- 'Pt/Al2O3 catalyst JLCAT03: incipient wetness impregnation, powder XRD and styrene epoxidation'
+- Supported Pt catalyst for the epoxidation of styrene
 description:
-- The example involves the synthesis of an alumina-supported Pt catalyst via incipient wetness impregnation,
-  its characterization using powder X-ray diffraction (PXRD), and its subsequent application in the epoxidation
-  of styrene in an autoclave under an O₂ atmosphere.
+- Alumina supported Pt catalyst was synthesized with incipient wetness impregnation and applied in the
+  liquid phase epoxidation reaction of styrene.
 rdf_type:
   id: voc4cat:0007001
   title: heterogeneous catalysis
+keyword:
+- epoxidation
+- supported catalyst
+- styrene oxide
+qualified_attribution:
+- title: contact person
+  description: Arjun Neyyathala
 was_generated_by:
 - id: coremeta4cat:SYN_JLCAT03
   activity_designator: Synthesis
@@ -21,7 +27,7 @@ was_generated_by:
   catalyst_support:
   - Al2O3
   catalyst_measured_properties:
-  - No measured properties of the catalyst are given in the source workbook.
+  - Phase seen in PXRD is Pt
   had_output_entity:
   - id: coremeta4cat:CAT_JLCAT03
     title: Pt/Al2O3 (5 wt.%)
@@ -30,6 +36,7 @@ was_generated_by:
       notation: JLCAT03
     has_quantitative_attribute:
     - title: metal loading
+      description: nominal value (data provider, Q9)
       rdf_type:
         id: voc4cat:0008106
         title: metal loading
@@ -85,30 +92,64 @@ was_generated_by:
     - value: 70
       unit: https://qudt.org/vocab/unit/DEG_C
       has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
-    has_calcination_atmosphere:
-    - value: 5 % H2/N2
-    has_calcination_heating_rate:
-    - value: 500
+    has_drying_duration:
+      value: 12
+      unit: https://qudt.org/vocab/unit/HR
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+  has_part:
+  - id: coremeta4cat:SYN_JLCAT03_reduction
+    title:
+    - reduction in 5 % H2/N2
+    description:
+    - Thermal treatment after drying, recorded in the calcination columns of the workbook (Synthesis!W3-AB3).
+      According to the data provider it was a reduction only; no calcination in air took place.
+    rdf_type:
+      id: voc4cat:0000098
+      title: reduction
+    has_qualitative_attribute:
+    - title: atmosphere
+      rdf_type:
+        id: voc4cat:0007809
+        title: atmosphere
+      value: 5 % H2/N2
+    carried_out_by:
+    - id: coremeta4cat:DEV_JLCAT03_tube-furnace
+      title: tube furnace
+    has_quantitative_attribute:
+    - title: heating rate
+      rdf_type:
+        id: voc4cat:0008116
+        title: heating rate
+      value: 500
       unit: https://qudt.org/vocab/unit/K-PER-HR
       has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
-    has_calcination_gas_flow_rate:
-    - description: 15 nl/h as given in the workbook; there is no QUDT unit for 'nl/h'
+    - title: gas flow rate
+      description: normal litres per hour ('nl/h' in the workbook) at NTP (data provider, Q7)
+      rdf_type:
+        id: voc4cat:0008109
+        title: gas flow rate
       value: 15
+      unit: https://qudt.org/vocab/unit/L-PER-HR
       has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFlowRate
-    has_calcination_dwelling_time:
+    - title: dwelling time at the final temperature
       value: 4
       unit: https://qudt.org/vocab/unit/HR
       has_quantity_type: http://qudt.org/vocab/quantitykind/Time
-    has_calcination_temperature_range:
-    - description: final calcination temperature (voc4cat:0000058); initial temperature not stated
-      max_value: 700
+    - title: final temperature
+      value: 700
       unit: https://qudt.org/vocab/unit/DEG_C
       has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
-  carried_out_by:
-  - id: coremeta4cat:DEV_JLCAT03_calcination
-    title: tube furnace
-- id: coremeta4cat:CHAR_JLCAT03_PXRD
+    - title: starting temperature
+      description: room temperature
+      value: 25
+      unit: https://qudt.org/vocab/unit/DEG_C
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+- id: coremeta4cat:CHAR_JLCAT-PXRD-03
   activity_designator: Characterization
+  title:
+  - PXRD of catalyst
+  description:
+  - PXRD of JLCAT03
   rdf_type:
     id: CHMO:0000158
     title: powder X-ray diffraction
@@ -118,15 +159,17 @@ was_generated_by:
   - supported catalyst
   sample_preparation:
   - powder attached to tape
+  detector_type:
+  - dectris mythen 1K
   evaluated_entity:
   - id: coremeta4cat:CAT_JLCAT03
   has_sample_pretreatment:
   - value: grinding
   realized_plan:
-    id: coremeta4cat:JLCAT-PXRD-03
+    id: coremeta4cat:CHAR_JLCAT-PXRD-03_method
     plan_designator: CHMO:0000158
-    title: PXRD of catalyst
-    description: PXRD of JLCAT03
+    description: Step size in degrees 2theta (unit given by the data provider; the step_size slot holds
+      a bare number).
     step_size:
     - 0.5
     xray_source:
@@ -144,14 +187,23 @@ was_generated_by:
     - value: ambient
     sample_spinning_speed:
     - value: 30
+      unit: https://qudt.org/vocab/unit/REV-PER-MIN
       has_quantity_type: http://qudt.org/vocab/quantitykind/AngularVelocity
     has_experiment_duration:
       value: 80
+      unit: https://qudt.org/vocab/unit/MIN
       has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+    has_temperature:
+    - description: room temperature
+      value: 25
+      unit: https://qudt.org/vocab/unit/DEG_C
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+  other_identifier:
+  - description: measurement identifier assigned in the source workbook
+    notation: JLCAT-PXRD-03
   carried_out_by:
-  - id: coremeta4cat:DEV_JLCAT03_PXRD
-    title: X-ray diffractometer
-    description: Instrument not specified in the source workbook.
+  - id: coremeta4cat:DEV_Stoe-STADI-MP
+    title: Stoe STADI-MP diffractometer
 is_about_activity:
 - id: coremeta4cat:REAC_JLCATTEST03
   catalyst_type:
@@ -222,6 +274,10 @@ is_about_activity:
     - magnetic
     reaction_chamber_shape:
     - cylinder
+    reaction_chamber_material:
+    - stainless steel
+    vessel_material:
+    - stainless steel
     other_identifier:
     - description: device identifier (AFR_0002018) assigned in the source workbook
       notation: MBR01
@@ -240,9 +296,14 @@ is_about_activity:
       unit: https://qudt.org/vocab/unit/MilliM
       has_quantity_type: http://qudt.org/vocab/quantitykind/Length
     reactor_working_volume:
-    - value: 10
+    - description: vessel only, without fittings or connections (data provider, Q12)
+      value: 10
       unit: https://qudt.org/vocab/unit/MilliL
       has_quantity_type: http://qudt.org/vocab/quantitykind/Volume
+    batch_duration:
+      value: 12
+      unit: https://qudt.org/vocab/unit/HR
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
   has_temperature:
   - value: 100
     unit: https://qudt.org/vocab/unit/DEG_C
@@ -271,6 +332,10 @@ is_about_activity:
     value: 22
     unit: https://qudt.org/vocab/unit/PERCENT
     has_quantity_type: http://qudt.org/vocab/quantitykind/Dimensionless
+  used_reactant:
+  - id: coremeta4cat:REAG_JLCATTEST03_oxygen
+    title: oxygen
+    description: listed as reactant by the data provider; also the atmosphere of the test (Reaction!G3)
 is_about_entity:
 - id: coremeta4cat:CAT_JLCAT03
   title: Pt/Al2O3 (5 wt.%)

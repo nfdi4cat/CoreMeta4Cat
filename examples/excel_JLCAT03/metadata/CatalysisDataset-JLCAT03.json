@@ -1,14 +1,87 @@
 {
   "id": "coremeta4cat:DS_excel_JLCAT03",
   "description": [
-    "The example involves the synthesis of an alumina-supported Pt catalyst via incipient wetness impregnation, its characterization using powder X-ray diffraction (PXRD), and its subsequent application in the epoxidation of styrene in an autoclave under an O₂ atmosphere."
+    "Alumina supported Pt catalyst was synthesized with incipient wetness impregnation and applied in the liquid phase epoxidation reaction of styrene."
   ],
   "title": [
-    "Pt/Al2O3 catalyst JLCAT03: incipient wetness impregnation, powder XRD and styrene epoxidation"
+    "Supported Pt catalyst for the epoxidation of styrene"
   ],
   "was_generated_by": [
     {
       "id": "coremeta4cat:SYN_JLCAT03",
+      "has_part": [
+        {
+          "id": "coremeta4cat:SYN_JLCAT03_reduction",
+          "title": [
+            "reduction in 5 % H2/N2"
+          ],
+          "description": [
+            "Thermal treatment after drying, recorded in the calcination columns of the workbook (Synthesis!W3-AB3). According to the data provider it was a reduction only; no calcination in air took place."
+          ],
+          "carried_out_by": [
+            {
+              "id": "coremeta4cat:DEV_JLCAT03_tube-furnace",
+              "title": "tube furnace"
+            }
+          ],
+          "has_qualitative_attribute": [
+            {
+              "value": "5 % H2/N2",
+              "title": "atmosphere",
+              "rdf_type": {
+                "id": "voc4cat:0007809",
+                "title": "atmosphere"
+              }
+            }
+          ],
+          "has_quantitative_attribute": [
+            {
+              "value": 500.0,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/TemperaturePerTime",
+              "title": "heating rate",
+              "unit": "https://qudt.org/vocab/unit/K-PER-HR",
+              "rdf_type": {
+                "id": "voc4cat:0008116",
+                "title": "heating rate"
+              }
+            },
+            {
+              "value": 15.0,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/VolumeFlowRate",
+              "title": "gas flow rate",
+              "description": "normal litres per hour ('nl/h' in the workbook) at NTP (data provider, Q7)",
+              "unit": "https://qudt.org/vocab/unit/L-PER-HR",
+              "rdf_type": {
+                "id": "voc4cat:0008109",
+                "title": "gas flow rate"
+              }
+            },
+            {
+              "value": 4.0,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Time",
+              "title": "dwelling time at the final temperature",
+              "unit": "https://qudt.org/vocab/unit/HR"
+            },
+            {
+              "value": 700.0,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature",
+              "title": "final temperature",
+              "unit": "https://qudt.org/vocab/unit/DEG_C"
+            },
+            {
+              "value": 25.0,
+              "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature",
+              "title": "starting temperature",
+              "description": "room temperature",
+              "unit": "https://qudt.org/vocab/unit/DEG_C"
+            }
+          ],
+          "rdf_type": {
+            "id": "voc4cat:0000098",
+            "title": "reduction"
+          }
+        }
+      ],
       "had_input_entity": [
         {
           "id": "coremeta4cat:PREC_JLCAT03_support",
@@ -68,6 +141,7 @@
               "value": 5.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
               "title": "metal loading",
+              "description": "nominal value (data provider, Q9)",
               "unit": "https://qudt.org/vocab/unit/PERCENT",
               "rdf_type": {
                 "id": "voc4cat:0008106",
@@ -75,12 +149,6 @@
               }
             }
           ]
-        }
-      ],
-      "carried_out_by": [
-        {
-          "id": "coremeta4cat:DEV_JLCAT03_calcination",
-          "title": "tube furnace"
         }
       ],
       "realized_plan": {
@@ -108,41 +176,14 @@
             "unit": "https://qudt.org/vocab/unit/DEG_C"
           }
         ],
-        "has_drying_atmosphere": [
-          {
-            "value": "air"
-          }
-        ],
-        "has_calcination_temperature_range": [
-          {
-            "description": "final calcination temperature (voc4cat:0000058); initial temperature not stated",
-            "max_value": 700.0,
-            "unit": "https://qudt.org/vocab/unit/DEG_C",
-            "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature"
-          }
-        ],
-        "has_calcination_dwelling_time": {
-          "value": 4.0,
+        "has_drying_duration": {
+          "value": 12.0,
           "has_quantity_type": "http://qudt.org/vocab/quantitykind/Time",
           "unit": "https://qudt.org/vocab/unit/HR"
         },
-        "has_calcination_atmosphere": [
+        "has_drying_atmosphere": [
           {
-            "value": "5 % H2/N2"
-          }
-        ],
-        "has_calcination_heating_rate": [
-          {
-            "value": 500.0,
-            "has_quantity_type": "http://qudt.org/vocab/quantitykind/TemperaturePerTime",
-            "unit": "https://qudt.org/vocab/unit/K-PER-HR"
-          }
-        ],
-        "has_calcination_gas_flow_rate": [
-          {
-            "value": 15.0,
-            "has_quantity_type": "http://qudt.org/vocab/quantitykind/VolumeFlowRate",
-            "description": "15 nl/h as given in the workbook; there is no QUDT unit for 'nl/h'"
+            "value": "air"
           }
         ]
       },
@@ -151,7 +192,7 @@
         "Pt/Al2O3 (5 wt.%)"
       ],
       "catalyst_measured_properties": [
-        "No measured properties of the catalyst are given in the source workbook."
+        "Phase seen in PXRD is Pt"
       ],
       "storage_conditions": [
         "ambient"
@@ -172,12 +213,23 @@
       ]
     },
     {
-      "id": "coremeta4cat:CHAR_JLCAT03_PXRD",
+      "id": "coremeta4cat:CHAR_JLCAT-PXRD-03",
+      "title": [
+        "PXRD of catalyst"
+      ],
+      "description": [
+        "PXRD of JLCAT03"
+      ],
+      "other_identifier": [
+        {
+          "description": "measurement identifier assigned in the source workbook",
+          "notation": "JLCAT-PXRD-03"
+        }
+      ],
       "carried_out_by": [
         {
-          "id": "coremeta4cat:DEV_JLCAT03_PXRD",
-          "title": "X-ray diffractometer",
-          "description": "Instrument not specified in the source workbook."
+          "id": "coremeta4cat:DEV_Stoe-STADI-MP",
+          "title": "Stoe STADI-MP diffractometer"
         }
       ],
       "rdf_type": {
@@ -190,9 +242,8 @@
         }
       ],
       "realized_plan": {
-        "title": "PXRD of catalyst",
-        "description": "PXRD of JLCAT03",
-        "id": "coremeta4cat:JLCAT-PXRD-03",
+        "description": "Step size in degrees 2theta (unit given by the data provider; the step_size slot holds a bare number).",
+        "id": "coremeta4cat:CHAR_JLCAT-PXRD-03_method",
         "plan_designator": "CHMO:0000158",
         "has_two_theta_range": [
           {
@@ -215,15 +266,25 @@
             "value": "ambient"
           }
         ],
+        "has_temperature": [
+          {
+            "value": 25.0,
+            "has_quantity_type": "http://qudt.org/vocab/quantitykind/Temperature",
+            "description": "room temperature",
+            "unit": "https://qudt.org/vocab/unit/DEG_C"
+          }
+        ],
         "sample_spinning_speed": [
           {
             "value": 30.0,
-            "has_quantity_type": "http://qudt.org/vocab/quantitykind/AngularVelocity"
+            "has_quantity_type": "http://qudt.org/vocab/quantitykind/AngularVelocity",
+            "unit": "https://qudt.org/vocab/unit/REV-PER-MIN"
           }
         ],
         "has_experiment_duration": {
           "value": 80.0,
-          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Time"
+          "has_quantity_type": "http://qudt.org/vocab/quantitykind/Time",
+          "unit": "https://qudt.org/vocab/unit/MIN"
         },
         "xray_source": [
           "Cu k alpha"
@@ -246,7 +307,21 @@
         {
           "value": "grinding"
         }
+      ],
+      "detector_type": [
+        "dectris mythen 1K"
       ]
+    }
+  ],
+  "keyword": [
+    "epoxidation",
+    "supported catalyst",
+    "styrene oxide"
+  ],
+  "qualified_attribution": [
+    {
+      "title": "contact person",
+      "description": "Arjun Neyyathala"
     }
   ],
   "is_about_entity": [
@@ -286,6 +361,13 @@
               ]
             }
           ]
+        }
+      ],
+      "used_reactant": [
+        {
+          "id": "coremeta4cat:REAG_JLCATTEST03_oxygen",
+          "title": "oxygen",
+          "description": "listed as reactant by the data provider; also the atmosphere of the test (Reaction!G3)"
         }
       ],
       "generated_product": [
@@ -391,12 +473,24 @@
             {
               "value": 10.0,
               "has_quantity_type": "http://qudt.org/vocab/quantitykind/Volume",
+              "description": "vessel only, without fittings or connections (data provider, Q12)",
               "unit": "https://qudt.org/vocab/unit/MilliL"
             }
           ],
           "reaction_chamber_shape": [
             "cylinder"
-          ]
+          ],
+          "reaction_chamber_material": [
+            "stainless steel"
+          ],
+          "vessel_material": [
+            "stainless steel"
+          ],
+          "batch_duration": {
+            "value": 12.0,
+            "has_quantity_type": "http://qudt.org/vocab/quantitykind/Time",
+            "unit": "https://qudt.org/vocab/unit/HR"
+          }
         }
       ],
       "has_temperature": [

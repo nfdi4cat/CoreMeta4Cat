@@ -321,7 +321,7 @@ class Converter:
         if entry.get("unit"):
             if not entry.get("unit_note"):
                 raise ParseError(f"{cell.sheet}!{cell.coord}: a unit supplied by the crosswalk needs a unit_note")
-            return entry["unit"], f"unit not in the workbook; supplied by the curator: {entry['unit_note']}", None
+            return entry["unit"], f"unit not in the workbook; {entry['unit_note']}", None
         return None, "no unit in the workbook; none recorded", f"No unit is given for '{cell.label}' ({cell.value})."
 
     def quantity_fields(self, entry, cell):
@@ -451,11 +451,24 @@ def build(cw, base_dir, use_placeholders=True):
     supplement = yaml.safe_load((base_dir / cw["supplement"]).read_text(encoding="utf8")) if cw.get("supplement") else {}
     b = Builder(cw["id_prefix"])
     conv = Converter(cw)
-    flags = []          # (where, text)
+    flags = [(q["about"], " ".join(q["text"].split())) for q in supplement.get("open_questions", [])]
+
+    def supplement_value(s, rec):
+        """A supplement value as written, or converted like a cell when the entry has `as:`."""
+        if "as" not in s:
+            return s["value"], []
+        cell = Cell("supplement", "-", s["to"], None, None, s["value"])
+        entry = {**s, "unit_note": s.get("unit_note", f"given in {s['source']}")}
+        value, notes, _ = conv.convert(entry, cell, rec)
+        if value is None:
+            raise ParseError(f"supplement {s['to']}: {s['value']!r} could not be converted ({notes})")
+        return value, notes
 
     for e in supplement.get("dataset", []):
-        container, slot = b.put(b.root, e["to"], e["value"], None, {})
-        b.prov.append(Prov(container, slot, e["value"], f"supplement: {e['source']}", "curator", e["why"]))
+        value, notes = supplement_value(e, None)
+        container, slot = b.put(b.root, e["to"], value, None, {})
+        b.prov.append(Prov(container, slot, value, f"supplement: {e['source']}", e.get("basis", "curator"),
+                           " ".join([e["why"].strip()] + notes)))
 
     for sheet in sheets:
         spec = sheet.spec
@@ -494,7 +507,7 @@ def build(cw, base_dir, use_placeholders=True):
                     b.prov.append(Prov(container, slot, text, source_of(workbook_name, cell), "fallback",
                                        f"{e['why']} Not a number, so kept as text.", cell))
                     cell.status.append(("mapped", f"{fb['to']} (fallback: not a number)"))
-                    if not e.get("flag"):
+                    if not e.get("flag") and not e.get("answered"):
                         flags.append((where, f"'{cell.label}' is {cell.value!r}, not a number."))
                 else:
                     for t in targets:
@@ -503,17 +516,19 @@ def build(cw, base_dir, use_placeholders=True):
                         shown = container.get("id") if e["as"] == "ref" else value
                         b.prov.append(Prov(container, slot, shown, source_of(workbook_name, cell), e["basis"], note, cell))
                         cell.status.append(("mapped", t))
-                    if auto_flag and not e.get("flag"):
+                    if auto_flag and not e.get("flag") and not e.get("answered"):
                         flags.append((where, auto_flag))
                 if e.get("flag"):
                     flags.append((where, " ".join(e["flag"].split())))
             for s in supplement.get("records", {}).get(sheet.name, []):
                 if s.get("placeholder") and not use_placeholders:
                     continue
-                container, slot = b.put(obj, s["to"], s["value"], rec, ids)
-                b.prov.append(Prov(container, slot, s["value"], f"supplement: {s['source']}",
-                                   "placeholder" if s.get("placeholder") else "curator", s["why"],
-                                   placeholder=bool(s.get("placeholder"))))
+                value, notes = supplement_value(s, rec)
+                container, slot = b.put(obj, s["to"], value, rec, ids)
+                shown = container.get("id", value) if isinstance(value, dict) and slot is None else value
+                basis = "placeholder" if s.get("placeholder") else s.get("basis", "curator")
+                b.prov.append(Prov(container, slot, shown, f"supplement: {s['source']}", basis,
+                                   " ".join([s["why"].strip()] + notes), placeholder=bool(s.get("placeholder"))))
     return b, sheets, flags
 
 
@@ -666,8 +681,8 @@ class SchemaChecks:
 
 # ----------------------------------------------------------------------------- 6. write
 
-ROOT_ORDER = ["id", "title", "description", "rdf_type", "keyword", "creator",
-              "was_generated_by", "is_about_activity", "is_about_entity"]
+ROOT_ORDER = ["id", "title", "description", "rdf_type", "keyword", "creator", "contact_point",
+              "qualified_attribution", "was_generated_by", "is_about_activity", "is_about_entity"]
 
 
 def ordered(node, top=False):
@@ -729,7 +744,8 @@ def write_provenance(path, b, cw):
         "#   target: where the value sits in the record (ids without the coremeta4cat: prefix)\n"
         "#   value:  what was written\n"
         "#   source: workbook cell [sheet!cell, header or row label, term] or supplement entry\n"
-        "#   basis:  direct | deduced | schema-forced | fallback (crosswalk) ; curator | placeholder (supplement)\n"
+        "#   basis:  direct | deduced | schema-forced | fallback (crosswalk) ;\n"
+        "#           provider | curator | placeholder (supplement)\n"
         "#   note:   why this target, plus where the unit came from\n"
         "# ============================================================\n\n")
     path.write_text(header + yaml.safe_dump({"entries": entries}, sort_keys=False, allow_unicode=True, width=100),
@@ -760,12 +776,16 @@ def write_report(path, cw, b, sheets, flags, checks):
     w("## Open questions for the data provider\n")
     for i, (where, text) in enumerate(flags, 1):
         w(f"{i}. **{where}**: {text}")
+    if not flags:
+        w("None.")
     w("")
     w("## Placeholders (required by the schema, not in the source)\n")
-    for p in b.prov:
-        if p.placeholder:
-            loc = path_of(b, p.container) + (f".{p.slot}" if p.slot else "")
-            w(f"- `{loc}` = {compact(p.value)} ({' '.join(str(p.note).split())})")
+    placeholders = [p for p in b.prov if p.placeholder]
+    for p in placeholders:
+        loc = path_of(b, p.container) + (f".{p.slot}" if p.slot else "")
+        w(f"- `{loc}` = {compact(p.value)} ({' '.join(str(p.note).split())})")
+    if not placeholders:
+        w("None.")
     w("")
 
     for s in sheets:
@@ -887,7 +907,7 @@ def main():
             gaps = sch.missing(b.root, sch.assign_classes(b.root, cw["root_class"]), ids_of, required_only=True)
             for obj, cls, slot, _ in gaps:
                 print(f"required slot not filled: {cls} {obj}: {slot}")
-            print(f"{len(gaps)} required slots not filled by the workbook")
+            print(f"{len(gaps)} required slots empty without placeholders")
         return
     checks = run_checks(SchemaChecks(schema), cw, b, sheets) if schema else None
     prov_path, report_path = (base / cw["provenance"]).resolve(), (base / cw["report"]).resolve()

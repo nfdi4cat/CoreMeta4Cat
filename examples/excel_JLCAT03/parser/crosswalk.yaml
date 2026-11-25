@@ -13,6 +13,11 @@
 #   (fallback      set by the parser when a value cannot be converted and goes to the
 #                  entry's `fallback` target instead)
 # flag: an open question for the data provider (collected in parse_report.md).
+#
+# Answers of the data provider (source/provider_answers.md, cited as Q1-Q17) changed this file
+# where they settle how a cell is read: units in `unit_note`, the reduction step (Q10), the
+# measurement's title/description/id (Q8). Values that are not in the workbook at all are in
+# supplement.yaml with `basis: provider`.
 
 workbook: ../source/TestDataSet_CoreMeta4Cat.xlsx
 supplement: supplement.yaml
@@ -43,11 +48,11 @@ units:
   "mm": MilliM
   "%": PERCENT
   "nl/h":
-    qudt: null
+    qudt: L-PER-HR
     note: >-
-      Read as normal litres per hour (nanolitres per hour, the literal SI reading of "nl",
-      is implausible for a calcination gas flow). QUDT has no unit for normal litres, so no
-      unit IRI is set; the unit text is kept in the description.
+      Normal litres per hour; the data provider confirmed this reading and gave NTP as the
+      reference conditions (Q7). QUDT has no unit that includes reference conditions, so the
+      unit is litre per hour and the conditions are stated in the value's description.
 
 sheets:
 
@@ -71,7 +76,8 @@ sheets:
       "had_input_entity[precursor_2]": "PREC_{key}_2"
       "had_input_entity[support]": "PREC_{key}_support"
       "solvent[solvent]": "CHEM_{slug:I}"
-      "carried_out_by[calcination_device]": "DEV_{key}_calcination"
+      "has_part[reduction]": "SYN_{key}_reduction"
+      "has_part[reduction].carried_out_by[furnace]": "DEV_{key}_{slug:X}"
     columns:
       - col: B
         header: catalyst ID voc4cat:0008134
@@ -112,17 +118,16 @@ sheets:
         kind: MassFraction
         attrs:
           title: metal loading
+          description: nominal value (data provider, Q9)
           rdf_type: {id: "voc4cat:0008106", title: metal loading}
         basis: schema-forced
         why: >-
           voc4cat:0008106 'metal loading' is defined as the weight percentage of active metal
           relative to the total supported-catalyst mass, i.e. a property of the catalyst. The
           schema has no metal-loading slot, so it is a generic QuantitativeAttribute of the
-          CatalystSample, typed with the voc4cat term via rdf_type.
-        flag: >-
-          Is the metal loading (5 wt.%) the nominal value or a measured one? It agrees with the
-          precursor masses (100.9 mg Pt(NH3)4(NO3)2 on 957.9 mg Al2O3 gives 5.0 wt.% Pt), which
-          suggests nominal. A measured value would belong in catalyst_measured_properties.
+          CatalystSample, typed with the voc4cat term via rdf_type. The data provider confirmed
+          that it is the nominal value (Q9), consistent with the precursor masses (100.9 mg
+          Pt(NH3)4(NO3)2 on 957.9 mg Al2O3 gives 5.0 wt.% Pt).
       - col: E
         header: storage conditions (voc4cat:0008105)
         to: "storage_conditions[]"
@@ -259,11 +264,12 @@ sheets:
         as: quantity
         kind: Time
         fallback: {to: realized_plan.description, label: "drying duration (as given)"}
+        answered: Q6, 12 hours (supplement)
         basis: direct
         why: >-
           voc4cat:0008206 is the slot_uri of has_drying_duration. A Duration needs a number;
-          the text 'over night' is kept verbatim in the plan description instead.
-        flag: Drying duration is 'over night' with no unit. Please give a number of hours.
+          the text 'over night' is kept verbatim in the plan description instead. The data
+          provider gave 12 hours (Q6); that value comes from the supplement.
       - col: U
         header: drying atmosphere VOC4CAT:0008208
         to: "realized_plan.has_drying_atmosphere[]"
@@ -277,64 +283,79 @@ sheets:
         kind: Temperature
         basis: direct
         why: voc4cat:0008207 is the slot_uri of has_drying_temperature (DryingMixin).
+      # Columns W-AB are headed "calcination", but the data provider states that the step was
+      # a reduction in 5 % H2/N2 and that no calcination in air took place (Q10). The schema's
+      # preparation methods have calcination slots but no reduction step, so the step is a
+      # generic Activity under Synthesis.has_part (title, description, start temperature and
+      # rdf_type in the supplement). Its parameters are typed with generic voc4cat terms where
+      # voc4cat has one (atmosphere, heating rate, gas flow rate), never with the
+      # calcination-specific terms of the headers.
       - col: W
         header: calcination atmosphere SIO:000008
-        to: "realized_plan.has_calcination_atmosphere[]"
+        to: "has_part[reduction].has_qualitative_attribute[]"
         as: qualitative
-        basis: direct
+        attrs:
+          title: atmosphere
+          rdf_type: {id: "voc4cat:0007809", title: atmosphere}
+        basis: schema-forced
         why: >-
-          Label names has_calcination_atmosphere (CalcinationMixin). SIO:000008 is its slot_uri,
-          but also that of many other slots, so the label decides.
-        flag: >-
-          Calcination is listed under 5 % H2/N2, a reducing gas. Please confirm the step was a
-          calcination and not a reduction (the schema's Impregnation has no reduction step).
+          Atmosphere of the reduction step (Q10). Generic QualitativeAttribute of the step,
+          typed voc4cat:0007809 'atmosphere' (gaseous environment of a process).
       - col: X
         header: calcination device
-        to: "carried_out_by[calcination_device].title"
+        to: "has_part[reduction].carried_out_by[furnace].title"
         as: text
-        attrs: {description: "device used for the calcination step (column 'calcination device')"}
+        attrs: {description: "device used for the reduction step (column 'calcination device')"}
         basis: deduced
         why: >-
-          No calcination-device slot exists. Synthesis.carried_out_by takes the equipment used
-          in the preparation (its description names furnaces), so the tube furnace is a Device
-          there; its role is kept in the description.
+          The device of the heading's step, which was the reduction (Q10). No device slot exists
+          for it, so it is carried_out_by of the reduction step.
       - col: Y
         header: calcination heating rate VOC4CAT:0008116
-        to: "realized_plan.has_calcination_heating_rate[]"
+        to: "has_part[reduction].has_quantitative_attribute[]"
         as: quantity
         kind: TemperaturePerTime
-        basis: direct
-        why: voc4cat:0008116 is the slot_uri of has_calcination_heating_rate (CalcinationMixin).
+        attrs:
+          title: heating rate
+          rdf_type: {id: "voc4cat:0008116", title: heating rate}
+        basis: schema-forced
+        why: >-
+          Heating rate of the reduction step (Q10). voc4cat:0008116 is the generic 'heating
+          rate', so the header's term applies unchanged.
       - col: Z
         header: calcination gas flow rate VOC4CAT:0000056
-        to: "realized_plan.has_calcination_gas_flow_rate[]"
+        to: "has_part[reduction].has_quantitative_attribute[]"
         as: quantity
         kind: VolumeFlowRate
-        basis: direct
-        why: voc4cat:0000056 is the slot_uri of has_calcination_gas_flow_rate (CalcinationMixin).
-        flag: >-
-          'nl/h' is read as normal litres per hour. Please confirm and state the reference
-          conditions (e.g. 0 degC and 1.01325 bar); QUDT has no normal-litre unit.
+        attrs:
+          title: gas flow rate
+          description: "normal litres per hour ('nl/h' in the workbook) at NTP (data provider, Q7)"
+          rdf_type: {id: "voc4cat:0008109", title: gas flow rate}
+        basis: schema-forced
+        why: >-
+          Gas flow of the reduction step (Q10). The header's voc4cat:0000056 is the
+          calcination-specific gas flow rate; voc4cat:0008109 is the generic 'gas flow rate'.
       - col: AA
         header: calcination dwelling time VOC4CAT:0000060
-        to: realized_plan.has_calcination_dwelling_time
+        to: "has_part[reduction].has_quantitative_attribute[]"
         as: quantity
         kind: Time
-        basis: direct
-        why: voc4cat:0000060 is the slot_uri of has_calcination_dwelling_time (CalcinationMixin).
+        attrs: {title: dwelling time at the final temperature}
+        basis: schema-forced
+        why: >-
+          Hold time of the reduction step (Q10). The header's voc4cat:0000060 is
+          calcination-specific and voc4cat has no generic dwell-time term, so only a title is set.
       - col: AB
         header: calcination final temperature voc4cat:0000058
-        to: "realized_plan.has_calcination_temperature_range[]"
-        as: range_max
+        to: "has_part[reduction].has_quantitative_attribute[]"
+        as: quantity
         kind: Temperature
-        attrs: {description: "final calcination temperature (voc4cat:0000058); initial temperature not stated"}
-        basis: deduced
+        attrs: {title: final temperature}
+        basis: schema-forced
         why: >-
-          voc4cat:0000058 'calcination final temperature' has no slot of its own: the schema
-          collapses initial and final calcination temperature into
-          has_calcination_temperature_range ("initial -> final"), so the final temperature is
-          the max_value. min_value stays empty.
-        flag: Initial temperature of the calcination programme is not given.
+          Final temperature of the reduction step (Q10); the starting temperature, 25 degC, comes
+          from the data provider (Q11, supplement). The header's voc4cat:0000058 is
+          calcination-specific, so only a title is set.
 
   # ------------------------------------------------------------------ Character
   Character:
@@ -346,11 +367,11 @@ sheets:
     record:
       class: Characterization
       list: was_generated_by
-      id: "CHAR_{key}_PXRD"
+      id: "CHAR_{slug:22}"           # measurement ID in row 22 (Q8)
       set: {activity_designator: Characterization}
     ids:
       "evaluated_entity[catalyst]": "CAT_{key}"
-      "carried_out_by[instrument]": "DEV_{key}_PXRD"
+      realized_plan: "CHAR_{slug:22}_method"
     rows:
       - row: 1
         label: catalyst ID
@@ -424,38 +445,34 @@ sheets:
         kind: PlaneAngle
         unit: DEG
         unit_note: >-
-          No unit given. 2theta cannot exceed 180 degrees (pi rad), so an upper bound of 90 is
-          only possible in degrees.
+          degrees, given by the data provider (Q3); it is also the only possible reading,
+          since 2theta cannot exceed 180 degrees (pi rad).
         basis: direct
         why: Term coremeta4cat:hasTwoThetaRange is the slot_uri of has_two_theta_range.
-        flag: Please add the unit of the 2theta range (assumed degree).
       - row: 11
         label: title
-        to: realized_plan.title
+        to: "title[]"
         as: text
-        basis: deduced
+        basis: direct
         why: >-
-          Rows 10-24 sit in the PowderXRD block and repeat the slot list of the PowderXRD class
-          page, where title, description and id are the protocol's own (inherited from Plan
-          and CatalysisPlan). Mapped to the PowderXRD protocol accordingly.
-        flag: >-
-          Rows 11, 12 and 22 (title 'PXRD of catalyst', description 'PXRD of JLCAT03', id
-          'JLCAT-PXRD-03') were read as title, description and id of the PowderXRD protocol,
-          because that is the block they are in. They read like the title, description and ID
-          of the measurement itself (the Characterization activity). Which one is meant?
+          Row label is the slot name. The row sits in the PowderXRD block, but the data provider
+          confirmed that rows 11, 12 and 22 describe the measurement itself, not the PowderXRD
+          protocol (Q8), so they belong to the Characterization activity.
       - row: 12
         label: description
-        to: realized_plan.description
+        to: "description[]"
         as: text
-        basis: deduced
-        why: As row 11.
+        basis: direct
+        why: As row 11 (Q8).
       - row: 13
         label: step size
         to: "realized_plan.step_size[]"
         as: number
         basis: direct
-        why: Term allotrope.result:0000950 is the slot_uri of step_size (a unitless float).
-        flag: Unit of the step size is not given (degree 2theta assumed by readers, not recorded).
+        why: >-
+          Term allotrope.result:0000950 is the slot_uri of step_size, a bare number. The data
+          provider gave the unit as degrees (Q3); since step_size cannot carry a unit, it is
+          stated in the protocol's description (supplement).
       - row: 15
         label: OperationMode
         to: "realized_plan.has_operation_mode[]"
@@ -477,9 +494,10 @@ sheets:
         to: "realized_plan.sample_spinning_speed[]"
         as: quantity
         kind: AngularVelocity
+        unit: REV-PER-MIN
+        unit_note: rpm, given by the data provider (Q3).
         basis: direct
         why: Term coremeta4cat:sample_spinning_speed is the slot (range AngularVelocity).
-        flag: Unit of the sample spinning speed (30) is not given.
       - row: 19
         label: AngularVelocity
         structural: Class row naming the range of row 18 (qudt:Quantity); no value.
@@ -488,21 +506,25 @@ sheets:
         to: realized_plan.has_experiment_duration
         as: quantity
         kind: Time
+        unit: MIN
+        unit_note: minutes, given by the data provider (Q3).
         basis: direct
         why: >-
           Label is the slot name has_experiment_duration (PowderXRD). The term SIO:000008 given
           is not this slot's slot_uri (voc4cat:0000111); the label decides.
-        flag: Unit of the experiment duration (80) is not given.
       - row: 21
         label: Duration
         confirm: 20
         why: Class row naming the range of row 20; repeats its value.
       - row: 22
         label: id
-        to: realized_plan.id
-        as: id
-        basis: deduced
-        why: As row 11 (inside the PowderXRD block, so the protocol's id).
+        to: "other_identifier[]"
+        as: identifier
+        attrs: {description: "measurement identifier assigned in the source workbook"}
+        basis: direct
+        why: >-
+          The measurement's ID (Q8, as row 11). Kept as other_identifier of the Characterization;
+          the activity's IRI (record id) and its protocol's IRI are minted from it.
       - row: 23
         label: xray source
         to: "realized_plan.xray_source[]"
@@ -534,6 +556,7 @@ sheets:
       "used_solvent[solvent]": "SOLV_{key}_{slug:O}"
       "used_solvent[solvent].composed_of[chem]": "CHEM_{slug:O}"
       "used_reactor[reactor]": "DEV_{slug:S}"
+      "used_reactant[oxygen]": "REAG_{key}_oxygen"     # filled from the supplement (Q13)
       "product_identification_method[method]": "REAC_{key}_product_id"
       "generated_product[p1]": "PROD_{key}_{slug:AA}"
       "generated_product[p1].composed_of[chem]": "CHEM_{slug:AA}"
@@ -755,11 +778,12 @@ sheets:
         to: "used_reactor[reactor].reactor_working_volume[]"
         as: quantity
         kind: Volume
+        attrs: {description: "vessel only, without fittings or connections (data provider, Q12)"}
         basis: direct
-        why: voc4cat:0000153 is the slot_uri of reactor_working_volume (Autoclave).
-        flag: >-
-          voc4cat:0000153 counts connected pipes and valves in the chamber volume, the schema
-          slot excludes them. Which does the 10 mL refer to?
+        why: >-
+          voc4cat:0000153 is the slot_uri of reactor_working_volume (Autoclave). voc4cat's
+          definition includes connected pipes and valves, the slot's excludes them; the data
+          provider confirmed the vessel alone (Q12), which matches the slot.
       - col: Y
         header: reaction chamber shape (voc4cat:0000155)
         to: "used_reactor[reactor].reaction_chamber_shape[]"
@@ -773,14 +797,14 @@ sheets:
         kind: Temperature
         unit: DEG_C
         unit_note: >-
-          No unit given. The reactor temperature range of the same test (column F) is 50-100
-          degC; 100 is consistent with it only in degC (100 K or 100 degF would lie outside).
+          degC, confirmed by the data provider (Q4). It was deduced first: the reactor
+          temperature range of the same test (column F) is 50-100 degC, and 100 K or 100 degF
+          would lie outside it.
         basis: direct
         why: >-
           voc4cat:0007013 'reaction temperature' has no slot of its own;
           ChemicalReaction.has_temperature is "the Temperature at which a ChemicalReaction
           takes place".
-        flag: Please add the unit of the reaction temperature (assumed degC).
       - col: AA
         header: generated product 1 RO:0004008
         to: ["generated_product[p1].title", "generated_product[p1].composed_of[chem].title"]
@@ -822,9 +846,8 @@ sheets:
         kind: Dimensionless
         unit: PERCENT
         unit_note: >-
-          No unit given. Same quantity as column AC, whose unit is %; a value of 22 also rules
-          out a fraction (which would be at most 1).
+          %, confirmed by the data provider (Q5). It was deduced first: same quantity as
+          column AC, whose unit is %, and a value of 22 rules out a fraction.
         describe: "yield of generated product 2 ({raw:AD})"
         basis: direct
         why: As column AC.
-        flag: Please add the unit of the second yield (assumed %).

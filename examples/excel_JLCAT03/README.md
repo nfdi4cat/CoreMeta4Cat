@@ -5,18 +5,19 @@ and RDF. The workbook has one sheet each for synthesis, characterization and rea
 a Pt/Al2O3 catalyst (JLCAT03) made by incipient wetness impregnation, measured by powder XRD, and
 tested in the epoxidation of styrene in an autoclave.
 
-**Status: draft.**
-- The record validates against the schema.
-- 13 questions to the data provider are still open, and two required fields hold "not specified"
-  placeholders (see `metadata/parse_report.md`).
+**Status: second round, nearly complete.**
+- The data provider answered the 13 questions of round 1 (`source/provider_answers.md`), and the
+  record now validates without any placeholder.
+- Still open: licence, dataset authors, the reference conditions behind "NTP", and an optional
+  reaction-type term (see `metadata/parse_report.md`).
 - The record is not yet part of `tests/data/valid` or of the documentation site.
 
 ## Contents
 
 | Path | What |
 |---|---|
-| `source/` | The workbook as received, and the text that came with it |
-| `parser/` | The parser for this example: `xlsx_to_coremeta4cat.py` reads `crosswalk.yaml` (what each cell means) and `supplement.yaml` (what the workbook does not contain) |
+| `source/` | The workbook as received, the text that came with it, and the provider's answers (`.docx` and verbatim transcript) |
+| `parser/` | The parser for this example: `xlsx_to_coremeta4cat.py` reads `crosswalk.yaml` (what each cell means) and `supplement.yaml` (what the workbook does not contain). `answers_transcript.py` makes the transcript of the answers |
 | `metadata/` | Generated output: the record (`.yaml`, `.json`, `.ttl`), the provenance of every value (`source_documentation.yaml`), and `parse_report.md` (open questions, cell inventory, checks) |
 | `PARSER_BUILD_NOTES.md` | How the parser was built: method, mapping decisions, crosswalk format |
 | `FEEDBACK_FOR_DATA_PROVIDER.md` | Questions for the person who filled in the workbook, and template advice |
