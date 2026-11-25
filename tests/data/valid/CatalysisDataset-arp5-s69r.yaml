@@ -62,6 +62,14 @@ dataset_distribution:
 other_identifier:
 - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
 was_generated_by:
+- coremeta4cat:SYN_arp5-s69r_Pd3P_SiO2
+- coremeta4cat:SYN_arp5-s69r_Pd_SiO2
+- coremeta4cat:CHAR_arp5-s69r_COChemisorption
+- coremeta4cat:CHAR_arp5-s69r_DRIFT
+- coremeta4cat:CHAR_arp5-s69r_PXRD
+- coremeta4cat:CHAR_arp5-s69r_STEM
+- coremeta4cat:CHAR_arp5-s69r_XPS
+was_generated_by_synthesis:
 - id: coremeta4cat:SYN_arp5-s69r_Pd3P_SiO2
   title:
   - Pd3P/SiO2 (5 wt% Pd) by incipient wetness impregnation and thermal treatment in hydrogen
@@ -148,7 +156,6 @@ was_generated_by:
     - value: pure hydrogen (Air Liquide, 99.999%)
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
-  activity_designator: Synthesis
 - id: coremeta4cat:SYN_arp5-s69r_Pd_SiO2
   title:
   - Pd/SiO2 (5 wt% Pd) reference catalyst, prepared like Pd3P/SiO2 without phosphoric acid
@@ -215,7 +222,7 @@ was_generated_by:
     - value: pure hydrogen (Air Liquide, 99.999%)
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
-  activity_designator: Synthesis
+was_generated_by_characterization:
 - id: coremeta4cat:CHAR_arp5-s69r_COChemisorption
   title:
   - CO chemisorption analysis (2 catalysts)
@@ -240,7 +247,6 @@ was_generated_by:
     description: CO pulses at room temperature; peak areas integrated to determine total CO uptake.
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
-  activity_designator: Characterization
 - id: coremeta4cat:CHAR_arp5-s69r_DRIFT
   title:
   - DRIFT CO-adsorption spectroscopy (2 catalysts, 2 temperatures)
@@ -272,7 +278,6 @@ was_generated_by:
   rdf_type:
     id: CHMO:0000645
     title: diffuse reflectance infrared Fourier transform spectroscopy
-  activity_designator: Characterization
 - id: coremeta4cat:CHAR_arp5-s69r_PXRD
   title:
   - Powder XRD phase analysis (4 catalysts)
@@ -306,7 +311,6 @@ was_generated_by:
   rdf_type:
     id: CHMO:0000158
     title: powder X-ray diffraction
-  activity_designator: Characterization
 - id: coremeta4cat:CHAR_arp5-s69r_STEM
   title:
   - STEM/TEM imaging and EDX mapping (3 catalyst samples)
@@ -344,7 +348,6 @@ was_generated_by:
   rdf_type:
     id: voc4cat:0000078
     title: transmission electron microscopy
-  activity_designator: Characterization
 - id: coremeta4cat:CHAR_arp5-s69r_XPS
   title:
   - X-ray photoelectron spectroscopy (2 catalysts, Pd 3d and P 2p)
@@ -375,7 +378,6 @@ was_generated_by:
   rdf_type:
     id: CHMO:0000404
     title: X-ray photoelectron spectroscopy
-  activity_designator: Characterization
 is_about_activity:
 - id: coremeta4cat:REAC_arp5-s69r_Aminocarbonylation
   reaction_name:

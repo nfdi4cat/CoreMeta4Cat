@@ -12,6 +12,8 @@ The Reaction data class defines metadata required to document catalytic testing 
 
 Core fields include reactor design type, operational parameters, and product identification and quantification methods. The class also specifies metadata required to report and evaluate catalyst performance metrics, enabling structured comparison across experimental studies.
 
+**CURIE:** [`REX:0000051`](REX:0000051)
+
 <div class="cm4c-classmap" data-root="CatalyticReaction"
      data-src="../assets/schema_graph.json"
      data-sunburst="../assets/metadata_reaction_hierarchy.html"

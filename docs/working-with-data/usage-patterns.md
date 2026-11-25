@@ -37,14 +37,15 @@ catalysis field it belongs to, and which activities produced it.
 
 **Purpose:** Make a dataset findable and classifiable: a persistent identifier, a title, the catalysis research field as a vocabulary term, the people behind it, the publication that uses it, and where the files are.
 
-**Example use case:** A deposit of thermocatalytic NH₃ decomposition data. The research field is *heterogeneous catalysis* (`voc4cat:0007001`); the dataset was produced by, among other activities, a temperature-programmed reduction, linked under `was_generated_by`.
+**Example use case:** A deposit of thermocatalytic NH₃ decomposition data. The research field is *heterogeneous catalysis* (`voc4cat:0007001`); the dataset was produced by, among other activities, a temperature-programmed reduction, described under `was_generated_by_characterization`.
 
 **Notes:**
 
-- `activity_designator` tells software which kind of activity an entry of `was_generated_by` is (Synthesis, Characterization or Simulation). It is needed whenever activities are nested inside a dataset record.
+- Each activity is described under the field for its kind: `was_generated_by_synthesis`, `was_generated_by_characterization` or `was_generated_by_simulation`. The field tells software which kind it is, and in RDF the activity gets the matching class (here OBI:0000070, assay).
+- `was_generated_by` lists the ids of all activities; DCAT-AP-PLUS requires it on every dataset. In RDF both fields become the same `prov:wasGeneratedBy` links.
 - `is_referenced_by` links the dataset to the article; the article usually cites the dataset only by its handle, so this is the way back.
 
-**Fields used:** [`rdf_type`](../elements/slots/rdf_type.md), [`keyword`](../elements/slots/keyword.md), [`creator`](../elements/slots/creator.md), [`name`](../elements/slots/name.md), [`publisher`](../elements/slots/publisher.md), [`is_referenced_by`](../elements/slots/is_referenced_by.md), [`dataset_distribution`](../elements/slots/dataset_distribution.md), [`access_URL`](../elements/slots/access_URL.md), [`licence`](../elements/slots/licence.md), [`was_generated_by`](../elements/slots/was_generated_by.md), [`activity_designator`](../elements/slots/activity_designator.md), [`carried_out_by`](../elements/slots/carried_out_by.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md)
+**Fields used:** [`rdf_type`](../elements/slots/rdf_type.md), [`keyword`](../elements/slots/keyword.md), [`creator`](../elements/slots/creator.md), [`name`](../elements/slots/name.md), [`publisher`](../elements/slots/publisher.md), [`is_referenced_by`](../elements/slots/is_referenced_by.md), [`dataset_distribution`](../elements/slots/dataset_distribution.md), [`access_URL`](../elements/slots/access_URL.md), [`licence`](../elements/slots/licence.md), [`was_generated_by`](../elements/slots/was_generated_by.md), [`was_generated_by_characterization`](../elements/slots/was_generated_by_characterization.md), [`carried_out_by`](../elements/slots/carried_out_by.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md)
 
 === "Graph"
 
@@ -78,11 +79,12 @@ catalysis field it belongs to, and which activities produced it.
         n10 -->|access_URL| n11
         n10 -->|licence| n12
         n1 -->|dataset_distribution| n10
+        n1 -->|was_generated_by| n13
         n13 -->|rdf_type| n14
         n13 -->|carried_out_by| n15
         n13 -->|evaluated_entity| n16
         n13 -->|realized_plan| n17
-        n1 -->|was_generated_by| n13
+        n1 -->|was_generated_by_characterization| n13
         classDef dataset fill:#cfe9ef,stroke:#00838f,color:#222
         classDef activity fill:#fde2c4,stroke:#c26b00,color:#222
         classDef plan fill:#e3dcf7,stroke:#5b3fb5,color:#222
@@ -143,8 +145,9 @@ catalysis field it belongs to, and which activities produced it.
         id: https://creativecommons.org/licenses/by/4.0/
         title: CC BY 4.0
     was_generated_by:
+    - coremeta4cat:CHAR_b74m-m6rp_TCD
+    was_generated_by_characterization:
     - id: coremeta4cat:CHAR_b74m-m6rp_TCD
-      activity_designator: Characterization
       title:
       - H2-TPR of the Ni-BCZY cermet (article Fig. 1)
       rdf_type:
@@ -170,6 +173,7 @@ catalysis field it belongs to, and which activities produced it.
     @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
     @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
     @prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
+    @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
     @prefix dcat: <http://www.w3.org/ns/dcat#> .
@@ -197,7 +201,7 @@ catalysis field it belongs to, and which activities produced it.
     coremeta4cat:CAT_b74m-m6rp_Ni-BCZY dcterms:title "Ni-BCZY cermet powder" ;
     	a prov:Entity .
     coremeta4cat:CHAR_b74m-m6rp_TCD dcterms:title "H2-TPR of the Ni-BCZY cermet (article Fig. 1)" ;
-    	a "Characterization" , CHMO:0002908 ;
+    	a CHMO:0002908 , OBI:0000070 , prov:Activity ;
     	prov:used coremeta4cat:CAT_b74m-m6rp_Ni-BCZY , coremeta4cat:CHAR_b74m-m6rp_TCD_method ;
     	prov:wasAssociatedWith coremeta4cat:DEV_b74m-m6rp_TCD .
     coremeta4cat:CHAR_b74m-m6rp_TCD_method dcterms:title "H2-TPR, 10 K/min to 1223 K" ;
@@ -239,7 +243,7 @@ decides which parameters it can carry.
 - `plan_designator` takes the `class_uri` of the method exactly as written in the schema (`voc4cat:…` in lower case). Without it, the method fields still validate as JSON but cannot be loaded into the Python datamodel.
 - Some quantity fields take a list even when there is one value (e.g. `has_ph_value`), others a single value (e.g. `has_aging_duration`). The schema reference shows which.
 
-**Fields used:** [`activity_designator`](../elements/slots/activity_designator.md), [`nominal_composition`](../elements/slots/nominal_composition.md), [`catalyst_measured_properties`](../elements/slots/catalyst_measured_properties.md), [`had_input_entity`](../elements/slots/had_input_entity.md), [`precursor_quantity`](../elements/slots/precursor_quantity.md), [`had_output_entity`](../elements/slots/had_output_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md), [`precipitating_agent`](../elements/slots/precipitating_agent.md), [`has_ph_value`](../elements/slots/has_ph_value.md), [`has_aging_temperature`](../elements/slots/has_aging_temperature.md), [`has_aging_duration`](../elements/slots/has_aging_duration.md), [`has_calcination_temperature_range`](../elements/slots/has_calcination_temperature_range.md), [`has_calcination_atmosphere`](../elements/slots/has_calcination_atmosphere.md)
+**Fields used:** [`nominal_composition`](../elements/slots/nominal_composition.md), [`catalyst_measured_properties`](../elements/slots/catalyst_measured_properties.md), [`had_input_entity`](../elements/slots/had_input_entity.md), [`precursor_quantity`](../elements/slots/precursor_quantity.md), [`had_output_entity`](../elements/slots/had_output_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md), [`precipitating_agent`](../elements/slots/precipitating_agent.md), [`has_ph_value`](../elements/slots/has_ph_value.md), [`has_aging_temperature`](../elements/slots/has_aging_temperature.md), [`has_aging_duration`](../elements/slots/has_aging_duration.md), [`has_calcination_temperature_range`](../elements/slots/has_calcination_temperature_range.md), [`has_calcination_atmosphere`](../elements/slots/has_calcination_atmosphere.md)
 
 === "Graph"
 
@@ -302,7 +306,6 @@ decides which parameters it can carry.
 
     ```yaml
     id: coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4
-    activity_designator: Synthesis
     title:
     - Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination
     nominal_composition:
@@ -369,6 +372,7 @@ decides which parameters it can carry.
     @prefix SIO: <http://semanticscience.org/resource/SIO_> .
     @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
     @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+    @prefix PROCO: <http://purl.obolibrary.org/obo/PROCO_> .
     @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -391,7 +395,7 @@ decides which parameters it can carry.
     	a voc4cat:0007794 ;
     	voc4cat:0008118 _:c14n3 .
     coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4 dcterms:title "Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination" ;
-    	a "Synthesis" ;
+    	a PROCO:0000001 ;
     	prov:generated coremeta4cat:CAT_6mxw-xsrd_Cu0.33Ga0.33Al0.33 ;
     	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_coprecipitation_method ;
     	coremeta4cat:catalyst_measured_properties "XRF of the HTC precursor: Cu 0.42, Al 0.22, Ga 0.36 (metal fractions; nominal 0.33/0.33/0.34)" ;
@@ -450,7 +454,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
 - The chain is made by using the same `id` for the intermediate in both records. Each step can then declare its own method class.
 - Precursor masses are recommended, not mandatory. Articles often give only target loadings, as here.
 
-**Fields used:** [`rdf_type`](../elements/slots/rdf_type.md), [`was_generated_by`](../elements/slots/was_generated_by.md), [`activity_designator`](../elements/slots/activity_designator.md), [`nominal_composition`](../elements/slots/nominal_composition.md), [`catalyst_measured_properties`](../elements/slots/catalyst_measured_properties.md), [`had_input_entity`](../elements/slots/had_input_entity.md), [`had_output_entity`](../elements/slots/had_output_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md), [`has_calcination_temperature_range`](../elements/slots/has_calcination_temperature_range.md), [`impregnation_type`](../elements/slots/impregnation_type.md)
+**Fields used:** [`rdf_type`](../elements/slots/rdf_type.md), [`was_generated_by`](../elements/slots/was_generated_by.md), [`was_generated_by_synthesis`](../elements/slots/was_generated_by_synthesis.md), [`nominal_composition`](../elements/slots/nominal_composition.md), [`catalyst_measured_properties`](../elements/slots/catalyst_measured_properties.md), [`had_input_entity`](../elements/slots/had_input_entity.md), [`had_output_entity`](../elements/slots/had_output_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md), [`has_calcination_temperature_range`](../elements/slots/has_calcination_temperature_range.md), [`impregnation_type`](../elements/slots/impregnation_type.md)
 
 === "Graph"
 
@@ -459,15 +463,15 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
         n1["Copper Gallium Aluminum Mixed Metal Oxide…<br/>«CatalysisDataset»"]
         n2["heterogeneous catalysis<br/>voc4cat:0007001"]
         n3["Co-precipitated Cu0.85Al0.15 precursor, c…<br/>«Synthesis»"]
-        n4(["“Cu0.85Al0.15 (metal fractions Cu 0.85, Al…”"])
-        n5(["“No measured properties of the intermediat…”"])
-        n6["copper(II) nitrate trihydrate, Cu(NO3)2·3…<br/>«Precursor»"]
-        n7["aluminium nitrate nonahydrate, Al(NO3)3·9…<br/>«Precursor»"]
-        n8["Cu0.85Al0.15 oxide calcined at 450 C<br/>«CatalystSample»"]
-        n9["Cu0.85Al0.15 oxide calcined at 550 C<br/>«CatalystSample»"]
-        n10["automated co-precipitation at pH 9, agein…<br/>«CoPrecipitation»"]
-        n11["723.15–823.15 K<br/>«Temperature»"]
-        n12["1 wt% Ga on Cu0.85Al0.15 oxide by incipie…<br/>«Synthesis»"]
+        n4["1 wt% Ga on Cu0.85Al0.15 oxide by incipie…<br/>«Synthesis»"]
+        n5(["“Cu0.85Al0.15 (metal fractions Cu 0.85, Al…”"])
+        n6(["“No measured properties of the intermediat…”"])
+        n7["copper(II) nitrate trihydrate, Cu(NO3)2·3…<br/>«Precursor»"]
+        n8["aluminium nitrate nonahydrate, Al(NO3)3·9…<br/>«Precursor»"]
+        n9["Cu0.85Al0.15 oxide calcined at 450 C<br/>«CatalystSample»"]
+        n10["Cu0.85Al0.15 oxide calcined at 550 C<br/>«CatalystSample»"]
+        n11["automated co-precipitation at pH 9, agein…<br/>«CoPrecipitation»"]
+        n12["723.15–823.15 K<br/>«Temperature»"]
         n13(["“Cu0.85Al0.15 mixed oxide with 1 wt% Ga (t…”"])
         n14(["“No measured properties of these four samp…”"])
         n15["gallium(III) nitrate hydrate, Ga(NO3)3·xH…<br/>«Precursor»"]
@@ -477,26 +481,28 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
         n19(["“incipient_wetness”"])
         n20["523.15–623.15 K<br/>«Temperature»"]
         n1 -->|rdf_type| n2
-        n3 -->|nominal_composition| n4
-        n3 -->|catalyst_measured_properties| n5
-        n3 -->|had_input_entity| n6
-        n3 -->|had_input_entity| n7
-        n3 -->|had_output_entity| n8
-        n3 -->|had_output_entity| n9
-        n10 -->|has_calcination_temperature_range| n11
-        n3 -->|realized_plan| n10
         n1 -->|was_generated_by| n3
-        n12 -->|nominal_composition| n13
-        n12 -->|catalyst_measured_properties| n14
-        n12 -->|had_input_entity| n8
-        n12 -->|had_input_entity| n9
-        n12 -->|had_input_entity| n15
-        n12 -->|had_output_entity| n16
-        n12 -->|had_output_entity| n17
+        n1 -->|was_generated_by| n4
+        n3 -->|nominal_composition| n5
+        n3 -->|catalyst_measured_properties| n6
+        n3 -->|had_input_entity| n7
+        n3 -->|had_input_entity| n8
+        n3 -->|had_output_entity| n9
+        n3 -->|had_output_entity| n10
+        n11 -->|has_calcination_temperature_range| n12
+        n3 -->|realized_plan| n11
+        n1 -->|was_generated_by_synthesis| n3
+        n4 -->|nominal_composition| n13
+        n4 -->|catalyst_measured_properties| n14
+        n4 -->|had_input_entity| n9
+        n4 -->|had_input_entity| n10
+        n4 -->|had_input_entity| n15
+        n4 -->|had_output_entity| n16
+        n4 -->|had_output_entity| n17
         n18 -->|impregnation_type| n19
         n18 -->|has_calcination_temperature_range| n20
-        n12 -->|realized_plan| n18
-        n1 -->|was_generated_by| n12
+        n4 -->|realized_plan| n18
+        n1 -->|was_generated_by_synthesis| n4
         classDef dataset fill:#cfe9ef,stroke:#00838f,color:#222
         classDef activity fill:#fde2c4,stroke:#c26b00,color:#222
         classDef plan fill:#e3dcf7,stroke:#5b3fb5,color:#222
@@ -509,11 +515,11 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
         classDef other fill:#ffffff,stroke:#757575,color:#222
         class n1 dataset
         class n2 term
-        class n3,n12 activity
-        class n4,n5,n13,n14,n19 literal
-        class n6,n7,n8,n9,n15,n16,n17 entity
-        class n10,n18 plan
-        class n11,n20 quantity
+        class n3,n4 activity
+        class n5,n6,n13,n14,n19 literal
+        class n7,n8,n9,n10,n15,n16,n17 entity
+        class n11,n18 plan
+        class n12,n20 quantity
     ```
 
 === "YAML"
@@ -535,8 +541,10 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
     - id: voc4cat:0007001
       title: heterogeneous catalysis
     was_generated_by:
+    - coremeta4cat:SYN_6mxw-xsrd_gen2_step1
+    - coremeta4cat:SYN_6mxw-xsrd_gen2_step2
+    was_generated_by_synthesis:
     - id: coremeta4cat:SYN_6mxw-xsrd_gen2_step1
-      activity_designator: Synthesis
       title:
       - Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C
       nominal_composition:
@@ -564,7 +572,6 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
           unit: https://qudt.org/vocab/unit/K
           description: 450 or 550 C
     - id: coremeta4cat:SYN_6mxw-xsrd_gen2_step2
-      activity_designator: Synthesis
       title:
       - 1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at 250 or 350 C
       nominal_composition:
@@ -602,6 +609,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
     ```turtle
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
     @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+    @prefix PROCO: <http://purl.obolibrary.org/obo/PROCO_> .
     @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -630,7 +638,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
     coremeta4cat:PREC_6mxw-xsrd_GaNO3 dcterms:title "gallium(III) nitrate hydrate, Ga(NO3)3·xH2O (Sigma-Aldrich, 99.9%), aqueous solution" ;
     	a voc4cat:0007794 .
     coremeta4cat:SYN_6mxw-xsrd_gen2_step1 dcterms:title "Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C" ;
-    	a "Synthesis" ;
+    	a PROCO:0000001 , prov:Activity ;
     	prov:generated coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450 , coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550 ;
     	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:SYN_6mxw-xsrd_gen2_step1_method ;
     	coremeta4cat:catalyst_measured_properties "No measured properties of the intermediate oxides are deposited." ;
@@ -639,7 +647,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
     	a voc4cat:0007795 ;
     	coremeta4cat:hasCalcinationTemperatureRange _:c14n0 .
     coremeta4cat:SYN_6mxw-xsrd_gen2_step2 dcterms:title "1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at 250 or 350 C" ;
-    	a "Synthesis" ;
+    	a PROCO:0000001 , prov:Activity ;
     	prov:generated coremeta4cat:CAT_6mxw-xsrd_G2_450_250 , coremeta4cat:CAT_6mxw-xsrd_G2_450_350 ;
     	prov:used coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450 , coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_gen2_step2_method ;
     	coremeta4cat:catalyst_measured_properties "No measured properties of these four samples are deposited." ;
@@ -684,7 +692,7 @@ which parameters it can carry.
 
 - `rdf_type` on the activity classifies the measurement for search; `plan_designator` on the plan selects the technique class and its fields. Both point to the same CHMO term here.
 
-**Fields used:** [`activity_designator`](../elements/slots/activity_designator.md), [`rdf_type`](../elements/slots/rdf_type.md), [`carried_out_by`](../elements/slots/carried_out_by.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md), [`has_temperature_range`](../elements/slots/has_temperature_range.md), [`has_heating_rate`](../elements/slots/has_heating_rate.md), [`reducing_gas_composition`](../elements/slots/reducing_gas_composition.md)
+**Fields used:** [`rdf_type`](../elements/slots/rdf_type.md), [`carried_out_by`](../elements/slots/carried_out_by.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md), [`has_temperature_range`](../elements/slots/has_temperature_range.md), [`has_heating_rate`](../elements/slots/has_heating_rate.md), [`reducing_gas_composition`](../elements/slots/reducing_gas_composition.md)
 
 === "Graph"
 
@@ -728,7 +736,6 @@ which parameters it can carry.
 
     ```yaml
     id: coremeta4cat:CHAR_b74m-m6rp_TCD
-    activity_designator: Characterization
     title:
     - H2-TPR of the Ni-BCZY cermet (article Fig. 1)
     rdf_type:
@@ -765,6 +772,7 @@ which parameters it can carry.
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
     @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
     @prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
+    @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
     @prefix qudt: <http://qudt.org/schema/qudt/> .
@@ -776,7 +784,7 @@ which parameters it can carry.
     coremeta4cat:CAT_b74m-m6rp_Ni-BCZY dcterms:title "Ni-BCZY cermet powder" ;
     	a prov:Entity .
     coremeta4cat:CHAR_b74m-m6rp_TCD dcterms:title "H2-TPR of the Ni-BCZY cermet (article Fig. 1)" ;
-    	a "Characterization" , CHMO:0002908 ;
+    	a CHMO:0002908 , OBI:0000070 ;
     	prov:used coremeta4cat:CAT_b74m-m6rp_Ni-BCZY , coremeta4cat:CHAR_b74m-m6rp_TCD_method ;
     	prov:wasAssociatedWith coremeta4cat:DEV_b74m-m6rp_TCD .
     coremeta4cat:CHAR_b74m-m6rp_TCD_method dcterms:title "H2-TPR, 10 K/min to 1223 K" ;
@@ -807,7 +815,7 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
 
 **Example use case:** BET surface area of ten Pd/P catalysts on Al₂O₃ and SiO₂ (three shown here). The technique is classified by an ENM term; the instrument model was not stated in the source and is described as such.
 
-**Fields used:** [`rdf_type`](../elements/slots/rdf_type.md), [`carried_out_by`](../elements/slots/carried_out_by.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`activity_designator`](../elements/slots/activity_designator.md)
+**Fields used:** [`rdf_type`](../elements/slots/rdf_type.md), [`carried_out_by`](../elements/slots/carried_out_by.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md)
 
 === "Graph"
 
@@ -866,7 +874,6 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
     realized_plan:
       id: coremeta4cat:CHAR_32x1-99x6_BET_method
       title: N2 physisorption BET method
-    activity_designator: Characterization
     ```
 
 === "RDF (Turtle)"
@@ -889,7 +896,7 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
     coremeta4cat:CAT_32x1-99x6_Al2O3_2P dcterms:title "Pd/2P/Al2O3" ;
     	a prov:Entity .
     coremeta4cat:CHAR_32x1-99x6_BET dcterms:title "BET surface area analysis (10 catalysts)" ;
-    	a "Characterization" , enm:0000064 ;
+    	a enm:0000064 , OBI:0000070 ;
     	prov:used coremeta4cat:CAT_32x1-99x6_Al2O3_0P , coremeta4cat:CAT_32x1-99x6_Al2O3_1P , coremeta4cat:CAT_32x1-99x6_Al2O3_2P , coremeta4cat:CHAR_32x1-99x6_BET_method ;
     	prov:wasAssociatedWith coremeta4cat:DEV_32x1-99x6_BET .
     coremeta4cat:CHAR_32x1-99x6_BET_method dcterms:title "N2 physisorption BET method" ;
@@ -1096,6 +1103,7 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     @prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
     @prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
     @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+    @prefix REX: <http://purl.obolibrary.org/obo/REX_> .
     @prefix RO: <http://purl.obolibrary.org/obo/RO_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -1147,7 +1155,7 @@ it ran in and the conditions. Group runs that share reactor and analytics into o
     	RO:0004009 coremeta4cat:REAC_b74m-m6rp_Ar , coremeta4cat:REAC_b74m-m6rp_NH3 ;
     	RXNO:0000425 coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY ;
     	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
-    	a SIO:010511 , coremeta4cat:CatalyticReaction ;
+    	a REX:0000051 , SIO:010511 ;
     	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
     	voc4cat:0000016 voc4cat:0007034 ;
     	voc4cat:0007009 "thermocatalytic ammonia decomposition" ;
@@ -1291,6 +1299,7 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
     @prefix SIO: <http://semanticscience.org/resource/SIO_> .
     @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
     @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+    @prefix REX: <http://purl.obolibrary.org/obo/REX_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
     @prefix qudt: <http://qudt.org/schema/qudt/> .
@@ -1303,7 +1312,7 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
     	dcterms:title "online FTIR gas analysis" ;
     	a OBI:0000272 .
     coremeta4cat:REAC_b74m-m6rp_NH3_decomposition dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
-    	a SIO:010511 , coremeta4cat:CatalyticReaction ;
+    	a REX:0000051 , SIO:010511 ;
     	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
     	coremeta4cat:feed_composition_range _:c14n5 ;
     	voc4cat:0000118 _:c14n3 ;
@@ -1366,7 +1375,7 @@ modelled (`evaluated_entity`) and the properties it computed (`calculated_proper
 - `property_designator` works like `plan_designator`: it names the property class an entry belongs to (adsorption, reaction or transition-state energetics, electrochemical free energy, catalytic descriptors, or one of the material properties). Without it, an entry can only carry a value and a description.
 - The deposit gives the binding energies as ranges over 17 sites, so the range stays in `value`; a single computed energy goes into `adsorption_energy` as a number in eV.
 
-**Fields used:** [`activity_designator`](../elements/slots/activity_designator.md), [`software_package`](../elements/slots/software_package.md), [`rdf_type`](../elements/slots/rdf_type.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md), [`exchange_correlation_functional`](../elements/slots/exchange_correlation_functional.md), [`calculated_property`](../elements/slots/calculated_property.md), [`property_designator`](../elements/slots/property_designator.md), [`adsorbate`](../elements/slots/adsorbate.md), [`material_composition`](../elements/slots/material_composition.md), [`energy_reference`](../elements/slots/energy_reference.md)
+**Fields used:** [`software_package`](../elements/slots/software_package.md), [`rdf_type`](../elements/slots/rdf_type.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md), [`exchange_correlation_functional`](../elements/slots/exchange_correlation_functional.md), [`calculated_property`](../elements/slots/calculated_property.md), [`property_designator`](../elements/slots/property_designator.md), [`adsorbate`](../elements/slots/adsorbate.md), [`material_composition`](../elements/slots/material_composition.md), [`energy_reference`](../elements/slots/energy_reference.md)
 
 === "Graph"
 
@@ -1413,7 +1422,6 @@ modelled (`evaluated_entity`) and the properties it computed (`calculated_proper
 
     ```yaml
     id: coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites
-    activity_designator: Simulation
     title:
     - DFT binding energies of OH and CO at 17 oxide surface sites
     software_package:
@@ -1461,13 +1469,14 @@ modelled (`evaluated_entity`) and the properties it computed (`calculated_proper
     ```turtle
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
     @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+    @prefix PROCO: <http://purl.obolibrary.org/obo/PROCO_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
     @prefix prov: <http://www.w3.org/ns/prov#> .
     @prefix dcterms: <http://purl.org/dc/terms/> .
     @prefix schema1: <http://schema.org/> .
     coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites dcterms:title "DFT binding energies of OH and CO at 17 oxide surface sites" ;
-    	a "Simulation" , voc4cat:0000215 ;
+    	a PROCO:0000159 , voc4cat:0000215 ;
     	prov:used coremeta4cat:SIM_6mxw-xsrd_DFT_method , coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites ;
     	coremeta4cat:calculated_property _:c14n0 , _:c14n1 ;
     	coremeta4cat:software_package "Atomic Simulation Environment (ASE), structure generation" , "VASP" , "pymatgen, structure generation" .
@@ -1501,7 +1510,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
 
 **Example use case:** MM/GBSA binding free energies of a PLP-bound substrate in two mutants of an amine transaminase, reported as ΔΔG relative to the parent enzyme 3FCR-4M.
 
-**Fields used:** [`activity_designator`](../elements/slots/activity_designator.md), [`software_package`](../elements/slots/software_package.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`calculated_property`](../elements/slots/calculated_property.md)
+**Fields used:** [`software_package`](../elements/slots/software_package.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`calculated_property`](../elements/slots/calculated_property.md)
 
 === "Graph"
 
@@ -1543,7 +1552,6 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
 
     ```yaml
     id: coremeta4cat:SIM_8ppb-aeky_MMGBSA
-    activity_designator: Simulation
     title:
     - MM/GBSA binding free energy of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16
     software_package:
@@ -1570,6 +1578,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
     ```turtle
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
     @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+    @prefix PROCO: <http://purl.obolibrary.org/obo/PROCO_> .
     @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
     @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -1582,7 +1591,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
     coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex dcterms:title "3FCR-4M with cofactor-bound substrate 2a" ;
     	a prov:Entity .
     coremeta4cat:SIM_8ppb-aeky_MMGBSA dcterms:title "MM/GBSA binding free energy of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16" ;
-    	a "Simulation" ;
+    	a PROCO:0000159 ;
     	prov:used coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M1_complex , coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M2_complex , coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex , coremeta4cat:SIM_8ppb-aeky_MMGBSA_method ;
     	coremeta4cat:calculated_property _:c14n0 , _:c14n1 ;
     	coremeta4cat:software_package "Prime MM-GBSA (Schrodinger suite)" .
@@ -1608,7 +1617,7 @@ Excerpt of [Dataset 6 (transaminase MD)](community-datasets.md#8ppb-aeky) as `Si
 
 - `calculated_property` is recommended, not mandatory, for exactly this case.
 
-**Fields used:** [`activity_designator`](../elements/slots/activity_designator.md), [`software_package`](../elements/slots/software_package.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md)
+**Fields used:** [`software_package`](../elements/slots/software_package.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md)
 
 === "Graph"
 
@@ -1643,7 +1652,6 @@ Excerpt of [Dataset 6 (transaminase MD)](community-datasets.md#8ppb-aeky) as `Si
 
     ```yaml
     id: coremeta4cat:SIM_8ppb-aeky_MD
-    activity_designator: Simulation
     title:
     - Molecular dynamics of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16
     software_package:
@@ -1663,6 +1671,7 @@ Excerpt of [Dataset 6 (transaminase MD)](community-datasets.md#8ppb-aeky) as `Si
     ```turtle
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
     @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+    @prefix PROCO: <http://purl.obolibrary.org/obo/PROCO_> .
     @prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
     @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -1670,7 +1679,7 @@ Excerpt of [Dataset 6 (transaminase MD)](community-datasets.md#8ppb-aeky) as `Si
     coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex dcterms:title "3FCR-4M with cofactor-bound substrate 2a" ;
     	a prov:Entity .
     coremeta4cat:SIM_8ppb-aeky_MD dcterms:title "Molecular dynamics of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16" ;
-    	a "Simulation" ;
+    	a PROCO:0000159 ;
     	prov:used coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex , coremeta4cat:SIM_8ppb-aeky_MD_method ;
     	coremeta4cat:software_package "Desmond (Schrodinger suite)" , "Simulation Interaction Diagram and Schrodinger Python API, analysis" .
     coremeta4cat:SIM_8ppb-aeky_MD_method dcterms:title "molecular dynamics: setup, minimisation, equilibration, production" ;
@@ -1785,6 +1794,7 @@ vocabularies.
     @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
     @prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
     @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+    @prefix REX: <http://purl.obolibrary.org/obo/REX_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
     @prefix qudt: <http://qudt.org/schema/qudt/> .
@@ -1803,7 +1813,7 @@ vocabularies.
     	a CHEBI:23367 , CHEBI:30682 .
     coremeta4cat:REAC_b74m-m6rp_NH3_decomposition RXNO:0000425 coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY ;
     	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
-    	a SIO:010511 , coremeta4cat:CatalyticReaction ;
+    	a REX:0000051 , SIO:010511 ;
     	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
     	voc4cat:0000118 _:c14n1 ;
     	voc4cat:0007032 _:c14n0 .
@@ -1906,6 +1916,7 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
     @prefix SIO: <http://semanticscience.org/resource/SIO_> .
     @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
     @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+    @prefix REX: <http://purl.obolibrary.org/obo/REX_> .
     @prefix RO: <http://purl.obolibrary.org/obo/RO_> .
     @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -1918,7 +1929,7 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
     	a CHEBI:17245 , SIO:010411 .
     coremeta4cat:REAC_2d6m-exeb_CO_methanation RO:0004009 coremeta4cat:REAC_2d6m-exeb_CO ;
     	dcterms:title "CO methanation catalyst screening (4 Ni catalysts)" ;
-    	a coremeta4cat:CatalyticReaction , voc4cat:0000260 ;
+    	a REX:0000051 , voc4cat:0000260 ;
     	prov:wasAssociatedWith coremeta4cat:REAC_2d6m-exeb_CO_reactor ;
     	voc4cat:0007009 "CO methanation" ;
     	voc4cat:0007014 voc4cat:0007001 .

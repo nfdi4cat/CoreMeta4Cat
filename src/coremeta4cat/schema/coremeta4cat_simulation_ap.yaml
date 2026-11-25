@@ -46,6 +46,7 @@ prefixes:
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
+  PROCO: http://purl.obolibrary.org/obo/PROCO_
   SIO: http://semanticscience.org/resource/SIO_
   allotrope.result: http://purl.allotrope.org/ontologies/result#AFR_
   APOLLO_SV: http://purl.obolibrary.org/obo/APOLLO_SV_
@@ -88,8 +89,10 @@ classes:
   # ==================== SIMULATION (DataGeneratingActivity) ====================
 
   Simulation:
-    is_a: CatalysisDataGeneratingActivity
-    class_uri: NCIT:C48936   # computer simulation
+    is_a: DataGeneratingActivity
+    class_uri: PROCO:0000159   # in-silico modeling
+    close_mappings:
+    - NCIT:C16461   # computer modeling (NCIt synonym: simulation)
     description: |-
       A DataGeneratingActivity in which a catalyst, catalytic material, or
       catalytic process is modelled computationally.

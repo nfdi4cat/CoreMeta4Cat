@@ -14,485 +14,12 @@ title:
   of α,β-Unsaturated Aldehydes'
 was_generated_by:
 - id: coremeta4cat:SYN_32x1-99x6_P_modification
-  title:
-  - Phosphorus modification of alumina and silica by incipient wetness impregnation
-    with NH4H2PO4
-  description:
-  - 'For 970 mg of support, NH4H2PO4 was dissolved in deionised water (1 mL for alumina,
-    added in 0.5 mL aliquots; 1.4 mL for silica, added in 0.7 mL aliquots, based on
-    the pore volume of each support), then dried and calcined in flowing dry air.
-    Source: article, section 4.2.'
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  had_input_entity:
-  - id: coremeta4cat:PREC_32x1-99x6_NH4H2PO4
-    title: ammonium dihydrogen phosphate, NH4H2PO4 (Sigma-Aldrich, >98%)
-    rdf_type:
-      id: CHEBI:62982
-      title: ammonium dihydrogen phosphate
-    precursor_quantity:
-    - value: 37.1
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
-      description: per 970 mg of support, for 1 wt% P
-      unit: https://qudt.org/vocab/unit/MilliGM
-    - value: 74.3
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
-      description: per 970 mg of support, for 2 wt% P
-      unit: https://qudt.org/vocab/unit/MilliGM
-    - value: 111.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
-      description: per 970 mg of support, for 3 wt% P
-      unit: https://qudt.org/vocab/unit/MilliGM
-    - value: 149.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
-      description: per 970 mg of support, for 4 wt% P
-      unit: https://qudt.org/vocab/unit/MilliGM
-    - value: 186.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
-      description: per 970 mg of support, for 5 wt% P
-      unit: https://qudt.org/vocab/unit/MilliGM
-  - id: coremeta4cat:SUP_32x1-99x6_Al2O3
-    title: alumina, Puralox TH 100/150 (Sasol), heated at 700 C for 5 h
-    rdf_type:
-      id: CHEBI:30187
-      title: aluminium oxide
-  - id: coremeta4cat:SUP_32x1-99x6_SiO2
-    title: silica, Cariact Q 20C (Fuji Silysia Chemical), heated at 350 C for 5 h
-    rdf_type:
-      id: CHEBI:30563
-      title: silicon dioxide
-    precursor_quantity:
-    - value: 970.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
-      description: per batch
-      unit: https://qudt.org/vocab/unit/MilliGM
-  had_output_entity:
-  - id: coremeta4cat:SUP_32x1-99x6_1PAl2O3
-    title: 1PAl2O3 (1 wt% P on alumina)
-  - id: coremeta4cat:SUP_32x1-99x6_2PAl2O3
-    title: 2PAl2O3 (2 wt% P on alumina)
-  - id: coremeta4cat:SUP_32x1-99x6_3PAl2O3
-    title: 3PAl2O3 (3 wt% P on alumina)
-  - id: coremeta4cat:SUP_32x1-99x6_4PAl2O3
-    title: 4PAl2O3 (4 wt% P on alumina)
-  - id: coremeta4cat:SUP_32x1-99x6_5PAl2O3
-    title: 5PAl2O3 (5 wt% P on alumina)
-  - id: coremeta4cat:SUP_32x1-99x6_1PSiO2
-    title: 1PSiO2 (1 wt% P on silica)
-  - id: coremeta4cat:SUP_32x1-99x6_3PSiO2
-    title: 3PSiO2 (3 wt% P on silica)
-  - id: coremeta4cat:SUP_32x1-99x6_5PSiO2
-    title: 5PSiO2 (5 wt% P on silica)
-  realized_plan:
-    title: incipient wetness impregnation, drying, calcination in flowing dry air
-    description: Dried 12 h at 60 C, then calcined 4 h at 500 C under compressed dry
-      air (20 NL/h, GHSV 10 h-1).
-    id: coremeta4cat:SYN_32x1-99x6_IWI_air_method
-    plan_designator: voc4cat:0007028
-    impregnation_type:
-    - incipient_wetness
-    has_drying_temperature:
-    - value: 333.15
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
-      unit: https://qudt.org/vocab/unit/K
-    has_drying_duration:
-      value: 12.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
-      unit: https://qudt.org/vocab/unit/HR
-    has_calcination_temperature_range:
-    - min_value: 773.15
-      max_value: 773.15
-      unit: https://qudt.org/vocab/unit/K
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
-    has_calcination_dwelling_time:
-      value: 4.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
-      unit: https://qudt.org/vocab/unit/HR
-    has_calcination_atmosphere:
-    - value: flowing compressed dry air
-    has_calcination_gas_flow_rate:
-    - value: 20.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFlowRate
-      description: normal litres per hour; GHSV 10 h-1
-      unit: https://qudt.org/vocab/unit/L-PER-HR
-  activity_designator: Synthesis
-  nominal_composition:
-  - 1, 2, 3, 4 and 5 wt% P on alumina (1PAl2O3 to 5PAl2O3)
-  - 1, 3 and 5 wt% P on silica (1PSiO2, 3PSiO2, 5PSiO2)
-  catalyst_measured_properties:
-  - P contents measured by ICP after Pd deposition (see CHAR_32x1-99x6_ICPAES)
-  - Phosphate species on the modified alumina shown by ATR-IR (article, section 2.1)
-  catalyst_support:
-  - alumina, Puralox TH 100/150 (Sasol)
-  - silica, Cariact Q 20C (Fuji Silysia Chemical)
-  solvent:
-  - id: coremeta4cat:SOLV_32x1-99x6_water
-    title: deionised water
-    rdf_type:
-      id: CHEBI:15377
-      title: water
-  has_sample_pretreatment:
-  - value: Supports heated before use, silica at 350 C and alumina at 700 C, each
-      for 5 h
 - id: coremeta4cat:SYN_32x1-99x6_Pd_impregnation
-  title:
-  - Pd deposition on unmodified and phosphorus-modified supports by incipient wetness
-    impregnation
-  description:
-  - 'Per batch, 0.56 mL of the 10 wt% [Pd(NH3)4](NO3)2 solution was diluted with deionised
-    water (0.44 mL for alumina, added in 0.5 mL aliquots; 0.84 mL for silica, added
-    in 0.7 mL aliquots), impregnated onto the supports, dried and calcined as in the
-    phosphorus modification. Target Pd loading 2 wt%. Source: article, section 4.3.'
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  had_input_entity:
-  - id: coremeta4cat:PREC_32x1-99x6_PdNH34NO32
-    title: tetraamminepalladium(II) nitrate, [Pd(NH3)4](NO3)2, 10 wt% aqueous solution
-      (Sigma-Aldrich, >99%)
-    has_volume:
-    - value: 0.56
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Volume
-      description: per batch
-      unit: https://qudt.org/vocab/unit/MilliL
-  - id: coremeta4cat:SUP_32x1-99x6_Al2O3
-    title: alumina, Puralox TH 100/150 (Sasol), heated at 700 C for 5 h
-    rdf_type:
-      id: CHEBI:30187
-      title: aluminium oxide
-  - id: coremeta4cat:SUP_32x1-99x6_SiO2
-    title: silica, Cariact Q 20C (Fuji Silysia Chemical), heated at 350 C for 5 h
-    rdf_type:
-      id: CHEBI:30563
-      title: silicon dioxide
-  - id: coremeta4cat:SUP_32x1-99x6_1PAl2O3
-    title: 1PAl2O3 (1 wt% P on alumina)
-  - id: coremeta4cat:SUP_32x1-99x6_2PAl2O3
-    title: 2PAl2O3 (2 wt% P on alumina)
-  - id: coremeta4cat:SUP_32x1-99x6_3PAl2O3
-    title: 3PAl2O3 (3 wt% P on alumina)
-  - id: coremeta4cat:SUP_32x1-99x6_4PAl2O3
-    title: 4PAl2O3 (4 wt% P on alumina)
-  - id: coremeta4cat:SUP_32x1-99x6_5PAl2O3
-    title: 5PAl2O3 (5 wt% P on alumina)
-  - id: coremeta4cat:SUP_32x1-99x6_1PSiO2
-    title: 1PSiO2 (1 wt% P on silica)
-  - id: coremeta4cat:SUP_32x1-99x6_3PSiO2
-    title: 3PSiO2 (3 wt% P on silica)
-  - id: coremeta4cat:SUP_32x1-99x6_5PSiO2
-    title: 5PSiO2 (5 wt% P on silica)
-  had_output_entity:
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
-    title: Pd/Al2O3
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
-    title: Pd/1P/Al2O3
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
-    title: Pd/2P/Al2O3
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
-    title: Pd/3P/Al2O3
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
-    title: Pd/4P/Al2O3
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
-    title: Pd/5P/Al2O3
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
-    title: Pd/SiO2
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
-    title: Pd/1P/SiO2
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
-    title: Pd/3P/SiO2
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
-    title: Pd/5P/SiO2
-  realized_plan:
-    title: incipient wetness impregnation, drying, calcination in flowing dry air
-    description: Dried 12 h at 60 C, then calcined 4 h at 500 C under compressed dry
-      air (20 NL/h, GHSV 10 h-1).
-    id: coremeta4cat:SYN_32x1-99x6_IWI_air_method
-    plan_designator: voc4cat:0007028
-    impregnation_type:
-    - incipient_wetness
-    has_drying_temperature:
-    - value: 333.15
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
-      unit: https://qudt.org/vocab/unit/K
-    has_drying_duration:
-      value: 12.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
-      unit: https://qudt.org/vocab/unit/HR
-    has_calcination_temperature_range:
-    - min_value: 773.15
-      max_value: 773.15
-      unit: https://qudt.org/vocab/unit/K
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
-    has_calcination_dwelling_time:
-      value: 4.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
-      unit: https://qudt.org/vocab/unit/HR
-    has_calcination_atmosphere:
-    - value: flowing compressed dry air
-    has_calcination_gas_flow_rate:
-    - value: 20.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFlowRate
-      description: normal litres per hour; GHSV 10 h-1
-      unit: https://qudt.org/vocab/unit/L-PER-HR
-  activity_designator: Synthesis
-  nominal_composition:
-  - 2 wt% Pd on alumina with 0, 1, 2, 3, 4 or 5 wt% P
-  - 2 wt% Pd on silica with 0, 1, 3 or 5 wt% P
-  catalyst_measured_properties:
-  - Pd contents by ICP-OES slightly below 2 wt%, deviation below 0.2 wt% (article,
-    section 2.1)
-  - 'BET surface area: Pd/Al2O3 119 m2/g and Pd/5PAl2O3 108 m2/g; Pd/SiO2 126 m2/g
-    and Pd/5PSiO2 72 m2/g'
-  - 'Mean Pd particle size by STEM: 9.7 nm (Pd/SiO2) and 3.8 nm with phosphorus; 3.3
-    nm (Pd/Al2O3) and 2.2 nm with phosphorus (article, Table 1)'
-  catalyst_support:
-  - alumina and silica, unmodified or phosphorus-modified
-  solvent:
-  - id: coremeta4cat:SOLV_32x1-99x6_water
-    title: deionised water
-    rdf_type:
-      id: CHEBI:15377
-      title: water
-  has_sample_pretreatment:
-  - value: Supports heated before use, silica at 350 C and alumina at 700 C, each
-      for 5 h
 - id: coremeta4cat:CHAR_32x1-99x6_BET
-  title:
-  - BET surface area analysis (10 catalysts)
-  description:
-  - Brunauer-Emmett-Teller specific surface area determination for all 10 Pd/P-Al2O3
-    and Pd/P-SiO2 catalysts (0-5 wt% nominal P loading). Surface area ranged 72-126
-    m2/g, generally decreasing with increasing P loading (bet_results.txt).
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  carried_out_by:
-  - id: coremeta4cat:DEV_32x1-99x6_BET
-    title: BET surface area analyser
-    description: Instrument model not specified in the source dataset files.
-  rdf_type:
-    id: enm:0000064
-    title: BET analysis
-  evaluated_entity:
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
-    title: Pd/Al2O3
-    description: Pd on Al2O3, P-free reference
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
-    title: Pd/1P/Al2O3
-    description: Pd on Al2O3, nominal 1 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
-    title: Pd/2P/Al2O3
-    description: Pd on Al2O3, nominal 2 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
-    title: Pd/3P/Al2O3
-    description: Pd on Al2O3, nominal 3 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
-    title: Pd/4P/Al2O3
-    description: Pd on Al2O3, nominal 4 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
-    title: Pd/5P/Al2O3
-    description: Pd on Al2O3, nominal 5 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
-    title: Pd/SiO2
-    description: Pd on SiO2, P-free reference
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
-    title: Pd/1P/SiO2
-    description: Pd on SiO2, nominal 1 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
-    title: Pd/3P/SiO2
-    description: Pd on SiO2, nominal 3 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
-    title: Pd/5P/SiO2
-    description: Pd on SiO2, nominal 5 wt% P
-  realized_plan:
-    title: N2 physisorption BET method
-    description: Standard N2 physisorption at liquid-nitrogen temperature (-196C),
-      Brunauer-Emmett-Teller analysis. Adsorbate gas and measurement temperature not
-      explicitly stated in bet_results.txt; assumed standard BET convention.
-    id: coremeta4cat:CHAR_32x1-99x6_BET_method
-    plan_designator: OBI:0000272
-  activity_designator: Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_DRIFT
-  title:
-  - DRIFT CO-adsorption spectroscopy (4 catalysts)
-  description:
-  - Diffuse reflectance infrared Fourier transform spectroscopy of CO adsorbed at
-    room temperature, for 4 catalysts (Pd/Al2O3, Pd/3P/Al2O3, Pd/SiO2, Pd/3P/SiO2).
-    Spectra converted to pseudo-absorbance (log(1/reflectance)) per Anal. Chem. 2007,
-    79, 10, 3912-3918 (DOI 10.1021/ac0702802) and baseline-corrected (info_drifts.txt);
-    OriginPro 2023 used for analysis/plotting.
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  carried_out_by:
-  - id: coremeta4cat:DEV_32x1-99x6_DRIFT
-    title: FTIR spectrometer with DRIFT accessory
-    description: Instrument model not specified in the source dataset files.
-  rdf_type:
-    id: CHMO:0000645
-    title: diffuse reflectance infrared Fourier transform spectroscopy
-  evaluated_entity:
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
-    title: Pd/Al2O3
-    description: Pd on Al2O3, P-free reference
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
-    title: Pd/3P/Al2O3
-    description: Pd on Al2O3, nominal 3 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
-    title: Pd/SiO2
-    description: Pd on SiO2, P-free reference
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
-    title: Pd/3P/SiO2
-    description: Pd on SiO2, nominal 3 wt% P
-  realized_plan:
-    title: CO-adsorption DRIFT method
-    description: CO adsorption at room temperature; pseudo-absorbance = log(1/reflectance).
-    id: coremeta4cat:CHAR_32x1-99x6_DRIFT_method
-    plan_designator: OBI:0000272
-  activity_designator: Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_ICPAES
-  title:
-  - ICP-AES elemental composition analysis (8 catalysts)
-  description:
-  - Inductively coupled plasma atomic emission spectroscopy for bulk Pd and P content
-    of the 8 P-modified catalysts (measured Pd 1.8-2.0 wt%, P 0.8-4.8 wt%, deviating
-    somewhat from nominal loadings; icp_results.txt). P-free reference catalysts (Pd/Al2O3,
-    Pd/SiO2) were not analysed by ICP-AES.
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  carried_out_by:
-  - id: coremeta4cat:DEV_32x1-99x6_ICPAES
-    title: ICP-AES spectrometer
-    description: Instrument model not specified in the source dataset files.
-  rdf_type:
-    id: CHMO:0000267
-    title: inductively coupled plasma atomic emission spectroscopy
-  evaluated_entity:
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
-    title: Pd/1P/Al2O3
-    description: Pd on Al2O3, nominal 1 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
-    title: Pd/2P/Al2O3
-    description: Pd on Al2O3, nominal 2 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
-    title: Pd/3P/Al2O3
-    description: Pd on Al2O3, nominal 3 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
-    title: Pd/4P/Al2O3
-    description: Pd on Al2O3, nominal 4 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
-    title: Pd/5P/Al2O3
-    description: Pd on Al2O3, nominal 5 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
-    title: Pd/1P/SiO2
-    description: Pd on SiO2, nominal 1 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
-    title: Pd/3P/SiO2
-    description: Pd on SiO2, nominal 3 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
-    title: Pd/5P/SiO2
-    description: Pd on SiO2, nominal 5 wt% P
-  realized_plan:
-    title: ICP-AES elemental analysis method
-    description: 'Elements analyzed: Pd, P. Results reported in wt% (icp_results.txt).'
-    id: coremeta4cat:CHAR_32x1-99x6_ICPAES_method
-    plan_designator: OBI:0000272
-  activity_designator: Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_IR
-  title:
-  - Infrared spectroscopy (6 catalysts)
-  description:
-  - Infrared spectroscopy of the 6 P-modified catalysts (1, 3, 5 wt% nominal P on
-    Al2O3 and SiO2). Wavenumber range ~400-3599 cm-1, 3319 data points per file, pseudo-absorbance
-    convention consistent with the DRIFT data.
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  carried_out_by:
-  - id: coremeta4cat:DEV_32x1-99x6_IR
-    title: FTIR spectrometer
-    description: Instrument model not specified in the source dataset files.
-  rdf_type:
-    id: CHMO:0000630
-    title: infrared spectroscopy
-  evaluated_entity:
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
-    title: Pd/1P/Al2O3
-    description: Pd on Al2O3, nominal 1 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
-    title: Pd/3P/Al2O3
-    description: Pd on Al2O3, nominal 3 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
-    title: Pd/5P/Al2O3
-    description: Pd on Al2O3, nominal 5 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
-    title: Pd/1P/SiO2
-    description: Pd on SiO2, nominal 1 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
-    title: Pd/3P/SiO2
-    description: Pd on SiO2, nominal 3 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
-    title: Pd/5P/SiO2
-    description: Pd on SiO2, nominal 5 wt% P
-  realized_plan:
-    title: Infrared spectroscopy method
-    description: Wavenumber range ~400-3599 cm-1; pseudo-absorbance units.
-    id: coremeta4cat:CHAR_32x1-99x6_IR_method
-    plan_designator: OBI:0000272
-  activity_designator: Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_PXRD
-  title:
-  - Powder XRD phase analysis (10 catalysts)
-  description:
-  - Powder X-ray diffraction for phase identification of all 10 Pd/P-Al2O3 and Pd/P-SiO2
-    catalysts, plus a P/SiO2 support-only reference sample without Pd (file PXRD_1PSiO2.xy).
-    Two-theta range ~2-92 degrees, step size 0.015 degrees (most files); two files
-    (nominal 5 wt% P samples) cover a shorter range ~2-63.5 degrees.
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  carried_out_by:
-  - id: coremeta4cat:DEV_32x1-99x6_PXRD
-    title: X-ray diffractometer
-    description: Instrument model not specified in the source dataset files.
-  rdf_type:
-    id: CHMO:0000158
-    title: powder X-ray diffraction
-  evaluated_entity:
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
-    title: Pd/Al2O3
-    description: Pd on Al2O3, P-free reference
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
-    title: Pd/1P/Al2O3
-    description: Pd on Al2O3, nominal 1 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
-    title: Pd/2P/Al2O3
-    description: Pd on Al2O3, nominal 2 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
-    title: Pd/3P/Al2O3
-    description: Pd on Al2O3, nominal 3 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
-    title: Pd/4P/Al2O3
-    description: Pd on Al2O3, nominal 4 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
-    title: Pd/5P/Al2O3
-    description: Pd on Al2O3, nominal 5 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
-    title: Pd/SiO2
-    description: Pd on SiO2, P-free reference
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
-    title: Pd/1P/SiO2
-    description: Pd on SiO2, nominal 1 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
-    title: Pd/3P/SiO2
-    description: Pd on SiO2, nominal 3 wt% P
-  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
-    title: Pd/5P/SiO2
-    description: Pd on SiO2, nominal 5 wt% P
-  realized_plan:
-    title: Powder XRD measurement method
-    description: Two-theta scan, ~2-92 degrees, step size 0.015 degrees. One file
-      (PXRD_1PSiO2.xy) is a Pd-free P/SiO2 support reference; one file (PXRD_Pd5Al2O3.xy)
-      is missing the 'P' in its name but is interpreted as the nominal 5 wt% P/Al2O3
-      sample based on the file series context (matches ICP sample FR507).
-    id: coremeta4cat:CHAR_32x1-99x6_PXRD_method
-    plan_designator: OBI:0000272
-  activity_designator: Characterization
 creator:
 - name:
   - Rang, Fabian
@@ -1235,3 +762,478 @@ is_about_activity:
 rdf_type:
 - id: voc4cat:0007001
   title: heterogeneous catalysis
+was_generated_by_synthesis:
+- id: coremeta4cat:SYN_32x1-99x6_P_modification
+  title:
+  - Phosphorus modification of alumina and silica by incipient wetness impregnation
+    with NH4H2PO4
+  description:
+  - 'For 970 mg of support, NH4H2PO4 was dissolved in deionised water (1 mL for alumina,
+    added in 0.5 mL aliquots; 1.4 mL for silica, added in 0.7 mL aliquots, based on
+    the pore volume of each support), then dried and calcined in flowing dry air.
+    Source: article, section 4.2.'
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  had_input_entity:
+  - id: coremeta4cat:PREC_32x1-99x6_NH4H2PO4
+    title: ammonium dihydrogen phosphate, NH4H2PO4 (Sigma-Aldrich, >98%)
+    rdf_type:
+      id: CHEBI:62982
+      title: ammonium dihydrogen phosphate
+    precursor_quantity:
+    - value: 37.1
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      description: per 970 mg of support, for 1 wt% P
+      unit: https://qudt.org/vocab/unit/MilliGM
+    - value: 74.3
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      description: per 970 mg of support, for 2 wt% P
+      unit: https://qudt.org/vocab/unit/MilliGM
+    - value: 111.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      description: per 970 mg of support, for 3 wt% P
+      unit: https://qudt.org/vocab/unit/MilliGM
+    - value: 149.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      description: per 970 mg of support, for 4 wt% P
+      unit: https://qudt.org/vocab/unit/MilliGM
+    - value: 186.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      description: per 970 mg of support, for 5 wt% P
+      unit: https://qudt.org/vocab/unit/MilliGM
+  - id: coremeta4cat:SUP_32x1-99x6_Al2O3
+    title: alumina, Puralox TH 100/150 (Sasol), heated at 700 C for 5 h
+    rdf_type:
+      id: CHEBI:30187
+      title: aluminium oxide
+  - id: coremeta4cat:SUP_32x1-99x6_SiO2
+    title: silica, Cariact Q 20C (Fuji Silysia Chemical), heated at 350 C for 5 h
+    rdf_type:
+      id: CHEBI:30563
+      title: silicon dioxide
+    precursor_quantity:
+    - value: 970.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      description: per batch
+      unit: https://qudt.org/vocab/unit/MilliGM
+  had_output_entity:
+  - id: coremeta4cat:SUP_32x1-99x6_1PAl2O3
+    title: 1PAl2O3 (1 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_2PAl2O3
+    title: 2PAl2O3 (2 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_3PAl2O3
+    title: 3PAl2O3 (3 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_4PAl2O3
+    title: 4PAl2O3 (4 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_5PAl2O3
+    title: 5PAl2O3 (5 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_1PSiO2
+    title: 1PSiO2 (1 wt% P on silica)
+  - id: coremeta4cat:SUP_32x1-99x6_3PSiO2
+    title: 3PSiO2 (3 wt% P on silica)
+  - id: coremeta4cat:SUP_32x1-99x6_5PSiO2
+    title: 5PSiO2 (5 wt% P on silica)
+  realized_plan:
+    title: incipient wetness impregnation, drying, calcination in flowing dry air
+    description: Dried 12 h at 60 C, then calcined 4 h at 500 C under compressed dry
+      air (20 NL/h, GHSV 10 h-1).
+    id: coremeta4cat:SYN_32x1-99x6_IWI_air_method
+    plan_designator: voc4cat:0007028
+    impregnation_type:
+    - incipient_wetness
+    has_drying_temperature:
+    - value: 333.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      value: 12.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_temperature_range:
+    - min_value: 773.15
+      max_value: 773.15
+      unit: https://qudt.org/vocab/unit/K
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    has_calcination_dwelling_time:
+      value: 4.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_atmosphere:
+    - value: flowing compressed dry air
+    has_calcination_gas_flow_rate:
+    - value: 20.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFlowRate
+      description: normal litres per hour; GHSV 10 h-1
+      unit: https://qudt.org/vocab/unit/L-PER-HR
+  nominal_composition:
+  - 1, 2, 3, 4 and 5 wt% P on alumina (1PAl2O3 to 5PAl2O3)
+  - 1, 3 and 5 wt% P on silica (1PSiO2, 3PSiO2, 5PSiO2)
+  catalyst_measured_properties:
+  - P contents measured by ICP after Pd deposition (see CHAR_32x1-99x6_ICPAES)
+  - Phosphate species on the modified alumina shown by ATR-IR (article, section 2.1)
+  catalyst_support:
+  - alumina, Puralox TH 100/150 (Sasol)
+  - silica, Cariact Q 20C (Fuji Silysia Chemical)
+  solvent:
+  - id: coremeta4cat:SOLV_32x1-99x6_water
+    title: deionised water
+    rdf_type:
+      id: CHEBI:15377
+      title: water
+  has_sample_pretreatment:
+  - value: Supports heated before use, silica at 350 C and alumina at 700 C, each
+      for 5 h
+- id: coremeta4cat:SYN_32x1-99x6_Pd_impregnation
+  title:
+  - Pd deposition on unmodified and phosphorus-modified supports by incipient wetness
+    impregnation
+  description:
+  - 'Per batch, 0.56 mL of the 10 wt% [Pd(NH3)4](NO3)2 solution was diluted with deionised
+    water (0.44 mL for alumina, added in 0.5 mL aliquots; 0.84 mL for silica, added
+    in 0.7 mL aliquots), impregnated onto the supports, dried and calcined as in the
+    phosphorus modification. Target Pd loading 2 wt%. Source: article, section 4.3.'
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  had_input_entity:
+  - id: coremeta4cat:PREC_32x1-99x6_PdNH34NO32
+    title: tetraamminepalladium(II) nitrate, [Pd(NH3)4](NO3)2, 10 wt% aqueous solution
+      (Sigma-Aldrich, >99%)
+    has_volume:
+    - value: 0.56
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Volume
+      description: per batch
+      unit: https://qudt.org/vocab/unit/MilliL
+  - id: coremeta4cat:SUP_32x1-99x6_Al2O3
+    title: alumina, Puralox TH 100/150 (Sasol), heated at 700 C for 5 h
+    rdf_type:
+      id: CHEBI:30187
+      title: aluminium oxide
+  - id: coremeta4cat:SUP_32x1-99x6_SiO2
+    title: silica, Cariact Q 20C (Fuji Silysia Chemical), heated at 350 C for 5 h
+    rdf_type:
+      id: CHEBI:30563
+      title: silicon dioxide
+  - id: coremeta4cat:SUP_32x1-99x6_1PAl2O3
+    title: 1PAl2O3 (1 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_2PAl2O3
+    title: 2PAl2O3 (2 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_3PAl2O3
+    title: 3PAl2O3 (3 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_4PAl2O3
+    title: 4PAl2O3 (4 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_5PAl2O3
+    title: 5PAl2O3 (5 wt% P on alumina)
+  - id: coremeta4cat:SUP_32x1-99x6_1PSiO2
+    title: 1PSiO2 (1 wt% P on silica)
+  - id: coremeta4cat:SUP_32x1-99x6_3PSiO2
+    title: 3PSiO2 (3 wt% P on silica)
+  - id: coremeta4cat:SUP_32x1-99x6_5PSiO2
+    title: 5PSiO2 (5 wt% P on silica)
+  had_output_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+  realized_plan:
+    title: incipient wetness impregnation, drying, calcination in flowing dry air
+    description: Dried 12 h at 60 C, then calcined 4 h at 500 C under compressed dry
+      air (20 NL/h, GHSV 10 h-1).
+    id: coremeta4cat:SYN_32x1-99x6_IWI_air_method
+    plan_designator: voc4cat:0007028
+    impregnation_type:
+    - incipient_wetness
+    has_drying_temperature:
+    - value: 333.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      value: 12.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_temperature_range:
+    - min_value: 773.15
+      max_value: 773.15
+      unit: https://qudt.org/vocab/unit/K
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    has_calcination_dwelling_time:
+      value: 4.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_atmosphere:
+    - value: flowing compressed dry air
+    has_calcination_gas_flow_rate:
+    - value: 20.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFlowRate
+      description: normal litres per hour; GHSV 10 h-1
+      unit: https://qudt.org/vocab/unit/L-PER-HR
+  nominal_composition:
+  - 2 wt% Pd on alumina with 0, 1, 2, 3, 4 or 5 wt% P
+  - 2 wt% Pd on silica with 0, 1, 3 or 5 wt% P
+  catalyst_measured_properties:
+  - Pd contents by ICP-OES slightly below 2 wt%, deviation below 0.2 wt% (article,
+    section 2.1)
+  - 'BET surface area: Pd/Al2O3 119 m2/g and Pd/5PAl2O3 108 m2/g; Pd/SiO2 126 m2/g
+    and Pd/5PSiO2 72 m2/g'
+  - 'Mean Pd particle size by STEM: 9.7 nm (Pd/SiO2) and 3.8 nm with phosphorus; 3.3
+    nm (Pd/Al2O3) and 2.2 nm with phosphorus (article, Table 1)'
+  catalyst_support:
+  - alumina and silica, unmodified or phosphorus-modified
+  solvent:
+  - id: coremeta4cat:SOLV_32x1-99x6_water
+    title: deionised water
+    rdf_type:
+      id: CHEBI:15377
+      title: water
+  has_sample_pretreatment:
+  - value: Supports heated before use, silica at 350 C and alumina at 700 C, each
+      for 5 h
+was_generated_by_characterization:
+- id: coremeta4cat:CHAR_32x1-99x6_BET
+  title:
+  - BET surface area analysis (10 catalysts)
+  description:
+  - Brunauer-Emmett-Teller specific surface area determination for all 10 Pd/P-Al2O3
+    and Pd/P-SiO2 catalysts (0-5 wt% nominal P loading). Surface area ranged 72-126
+    m2/g, generally decreasing with increasing P loading (bet_results.txt).
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  carried_out_by:
+  - id: coremeta4cat:DEV_32x1-99x6_BET
+    title: BET surface area analyser
+    description: Instrument model not specified in the source dataset files.
+  rdf_type:
+    id: enm:0000064
+    title: BET analysis
+  evaluated_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+    description: Pd on Al2O3, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+    description: Pd on Al2O3, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3
+    description: Pd on Al2O3, nominal 2 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+    description: Pd on Al2O3, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3
+    description: Pd on Al2O3, nominal 4 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+    description: Pd on Al2O3, nominal 5 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+    description: Pd on SiO2, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+    description: Pd on SiO2, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+    description: Pd on SiO2, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+    description: Pd on SiO2, nominal 5 wt% P
+  realized_plan:
+    title: N2 physisorption BET method
+    description: Standard N2 physisorption at liquid-nitrogen temperature (-196C),
+      Brunauer-Emmett-Teller analysis. Adsorbate gas and measurement temperature not
+      explicitly stated in bet_results.txt; assumed standard BET convention.
+    id: coremeta4cat:CHAR_32x1-99x6_BET_method
+    plan_designator: OBI:0000272
+- id: coremeta4cat:CHAR_32x1-99x6_DRIFT
+  title:
+  - DRIFT CO-adsorption spectroscopy (4 catalysts)
+  description:
+  - Diffuse reflectance infrared Fourier transform spectroscopy of CO adsorbed at
+    room temperature, for 4 catalysts (Pd/Al2O3, Pd/3P/Al2O3, Pd/SiO2, Pd/3P/SiO2).
+    Spectra converted to pseudo-absorbance (log(1/reflectance)) per Anal. Chem. 2007,
+    79, 10, 3912-3918 (DOI 10.1021/ac0702802) and baseline-corrected (info_drifts.txt);
+    OriginPro 2023 used for analysis/plotting.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  carried_out_by:
+  - id: coremeta4cat:DEV_32x1-99x6_DRIFT
+    title: FTIR spectrometer with DRIFT accessory
+    description: Instrument model not specified in the source dataset files.
+  rdf_type:
+    id: CHMO:0000645
+    title: diffuse reflectance infrared Fourier transform spectroscopy
+  evaluated_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+    description: Pd on Al2O3, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+    description: Pd on Al2O3, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+    description: Pd on SiO2, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+    description: Pd on SiO2, nominal 3 wt% P
+  realized_plan:
+    title: CO-adsorption DRIFT method
+    description: CO adsorption at room temperature; pseudo-absorbance = log(1/reflectance).
+    id: coremeta4cat:CHAR_32x1-99x6_DRIFT_method
+    plan_designator: OBI:0000272
+- id: coremeta4cat:CHAR_32x1-99x6_ICPAES
+  title:
+  - ICP-AES elemental composition analysis (8 catalysts)
+  description:
+  - Inductively coupled plasma atomic emission spectroscopy for bulk Pd and P content
+    of the 8 P-modified catalysts (measured Pd 1.8-2.0 wt%, P 0.8-4.8 wt%, deviating
+    somewhat from nominal loadings; icp_results.txt). P-free reference catalysts (Pd/Al2O3,
+    Pd/SiO2) were not analysed by ICP-AES.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  carried_out_by:
+  - id: coremeta4cat:DEV_32x1-99x6_ICPAES
+    title: ICP-AES spectrometer
+    description: Instrument model not specified in the source dataset files.
+  rdf_type:
+    id: CHMO:0000267
+    title: inductively coupled plasma atomic emission spectroscopy
+  evaluated_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+    description: Pd on Al2O3, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3
+    description: Pd on Al2O3, nominal 2 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+    description: Pd on Al2O3, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3
+    description: Pd on Al2O3, nominal 4 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+    description: Pd on Al2O3, nominal 5 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+    description: Pd on SiO2, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+    description: Pd on SiO2, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+    description: Pd on SiO2, nominal 5 wt% P
+  realized_plan:
+    title: ICP-AES elemental analysis method
+    description: 'Elements analyzed: Pd, P. Results reported in wt% (icp_results.txt).'
+    id: coremeta4cat:CHAR_32x1-99x6_ICPAES_method
+    plan_designator: OBI:0000272
+- id: coremeta4cat:CHAR_32x1-99x6_IR
+  title:
+  - Infrared spectroscopy (6 catalysts)
+  description:
+  - Infrared spectroscopy of the 6 P-modified catalysts (1, 3, 5 wt% nominal P on
+    Al2O3 and SiO2). Wavenumber range ~400-3599 cm-1, 3319 data points per file, pseudo-absorbance
+    convention consistent with the DRIFT data.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  carried_out_by:
+  - id: coremeta4cat:DEV_32x1-99x6_IR
+    title: FTIR spectrometer
+    description: Instrument model not specified in the source dataset files.
+  rdf_type:
+    id: CHMO:0000630
+    title: infrared spectroscopy
+  evaluated_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+    description: Pd on Al2O3, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+    description: Pd on Al2O3, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+    description: Pd on Al2O3, nominal 5 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+    description: Pd on SiO2, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+    description: Pd on SiO2, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+    description: Pd on SiO2, nominal 5 wt% P
+  realized_plan:
+    title: Infrared spectroscopy method
+    description: Wavenumber range ~400-3599 cm-1; pseudo-absorbance units.
+    id: coremeta4cat:CHAR_32x1-99x6_IR_method
+    plan_designator: OBI:0000272
+- id: coremeta4cat:CHAR_32x1-99x6_PXRD
+  title:
+  - Powder XRD phase analysis (10 catalysts)
+  description:
+  - Powder X-ray diffraction for phase identification of all 10 Pd/P-Al2O3 and Pd/P-SiO2
+    catalysts, plus a P/SiO2 support-only reference sample without Pd (file PXRD_1PSiO2.xy).
+    Two-theta range ~2-92 degrees, step size 0.015 degrees (most files); two files
+    (nominal 5 wt% P samples) cover a shorter range ~2-63.5 degrees.
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  carried_out_by:
+  - id: coremeta4cat:DEV_32x1-99x6_PXRD
+    title: X-ray diffractometer
+    description: Instrument model not specified in the source dataset files.
+  rdf_type:
+    id: CHMO:0000158
+    title: powder X-ray diffraction
+  evaluated_entity:
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+    description: Pd on Al2O3, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+    description: Pd on Al2O3, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3
+    description: Pd on Al2O3, nominal 2 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+    description: Pd on Al2O3, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3
+    description: Pd on Al2O3, nominal 4 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+    description: Pd on Al2O3, nominal 5 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+    description: Pd on SiO2, P-free reference
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+    description: Pd on SiO2, nominal 1 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+    description: Pd on SiO2, nominal 3 wt% P
+  - id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+    description: Pd on SiO2, nominal 5 wt% P
+  realized_plan:
+    title: Powder XRD measurement method
+    description: Two-theta scan, ~2-92 degrees, step size 0.015 degrees. One file
+      (PXRD_1PSiO2.xy) is a Pd-free P/SiO2 support reference; one file (PXRD_Pd5Al2O3.xy)
+      is missing the 'P' in its name but is interpreted as the nominal 5 wt% P/Al2O3
+      sample based on the file series context (matches ICP sample FR507).
+    id: coremeta4cat:CHAR_32x1-99x6_PXRD_method
+    plan_designator: OBI:0000272

@@ -44,7 +44,7 @@
    {
     "class": "CatalysisDataset",
     "label": "CatalysisDataset",
-    "field": "was_generated_by",
+    "field": "was_generated_by_synthesis",
     "as": null,
     "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using voc4cat terms from CatalysisResearchFieldEnum …"
    }
@@ -53,7 +53,7 @@
    {
     "class": "CatalysisDataset",
     "label": "CatalysisDataset",
-    "field": "was_generated_by",
+    "field": "was_generated_by_characterization",
     "as": null,
     "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using voc4cat terms from CatalysisResearchFieldEnum …"
    }
@@ -78,7 +78,7 @@
    {
     "class": "CatalysisDataset",
     "label": "CatalysisDataset",
-    "field": "was_generated_by",
+    "field": "was_generated_by_simulation",
     "as": null,
     "description": "A dcat:Dataset that contains research data in the field of catalysis. The catalysis research field is expressed via rdf_type using voc4cat terms from CatalysisResearchFieldEnum …"
    }
@@ -102,15 +102,51 @@
     },
     {
      "name": "was_generated_by",
-     "range": "CatalysisDataGeneratingActivity",
+     "range": "DataGeneratingActivity",
      "kind": "class",
-     "requirement": "R",
+     "requirement": "M",
      "multivalued": true,
      "unit": "",
-     "description": "The DataGeneratingActivity (Synthesis, Characterization, or Simulation) that produced this dataset.",
+     "description": "The ids of all activities that produced this dataset's data, e.g. [coremeta4cat:SYN_1, coremeta4cat:CHAR_1].",
      "targets": [
       "Synthesis",
       "Characterization",
+      "Simulation"
+     ]
+    },
+    {
+     "name": "was_generated_by_synthesis",
+     "range": "Synthesis",
+     "kind": "class",
+     "requirement": "O",
+     "multivalued": true,
+     "unit": "",
+     "description": "The Synthesis activities (catalyst preparations) that produced data in this dataset, each described in full. List their ids in was_generated_by as well.",
+     "targets": [
+      "Synthesis"
+     ]
+    },
+    {
+     "name": "was_generated_by_characterization",
+     "range": "Characterization",
+     "kind": "class",
+     "requirement": "O",
+     "multivalued": true,
+     "unit": "",
+     "description": "The Characterization activities (measurements of a catalyst, material or reaction) that produced data in this dataset, each described in full. List their ids in was_generated_by as well.",
+     "targets": [
+      "Characterization"
+     ]
+    },
+    {
+     "name": "was_generated_by_simulation",
+     "range": "Simulation",
+     "kind": "class",
+     "requirement": "O",
+     "multivalued": true,
+     "unit": "",
+     "description": "The Simulation activities (computational studies) that produced data in this dataset, each described in full. List their ids in was_generated_by as well.",
+     "targets": [
       "Simulation"
      ]
     },
@@ -1455,7 +1491,7 @@
   },
   "Characterization": {
    "label": "Characterization",
-   "is_a": "CatalysisDataGeneratingActivity",
+   "is_a": "DataGeneratingActivity",
    "role": "DataGeneratingActivity",
    "kind": "struct",
    "description": "A DataGeneratingActivity in which a catalyst sample or catalytic material is characterized using an analytical technique. The catalyst sample being characterized is linked via evaluated_entity.",
@@ -1504,15 +1540,6 @@
      "multivalued": true,
      "unit": "",
      "description": "Type of detector used in the measurement."
-    },
-    {
-     "name": "activity_designator",
-     "range": "string",
-     "kind": "primitive",
-     "requirement": "O",
-     "multivalued": false,
-     "unit": "",
-     "description": "Internal type designator for CatalysisDataGeneratingActivity subclasses (Synthesis, Characterization, Simulation). Only needs to be set by hand when nesting one of these inside another object's was_generated_by list (e.g."
     },
     {
      "name": "realized_plan",
@@ -7640,7 +7667,7 @@
   },
   "Simulation": {
    "label": "Simulation",
-   "is_a": "CatalysisDataGeneratingActivity",
+   "is_a": "DataGeneratingActivity",
    "role": "DataGeneratingActivity",
    "kind": "struct",
    "description": "A DataGeneratingActivity in which a catalyst, catalytic material, or catalytic process is modelled computationally. The simulation software is linked via carried_out_by as a Software agent.",
@@ -7662,15 +7689,6 @@
      "multivalued": true,
      "unit": "",
      "description": "A property computed by this Simulation, provided as a CalculatedProperty instance. Multiple properties may be computed in a single simulation run."
-    },
-    {
-     "name": "activity_designator",
-     "range": "string",
-     "kind": "primitive",
-     "requirement": "O",
-     "multivalued": false,
-     "unit": "",
-     "description": "Internal type designator for CatalysisDataGeneratingActivity subclasses (Synthesis, Characterization, Simulation). Only needs to be set by hand when nesting one of these inside another object's was_generated_by list (e.g."
     },
     {
      "name": "realized_plan",
@@ -8712,7 +8730,7 @@
   },
   "Synthesis": {
    "label": "Synthesis",
-   "is_a": "CatalysisDataGeneratingActivity",
+   "is_a": "DataGeneratingActivity",
    "role": "DataGeneratingActivity",
    "kind": "struct",
    "description": "A DataGeneratingActivity in which a catalyst is prepared. The preparation protocol is linked via realized_plan using a PreparationMethod instance. Input materials (Precursors) are linked via had_input_entity.",
@@ -8770,15 +8788,6 @@
      "multivalued": true,
      "unit": "",
      "description": "Pre-treatment applied to the sample before a process or measurement."
-    },
-    {
-     "name": "activity_designator",
-     "range": "string",
-     "kind": "primitive",
-     "requirement": "O",
-     "multivalued": false,
-     "unit": "",
-     "description": "Internal type designator for CatalysisDataGeneratingActivity subclasses (Synthesis, Characterization, Simulation). Only needs to be set by hand when nesting one of these inside another object's was_generated_by list (e.g."
     },
     {
      "name": "had_input_entity",

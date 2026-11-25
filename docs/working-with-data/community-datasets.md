@@ -77,7 +77,7 @@ methanation, and a mixed CO/CO₂ feed.
 
 The CoreMeta4Cat record groups this into:
 
-- **1 `Characterization`** (`was_generated_by`): the outlet gas analysis used for every run.
+- **1 `Characterization`** (`was_generated_by_characterization`): the outlet gas analysis used for every run.
 - **3 `CatalyticReaction`s** (`is_about_activity`): one per reaction type, each listing all
   catalysts tested under that feed and the temperature range explored.
 
@@ -106,10 +106,10 @@ and citral) on both supports.
 
 The CoreMeta4Cat record groups this into:
 
-- **2 `Synthesis`** (`was_generated_by`): the phosphorus modification of alumina and silica with
+- **2 `Synthesis`** (`was_generated_by_synthesis`): the phosphorus modification of alumina and silica with
   NH₄H₂PO₄, then the Pd impregnation of the modified and unmodified supports. The modified supports
   link the two steps: they are the output of the first and an input of the second.
-- **5 `Characterization`s** (`was_generated_by`): one per technique (BET, ICP-AES, PXRD, DRIFT,
+- **5 `Characterization`s** (`was_generated_by_characterization`): one per technique (BET, ICP-AES, PXRD, DRIFT,
   IR), each covering every catalyst that technique was applied to.
 - **4 `CatalyticReaction`s** (`is_about_activity`): one per substrate and support.
 
@@ -141,9 +141,9 @@ catalyst.
 
 The CoreMeta4Cat record groups this into:
 
-- **2 `Synthesis`** (`was_generated_by`): Pd₃P/SiO₂ and the Pd/SiO₂ reference, both by incipient
+- **2 `Synthesis`** (`was_generated_by_synthesis`): Pd₃P/SiO₂ and the Pd/SiO₂ reference, both by incipient
   wetness impregnation and thermal treatment in hydrogen; they share one preparation method.
-- **5 `Characterization`s** (`was_generated_by`): PXRD, DRIFT (with its argon pretreatment), CO
+- **5 `Characterization`s** (`was_generated_by_characterization`): PXRD, DRIFT (with its argon pretreatment), CO
   chemisorption, XPS and STEM (both with their sample preparation).
 - **3 `CatalyticReaction`s** (`is_about_activity`): one per reaction type.
 
@@ -177,7 +177,7 @@ fixed-bed reactor.
 
 The CoreMeta4Cat record groups this into:
 
-- **4 `Synthesis`** (`was_generated_by`): the co-precipitation route (with the article's worked
+- **4 `Synthesis`** (`was_generated_by_synthesis`): the co-precipitation route (with the article's worked
   example), the first-generation catalyst, and the second-generation catalyst in two chained
   steps (co-precipitation, then Ga impregnation).
 - **1 `Characterization`**: XRF of the precursor library.
@@ -217,7 +217,7 @@ for reactor profiles, turnover frequencies and a parameter study.
 
 The CoreMeta4Cat record groups this into:
 
-- **2 `Synthesis`** (`was_generated_by`): the cermet supports (tape casting and sintering), then
+- **2 `Synthesis`** (`was_generated_by_synthesis`): the cermet supports (tape casting and sintering), then
   Ru and Ba by incipient wetness impregnation.
 - **1 `Characterization`**: H₂-TPR of the Ni-BCZY cermet.
 - **2 `Simulation`s**: the microkinetic model compared with the experiments, and the parameter
@@ -257,7 +257,7 @@ energies. The deposit consists of the software archives of each step (about 33 G
 
 The CoreMeta4Cat record groups this into:
 
-- **4 `Simulation`s** (`was_generated_by`): protein preparation, induced-fit docking, molecular
+- **4 `Simulation`s** (`was_generated_by_simulation`): protein preparation, induced-fit docking, molecular
   dynamics and MM/GBSA. There is no `CatalyticReaction`; the enzyme kinetics are not part of this
   deposit.
 

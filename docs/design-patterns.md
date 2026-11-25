@@ -32,11 +32,13 @@ rdf_type:
     title: "heterogeneous catalysis"
 
 # Layer 2: links to the four data classes
-was_generated_by:
+was_generated_by:                       # ids of all activities that produced the data
+  - ex:synthesis-001
+  - ex:characterization-001
+was_generated_by_synthesis:             # each activity in full, under its kind
   - id: ex:synthesis-001
-    type: Synthesis
+was_generated_by_characterization:
   - id: ex:characterization-001
-    type: Characterization
 
 is_about_activity:
   - id: ex:reaction-001
@@ -50,7 +52,7 @@ is_about_entity:
 The key points here are:
 
 - `rdf_type` carries a **controlled vocabulary term** from [Voc4Cat](https://nfdi4cat.github.io/voc4cat/) to classify which field of catalysis the dataset belongs to.
-- `was_generated_by` links to **activities that produced the data** (Synthesis, Characterization, Simulation).
+- `was_generated_by` links to **activities that produced the data** (Synthesis, Characterization, Simulation) by their ids. Each activity is described under the field for its kind (`was_generated_by_synthesis`, `was_generated_by_characterization`, `was_generated_by_simulation`), which also gives it its class in RDF.
 - `is_about_activity` links to the **Reaction being studied** — which is the catalytic process itself, not a data-generating step.
 - `is_about_entity` links to the **catalyst sample or material** the dataset concerns.
 
@@ -129,10 +131,10 @@ Eight reactor design types are defined:
 !!! info "Operando experiments"
     For in-situ or operando experiments (e.g. XRD measured while a reaction runs), the dataset carries **both** links simultaneously:
     ```yaml
-    was_generated_by:
-      - type: Characterization     # PowderXRD — the process that made the data
+    was_generated_by_characterization:
+      - id: ex:xrd-001             # PowderXRD — the process that made the data
     is_about_activity:
-      - type: Reaction             # the catalytic process being monitored
+      - id: ex:reaction-001        # the catalytic process being monitored
     ```
 
 ### Simulation
@@ -317,7 +319,9 @@ This distinction enables operando experiments to be described correctly:
 ```yaml
 # Operando XRD during CO oxidation
 was_generated_by:
-  - type: Characterization      # PowderXRD run — this produced the data
+  - ex:operando-xrd-001
+was_generated_by_characterization:
+  - id: ex:operando-xrd-001     # PowderXRD run — this produced the data
     rdf_type:
       id: CHMO:0000158
       title: "powder X-ray diffraction"
@@ -336,7 +340,7 @@ is_about_activity:
 
 If `Reaction` were modelled as a `DataGeneratingActivity`, this relationship would collapse: it would be impossible to distinguish the measurement from the catalytic process it monitors.
 
-The same distinction appears in DCAT-AP-PLUS itself — the NMR example in the base documentation uses `was_generated_by: NMRSpectroscopy` (the measurement) and `evaluated_entity: MaterialSample` (the thing measured). CoreMeta4Cat extends this by adding `is_about_activity: Reaction` for cases where a process — not just a material — is being monitored.
+The same distinction appears in DCAT-AP-PLUS itself — the NMR example in the base documentation uses `was_generated_by: NMRSpectroscopy` (the measurement) and `evaluated_entity: MaterialSample` (the thing measured). CoreMeta4Cat extends this by adding `is_about_activity: Reaction` for cases where a process — not just a material — is being monitored. Its `was_generated_by_characterization` (and the synthesis and simulation counterparts) are specialisations of `was_generated_by`: in RDF they are `prov:wasGeneratedBy` too.
 
 ---
 
