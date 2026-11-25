@@ -39,8 +39,10 @@ Every record answers the same handful of questions, in this order:
    people who created it, and where the original files live (`id`, `title`, `description`,
    `rdf_type`, `creator`, `dataset_distribution`).
 2. **What activities produced the data?** Was a catalyst synthesized (`Synthesis`)? Was
-   something measured (`Characterization`)? Was something computed (`Simulation`)? These go
-   under `was_generated_by`.
+   something measured (`Characterization`)? Was something computed (`Simulation`)? Each goes
+   under the field for its kind (`was_generated_by_synthesis`,
+   `was_generated_by_characterization`, `was_generated_by_simulation`), and `was_generated_by`
+   lists the ids of all of them.
 3. **What catalytic reaction is the dataset about?** The reaction being studied, with its
    reactants, catalysts, reactor, conditions, and how products were identified. This goes under
    `is_about_activity`.

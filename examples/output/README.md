@@ -16,8 +16,38 @@ rdf_type:
 title:
 - 'Methanol synthesis over Cu/ZnO/Al2O3: synthesis and catalytic performance dataset'
 was_generated_by:
-- activity_designator: Synthesis
-  catalyst_measured_properties:
+- coremeta4cat:SYNTH_001_Pt_Al2O3
+- coremeta4cat:CHAR_001_BET_CuZnO_Al2O3
+- coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3
+was_generated_by_characterization:
+- carried_out_by:
+  - id: coremeta4cat:DEV_001_Micromeritics_ASAP2020
+    title: Micromeritics ASAP 2020 surface area and porosimetry analyzer
+  evaluated_entity:
+  - description: 63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)
+    id: coremeta4cat:CAT_001_CuZnO_Al2O3
+    title: Cu/ZnO/Al2O3 methanol synthesis catalyst
+  id: coremeta4cat:CHAR_001_BET_CuZnO_Al2O3
+  realized_plan:
+    description: N2 physisorption at 77 K, degassing at 300 deg C for 3 h under vacuum
+      prior to measurement
+    id: coremeta4cat:CHAR_001_BET_method
+    title: BET surface area measurement
+- carried_out_by:
+  - id: coremeta4cat:DEV_002_Bruker_D8_Advance
+    title: Bruker D8 Advance diffractometer with Cu K-alpha radiation (1.5406 Ang)
+  evaluated_entity:
+  - description: 63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)
+    id: coremeta4cat:CAT_001_CuZnO_Al2O3
+    title: Cu/ZnO/Al2O3 methanol synthesis catalyst
+  id: coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3
+  realized_plan:
+    description: Cu K-alpha, 2theta range 5 to 80 deg, step size 0.02 deg, scan rate
+      1 deg/min, Rietveld refinement for phase quantification
+    id: coremeta4cat:CHAR_002_XRD_method
+    title: powder X-ray diffraction
+was_generated_by_synthesis:
+- catalyst_measured_properties:
   - 'BET surface area: 185 m2/g, Pt particle size: 2.3 nm (TEM), Pt loading: 4.8 wt%
     (ICP-AES)'
   catalyst_support:
@@ -43,34 +73,6 @@ was_generated_by:
     title: deionized water
   storage_conditions:
   - stored in desiccator under argon atmosphere at room temperature
-- activity_designator: Characterization
-  carried_out_by:
-  - id: coremeta4cat:DEV_001_Micromeritics_ASAP2020
-    title: Micromeritics ASAP 2020 surface area and porosimetry analyzer
-  evaluated_entity:
-  - description: 63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)
-    id: coremeta4cat:CAT_001_CuZnO_Al2O3
-    title: Cu/ZnO/Al2O3 methanol synthesis catalyst
-  id: coremeta4cat:CHAR_001_BET_CuZnO_Al2O3
-  realized_plan:
-    description: N2 physisorption at 77 K, degassing at 300 deg C for 3 h under vacuum
-      prior to measurement
-    id: coremeta4cat:CHAR_001_BET_method
-    title: BET surface area measurement
-- activity_designator: Characterization
-  carried_out_by:
-  - id: coremeta4cat:DEV_002_Bruker_D8_Advance
-    title: Bruker D8 Advance diffractometer with Cu K-alpha radiation (1.5406 Ang)
-  evaluated_entity:
-  - description: 63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)
-    id: coremeta4cat:CAT_001_CuZnO_Al2O3
-    title: Cu/ZnO/Al2O3 methanol synthesis catalyst
-  id: coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3
-  realized_plan:
-    description: Cu K-alpha, 2theta range 5 to 80 deg, step size 0.02 deg, scan rate
-      1 deg/min, Rietveld refinement for phase quantification
-    id: coremeta4cat:CHAR_002_XRD_method
-    title: powder X-ray diffraction
 
 ```
 ## CatalysisDataset-002
@@ -175,8 +177,114 @@ title:
 - 'NiO/CeO2 dry methane reforming catalyst: co-precipitation synthesis, multi-technique
   characterization, catalytic performance, and computational interface study'
 was_generated_by:
-- activity_designator: Synthesis
-  catalyst_measured_properties:
+- coremeta4cat:SYNTH_002_NiO_CeO2
+- coremeta4cat:CHAR_003_XPS_NiO_CeO2
+- coremeta4cat:CHAR_004_TPR_NiO_CeO2
+- coremeta4cat:SIM_002_MD_Ni_CeO2_111
+was_generated_by_characterization:
+- carried_out_by:
+  - id: coremeta4cat:DEV_003_Thermo_KAlpha_XPS
+    title: Thermo Scientific K-Alpha+ XPS spectrometer
+  - id: coremeta4cat:DEV_004_AlKalpha_source
+    title: Al K-alpha monochromatic X-ray source (1486.6 eV, 72 W)
+  detector_type:
+  - 128-channel 2D delay-line detector (DLD)
+  evaluated_entity:
+  - description: 15 wt% NiO on CeO2 support, calcined at 500 deg C
+    id: coremeta4cat:CAT_002_NiO_CeO2
+    title: NiO/CeO2 dry reforming catalyst (calcined)
+  has_sample_pretreatment:
+  - value: outgassed in XPS load-lock chamber at < 1e-7 mbar for 12 h before transfer
+      to analysis chamber (< 5e-9 mbar)
+  id: coremeta4cat:CHAR_003_XPS_NiO_CeO2
+  realized_plan:
+    description: 'monochromatic Al K-alpha (1486.6 eV); base pressure 5e-9 mbar; survey
+      scan: 0-1350 eV, 1.0 eV step, 50 ms dwell, 3 scans, pass energy 200 eV; high-resolution
+      regions: Ni 2p3/2 (845-895 eV), Ce 3d (875-935 eV), O 1s (525-540 eV), C 1s
+      (280-295 eV); step size 0.1 eV, 20 scans each, pass energy 50 eV; spot size
+      400 um; lens mode: large area XL; charge compensation: dual-beam flood gun (1
+      eV electrons + 10 eV Ar+); binding energy scale calibrated to C 1s adventitious
+      carbon at 284.8 eV; Shirley background subtraction; peak fitting: Voigt profiles
+      (CasaXPS v2.3.25); atomic concentrations from Scofield sensitivity factors corrected
+      for transmission function'
+    id: coremeta4cat:CHAR_003_XPS_method
+    title: X-ray photoelectron spectroscopy (XPS)
+  sample_description:
+  - NiO/CeO2 co-precipitated catalyst (SYNTH_002), calcined at 500 deg C, as-prepared
+    (non-reduced), ca. 10 mg pressed into indium foil
+  sample_preparation:
+  - lightly pressed into indium foil to obtain flat surface; mounted on sample stub
+    with copper tape; no Ar+ sputtering performed
+  sample_state:
+  - powder
+- carried_out_by:
+  - id: coremeta4cat:DEV_005_Micromeritics_AutoChem
+    title: Micromeritics AutoChem II 2920 chemisorption analyzer
+  detector_type:
+  - thermal conductivity detector (TCD), Ar carrier gas reference channel
+  evaluated_entity:
+  - description: 15 wt% NiO on CeO2, calcined at 500 deg C / 4 h
+    id: coremeta4cat:CAT_002_NiO_CeO2
+    title: NiO/CeO2 dry reforming catalyst (calcined)
+  has_sample_pretreatment:
+  - value: 'oxidative pretreatment: 10 vol% O2/Ar (50 mL/min) at 300 deg C for 30
+      min; cool to 50 deg C under Ar purge'
+  id: coremeta4cat:CHAR_004_TPR_NiO_CeO2
+  realized_plan:
+    description: 'reducing gas: 5 vol% H2/Ar, total flow 50 mL/min (calibrated Brooks
+      MFC); temperature programme: 50 deg C to 900 deg C at 10 deg C/min; isothermal
+      hold: 30 min at 900 deg C; H2O trap: molecular sieve 3A between reactor outlet
+      and TCD to prevent TCD signal interference; baseline: Ar flow for 30 min at
+      50 deg C before switching to H2/Ar; H2 consumption quantified by integration
+      of TCD signal, calibrated against CuO reference standard (99.9%, 10 mg, single
+      reduction peak at 310 deg C); NiO reduction: expected peaks at 280-350 deg C
+      (NiO weakly interacting with CeO2) and 400-600 deg C (NiO strongly interacting);
+      CeO2 surface reduction: 600-900 deg C'
+    id: coremeta4cat:CHAR_004_TPR_method
+    title: H2 temperature-programmed reduction (H2-TPR)
+  sample_description:
+  - NiO/CeO2 calcined at 500 deg C; 50 mg packed in quartz U-tube reactor (4 mm ID);
+    quartz wool plugs above and below bed
+was_generated_by_simulation:
+- calculated_property:
+  - description: CeO2(111) cleavage surface energy (clean slab without Ni cluster,
+      computed from relaxed DFT-D3 reference at 0 K, used as force field validation
+      benchmark)
+    value: 1.52 J/m2
+  - description: time-averaged Ni-CeO2 adhesion energy per Ni atom (13-atom cluster)
+      relative to bulk Ni cohesive energy and clean CeO2(111) slab; computed from
+      800 ps production trajectory
+    value: -1.83 eV/atom
+  - description: first-shell Ni-O coordination distance at Ni cluster / CeO2 interface
+      (peak of Ni-O radial distribution function, production trajectory average)
+    value: 3.8 Ang
+  - description: fraction of Ni atoms in direct contact with CeO2 surface (Ni-O bond
+      order > 0.3) averaged over production trajectory; measures cluster wetting /
+      spreading
+    value: '0.42'
+  evaluated_entity:
+  - description: 6-layer CeO2(111) p(4x4) slab (256 CeO2 formula units, 768 atoms
+      total); bottom 3 layers fixed during MD; 13-atom cuboctahedral Ni cluster adsorbed
+      on three-fold hollow O site; 20 Ang vacuum layer; 3D periodic boundary conditions
+    id: coremeta4cat:SLAB_002_CeO2_111_Ni13
+    title: CeO2(111) surface slab with supported 13-atom Ni cluster
+  id: coremeta4cat:SIM_002_MD_Ni_CeO2_111
+  realized_plan:
+    description: 'force field: ReaxFF C/H/Ni/O parametrisation (van Duin et al. 2012,
+      DOI: 10.1021/jp210484t); ensemble: NVT with Nose-Hoover thermostat (tau = 100
+      fs) at 800 deg C (1073 K); integration timestep: 0.5 fs; total simulation time:
+      1 ns (2,000,000 steps); equilibration phase: 200 ps (400,000 steps) discarded;
+      production phase: 800 ps (1,600,000 steps) used for analysis; sampling interval:
+      every 1000 steps (0.5 ps); bond order cutoff: C-O 0.3, Ni-O 0.3 (fix reax/c/bonds);
+      radial distribution functions computed with OVITO using 0.05 Ang bin width;
+      common-neighbour analysis (CNA) to track Ni cluster crystallographic ordering'
+    id: coremeta4cat:SIM_002_MD_method
+    title: ReaxFF molecular dynamics (NVT, 800 deg C)
+  software_package:
+  - LAMMPS (29 Sep 2021 stable release, OpenMP build)
+  - OVITO 3.7.11 (structure analysis, RDF, CNA, cluster tracking)
+was_generated_by_synthesis:
+- catalyst_measured_properties:
   - 'BET surface area: 42 m2/g'
   - 'NiO crystallite size: 8.4 nm (Scherrer, XRD)'
   - 'Ni loading: 14.7 wt% (ICP-AES)'
@@ -228,109 +336,6 @@ was_generated_by:
     title: deionized water (18.2 MOhm cm, MilliQ)
   storage_conditions:
   - sealed glass vial in desiccator, ambient temperature, protected from moisture
-- activity_designator: Characterization
-  carried_out_by:
-  - id: coremeta4cat:DEV_003_Thermo_KAlpha_XPS
-    title: Thermo Scientific K-Alpha+ XPS spectrometer
-  - id: coremeta4cat:DEV_004_AlKalpha_source
-    title: Al K-alpha monochromatic X-ray source (1486.6 eV, 72 W)
-  detector_type:
-  - 128-channel 2D delay-line detector (DLD)
-  evaluated_entity:
-  - description: 15 wt% NiO on CeO2 support, calcined at 500 deg C
-    id: coremeta4cat:CAT_002_NiO_CeO2
-    title: NiO/CeO2 dry reforming catalyst (calcined)
-  has_sample_pretreatment:
-  - value: outgassed in XPS load-lock chamber at < 1e-7 mbar for 12 h before transfer
-      to analysis chamber (< 5e-9 mbar)
-  id: coremeta4cat:CHAR_003_XPS_NiO_CeO2
-  realized_plan:
-    description: 'monochromatic Al K-alpha (1486.6 eV); base pressure 5e-9 mbar; survey
-      scan: 0-1350 eV, 1.0 eV step, 50 ms dwell, 3 scans, pass energy 200 eV; high-resolution
-      regions: Ni 2p3/2 (845-895 eV), Ce 3d (875-935 eV), O 1s (525-540 eV), C 1s
-      (280-295 eV); step size 0.1 eV, 20 scans each, pass energy 50 eV; spot size
-      400 um; lens mode: large area XL; charge compensation: dual-beam flood gun (1
-      eV electrons + 10 eV Ar+); binding energy scale calibrated to C 1s adventitious
-      carbon at 284.8 eV; Shirley background subtraction; peak fitting: Voigt profiles
-      (CasaXPS v2.3.25); atomic concentrations from Scofield sensitivity factors corrected
-      for transmission function'
-    id: coremeta4cat:CHAR_003_XPS_method
-    title: X-ray photoelectron spectroscopy (XPS)
-  sample_description:
-  - NiO/CeO2 co-precipitated catalyst (SYNTH_002), calcined at 500 deg C, as-prepared
-    (non-reduced), ca. 10 mg pressed into indium foil
-  sample_preparation:
-  - lightly pressed into indium foil to obtain flat surface; mounted on sample stub
-    with copper tape; no Ar+ sputtering performed
-  sample_state:
-  - powder
-- activity_designator: Characterization
-  carried_out_by:
-  - id: coremeta4cat:DEV_005_Micromeritics_AutoChem
-    title: Micromeritics AutoChem II 2920 chemisorption analyzer
-  detector_type:
-  - thermal conductivity detector (TCD), Ar carrier gas reference channel
-  evaluated_entity:
-  - description: 15 wt% NiO on CeO2, calcined at 500 deg C / 4 h
-    id: coremeta4cat:CAT_002_NiO_CeO2
-    title: NiO/CeO2 dry reforming catalyst (calcined)
-  has_sample_pretreatment:
-  - value: 'oxidative pretreatment: 10 vol% O2/Ar (50 mL/min) at 300 deg C for 30
-      min; cool to 50 deg C under Ar purge'
-  id: coremeta4cat:CHAR_004_TPR_NiO_CeO2
-  realized_plan:
-    description: 'reducing gas: 5 vol% H2/Ar, total flow 50 mL/min (calibrated Brooks
-      MFC); temperature programme: 50 deg C to 900 deg C at 10 deg C/min; isothermal
-      hold: 30 min at 900 deg C; H2O trap: molecular sieve 3A between reactor outlet
-      and TCD to prevent TCD signal interference; baseline: Ar flow for 30 min at
-      50 deg C before switching to H2/Ar; H2 consumption quantified by integration
-      of TCD signal, calibrated against CuO reference standard (99.9%, 10 mg, single
-      reduction peak at 310 deg C); NiO reduction: expected peaks at 280-350 deg C
-      (NiO weakly interacting with CeO2) and 400-600 deg C (NiO strongly interacting);
-      CeO2 surface reduction: 600-900 deg C'
-    id: coremeta4cat:CHAR_004_TPR_method
-    title: H2 temperature-programmed reduction (H2-TPR)
-  sample_description:
-  - NiO/CeO2 calcined at 500 deg C; 50 mg packed in quartz U-tube reactor (4 mm ID);
-    quartz wool plugs above and below bed
-- activity_designator: Simulation
-  calculated_property:
-  - description: CeO2(111) cleavage surface energy (clean slab without Ni cluster,
-      computed from relaxed DFT-D3 reference at 0 K, used as force field validation
-      benchmark)
-    value: 1.52 J/m2
-  - description: time-averaged Ni-CeO2 adhesion energy per Ni atom (13-atom cluster)
-      relative to bulk Ni cohesive energy and clean CeO2(111) slab; computed from
-      800 ps production trajectory
-    value: -1.83 eV/atom
-  - description: first-shell Ni-O coordination distance at Ni cluster / CeO2 interface
-      (peak of Ni-O radial distribution function, production trajectory average)
-    value: 3.8 Ang
-  - description: fraction of Ni atoms in direct contact with CeO2 surface (Ni-O bond
-      order > 0.3) averaged over production trajectory; measures cluster wetting /
-      spreading
-    value: '0.42'
-  evaluated_entity:
-  - description: 6-layer CeO2(111) p(4x4) slab (256 CeO2 formula units, 768 atoms
-      total); bottom 3 layers fixed during MD; 13-atom cuboctahedral Ni cluster adsorbed
-      on three-fold hollow O site; 20 Ang vacuum layer; 3D periodic boundary conditions
-    id: coremeta4cat:SLAB_002_CeO2_111_Ni13
-    title: CeO2(111) surface slab with supported 13-atom Ni cluster
-  id: coremeta4cat:SIM_002_MD_Ni_CeO2_111
-  realized_plan:
-    description: 'force field: ReaxFF C/H/Ni/O parametrisation (van Duin et al. 2012,
-      DOI: 10.1021/jp210484t); ensemble: NVT with Nose-Hoover thermostat (tau = 100
-      fs) at 800 deg C (1073 K); integration timestep: 0.5 fs; total simulation time:
-      1 ns (2,000,000 steps); equilibration phase: 200 ps (400,000 steps) discarded;
-      production phase: 800 ps (1,600,000 steps) used for analysis; sampling interval:
-      every 1000 steps (0.5 ps); bond order cutoff: C-O 0.3, Ni-O 0.3 (fix reax/c/bonds);
-      radial distribution functions computed with OVITO using 0.05 Ang bin width;
-      common-neighbour analysis (CNA) to track Ni cluster crystallographic ordering'
-    id: coremeta4cat:SIM_002_MD_method
-    title: ReaxFF molecular dynamics (NVT, 800 deg C)
-  software_package:
-  - LAMMPS (29 Sep 2021 stable release, OpenMP build)
-  - OVITO 3.7.11 (structure analysis, RDF, CNA, cluster tracking)
 
 ```
 ## CatalysisDataset-2d6m-exeb
@@ -1033,8 +1038,9 @@ rdf_type:
 title:
 - 'Dataset for Publication: Reaction Kinetics of CO and CO2 Methanation over Nickel'
 was_generated_by:
-- activity_designator: Characterization
-  carried_out_by:
+- coremeta4cat:CHAR_2d6m-exeb_outlet_gas_analysis
+was_generated_by_characterization:
+- carried_out_by:
   - description: Instrument model not specified in the source dataset files.
     id: coremeta4cat:DEV_2d6m-exeb_GC
     title: gas chromatograph
@@ -1821,8 +1827,244 @@ title:
 - "Support Engineering with Phosphorus: Tuning the Palladium-Catalyzed Selective Hydrogenation\
   \ of \u03B1,\u03B2-Unsaturated Aldehydes"
 was_generated_by:
-- activity_designator: Synthesis
-  catalyst_measured_properties:
+- coremeta4cat:SYN_32x1-99x6_P_modification
+- coremeta4cat:SYN_32x1-99x6_Pd_impregnation
+- coremeta4cat:CHAR_32x1-99x6_BET
+- coremeta4cat:CHAR_32x1-99x6_DRIFT
+- coremeta4cat:CHAR_32x1-99x6_ICPAES
+- coremeta4cat:CHAR_32x1-99x6_IR
+- coremeta4cat:CHAR_32x1-99x6_PXRD
+was_generated_by_characterization:
+- carried_out_by:
+  - description: Instrument model not specified in the source dataset files.
+    id: coremeta4cat:DEV_32x1-99x6_BET
+    title: BET surface area analyser
+  description:
+  - Brunauer-Emmett-Teller specific surface area determination for all 10 Pd/P-Al2O3
+    and Pd/P-SiO2 catalysts (0-5 wt% nominal P loading). Surface area ranged 72-126
+    m2/g, generally decreasing with increasing P loading (bet_results.txt).
+  evaluated_entity:
+  - description: Pd on Al2O3, P-free reference
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+  - description: Pd on Al2O3, nominal 1 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+  - description: Pd on Al2O3, nominal 2 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3
+  - description: Pd on Al2O3, nominal 3 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+  - description: Pd on Al2O3, nominal 4 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3
+  - description: Pd on Al2O3, nominal 5 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+  - description: Pd on SiO2, P-free reference
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+  - description: Pd on SiO2, nominal 1 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+  - description: Pd on SiO2, nominal 3 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+  - description: Pd on SiO2, nominal 5 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+  id: coremeta4cat:CHAR_32x1-99x6_BET
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  rdf_type:
+    id: enm:0000064
+    title: BET analysis
+  realized_plan:
+    description: Standard N2 physisorption at liquid-nitrogen temperature (-196C),
+      Brunauer-Emmett-Teller analysis. Adsorbate gas and measurement temperature not
+      explicitly stated in bet_results.txt; assumed standard BET convention.
+    id: coremeta4cat:CHAR_32x1-99x6_BET_method
+    title: N2 physisorption BET method
+  title:
+  - BET surface area analysis (10 catalysts)
+- carried_out_by:
+  - description: Instrument model not specified in the source dataset files.
+    id: coremeta4cat:DEV_32x1-99x6_DRIFT
+    title: FTIR spectrometer with DRIFT accessory
+  description:
+  - Diffuse reflectance infrared Fourier transform spectroscopy of CO adsorbed at
+    room temperature, for 4 catalysts (Pd/Al2O3, Pd/3P/Al2O3, Pd/SiO2, Pd/3P/SiO2).
+    Spectra converted to pseudo-absorbance (log(1/reflectance)) per Anal. Chem. 2007,
+    79, 10, 3912-3918 (DOI 10.1021/ac0702802) and baseline-corrected (info_drifts.txt);
+    OriginPro 2023 used for analysis/plotting.
+  evaluated_entity:
+  - description: Pd on Al2O3, P-free reference
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+  - description: Pd on Al2O3, nominal 3 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+  - description: Pd on SiO2, P-free reference
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+  - description: Pd on SiO2, nominal 3 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+  id: coremeta4cat:CHAR_32x1-99x6_DRIFT
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  rdf_type:
+    id: CHMO:0000645
+    title: diffuse reflectance infrared Fourier transform spectroscopy
+  realized_plan:
+    description: CO adsorption at room temperature; pseudo-absorbance = log(1/reflectance).
+    id: coremeta4cat:CHAR_32x1-99x6_DRIFT_method
+    title: CO-adsorption DRIFT method
+  title:
+  - DRIFT CO-adsorption spectroscopy (4 catalysts)
+- carried_out_by:
+  - description: Instrument model not specified in the source dataset files.
+    id: coremeta4cat:DEV_32x1-99x6_ICPAES
+    title: ICP-AES spectrometer
+  description:
+  - Inductively coupled plasma atomic emission spectroscopy for bulk Pd and P content
+    of the 8 P-modified catalysts (measured Pd 1.8-2.0 wt%, P 0.8-4.8 wt%, deviating
+    somewhat from nominal loadings; icp_results.txt). P-free reference catalysts (Pd/Al2O3,
+    Pd/SiO2) were not analysed by ICP-AES.
+  evaluated_entity:
+  - description: Pd on Al2O3, nominal 1 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+  - description: Pd on Al2O3, nominal 2 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3
+  - description: Pd on Al2O3, nominal 3 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+  - description: Pd on Al2O3, nominal 4 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3
+  - description: Pd on Al2O3, nominal 5 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+  - description: Pd on SiO2, nominal 1 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+  - description: Pd on SiO2, nominal 3 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+  - description: Pd on SiO2, nominal 5 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+  id: coremeta4cat:CHAR_32x1-99x6_ICPAES
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  rdf_type:
+    id: CHMO:0000267
+    title: inductively coupled plasma atomic emission spectroscopy
+  realized_plan:
+    description: 'Elements analyzed: Pd, P. Results reported in wt% (icp_results.txt).'
+    id: coremeta4cat:CHAR_32x1-99x6_ICPAES_method
+    title: ICP-AES elemental analysis method
+  title:
+  - ICP-AES elemental composition analysis (8 catalysts)
+- carried_out_by:
+  - description: Instrument model not specified in the source dataset files.
+    id: coremeta4cat:DEV_32x1-99x6_IR
+    title: FTIR spectrometer
+  description:
+  - Infrared spectroscopy of the 6 P-modified catalysts (1, 3, 5 wt% nominal P on
+    Al2O3 and SiO2). Wavenumber range ~400-3599 cm-1, 3319 data points per file, pseudo-absorbance
+    convention consistent with the DRIFT data.
+  evaluated_entity:
+  - description: Pd on Al2O3, nominal 1 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+  - description: Pd on Al2O3, nominal 3 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+  - description: Pd on Al2O3, nominal 5 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+  - description: Pd on SiO2, nominal 1 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+  - description: Pd on SiO2, nominal 3 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+  - description: Pd on SiO2, nominal 5 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+  id: coremeta4cat:CHAR_32x1-99x6_IR
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  rdf_type:
+    id: CHMO:0000630
+    title: infrared spectroscopy
+  realized_plan:
+    description: Wavenumber range ~400-3599 cm-1; pseudo-absorbance units.
+    id: coremeta4cat:CHAR_32x1-99x6_IR_method
+    title: Infrared spectroscopy method
+  title:
+  - Infrared spectroscopy (6 catalysts)
+- carried_out_by:
+  - description: Instrument model not specified in the source dataset files.
+    id: coremeta4cat:DEV_32x1-99x6_PXRD
+    title: X-ray diffractometer
+  description:
+  - Powder X-ray diffraction for phase identification of all 10 Pd/P-Al2O3 and Pd/P-SiO2
+    catalysts, plus a P/SiO2 support-only reference sample without Pd (file PXRD_1PSiO2.xy).
+    Two-theta range ~2-92 degrees, step size 0.015 degrees (most files); two files
+    (nominal 5 wt% P samples) cover a shorter range ~2-63.5 degrees.
+  evaluated_entity:
+  - description: Pd on Al2O3, P-free reference
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
+    title: Pd/Al2O3
+  - description: Pd on Al2O3, nominal 1 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
+    title: Pd/1P/Al2O3
+  - description: Pd on Al2O3, nominal 2 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
+    title: Pd/2P/Al2O3
+  - description: Pd on Al2O3, nominal 3 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
+    title: Pd/3P/Al2O3
+  - description: Pd on Al2O3, nominal 4 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
+    title: Pd/4P/Al2O3
+  - description: Pd on Al2O3, nominal 5 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
+    title: Pd/5P/Al2O3
+  - description: Pd on SiO2, P-free reference
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
+    title: Pd/SiO2
+  - description: Pd on SiO2, nominal 1 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
+    title: Pd/1P/SiO2
+  - description: Pd on SiO2, nominal 3 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
+    title: Pd/3P/SiO2
+  - description: Pd on SiO2, nominal 5 wt% P
+    id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
+    title: Pd/5P/SiO2
+  id: coremeta4cat:CHAR_32x1-99x6_PXRD
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
+  rdf_type:
+    id: CHMO:0000158
+    title: powder X-ray diffraction
+  realized_plan:
+    description: Two-theta scan, ~2-92 degrees, step size 0.015 degrees. One file
+      (PXRD_1PSiO2.xy) is a Pd-free P/SiO2 support reference; one file (PXRD_Pd5Al2O3.xy)
+      is missing the 'P' in its name but is interpreted as the nominal 5 wt% P/Al2O3
+      sample based on the file series context (matches ICP sample FR507).
+    id: coremeta4cat:CHAR_32x1-99x6_PXRD_method
+    title: Powder XRD measurement method
+  title:
+  - Powder XRD phase analysis (10 catalysts)
+was_generated_by_synthesis:
+- catalyst_measured_properties:
   - P contents measured by ICP after Pd deposition (see CHAR_32x1-99x6_ICPAES)
   - Phosphate species on the modified alumina shown by ATR-IR (article, section 2.1)
   catalyst_support:
@@ -1942,8 +2184,7 @@ was_generated_by:
   title:
   - Phosphorus modification of alumina and silica by incipient wetness impregnation
     with NH4H2PO4
-- activity_designator: Synthesis
-  catalyst_measured_properties:
+- catalyst_measured_properties:
   - Pd contents by ICP-OES slightly below 2 wt%, deviation below 0.2 wt% (article,
     section 2.1)
   - 'BET surface area: Pd/Al2O3 119 m2/g and Pd/5PAl2O3 108 m2/g; Pd/SiO2 126 m2/g
@@ -2063,239 +2304,6 @@ was_generated_by:
   title:
   - Pd deposition on unmodified and phosphorus-modified supports by incipient wetness
     impregnation
-- activity_designator: Characterization
-  carried_out_by:
-  - description: Instrument model not specified in the source dataset files.
-    id: coremeta4cat:DEV_32x1-99x6_BET
-    title: BET surface area analyser
-  description:
-  - Brunauer-Emmett-Teller specific surface area determination for all 10 Pd/P-Al2O3
-    and Pd/P-SiO2 catalysts (0-5 wt% nominal P loading). Surface area ranged 72-126
-    m2/g, generally decreasing with increasing P loading (bet_results.txt).
-  evaluated_entity:
-  - description: Pd on Al2O3, P-free reference
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
-    title: Pd/Al2O3
-  - description: Pd on Al2O3, nominal 1 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
-    title: Pd/1P/Al2O3
-  - description: Pd on Al2O3, nominal 2 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
-    title: Pd/2P/Al2O3
-  - description: Pd on Al2O3, nominal 3 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
-    title: Pd/3P/Al2O3
-  - description: Pd on Al2O3, nominal 4 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
-    title: Pd/4P/Al2O3
-  - description: Pd on Al2O3, nominal 5 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
-    title: Pd/5P/Al2O3
-  - description: Pd on SiO2, P-free reference
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
-    title: Pd/SiO2
-  - description: Pd on SiO2, nominal 1 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
-    title: Pd/1P/SiO2
-  - description: Pd on SiO2, nominal 3 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
-    title: Pd/3P/SiO2
-  - description: Pd on SiO2, nominal 5 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
-    title: Pd/5P/SiO2
-  id: coremeta4cat:CHAR_32x1-99x6_BET
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  rdf_type:
-    id: enm:0000064
-    title: BET analysis
-  realized_plan:
-    description: Standard N2 physisorption at liquid-nitrogen temperature (-196C),
-      Brunauer-Emmett-Teller analysis. Adsorbate gas and measurement temperature not
-      explicitly stated in bet_results.txt; assumed standard BET convention.
-    id: coremeta4cat:CHAR_32x1-99x6_BET_method
-    title: N2 physisorption BET method
-  title:
-  - BET surface area analysis (10 catalysts)
-- activity_designator: Characterization
-  carried_out_by:
-  - description: Instrument model not specified in the source dataset files.
-    id: coremeta4cat:DEV_32x1-99x6_DRIFT
-    title: FTIR spectrometer with DRIFT accessory
-  description:
-  - Diffuse reflectance infrared Fourier transform spectroscopy of CO adsorbed at
-    room temperature, for 4 catalysts (Pd/Al2O3, Pd/3P/Al2O3, Pd/SiO2, Pd/3P/SiO2).
-    Spectra converted to pseudo-absorbance (log(1/reflectance)) per Anal. Chem. 2007,
-    79, 10, 3912-3918 (DOI 10.1021/ac0702802) and baseline-corrected (info_drifts.txt);
-    OriginPro 2023 used for analysis/plotting.
-  evaluated_entity:
-  - description: Pd on Al2O3, P-free reference
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
-    title: Pd/Al2O3
-  - description: Pd on Al2O3, nominal 3 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
-    title: Pd/3P/Al2O3
-  - description: Pd on SiO2, P-free reference
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
-    title: Pd/SiO2
-  - description: Pd on SiO2, nominal 3 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
-    title: Pd/3P/SiO2
-  id: coremeta4cat:CHAR_32x1-99x6_DRIFT
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  rdf_type:
-    id: CHMO:0000645
-    title: diffuse reflectance infrared Fourier transform spectroscopy
-  realized_plan:
-    description: CO adsorption at room temperature; pseudo-absorbance = log(1/reflectance).
-    id: coremeta4cat:CHAR_32x1-99x6_DRIFT_method
-    title: CO-adsorption DRIFT method
-  title:
-  - DRIFT CO-adsorption spectroscopy (4 catalysts)
-- activity_designator: Characterization
-  carried_out_by:
-  - description: Instrument model not specified in the source dataset files.
-    id: coremeta4cat:DEV_32x1-99x6_ICPAES
-    title: ICP-AES spectrometer
-  description:
-  - Inductively coupled plasma atomic emission spectroscopy for bulk Pd and P content
-    of the 8 P-modified catalysts (measured Pd 1.8-2.0 wt%, P 0.8-4.8 wt%, deviating
-    somewhat from nominal loadings; icp_results.txt). P-free reference catalysts (Pd/Al2O3,
-    Pd/SiO2) were not analysed by ICP-AES.
-  evaluated_entity:
-  - description: Pd on Al2O3, nominal 1 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
-    title: Pd/1P/Al2O3
-  - description: Pd on Al2O3, nominal 2 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
-    title: Pd/2P/Al2O3
-  - description: Pd on Al2O3, nominal 3 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
-    title: Pd/3P/Al2O3
-  - description: Pd on Al2O3, nominal 4 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
-    title: Pd/4P/Al2O3
-  - description: Pd on Al2O3, nominal 5 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
-    title: Pd/5P/Al2O3
-  - description: Pd on SiO2, nominal 1 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
-    title: Pd/1P/SiO2
-  - description: Pd on SiO2, nominal 3 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
-    title: Pd/3P/SiO2
-  - description: Pd on SiO2, nominal 5 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
-    title: Pd/5P/SiO2
-  id: coremeta4cat:CHAR_32x1-99x6_ICPAES
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  rdf_type:
-    id: CHMO:0000267
-    title: inductively coupled plasma atomic emission spectroscopy
-  realized_plan:
-    description: 'Elements analyzed: Pd, P. Results reported in wt% (icp_results.txt).'
-    id: coremeta4cat:CHAR_32x1-99x6_ICPAES_method
-    title: ICP-AES elemental analysis method
-  title:
-  - ICP-AES elemental composition analysis (8 catalysts)
-- activity_designator: Characterization
-  carried_out_by:
-  - description: Instrument model not specified in the source dataset files.
-    id: coremeta4cat:DEV_32x1-99x6_IR
-    title: FTIR spectrometer
-  description:
-  - Infrared spectroscopy of the 6 P-modified catalysts (1, 3, 5 wt% nominal P on
-    Al2O3 and SiO2). Wavenumber range ~400-3599 cm-1, 3319 data points per file, pseudo-absorbance
-    convention consistent with the DRIFT data.
-  evaluated_entity:
-  - description: Pd on Al2O3, nominal 1 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
-    title: Pd/1P/Al2O3
-  - description: Pd on Al2O3, nominal 3 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
-    title: Pd/3P/Al2O3
-  - description: Pd on Al2O3, nominal 5 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
-    title: Pd/5P/Al2O3
-  - description: Pd on SiO2, nominal 1 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
-    title: Pd/1P/SiO2
-  - description: Pd on SiO2, nominal 3 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
-    title: Pd/3P/SiO2
-  - description: Pd on SiO2, nominal 5 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
-    title: Pd/5P/SiO2
-  id: coremeta4cat:CHAR_32x1-99x6_IR
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  rdf_type:
-    id: CHMO:0000630
-    title: infrared spectroscopy
-  realized_plan:
-    description: Wavenumber range ~400-3599 cm-1; pseudo-absorbance units.
-    id: coremeta4cat:CHAR_32x1-99x6_IR_method
-    title: Infrared spectroscopy method
-  title:
-  - Infrared spectroscopy (6 catalysts)
-- activity_designator: Characterization
-  carried_out_by:
-  - description: Instrument model not specified in the source dataset files.
-    id: coremeta4cat:DEV_32x1-99x6_PXRD
-    title: X-ray diffractometer
-  description:
-  - Powder X-ray diffraction for phase identification of all 10 Pd/P-Al2O3 and Pd/P-SiO2
-    catalysts, plus a P/SiO2 support-only reference sample without Pd (file PXRD_1PSiO2.xy).
-    Two-theta range ~2-92 degrees, step size 0.015 degrees (most files); two files
-    (nominal 5 wt% P samples) cover a shorter range ~2-63.5 degrees.
-  evaluated_entity:
-  - description: Pd on Al2O3, P-free reference
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_0P
-    title: Pd/Al2O3
-  - description: Pd on Al2O3, nominal 1 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_1P
-    title: Pd/1P/Al2O3
-  - description: Pd on Al2O3, nominal 2 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_2P
-    title: Pd/2P/Al2O3
-  - description: Pd on Al2O3, nominal 3 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_3P
-    title: Pd/3P/Al2O3
-  - description: Pd on Al2O3, nominal 4 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_4P
-    title: Pd/4P/Al2O3
-  - description: Pd on Al2O3, nominal 5 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_Al2O3_5P
-    title: Pd/5P/Al2O3
-  - description: Pd on SiO2, P-free reference
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_0P
-    title: Pd/SiO2
-  - description: Pd on SiO2, nominal 1 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_1P
-    title: Pd/1P/SiO2
-  - description: Pd on SiO2, nominal 3 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_3P
-    title: Pd/3P/SiO2
-  - description: Pd on SiO2, nominal 5 wt% P
-    id: coremeta4cat:CAT_32x1-99x6_SiO2_5P
-    title: Pd/5P/SiO2
-  id: coremeta4cat:CHAR_32x1-99x6_PXRD
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/32x1-99x6
-  rdf_type:
-    id: CHMO:0000158
-    title: powder X-ray diffraction
-  realized_plan:
-    description: Two-theta scan, ~2-92 degrees, step size 0.015 degrees. One file
-      (PXRD_1PSiO2.xy) is a Pd-free P/SiO2 support reference; one file (PXRD_Pd5Al2O3.xy)
-      is missing the 'P' in its name but is interpreted as the nominal 5 wt% P/Al2O3
-      sample based on the file series context (matches ICP sample FR507).
-    id: coremeta4cat:CHAR_32x1-99x6_PXRD_method
-    title: Powder XRD measurement method
-  title:
-  - Powder XRD phase analysis (10 catalysts)
 
 ```
 ## CatalysisDataset-6mxw-xsrd
@@ -2626,8 +2634,186 @@ title:
 - Copper Gallium Aluminum Mixed Metal Oxides as Alternative Catalyst Candidates for
   Efficient Conversion of Carbon Dioxide to Methanol and Dimethyl Ether
 was_generated_by:
-- activity_designator: Synthesis
-  catalyst_measured_properties:
+- coremeta4cat:SYN_6mxw-xsrd_gen1
+- coremeta4cat:SYN_6mxw-xsrd_gen2_step1
+- coremeta4cat:SYN_6mxw-xsrd_gen2_step2
+- coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4
+- coremeta4cat:CHAR_6mxw-xsrd_XRF
+- coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites
+- coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE
+- coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP
+was_generated_by_characterization:
+- carried_out_by:
+  - description: Rh X-ray tube; ESPRIT software (article, section 2.1.4).
+    id: coremeta4cat:DEV_6mxw-xsrd_XRF
+    title: Bruker M4 TORNADO micro-XRF spectrometer
+  description:
+  - X-ray fluorescence analysis of 76 Cu-Ga-Al compositions spanning the Cu/Al/Ga
+    ternary (Cu 0-1, Al 0-1, Ga 0-1, metal fractions normalised to 1), including the
+    three single-metal end members. According to the article (section 3.2), XRF was
+    measured on the freeze-dried hydrotalcite-like (HTC) precursors, i.e. before calcination.
+    Measured Cu, Al and Ga fractions are reported next to the nominal fractions.
+  evaluated_entity:
+  - description: Co-precipitated, freeze-dried HTC precursors of the Cu-Ga-Al mixed
+      metal oxides; individual samples are identified only by their composition, not
+      by a sample ID.
+    id: coremeta4cat:CAT_6mxw-xsrd_HTC_library
+    title: Cu-Ga-Al hydrotalcite-like precursor library (76 compositions)
+  id: coremeta4cat:CHAR_6mxw-xsrd_XRF
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  rdf_type:
+    id: voc4cat:0000067
+    title: X-ray fluorescence
+  realized_plan:
+    description: Elemental composition by the fundamental parameter method in ESPRIT;
+      metal fractions of Cu, Al and Ga normalised to their sum. Sample preparation
+      and measurement conditions are not stated in the main text of the article.
+    id: coremeta4cat:CHAR_6mxw-xsrd_XRF_method
+    title: XRF determination of Cu, Al and Ga metal fractions
+  title:
+  - XRF elemental analysis (76 Cu-Ga-Al hydrotalcite-like precursors)
+was_generated_by_simulation:
+- calculated_property:
+  - adsorbate:
+    - OH
+    description: Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference
+      state is not defined in the main text.
+    material_composition:
+    - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+    - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: OH binding energy
+    value: -1.87 to 1.41 eV (17 sites)
+  - adsorbate:
+    - CO
+    description: Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest).
+    energy_reference:
+    - CO(g)
+    material_composition:
+    - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+    - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: CO binding energy
+    value: -2.20 to 0.51 eV (17 sites)
+  description:
+  - 'Density functional theory binding energies of OH and CO at 17 sites: pristine
+    CuGa2O4 and CuGa2O4 doped with Al, Co, Cu, Ge, In, Ni or Sn, and pristine Ga2O3
+    and Ga2O3 doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr. Site notation in the source
+    file is <host>-<dopant>, e.g. CuGa2O4-Co. Part of the theory-based prediction
+    that led to the Cu-Ga-Al system (article, section 3.1).'
+  evaluated_entity:
+  - description: Dopants Al, Co, Cu, Ge, In, Ni, Sn. Facet and slab model are in the
+      article's SI.
+    id: coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites
+    title: CuGa2O4 surface models, pristine and with 7 dopants
+  - description: Dopants Al, Pd, Pt, Rh, Ru, Sn, Zn, Zr. Facet, polymorph and slab
+      model are in the article's SI.
+    id: coremeta4cat:SLAB_6mxw-xsrd_Ga2O3_sites
+    title: Ga2O3 surface models, pristine and with 8 dopants
+  id: coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  rdf_type:
+    id: voc4cat:0000215
+    title: density functional theory
+  realized_plan:
+    description: Vienna Ab initio Simulation Package with the PBE functional and projector
+      augmented waves. The article uses PBE-D3 when verifying the machine-learned
+      potentials; whether D3 was applied for this table is not stated in the main
+      text. Cut-off, k-points and convergence criteria are in the SI.
+    exchange_correlation_functional:
+    - PBE
+    id: coremeta4cat:SIM_6mxw-xsrd_DFT_method
+    plan_designator: coremeta4cat:DFT
+    title: periodic DFT, PBE, PAW
+  software_package:
+  - VASP
+  - Atomic Simulation Environment (ASE), structure generation
+  - pymatgen, structure generation
+  title:
+  - DFT binding energies of OH and CO at 17 oxide surface sites
+- calculated_property:
+  - adsorbate:
+    - OH
+    description: Range over all compositions (Al4Cu9 lowest, Fe and GaNi3 highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: OH binding energy
+    value: -1.50 to 2.91 eV (31 compositions)
+  - adsorbate:
+    - CO
+    description: Range over all compositions (Ir lowest, Fe highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: CO binding energy
+    value: -2.51 to 1.14 eV (31 compositions)
+  description:
+  - Binding energies of OH and CO computed with the MACE-MPA-0 machine-learned interatomic
+    potential for 31 elemental and intermetallic compositions, as a second model next
+    to the OCP screening; both serve as prescreening and sampling for DFT calculations,
+    with DFT verification at the PBE-D3 level (Weber et al., ACS Catal. 2025, Table
+    2 and section 3.1). Surface facets, adsorption sites and the reference states
+    of the binding energies are in the article's SI, not in the main text.
+  evaluated_entity:
+  - description: Ag9In4, Al, Al4Cu9, CuFe3, Co, CoGa3, CoIn3, CoMn3, Cu, Cu3Ga, Cu3Mn,
+      Cu3Rh, Cu7In3, Cu9Ga4, CuGa2, CuNi, Fe, FeNi, Ga3Ni5, GaMn, GaNi3, In, InRh,
+      InSb, Ir, Mn, Ni, Pd, Rh, Sn, Zn. All 31 were also computed with the OCP model,
+      partly under a different spelling of the formula. Facets and slab models not
+      stated.
+    id: coremeta4cat:SLAB_6mxw-xsrd_MACE_compositions
+    title: 31 elemental and intermetallic surface models
+  id: coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  realized_plan:
+    description: Single-point or relaxation protocol, adsorbate placement and reference
+      energies not stated in the deposited files.
+    id: coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE_method
+    title: machine-learned interatomic potential (MACE-MPA-0)
+  software_package:
+  - MACE-MPA-0 foundation model (article, Table 2)
+  title:
+  - MACE-MPA-0 binding-energy screening of OH and CO (31 compositions)
+- calculated_property:
+  - adsorbate:
+    - OH
+    description: Range over all compositions (InSb lowest, Pd highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: OH binding energy
+    value: -5.35 to 0.79 eV (37 compositions)
+  - adsorbate:
+    - CO
+    description: Range over all compositions (InSb lowest, Al highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    title: CO binding energy
+    value: -5.12 to -0.13 eV (37 compositions)
+  description:
+  - Binding energies of OH and CO computed with an Open Catalyst Project (OCP) machine-learned
+    interatomic potential for 37 elemental and intermetallic compositions, as prescreening
+    and sampling for DFT calculations (article, Table 2). Surface facets, adsorption
+    sites and the reference states of the binding energies are in the article's SI,
+    not in the main text.
+  evaluated_entity:
+  - description: Al, Al4Cu9, Co, Cu, Cu3Rh, CuNi, Fe, Fe3Cu, FeNi, Ga2Cu, Ga3Co, Ga3Ni5,
+      Ga4Cu9, GaCu3, GaNi3, In, In3Co, In3Cu7, In3Ga, In4Ag9, InRh, InSb, Ir, Mn,
+      Mn3Co, Mn3In, MnCu3, MnGa, Ni, Pd, Rh, Sn, Zn, Zn2Pd, Zn3Sn, ZnGa3, ZnIn3. Facets
+      and slab models not stated.
+    id: coremeta4cat:SLAB_6mxw-xsrd_OCP_compositions
+    title: 37 elemental and intermetallic surface models
+  id: coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  realized_plan:
+    description: Single-point or relaxation protocol, adsorbate placement and reference
+      energies not stated in the deposited files.
+    id: coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP_method
+    title: machine-learned interatomic potential (OCP model)
+  software_package:
+  - EquiformerV2-31M-S2EF-OC20-All+MD (Open Catalyst Project); inferred from article
+    Table 2
+  title:
+  - OCP binding-energy screening of OH and CO (37 compositions)
+was_generated_by_synthesis:
+- catalyst_measured_properties:
   - No measured properties of these three samples are deposited; the article reports
     XRD, N2 sorption, TPR, N2O-RFC and TEM results for the first generation in figures
     and the SI.
@@ -2677,8 +2863,7 @@ was_generated_by:
       at 500/600/700 C
   title:
   - Cu0.465Ga0.07Al0.465 mixed metal oxide, three calcination temperatures
-- activity_designator: Synthesis
-  catalyst_measured_properties:
+- catalyst_measured_properties:
   - No measured properties of the intermediate oxides are deposited.
   had_input_entity:
   - id: coremeta4cat:PREC_6mxw-xsrd_CuNO3
@@ -2721,8 +2906,7 @@ was_generated_by:
       at 450/550 C
   title:
   - Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C
-- activity_designator: Synthesis
-  catalyst_measured_properties:
+- catalyst_measured_properties:
   - No measured properties of these four samples are deposited.
   had_input_entity:
   - id: coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450
@@ -2778,8 +2962,7 @@ was_generated_by:
   title:
   - 1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at
     250 or 350 C
-- activity_designator: Synthesis
-  catalyst_measured_properties:
+- catalyst_measured_properties:
   - 'XRF of the HTC precursor: Cu 0.42, Al 0.22, Ga 0.36 (metal fractions; nominal
     0.33/0.33/0.34)'
   had_input_entity:
@@ -2891,178 +3074,6 @@ was_generated_by:
       200 mL)
   title:
   - Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination
-- activity_designator: Characterization
-  carried_out_by:
-  - description: Rh X-ray tube; ESPRIT software (article, section 2.1.4).
-    id: coremeta4cat:DEV_6mxw-xsrd_XRF
-    title: Bruker M4 TORNADO micro-XRF spectrometer
-  description:
-  - X-ray fluorescence analysis of 76 Cu-Ga-Al compositions spanning the Cu/Al/Ga
-    ternary (Cu 0-1, Al 0-1, Ga 0-1, metal fractions normalised to 1), including the
-    three single-metal end members. According to the article (section 3.2), XRF was
-    measured on the freeze-dried hydrotalcite-like (HTC) precursors, i.e. before calcination.
-    Measured Cu, Al and Ga fractions are reported next to the nominal fractions.
-  evaluated_entity:
-  - description: Co-precipitated, freeze-dried HTC precursors of the Cu-Ga-Al mixed
-      metal oxides; individual samples are identified only by their composition, not
-      by a sample ID.
-    id: coremeta4cat:CAT_6mxw-xsrd_HTC_library
-    title: Cu-Ga-Al hydrotalcite-like precursor library (76 compositions)
-  id: coremeta4cat:CHAR_6mxw-xsrd_XRF
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
-  rdf_type:
-    id: voc4cat:0000067
-    title: X-ray fluorescence
-  realized_plan:
-    description: Elemental composition by the fundamental parameter method in ESPRIT;
-      metal fractions of Cu, Al and Ga normalised to their sum. Sample preparation
-      and measurement conditions are not stated in the main text of the article.
-    id: coremeta4cat:CHAR_6mxw-xsrd_XRF_method
-    title: XRF determination of Cu, Al and Ga metal fractions
-  title:
-  - XRF elemental analysis (76 Cu-Ga-Al hydrotalcite-like precursors)
-- activity_designator: Simulation
-  calculated_property:
-  - adsorbate:
-    - OH
-    description: Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference
-      state is not defined in the main text.
-    material_composition:
-    - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
-    - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
-    property_designator: coremeta4cat:AdsorptionEnergetics
-    title: OH binding energy
-    value: -1.87 to 1.41 eV (17 sites)
-  - adsorbate:
-    - CO
-    description: Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest).
-    energy_reference:
-    - CO(g)
-    material_composition:
-    - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
-    - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
-    property_designator: coremeta4cat:AdsorptionEnergetics
-    title: CO binding energy
-    value: -2.20 to 0.51 eV (17 sites)
-  description:
-  - 'Density functional theory binding energies of OH and CO at 17 sites: pristine
-    CuGa2O4 and CuGa2O4 doped with Al, Co, Cu, Ge, In, Ni or Sn, and pristine Ga2O3
-    and Ga2O3 doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr. Site notation in the source
-    file is <host>-<dopant>, e.g. CuGa2O4-Co. Part of the theory-based prediction
-    that led to the Cu-Ga-Al system (article, section 3.1).'
-  evaluated_entity:
-  - description: Dopants Al, Co, Cu, Ge, In, Ni, Sn. Facet and slab model are in the
-      article's SI.
-    id: coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites
-    title: CuGa2O4 surface models, pristine and with 7 dopants
-  - description: Dopants Al, Pd, Pt, Rh, Ru, Sn, Zn, Zr. Facet, polymorph and slab
-      model are in the article's SI.
-    id: coremeta4cat:SLAB_6mxw-xsrd_Ga2O3_sites
-    title: Ga2O3 surface models, pristine and with 8 dopants
-  id: coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
-  rdf_type:
-    id: voc4cat:0000215
-    title: density functional theory
-  realized_plan:
-    description: Vienna Ab initio Simulation Package with the PBE functional and projector
-      augmented waves. The article uses PBE-D3 when verifying the machine-learned
-      potentials; whether D3 was applied for this table is not stated in the main
-      text. Cut-off, k-points and convergence criteria are in the SI.
-    exchange_correlation_functional:
-    - PBE
-    id: coremeta4cat:SIM_6mxw-xsrd_DFT_method
-    plan_designator: coremeta4cat:DFT
-    title: periodic DFT, PBE, PAW
-  software_package:
-  - VASP
-  - Atomic Simulation Environment (ASE), structure generation
-  - pymatgen, structure generation
-  title:
-  - DFT binding energies of OH and CO at 17 oxide surface sites
-- activity_designator: Simulation
-  calculated_property:
-  - adsorbate:
-    - OH
-    description: Range over all compositions (Al4Cu9 lowest, Fe and GaNi3 highest).
-    property_designator: coremeta4cat:AdsorptionEnergetics
-    title: OH binding energy
-    value: -1.50 to 2.91 eV (31 compositions)
-  - adsorbate:
-    - CO
-    description: Range over all compositions (Ir lowest, Fe highest).
-    property_designator: coremeta4cat:AdsorptionEnergetics
-    title: CO binding energy
-    value: -2.51 to 1.14 eV (31 compositions)
-  description:
-  - Binding energies of OH and CO computed with the MACE-MPA-0 machine-learned interatomic
-    potential for 31 elemental and intermetallic compositions, as a second model next
-    to the OCP screening; both serve as prescreening and sampling for DFT calculations,
-    with DFT verification at the PBE-D3 level (Weber et al., ACS Catal. 2025, Table
-    2 and section 3.1). Surface facets, adsorption sites and the reference states
-    of the binding energies are in the article's SI, not in the main text.
-  evaluated_entity:
-  - description: Ag9In4, Al, Al4Cu9, CuFe3, Co, CoGa3, CoIn3, CoMn3, Cu, Cu3Ga, Cu3Mn,
-      Cu3Rh, Cu7In3, Cu9Ga4, CuGa2, CuNi, Fe, FeNi, Ga3Ni5, GaMn, GaNi3, In, InRh,
-      InSb, Ir, Mn, Ni, Pd, Rh, Sn, Zn. All 31 were also computed with the OCP model,
-      partly under a different spelling of the formula. Facets and slab models not
-      stated.
-    id: coremeta4cat:SLAB_6mxw-xsrd_MACE_compositions
-    title: 31 elemental and intermetallic surface models
-  id: coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
-  realized_plan:
-    description: Single-point or relaxation protocol, adsorbate placement and reference
-      energies not stated in the deposited files.
-    id: coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE_method
-    title: machine-learned interatomic potential (MACE-MPA-0)
-  software_package:
-  - MACE-MPA-0 foundation model (article, Table 2)
-  title:
-  - MACE-MPA-0 binding-energy screening of OH and CO (31 compositions)
-- activity_designator: Simulation
-  calculated_property:
-  - adsorbate:
-    - OH
-    description: Range over all compositions (InSb lowest, Pd highest).
-    property_designator: coremeta4cat:AdsorptionEnergetics
-    title: OH binding energy
-    value: -5.35 to 0.79 eV (37 compositions)
-  - adsorbate:
-    - CO
-    description: Range over all compositions (InSb lowest, Al highest).
-    property_designator: coremeta4cat:AdsorptionEnergetics
-    title: CO binding energy
-    value: -5.12 to -0.13 eV (37 compositions)
-  description:
-  - Binding energies of OH and CO computed with an Open Catalyst Project (OCP) machine-learned
-    interatomic potential for 37 elemental and intermetallic compositions, as prescreening
-    and sampling for DFT calculations (article, Table 2). Surface facets, adsorption
-    sites and the reference states of the binding energies are in the article's SI,
-    not in the main text.
-  evaluated_entity:
-  - description: Al, Al4Cu9, Co, Cu, Cu3Rh, CuNi, Fe, Fe3Cu, FeNi, Ga2Cu, Ga3Co, Ga3Ni5,
-      Ga4Cu9, GaCu3, GaNi3, In, In3Co, In3Cu7, In3Ga, In4Ag9, InRh, InSb, Ir, Mn,
-      Mn3Co, Mn3In, MnCu3, MnGa, Ni, Pd, Rh, Sn, Zn, Zn2Pd, Zn3Sn, ZnGa3, ZnIn3. Facets
-      and slab models not stated.
-    id: coremeta4cat:SLAB_6mxw-xsrd_OCP_compositions
-    title: 37 elemental and intermetallic surface models
-  id: coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
-  realized_plan:
-    description: Single-point or relaxation protocol, adsorbate placement and reference
-      energies not stated in the deposited files.
-    id: coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP_method
-    title: machine-learned interatomic potential (OCP model)
-  software_package:
-  - EquiformerV2-31M-S2EF-OC20-All+MD (Open Catalyst Project); inferred from article
-    Table 2
-  title:
-  - OCP binding-energy screening of OH and CO (37 compositions)
 
 ```
 ## CatalysisDataset-8ppb-aeky
@@ -3119,8 +3130,12 @@ title:
   Discovery of Unseen and SynergisticMutations in an Amine Transaminase - Molecular
   Dynamic Simulations'
 was_generated_by:
-- activity_designator: Simulation
-  description:
+- coremeta4cat:SIM_8ppb-aeky_MD
+- coremeta4cat:SIM_8ppb-aeky_MMGBSA
+- coremeta4cat:SIM_8ppb-aeky_induced_fit_docking
+- coremeta4cat:SIM_8ppb-aeky_protein_preparation
+was_generated_by_simulation:
+- description:
   - Desmond molecular dynamics of the docked substrate-cofactor complex in 3FCR-4M
     and the mutants S19V/P423F (4M-N15, deposit M1) and G151A/P423F (4M-N16, deposit
     M2), run to investigate why these mutations change the kinetic parameters. Each
@@ -3152,8 +3167,7 @@ was_generated_by:
   - Simulation Interaction Diagram and Schrodinger Python API, analysis
   title:
   - Molecular dynamics of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16
-- activity_designator: Simulation
-  calculated_property:
+- calculated_property:
   - description: Relative binding free energy (ddG) of 4M-N15 (S19V/P423F) vs. 3FCR-4M
     value: -1.86 kcal/mol
   - description: Relative binding free energy (ddG) of 4M-N16 (G151A/P423F) vs. 3FCR-4M
@@ -3190,8 +3204,7 @@ was_generated_by:
   title:
   - MM/GBSA binding free energy of the substrate-cofactor complex in 3FCR-4M, 4M-N15
     and 4M-N16
-- activity_designator: Simulation
-  description:
+- description:
   - Induced-fit docking with Glide to predict the initial binding mode of the cofactor-bound
     substrate in 3FCR-4M, the starting structure for molecular dynamics. The substrate
     is 2a, (S)-1-(2-chlorophenyl)ethanamine, bound to pyridoxal 5'-phosphate (PLP);
@@ -3214,8 +3227,7 @@ was_generated_by:
   - Glide, Induced Fit docking protocol (Schrodinger suite)
   title:
   - Induced-fit docking of the substrate-cofactor complex into 3FCR-4M
-- activity_designator: Simulation
-  description:
+- description:
   - Preparation of the initial structure of 3FCR-4M for docking and molecular dynamics
     with the Protein Preparation Wizard. 3FCR-4M is the amine transaminase from Ruegeria
     sp. (PDB 3FCR) with the four mutations Y59W, Y87F, Y152F and T231A. The file descriptions
@@ -3564,8 +3576,181 @@ rdf_type:
 title:
 - Carbonylation catalysis of aryl halides through active-site engineering
 was_generated_by:
-- activity_designator: Synthesis
-  carried_out_by:
+- coremeta4cat:SYN_arp5-s69r_Pd3P_SiO2
+- coremeta4cat:SYN_arp5-s69r_Pd_SiO2
+- coremeta4cat:CHAR_arp5-s69r_COChemisorption
+- coremeta4cat:CHAR_arp5-s69r_DRIFT
+- coremeta4cat:CHAR_arp5-s69r_PXRD
+- coremeta4cat:CHAR_arp5-s69r_STEM
+- coremeta4cat:CHAR_arp5-s69r_XPS
+was_generated_by_characterization:
+- carried_out_by:
+  - description: Instrument model not specified in the source dataset files.
+    id: coremeta4cat:DEV_arp5-s69r_COChemisorption
+    title: Pulse chemisorption analyser
+  description:
+  - Pulse CO chemisorption at room temperature (25 C) for Pd3P/SiO2 and Pd/SiO2 (2
+    replicate runs each), used to determine active surface Pd site density / dispersion
+    by comparing CO uptake between the phosphide and the unmodified reference catalyst.
+  evaluated_entity:
+  - description: See CatalyticReaction files for full detail.
+    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+  - description: See CatalyticReaction files for full detail.
+    id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+  id: coremeta4cat:CHAR_arp5-s69r_COChemisorption
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  realized_plan:
+    description: CO pulses at room temperature; peak areas integrated to determine
+      total CO uptake.
+    id: coremeta4cat:CHAR_arp5-s69r_COChemisorption_method
+    title: Pulse CO chemisorption method
+  title:
+  - CO chemisorption analysis (2 catalysts)
+- carried_out_by:
+  - description: VERTEX 70 FTIR spectrometer (Bruker) equipped with Praying Mantis
+      diffuse reflection optics (Harrick) and a liquid-nitrogen-cooled mercury cadmium
+      telluride (MCT) detector.
+    id: coremeta4cat:DEV_arp5-s69r_DRIFT
+    title: VERTEX 70 FTIR spectrometer (Bruker)
+  description:
+  - 'Diffuse reflectance infrared Fourier transform spectroscopy of CO adsorbed on
+    Pd3P/SiO2 and Pd/SiO2, at 30 C and 100 C (4 spectra total). Atmosphere: 4000 ppm
+    CO, balance Ar, 50 mL/min flow; Ar flush between measurements. Sample: 50 mg,
+    100-200 micron sieve fraction, in a Harrick in-situ cell with CaF2 windows.'
+  evaluated_entity:
+  - description: See CatalyticReaction files for full detail.
+    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+  - description: See CatalyticReaction files for full detail.
+    id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+  has_sample_pretreatment:
+  - value: 1 h in argon (50 mL/min) at 150 C to remove physisorbed water, then cooled
+      to 30 C before CO dosing
+  id: coremeta4cat:CHAR_arp5-s69r_DRIFT
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  rdf_type:
+    id: CHMO:0000645
+    title: diffuse reflectance infrared Fourier transform spectroscopy
+  realized_plan:
+    description: Reflectance mode; scanner velocity 20 kHz; aperture 6 mm; MIR source,
+      KBr beamsplitter.
+    id: coremeta4cat:CHAR_arp5-s69r_DRIFT_method
+    title: CO-adsorption DRIFT method
+  title:
+  - DRIFT CO-adsorption spectroscopy (2 catalysts, 2 temperatures)
+- carried_out_by:
+  - description: Stoe STADI-MP powder diffractometer, Cu X-ray source (lambda=1.54178
+      A), Ge monochromator.
+    id: coremeta4cat:DEV_arp5-s69r_PXRD
+    title: Stoe STADI-MP diffractometer
+  description:
+  - Powder X-ray diffraction for phase identification of Pd/SiO2 (5 wt%, ARNE01/ICSD
+    85525=Pd3P phase reference, ARNE02/ICSD 52251=Pd phase reference) and two further
+    Pd3P/SiO2 loading variants (1 wt% and 10 wt%), transmission geometry, 2theta 2-90
+    degrees, ~80 min total measurement per sample.
+  evaluated_entity:
+  - description: See CatalyticReaction files for full detail.
+    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+  - description: See CatalyticReaction files for full detail.
+    id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+  - description: Lower-loading Pd3P/SiO2 variant, PXRD-only sample.
+    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_1wt
+    title: Pd3P/SiO2 (1 wt% Pd)
+  - description: Higher-loading Pd3P/SiO2 variant, PXRD-only sample.
+    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_10wt
+    title: Pd3P/SiO2 (10 wt% Pd)
+  id: coremeta4cat:CHAR_arp5-s69r_PXRD
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  rdf_type:
+    id: CHMO:0000158
+    title: powder X-ray diffraction
+  realized_plan:
+    description: Transmission geometry, air atmosphere, ambient temperature; software
+      INSTPAR.
+    id: coremeta4cat:CHAR_arp5-s69r_PXRD_method
+    title: Powder XRD measurement method
+  title:
+  - Powder XRD phase analysis (4 catalysts)
+- carried_out_by:
+  - description: FEI/Thermo Fisher Osiris ChemiSTEM, combined TEM and STEM with ChemiSTEM
+      EDX detector, Schottky field emission gun, 200 kV high tension, magnification
+      160-800 kx.
+    id: coremeta4cat:DEV_arp5-s69r_STEM
+    title: FEI Osiris ChemiSTEM
+  description:
+  - 'Transmission electron microscopy (HRTEM), scanning TEM (HAADF-STEM), and STEM-EDX
+    elemental mapping of Pd3P/SiO2 (ARNE01), Pd/SiO2 (ARNE02), and a recycled/spent
+    Pd3P/SiO2 sample recovered after catalytic testing (ARNE03), for particle size
+    distribution, chemical composition, and crystal structure. Note: STEM-Meta-2.txt
+    documents the method in detail but no image/data files for this technique are
+    included in the deposited dataset.'
+  evaluated_entity:
+  - description: See CatalyticReaction files for full detail.
+    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+  - description: See CatalyticReaction files for full detail.
+    id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+  - description: Spent Pd3P/SiO2 catalyst recovered after catalytic testing, examined
+      by STEM for post-reaction stability.
+    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_recycled
+    title: Pd3P/SiO2 (5 wt% Pd, recycled, ARNE03)
+  id: coremeta4cat:CHAR_arp5-s69r_STEM
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  rdf_type:
+    id: voc4cat:0000078
+    title: transmission electron microscopy
+  realized_plan:
+    description: HRTEM (Digital Micrograph/Gatan) and HAADF-STEM/STEM-EDXS (TEM Imaging
+      and Microscopy/FEI, Esprit/Bruker); Cliff-Lorimer quantification for EDXS.
+    id: coremeta4cat:CHAR_arp5-s69r_STEM_method
+    title: STEM/TEM imaging and EDX mapping method
+  sample_preparation:
+  - Dispersed in ethanol, a drop placed on a Cu grid with an amorphous carbon film,
+    dried at 60 C overnight
+  title:
+  - STEM/TEM imaging and EDX mapping (3 catalyst samples)
+- carried_out_by:
+  - description: Instrument model not specified in the source dataset files.
+    id: coremeta4cat:DEV_arp5-s69r_XPS
+    title: XPS spectrometer
+  description:
+  - XPS binding energy scans of the Pd 3d core level for Pd/SiO2 and Pd3P/SiO2, and
+    the P 2p core level for Pd3P/SiO2, to compare Pd electronic structure/oxidation
+    state between the phosphide and the unmodified reference catalyst.
+  evaluated_entity:
+  - description: See CatalyticReaction files for full detail.
+    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+  - description: See CatalyticReaction files for full detail.
+    id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+  id: coremeta4cat:CHAR_arp5-s69r_XPS
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  rdf_type:
+    id: CHMO:0000404
+    title: X-ray photoelectron spectroscopy
+  realized_plan:
+    description: Pd 3d scans for both catalysts; P 2p scan additionally for Pd3P/SiO2.
+    id: coremeta4cat:CHAR_arp5-s69r_XPS_method
+    title: XPS core-level measurement method
+  sample_preparation:
+  - Stored under inert atmosphere in a glovebox and transferred with minimal exposure
+    to air; no further pretreatment
+  title:
+  - X-ray photoelectron spectroscopy (2 catalysts, Pd 3d and P 2p)
+was_generated_by_synthesis:
+- carried_out_by:
   - id: coremeta4cat:DEV_arp5-s69r_furnace
     title: box furnace with a quartz Schlenk tube (pressure relief valve)
   catalyst_measured_properties:
@@ -3656,8 +3841,7 @@ was_generated_by:
   title:
   - Pd3P/SiO2 (5 wt% Pd) by incipient wetness impregnation and thermal treatment in
     hydrogen
-- activity_designator: Synthesis
-  carried_out_by:
+- carried_out_by:
   - id: coremeta4cat:DEV_arp5-s69r_furnace
     title: box furnace with a quartz Schlenk tube (pressure relief valve)
   catalyst_measured_properties:
@@ -3727,176 +3911,6 @@ was_generated_by:
   title:
   - Pd/SiO2 (5 wt% Pd) reference catalyst, prepared like Pd3P/SiO2 without phosphoric
     acid
-- activity_designator: Characterization
-  carried_out_by:
-  - description: Instrument model not specified in the source dataset files.
-    id: coremeta4cat:DEV_arp5-s69r_COChemisorption
-    title: Pulse chemisorption analyser
-  description:
-  - Pulse CO chemisorption at room temperature (25 C) for Pd3P/SiO2 and Pd/SiO2 (2
-    replicate runs each), used to determine active surface Pd site density / dispersion
-    by comparing CO uptake between the phosphide and the unmodified reference catalyst.
-  evaluated_entity:
-  - description: See CatalyticReaction files for full detail.
-    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
-    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
-  - description: See CatalyticReaction files for full detail.
-    id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
-    title: Pd/SiO2 (5 wt% Pd, ARNE02)
-  id: coremeta4cat:CHAR_arp5-s69r_COChemisorption
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
-  realized_plan:
-    description: CO pulses at room temperature; peak areas integrated to determine
-      total CO uptake.
-    id: coremeta4cat:CHAR_arp5-s69r_COChemisorption_method
-    title: Pulse CO chemisorption method
-  title:
-  - CO chemisorption analysis (2 catalysts)
-- activity_designator: Characterization
-  carried_out_by:
-  - description: VERTEX 70 FTIR spectrometer (Bruker) equipped with Praying Mantis
-      diffuse reflection optics (Harrick) and a liquid-nitrogen-cooled mercury cadmium
-      telluride (MCT) detector.
-    id: coremeta4cat:DEV_arp5-s69r_DRIFT
-    title: VERTEX 70 FTIR spectrometer (Bruker)
-  description:
-  - 'Diffuse reflectance infrared Fourier transform spectroscopy of CO adsorbed on
-    Pd3P/SiO2 and Pd/SiO2, at 30 C and 100 C (4 spectra total). Atmosphere: 4000 ppm
-    CO, balance Ar, 50 mL/min flow; Ar flush between measurements. Sample: 50 mg,
-    100-200 micron sieve fraction, in a Harrick in-situ cell with CaF2 windows.'
-  evaluated_entity:
-  - description: See CatalyticReaction files for full detail.
-    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
-    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
-  - description: See CatalyticReaction files for full detail.
-    id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
-    title: Pd/SiO2 (5 wt% Pd, ARNE02)
-  has_sample_pretreatment:
-  - value: 1 h in argon (50 mL/min) at 150 C to remove physisorbed water, then cooled
-      to 30 C before CO dosing
-  id: coremeta4cat:CHAR_arp5-s69r_DRIFT
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
-  rdf_type:
-    id: CHMO:0000645
-    title: diffuse reflectance infrared Fourier transform spectroscopy
-  realized_plan:
-    description: Reflectance mode; scanner velocity 20 kHz; aperture 6 mm; MIR source,
-      KBr beamsplitter.
-    id: coremeta4cat:CHAR_arp5-s69r_DRIFT_method
-    title: CO-adsorption DRIFT method
-  title:
-  - DRIFT CO-adsorption spectroscopy (2 catalysts, 2 temperatures)
-- activity_designator: Characterization
-  carried_out_by:
-  - description: Stoe STADI-MP powder diffractometer, Cu X-ray source (lambda=1.54178
-      A), Ge monochromator.
-    id: coremeta4cat:DEV_arp5-s69r_PXRD
-    title: Stoe STADI-MP diffractometer
-  description:
-  - Powder X-ray diffraction for phase identification of Pd/SiO2 (5 wt%, ARNE01/ICSD
-    85525=Pd3P phase reference, ARNE02/ICSD 52251=Pd phase reference) and two further
-    Pd3P/SiO2 loading variants (1 wt% and 10 wt%), transmission geometry, 2theta 2-90
-    degrees, ~80 min total measurement per sample.
-  evaluated_entity:
-  - description: See CatalyticReaction files for full detail.
-    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
-    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
-  - description: See CatalyticReaction files for full detail.
-    id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
-    title: Pd/SiO2 (5 wt% Pd, ARNE02)
-  - description: Lower-loading Pd3P/SiO2 variant, PXRD-only sample.
-    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_1wt
-    title: Pd3P/SiO2 (1 wt% Pd)
-  - description: Higher-loading Pd3P/SiO2 variant, PXRD-only sample.
-    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_10wt
-    title: Pd3P/SiO2 (10 wt% Pd)
-  id: coremeta4cat:CHAR_arp5-s69r_PXRD
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
-  rdf_type:
-    id: CHMO:0000158
-    title: powder X-ray diffraction
-  realized_plan:
-    description: Transmission geometry, air atmosphere, ambient temperature; software
-      INSTPAR.
-    id: coremeta4cat:CHAR_arp5-s69r_PXRD_method
-    title: Powder XRD measurement method
-  title:
-  - Powder XRD phase analysis (4 catalysts)
-- activity_designator: Characterization
-  carried_out_by:
-  - description: FEI/Thermo Fisher Osiris ChemiSTEM, combined TEM and STEM with ChemiSTEM
-      EDX detector, Schottky field emission gun, 200 kV high tension, magnification
-      160-800 kx.
-    id: coremeta4cat:DEV_arp5-s69r_STEM
-    title: FEI Osiris ChemiSTEM
-  description:
-  - 'Transmission electron microscopy (HRTEM), scanning TEM (HAADF-STEM), and STEM-EDX
-    elemental mapping of Pd3P/SiO2 (ARNE01), Pd/SiO2 (ARNE02), and a recycled/spent
-    Pd3P/SiO2 sample recovered after catalytic testing (ARNE03), for particle size
-    distribution, chemical composition, and crystal structure. Note: STEM-Meta-2.txt
-    documents the method in detail but no image/data files for this technique are
-    included in the deposited dataset.'
-  evaluated_entity:
-  - description: See CatalyticReaction files for full detail.
-    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
-    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
-  - description: See CatalyticReaction files for full detail.
-    id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
-    title: Pd/SiO2 (5 wt% Pd, ARNE02)
-  - description: Spent Pd3P/SiO2 catalyst recovered after catalytic testing, examined
-      by STEM for post-reaction stability.
-    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_recycled
-    title: Pd3P/SiO2 (5 wt% Pd, recycled, ARNE03)
-  id: coremeta4cat:CHAR_arp5-s69r_STEM
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
-  rdf_type:
-    id: voc4cat:0000078
-    title: transmission electron microscopy
-  realized_plan:
-    description: HRTEM (Digital Micrograph/Gatan) and HAADF-STEM/STEM-EDXS (TEM Imaging
-      and Microscopy/FEI, Esprit/Bruker); Cliff-Lorimer quantification for EDXS.
-    id: coremeta4cat:CHAR_arp5-s69r_STEM_method
-    title: STEM/TEM imaging and EDX mapping method
-  sample_preparation:
-  - Dispersed in ethanol, a drop placed on a Cu grid with an amorphous carbon film,
-    dried at 60 C overnight
-  title:
-  - STEM/TEM imaging and EDX mapping (3 catalyst samples)
-- activity_designator: Characterization
-  carried_out_by:
-  - description: Instrument model not specified in the source dataset files.
-    id: coremeta4cat:DEV_arp5-s69r_XPS
-    title: XPS spectrometer
-  description:
-  - XPS binding energy scans of the Pd 3d core level for Pd/SiO2 and Pd3P/SiO2, and
-    the P 2p core level for Pd3P/SiO2, to compare Pd electronic structure/oxidation
-    state between the phosphide and the unmodified reference catalyst.
-  evaluated_entity:
-  - description: See CatalyticReaction files for full detail.
-    id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
-    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
-  - description: See CatalyticReaction files for full detail.
-    id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
-    title: Pd/SiO2 (5 wt% Pd, ARNE02)
-  id: coremeta4cat:CHAR_arp5-s69r_XPS
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
-  rdf_type:
-    id: CHMO:0000404
-    title: X-ray photoelectron spectroscopy
-  realized_plan:
-    description: Pd 3d scans for both catalysts; P 2p scan additionally for Pd3P/SiO2.
-    id: coremeta4cat:CHAR_arp5-s69r_XPS_method
-    title: XPS core-level measurement method
-  sample_preparation:
-  - Stored under inert atmosphere in a glovebox and transferred with minimal exposure
-    to air; no further pretreatment
-  title:
-  - X-ray photoelectron spectroscopy (2 catalysts, Pd 3d and P 2p)
 
 ```
 ## CatalysisDataset-b74m-m6rp
@@ -4170,8 +4184,123 @@ title:
   Ammonia Decomposition over a Ba-promoted Ru/Ni-BCZY Catalyst for Use in Ammonia-fed
   Protonic Ceramic Cells'
 was_generated_by:
-- activity_designator: Synthesis
-  catalyst_measured_properties:
+- coremeta4cat:SYN_b74m-m6rp_Ru_Ba_IWI
+- coremeta4cat:SYN_b74m-m6rp_cermet_supports
+- coremeta4cat:CHAR_b74m-m6rp_TCD
+- coremeta4cat:SIM_b74m-m6rp_MKM_parametric
+- coremeta4cat:SIM_b74m-m6rp_MKM_validation
+was_generated_by_characterization:
+- carried_out_by:
+  - description: Instrument model not stated in the article.
+    id: coremeta4cat:DEV_b74m-m6rp_TCD
+    title: TPR set-up with quartz reactor and thermal conductivity detector
+  description:
+  - Temperature-programmed reduction of about 0.1 g Ni-BCZY powder in a quartz reactor,
+    from room temperature to 1223 K at 10 K/min in 10% H2/Ar (50 mL/min); H2 consumption
+    followed by a thermal conductivity detector. Deposited signal 38-951 C.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_b74m-m6rp_Ni-BCZY
+    title: Ni-BCZY cermet powder
+  id: coremeta4cat:CHAR_b74m-m6rp_TCD
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+  rdf_type:
+    id: CHMO:0002908
+    title: temperature-programmed reduction
+  realized_plan:
+    description: About 0.1 g sample, 10% H2 in Ar at 50 mL/min, TCD detection.
+    has_heating_rate:
+    - has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+      value: 10
+    has_temperature_range:
+    - description: room temperature to 1223 K (the article gives 1223 K as the end
+        point)
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      max_value: 1223.15
+      min_value: 298.15
+      unit: https://qudt.org/vocab/unit/K
+    id: coremeta4cat:CHAR_b74m-m6rp_TCD_method
+    plan_designator: CHMO:0002908
+    reducing_gas_composition:
+    - 10% H2 in Ar, 50 mL/min
+    title: H2-TPR, 10 K/min to 1223 K
+  title:
+  - H2-TPR of the Ni-BCZY cermet (article Fig. 1)
+was_generated_by_simulation:
+- calculated_property:
+  - description: Turnover frequency of NH3 decomposition, deposit Fig11_Ni+Ru.tab
+      (article Fig. 10); Ni-only and Ru-only in Fig11_Ni.tab and Fig11_Ru.tab
+    value: TOF 3.2e-4 to 0.37 s-1 (Ni+Ru sites, 498-848 K)
+  - description: Deposit Fig10_615K.csv, Fig10_818K.csv (article Fig. 9)
+    value: surface coverages of 12 surface species along the bed at 615 and 818 K
+  - description: Deposit Fig12b, Fig12d, Fig12f; TOF at 615 K vs. the same parameters
+      in Fig12_a, Fig12c, Fig12e (article Fig. 11 shows 100-10,000 ppm and 0.5-5 bar)
+    value: NH3 conversion vs. temperature for inlet NH3 100 ppm-100%, GHSV 100-100,000
+      h-1, pressure 0.5-10 bar
+  description:
+  - 'Simulations with the optimized microkinetic mechanism: axial NH3 and conversion
+    profiles over the 12 mm bed at 618-818 K (article Fig. 8); spatially resolved
+    surface coverages at 615 and 818 K (Fig. 9); turnover frequency of the Ru-only,
+    Ni-only and combined models at 498-848 K, computed without reactor effects (Fig.
+    10); and variation of inlet NH3, GHSV (100-100,000 h-1) and pressure at 615 K
+    or as a function of temperature (Fig. 11). Base case: 1000 ppm NH3 in Ar, 1 bar,
+    GHSV 50,000 h-1, 615 K (= T10 of 0.5Ru/1Ba/Ni-BCZY).'
+  evaluated_entity:
+  - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
+    title: 0.5Ru/1Ba/Ni-BCZY (modelled as Ru and Ni surface sites)
+  id: coremeta4cat:SIM_b74m-m6rp_MKM_parametric
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+  realized_plan:
+    description: 'Mechanism with the optimized Ru and Ni parameters (article Table
+      4). Varied inputs: inlet NH3 mole fraction, GHSV, pressure, temperature.'
+    id: coremeta4cat:SIM_b74m-m6rp_MKM_parametric_method
+    plan_designator: coremeta4cat:Microkinetics
+    title: optimized microkinetic packed-bed model, parameter variation
+  software_package:
+  - DETCHEM-PBR (DETCHEM package), reactor simulations
+  - DETCHEM-SURFPROBE, surface coverages and TOF without reactor effects
+  title:
+  - 'Microkinetic NH3 decomposition: reactor profiles, TOF and parameter variation'
+- calculated_property:
+  - description: Deposit Fig6a-c (0.5Ru/1Ba/Ni-BCZY, original), Fig7a-c (Ni-BCZY,
+      original and optimized), Fig8a-c (0.5Ru/1Ba/Ni-BCZY, optimized)
+    value: NH3 conversion vs. surface temperature, 498-848 K, 9 simulated curves
+  description:
+  - 'One-dimensional packed-bed reactor simulation (negligible axial diffusion) with
+    a mean-field surface mechanism on Ru and Ni sites, compared with the measured
+    light-off curves at 500, 1000 and 3000 ppm NH3 in Ar, 1 bar, GHSV 50,000 h-1,
+    ramp 2 K/min. Ni steps start from Zhu et al. (Int. J. Green Energy 19 (2022) 1568),
+    Ru steps from Zhang et al. (ACS Sustain. Chem. Eng. 7 (2019) 18038, Ba-promoted
+    Ru on YSZ, coverage-dependent activation energies). Both parameter sets were re-optimized
+    against the 1000 ppm data and validated with the 500 and 3000 ppm data; the optimized
+    set is article Table 4. Surface species: Ru, H-Ru, N-Ru, NH-Ru, NH2-Ru, NH3-Ru,
+    Ni, H-Ni, N-Ni, NH-Ni, NH2-Ni, NH3-Ni.'
+  evaluated_entity:
+  - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
+    title: 0.5Ru/1Ba/Ni-BCZY (modelled as Ru and Ni surface sites)
+  - id: coremeta4cat:CAT_b74m-m6rp_Ni-BCZY
+    title: Ni-BCZY (modelled as Ni surface sites)
+  id: coremeta4cat:SIM_b74m-m6rp_MKM_validation
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+  realized_plan:
+    description: Modified Arrhenius rate expressions with coverage-dependent activation
+      energies; catalytic area scaled by F_cat/geo from the metal dispersion. Parameter
+      optimization in 5% steps with two dependent parameters fixed by thermodynamic
+      consistency.
+    id: coremeta4cat:SIM_b74m-m6rp_MKM_method
+    plan_designator: coremeta4cat:Microkinetics
+    title: microkinetic packed-bed model, literature and optimized parameters
+  software_package:
+  - DETCHEM-PBR (DETCHEM package)
+  - CaRMeN (Catalytic Reaction Mechanisms Network)
+  - DETCHEM-ADJUST (thermodynamic consistency during optimization)
+  title:
+  - Microkinetic simulation of NH3 decomposition light-off on Ni-BCZY and 0.5Ru/1Ba/Ni-BCZY
+was_generated_by_synthesis:
+- catalyst_measured_properties:
   - Ru distribution and nanoparticle size of 0.5Ru/1Ba/Ni-BCZY by SEM/EDX (article
     Figs. 4-5; images not deposited)
   had_input_entity:
@@ -4233,8 +4362,7 @@ was_generated_by:
     title: stepwise incipient wetness impregnation, calcination, granulation
   title:
   - Ru and Ba on Ni-BCZY, Ni-YSZ and YSZ by stepwise incipient wetness impregnation
-- activity_designator: Synthesis
-  catalyst_measured_properties:
+- catalyst_measured_properties:
   - 'BET surface area: NiO-BCZY (oxidized) 1.1 m2/g, YSZ powder 14.1 m2/g (article
     Table 2)'
   - Ni dispersion of Ni-BCZY 3.17% (H2-TPD)
@@ -4276,117 +4404,6 @@ was_generated_by:
     title: tape casting, sintering and crushing
   title:
   - Ni-BCZY, Ni-YSZ and YSZ supports from sintered tapes
-- activity_designator: Characterization
-  carried_out_by:
-  - description: Instrument model not stated in the article.
-    id: coremeta4cat:DEV_b74m-m6rp_TCD
-    title: TPR set-up with quartz reactor and thermal conductivity detector
-  description:
-  - Temperature-programmed reduction of about 0.1 g Ni-BCZY powder in a quartz reactor,
-    from room temperature to 1223 K at 10 K/min in 10% H2/Ar (50 mL/min); H2 consumption
-    followed by a thermal conductivity detector. Deposited signal 38-951 C.
-  evaluated_entity:
-  - id: coremeta4cat:CAT_b74m-m6rp_Ni-BCZY
-    title: Ni-BCZY cermet powder
-  id: coremeta4cat:CHAR_b74m-m6rp_TCD
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
-  rdf_type:
-    id: CHMO:0002908
-    title: temperature-programmed reduction
-  realized_plan:
-    description: About 0.1 g sample, 10% H2 in Ar at 50 mL/min, TCD detection.
-    has_heating_rate:
-    - has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
-      unit: https://qudt.org/vocab/unit/K-PER-MIN
-      value: 10
-    has_temperature_range:
-    - description: room temperature to 1223 K (the article gives 1223 K as the end
-        point)
-      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
-      max_value: 1223.15
-      min_value: 298.15
-      unit: https://qudt.org/vocab/unit/K
-    id: coremeta4cat:CHAR_b74m-m6rp_TCD_method
-    plan_designator: CHMO:0002908
-    reducing_gas_composition:
-    - 10% H2 in Ar, 50 mL/min
-    title: H2-TPR, 10 K/min to 1223 K
-  title:
-  - H2-TPR of the Ni-BCZY cermet (article Fig. 1)
-- activity_designator: Simulation
-  calculated_property:
-  - description: Turnover frequency of NH3 decomposition, deposit Fig11_Ni+Ru.tab
-      (article Fig. 10); Ni-only and Ru-only in Fig11_Ni.tab and Fig11_Ru.tab
-    value: TOF 3.2e-4 to 0.37 s-1 (Ni+Ru sites, 498-848 K)
-  - description: Deposit Fig10_615K.csv, Fig10_818K.csv (article Fig. 9)
-    value: surface coverages of 12 surface species along the bed at 615 and 818 K
-  - description: Deposit Fig12b, Fig12d, Fig12f; TOF at 615 K vs. the same parameters
-      in Fig12_a, Fig12c, Fig12e (article Fig. 11 shows 100-10,000 ppm and 0.5-5 bar)
-    value: NH3 conversion vs. temperature for inlet NH3 100 ppm-100%, GHSV 100-100,000
-      h-1, pressure 0.5-10 bar
-  description:
-  - 'Simulations with the optimized microkinetic mechanism: axial NH3 and conversion
-    profiles over the 12 mm bed at 618-818 K (article Fig. 8); spatially resolved
-    surface coverages at 615 and 818 K (Fig. 9); turnover frequency of the Ru-only,
-    Ni-only and combined models at 498-848 K, computed without reactor effects (Fig.
-    10); and variation of inlet NH3, GHSV (100-100,000 h-1) and pressure at 615 K
-    or as a function of temperature (Fig. 11). Base case: 1000 ppm NH3 in Ar, 1 bar,
-    GHSV 50,000 h-1, 615 K (= T10 of 0.5Ru/1Ba/Ni-BCZY).'
-  evaluated_entity:
-  - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
-    title: 0.5Ru/1Ba/Ni-BCZY (modelled as Ru and Ni surface sites)
-  id: coremeta4cat:SIM_b74m-m6rp_MKM_parametric
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
-  realized_plan:
-    description: 'Mechanism with the optimized Ru and Ni parameters (article Table
-      4). Varied inputs: inlet NH3 mole fraction, GHSV, pressure, temperature.'
-    id: coremeta4cat:SIM_b74m-m6rp_MKM_parametric_method
-    plan_designator: coremeta4cat:Microkinetics
-    title: optimized microkinetic packed-bed model, parameter variation
-  software_package:
-  - DETCHEM-PBR (DETCHEM package), reactor simulations
-  - DETCHEM-SURFPROBE, surface coverages and TOF without reactor effects
-  title:
-  - 'Microkinetic NH3 decomposition: reactor profiles, TOF and parameter variation'
-- activity_designator: Simulation
-  calculated_property:
-  - description: Deposit Fig6a-c (0.5Ru/1Ba/Ni-BCZY, original), Fig7a-c (Ni-BCZY,
-      original and optimized), Fig8a-c (0.5Ru/1Ba/Ni-BCZY, optimized)
-    value: NH3 conversion vs. surface temperature, 498-848 K, 9 simulated curves
-  description:
-  - 'One-dimensional packed-bed reactor simulation (negligible axial diffusion) with
-    a mean-field surface mechanism on Ru and Ni sites, compared with the measured
-    light-off curves at 500, 1000 and 3000 ppm NH3 in Ar, 1 bar, GHSV 50,000 h-1,
-    ramp 2 K/min. Ni steps start from Zhu et al. (Int. J. Green Energy 19 (2022) 1568),
-    Ru steps from Zhang et al. (ACS Sustain. Chem. Eng. 7 (2019) 18038, Ba-promoted
-    Ru on YSZ, coverage-dependent activation energies). Both parameter sets were re-optimized
-    against the 1000 ppm data and validated with the 500 and 3000 ppm data; the optimized
-    set is article Table 4. Surface species: Ru, H-Ru, N-Ru, NH-Ru, NH2-Ru, NH3-Ru,
-    Ni, H-Ni, N-Ni, NH-Ni, NH2-Ni, NH3-Ni.'
-  evaluated_entity:
-  - id: coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY
-    title: 0.5Ru/1Ba/Ni-BCZY (modelled as Ru and Ni surface sites)
-  - id: coremeta4cat:CAT_b74m-m6rp_Ni-BCZY
-    title: Ni-BCZY (modelled as Ni surface sites)
-  id: coremeta4cat:SIM_b74m-m6rp_MKM_validation
-  other_identifier:
-  - notation: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
-  realized_plan:
-    description: Modified Arrhenius rate expressions with coverage-dependent activation
-      energies; catalytic area scaled by F_cat/geo from the metal dispersion. Parameter
-      optimization in 5% steps with two dependent parameters fixed by thermodynamic
-      consistency.
-    id: coremeta4cat:SIM_b74m-m6rp_MKM_method
-    plan_designator: coremeta4cat:Microkinetics
-    title: microkinetic packed-bed model, literature and optimized parameters
-  software_package:
-  - DETCHEM-PBR (DETCHEM package)
-  - CaRMeN (Catalytic Reaction Mechanisms Network)
-  - DETCHEM-ADJUST (thermodynamic consistency during optimization)
-  title:
-  - Microkinetic simulation of NH3 decomposition light-off on Ni-BCZY and 0.5Ru/1Ba/Ni-BCZY
 
 ```
 ## CatalyticReaction-001

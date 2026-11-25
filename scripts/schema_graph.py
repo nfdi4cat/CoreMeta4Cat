@@ -15,11 +15,11 @@ every field that points to it.
 
 On top of that the graph records:
   origins   -- where each data class is used from (e.g. Synthesis via
-               CatalysisDataset.was_generated_by, Reaction via
+               CatalysisDataset.was_generated_by_synthesis, Reaction via
                ReactionMonitoring.evaluated_activity)
   overviews -- a reduced, CoreMeta4Cat-specific view of CatalysisDataset in
                which classes that only exist to model inheritance
-               (CatalysisDataGeneratingActivity) and generic upstream
+               (abstract type-designator classes) and generic upstream
                classes (EvaluatedEntity) are replaced by the specific
                CoreMeta4Cat classes behind them
   pages     -- the documentation page of each class that has one
@@ -183,10 +183,9 @@ def _type_designators(schema: dict) -> Set[str]:
 
 
 def is_stand_in(schema: dict, class_name: str) -> bool:
-    """True for an abstract class that adds nothing but a type designator,
-    e.g. CatalysisDataGeneratingActivity: it only exists so that a slot can
-    accept any of its subclasses, and readers are better served by seeing
-    those subclasses directly."""
+    """True for an abstract class that adds nothing but a type designator:
+    it only exists so that a slot can accept any of its subclasses, and
+    readers are better served by seeing those subclasses directly."""
     class_def = schema.get("classes", {}).get(class_name) or {}
     if not class_def.get("abstract") or not get_subclasses(schema, class_name):
         return False
@@ -214,8 +213,8 @@ def specific_classes(schema: dict, class_name: str, editable: Optional[Set[str]]
 
 def _origins(schema: dict, roots: Iterable[str], editable: Optional[Set[str]]) -> Dict[str, List[dict]]:
     """For each root: the fields elsewhere in the schema that point at it or
-    at one of its ancestors, e.g. CatalysisDataset.was_generated_by for
-    Synthesis. Owners must be CoreMeta4Cat classes or data-generating
+    at one of its ancestors, e.g. CatalysisDataset.was_generated_by_synthesis
+    for Synthesis. Owners must be CoreMeta4Cat classes or data-generating
     activities, which keeps generic upstream datasets out."""
     classes = schema.get("classes", {})
     result: Dict[str, List[dict]] = {}
@@ -248,14 +247,22 @@ def _origins(schema: dict, roots: Iterable[str], editable: Optional[Set[str]]) -
 
 def _overview(schema: dict, class_name: str, editable: Optional[Set[str]]) -> dict:
     """A CoreMeta4Cat-specific view of a class: only the fields it declares
-    itself (its slot_usage), with every range replaced by the specific
-    CoreMeta4Cat classes behind it. Fields inherited from generic upstream
-    classes (id, title, ... from dcat:Dataset) are left out."""
+    itself (its slot_usage and its own slots), with every range replaced by
+    the specific CoreMeta4Cat classes behind it. Fields inherited from generic
+    upstream classes (id, title, ... from dcat:Dataset) are left out. A slot
+    declared as a specialisation of another one (is_a, e.g.
+    was_generated_by_synthesis of was_generated_by) follows its parent."""
     classes = schema.get("classes", {})
     enums = schema.get("enums") or {}
     class_def = classes.get(class_name) or {}
+    declared = {slot: {} for slot in class_def.get("slots") or [] if slot not in (class_def.get("slot_usage") or {})}
+    entries = list((class_def.get("slot_usage") or {}).items())
+    for slot, usage in declared.items():
+        parent = get_slot_details(schema, slot).get("is_a")
+        after = [i for i, (name, _) in enumerate(entries) if name == parent or get_slot_details(schema, name).get("is_a") == parent]
+        entries.insert(after[-1] + 1 if parent and after else len(entries), (slot, usage))
     fields = []
-    for slot, usage in (class_def.get("slot_usage") or {}).items():
+    for slot, usage in entries:
         usage = usage or {}
         details = {**get_slot_details(schema, slot), **{k: v for k, v in usage.items() if v is not None}}
         bound = [b.get("range") for b in (usage.get("bindings") or []) if (b or {}).get("range")]

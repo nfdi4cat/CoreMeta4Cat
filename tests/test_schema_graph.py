@@ -99,8 +99,8 @@ def test_data_class_roles(graph):
 def test_origins_of_data_generating_activities(graph):
     for name in ("Synthesis", "Characterization", "Simulation"):
         origins = [(o["class"], o["field"], o["as"]) for o in graph["origins"][name]]
-        # the stand-in CatalysisDataGeneratingActivity is not named
-        assert origins == [("CatalysisDataset", "was_generated_by", None)]
+        # each activity is described in its own slot; was_generated_by only lists ids
+        assert origins == [("CatalysisDataset", f"was_generated_by_{name.lower()}", None)]
 
 
 def test_origins_of_reaction(graph):
@@ -116,6 +116,14 @@ def test_dataset_overview_uses_specific_classes(graph):
     assert fields["rdf_type"]["kind"] == "enum"
     assert fields["rdf_type"]["range"] == "CatalysisResearchFieldEnum"
     assert fields["was_generated_by"]["targets"] == ["Synthesis", "Characterization", "Simulation"]
+    assert fields["was_generated_by"]["requirement"] == "M"
+    for name in ("Synthesis", "Characterization", "Simulation"):
+        assert fields[f"was_generated_by_{name.lower()}"]["targets"] == [name]
+    # the typed slots follow their parent slot
+    names = [f["name"] for f in graph["overviews"]["CatalysisDataset"]["fields"]]
+    start = names.index("was_generated_by")
+    assert names[start:start + 4] == ["was_generated_by", "was_generated_by_synthesis",
+                                      "was_generated_by_characterization", "was_generated_by_simulation"]
     assert fields["is_about_activity"]["targets"] == ["CatalyticReaction"]
     entities = fields["is_about_entity"]["targets"]
     assert "CatalystSample" in entities and "EvaluatedEntity" not in entities

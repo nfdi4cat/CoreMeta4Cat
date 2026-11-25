@@ -1,12 +1,13 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix PROCO: <http://purl.obolibrary.org/obo/PROCO_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix schema1: <http://schema.org/> .
 coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites dcterms:title "DFT binding energies of OH and CO at 17 oxide surface sites" ;
-	a "Simulation" , voc4cat:0000215 ;
+	a PROCO:0000159 , voc4cat:0000215 ;
 	prov:used coremeta4cat:SIM_6mxw-xsrd_DFT_method , coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites ;
 	coremeta4cat:calculated_property _:c14n0 , _:c14n1 ;
 	coremeta4cat:software_package "Atomic Simulation Environment (ASE), structure generation" , "VASP" , "pymatgen, structure generation" .
