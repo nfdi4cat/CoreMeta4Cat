@@ -1,0 +1,30 @@
+id: coremeta4cat:CHAR_b74m-m6rp_TCD
+activity_designator: coremeta4cat:Characterization
+title:
+- H2-TPR of the Ni-BCZY cermet (article Fig. 1)
+rdf_type:
+  id: CHMO:0002908
+  title: temperature-programmed reduction
+carried_out_by:
+- id: coremeta4cat:DEV_b74m-m6rp_TCD
+  title: TPR set-up with quartz reactor and thermal conductivity detector
+  description: Instrument model not stated in the article.
+evaluated_entity:
+- id: coremeta4cat:CAT_b74m-m6rp_Ni-BCZY
+  title: Ni-BCZY cermet powder
+realized_plan:
+  id: coremeta4cat:CHAR_b74m-m6rp_TCD_method
+  plan_designator: CHMO:0002908
+  title: H2-TPR, 10 K/min to 1223 K
+  has_temperature_range:
+  - min_value: 298.15
+    max_value: 1223.15
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: room temperature to 1223 K (the article gives 1223 K as the end point)
+  has_heating_rate:
+  - value: 10
+    has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+    unit: https://qudt.org/vocab/unit/K-PER-MIN
+  reducing_gas_composition:
+  - 10% H2 in Ar, 50 mL/min

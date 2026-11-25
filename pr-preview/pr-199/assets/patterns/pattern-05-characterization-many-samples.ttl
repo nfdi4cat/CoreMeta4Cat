@@ -1,0 +1,25 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix enm: <http://purl.enanomapper.org/onto/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
+enm:0000064 schema1:name "BET analysis" ;
+	a schema1:DefinedTerm .
+coremeta4cat:CAT_32x1-99x6_Al2O3_0P dcterms:title "Pd/Al2O3" ;
+	a prov:Entity .
+coremeta4cat:CAT_32x1-99x6_Al2O3_1P dcterms:title "Pd/1P/Al2O3" ;
+	a prov:Entity .
+coremeta4cat:CAT_32x1-99x6_Al2O3_2P dcterms:title "Pd/2P/Al2O3" ;
+	a prov:Entity .
+coremeta4cat:CHAR_32x1-99x6_BET dcterms:title "BET surface area analysis (10 catalysts)" ;
+	a enm:0000064 , coremeta4cat:Characterization ;
+	prov:used coremeta4cat:CAT_32x1-99x6_Al2O3_0P , coremeta4cat:CAT_32x1-99x6_Al2O3_1P , coremeta4cat:CAT_32x1-99x6_Al2O3_2P , coremeta4cat:CHAR_32x1-99x6_BET_method ;
+	prov:wasAssociatedWith coremeta4cat:DEV_32x1-99x6_BET .
+coremeta4cat:CHAR_32x1-99x6_BET_method dcterms:title "N2 physisorption BET method" ;
+	a OBI:0000272 .
+coremeta4cat:DEV_32x1-99x6_BET dcterms:description "Instrument model not specified in the source dataset files." ;
+	dcterms:title "BET surface area analyser" ;
+	a prov:Agent .

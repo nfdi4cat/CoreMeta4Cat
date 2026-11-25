@@ -1,0 +1,76 @@
+id: hdl:21.11165/4cat/6mxw-xsrd
+title:
+- Copper Gallium Aluminum Mixed Metal Oxides as Alternative Catalyst Candidates for Efficient Conversion
+  of Carbon Dioxide to Methanol and Dimethyl Ether
+description:
+- 'Data from Weber et al., ACS Catal. 2025, 15, 18857: DFT and machine-learned-potential (EquiformerV2/OCP,
+  MACE-MPA-0) binding energies of OH and CO used to screen active phases; nominal and XRF compositions
+  of 76 co-precipitated Cu-Ga-Al hydrotalcite-like precursors; the 13 compositions of the initial activity
+  screening; calcination temperatures of the seven optimized catalysts; and the 17-condition test protocol
+  for CO2/CO hydrogenation to methanol and dimethyl ether at 80 bar in a 16-fold fixed-bed reactor. Catalytic
+  results (conversions, yields) and further characterization (PXRD, N2 sorption, TPR, N2O-RFC, TEM) are
+  reported in the article but not deposited.'
+rdf_type:
+- id: voc4cat:0007001
+  title: heterogeneous catalysis
+was_generated_by:
+- id: coremeta4cat:SYN_6mxw-xsrd_gen2_step1
+  activity_designator: coremeta4cat:Synthesis
+  title:
+  - Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C
+  nominal_composition:
+  - Cu0.85Al0.15 (metal fractions Cu 0.85, Al 0.15)
+  catalyst_measured_properties:
+  - No measured properties of the intermediate oxides are deposited.
+  had_input_entity:
+  - id: coremeta4cat:PREC_6mxw-xsrd_CuNO3
+    title: copper(II) nitrate trihydrate, Cu(NO3)2·3H2O (Sigma-Aldrich, 98.8%)
+  - id: coremeta4cat:PREC_6mxw-xsrd_AlNO3
+    title: aluminium nitrate nonahydrate, Al(NO3)3·9H2O (Sigma-Aldrich, 99.9%)
+  had_output_entity:
+  - id: coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450
+    title: Cu0.85Al0.15 oxide calcined at 450 C
+  - id: coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550
+    title: Cu0.85Al0.15 oxide calcined at 550 C
+  realized_plan:
+    id: coremeta4cat:SYN_6mxw-xsrd_gen2_step1_method
+    plan_designator: voc4cat:0007795
+    title: automated co-precipitation at pH 9, ageing, freeze-drying, calcination at 450/550 C
+    has_calcination_temperature_range:
+    - min_value: 723.15
+      max_value: 823.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+      description: 450 or 550 C
+- id: coremeta4cat:SYN_6mxw-xsrd_gen2_step2
+  activity_designator: coremeta4cat:Synthesis
+  title:
+  - 1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at 250 or 350 C
+  nominal_composition:
+  - Cu0.85Al0.15 mixed oxide with 1 wt% Ga (target loading)
+  catalyst_measured_properties:
+  - No measured properties of these four samples are deposited.
+  had_input_entity:
+  - id: coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450
+    title: Cu0.85Al0.15 oxide calcined at 450 C (output of step 1)
+  - id: coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550
+    title: Cu0.85Al0.15 oxide calcined at 550 C (output of step 1)
+  - id: coremeta4cat:PREC_6mxw-xsrd_GaNO3
+    title: gallium(III) nitrate hydrate, Ga(NO3)3·xH2O (Sigma-Aldrich, 99.9%), aqueous solution
+  had_output_entity:
+  - id: coremeta4cat:CAT_6mxw-xsrd_G2_450_250
+    title: Cu0.85Al0.15(450)-1wt.%Ga(250)
+  - id: coremeta4cat:CAT_6mxw-xsrd_G2_450_350
+    title: Cu0.85Al0.15(450)-1wt.%Ga(350)
+  realized_plan:
+    id: coremeta4cat:SYN_6mxw-xsrd_gen2_step2_method
+    plan_designator: voc4cat:0007028
+    title: incipient wetness impregnation with Ga(NO3)3, drying, calcination at 250/350 C
+    impregnation_type:
+    - incipient_wetness
+    has_calcination_temperature_range:
+    - min_value: 523.15
+      max_value: 623.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+      description: 250 or 350 C

@@ -1,0 +1,35 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
+@prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
+CHMO:0002908 schema1:name "temperature-programmed reduction" ;
+	a schema1:DefinedTerm .
+coremeta4cat:CAT_b74m-m6rp_Ni-BCZY dcterms:title "Ni-BCZY cermet powder" ;
+	a prov:Entity .
+coremeta4cat:CHAR_b74m-m6rp_TCD dcterms:title "H2-TPR of the Ni-BCZY cermet (article Fig. 1)" ;
+	a CHMO:0002908 , coremeta4cat:Characterization ;
+	prov:used coremeta4cat:CAT_b74m-m6rp_Ni-BCZY , coremeta4cat:CHAR_b74m-m6rp_TCD_method ;
+	prov:wasAssociatedWith coremeta4cat:DEV_b74m-m6rp_TCD .
+coremeta4cat:CHAR_b74m-m6rp_TCD_method dcterms:title "H2-TPR, 10 K/min to 1223 K" ;
+	a CHMO:0002908 ;
+	coremeta4cat:hasTemperatureRange _:c14n1 ;
+	coremeta4cat:reducing_gas_composition "10% H2 in Ar, 50 mL/min" ;
+	voc4cat:0008116 _:c14n0 .
+coremeta4cat:DEV_b74m-m6rp_TCD dcterms:description "Instrument model not stated in the article." ;
+	dcterms:title "TPR set-up with quartz reactor and thermal conductivity detector" ;
+	a prov:Agent .
+_:c14n0 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/TemperaturePerTime> ;
+	qudt:unit <https://qudt.org/vocab/unit/K-PER-MIN> ;
+	a qudt:Quantity ;
+	prov:value "10.0"^^xsd:float .
+_:c14n1 dcterms:description "room temperature to 1223 K (the article gives 1223 K as the end point)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "1223.15"^^xsd:float ;
+	coremeta4cat:minValue "298.15"^^xsd:float .
