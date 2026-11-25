@@ -21,6 +21,9 @@ catalyst_mass:
   - value: 0.2
     has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
     unit: https://qudt.org/vocab/unit/GM
+rdf_type:
+  id: CHMO:0001446
+  title: "catalytic reforming"
 catalyst_type:
   - "heterogeneous_catalysis"
 catalyst_form:

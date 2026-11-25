@@ -25,6 +25,9 @@ title:
   - "NiO/CeO2 dry methane reforming catalyst: co-precipitation synthesis, multi-technique characterization, catalytic performance, and computational interface study"
 description:
   - "Dataset covering the full lifecycle of a 15 wt% NiO/CeO2 dry reforming catalyst: (1) co-precipitation synthesis with precipitation parameters and calcination protocol; (2) XPS surface composition and oxidation state analysis; (3) H2-TPR reducibility profiling; (4) catalytic performance in CH4+CO2 dry reforming at 600-800 deg C over 20 h; (5) ReaxFF molecular dynamics of the Ni/CeO2(111) interface at 800 deg C to rationalise metal-support interaction."
+rdf_type:
+  - id: voc4cat:0007001
+    title: "heterogeneous catalysis"
 was_generated_by:
   - id: "coremeta4cat:SYNTH_002_NiO_CeO2"
     activity_designator: "Synthesis"
@@ -143,6 +146,9 @@ is_about_activity:
       - value: 0.2
         has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
         unit: https://qudt.org/vocab/unit/GM
+    rdf_type:
+      id: CHMO:0001446
+      title: "catalytic reforming"
     catalyst_type:
       - "heterogeneous_catalysis"
     catalyst_form:

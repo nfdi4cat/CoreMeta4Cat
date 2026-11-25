@@ -42,6 +42,7 @@ prefixes:
   allotrope.role: http://purl.allotrope.org/ontologies/role#AFRL_
   enm: http://purl.enanomapper.org/onto/
   NMR: "http://nmrML.org/nmrCV#NMR:"
+  panet: http://purl.org/pan-science/PaNET/   # Photon and Neutron Experimental Techniques ontology
 
 default_prefix: coremeta4cat
 default_range: string
@@ -213,6 +214,8 @@ classes:
     mixins:
     - XRaySourceMixin
     description: Powder X-ray diffraction for phase identification and structural analysis.
+    exact_mappings:
+    - panet:PaNET01101   # x-ray powder diffraction
     slots:
     - has_two_theta_range
     - step_size
@@ -228,6 +231,8 @@ classes:
     mixins:
     - XRaySourceMixin
     description: Single crystal X-ray diffraction for structure determination.
+    exact_mappings:
+    - panet:PaNET01102   # x-ray single crystal diffraction
     slots:
     - has_temperature
 
@@ -240,6 +245,8 @@ classes:
     - XRaySourceMixin
     - EnergyRangeMixin
     description: X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.
+    exact_mappings:
+    - panet:PaNET01196   # x-ray absorption spectroscopy
     slots:
     - has_operation_mode
     - element_analyzed
@@ -257,6 +264,8 @@ classes:
     - XRaySourceMixin
     - EnergyRangeMixin
     description: X-ray photoelectron spectroscopy for surface elemental and chemical state analysis.
+    exact_mappings:
+    - panet:PaNET01204   # x-ray photoelectron spectroscopy
     slots:
     - total_acquisition_time
     - number_of_scans
@@ -283,6 +292,8 @@ classes:
     is_a: CharacterizationTechnique
     class_uri: CHMO:0000630
     description: Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.
+    exact_mappings:
+    - panet:PaNET01109   # infrared spectroscopy
     slots:
     - has_operation_mode
     - has_wavenumber_range
@@ -298,6 +309,8 @@ classes:
     description: |-
       Diffuse reflectance infrared Fourier transform spectroscopy for in-situ
       surface species identification under reactive gas conditions.
+    broad_mappings:
+    - panet:PaNET01109   # infrared spectroscopy (broader than DRIFTS)
     slots:
     - adsorption_gas
     - has_atmosphere
@@ -315,6 +328,8 @@ classes:
     is_a: CharacterizationTechnique
     class_uri: voc4cat:0000069
     description: Raman spectroscopy for vibrational and structural characterization.
+    exact_mappings:
+    - panet:PaNET01195   # raman spectroscopy
     slots:
     - excitation_laser_wavelength
     - excitation_laser_power
@@ -353,6 +368,8 @@ classes:
     mixins:
     - ElectronMicroscopyMixin
     description: TEM for atomic-resolution imaging and diffraction of catalyst particles.
+    broad_mappings:
+    - panet:PaNET01145   # electron microscopy (broader than TEM)
     slots:
     - has_operation_mode
 
@@ -362,6 +379,8 @@ classes:
     mixins:
     - ElectronMicroscopyMixin
     description: SEM for surface morphology and particle size/shape imaging.
+    broad_mappings:
+    - panet:PaNET01145   # electron microscopy (broader than SEM)
     slots:
     - image_resolution
     - field_emitter

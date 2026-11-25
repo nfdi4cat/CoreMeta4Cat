@@ -258,15 +258,18 @@
       "calculated_property": [
         {
           "value": "TOF 3.2e-4 to 0.37 s-1 (Ni+Ru sites, 498-848 K)",
-          "description": "Turnover frequency of NH3 decomposition, deposit Fig11_Ni+Ru.tab (article Fig. 10); Ni-only and Ru-only in Fig11_Ni.tab and Fig11_Ru.tab"
+          "description": "Turnover frequency of NH3 decomposition, deposit Fig11_Ni+Ru.tab (article Fig. 10); Ni-only and Ru-only in Fig11_Ni.tab and Fig11_Ru.tab",
+          "property_designator": "IAO:0000109"
         },
         {
           "value": "surface coverages of 12 surface species along the bed at 615 and 818 K",
-          "description": "Deposit Fig10_615K.csv, Fig10_818K.csv (article Fig. 9)"
+          "description": "Deposit Fig10_615K.csv, Fig10_818K.csv (article Fig. 9)",
+          "property_designator": "IAO:0000109"
         },
         {
           "value": "NH3 conversion vs. temperature for inlet NH3 100 ppm-100%, GHSV 100-100,000 h-1, pressure 0.5-10 bar",
-          "description": "Deposit Fig12b, Fig12d, Fig12f; TOF at 615 K vs. the same parameters in Fig12_a, Fig12c, Fig12e (article Fig. 11 shows 100-10,000 ppm and 0.5-5 bar)"
+          "description": "Deposit Fig12b, Fig12d, Fig12f; TOF at 615 K vs. the same parameters in Fig12_a, Fig12c, Fig12e (article Fig. 11 shows 100-10,000 ppm and 0.5-5 bar)",
+          "property_designator": "IAO:0000109"
         }
       ]
     },
@@ -308,7 +311,8 @@
       "calculated_property": [
         {
           "value": "NH3 conversion vs. surface temperature, 498-848 K, 9 simulated curves",
-          "description": "Deposit Fig6a-c (0.5Ru/1Ba/Ni-BCZY, original), Fig7a-c (Ni-BCZY, original and optimized), Fig8a-c (0.5Ru/1Ba/Ni-BCZY, optimized)"
+          "description": "Deposit Fig6a-c (0.5Ru/1Ba/Ni-BCZY, original), Fig7a-c (Ni-BCZY, original and optimized), Fig8a-c (0.5Ru/1Ba/Ni-BCZY, optimized)",
+          "property_designator": "IAO:0000109"
         }
       ]
     }
@@ -411,8 +415,8 @@
         }
       ],
       "rdf_type": {
-        "id": "VOC4CAT:0007001",
-        "title": "heterogeneous catalysis"
+        "id": "SIO:010511",
+        "title": "decomposition reaction"
       },
       "used_reactant": [
         {
@@ -455,18 +459,38 @@
           "id": "coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY",
           "title": "0.5Ru/1Ba/Ni-BCZY",
           "description": "0.5 wt% Ru and 1 wt% Ba on crushed Ni-BCZY cermet; 500, 1000, 3000 ppm NH3",
-          "has_quantitative_attribute": [
+          "composed_of": [
             {
-              "value": 0.5,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Ru, nominal",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
+              "id": "coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru",
+              "title": "ruthenium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 0.5,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Nominal loading",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:30682",
+                "title": "ruthenium atom"
+              }
             },
             {
-              "value": 1.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Ba, nominal",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
+              "id": "coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ba",
+              "title": "barium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Nominal loading",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:32594",
+                "title": "barium atom"
+              }
             }
           ]
         },
@@ -474,18 +498,38 @@
           "id": "coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY",
           "title": "0.5Ru/0.5Ba/Ni-BCZY",
           "description": "1000 ppm NH3; the deposited file lost its decimal separators",
-          "has_quantitative_attribute": [
+          "composed_of": [
             {
-              "value": 0.5,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Ru, nominal",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
+              "id": "coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ru",
+              "title": "ruthenium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 0.5,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Nominal loading",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:30682",
+                "title": "ruthenium atom"
+              }
             },
             {
-              "value": 0.5,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Ba, nominal",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
+              "id": "coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY_Ba",
+              "title": "barium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 0.5,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Nominal loading",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:32594",
+                "title": "barium atom"
+              }
             }
           ]
         },
@@ -493,12 +537,22 @@
           "id": "coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY",
           "title": "1Ru/Ni-BCZY",
           "description": "1000 ppm NH3",
-          "has_quantitative_attribute": [
+          "composed_of": [
             {
-              "value": 1.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Ru, nominal",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
+              "id": "coremeta4cat:CAT_b74m-m6rp_1Ru_Ni-BCZY_Ru",
+              "title": "ruthenium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Nominal loading",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:30682",
+                "title": "ruthenium atom"
+              }
             }
           ]
         },
@@ -511,18 +565,38 @@
           "id": "coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ",
           "title": "1Ru/1Ba/Ni-YSZ",
           "description": "1000 ppm NH3",
-          "has_quantitative_attribute": [
+          "composed_of": [
             {
-              "value": 1.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Ru, nominal",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
+              "id": "coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ_Ru",
+              "title": "ruthenium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Nominal loading",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:30682",
+                "title": "ruthenium atom"
+              }
             },
             {
-              "value": 1.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Ba, nominal",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
+              "id": "coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_Ni-YSZ_Ba",
+              "title": "barium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Nominal loading",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:32594",
+                "title": "barium atom"
+              }
             }
           ]
         },
@@ -530,18 +604,38 @@
           "id": "coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ",
           "title": "1Ru/1Ba/YSZ",
           "description": "1000 ppm NH3; Ni-free YSZ support",
-          "has_quantitative_attribute": [
+          "composed_of": [
             {
-              "value": 1.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Ru, nominal",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
+              "id": "coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ_Ru",
+              "title": "ruthenium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Nominal loading",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:30682",
+                "title": "ruthenium atom"
+              }
             },
             {
-              "value": 1.0,
-              "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
-              "description": "Ba, nominal",
-              "unit": "https://qudt.org/vocab/unit/PERCENT"
+              "id": "coremeta4cat:CAT_b74m-m6rp_1Ru-1Ba_YSZ_Ba",
+              "title": "barium",
+              "has_quantitative_attribute": [
+                {
+                  "value": 1.0,
+                  "has_quantity_type": "http://qudt.org/vocab/quantitykind/MassFraction",
+                  "description": "Nominal loading",
+                  "unit": "https://qudt.org/vocab/unit/PERCENT"
+                }
+              ],
+              "rdf_type": {
+                "id": "CHEBI:32594",
+                "title": "barium atom"
+              }
             }
           ]
         }
@@ -623,9 +717,11 @@
       ]
     }
   ],
-  "rdf_type": {
-    "id": "VOC4CAT:0007001",
-    "title": "heterogeneous catalysis"
-  },
+  "rdf_type": [
+    {
+      "id": "voc4cat:0007001",
+      "title": "heterogeneous catalysis"
+    }
+  ],
   "@type": "CatalysisDataset"
 }

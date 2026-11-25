@@ -9,6 +9,7 @@
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
 <https://pubchem.ncbi.nlm.nih.gov/compound/962> dcterms:title "deionized water" ;
 	a CHEBI:23367 .
 coremeta4cat:CAT_001_CuZnO_Al2O3 dcterms:description "63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)" ;
@@ -33,7 +34,7 @@ coremeta4cat:DEV_002_Bruker_D8_Advance dcterms:title "Bruker D8 Advance diffract
 coremeta4cat:DS_001_MeOH_synthesis_CuZnO dcterms:description "Dataset covering preparation of Cu/ZnO/Al2O3 methanol synthesis catalyst by incipient wetness impregnation and catalytic performance in CO2 hydrogenation at 50 bar, 200-300 deg C." ;
 	dcterms:subject coremeta4cat:CAT_001_CuZnO_Al2O3 ;
 	dcterms:title "Methanol synthesis over Cu/ZnO/Al2O3: synthesis and catalytic performance dataset" ;
-	a dcat:Dataset ;
+	a dcat:Dataset , voc4cat:0007001 ;
 	prov:wasGeneratedBy coremeta4cat:CHAR_001_BET_CuZnO_Al2O3 , coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3 , coremeta4cat:SYNTH_001_Pt_Al2O3 .
 coremeta4cat:PREC_001_H2PtCl6 dcterms:title "chloroplatinic acid hexahydrate" ;
 	a voc4cat:0007794 ;
@@ -49,6 +50,8 @@ coremeta4cat:SYNTH_001_Pt_Al2O3 SIO:000008 _:c14n1 ;
 coremeta4cat:SYNTH_001_impregnation_method dcterms:description "incipient_wetness, 25 deg C, 12 h" ;
 	dcterms:title "incipient wetness impregnation" ;
 	a voc4cat:0007016 .
+voc4cat:0007001 schema1:name "heterogeneous catalysis" ;
+	a schema1:DefinedTerm .
 _:c14n0 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
 	qudt:unit <https://qudt.org/vocab/unit/GM> ;
 	a qudt:Quantity ;

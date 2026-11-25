@@ -107,5 +107,11 @@
       "description": "63 wt% CuO, 24 wt% ZnO, 13 wt% Al2O3 (calcined precursor)"
     }
   ],
+  "rdf_type": [
+    {
+      "id": "voc4cat:0007001",
+      "title": "heterogeneous catalysis"
+    }
+  ],
   "@type": "CatalysisDataset"
 }

@@ -7,7 +7,6 @@
 @prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
 @prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix RO: <http://purl.obolibrary.org/obo/RO_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
@@ -45,10 +44,10 @@ CHEBI:49475 schema1:name "argon atom" ;
 	a dcterms:LicenseDocument .
 doi:10.1021\/acscatal.5c03876 dcterms:title "Weber et al., ACS Catal. 2025, 15, 18857-18876" ;
 	a rdfs:Resource .
-hdl:21.11165\/4cat\/6mxw-xsrd dcterms:creator _:c14n21 ;
+hdl:21.11165\/4cat\/6mxw-xsrd dcterms:creator _:c14n23 ;
 	dcterms:description "Data from Weber et al., ACS Catal. 2025, 15, 18857: DFT and machine-learned-potential (EquiformerV2/OCP, MACE-MPA-0) binding energies of OH and CO used to screen active phases; nominal and XRF compositions of 76 co-precipitated Cu-Ga-Al hydrotalcite-like precursors; the 13 compositions of the initial activity screening; calcination temperatures of the seven optimized catalysts; and the 17-condition test protocol for CO2/CO hydrogenation to methanol and dimethyl ether at 80 bar in a 16-fold fixed-bed reactor. Catalytic results (conversions, yields) and further characterization (PXRD, N2 sorption, TPR, N2O-RFC, TEM) are reported in the article but not deposited." ;
 	dcterms:isReferencedBy doi:10.1021\/acscatal.5c03876 ;
-	dcterms:publisher _:c14n50 ;
+	dcterms:publisher _:c14n49 ;
 	dcterms:subject coremeta4cat:CAT_6mxw-xsrd_all , coremeta4cat:REAC_6mxw-xsrd_CO2_hydrogenation , coremeta4cat:REAC_6mxw-xsrd_screening ;
 	dcterms:title "Copper Gallium Aluminum Mixed Metal Oxides as Alternative Catalyst Candidates for Efficient Conversion of Carbon Dioxide to Methanol and Dimethyl Ether" , "Repository landing page" ;
 	a rdfs:Resource , dcat:Dataset , voc4cat:0007001 ;
@@ -152,12 +151,12 @@ coremeta4cat:REAC_6mxw-xsrd_CO2_hydrogenation RO:0004008 coremeta4cat:PROD_6mxw-
 	RXNO:0000425 coremeta4cat:CAT_6mxw-xsrd_G1_500 , coremeta4cat:CAT_6mxw-xsrd_G1_600 , coremeta4cat:CAT_6mxw-xsrd_G1_700 , coremeta4cat:CAT_6mxw-xsrd_G2_450_250 , coremeta4cat:CAT_6mxw-xsrd_G2_450_350 , coremeta4cat:CAT_6mxw-xsrd_G2_550_250 , coremeta4cat:CAT_6mxw-xsrd_G2_550_350 ;
 	dcterms:description "Gas-phase testing of the first-generation (Cu0.465Ga0.07Al0.465, calcined at 500, 600 and 700 C) and second-generation (Cu0.85Al0.15 with 1 wt% Ga, two calcination steps) catalysts under all 17 conditions of the test protocol: 80 bar, 225-300 C, GHSV 3000 and 6000 h-1, CO2 13-27.1 vol%, CO 0-15.8 vol%, H2 36.7-76 vol%, 5 vol% Ar, balance N2 (0-26.7 vol%), H2/COx 1.2-4. Pretreatment: 2 h at 300 C and 20 bar under 10 vol% Ar in N2 (GHSV 6000 h-1, 48 L/h), then in-situ reduction in the syngas feed. Products are methanol and dimethyl ether, with methane as a minor by-product. Conversions and yields are reported in the article's figures only; they are not deposited." ;
 	dcterms:title "CO2/CO hydrogenation over optimized Cu-Ga-Al mixed metal oxides (17 conditions, 7 catalysts)" ;
-	a coremeta4cat:CatalyticReaction ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0000259 ;
 	adms:identifier _:c14n0 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_6mxw-xsrd_reactor ;
-	coremeta4cat:feed_composition_range _:c14n2 , _:c14n20 , _:c14n39 , _:c14n41 , _:c14n49 ;
+	coremeta4cat:feed_composition_range _:c14n2 , _:c14n22 , _:c14n38 , _:c14n41 , _:c14n48 ;
 	voc4cat:0000016 voc4cat:0007015 ;
-	voc4cat:0000118 _:c14n35 ;
+	voc4cat:0000118 _:c14n34 ;
 	voc4cat:0007009 "hydrogenation of CO2/CO to methanol and dimethyl ether" ;
 	voc4cat:0007014 voc4cat:0007001 ;
 	voc4cat:0007032 _:c14n46 .
@@ -178,21 +177,21 @@ coremeta4cat:REAC_6mxw-xsrd_screening RO:0004008 coremeta4cat:PROD_6mxw-xsrd_CH4
 	RXNO:0000425 coremeta4cat:CAT_6mxw-xsrd_Cu0.33Ga0.33Al0.33 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.15Ga0.07Al0.78 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.25Ga0.07Al0.68 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.25Ga0.25Al0.50 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.25Ga0.50Al0.25 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.33Ga0.07Al0.60 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.33Ga0.60Al0.07 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.40Ga0.07Al0.53 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.40Ga0.20Al0.40 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.50Ga0.25Al0.25 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.60Al0.40 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.60Ga0.20Al0.20 , coremeta4cat:CAT_6mxw-xsrd_S_Cu0.60Ga0.40 ;
 	dcterms:description "Initial activity screening of 13 compositions calcined at 600 C (Cu 0.15-0.6, Al 0-0.78, Ga 0-0.6 metal fractions) under conditions 1-8 of the test protocol: 80 bar, 225-300 C, GHSV 3000 h-1 (condition 1: 6000 h-1), CO2 13-27.1 vol%, CO 0-15.8 vol%, H2 63.3-76 vol%, 5 vol% Ar, N2 balance. Same 16-fold fixed-bed reactor and pretreatment as the optimized catalysts. The highest combined MeOH + DME yields were found for Cu0.40Ga0.07Al0.53 and Cu0.33Ga0.07Al0.60 (article, section 3.3); yields are not deposited." ;
 	dcterms:title "Activity screening of 13 Cu-Ga-Al mixed metal oxides for CO2/CO hydrogenation (8 conditions)" ;
-	a coremeta4cat:CatalyticReaction ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0000259 ;
 	adms:identifier _:c14n5 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_6mxw-xsrd_reactor ;
-	coremeta4cat:feed_composition_range _:c14n11 , _:c14n23 , _:c14n26 ;
+	coremeta4cat:feed_composition_range _:c14n11 , _:c14n24 , _:c14n26 ;
 	voc4cat:0000016 voc4cat:0007015 ;
 	voc4cat:0000118 _:c14n29 ;
 	voc4cat:0007009 "hydrogenation of CO2/CO to methanol and dimethyl ether" ;
 	voc4cat:0007014 voc4cat:0007001 ;
-	voc4cat:0007032 _:c14n38 .
+	voc4cat:0007032 _:c14n37 .
 coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites dcterms:description "Density functional theory binding energies of OH and CO at 17 sites: pristine CuGa2O4 and CuGa2O4 doped with Al, Co, Cu, Ge, In, Ni or Sn, and pristine Ga2O3 and Ga2O3 doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr. Site notation in the source file is <host>-<dopant>, e.g. CuGa2O4-Co. Part of the theory-based prediction that led to the Cu-Ga-Al system (article, section 3.1)." ;
 	dcterms:title "DFT binding energies of OH and CO at 17 oxide surface sites" ;
 	a "Simulation" , voc4cat:0000215 ;
-	adms:identifier _:c14n36 ;
+	adms:identifier _:c14n35 ;
 	prov:used coremeta4cat:SIM_6mxw-xsrd_DFT_method , coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites , coremeta4cat:SLAB_6mxw-xsrd_Ga2O3_sites ;
-	coremeta4cat:calculated_property _:c14n19 , _:c14n22 ;
+	coremeta4cat:calculated_property _:c14n13 , _:c14n18 ;
 	coremeta4cat:software_package "Atomic Simulation Environment (ASE), structure generation" , "VASP" , "pymatgen, structure generation" .
 coremeta4cat:SIM_6mxw-xsrd_DFT_method dcterms:description "Vienna Ab initio Simulation Package with the PBE functional and projector augmented waves. The article uses PBE-D3 when verifying the machine-learned potentials; whether D3 was applied for this table is not stated in the main text. Cut-off, k-points and convergence criteria are in the SI." ;
 	dcterms:title "periodic DFT, PBE, PAW" ;
@@ -203,7 +202,7 @@ coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE dcterms:description "Binding energies of OH
 	a "Simulation" ;
 	adms:identifier _:c14n17 ;
 	prov:used coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE_method , coremeta4cat:SLAB_6mxw-xsrd_MACE_compositions ;
-	coremeta4cat:calculated_property _:c14n15 , _:c14n24 ;
+	coremeta4cat:calculated_property _:c14n21 , _:c14n40 ;
 	coremeta4cat:software_package "MACE-MPA-0 foundation model (article, Table 2)" .
 coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE_method dcterms:description "Single-point or relaxation protocol, adsorbate placement and reference energies not stated in the deposited files." ;
 	dcterms:title "machine-learned interatomic potential (MACE-MPA-0)" ;
@@ -213,7 +212,7 @@ coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP dcterms:description "Binding energies of OH 
 	a "Simulation" ;
 	adms:identifier _:c14n42 ;
 	prov:used coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP_method , coremeta4cat:SLAB_6mxw-xsrd_OCP_compositions ;
-	coremeta4cat:calculated_property _:c14n30 , _:c14n48 ;
+	coremeta4cat:calculated_property _:c14n20 , _:c14n51 ;
 	coremeta4cat:software_package "EquiformerV2-31M-S2EF-OC20-All+MD (Open Catalyst Project); inferred from article Table 2" .
 coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP_method dcterms:description "Single-point or relaxation protocol, adsorbate placement and reference energies not stated in the deposited files." ;
 	dcterms:title "machine-learned interatomic potential (OCP model)" ;
@@ -234,7 +233,7 @@ coremeta4cat:SOLV_6mxw-xsrd_water dcterms:title "deionised water (150 mL for the
 	a CHEBI:23367 .
 coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4 dcterms:title "Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination" ;
 	a "Synthesis" ;
-	adms:identifier _:c14n32 ;
+	adms:identifier _:c14n31 ;
 	prov:generated coremeta4cat:CAT_6mxw-xsrd_Cu0.33Ga0.33Al0.33 ;
 	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_coprecipitation_method ;
 	coremeta4cat:catalyst_measured_properties "XRF of the HTC precursor: Cu 0.42, Al 0.22, Ga 0.36 (metal fractions; nominal 0.33/0.33/0.34)" ;
@@ -246,30 +245,30 @@ coremeta4cat:SYN_6mxw-xsrd_coprecipitation_method dcterms:description "Metal nit
 	a voc4cat:0007795 ;
 	coremeta4cat:hasCalcinationTemperatureRange _:c14n9 ;
 	voc4cat:0000060 _:c14n6 ;
-	voc4cat:0008116 _:c14n31 ;
+	voc4cat:0008116 _:c14n30 ;
 	voc4cat:0008122 "freeze dryer (-10 C, 3 mbar)" ;
-	voc4cat:0008125 _:c14n25 , _:c14n37 ;
+	voc4cat:0008125 _:c14n25 , _:c14n36 ;
 	voc4cat:0008128 "metal nitrate solution pumped into prefilled water; precipitant added to keep pH 9" ;
 	voc4cat:0008129 "suction filter" ;
 	voc4cat:0008130 "washed with deionised water until pH 7 +- 0.3" ;
-	voc4cat:0008131 _:c14n33 ;
+	voc4cat:0008131 _:c14n32 ;
 	voc4cat:0008203 CHEBI:29377 , CHEBI:32145 ;
 	voc4cat:0008204 _:c14n3 ;
 	voc4cat:0008206 _:c14n59 ;
 	voc4cat:0008207 _:c14n47 .
 coremeta4cat:SYN_6mxw-xsrd_gen1 dcterms:title "Cu0.465Ga0.07Al0.465 mixed metal oxide, three calcination temperatures" ;
 	a "Synthesis" ;
-	adms:identifier _:c14n13 ;
+	adms:identifier _:c14n14 ;
 	prov:generated coremeta4cat:CAT_6mxw-xsrd_G1_500 , coremeta4cat:CAT_6mxw-xsrd_G1_600 , coremeta4cat:CAT_6mxw-xsrd_G1_700 ;
 	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_gen1_method ;
 	coremeta4cat:catalyst_measured_properties "No measured properties of these three samples are deposited; the article reports XRD, N2 sorption, TPR, N2O-RFC and TEM results for the first generation in figures and the SI." ;
 	coremeta4cat:nominal_composition "Cu0.465Ga0.07Al0.465 (metal fractions Cu 0.465, Al 0.465, Ga 0.07)" .
 coremeta4cat:SYN_6mxw-xsrd_gen1_method dcterms:description "Same route as the library (precipitant 1.6 M NaOH / 0.2 M Na2CO3, pH 9, ageing 2 h at 65 C, freeze-drying, see the library-example record). One precursor batch, calcined 4 h at 4 C/min in clean dry air at 500, 600 or 700 C." ;
 	dcterms:title "automated co-precipitation at pH 9, ageing, freeze-drying, calcination at 500/600/700 C" ;
-	SIO:000008 _:c14n18 ;
+	SIO:000008 _:c14n19 ;
 	a voc4cat:0007795 ;
-	coremeta4cat:hasCalcinationTemperatureRange _:c14n51 ;
-	voc4cat:0000060 _:c14n34 ;
+	coremeta4cat:hasCalcinationTemperatureRange _:c14n50 ;
+	voc4cat:0000060 _:c14n33 ;
 	voc4cat:0008116 _:c14n55 .
 coremeta4cat:SYN_6mxw-xsrd_gen2_step1 dcterms:title "Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C" ;
 	a "Synthesis" ;
@@ -296,14 +295,16 @@ coremeta4cat:SYN_6mxw-xsrd_gen2_step2_method dcterms:description "Aqueous Ga(NO3
 	dcterms:title "incipient wetness impregnation with Ga(NO3)3, drying, calcination at 250/350 C" ;
 	SIO:000008 _:c14n43 ;
 	a voc4cat:0007028 ;
-	coremeta4cat:hasCalcinationTemperatureRange _:c14n40 ;
-	voc4cat:0000060 _:c14n14 ;
+	coremeta4cat:hasCalcinationTemperatureRange _:c14n39 ;
+	voc4cat:0000060 _:c14n15 ;
 	voc4cat:0008116 _:c14n1 ;
 	voc4cat:0008119 "incipient_wetness" ;
 	voc4cat:0008207 _:c14n28 .
 voc4cat:0000067 schema1:name "X-ray fluorescence" ;
 	a schema1:DefinedTerm .
 voc4cat:0000215 schema1:name "density functional theory" ;
+	a schema1:DefinedTerm .
+voc4cat:0000259 schema1:name "CO2 hydrogenation" ;
 	a schema1:DefinedTerm .
 voc4cat:0007001 schema1:name "heterogeneous catalysis" ;
 	a schema1:DefinedTerm .
@@ -329,52 +330,63 @@ _:c14n12 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
 	qudt:unit <https://qudt.org/vocab/unit/GM> ;
 	a qudt:Quantity ;
 	prov:value "8.92"^^xsd:float .
-_:c14n13 a adms:Identifier ;
+_:c14n13 dcterms:description "Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest)." ;
+	dcterms:title "CO binding energy" ;
+	a coremeta4cat:AdsorptionEnergetics ;
+	prov:value "-2.20 to 0.51 eV (17 sites)" ;
+	coremeta4cat:adsorbate "CO" ;
+	coremeta4cat:energy_reference "CO(g)" ;
+	coremeta4cat:material_composition "CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn" , "Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr" .
+_:c14n14 a adms:Identifier ;
 	skos:notation "https://hdl.handle.net/21.11165/4cat/6mxw-xsrd" .
-_:c14n14 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+_:c14n15 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
 	qudt:unit <https://qudt.org/vocab/unit/HR> ;
 	a qudt:Quantity ;
 	prov:value "4.0"^^xsd:float .
-_:c14n15 dcterms:description "CO binding energy; range over all compositions (Ir lowest, Fe highest)" ;
-	a IAO:0000109 ;
-	prov:value "-2.51 to 1.14 eV (31 compositions)" .
 _:c14n16 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
 	qudt:unit <https://qudt.org/vocab/unit/HR> ;
 	a qudt:Quantity ;
 	prov:value "4.0"^^xsd:float .
 _:c14n17 a adms:Identifier ;
 	skos:notation "https://hdl.handle.net/21.11165/4cat/6mxw-xsrd" .
-_:c14n18 a voc4cat:0000055 ;
+_:c14n18 dcterms:description "Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference state is not defined in the main text." ;
+	dcterms:title "OH binding energy" ;
+	a coremeta4cat:AdsorptionEnergetics ;
+	prov:value "-1.87 to 1.41 eV (17 sites)" ;
+	coremeta4cat:adsorbate "OH" ;
+	coremeta4cat:material_composition "CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn" , "Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr" .
+_:c14n19 a voc4cat:0000055 ;
 	prov:value "clean dry air" .
-_:c14n19 dcterms:description "CO binding energy; range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest); referenced to gas-phase CO" ;
-	a IAO:0000109 ;
-	prov:value "-2.20 to 0.51 eV (17 sites)" .
 _:c14n2 dcterms:description "Ar in the feed" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/VolumeFraction> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
 	a qudt:Quantity ;
 	coremeta4cat:maxValue "5.0"^^xsd:float ;
 	coremeta4cat:minValue "5.0"^^xsd:float .
-_:c14n20 dcterms:description "CO in the feed" ;
+_:c14n20 dcterms:description "Range over all compositions (InSb lowest, Al highest)." ;
+	dcterms:title "CO binding energy" ;
+	a coremeta4cat:AdsorptionEnergetics ;
+	prov:value "-5.12 to -0.13 eV (37 compositions)" ;
+	coremeta4cat:adsorbate "CO" .
+_:c14n21 dcterms:description "Range over all compositions (Ir lowest, Fe highest)." ;
+	dcterms:title "CO binding energy" ;
+	a coremeta4cat:AdsorptionEnergetics ;
+	prov:value "-2.51 to 1.14 eV (31 compositions)" ;
+	coremeta4cat:adsorbate "CO" .
+_:c14n22 dcterms:description "CO in the feed" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/VolumeFraction> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
 	a qudt:Quantity ;
 	coremeta4cat:maxValue "15.8"^^xsd:float ;
 	coremeta4cat:minValue "0.0"^^xsd:float .
-_:c14n21 a foaf:Agent ;
+_:c14n23 a foaf:Agent ;
 	foaf:name "Weber, Sebastian" .
-_:c14n22 dcterms:description "OH binding energy; range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); reference state not defined in the main text" ;
-	a IAO:0000109 ;
-	prov:value "-1.87 to 1.41 eV (17 sites)" .
-_:c14n23 dcterms:description "CO in the feed" ;
+_:c14n24 dcterms:description "CO in the feed" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/VolumeFraction> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
 	a qudt:Quantity ;
 	coremeta4cat:maxValue "15.8"^^xsd:float ;
 	coremeta4cat:minValue "0.0"^^xsd:float .
-_:c14n24 dcterms:description "OH binding energy; range over all compositions (Al4Cu9 lowest, Fe and GaNi3 highest)" ;
-	a IAO:0000109 ;
-	prov:value "-1.50 to 2.91 eV (31 compositions)" .
 _:c14n25 dcterms:description "NaOH" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/AmountOfSubstanceConcentration> ;
 	qudt:unit <https://qudt.org/vocab/unit/MOL-PER-L> ;
@@ -400,55 +412,57 @@ _:c14n3 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
 	qudt:unit <https://qudt.org/vocab/unit/HR> ;
 	a qudt:Quantity ;
 	prov:value "2.0"^^xsd:float .
-_:c14n30 dcterms:description "OH binding energy; range over all compositions (InSb lowest, Pd highest)" ;
-	a IAO:0000109 ;
-	prov:value "-5.35 to 0.79 eV (37 compositions)" .
-_:c14n31 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/TemperaturePerTime> ;
+_:c14n30 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/TemperaturePerTime> ;
 	qudt:unit <https://qudt.org/vocab/unit/K-PER-MIN> ;
 	a qudt:Quantity ;
 	prov:value "4.0"^^xsd:float .
-_:c14n32 a adms:Identifier ;
+_:c14n31 a adms:Identifier ;
 	skos:notation "https://hdl.handle.net/21.11165/4cat/6mxw-xsrd" .
-_:c14n33 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+_:c14n32 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
 	qudt:unit <https://qudt.org/vocab/unit/K> ;
 	a qudt:Quantity ;
 	prov:value "338.15"^^xsd:float .
-_:c14n34 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+_:c14n33 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
 	qudt:unit <https://qudt.org/vocab/unit/HR> ;
 	a qudt:Quantity ;
 	prov:value "4.0"^^xsd:float .
-_:c14n35 dcterms:description "Constant across all 17 conditions" ;
+_:c14n34 dcterms:description "Constant across all 17 conditions" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
 	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
 	a qudt:Quantity ;
 	prov:value "80.0"^^xsd:float .
-_:c14n36 a adms:Identifier ;
+_:c14n35 a adms:Identifier ;
 	skos:notation "https://hdl.handle.net/21.11165/4cat/6mxw-xsrd" .
-_:c14n37 dcterms:description "Na2CO3" ;
+_:c14n36 dcterms:description "Na2CO3" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/AmountOfSubstanceConcentration> ;
 	qudt:unit <https://qudt.org/vocab/unit/MOL-PER-L> ;
 	a CHMO:0002820 ;
 	prov:value "0.2"^^xsd:float .
-_:c14n38 dcterms:description "225-300 C, conditions 1-8" ;
+_:c14n37 dcterms:description "225-300 C, conditions 1-8" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
 	qudt:unit <https://qudt.org/vocab/unit/K> ;
 	a qudt:Quantity ;
 	coremeta4cat:maxValue "573.15"^^xsd:float ;
 	coremeta4cat:minValue "498.15"^^xsd:float .
-_:c14n39 dcterms:description "CO2 in the feed" ;
+_:c14n38 dcterms:description "CO2 in the feed" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/VolumeFraction> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
 	a qudt:Quantity ;
 	coremeta4cat:maxValue "27.1"^^xsd:float ;
 	coremeta4cat:minValue "13.0"^^xsd:float .
-_:c14n4 a adms:Identifier ;
-	skos:notation "https://hdl.handle.net/21.11165/4cat/6mxw-xsrd" .
-_:c14n40 dcterms:description "250 or 350 C" ;
+_:c14n39 dcterms:description "250 or 350 C" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
 	qudt:unit <https://qudt.org/vocab/unit/K> ;
 	a qudt:Quantity ;
 	coremeta4cat:maxValue "623.15"^^xsd:float ;
 	coremeta4cat:minValue "523.15"^^xsd:float .
+_:c14n4 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/6mxw-xsrd" .
+_:c14n40 dcterms:description "Range over all compositions (Al4Cu9 lowest, Fe and GaNi3 highest)." ;
+	dcterms:title "OH binding energy" ;
+	a coremeta4cat:AdsorptionEnergetics ;
+	prov:value "-1.50 to 2.91 eV (31 compositions)" ;
+	coremeta4cat:adsorbate "OH" .
 _:c14n41 dcterms:description "N2 balance, computed as 100 minus the listed components" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/VolumeFraction> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
@@ -474,25 +488,27 @@ _:c14n47 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
 	qudt:unit <https://qudt.org/vocab/unit/K> ;
 	a qudt:Quantity ;
 	prov:value "263.15"^^xsd:float .
-_:c14n48 dcterms:description "CO binding energy; range over all compositions (InSb lowest, Al highest)" ;
-	a IAO:0000109 ;
-	prov:value "-5.12 to -0.13 eV (37 compositions)" .
-_:c14n49 dcterms:description "H2 in the feed" ;
+_:c14n48 dcterms:description "H2 in the feed" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/VolumeFraction> ;
 	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
 	a qudt:Quantity ;
 	coremeta4cat:maxValue "76.0"^^xsd:float ;
 	coremeta4cat:minValue "36.7"^^xsd:float .
+_:c14n49 a foaf:Agent ;
+	foaf:name "NFDI4Cat Central Data Repository" .
 _:c14n5 a adms:Identifier ;
 	skos:notation "https://hdl.handle.net/21.11165/4cat/6mxw-xsrd" .
-_:c14n50 a foaf:Agent ;
-	foaf:name "NFDI4Cat Central Data Repository" .
-_:c14n51 dcterms:description "500, 600 and 700 C, one sample each" ;
+_:c14n50 dcterms:description "500, 600 and 700 C, one sample each" ;
 	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
 	qudt:unit <https://qudt.org/vocab/unit/K> ;
 	a qudt:Quantity ;
 	coremeta4cat:maxValue "973.15"^^xsd:float ;
 	coremeta4cat:minValue "773.15"^^xsd:float .
+_:c14n51 dcterms:description "Range over all compositions (InSb lowest, Pd highest)." ;
+	dcterms:title "OH binding energy" ;
+	a coremeta4cat:AdsorptionEnergetics ;
+	prov:value "-5.35 to 0.79 eV (37 compositions)" ;
+	coremeta4cat:adsorbate "OH" .
 _:c14n52 a adms:Identifier ;
 	skos:notation "https://hdl.handle.net/21.11165/4cat/6mxw-xsrd" .
 _:c14n53 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/AngularVelocity> ;

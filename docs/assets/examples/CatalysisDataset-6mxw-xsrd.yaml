@@ -20,7 +20,7 @@ description:
   results (conversions, yields) and further characterization (PXRD, N2 sorption, TPR, N2O-RFC, TEM) are
   reported in the article but not deposited.'
 rdf_type:
-  id: VOC4CAT:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis
 keyword:
 - CO2 hydrogenation
@@ -312,7 +312,7 @@ was_generated_by:
     to the article (section 3.2), XRF was measured on the freeze-dried hydrotalcite-like (HTC) precursors,
     i.e. before calcination. Measured Cu, Al and Ga fractions are reported next to the nominal fractions.
   rdf_type:
-    id: VOC4CAT:0000067
+    id: voc4cat:0000067
     title: X-ray fluorescence
   carried_out_by:
   - id: coremeta4cat:DEV_6mxw-xsrd_XRF
@@ -345,7 +345,7 @@ was_generated_by:
   - Atomic Simulation Environment (ASE), structure generation
   - pymatgen, structure generation
   rdf_type:
-    id: VOC4CAT:0000215
+    id: voc4cat:0000215
     title: density functional theory
   evaluated_entity:
   - id: coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites
@@ -366,12 +366,27 @@ was_generated_by:
     exchange_correlation_functional:
     - PBE
   calculated_property:
-  - value: -1.87 to 1.41 eV (17 sites)
-    description: OH binding energy; range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); reference
-      state not defined in the main text
-  - value: -2.20 to 0.51 eV (17 sites)
-    description: CO binding energy; range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest); referenced
-      to gas-phase CO
+  - property_designator: coremeta4cat:AdsorptionEnergetics
+    title: OH binding energy
+    value: -1.87 to 1.41 eV (17 sites)
+    description: Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference state is not
+      defined in the main text.
+    adsorbate:
+    - OH
+    material_composition:
+    - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+    - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
+  - property_designator: coremeta4cat:AdsorptionEnergetics
+    title: CO binding energy
+    value: -2.20 to 0.51 eV (17 sites)
+    description: Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest).
+    adsorbate:
+    - CO
+    energy_reference:
+    - CO(g)
+    material_composition:
+    - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+    - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
 - id: coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE
@@ -399,10 +414,18 @@ was_generated_by:
     description: Single-point or relaxation protocol, adsorbate placement and reference energies not stated
       in the deposited files.
   calculated_property:
-  - value: -1.50 to 2.91 eV (31 compositions)
-    description: OH binding energy; range over all compositions (Al4Cu9 lowest, Fe and GaNi3 highest)
-  - value: -2.51 to 1.14 eV (31 compositions)
-    description: CO binding energy; range over all compositions (Ir lowest, Fe highest)
+  - property_designator: coremeta4cat:AdsorptionEnergetics
+    title: OH binding energy
+    value: -1.50 to 2.91 eV (31 compositions)
+    description: Range over all compositions (Al4Cu9 lowest, Fe and GaNi3 highest).
+    adsorbate:
+    - OH
+  - property_designator: coremeta4cat:AdsorptionEnergetics
+    title: CO binding energy
+    value: -2.51 to 1.14 eV (31 compositions)
+    description: Range over all compositions (Ir lowest, Fe highest).
+    adsorbate:
+    - CO
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
 - id: coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP
@@ -428,10 +451,18 @@ was_generated_by:
     description: Single-point or relaxation protocol, adsorbate placement and reference energies not stated
       in the deposited files.
   calculated_property:
-  - value: -5.35 to 0.79 eV (37 compositions)
-    description: OH binding energy; range over all compositions (InSb lowest, Pd highest)
-  - value: -5.12 to -0.13 eV (37 compositions)
-    description: CO binding energy; range over all compositions (InSb lowest, Al highest)
+  - property_designator: coremeta4cat:AdsorptionEnergetics
+    title: OH binding energy
+    value: -5.35 to 0.79 eV (37 compositions)
+    description: Range over all compositions (InSb lowest, Pd highest).
+    adsorbate:
+    - OH
+  - property_designator: coremeta4cat:AdsorptionEnergetics
+    title: CO binding energy
+    value: -5.12 to -0.13 eV (37 compositions)
+    description: Range over all compositions (InSb lowest, Al highest).
+    adsorbate:
+    - CO
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
 is_about_activity:
@@ -448,6 +479,9 @@ is_about_activity:
     20 bar under 10 vol% Ar in N2 (GHSV 6000 h-1, 48 L/h), then in-situ reduction in the syngas feed.
     Products are methanol and dimethyl ether, with methane as a minor by-product. Conversions and yields
     are reported in the article''s figures only; they are not deposited.'
+  rdf_type:
+    id: voc4cat:0000259
+    title: CO2 hydrogenation
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:
@@ -582,6 +616,9 @@ is_about_activity:
     1: 6000 h-1), CO2 13-27.1 vol%, CO 0-15.8 vol%, H2 63.3-76 vol%, 5 vol% Ar, N2 balance. Same 16-fold
     fixed-bed reactor and pretreatment as the optimized catalysts. The highest combined MeOH + DME yields
     were found for Cu0.40Ga0.07Al0.53 and Cu0.33Ga0.07Al0.60 (article, section 3.3); yields are not deposited.'
+  rdf_type:
+    id: voc4cat:0000259
+    title: CO2 hydrogenation
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:

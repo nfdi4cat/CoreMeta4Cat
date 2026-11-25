@@ -36,30 +36,34 @@ watch:
   - src/coremeta4cat/schema
 
 nav:
+  # Ordered along the reader's path: orientation, concepts, field reference,
+  # applied examples, contributing, technical reference.
   - Home: index.md
   - Getting started: getting-started.md
-  - Working with Data:
-    - working-with-data/index.md
-    - Community datasets: working-with-data/community-datasets.md
-    - Usage patterns: working-with-data/usage-patterns.md
-  - Overview: overview.md
-  - Design Patterns: design-patterns.md
-  - How to extend: how-to-extend.md
-  - Intended Users: coremeta4cat-users.md  
+  - Intended Users: coremeta4cat-users.md
   # - A Hero's Journey:
     # - Introduction: a_heros_journey/a_heros_journey.md
     # - Infrastructure: a_heros_journey/infrastructure.md
     # - Workflow: a_heros_journey/workflow.md
     # - Collaborations and Future Work: a_heros_journey/collaboration_and_future.md
-  - Documentation:
+  - Understanding the model:
+    - Overview: overview.md
+    - Design Patterns: design-patterns.md
+  - Data classes:
     - Catalysis Dataset: catalysis-dataset.md
     - Synthesis: synthesis.md
     - Characterization: characterization.md
     - Reaction: reaction.md
     - Simulation: simulation.md
-  - Schema: elements/overview.md
+  - Working with Data:
+    - working-with-data/index.md
+    - Community datasets: working-with-data/community-datasets.md
+    - Usage patterns: working-with-data/usage-patterns.md
+  - Contributing:
+    - How to contribute: contributing.md
+    - How to extend: how-to-extend.md
+  - Schema reference: elements/overview.md
   - About: about.md
-  - Contributing: contributing.md
 
 exclude_docs: |
   /templates-linkml/

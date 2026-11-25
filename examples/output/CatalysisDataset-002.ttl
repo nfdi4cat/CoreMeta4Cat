@@ -2,6 +2,7 @@
 @prefix SIO: <http://semanticscience.org/resource/SIO_> .
 @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
 @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
 @prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
 @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
 @prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
@@ -12,6 +13,9 @@
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
+CHMO:0001446 schema1:name "catalytic reforming" ;
+	a schema1:DefinedTerm .
 <https://pubchem.ncbi.nlm.nih.gov/compound/280> dcterms:title "CO2 (99.998% purity, Linde)" ;
 	a SIO:010411 .
 <https://pubchem.ncbi.nlm.nih.gov/compound/297> dcterms:title "CH4 (99.995% purity, Linde)" ;
@@ -55,7 +59,7 @@ coremeta4cat:DEV_005_Micromeritics_AutoChem dcterms:title "Micromeritics AutoChe
 coremeta4cat:DS_002_DRM_NiO_CeO2 dcterms:description "Dataset covering the full lifecycle of a 15 wt% NiO/CeO2 dry reforming catalyst: (1) co-precipitation synthesis with precipitation parameters and calcination protocol; (2) XPS surface composition and oxidation state analysis; (3) H2-TPR reducibility profiling; (4) catalytic performance in CH4+CO2 dry reforming at 600-800 deg C over 20 h; (5) ReaxFF molecular dynamics of the Ni/CeO2(111) interface at 800 deg C to rationalise metal-support interaction." ;
 	dcterms:subject coremeta4cat:CAT_002_NiO_CeO2 , coremeta4cat:REAC_002_DRM_NiCeO2 , coremeta4cat:SLAB_002_CeO2_111_Ni13 ;
 	dcterms:title "NiO/CeO2 dry methane reforming catalyst: co-precipitation synthesis, multi-technique characterization, catalytic performance, and computational interface study" ;
-	a dcat:Dataset ;
+	a dcat:Dataset , voc4cat:0007001 ;
 	prov:wasGeneratedBy coremeta4cat:CHAR_003_XPS_NiO_CeO2 , coremeta4cat:CHAR_004_TPR_NiO_CeO2 , coremeta4cat:SIM_002_MD_Ni_CeO2_111 , coremeta4cat:SYNTH_002_NiO_CeO2 .
 coremeta4cat:FEED_004_CH4_DRM dcterms:description "CH4 flow: 45 mL/min (STP); calibrated Brooks SLA5850 MFC" ;
 	dcterms:title "methane feed (99.995%, Linde)" ;
@@ -81,7 +85,7 @@ coremeta4cat:REACT_003_FixedBed_DRM dcterms:description "quartz tube reactor, 8 
 coremeta4cat:REAC_002_DRM_NiCeO2 RO:0004009 <https://pubchem.ncbi.nlm.nih.gov/compound/280> , <https://pubchem.ncbi.nlm.nih.gov/compound/297> , <https://pubchem.ncbi.nlm.nih.gov/compound/947> ;
 	RXNO:0000425 coremeta4cat:CAT_002_NiCeO2 ;
 	dcterms:title "dry methane reforming catalytic activity test (600-800 deg C, 20 h)" ;
-	a coremeta4cat:CatalyticReaction ;
+	a CHMO:0001446 , coremeta4cat:CatalyticReaction ;
 	prov:used coremeta4cat:FEED_004_CH4_DRM , coremeta4cat:FEED_005_CO2_DRM , coremeta4cat:FEED_006_N2_standard ;
 	prov:wasAssociatedWith coremeta4cat:REACT_003_FixedBed_DRM ;
 	coremeta4cat:feed_composition_range _:c14n15 , _:c14n4 ;
@@ -117,6 +121,8 @@ coremeta4cat:SYNTH_002_NiO_CeO2 SIO:000008 _:c14n6 ;
 coremeta4cat:SYNTH_002_coprecipitation_method dcterms:description "aqueous solutions of Ni(NO3)2 (0.5 M) and Ce(NO3)3 (0.5 M) mixed in stoichiometric ratio; precipitant: 1 M Na2CO3 solution added dropwise at 2 mL/min; target pH 8.5 maintained by feedback addition; mixing: 600 rpm mechanical stirring at 60 deg C for 2 h; aging: 12 h at 60 deg C without stirring; filtration: vacuum filtration through Whatman grade 4 filter paper; washing: 5 successive deionized water washes until conductivity < 5 uS/cm (Na+ removal); drying: 120 deg C for 12 h in static air oven; calcination: 5 deg C/min ramp to 500 deg C, isothermal hold for 4 h in static air, natural cooling" ;
 	dcterms:title "co-precipitation" ;
 	a voc4cat:0007016 .
+voc4cat:0007001 schema1:name "heterogeneous catalysis" ;
+	a schema1:DefinedTerm .
 _:c14n0 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
 	qudt:unit <https://qudt.org/vocab/unit/GM> ;
 	a qudt:Quantity ;

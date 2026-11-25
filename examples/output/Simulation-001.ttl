@@ -15,12 +15,19 @@ coremeta4cat:SIM_001_DFT_method dcterms:description "PBE functional, PAW pseudop
 coremeta4cat:SLAB_001_Cu111 dcterms:description "4-layer Cu(111) p(3x3) slab, bottom 2 layers fixed, 15 Ang vacuum" ;
 	dcterms:title "Cu(111) surface slab model" ;
 	a prov:Entity .
-_:c14n0 dcterms:description "C-O bond length of adsorbed CO" ;
+_:c14n0 dcterms:description "CO adsorption energy on hollow fcc site of Cu(111) relative to gas-phase CO" ;
+	dcterms:title "CO adsorption energy" ;
+	a coremeta4cat:AdsorptionEnergetics ;
+	prov:value "-0.67 eV" ;
+	coremeta4cat:adsorbate "CO" ;
+	coremeta4cat:adsorption_energy "-0.67"^^xsd:float ;
+	coremeta4cat:adsorption_site "fcc hollow" ;
+	coremeta4cat:energy_reference "CO(g)" ;
+	coremeta4cat:material_composition "Cu" ;
+	coremeta4cat:miller_indices "(111)" .
+_:c14n1 dcterms:description "C-O bond length of adsorbed CO" ;
 	a IAO:0000109 ;
 	prov:value "1.157 Ang" .
-_:c14n1 dcterms:description "CO adsorption energy on hollow fcc site of Cu(111) relative to gas-phase CO" ;
-	a IAO:0000109 ;
-	prov:value "-0.67 eV" .
 _:c14n2 dcterms:description "Cu-C bond length at hollow adsorption site" ;
 	a IAO:0000109 ;
 	prov:value "2.312 Ang" .

@@ -21,15 +21,37 @@
   "calculated_property": [
     {
       "value": "-0.67 eV",
-      "description": "CO adsorption energy on hollow fcc site of Cu(111) relative to gas-phase CO"
+      "title": "CO adsorption energy",
+      "description": "CO adsorption energy on hollow fcc site of Cu(111) relative to gas-phase CO",
+      "property_designator": "coremeta4cat:AdsorptionEnergetics",
+      "adsorbate": [
+        "CO"
+      ],
+      "adsorption_site": [
+        "fcc hollow"
+      ],
+      "adsorption_energy": [
+        -0.67
+      ],
+      "energy_reference": [
+        "CO(g)"
+      ],
+      "miller_indices": [
+        "(111)"
+      ],
+      "material_composition": [
+        "Cu"
+      ]
     },
     {
       "value": "1.157 Ang",
-      "description": "C-O bond length of adsorbed CO"
+      "description": "C-O bond length of adsorbed CO",
+      "property_designator": "IAO:0000109"
     },
     {
       "value": "2.312 Ang",
-      "description": "Cu-C bond length at hollow adsorption site"
+      "description": "Cu-C bond length at hollow adsorption site",
+      "property_designator": "IAO:0000109"
     }
   ],
   "@type": "Simulation"

@@ -15,9 +15,25 @@ software_package:
 - VESTA 3.5.8 (structure visualization)
 calculated_property:
 - value: -0.67 eV
+  title: CO adsorption energy
   description: CO adsorption energy on hollow fcc site of Cu(111) relative to gas-phase
     CO
+  property_designator: coremeta4cat:AdsorptionEnergetics
+  adsorbate:
+  - CO
+  adsorption_site:
+  - fcc hollow
+  adsorption_energy:
+  - -0.67
+  energy_reference:
+  - CO(g)
+  miller_indices:
+  - (111)
+  material_composition:
+  - Cu
 - value: 1.157 Ang
   description: C-O bond length of adsorbed CO
+  property_designator: IAO:0000109
 - value: 2.312 Ang
   description: Cu-C bond length at hollow adsorption site
+  property_designator: IAO:0000109

@@ -9,6 +9,9 @@ had_input_entity:
 - id: coremeta4cat:FEED_006_N2_standard
   title: N2 internal standard (99.999%, Linde)
   description: 'N2 flow: 10 mL/min (STP); used as internal standard for GC molar balance'
+rdf_type:
+  id: CHMO:0001446
+  title: catalytic reforming
 used_reactant:
 - id: https://pubchem.ncbi.nlm.nih.gov/compound/297
   title: CH4 (99.995% purity, Linde)

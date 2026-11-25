@@ -13,7 +13,7 @@ description:
   STEM additionally covers a recycled/spent Pd3P/SiO2 sample recovered after catalytic testing; STEM method
   details are documented but no STEM image/data files are included in the deposited dataset.'
 rdf_type:
-  id: voc4cat:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis
 keyword:
 - Chemistry
@@ -47,6 +47,9 @@ creator:
 publisher:
   name:
   - NFDI4Cat Central Data Repository
+is_referenced_by:
+- id: https://doi.org/10.1016/j.jcat.2026.116733
+  title: Neyyathala et al., J. Catal. 456 (2026) 116733
 dataset_distribution:
 - access_URL:
   - id: https://hdl.handle.net/21.11165/4cat/arp5-s69r
@@ -59,6 +62,160 @@ dataset_distribution:
 other_identifier:
 - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
 was_generated_by:
+- id: coremeta4cat:SYN_arp5-s69r_Pd3P_SiO2
+  title:
+  - Pd3P/SiO2 (5 wt% Pd) by incipient wetness impregnation and thermal treatment in hydrogen
+  description:
+  - 'Pd(OAc)2 and H3PO4 dissolved in concentrated hydrochloric acid, impregnated onto silica, dried and
+    treated in hydrogen at 400 C, following a previously reported procedure (article, section 2.2, ref. 44).
+    The article gives the amounts for the 5 wt% Pd catalyst only.'
+  nominal_composition:
+  - 'Pd3P/SiO2: 5 wt% Pd'
+  catalyst_measured_properties:
+  - 'Pd loading by ICP-AES: 4.95 wt%'
+  - 'Mean particle size by HAADF-STEM: 5.6 nm'
+  - Pd3P phase confirmed by PXRD and HRTEM lattice fringes (article, section 3.1)
+  catalyst_support:
+  - silica, Cariact Q 20C (Fuji Silysia Chemical)
+  solvent:
+  - id: coremeta4cat:SOLV_arp5-s69r_HCl
+    title: concentrated hydrochloric acid, 37% (Thermo Scientific Chemicals)
+    rdf_type:
+      id: CHEBI:749659
+      title: hydrochloric acid
+  storage_conditions:
+  - Used directly or stored in an Ar-filled glovebox (MBraun) before use or analysis
+  had_input_entity:
+  - id: coremeta4cat:PREC_arp5-s69r_PdOAc2
+    title: palladium(II) acetate, Pd(OAc)2 (Sigma-Aldrich, >=99.99%)
+    precursor_quantity:
+    - value: 100
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/MilliGM
+  - id: coremeta4cat:PREC_arp5-s69r_H3PO4
+    title: phosphoric acid, 85 wt% (Sigma-Aldrich)
+    rdf_type:
+      id: CHEBI:26078
+      title: phosphoric acid
+    has_volume:
+    - value: 10
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Volume
+      unit: https://qudt.org/vocab/unit/MicroL
+  - id: coremeta4cat:SUP_arp5-s69r_SiO2
+    title: silica, Cariact Q 20C (Fuji Silysia Chemical)
+    rdf_type:
+      id: CHEBI:30563
+      title: silicon dioxide
+    precursor_quantity:
+    - value: 0.94
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+      unit: https://qudt.org/vocab/unit/GM
+  had_output_entity:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt
+    title: Pd3P/SiO2 (5 wt% Pd, ARNE01)
+  carried_out_by:
+  - id: coremeta4cat:DEV_arp5-s69r_furnace
+    title: box furnace with a quartz Schlenk tube (pressure relief valve)
+  realized_plan:
+    id: coremeta4cat:SYN_arp5-s69r_IWI_H2_method
+    plan_designator: voc4cat:0007028
+    title: incipient wetness impregnation, drying, thermal treatment in hydrogen
+    description: Precursors dissolved in concentrated hydrochloric acid by sonication and added dropwise to the silica; dried 12 h at 60 C; then heated at 50 C/min to 400 C and held 8 h in pure hydrogen in an evacuated and H2-filled quartz Schlenk tube. The hydrogen treatment is recorded in the calcination fields.
+    impregnation_type:
+    - incipient_wetness
+    has_drying_temperature:
+    - value: 333.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      value: 12
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_temperature_range:
+    - min_value: 673.15
+      max_value: 673.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+    has_calcination_dwelling_time:
+      value: 8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_heating_rate:
+    - value: 50
+      has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+    has_calcination_atmosphere:
+    - value: pure hydrogen (Air Liquide, 99.999%)
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  activity_designator: Synthesis
+- id: coremeta4cat:SYN_arp5-s69r_Pd_SiO2
+  title:
+  - Pd/SiO2 (5 wt% Pd) reference catalyst, prepared like Pd3P/SiO2 without phosphoric acid
+  description:
+  - Same procedure as SYN_arp5-s69r_Pd3P_SiO2, without H3PO4 (article, section 2.2).
+  nominal_composition:
+  - 'Pd/SiO2: 5 wt% Pd'
+  catalyst_measured_properties:
+  - 'Mean particle size by HAADF-STEM: 6.6 nm'
+  - Face-centred cubic Pd phase by PXRD (article, section 3.1)
+  catalyst_support:
+  - silica, Cariact Q 20C (Fuji Silysia Chemical)
+  solvent:
+  - id: coremeta4cat:SOLV_arp5-s69r_HCl
+    title: concentrated hydrochloric acid, 37% (Thermo Scientific Chemicals)
+    rdf_type:
+      id: CHEBI:749659
+      title: hydrochloric acid
+  storage_conditions:
+  - Used directly or stored in an Ar-filled glovebox (MBraun) before use or analysis
+  had_input_entity:
+  - id: coremeta4cat:PREC_arp5-s69r_PdOAc2
+    title: palladium(II) acetate, Pd(OAc)2 (Sigma-Aldrich, >=99.99%)
+  - id: coremeta4cat:SUP_arp5-s69r_SiO2
+    title: silica, Cariact Q 20C (Fuji Silysia Chemical)
+    rdf_type:
+      id: CHEBI:30563
+      title: silicon dioxide
+  had_output_entity:
+  - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
+    title: Pd/SiO2 (5 wt% Pd, ARNE02)
+  carried_out_by:
+  - id: coremeta4cat:DEV_arp5-s69r_furnace
+    title: box furnace with a quartz Schlenk tube (pressure relief valve)
+  realized_plan:
+    id: coremeta4cat:SYN_arp5-s69r_IWI_H2_method
+    plan_designator: voc4cat:0007028
+    title: incipient wetness impregnation, drying, thermal treatment in hydrogen
+    description: Precursors dissolved in concentrated hydrochloric acid by sonication and added dropwise to the silica; dried 12 h at 60 C; then heated at 50 C/min to 400 C and held 8 h in pure hydrogen in an evacuated and H2-filled quartz Schlenk tube. The hydrogen treatment is recorded in the calcination fields.
+    impregnation_type:
+    - incipient_wetness
+    has_drying_temperature:
+    - value: 333.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+    has_drying_duration:
+      value: 12
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_temperature_range:
+    - min_value: 673.15
+      max_value: 673.15
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/K
+    has_calcination_dwelling_time:
+      value: 8
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+      unit: https://qudt.org/vocab/unit/HR
+    has_calcination_heating_rate:
+    - value: 50
+      has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+      unit: https://qudt.org/vocab/unit/K-PER-MIN
+    has_calcination_atmosphere:
+    - value: pure hydrogen (Air Liquide, 99.999%)
+  other_identifier:
+  - notation: https://hdl.handle.net/21.11165/4cat/arp5-s69r
+  activity_designator: Synthesis
 - id: coremeta4cat:CHAR_arp5-s69r_COChemisorption
   title:
   - CO chemisorption analysis (2 catalysts)
@@ -92,6 +249,8 @@ was_generated_by:
     at 30 C and 100 C (4 spectra total). Atmosphere: 4000 ppm CO, balance Ar, 50 mL/min flow; Ar flush
     between measurements. Sample: 50 mg, 100-200 micron sieve fraction, in a Harrick in-situ cell with
     CaF2 windows.'
+  has_sample_pretreatment:
+  - value: 1 h in argon (50 mL/min) at 150 C to remove physisorbed water, then cooled to 30 C before CO dosing
   carried_out_by:
   - id: coremeta4cat:DEV_arp5-s69r_DRIFT
     title: VERTEX 70 FTIR spectrometer (Bruker)
@@ -157,6 +316,8 @@ was_generated_by:
     testing (ARNE03), for particle size distribution, chemical composition, and crystal structure. Note:
     STEM-Meta-2.txt documents the method in detail but no image/data files for this technique are included
     in the deposited dataset.'
+  sample_preparation:
+  - Dispersed in ethanol, a drop placed on a Cu grid with an amorphous carbon film, dried at 60 C overnight
   carried_out_by:
   - id: coremeta4cat:DEV_arp5-s69r_STEM
     title: FEI Osiris ChemiSTEM
@@ -191,6 +352,9 @@ was_generated_by:
   - XPS binding energy scans of the Pd 3d core level for Pd/SiO2 and Pd3P/SiO2, and the P 2p core level
     for Pd3P/SiO2, to compare Pd electronic structure/oxidation state between the phosphide and the unmodified
     reference catalyst.
+  sample_preparation:
+  - Stored under inert atmosphere in a glovebox and transferred with minimal exposure to air; no further
+    pretreatment
   carried_out_by:
   - id: coremeta4cat:DEV_arp5-s69r_XPS
     title: XPS spectrometer
@@ -236,14 +400,21 @@ is_about_activity:
       loading.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - value: 5.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      description: Pd loading (Overview Reaction Description-2.txt)
     - value: 0.01
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
       description: Catalyst mass used per batch test
+    composed_of:
+    - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd
+      title: palladium
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      has_quantitative_attribute:
+      - value: 5.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        description: Loading (Overview Reaction Description-2.txt)
   used_reactant:
   - id: coremeta4cat:REAC_arp5-s69r_CO
     title: carbon monoxide
@@ -304,28 +475,42 @@ is_about_activity:
       loading.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - value: 5.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      description: Pd loading (Overview Reaction Description-2.txt)
     - value: 0.01
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
       description: Catalyst mass used per batch test
+    composed_of:
+    - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd
+      title: palladium
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      has_quantitative_attribute:
+      - value: 5.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        description: Loading (Overview Reaction Description-2.txt)
   - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt
     title: Pd/SiO2 (5 wt% Pd, internal code ARNE02)
     description: Unmodified (phosphorus-free) palladium nanoparticles supported on silica, 5 wt% Pd, 0.5
       mol% metal loading -- reference catalyst for comparison against the Pd3P phosphide.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - value: 5.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      description: Pd loading (Overview Reaction Description-2.txt)
     - value: 0.01
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
       description: Catalyst mass used per batch test
+    composed_of:
+    - id: coremeta4cat:CAT_arp5-s69r_Pd_SiO2_5wt_Pd
+      title: palladium
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      has_quantitative_attribute:
+      - value: 5.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        description: Loading (Overview Reaction Description-2.txt)
   used_reactant:
   - id: coremeta4cat:REAC_arp5-s69r_CO
     title: carbon monoxide
@@ -390,14 +575,21 @@ is_about_activity:
       loading.
     has_physical_state: SOLID
     has_quantitative_attribute:
-    - value: 5.0
-      has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
-      unit: https://qudt.org/vocab/unit/PERCENT
-      description: Pd loading (Overview Reaction Description-2.txt)
     - value: 0.01
       has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
       unit: https://qudt.org/vocab/unit/GM
       description: Catalyst mass used per batch test
+    composed_of:
+    - id: coremeta4cat:CAT_arp5-s69r_Pd3P_SiO2_5wt_Pd
+      title: palladium
+      rdf_type:
+        id: CHEBI:33363
+        title: palladium atom
+      has_quantitative_attribute:
+      - value: 5.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/MassFraction
+        unit: https://qudt.org/vocab/unit/PERCENT
+        description: Loading (Overview Reaction Description-2.txt)
   used_reactant:
   - id: coremeta4cat:REAC_arp5-s69r_CO
     title: carbon monoxide

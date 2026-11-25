@@ -24,6 +24,7 @@ jobs:
 
     # Grant GITHUB_TOKEN the permissions required to make a gh-pages deployment
     permissions:
+      actions: read    # wait-for-pages.sh checks GitHub Pages runs
       contents: write  # to let mkdocs write the new docs
       pages: write     # to deploy to Pages
       id-token: write  # allow to generate an OpenID Connect (OIDC) token
@@ -73,22 +74,29 @@ jobs:
       # on the job trigger. Only one of the steps below will run at a time.
       # The others will be skipped.
 
+      # mike runs WITHOUT --push: the script pushes gh-pages itself, but only
+      # once GitHub Pages has finished publishing the previous push (another
+      # push meanwhile would cancel that run and show a failed deployment).
+      # It also redoes the deploy if gh-pages moved, e.g. because
+      # deploy_docs_preview.yaml removed a preview after a merge.
+
       # yamllint disable rule:line-length
       - name: Build & deploy "dev" docs for a new commit to main
         if: (github.event_name == 'push' && github.ref_type != 'tag') || github.event_name == 'workflow_dispatch'
-        # The preview workflow (deploy_docs_preview.yaml) pushes to gh-pages
-        # too; the script refreshes gh-pages and retries if it moved.
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           export SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
           bash .github/scripts/mike-push-with-retry.sh \
-            uv run mike deploy --push --update-aliases --title "dev (${SHORT_SHA})" dev
+            uv run mike deploy --update-aliases --title "dev (${SHORT_SHA})" dev
 
       - name: Build & deploy docs for a new version tag
         if: github.ref_type == 'tag' && github.event_name == 'push'
         env:
+          GH_TOKEN: ${{ github.token }}
           VERSION: ${{ github.ref_name }}
         run: |
           bash .github/scripts/mike-push-with-retry.sh \
-            uv run mike deploy --push --update-aliases "$VERSION" latest
+            uv run mike deploy --update-aliases "$VERSION" latest
           bash .github/scripts/mike-push-with-retry.sh \
-            uv run mike set-default latest --push
+            uv run mike set-default latest

@@ -23,6 +23,9 @@ used_reactant:
     title: "CO2 (99.998% purity, 20 vol% in H2)"
   - id: "https://pubchem.ncbi.nlm.nih.gov/compound/783"
     title: "H2 (99.999% purity)"
+rdf_type:
+  id: voc4cat:0000259
+  title: "CO2 hydrogenation"
 catalyst_type:
   - "heterogeneous_catalysis"
 catalyst_form:

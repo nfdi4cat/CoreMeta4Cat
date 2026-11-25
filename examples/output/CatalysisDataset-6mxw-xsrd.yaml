@@ -293,7 +293,7 @@ was_generated_by:
     title: Bruker M4 TORNADO micro-XRF spectrometer
     description: Rh X-ray tube; ESPRIT software (article, section 2.1.4).
   rdf_type:
-    id: VOC4CAT:0000067
+    id: voc4cat:0000067
     title: X-ray fluorescence
   evaluated_entity:
   - id: coremeta4cat:CAT_6mxw-xsrd_HTC_library
@@ -321,7 +321,7 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
   rdf_type:
-    id: VOC4CAT:0000215
+    id: voc4cat:0000215
     title: density functional theory
   evaluated_entity:
   - id: coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites
@@ -349,11 +349,26 @@ was_generated_by:
   - pymatgen, structure generation
   calculated_property:
   - value: -1.87 to 1.41 eV (17 sites)
-    description: OH binding energy; range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu
-      highest); reference state not defined in the main text
+    title: OH binding energy
+    description: Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference
+      state is not defined in the main text.
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    adsorbate:
+    - OH
+    material_composition:
+    - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+    - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
   - value: -2.20 to 0.51 eV (17 sites)
-    description: CO binding energy; range over all sites (Ga2O3-Ru lowest, pristine
-      Ga2O3 highest); referenced to gas-phase CO
+    title: CO binding energy
+    description: Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    adsorbate:
+    - CO
+    energy_reference:
+    - CO(g)
+    material_composition:
+    - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+    - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
 - id: coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE
   title:
   - MACE-MPA-0 binding-energy screening of OH and CO (31 compositions)
@@ -385,10 +400,17 @@ was_generated_by:
   - MACE-MPA-0 foundation model (article, Table 2)
   calculated_property:
   - value: -1.50 to 2.91 eV (31 compositions)
-    description: OH binding energy; range over all compositions (Al4Cu9 lowest, Fe
-      and GaNi3 highest)
+    title: OH binding energy
+    description: Range over all compositions (Al4Cu9 lowest, Fe and GaNi3 highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    adsorbate:
+    - OH
   - value: -2.51 to 1.14 eV (31 compositions)
-    description: CO binding energy; range over all compositions (Ir lowest, Fe highest)
+    title: CO binding energy
+    description: Range over all compositions (Ir lowest, Fe highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    adsorbate:
+    - CO
 - id: coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP
   title:
   - OCP binding-energy screening of OH and CO (37 compositions)
@@ -419,9 +441,17 @@ was_generated_by:
     Table 2
   calculated_property:
   - value: -5.35 to 0.79 eV (37 compositions)
-    description: OH binding energy; range over all compositions (InSb lowest, Pd highest)
+    title: OH binding energy
+    description: Range over all compositions (InSb lowest, Pd highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    adsorbate:
+    - OH
   - value: -5.12 to -0.13 eV (37 compositions)
-    description: CO binding energy; range over all compositions (InSb lowest, Al highest)
+    title: CO binding energy
+    description: Range over all compositions (InSb lowest, Al highest).
+    property_designator: coremeta4cat:AdsorptionEnergetics
+    adsorbate:
+    - CO
 creator:
 - name:
   - Weber, Sebastian
@@ -471,6 +501,9 @@ is_about_activity:
     only; they are not deposited.'
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  rdf_type:
+    id: voc4cat:0000259
+    title: CO2 hydrogenation
   used_reactant:
   - id: coremeta4cat:REAC_6mxw-xsrd_CO2
     title: carbon dioxide
@@ -609,6 +642,9 @@ is_about_activity:
     yields are not deposited.'
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/6mxw-xsrd
+  rdf_type:
+    id: voc4cat:0000259
+    title: CO2 hydrogenation
   used_reactant:
   - id: coremeta4cat:REAC_6mxw-xsrd_CO2
     title: carbon dioxide
@@ -725,5 +761,5 @@ is_about_activity:
     unit: https://qudt.org/vocab/unit/PERCENT
     has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFraction
 rdf_type:
-  id: VOC4CAT:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis

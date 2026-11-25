@@ -224,6 +224,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                           'prefix_reference': 'https://hdl.handle.net/'},
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
+                  'panet': {'prefix_prefix': 'panet',
+                            'prefix_reference': 'http://purl.org/pan-science/PaNET/'},
                   'prov': {'prefix_prefix': 'prov',
                            'prefix_reference': 'http://www.w3.org/ns/prov#'},
                   'qudt': {'prefix_prefix': 'qudt',
@@ -5200,10 +5202,19 @@ class CatalyticReaction(ChemicalReaction):
                                                           'range': 'ProductIdentificationMethod',
                                                           'recommended': True},
                         'rdf_type': {'description': 'The type of catalytic reaction as '
-                                                    'an ontology term (e.g. '
-                                                    'voc4cat:0007010\n'
-                                                    'for a specific reaction type, or '
-                                                    'a ChemO/RXNO term).\n'
+                                                    'an ontology term, e.g. '
+                                                    'voc4cat:0000259\n'
+                                                    '(CO2 hydrogenation), or a term '
+                                                    'from RXNO, CHMO or SIO. Mandatory '
+                                                    'for\n'
+                                                    'every reaction (Layer 1). If no '
+                                                    'specific term exists, use the '
+                                                    'closest\n'
+                                                    'broader one (e.g. '
+                                                    'voc4cat:0000260, hydrogenation, '
+                                                    'for CO methanation)\n'
+                                                    'and keep the specific name in '
+                                                    'reaction_name.\n'
                                                     '\n'
                                                     'This is the sole reaction-type '
                                                     'classification mechanism '
@@ -5214,18 +5225,13 @@ class CatalyticReaction(ChemicalReaction):
                                                     'slot + ReactionType class '
                                                     'hierarchy (cf. PR #118, since '
                                                     'superseded here).\n'
-                                                    'Kept `recommended` rather than '
-                                                    '`required` for the same reason '
-                                                    'as\n'
-                                                    'catalyst_type below: see '
-                                                    'nfdi4cat/CoreMeta4Cat#117 for the '
-                                                    'cardinality\n'
-                                                    'discussion and '
+                                                    'See nfdi4cat/CoreMeta4Cat#117 for '
+                                                    'the cardinality discussion and\n'
                                                     'nfdi4cat/CoreMeta4Cat#116 for the '
-                                                    'classification-mechanism\n'
+                                                    'classification-mechanism '
                                                     'discussion.',
                                      'name': 'rdf_type',
-                                     'recommended': True},
+                                     'required': True},
                         'used_reactor': {'description': 'The reactor in which the '
                                                         'Reaction takes place.\n'
                                                         'Must be a ChemicalReactor '
@@ -5510,16 +5516,17 @@ product_identification_method, ...) when loaded.""", json_schema_extra = { "link
          'slot_uri': 'dcterms:isPartOf'} })
     type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
          'slot_uri': 'dcterms:type'} })
-    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The type of catalytic reaction as an ontology term (e.g. voc4cat:0007010
-for a specific reaction type, or a ChemO/RXNO term).
+    rdf_type: DefinedTerm = Field(default=..., description="""The type of catalytic reaction as an ontology term, e.g. voc4cat:0000259
+(CO2 hydrogenation), or a term from RXNO, CHMO or SIO. Mandatory for
+every reaction (Layer 1). If no specific term exists, use the closest
+broader one (e.g. voc4cat:0000260, hydrogenation, for CO methanation)
+and keep the specific name in reaction_name.
 
 This is the sole reaction-type classification mechanism (DCAT-AP-PLUS
 Pattern 3) -- deliberately not duplicated by a dedicated has_reaction_type
 slot + ReactionType class hierarchy (cf. PR #118, since superseded here).
-Kept `recommended` rather than `required` for the same reason as
-catalyst_type below: see nfdi4cat/CoreMeta4Cat#117 for the cardinality
-discussion and nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism
-discussion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
+See nfdi4cat/CoreMeta4Cat#117 for the cardinality discussion and
+nfdi4cat/CoreMeta4Cat#116 for the classification-mechanism discussion.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
          'in_subset': ['domain_agnostic_core'],
          'recommended': True,
          'slot_uri': 'rdf:type'} })
@@ -8798,6 +8805,7 @@ class PowderXRD(CharacterizationTechnique, XRaySourceMixin):
     Powder X-ray diffraction for phase identification and structural analysis.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000158',
+         'exact_mappings': ['panet:PaNET01101'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin']})
 
@@ -8984,6 +8992,7 @@ class SingleCrystalXRD(CharacterizationTechnique, XRaySourceMixin):
     Single crystal X-ray diffraction for structure determination.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000852',
+         'exact_mappings': ['panet:PaNET01102'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin']})
 
@@ -9127,6 +9136,7 @@ class XRayAbsorptionSpectroscopy(CharacterizationTechnique, EnergyRangeMixin, XR
     X-ray absorption spectroscopy (XAS/XANES/EXAFS) for electronic and local structure analysis.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000286',
+         'exact_mappings': ['panet:PaNET01196'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin', 'EnergyRangeMixin']})
 
@@ -9312,6 +9322,7 @@ class XPS(CharacterizationTechnique, EnergyRangeMixin, XRaySourceMixin):
     X-ray photoelectron spectroscopy for surface elemental and chemical state analysis.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000404',
+         'exact_mappings': ['panet:PaNET01204'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['XRaySourceMixin', 'EnergyRangeMixin']})
 
@@ -9613,6 +9624,7 @@ class InfraredSpectroscopy(CharacterizationTechnique):
     Infrared spectroscopy (FTIR/ATR) for functional group and surface species identification.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000630',
+         'exact_mappings': ['panet:PaNET01109'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     has_operation_mode: Optional[list[OperationMode]] = Field(default=None, description="""Operation mode of an instrument or process.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PowderXRD',
@@ -9795,7 +9807,8 @@ class DRIFTS(CharacterizationTechnique):
     Diffuse reflectance infrared Fourier transform spectroscopy for in-situ
     surface species identification under reactive gas conditions.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'CHMO:0000645',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['panet:PaNET01109'],
+         'class_uri': 'CHMO:0000645',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     adsorption_gas: Optional[list[ChemicalEntity]] = Field(default=None, description="""Probe gas adsorbed during in-situ DRIFTS measurement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DRIFTS'],
@@ -9992,6 +10005,7 @@ class RamanSpectroscopy(CharacterizationTechnique):
     Raman spectroscopy for vibrational and structural characterization.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000069',
+         'exact_mappings': ['panet:PaNET01195'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/'})
 
     excitation_laser_wavelength: Optional[list[LengthQuantity]] = Field(default=None, description="""Wavelength of excitation laser used in Raman spectroscopy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RamanSpectroscopy'],
@@ -10349,7 +10363,8 @@ class TransmissionElectronMicroscopy(CharacterizationTechnique, ElectronMicrosco
     """
     TEM for atomic-resolution imaging and diffraction of catalyst particles.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000078',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['panet:PaNET01145'],
+         'class_uri': 'voc4cat:0000078',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ElectronMicroscopyMixin']})
 
@@ -10484,7 +10499,8 @@ class ScanningElectronMicroscopy(CharacterizationTechnique, ElectronMicroscopyMi
     """
     SEM for surface morphology and particle size/shape imaging.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'voc4cat:0000075',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['panet:PaNET01145'],
+         'class_uri': 'voc4cat:0000075',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'mixins': ['ElectronMicroscopyMixin']})
 
@@ -24966,7 +24982,7 @@ LAMMPS, CP2K, ORCA, Zacros). Include version number where possible.""", json_sch
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:software_package'} })
-    calculated_property: Optional[list[CalculatedProperty]] = Field(default=None, description="""A property computed by this Simulation, provided as a CalculatedProperty
+    calculated_property: Optional[list[Union[ThermodynamicStability,Piezoelectricity,ElasticConstants,Surfaces,DielectricTensors,PhononDispersion,EquationsOfState,AqueousStability,GrainBoundaries,ElectronicStructure,Ferroelectrics,BandGap,AdsorptionEnergetics,ReactionEnergetics,TransitionState,ElectrochemicalFreeEnergy,CatalyticDescriptors]]] = Field(default=None, description="""A property computed by this Simulation, provided as a CalculatedProperty
 instance. Multiple properties may be computed in a single simulation run.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Simulation'],
          'is_a': 'had_output_entity',
          'recommended': True,
@@ -25862,12 +25878,23 @@ class CalculatedProperty(QualitativeAttribute):
     Abstract QualitativeAttribute representing a property computed by a
     Simulation. Concrete subclasses carry the property-specific output
     values and the computational settings used to produce them.
-    Linked from Simulation via the calculated_property slot.
+    Linked from Simulation via the calculated_property slot. An entry
+    declares its concrete subclass with property_designator, e.g.
+    coremeta4cat:AdsorptionEnergetics.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'class_uri': 'IAO:0000109',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/'})
 
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/CalculatedProperty","http://purl.obolibrary.org/obo/IAO_0000109","coremeta4cat:CalculatedProperty","IAO:0000109"] = Field(default="IAO:0000109", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -25990,6 +26017,15 @@ metric). Zero for phases on the hull; positive values indicate metastability."""
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:competing_phases'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ThermodynamicStability","coremeta4cat:ThermodynamicStability"] = Field(default="coremeta4cat:ThermodynamicStability", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26104,6 +26140,15 @@ describing the coupling between stress and electric polarization.""", json_schem
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:ionic_electronic_contributions'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Piezoelectricity","coremeta4cat:Piezoelectricity"] = Field(default="coremeta4cat:Piezoelectricity", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26224,6 +26269,15 @@ elastic response of the material.""", json_schema_extra = { "linkml_meta": {'dom
          'recommended': True,
          'slot_uri': 'coremeta4cat:young_modulus',
          'unit': {'ucum_code': 'GPa'}} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ElasticConstants","coremeta4cat:ElasticConstants"] = Field(default="coremeta4cat:ElasticConstants", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26350,6 +26404,15 @@ periodic interactions between slab images.""", json_schema_extra = { "linkml_met
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:surface_termination_method'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Surfaces","coremeta4cat:Surfaces"] = Field(default="coremeta4cat:Surfaces", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26486,6 +26549,15 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_sche
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/DielectricTensors","coremeta4cat:DielectricTensors"] = Field(default="coremeta4cat:DielectricTensors", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26618,6 +26690,15 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { 
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:001100'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/PhononDispersion","coremeta4cat:PhononDispersion"] = Field(default="coremeta4cat:PhononDispersion", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26763,6 +26844,15 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_sche
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/EquationsOfState","coremeta4cat:EquationsOfState"] = Field(default="coremeta4cat:EquationsOfState", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -26915,6 +27005,15 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { 
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:001100'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/AqueousStability","coremeta4cat:AqueousStability"] = Field(default="coremeta4cat:AqueousStability", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27061,6 +27160,15 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { 
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:001100'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/GrainBoundaries","coremeta4cat:GrainBoundaries"] = Field(default="coremeta4cat:GrainBoundaries", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27208,6 +27316,15 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_sche
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ElectronicStructure","coremeta4cat:ElectronicStructure"] = Field(default="coremeta4cat:ElectronicStructure", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27349,6 +27466,15 @@ lattice parameters (e.g. \"Fm-3m, a=3.92 A for Pt\").""", json_schema_extra = { 
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:001100'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Ferroelectrics","coremeta4cat:Ferroelectrics"] = Field(default="coremeta4cat:Ferroelectrics", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27512,6 +27638,15 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_sche
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:k_point_mesh'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/BandGap","coremeta4cat:BandGap"] = Field(default="coremeta4cat:BandGap", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27645,6 +27780,15 @@ Use empirical formula or SMILES for molecular systems.""", json_schema_extra = {
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/AdsorptionEnergetics","coremeta4cat:AdsorptionEnergetics"] = Field(default="coremeta4cat:AdsorptionEnergetics", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27773,6 +27917,15 @@ Use empirical formula or SMILES for molecular systems.""", json_schema_extra = {
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ReactionEnergetics","coremeta4cat:ReactionEnergetics"] = Field(default="coremeta4cat:ReactionEnergetics", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -27905,6 +28058,15 @@ Use empirical formula or SMILES for molecular systems.""", json_schema_extra = {
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/TransitionState","coremeta4cat:TransitionState"] = Field(default="coremeta4cat:TransitionState", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -28031,6 +28193,15 @@ Use empirical formula or SMILES for molecular systems.""", json_schema_extra = {
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'coremeta4cat:material_composition'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/ElectrochemicalFreeEnergy","coremeta4cat:ElectrochemicalFreeEnergy"] = Field(default="coremeta4cat:ElectrochemicalFreeEnergy", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -28138,6 +28309,15 @@ class CatalyticDescriptors(CalculatedProperty):
     scaling_relation: Optional[list[str]] = Field(default=None, description="""Linear scaling relation between adsorption energies (e.g. \"Delta_E_OH = 0.50 Delta_E_O + 0.10 eV\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'],
          'slot_uri': 'coremeta4cat:scaling_relation'} })
     bep_relation: Optional[list[str]] = Field(default=None, description="""Brønsted–Evans–Polanyi relation between activation energies and reaction energies (slope and intercept).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalyticDescriptors'], 'slot_uri': 'coremeta4cat:bep_relation'} })
+    property_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/CatalyticDescriptors","coremeta4cat:CatalyticDescriptors"] = Field(default="coremeta4cat:CatalyticDescriptors", description="""Type designator for CalculatedProperty subclasses: the class_uri of the
+concrete property an entry of calculated_property is, e.g.
+coremeta4cat:AdsorptionEnergetics or coremeta4cat:TransitionState.
+Needed whenever an entry uses fields of its subclass: calculated_property
+ranges over the abstract CalculatedProperty, and without the designator
+software cannot tell which property class an entry belongs to. The value
+must match the class_uri exactly. In RDF it becomes the entry's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+         'domain_of': ['CalculatedProperty'],
+         'slot_uri': 'rdf:type'} })
     title: Optional[str] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
                        'Activity',
                        'AgenticEntity',
@@ -28230,12 +28410,14 @@ class CatalysisDataset(Dataset, ClassifierMixin):
     """
     A dcat:Dataset that contains research data in the field of catalysis.
 
-    The catalysis research field is expressed via rdf_type using a voc4cat
-    term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).
+    The catalysis research field is expressed via rdf_type using voc4cat
+    terms from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).
     For example, a dataset from heterogeneous catalysis research would carry:
       rdf_type:
-        id: voc4cat:0007001
-        title: \"heterogeneous catalysis\"
+        - id: voc4cat:0007001
+          title: \"heterogeneous catalysis\"
+    Interdisciplinary work lists every field that applies, e.g. biocatalysis
+    and electrocatalysis for bioelectrocatalysis.
 
     The four CoreMeta4Cat minimum information pillars are linked via the slots
     below, each pointing to the corresponding DataGeneratingActivity or
@@ -28270,19 +28452,26 @@ class CatalysisDataset(Dataset, ClassifierMixin):
                                                    'description': 'Classify the '
                                                                   'dataset by '
                                                                   'catalysis research '
-                                                                  'field using '
+                                                                  'field(s) using '
                                                                   'voc4cat.',
-                                                   'obligation_level': 'RECOMMENDED',
+                                                   'obligation_level': 'REQUIRED',
                                                    'range': 'CatalysisResearchFieldEnum'}],
-                                     'description': 'The catalysis research field, '
-                                                    'provided as a voc4cat term from\n'
+                                     'description': 'The catalysis research field(s), '
+                                                    'provided as voc4cat terms from\n'
                                                     'CatalysisResearchFieldEnum. This '
                                                     'is the primary '
                                                     'machine-actionable\n'
                                                     "classification of the dataset's "
-                                                    'domain.',
+                                                    'domain (Layer 1) and is '
+                                                    'mandatory.\n'
+                                                    'Several fields can be given for '
+                                                    'interdisciplinary work, e.g.\n'
+                                                    'biocatalysis and electrocatalysis '
+                                                    'for bioelectrocatalysis.',
+                                     'inlined_as_list': True,
+                                     'multivalued': True,
                                      'name': 'rdf_type',
-                                     'recommended': True},
+                                     'required': True},
                         'was_generated_by': {'description': 'The '
                                                             'DataGeneratingActivity '
                                                             '(Synthesis, '
@@ -28298,12 +28487,14 @@ class CatalysisDataset(Dataset, ClassifierMixin):
 
     type: Optional[list[DefinedTerm]] = Field(default=None, description="""A type of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
          'slot_uri': 'dcterms:type'} })
-    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The catalysis research field, provided as a voc4cat term from
+    rdf_type: list[DefinedTerm] = Field(default=..., description="""The catalysis research field(s), provided as voc4cat terms from
 CatalysisResearchFieldEnum. This is the primary machine-actionable
-classification of the dataset's domain.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
+classification of the dataset's domain (Layer 1) and is mandatory.
+Several fields can be given for interdisciplinary work, e.g.
+biocatalysis and electrocatalysis for bioelectrocatalysis.""", json_schema_extra = { "linkml_meta": {'bindings': [{'binds_value_of': 'id',
                        'description': 'Classify the dataset by catalysis research '
-                                      'field using voc4cat.',
-                       'obligation_level': 'RECOMMENDED',
+                                      'field(s) using voc4cat.',
+                       'obligation_level': 'REQUIRED',
                        'range': 'CatalysisResearchFieldEnum'}],
          'domain_of': ['ClassifierMixin'],
          'in_subset': ['domain_agnostic_core'],

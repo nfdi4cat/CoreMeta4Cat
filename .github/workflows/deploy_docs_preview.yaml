@@ -8,6 +8,10 @@
 #   comment the URL on the PR.
 # - When a PR is closed, remove its preview again.
 #
+# Both push to gh-pages with .github/scripts/publish-preview.sh, which waits
+# until GitHub Pages has finished publishing the previous push. Pushing while
+# Pages is busy makes GitHub cancel that run and report a failed deployment.
+#
 # Security: this workflow has write access, so it must never check out or
 # run code from a PR (https://securitylab.github.com/resources/
 # github-actions-preventing-pwn-requests/). It only checks out branches of
@@ -58,14 +62,18 @@ jobs:
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     permissions:
-      actions: read         # download the artifact of the build run
+      actions: read         # download the artifact; check GitHub Pages runs
       contents: write       # push the preview to gh-pages
+      pages: read           # look up the URL of the GitHub Pages site
       pull-requests: write  # comment the preview URL on the PR
     steps:
-      # Trusted code only: the default branch of this repository.
+      # Trusted code only: the scripts on the default branch of this
+      # repository.
       # https://github.com/actions/checkout
       - name: Checkout
         uses: actions/checkout@v7.0.1
+        with:
+          sparse-checkout: .github/scripts
 
       # https://github.com/actions/download-artifact
       - name: Download documentation preview
@@ -130,21 +138,37 @@ jobs:
           rm -f _preview/site/preview-build.txt
           echo "$BUILT_SHA" > _preview/site/preview-build.txt
 
-      # https://github.com/rossjrw/pr-preview-action
+      # Only this preview's folder (and the few files at the root).
+      # https://github.com/actions/checkout
+      - name: Check out gh-pages
+        if: steps.pr.outputs.result == 'deploy'
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: gh-pages
+          path: _gh-pages
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: pr-preview/pr-${{ steps.pr.outputs.number }}
+
       - name: Deploy preview
         id: preview
         if: steps.pr.outputs.result == 'deploy'
-        uses: rossjrw/pr-preview-action@v1.8.2
-        with:
-          action: deploy
-          pr-number: ${{ steps.pr.outputs.number }}
-          source-dir: _preview/site/
-          preview-branch: gh-pages
-          # The action can't find the PR of a workflow_run event by itself,
-          # so the comment is posted by the next step.
-          comment: false
-          deploy-commit-message: >-
-            Deploy preview for PR ${{ steps.pr.outputs.number }} 🛫
+        working-directory: _gh-pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+        run: |
+          bash "$GITHUB_WORKSPACE/.github/scripts/publish-preview.sh" \
+            deploy "$PR_NUMBER" "$GITHUB_WORKSPACE/_preview/site"
+
+          # (On HTTP errors `gh api` prints the error body to stdout.)
+          if ! base="$(gh api "repos/$GITHUB_REPOSITORY/pages" \
+              --jq .html_url 2>/dev/null)" || [[ "$base" != https://* ]]; then
+            owner="${GITHUB_REPOSITORY%%/*}"
+            base="https://${owner,,}.github.io/${GITHUB_REPOSITORY#*/}/"
+          fi
+          echo "preview-url=${base%/}/pr-preview/pr-$PR_NUMBER/" \
+            >> "$GITHUB_OUTPUT"
 
       # Pushing to gh-pages is not the end: GitHub Pages then rebuilds the
       # site (pages-build-deployment), which takes another minute or two.
@@ -177,7 +201,8 @@ jobs:
       # Comment lines stay unwrapped: GitHub renders newlines as line breaks.
       # yamllint disable rule:line-length
 
-      # Same header as pr-preview-action uses, so one comment is updated.
+      # All preview comments share the header `pr-preview` (also used by
+      # pr-preview-action before), so the PR keeps a single comment.
       # https://github.com/marocchino/sticky-pull-request-comment
       - name: Comment preview URL
         if: steps.pr.outputs.result == 'deploy'
@@ -208,35 +233,47 @@ jobs:
     if: github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
     permissions:
+      actions: read         # check GitHub Pages runs before pushing
       contents: write       # remove the preview from gh-pages
       pull-requests: write  # update the preview comment
     steps:
-      - name: Check for an existing preview
-        id: check
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: |
-          if gh api --silent \
-            "repos/$GITHUB_REPOSITORY/contents/pr-preview/pr-$PR_NUMBER?ref=gh-pages"
-          then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "exists=false" >> "$GITHUB_OUTPUT"
-            echo "No preview of PR #$PR_NUMBER on gh-pages; nothing to remove."
-          fi
-
       # On pull_request_target this checks out the PR's base branch of this
       # repository, NOT the PR's code. Never change that.
       # https://github.com/actions/checkout
       - name: Checkout
-        if: steps.check.outputs.exists == 'true'
         uses: actions/checkout@v7.0.1
-
-      # https://github.com/rossjrw/pr-preview-action
-      - name: Remove preview
-        if: steps.check.outputs.exists == 'true'
-        uses: rossjrw/pr-preview-action@v1.8.2
         with:
-          action: remove
-          preview-branch: gh-pages
+          sparse-checkout: .github/scripts
+
+      # Only this preview's folder (and the few files at the root).
+      - name: Check out gh-pages
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: gh-pages
+          path: _gh-pages
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: pr-preview/pr-${{ github.event.pull_request.number }}
+
+      # Succeeds without a push when there is no preview (never built, or
+      # closed before the build finished; a build finishing after the merge
+      # is not deployed because the PR is closed by then).
+      - name: Remove preview
+        id: remove
+        working-directory: _gh-pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          bash "$GITHUB_WORKSPACE/.github/scripts/publish-preview.sh" \
+            remove "$PR_NUMBER"
+
+      # https://github.com/marocchino/sticky-pull-request-comment
+      - name: Comment that the preview was removed
+        if: steps.remove.outputs.changed == 'true'
+        uses: marocchino/sticky-pull-request-comment@v3.0.5
+        with:
+          header: pr-preview
+          number: ${{ github.event.pull_request.number }}
+          message: |
+            :books: Documentation preview removed because this PR was closed.

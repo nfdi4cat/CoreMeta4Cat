@@ -8,6 +8,7 @@
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
 <https://pubchem.ncbi.nlm.nih.gov/compound/280> dcterms:title "CO2 (99.998% purity, 20 vol% in H2)" ;
 	a SIO:010411 .
 <https://pubchem.ncbi.nlm.nih.gov/compound/783> dcterms:title "H2 (99.999% purity)" ;
@@ -19,7 +20,7 @@ coremeta4cat:REACT_001_FixedBed dcterms:description "10 mm inner diameter, 30 cm
 	dcterms:title "stainless steel fixed-bed plug-flow reactor" ;
 	a voc4cat:0007018 .
 coremeta4cat:REAC_001_CO2_hydrogenation RO:0004009 <https://pubchem.ncbi.nlm.nih.gov/compound/280> , <https://pubchem.ncbi.nlm.nih.gov/compound/783> ;
-	a coremeta4cat:CatalyticReaction ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0000259 ;
 	prov:used coremeta4cat:FEED_001_CO2_H2 ;
 	prov:wasAssociatedWith coremeta4cat:REACT_001_FixedBed ;
 	coremeta4cat:feed_composition_range _:c14n4 ;
@@ -33,6 +34,8 @@ coremeta4cat:REAC_001_CO2_hydrogenation RO:0004009 <https://pubchem.ncbi.nlm.nih
 coremeta4cat:REAC_001_GC_method dcterms:description "GC (Agilent 7890B) with TCD and FID detectors; columns: Molecular Sieve 5A and Poraplot Q; products: MeOH, CO, CH4, H2O quantified" ;
 	dcterms:title "online gas chromatography" ;
 	a OBI:0000272 .
+voc4cat:0000259 schema1:name "CO2 hydrogenation" ;
+	a schema1:DefinedTerm .
 _:c14n0 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
 	qudt:unit <https://qudt.org/vocab/unit/GM> ;
 	a qudt:Quantity ;

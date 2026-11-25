@@ -22,15 +22,15 @@ CoreMeta4Cat organises metadata in two layers.
 
 | Field | Example values | Obligation |
 |---|---|---|
-| Catalysis research field | heterogeneous catalysis, electrocatalysis, biocatalysis | Recommended |
-| Reaction type | CO oxidation, ammonia synthesis, hydrogenation | Recommended |
+| Catalysis research field | heterogeneous catalysis, electrocatalysis, biocatalysis (several can be given) | Mandatory |
+| Reaction type | CO oxidation, ammonia synthesis, hydrogenation | Mandatory for every reaction |
 
 **Layer 2 — Data-class-specific metadata** is structured around the four data classes: Synthesis, Characterization, Reaction, and Simulation. Each data class carries its own set of Mandatory, Recommended, and Optional fields.
 
 ```
 CatalysisDataset
  ├── catalysis research field          [Layer 1 — applies to all]
- ├── reaction type                     [Layer 1 — applies to all]
+ ├── reaction type                     [Layer 1 — on each Reaction]
  ├── was_generated_by → Synthesis      [Layer 2 — data-class specific]
  ├── was_generated_by → Characterization
  ├── was_generated_by → Simulation

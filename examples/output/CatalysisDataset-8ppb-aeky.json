@@ -86,11 +86,13 @@
       "calculated_property": [
         {
           "value": "-1.86 kcal/mol",
-          "description": "Relative binding free energy (ddG) of 4M-N15 (S19V/P423F) vs. 3FCR-4M"
+          "description": "Relative binding free energy (ddG) of 4M-N15 (S19V/P423F) vs. 3FCR-4M",
+          "property_designator": "IAO:0000109"
         },
         {
           "value": "-1.11 kcal/mol",
-          "description": "Relative binding free energy (ddG) of 4M-N16 (G151A/P423F) vs. 3FCR-4M"
+          "description": "Relative binding free energy (ddG) of 4M-N16 (G151A/P423F) vs. 3FCR-4M",
+          "property_designator": "IAO:0000109"
         }
       ]
     },
@@ -221,9 +223,11 @@
       "description": "3FCR-4M (Y59W/Y87F/Y152F/T231A), 4M-N15 (S19V/P423F), 4M-N16 (G151A/P423F). See was_generated_by for detail."
     }
   ],
-  "rdf_type": {
-    "id": "VOC4CAT:0000204",
-    "title": "biocatalysis"
-  },
+  "rdf_type": [
+    {
+      "id": "voc4cat:0000204",
+      "title": "biocatalysis"
+    }
+  ],
   "@type": "CatalysisDataset"
 }

@@ -6,7 +6,15 @@ If you are a catalysis researcher, you have probably faced this at some point: y
 
 The model draws its terminology from [Voc4Cat](https://nfdi4cat.github.io/voc4cat/), NFDI4Cat's controlled vocabulary for catalysis, ensuring standardized semantic representation. Fields are classified as **Mandatory**, **Recommended**, or **Optional**, helping users meet minimum quality thresholds while leaving room for richer annotation.
 
-> CoreMeta4Cat is a living standard. Community feedback — submitted via the **Submit Term Feedback** button — continuously shapes the addition, revision, and removal of data fields.
+!!! info "Current status: a starting point, open for contributions"
+    CoreMeta4Cat is a living standard at an early stage of development. It already covers the four data classes Synthesis, Characterization, Reaction and Simulation and has been applied to real, published datasets (see [Community datasets](working-with-data/community-datasets.md)). Its coverage is uneven, and we know of gaps:
+
+    - **Simulation** was only recently extended from general material properties to catalysis-specific ones: adsorption, reaction and transition-state energetics, electrochemical free energies and catalytic descriptors. More methods and properties are needed from the theory community.
+    - **Engineering aspects** beyond laboratory catalytic testing, such as reactor design and process simulation, are not yet included.
+    - **Characterization** does not yet cover every technique, for example quasi-elastic or inelastic neutron scattering.
+    - The **obligation levels** (Mandatory, Recommended, Optional) have so far been tested on a small number of curated datasets.
+
+    If a field, method or technique you need is missing or classified wrongly, please tell us: use the **Submit Term Feedback** button next to every field, open an [issue](https://github.com/nfdi4cat/CoreMeta4Cat/issues), or propose changes through the vocabulary workbook. [How to contribute](contributing.md) lists all options; every proposal is discussed openly and included in the next release.
 
 ![CoreMeta4Cat model overview](images/CoreMeta4Cat_Picture.png)
 
@@ -18,7 +26,7 @@ The most up-to-date list of CoreMeta4Cat metadata fields for all four data class
 
 [⬇ Download the metadata list](https://nfdi4cat.github.io/CoreMeta4Cat/latest/assets/coremeta4cat_vocabulary.xlsx)
 
-We are currently developing a user-friendly **Metadata Checker** tool that will make this process even easier — upload your dataset and the tool will automatically identify which required fields are present, which are missing, and give you a plain-language gap report with a downloadable template to act on. No schema knowledge required. The tool will be available here soon.
+We are also developing a **Metadata Checker**: an ELN-style form for entering and submitting new data along the CoreMeta4Cat fields, with feedback buttons for reporting problems with a field while you work. It is still in development and will be linked here once it is available.
 
 ---
 
@@ -55,10 +63,11 @@ The inner layer defines mandatory baseline metadata, enabling consistent categor
 
 | Field | Priority | Description |
 |---|---|---|
-| **Catalysis Research Field** | Mandatory | Type of catalysis: homogeneous, heterogeneous, electrocatalysis, hybrid, or other |
-| **Reaction Type** | Mandatory | The catalytic reaction under investigation (e.g. hydrogenation, oxidation, hydroformylation) |
-| **Active Site** | Recommended | Primary species responsible for catalytic activity — molecule, element, or other species |
-| **Identifier** | Recommended | User-defined label(s) for identifying the catalyst |
+| **Catalysis Research Field** | Mandatory | Type of catalysis: homogeneous, heterogeneous, bio-, electro-, photo- or hybrid catalysis, or other. Several can be given, e.g. biocatalysis and electrocatalysis for bioelectrocatalysis |
+| **Reaction Type** | Mandatory | The catalytic reaction under investigation (e.g. hydrogenation, oxidation, hydroformylation), given for every reaction in the dataset |
+| **Identifier** | Mandatory | Unique identifier of the dataset, as in DCAT-AP+ and ChemDCAT-AP |
+
+The active site is not part of this layer: a dataset can contain several catalysts, and the active site is often not known, so it belongs to the description of the individual catalyst.
 
 ---
 

@@ -3,6 +3,9 @@ had_input_entity:
 - id: coremeta4cat:FEED_001_CO2_H2
   title: CO2/H2 feed gas mixture
   description: H2/CO2 molar ratio 3:1, total flow 100 mL/min
+rdf_type:
+  id: voc4cat:0000259
+  title: CO2 hydrogenation
 used_reactant:
 - id: https://pubchem.ncbi.nlm.nih.gov/compound/280
   title: CO2 (99.998% purity, 20 vol% in H2)

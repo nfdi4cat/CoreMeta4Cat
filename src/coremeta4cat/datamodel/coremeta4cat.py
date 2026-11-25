@@ -173,6 +173,7 @@ LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 LOCN = CurieNamespace('locn', 'http://www.w3.org/ns/locn#')
 MATERIAL_ENTITIES_AP = CurieNamespace('material_entities_ap', 'https://w3id.org/nfdi-de/dcat-ap-plus/materials/')
 ODRL = CurieNamespace('odrl', 'http://www.w3.org/ns/odrl/2/')
+PANET = CurieNamespace('panet', 'http://purl.org/pan-science/PaNET/')
 PROV = CurieNamespace('prov', 'http://www.w3.org/ns/prov#')
 QUDT = CurieNamespace('qudt', 'http://qudt.org/schema/qudt/')
 RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
@@ -2330,12 +2331,14 @@ class CatalysisDataset(Dataset):
     """
     A dcat:Dataset that contains research data in the field of catalysis.
 
-    The catalysis research field is expressed via rdf_type using a voc4cat
-    term from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).
+    The catalysis research field is expressed via rdf_type using voc4cat
+    terms from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).
     For example, a dataset from heterogeneous catalysis research would carry:
     rdf_type:
-    id: voc4cat:0007001
+    - id: voc4cat:0007001
     title: "heterogeneous catalysis"
+    Interdisciplinary work lists every field that applies, e.g. biocatalysis
+    and electrocatalysis for bioelectrocatalysis.
 
     The four CoreMeta4Cat minimum information pillars are linked via the slots
     below, each pointing to the corresponding DataGeneratingActivity or
@@ -2351,7 +2354,7 @@ class CatalysisDataset(Dataset):
     id: Union[str, CatalysisDatasetId] = None
     description: Union[str, list[str]] = None
     title: Union[str, list[str]] = None
-    rdf_type: Optional[Union[dict, "DefinedTerm"]] = None
+    rdf_type: Union[dict[Union[str, DefinedTermId], Union[dict, "DefinedTerm"]], list[Union[dict, "DefinedTerm"]]] = empty_dict()
     was_generated_by: Optional[Union[dict[Union[str, CatalysisDataGeneratingActivityId], Union[dict, CatalysisDataGeneratingActivity]], list[Union[dict, CatalysisDataGeneratingActivity]]]] = empty_dict()
     is_about_activity: Optional[Union[dict[Union[str, CatalyticReactionId], Union[dict, "CatalyticReaction"]], list[Union[dict, "CatalyticReaction"]]]] = empty_dict()
     is_about_entity: Optional[Union[dict[Union[str, EvaluatedEntityId], Union[dict, "EvaluatedEntity"]], list[Union[dict, "EvaluatedEntity"]]]] = empty_dict()
@@ -2362,8 +2365,9 @@ class CatalysisDataset(Dataset):
         if not isinstance(self.id, CatalysisDatasetId):
             self.id = CatalysisDatasetId(self.id)
 
-        if self.rdf_type is not None and not isinstance(self.rdf_type, DefinedTerm):
-            self.rdf_type = DefinedTerm(**as_dict(self.rdf_type))
+        if self._is_empty(self.rdf_type):
+            self.MissingRequiredField("rdf_type")
+        self._normalize_inlined_as_list(slot_name="rdf_type", slot_type=DefinedTerm, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="was_generated_by", slot_type=CatalysisDataGeneratingActivity, key_name="id", keyed=True)
 
@@ -3358,6 +3362,7 @@ class CatalyticReaction(ChemicalReaction):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CatalyticReaction
 
     id: Union[str, CatalyticReactionId] = None
+    rdf_type: Union[dict, DefinedTerm] = None
     used_reactor: Union[dict[Union[str, ChemicalReactorId], Union[dict, ChemicalReactor]], list[Union[dict, ChemicalReactor]]] = empty_dict()
     catalyst_mass: Optional[Union[Union[dict, "Mass"], list[Union[dict, "Mass"]]]] = empty_list()
     catalyst_type: Optional[Union[Union[str, "CatalysisResearchFieldEnum"], list[Union[str, "CatalysisResearchFieldEnum"]]]] = empty_list()
@@ -3369,7 +3374,6 @@ class CatalyticReaction(ChemicalReaction):
     feed_composition_range: Optional[Union[Union[dict, QuantitativeRange], list[Union[dict, QuantitativeRange]]]] = empty_list()
     has_experiment_duration: Optional[Union[dict, "Duration"]] = None
     product_identification_method: Optional[Union[dict[Union[str, ProductIdentificationMethodId], Union[dict, "ProductIdentificationMethod"]], list[Union[dict, "ProductIdentificationMethod"]]]] = empty_dict()
-    rdf_type: Optional[Union[dict, DefinedTerm]] = None
     has_reaction_step: Optional[Union[dict[Union[str, CatalyticReactionId], Union[dict, "CatalyticReaction"]], list[Union[dict, "CatalyticReaction"]]]] = empty_dict()
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -3377,6 +3381,11 @@ class CatalyticReaction(ChemicalReaction):
             self.MissingRequiredField("id")
         if not isinstance(self.id, CatalyticReactionId):
             self.id = CatalyticReactionId(self.id)
+
+        if self._is_empty(self.rdf_type):
+            self.MissingRequiredField("rdf_type")
+        if not isinstance(self.rdf_type, DefinedTerm):
+            self.rdf_type = DefinedTerm(**as_dict(self.rdf_type))
 
         if self._is_empty(self.used_reactor):
             self.MissingRequiredField("used_reactor")
@@ -3412,9 +3421,6 @@ class CatalyticReaction(ChemicalReaction):
             self.has_experiment_duration = Duration(**as_dict(self.has_experiment_duration))
 
         self._normalize_inlined_as_list(slot_name="product_identification_method", slot_type=ProductIdentificationMethod, key_name="id", keyed=True)
-
-        if self.rdf_type is not None and not isinstance(self.rdf_type, DefinedTerm):
-            self.rdf_type = DefinedTerm(**as_dict(self.rdf_type))
 
         self._normalize_inlined_as_list(slot_name="has_reaction_step", slot_type=CatalyticReaction, key_name="id", keyed=True)
 
@@ -6557,7 +6563,9 @@ class CalculatedProperty(QualitativeAttribute):
     Abstract QualitativeAttribute representing a property computed by a
     Simulation. Concrete subclasses carry the property-specific output
     values and the computational settings used to produce them.
-    Linked from Simulation via the calculated_property slot.
+    Linked from Simulation via the calculated_property slot. An entry
+    declares its concrete subclass with property_designator, e.g.
+    coremeta4cat:AdsorptionEnergetics.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -6567,6 +6575,38 @@ class CalculatedProperty(QualitativeAttribute):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CalculatedProperty
 
     value: str = None
+    property_designator: Optional[Union[str, URIorCURIE]] = None
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
+
+        super().__post_init__(**kwargs)
+
+
+    def __new__(cls, *args, **kwargs):
+
+        type_designator = "property_designator"
+        if not type_designator in kwargs:
+            return super().__new__(cls,*args,**kwargs)
+        else:
+            type_designator_value = kwargs[type_designator]
+            target_cls = cls._class_for("class_class_curie", type_designator_value)
+
+
+            if target_cls is None:
+                target_cls = cls._class_for("class_class_uri", type_designator_value)
+
+
+            if target_cls is None:
+                target_cls = cls._class_for("class_model_uri", type_designator_value)
+
+
+            if target_cls is None:
+                raise ValueError(f"Wrong type designator value: class {cls.__name__} "
+                                 f"has no subclass with ['class_class_curie', 'class_class_uri', 'class_model_uri']='{kwargs[type_designator]}'")
+            return super().__new__(target_cls,*args,**kwargs)
+
+
 
 @dataclass(repr=False)
 class ThermodynamicStability(CalculatedProperty):
@@ -6611,6 +6651,7 @@ class ThermodynamicStability(CalculatedProperty):
         self.competing_phases = [v if isinstance(v, str) else str(v) for v in self.competing_phases]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6650,6 +6691,7 @@ class Piezoelectricity(CalculatedProperty):
         self.ionic_electronic_contributions = [v if isinstance(v, str) else str(v) for v in self.ionic_electronic_contributions]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6694,6 +6736,7 @@ class ElasticConstants(CalculatedProperty):
         self.young_modulus = [v if isinstance(v, float) else float(v) for v in self.young_modulus]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6739,6 +6782,7 @@ class Surfaces(CalculatedProperty):
         self.surface_termination_method = [v if isinstance(v, str) else str(v) for v in self.surface_termination_method]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6793,6 +6837,7 @@ class DielectricTensors(CalculatedProperty):
         self.k_point_mesh = [v if isinstance(v, str) else str(v) for v in self.k_point_mesh]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6843,6 +6888,7 @@ class PhononDispersion(CalculatedProperty):
         self.crystal_structure = [v if isinstance(v, str) else str(v) for v in self.crystal_structure]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6908,6 +6954,7 @@ class EquationsOfState(CalculatedProperty):
         self.k_point_mesh = [v if isinstance(v, str) else str(v) for v in self.k_point_mesh]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -6961,6 +7008,7 @@ class AqueousStability(CalculatedProperty):
         self.crystal_structure = [v if isinstance(v, str) else str(v) for v in self.crystal_structure]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7026,6 +7074,7 @@ class GrainBoundaries(CalculatedProperty):
         self.crystal_structure = [v if isinstance(v, str) else str(v) for v in self.crystal_structure]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7091,6 +7140,7 @@ class ElectronicStructure(CalculatedProperty):
         self.k_point_mesh = [v if isinstance(v, str) else str(v) for v in self.k_point_mesh]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7151,6 +7201,7 @@ class Ferroelectrics(CalculatedProperty):
         self.crystal_structure = [v if isinstance(v, str) else str(v) for v in self.crystal_structure]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7231,6 +7282,7 @@ class BandGap(CalculatedProperty):
         self.k_point_mesh = [v if isinstance(v, str) else str(v) for v in self.k_point_mesh]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7295,6 +7347,7 @@ class AdsorptionEnergetics(CalculatedProperty):
         self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7359,6 +7412,7 @@ class ReactionEnergetics(CalculatedProperty):
         self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7428,6 +7482,7 @@ class TransitionState(CalculatedProperty):
         self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7487,6 +7542,7 @@ class ElectrochemicalFreeEnergy(CalculatedProperty):
         self.material_composition = [v if isinstance(v, str) else str(v) for v in self.material_composition]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -7531,6 +7587,7 @@ class CatalyticDescriptors(CalculatedProperty):
         self.bep_relation = [v if isinstance(v, str) else str(v) for v in self.bep_relation]
 
         super().__post_init__(**kwargs)
+        self.property_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -10470,6 +10527,9 @@ slots.software_package = Slot(uri=COREMETA4CAT.software_package, name="software_
 slots.calculated_property = Slot(uri=COREMETA4CAT.calculated_property, name="calculated_property", curie=COREMETA4CAT.curie('calculated_property'),
                    model_uri=COREMETA4CAT.calculated_property, domain=None, range=Optional[Union[Union[dict, CalculatedProperty], list[Union[dict, CalculatedProperty]]]])
 
+slots.property_designator = Slot(uri=RDF.type, name="property_designator", curie=RDF.curie('type'),
+                   model_uri=COREMETA4CAT.property_designator, domain=None, range=Optional[Union[str, URIorCURIE]])
+
 slots.exchange_correlation_functional = Slot(uri=COREMETA4CAT.exchange_correlation_functional, name="exchange_correlation_functional", curie=COREMETA4CAT.curie('exchange_correlation_functional'),
                    model_uri=COREMETA4CAT.exchange_correlation_functional, domain=None, range=Optional[Union[str, list[str]]])
 
@@ -11107,7 +11167,7 @@ slots.quantitativeAttribute__unit = Slot(uri=QUDT.unit, name="quantitativeAttrib
                    model_uri=COREMETA4CAT.quantitativeAttribute__unit, domain=None, range=Optional[Union[str, DefinedTermId]])
 
 slots.CatalysisDataset_rdf_type = Slot(uri=RDF.type, name="CatalysisDataset_rdf_type", curie=RDF.curie('type'),
-                   model_uri=COREMETA4CAT.CatalysisDataset_rdf_type, domain=CatalysisDataset, range=Optional[Union[dict, "DefinedTerm"]])
+                   model_uri=COREMETA4CAT.CatalysisDataset_rdf_type, domain=CatalysisDataset, range=Union[dict[Union[str, DefinedTermId], Union[dict, "DefinedTerm"]], list[Union[dict, "DefinedTerm"]]])
 
 slots.CatalysisDataset_was_generated_by = Slot(uri=PROV.wasGeneratedBy, name="CatalysisDataset_was_generated_by", curie=PROV.curie('wasGeneratedBy'),
                    model_uri=COREMETA4CAT.CatalysisDataset_was_generated_by, domain=CatalysisDataset, range=Optional[Union[dict[Union[str, CatalysisDataGeneratingActivityId], Union[dict, CatalysisDataGeneratingActivity]], list[Union[dict, CatalysisDataGeneratingActivity]]]])
@@ -11158,7 +11218,7 @@ slots.Characterization_rdf_type = Slot(uri=RDF.type, name="Characterization_rdf_
                    model_uri=COREMETA4CAT.Characterization_rdf_type, domain=Characterization, range=Optional[Union[dict, "DefinedTerm"]])
 
 slots.CatalyticReaction_rdf_type = Slot(uri=RDF.type, name="CatalyticReaction_rdf_type", curie=RDF.curie('type'),
-                   model_uri=COREMETA4CAT.CatalyticReaction_rdf_type, domain=CatalyticReaction, range=Optional[Union[dict, DefinedTerm]])
+                   model_uri=COREMETA4CAT.CatalyticReaction_rdf_type, domain=CatalyticReaction, range=Union[dict, DefinedTerm])
 
 slots.CatalyticReaction_used_reactor = Slot(uri=PROV.wasAssociatedWith, name="CatalyticReaction_used_reactor", curie=PROV.curie('wasAssociatedWith'),
                    model_uri=COREMETA4CAT.CatalyticReaction_used_reactor, domain=CatalyticReaction, range=Union[dict[Union[str, ChemicalReactorId], Union[dict, ChemicalReactor]], list[Union[dict, ChemicalReactor]]])
