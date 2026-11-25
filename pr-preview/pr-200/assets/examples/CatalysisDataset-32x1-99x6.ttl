@@ -1,0 +1,810 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
+@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix RO: <http://purl.obolibrary.org/obo/RO_> .
+@prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix enm: <http://purl.enanomapper.org/onto/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix hdl: <https://hdl.handle.net/> .
+@prefix schema1: <http://schema.org/> .
+@prefix doi: <https://doi.org/> .
+enm:0000064 schema1:name "BET analysis" ;
+	a schema1:DefinedTerm .
+CHEBI:15377 schema1:name "water" ;
+	a schema1:DefinedTerm .
+CHEBI:16731 schema1:name "(E)-cinnamaldehyde" ;
+	a schema1:DefinedTerm .
+CHEBI:18276 schema1:name "molecular hydrogen" ;
+	a schema1:DefinedTerm .
+CHEBI:23316 schema1:name "citral" ;
+	a schema1:DefinedTerm .
+CHEBI:28659 schema1:name "phosphorus atom" ;
+	a schema1:DefinedTerm .
+CHEBI:30187 schema1:name "aluminium oxide" ;
+	a schema1:DefinedTerm .
+CHEBI:30563 schema1:name "silicon dioxide" ;
+	a schema1:DefinedTerm .
+CHEBI:33363 schema1:name "palladium atom" ;
+	a schema1:DefinedTerm .
+CHEBI:62982 schema1:name "ammonium dihydrogen phosphate" ;
+	a schema1:DefinedTerm .
+CHMO:0000158 schema1:name "powder X-ray diffraction" ;
+	a schema1:DefinedTerm .
+CHMO:0000267 schema1:name "inductively coupled plasma atomic emission spectroscopy" ;
+	a schema1:DefinedTerm .
+CHMO:0000630 schema1:name "infrared spectroscopy" ;
+	a schema1:DefinedTerm .
+CHMO:0000645 schema1:name "diffuse reflectance infrared Fourier transform spectroscopy" ;
+	a schema1:DefinedTerm .
+<https://creativecommons.org/licenses/by/4.0/> dcterms:title "CC BY 4.0" ;
+	a dcterms:LicenseDocument .
+doi:10.26434\/chemrxiv.15007916\/v1 dcterms:title "Rang et al., ChemRxiv 2026, preprint" ;
+	a rdfs:Resource .
+hdl:21.11165\/4cat\/32x1-99x6 dcterms:creator _:c14n27 , _:c14n29 , _:c14n32 , _:c14n35 , _:c14n46 , _:c14n9 ;
+	dcterms:description "Catalyst characterization (BET, ICP-AES, PXRD, DRIFT, IR) and catalytic testing data for a series of Pd/P catalysts (nominal 2 wt% Pd, 0-5 wt% P) on Al2O3 and SiO2 supports, investigating how phosphorus modification of the support tunes the Pd-catalyzed selective hydrogenation of cinnamaldehyde (CAL) and citral. Catalytic performance was screened via Central Composite Design (Al2O3/CAL, 27 runs) and full-factorial designs (SiO2/CAL, Al2O3/citral, SiO2/citral; 9 runs each) varying temperature (30-70 C), pressure (1-9 bar), phosphorus loading, and reaction time. TEM is mentioned in the original repository description but no TEM data files are included in the deposited dataset." ;
+	dcterms:isReferencedBy doi:10.26434\/chemrxiv.15007916\/v1 ;
+	dcterms:issued "2026-03-11"^^xsd:date ;
+	dcterms:publisher _:c14n7 ;
+	dcterms:subject coremeta4cat:CAT_32x1-99x6_all , coremeta4cat:REAC_32x1-99x6_CAL_Al2O3 , coremeta4cat:REAC_32x1-99x6_CAL_SiO2 , coremeta4cat:REAC_32x1-99x6_Citral_Al2O3 , coremeta4cat:REAC_32x1-99x6_Citral_SiO2 ;
+	dcterms:title "Repository landing page" , "Support Engineering with Phosphorus: Tuning the Palladium-Catalyzed Selective Hydrogenation of α,β-Unsaturated Aldehydes" ;
+	a rdfs:Resource , dcat:Dataset , voc4cat:0007001 ;
+	adms:identifier _:c14n0 , _:c14n11 ;
+	dcat:distribution _:c14n31 ;
+	dcat:keyword "Catalysis" , "Chemistry" , "Cinnamaldehyde" , "Citral" , "Engineering" , "Heterogeneous catalysis" , "Palladium catalyst" , "Phosphorus modification" , "Selective hydrogenation" ;
+	prov:wasGeneratedBy coremeta4cat:CHAR_32x1-99x6_BET , coremeta4cat:CHAR_32x1-99x6_DRIFT , coremeta4cat:CHAR_32x1-99x6_ICPAES , coremeta4cat:CHAR_32x1-99x6_IR , coremeta4cat:CHAR_32x1-99x6_PXRD , coremeta4cat:SYN_32x1-99x6_P_modification , coremeta4cat:SYN_32x1-99x6_Pd_impregnation .
+coremeta4cat:CAT_32x1-99x6_Al2O3_0P dcterms:description "Pd on Al2O3 support, unmodified (P-free) reference catalyst" , "Pd on Al2O3, P-free reference" ;
+	dcterms:relation _:c14n38 ;
+	dcterms:title "Pd/Al2O3" ;
+	SIO:000008 PATO:0001736 ;
+	a OBI:0000747 , SIO:010344 , prov:Entity .
+coremeta4cat:CAT_32x1-99x6_Al2O3_1P BFO:0000051 coremeta4cat:CAT_32x1-99x6_Al2O3_1P_P , coremeta4cat:CAT_32x1-99x6_Al2O3_1P_Pd ;
+	dcterms:description "Pd on Al2O3 support, nominal 1 wt% P (phosphorus modifier)" , "Pd on Al2O3, nominal 1 wt% P" ;
+	dcterms:relation _:c14n66 , _:c14n67 ;
+	dcterms:title "Pd/1P/Al2O3 (nominal 1 wt% P)" , "Pd/1P/Al2O3" ;
+	SIO:000008 PATO:0001736 ;
+	a OBI:0000747 , SIO:010344 , prov:Entity .
+coremeta4cat:CAT_32x1-99x6_Al2O3_1P_P dcterms:relation _:c14n94 , _:c14n95 ;
+	dcterms:title "phosphorus" ;
+	a CHEBI:23367 , CHEBI:28659 .
+coremeta4cat:CAT_32x1-99x6_Al2O3_1P_Pd dcterms:relation _:c14n92 , _:c14n93 ;
+	dcterms:title "palladium" ;
+	a CHEBI:23367 , CHEBI:33363 .
+coremeta4cat:CAT_32x1-99x6_Al2O3_2P BFO:0000051 coremeta4cat:CAT_32x1-99x6_Al2O3_2P_P , coremeta4cat:CAT_32x1-99x6_Al2O3_2P_Pd ;
+	dcterms:description "Pd on Al2O3 support, nominal 2 wt% P (phosphorus modifier)" , "Pd on Al2O3, nominal 2 wt% P" ;
+	dcterms:relation _:c14n37 ;
+	dcterms:title "Pd/2P/Al2O3 (nominal 2 wt% P)" , "Pd/2P/Al2O3" ;
+	SIO:000008 PATO:0001736 ;
+	a OBI:0000747 , SIO:010344 , prov:Entity .
+coremeta4cat:CAT_32x1-99x6_Al2O3_2P_P dcterms:relation _:c14n12 ;
+	dcterms:title "phosphorus" ;
+	a CHEBI:23367 , CHEBI:28659 .
+coremeta4cat:CAT_32x1-99x6_Al2O3_2P_Pd dcterms:relation _:c14n30 ;
+	dcterms:title "palladium" ;
+	a CHEBI:23367 , CHEBI:33363 .
+coremeta4cat:CAT_32x1-99x6_Al2O3_3P BFO:0000051 coremeta4cat:CAT_32x1-99x6_Al2O3_3P_P , coremeta4cat:CAT_32x1-99x6_Al2O3_3P_Pd ;
+	dcterms:description "Pd on Al2O3 support, nominal 3 wt% P (phosphorus modifier)" , "Pd on Al2O3, nominal 3 wt% P" ;
+	dcterms:relation _:c14n84 , _:c14n85 ;
+	dcterms:title "Pd/3P/Al2O3 (nominal 3 wt% P)" , "Pd/3P/Al2O3" ;
+	SIO:000008 PATO:0001736 ;
+	a OBI:0000747 , SIO:010344 , prov:Entity .
+coremeta4cat:CAT_32x1-99x6_Al2O3_3P_P dcterms:relation _:c14n52 , _:c14n53 ;
+	dcterms:title "phosphorus" ;
+	a CHEBI:23367 , CHEBI:28659 .
+coremeta4cat:CAT_32x1-99x6_Al2O3_3P_Pd dcterms:relation _:c14n76 , _:c14n77 ;
+	dcterms:title "palladium" ;
+	a CHEBI:23367 , CHEBI:33363 .
+coremeta4cat:CAT_32x1-99x6_Al2O3_4P BFO:0000051 coremeta4cat:CAT_32x1-99x6_Al2O3_4P_P , coremeta4cat:CAT_32x1-99x6_Al2O3_4P_Pd ;
+	dcterms:description "Pd on Al2O3 support, nominal 4 wt% P (phosphorus modifier)" , "Pd on Al2O3, nominal 4 wt% P" ;
+	dcterms:relation _:c14n48 ;
+	dcterms:title "Pd/4P/Al2O3 (nominal 4 wt% P)" , "Pd/4P/Al2O3" ;
+	SIO:000008 PATO:0001736 ;
+	a OBI:0000747 , SIO:010344 , prov:Entity .
+coremeta4cat:CAT_32x1-99x6_Al2O3_4P_P dcterms:relation _:c14n39 ;
+	dcterms:title "phosphorus" ;
+	a CHEBI:23367 , CHEBI:28659 .
+coremeta4cat:CAT_32x1-99x6_Al2O3_4P_Pd dcterms:relation _:c14n20 ;
+	dcterms:title "palladium" ;
+	a CHEBI:23367 , CHEBI:33363 .
+coremeta4cat:CAT_32x1-99x6_Al2O3_5P BFO:0000051 coremeta4cat:CAT_32x1-99x6_Al2O3_5P_P , coremeta4cat:CAT_32x1-99x6_Al2O3_5P_Pd ;
+	dcterms:description "Pd on Al2O3 support, nominal 5 wt% P (phosphorus modifier)" , "Pd on Al2O3, nominal 5 wt% P" ;
+	dcterms:relation _:c14n80 , _:c14n81 ;
+	dcterms:title "Pd/5P/Al2O3 (nominal 5 wt% P)" , "Pd/5P/Al2O3" ;
+	SIO:000008 PATO:0001736 ;
+	a OBI:0000747 , SIO:010344 , prov:Entity .
+coremeta4cat:CAT_32x1-99x6_Al2O3_5P_P dcterms:relation _:c14n54 , _:c14n55 ;
+	dcterms:title "phosphorus" ;
+	a CHEBI:23367 , CHEBI:28659 .
+coremeta4cat:CAT_32x1-99x6_Al2O3_5P_Pd dcterms:relation _:c14n70 , _:c14n71 ;
+	dcterms:title "palladium" ;
+	a CHEBI:23367 , CHEBI:33363 .
+coremeta4cat:CAT_32x1-99x6_SiO2_0P dcterms:description "Pd on SiO2 support, unmodified (P-free) reference catalyst" , "Pd on SiO2, P-free reference" ;
+	dcterms:relation _:c14n26 ;
+	dcterms:title "Pd/SiO2" ;
+	SIO:000008 PATO:0001736 ;
+	a OBI:0000747 , SIO:010344 , prov:Entity .
+coremeta4cat:CAT_32x1-99x6_SiO2_1P BFO:0000051 coremeta4cat:CAT_32x1-99x6_SiO2_1P_P , coremeta4cat:CAT_32x1-99x6_SiO2_1P_Pd ;
+	dcterms:description "Pd on SiO2 support, nominal 1 wt% P (phosphorus modifier)" , "Pd on SiO2, nominal 1 wt% P" ;
+	dcterms:relation _:c14n64 , _:c14n65 ;
+	dcterms:title "Pd/1P/SiO2 (nominal 1 wt% P)" , "Pd/1P/SiO2" ;
+	SIO:000008 PATO:0001736 ;
+	a OBI:0000747 , SIO:010344 , prov:Entity .
+coremeta4cat:CAT_32x1-99x6_SiO2_1P_P dcterms:relation _:c14n88 , _:c14n89 ;
+	dcterms:title "phosphorus" ;
+	a CHEBI:23367 , CHEBI:28659 .
+coremeta4cat:CAT_32x1-99x6_SiO2_1P_Pd dcterms:relation _:c14n96 , _:c14n97 ;
+	dcterms:title "palladium" ;
+	a CHEBI:23367 , CHEBI:33363 .
+coremeta4cat:CAT_32x1-99x6_SiO2_3P BFO:0000051 coremeta4cat:CAT_32x1-99x6_SiO2_3P_P , coremeta4cat:CAT_32x1-99x6_SiO2_3P_Pd ;
+	dcterms:description "Pd on SiO2 support, nominal 3 wt% P (phosphorus modifier)" , "Pd on SiO2, nominal 3 wt% P" ;
+	dcterms:relation _:c14n72 , _:c14n73 ;
+	dcterms:title "Pd/3P/SiO2 (nominal 3 wt% P)" , "Pd/3P/SiO2" ;
+	SIO:000008 PATO:0001736 ;
+	a OBI:0000747 , SIO:010344 , prov:Entity .
+coremeta4cat:CAT_32x1-99x6_SiO2_3P_P dcterms:relation _:c14n50 , _:c14n51 ;
+	dcterms:title "phosphorus" ;
+	a CHEBI:23367 , CHEBI:28659 .
+coremeta4cat:CAT_32x1-99x6_SiO2_3P_Pd dcterms:relation _:c14n82 , _:c14n83 ;
+	dcterms:title "palladium" ;
+	a CHEBI:23367 , CHEBI:33363 .
+coremeta4cat:CAT_32x1-99x6_SiO2_5P BFO:0000051 coremeta4cat:CAT_32x1-99x6_SiO2_5P_P , coremeta4cat:CAT_32x1-99x6_SiO2_5P_Pd ;
+	dcterms:description "Pd on SiO2 support, nominal 5 wt% P (phosphorus modifier)" , "Pd on SiO2, nominal 5 wt% P" ;
+	dcterms:relation _:c14n86 , _:c14n87 ;
+	dcterms:title "Pd/5P/SiO2 (nominal 5 wt% P)" , "Pd/5P/SiO2" ;
+	SIO:000008 PATO:0001736 ;
+	a OBI:0000747 , SIO:010344 , prov:Entity .
+coremeta4cat:CAT_32x1-99x6_SiO2_5P_P dcterms:relation _:c14n58 , _:c14n59 ;
+	dcterms:title "phosphorus" ;
+	a CHEBI:23367 , CHEBI:28659 .
+coremeta4cat:CAT_32x1-99x6_SiO2_5P_Pd dcterms:relation _:c14n56 , _:c14n57 ;
+	dcterms:title "palladium" ;
+	a CHEBI:23367 , CHEBI:33363 .
+coremeta4cat:CAT_32x1-99x6_all dcterms:description "Pd catalysts (nominal 2 wt% Pd) with 0-5 wt% nominal phosphorus loading on Al2O3 (6 samples) and SiO2 (4 samples) supports. See used_catalyst under is_about_activity and evaluated_entity under was_generated_by above for per-sample detail (ICP-AES loading, BET surface area)." ;
+	dcterms:title "10 Pd/P catalyst samples (Al2O3 and SiO2 supports)" ;
+	a prov:Entity .
+coremeta4cat:CHAR_32x1-99x6_BET dcterms:description "Brunauer-Emmett-Teller specific surface area determination for all 10 Pd/P-Al2O3 and Pd/P-SiO2 catalysts (0-5 wt% nominal P loading). Surface area ranged 72-126 m2/g, generally decreasing with increasing P loading (bet_results.txt)." ;
+	dcterms:title "BET surface area analysis (10 catalysts)" ;
+	a "Characterization" , enm:0000064 ;
+	adms:identifier _:c14n4 ;
+	prov:used coremeta4cat:CAT_32x1-99x6_Al2O3_0P , coremeta4cat:CAT_32x1-99x6_Al2O3_1P , coremeta4cat:CAT_32x1-99x6_Al2O3_2P , coremeta4cat:CAT_32x1-99x6_Al2O3_3P , coremeta4cat:CAT_32x1-99x6_Al2O3_4P , coremeta4cat:CAT_32x1-99x6_Al2O3_5P , coremeta4cat:CAT_32x1-99x6_SiO2_0P , coremeta4cat:CAT_32x1-99x6_SiO2_1P , coremeta4cat:CAT_32x1-99x6_SiO2_3P , coremeta4cat:CAT_32x1-99x6_SiO2_5P , coremeta4cat:CHAR_32x1-99x6_BET_method ;
+	prov:wasAssociatedWith coremeta4cat:DEV_32x1-99x6_BET .
+coremeta4cat:CHAR_32x1-99x6_BET_method dcterms:description "Standard N2 physisorption at liquid-nitrogen temperature (-196C), Brunauer-Emmett-Teller analysis. Adsorbate gas and measurement temperature not explicitly stated in bet_results.txt; assumed standard BET convention." ;
+	dcterms:title "N2 physisorption BET method" ;
+	a OBI:0000272 .
+coremeta4cat:CHAR_32x1-99x6_DRIFT dcterms:description "Diffuse reflectance infrared Fourier transform spectroscopy of CO adsorbed at room temperature, for 4 catalysts (Pd/Al2O3, Pd/3P/Al2O3, Pd/SiO2, Pd/3P/SiO2). Spectra converted to pseudo-absorbance (log(1/reflectance)) per Anal. Chem. 2007, 79, 10, 3912-3918 (DOI 10.1021/ac0702802) and baseline-corrected (info_drifts.txt); OriginPro 2023 used for analysis/plotting." ;
+	dcterms:title "DRIFT CO-adsorption spectroscopy (4 catalysts)" ;
+	a "Characterization" , CHMO:0000645 ;
+	adms:identifier _:c14n8 ;
+	prov:used coremeta4cat:CAT_32x1-99x6_Al2O3_0P , coremeta4cat:CAT_32x1-99x6_Al2O3_3P , coremeta4cat:CAT_32x1-99x6_SiO2_0P , coremeta4cat:CAT_32x1-99x6_SiO2_3P , coremeta4cat:CHAR_32x1-99x6_DRIFT_method ;
+	prov:wasAssociatedWith coremeta4cat:DEV_32x1-99x6_DRIFT .
+coremeta4cat:CHAR_32x1-99x6_DRIFT_method dcterms:description "CO adsorption at room temperature; pseudo-absorbance = log(1/reflectance)." ;
+	dcterms:title "CO-adsorption DRIFT method" ;
+	a OBI:0000272 .
+coremeta4cat:CHAR_32x1-99x6_ICPAES dcterms:description "Inductively coupled plasma atomic emission spectroscopy for bulk Pd and P content of the 8 P-modified catalysts (measured Pd 1.8-2.0 wt%, P 0.8-4.8 wt%, deviating somewhat from nominal loadings; icp_results.txt). P-free reference catalysts (Pd/Al2O3, Pd/SiO2) were not analysed by ICP-AES." ;
+	dcterms:title "ICP-AES elemental composition analysis (8 catalysts)" ;
+	a "Characterization" , CHMO:0000267 ;
+	adms:identifier _:c14n25 ;
+	prov:used coremeta4cat:CAT_32x1-99x6_Al2O3_1P , coremeta4cat:CAT_32x1-99x6_Al2O3_2P , coremeta4cat:CAT_32x1-99x6_Al2O3_3P , coremeta4cat:CAT_32x1-99x6_Al2O3_4P , coremeta4cat:CAT_32x1-99x6_Al2O3_5P , coremeta4cat:CAT_32x1-99x6_SiO2_1P , coremeta4cat:CAT_32x1-99x6_SiO2_3P , coremeta4cat:CAT_32x1-99x6_SiO2_5P , coremeta4cat:CHAR_32x1-99x6_ICPAES_method ;
+	prov:wasAssociatedWith coremeta4cat:DEV_32x1-99x6_ICPAES .
+coremeta4cat:CHAR_32x1-99x6_ICPAES_method dcterms:description "Elements analyzed: Pd, P. Results reported in wt% (icp_results.txt)." ;
+	dcterms:title "ICP-AES elemental analysis method" ;
+	a OBI:0000272 .
+coremeta4cat:CHAR_32x1-99x6_IR dcterms:description "Infrared spectroscopy of the 6 P-modified catalysts (1, 3, 5 wt% nominal P on Al2O3 and SiO2). Wavenumber range ~400-3599 cm-1, 3319 data points per file, pseudo-absorbance convention consistent with the DRIFT data." ;
+	dcterms:title "Infrared spectroscopy (6 catalysts)" ;
+	a "Characterization" , CHMO:0000630 ;
+	adms:identifier _:c14n45 ;
+	prov:used coremeta4cat:CAT_32x1-99x6_Al2O3_1P , coremeta4cat:CAT_32x1-99x6_Al2O3_3P , coremeta4cat:CAT_32x1-99x6_Al2O3_5P , coremeta4cat:CAT_32x1-99x6_SiO2_1P , coremeta4cat:CAT_32x1-99x6_SiO2_3P , coremeta4cat:CAT_32x1-99x6_SiO2_5P , coremeta4cat:CHAR_32x1-99x6_IR_method ;
+	prov:wasAssociatedWith coremeta4cat:DEV_32x1-99x6_IR .
+coremeta4cat:CHAR_32x1-99x6_IR_method dcterms:description "Wavenumber range ~400-3599 cm-1; pseudo-absorbance units." ;
+	dcterms:title "Infrared spectroscopy method" ;
+	a OBI:0000272 .
+coremeta4cat:CHAR_32x1-99x6_PXRD dcterms:description "Powder X-ray diffraction for phase identification of all 10 Pd/P-Al2O3 and Pd/P-SiO2 catalysts, plus a P/SiO2 support-only reference sample without Pd (file PXRD_1PSiO2.xy). Two-theta range ~2-92 degrees, step size 0.015 degrees (most files); two files (nominal 5 wt% P samples) cover a shorter range ~2-63.5 degrees." ;
+	dcterms:title "Powder XRD phase analysis (10 catalysts)" ;
+	a "Characterization" , CHMO:0000158 ;
+	adms:identifier _:c14n5 ;
+	prov:used coremeta4cat:CAT_32x1-99x6_Al2O3_0P , coremeta4cat:CAT_32x1-99x6_Al2O3_1P , coremeta4cat:CAT_32x1-99x6_Al2O3_2P , coremeta4cat:CAT_32x1-99x6_Al2O3_3P , coremeta4cat:CAT_32x1-99x6_Al2O3_4P , coremeta4cat:CAT_32x1-99x6_Al2O3_5P , coremeta4cat:CAT_32x1-99x6_SiO2_0P , coremeta4cat:CAT_32x1-99x6_SiO2_1P , coremeta4cat:CAT_32x1-99x6_SiO2_3P , coremeta4cat:CAT_32x1-99x6_SiO2_5P , coremeta4cat:CHAR_32x1-99x6_PXRD_method ;
+	prov:wasAssociatedWith coremeta4cat:DEV_32x1-99x6_PXRD .
+coremeta4cat:CHAR_32x1-99x6_PXRD_method dcterms:description "Two-theta scan, ~2-92 degrees, step size 0.015 degrees. One file (PXRD_1PSiO2.xy) is a Pd-free P/SiO2 support reference; one file (PXRD_Pd5Al2O3.xy) is missing the 'P' in its name but is interpreted as the nominal 5 wt% P/Al2O3 sample based on the file series context (matches ICP sample FR507)." ;
+	dcterms:title "Powder XRD measurement method" ;
+	a OBI:0000272 .
+coremeta4cat:DEV_32x1-99x6_BET dcterms:description "Instrument model not specified in the source dataset files." ;
+	dcterms:title "BET surface area analyser" ;
+	a prov:Agent .
+coremeta4cat:DEV_32x1-99x6_DRIFT dcterms:description "Instrument model not specified in the source dataset files." ;
+	dcterms:title "FTIR spectrometer with DRIFT accessory" ;
+	a prov:Agent .
+coremeta4cat:DEV_32x1-99x6_ICPAES dcterms:description "Instrument model not specified in the source dataset files." ;
+	dcterms:title "ICP-AES spectrometer" ;
+	a prov:Agent .
+coremeta4cat:DEV_32x1-99x6_IR dcterms:description "Instrument model not specified in the source dataset files." ;
+	dcterms:title "FTIR spectrometer" ;
+	a prov:Agent .
+coremeta4cat:DEV_32x1-99x6_PXRD dcterms:description "Instrument model not specified in the source dataset files." ;
+	dcterms:title "X-ray diffractometer" ;
+	a prov:Agent .
+coremeta4cat:PREC_32x1-99x6_NH4H2PO4 dcterms:title "ammonium dihydrogen phosphate, NH4H2PO4 (Sigma-Aldrich, >98%)" ;
+	a CHEBI:62982 , voc4cat:0007794 ;
+	voc4cat:0008118 _:c14n10 , _:c14n13 , _:c14n18 , _:c14n36 , _:c14n43 .
+coremeta4cat:PREC_32x1-99x6_PdNH34NO32 dcterms:title "tetraamminepalladium(II) nitrate, [Pd(NH3)4](NO3)2, 10 wt% aqueous solution (Sigma-Aldrich, >99%)" ;
+	SIO:000008 _:c14n22 ;
+	a voc4cat:0007794 .
+coremeta4cat:REAC_32x1-99x6_CAL_Al2O3 RO:0004009 coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_H2 , coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_substrate ;
+	RXNO:0000425 coremeta4cat:CAT_32x1-99x6_Al2O3_0P , coremeta4cat:CAT_32x1-99x6_Al2O3_1P , coremeta4cat:CAT_32x1-99x6_Al2O3_2P , coremeta4cat:CAT_32x1-99x6_Al2O3_3P , coremeta4cat:CAT_32x1-99x6_Al2O3_4P , coremeta4cat:CAT_32x1-99x6_Al2O3_5P ;
+	dcterms:description "Selective hydrogenation of cinnamaldehyde (CAL) over 6 Pd/P/Al2O3 catalysts (P loading 0-5 wt%, ~2 wt% Pd) in a Central Composite Design (27 runs) exploring temperature, pressure, phosphorus loading, and time. An initial fixed-condition screening (50C/5bar/30min, hot-filtration leaching test) gave CAL conversion/HCAL yield of 32/30% (Pd/Al2O3) and 45/42% (Pd/3P/Al2O3). Conversion ranged 6-96%, yield 6-90% across the 27-run design (catalytic_data.xlsx, 'Pd-XPAl2O3_CCD_CAL')." ;
+	dcterms:title "Selective hydrogenation of cinnamaldehyde over Pd-P/Al2O3 catalysts" ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0000260 ;
+	adms:identifier _:c14n47 ;
+	prov:wasAssociatedWith coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_reactor ;
+	voc4cat:0000016 voc4cat:0007034 ;
+	voc4cat:0000118 _:c14n24 , _:c14n49 ;
+	voc4cat:0000129 coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_product_id ;
+	voc4cat:0007009 "selective hydrogenation of cinnamaldehyde" ;
+	voc4cat:0007014 voc4cat:0007001 ;
+	voc4cat:0007032 _:c14n41 .
+coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_H2 dcterms:title "hydrogen" ;
+	a CHEBI:18276 , SIO:010411 .
+coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_product_id dcterms:description "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class." ;
+	dcterms:title "Conversion/yield quantification" ;
+	a OBI:0000272 .
+coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_reactor dcterms:description "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files." ;
+	dcterms:title "batch pressurized reactor" ;
+	a voc4cat:0007018 .
+coremeta4cat:REAC_32x1-99x6_CAL_Al2O3_substrate dcterms:title "cinnamaldehyde" ;
+	a CHEBI:16731 , SIO:010411 .
+coremeta4cat:REAC_32x1-99x6_CAL_SiO2 RO:0004009 coremeta4cat:REAC_32x1-99x6_CAL_SiO2_H2 , coremeta4cat:REAC_32x1-99x6_CAL_SiO2_substrate ;
+	RXNO:0000425 coremeta4cat:CAT_32x1-99x6_SiO2_0P , coremeta4cat:CAT_32x1-99x6_SiO2_1P , coremeta4cat:CAT_32x1-99x6_SiO2_3P , coremeta4cat:CAT_32x1-99x6_SiO2_5P ;
+	dcterms:description "Selective hydrogenation of cinnamaldehyde (CAL) over 4 Pd/P/SiO2 catalysts (P loading 0-5 wt%, ~2 wt% Pd) in a full factorial design (9 runs) exploring temperature, pressure, phosphorus loading, and time. An initial fixed-condition screening (50C/5bar/30min, hot-filtration leaching test) gave CAL conversion/HCAL yield of 23/22% (Pd/SiO2) and 78/40% (Pd/3P/SiO2). Conversion ranged 12-100%, yield 9-56% across the 9-run design (catalytic_data.xlsx, 'Pd-XPSiO2_FF_CAL')." ;
+	dcterms:title "Selective hydrogenation of cinnamaldehyde over Pd-P/SiO2 catalysts" ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0000260 ;
+	adms:identifier _:c14n42 ;
+	prov:wasAssociatedWith coremeta4cat:REAC_32x1-99x6_CAL_SiO2_reactor ;
+	voc4cat:0000016 voc4cat:0007034 ;
+	voc4cat:0000118 _:c14n14 , _:c14n3 ;
+	voc4cat:0000129 coremeta4cat:REAC_32x1-99x6_CAL_SiO2_product_id ;
+	voc4cat:0007009 "selective hydrogenation of cinnamaldehyde" ;
+	voc4cat:0007014 voc4cat:0007001 ;
+	voc4cat:0007032 _:c14n16 .
+coremeta4cat:REAC_32x1-99x6_CAL_SiO2_H2 dcterms:title "hydrogen" ;
+	a CHEBI:18276 , SIO:010411 .
+coremeta4cat:REAC_32x1-99x6_CAL_SiO2_product_id dcterms:description "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class." ;
+	dcterms:title "Conversion/yield quantification" ;
+	a OBI:0000272 .
+coremeta4cat:REAC_32x1-99x6_CAL_SiO2_reactor dcterms:description "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files." ;
+	dcterms:title "batch pressurized reactor" ;
+	a voc4cat:0007018 .
+coremeta4cat:REAC_32x1-99x6_CAL_SiO2_substrate dcterms:title "cinnamaldehyde" ;
+	a CHEBI:16731 , SIO:010411 .
+coremeta4cat:REAC_32x1-99x6_Citral_Al2O3 RO:0004009 coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_H2 , coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_substrate ;
+	RXNO:0000425 coremeta4cat:CAT_32x1-99x6_Al2O3_1P , coremeta4cat:CAT_32x1-99x6_Al2O3_3P , coremeta4cat:CAT_32x1-99x6_Al2O3_5P ;
+	dcterms:description "Selective hydrogenation of citral over 3 Pd/P/Al2O3 catalysts (1, 3, 5 wt% nominal P loading, ~2 wt% Pd) in a full factorial design (9 runs) exploring temperature, pressure, phosphorus loading, and time. Conversion ranged 15-85%, yield 15-65% across the 9-run design (catalytic_data.xlsx, 'Pd-XPAl2O3_FF_Citral')." ;
+	dcterms:title "Selective hydrogenation of citral over Pd-P/Al2O3 catalysts" ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0000260 ;
+	adms:identifier _:c14n28 ;
+	prov:wasAssociatedWith coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_reactor ;
+	voc4cat:0000016 voc4cat:0007034 ;
+	voc4cat:0000118 _:c14n15 , _:c14n23 ;
+	voc4cat:0000129 coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_product_id ;
+	voc4cat:0007009 "selective hydrogenation of citral" ;
+	voc4cat:0007014 voc4cat:0007001 ;
+	voc4cat:0007032 _:c14n40 .
+coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_H2 dcterms:title "hydrogen" ;
+	a CHEBI:18276 , SIO:010411 .
+coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_product_id dcterms:description "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class." ;
+	dcterms:title "Conversion/yield quantification" ;
+	a OBI:0000272 .
+coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_reactor dcterms:description "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files." ;
+	dcterms:title "batch pressurized reactor" ;
+	a voc4cat:0007018 .
+coremeta4cat:REAC_32x1-99x6_Citral_Al2O3_substrate dcterms:title "citral" ;
+	a CHEBI:23316 , SIO:010411 .
+coremeta4cat:REAC_32x1-99x6_Citral_SiO2 RO:0004009 coremeta4cat:REAC_32x1-99x6_Citral_SiO2_H2 , coremeta4cat:REAC_32x1-99x6_Citral_SiO2_substrate ;
+	RXNO:0000425 coremeta4cat:CAT_32x1-99x6_SiO2_1P , coremeta4cat:CAT_32x1-99x6_SiO2_3P , coremeta4cat:CAT_32x1-99x6_SiO2_5P ;
+	dcterms:description "Selective hydrogenation of citral over 3 Pd/P/SiO2 catalysts (1, 3, 5 wt% nominal P loading, ~2 wt% Pd) in a full factorial design (9 runs) exploring temperature, pressure, phosphorus loading, and time. Conversion ranged 11-100%, yield 11-84% across the 9-run design (catalytic_data.xlsx, 'Pd-XPSiO2_FF_Citral')." ;
+	dcterms:title "Selective hydrogenation of citral over Pd-P/SiO2 catalysts" ;
+	a coremeta4cat:CatalyticReaction , voc4cat:0000260 ;
+	adms:identifier _:c14n19 ;
+	prov:wasAssociatedWith coremeta4cat:REAC_32x1-99x6_Citral_SiO2_reactor ;
+	voc4cat:0000016 voc4cat:0007034 ;
+	voc4cat:0000118 _:c14n21 , _:c14n44 ;
+	voc4cat:0000129 coremeta4cat:REAC_32x1-99x6_Citral_SiO2_product_id ;
+	voc4cat:0007009 "selective hydrogenation of citral" ;
+	voc4cat:0007014 voc4cat:0007001 ;
+	voc4cat:0007032 _:c14n34 .
+coremeta4cat:REAC_32x1-99x6_Citral_SiO2_H2 dcterms:title "hydrogen" ;
+	a CHEBI:18276 , SIO:010411 .
+coremeta4cat:REAC_32x1-99x6_Citral_SiO2_product_id dcterms:description "Substrate conversion and product yield (%) reported with standard deviations in catalytic_data.xlsx. Specific analytical instrument not stated in the source dataset files; GC is the standard method for this reaction class." ;
+	dcterms:title "Conversion/yield quantification" ;
+	a OBI:0000272 .
+coremeta4cat:REAC_32x1-99x6_Citral_SiO2_reactor dcterms:description "Batch pressurised reactor (autoclave or similar sealed vessel), inferred from the 1-9 bar working pressure range and hot-filtration leaching test noted in catalytic_data.xlsx. Specific reactor model not stated in the source dataset files." ;
+	dcterms:title "batch pressurized reactor" ;
+	a voc4cat:0007018 .
+coremeta4cat:REAC_32x1-99x6_Citral_SiO2_substrate dcterms:title "citral" ;
+	a CHEBI:23316 , SIO:010411 .
+coremeta4cat:SOLV_32x1-99x6_water dcterms:title "deionised water" ;
+	a CHEBI:15377 , CHEBI:23367 .
+coremeta4cat:SUP_32x1-99x6_1PAl2O3 dcterms:title "1PAl2O3 (1 wt% P on alumina)" ;
+	a OBI:0000747 , voc4cat:0007794 .
+coremeta4cat:SUP_32x1-99x6_1PSiO2 dcterms:title "1PSiO2 (1 wt% P on silica)" ;
+	a OBI:0000747 , voc4cat:0007794 .
+coremeta4cat:SUP_32x1-99x6_2PAl2O3 dcterms:title "2PAl2O3 (2 wt% P on alumina)" ;
+	a OBI:0000747 , voc4cat:0007794 .
+coremeta4cat:SUP_32x1-99x6_3PAl2O3 dcterms:title "3PAl2O3 (3 wt% P on alumina)" ;
+	a OBI:0000747 , voc4cat:0007794 .
+coremeta4cat:SUP_32x1-99x6_3PSiO2 dcterms:title "3PSiO2 (3 wt% P on silica)" ;
+	a OBI:0000747 , voc4cat:0007794 .
+coremeta4cat:SUP_32x1-99x6_4PAl2O3 dcterms:title "4PAl2O3 (4 wt% P on alumina)" ;
+	a OBI:0000747 , voc4cat:0007794 .
+coremeta4cat:SUP_32x1-99x6_5PAl2O3 dcterms:title "5PAl2O3 (5 wt% P on alumina)" ;
+	a OBI:0000747 , voc4cat:0007794 .
+coremeta4cat:SUP_32x1-99x6_5PSiO2 dcterms:title "5PSiO2 (5 wt% P on silica)" ;
+	a OBI:0000747 , voc4cat:0007794 .
+coremeta4cat:SUP_32x1-99x6_Al2O3 dcterms:title "alumina, Puralox TH 100/150 (Sasol), heated at 700 C for 5 h" ;
+	a CHEBI:30187 , voc4cat:0007794 .
+coremeta4cat:SUP_32x1-99x6_SiO2 dcterms:title "silica, Cariact Q 20C (Fuji Silysia Chemical), heated at 350 C for 5 h" ;
+	a CHEBI:30563 , voc4cat:0007794 ;
+	voc4cat:0008118 _:c14n1 .
+coremeta4cat:SYN_32x1-99x6_IWI_air_method dcterms:description "Dried 12 h at 60 C, then calcined 4 h at 500 C under compressed dry air (20 NL/h, GHSV 10 h-1)." ;
+	dcterms:title "incipient wetness impregnation, drying, calcination in flowing dry air" ;
+	SIO:000008 _:c14n74 , _:c14n75 ;
+	a voc4cat:0007028 ;
+	coremeta4cat:hasCalcinationTemperatureRange _:c14n62 , _:c14n63 ;
+	voc4cat:0000056 _:c14n90 , _:c14n91 ;
+	voc4cat:0000060 _:c14n78 , _:c14n79 ;
+	voc4cat:0008119 "incipient_wetness" ;
+	voc4cat:0008206 _:c14n68 , _:c14n69 ;
+	voc4cat:0008207 _:c14n60 , _:c14n61 .
+coremeta4cat:SYN_32x1-99x6_P_modification dcterms:description "For 970 mg of support, NH4H2PO4 was dissolved in deionised water (1 mL for alumina, added in 0.5 mL aliquots; 1.4 mL for silica, added in 0.7 mL aliquots, based on the pore volume of each support), then dried and calcined in flowing dry air. Source: article, section 4.2." ;
+	dcterms:title "Phosphorus modification of alumina and silica by incipient wetness impregnation with NH4H2PO4" ;
+	SIO:000008 _:c14n33 ;
+	a "Synthesis" ;
+	adms:identifier _:c14n6 ;
+	prov:generated coremeta4cat:SUP_32x1-99x6_1PAl2O3 , coremeta4cat:SUP_32x1-99x6_1PSiO2 , coremeta4cat:SUP_32x1-99x6_2PAl2O3 , coremeta4cat:SUP_32x1-99x6_3PAl2O3 , coremeta4cat:SUP_32x1-99x6_3PSiO2 , coremeta4cat:SUP_32x1-99x6_4PAl2O3 , coremeta4cat:SUP_32x1-99x6_5PAl2O3 , coremeta4cat:SUP_32x1-99x6_5PSiO2 ;
+	prov:used coremeta4cat:PREC_32x1-99x6_NH4H2PO4 , coremeta4cat:SUP_32x1-99x6_Al2O3 , coremeta4cat:SUP_32x1-99x6_SiO2 , coremeta4cat:SYN_32x1-99x6_IWI_air_method ;
+	coremeta4cat:catalyst_measured_properties "P contents measured by ICP after Pd deposition (see CHAR_32x1-99x6_ICPAES)" , "Phosphate species on the modified alumina shown by ATR-IR (article, section 2.1)" ;
+	coremeta4cat:nominal_composition "1, 2, 3, 4 and 5 wt% P on alumina (1PAl2O3 to 5PAl2O3)" , "1, 3 and 5 wt% P on silica (1PSiO2, 3PSiO2, 5PSiO2)" ;
+	voc4cat:0007246 coremeta4cat:SOLV_32x1-99x6_water ;
+	voc4cat:0008104 "alumina, Puralox TH 100/150 (Sasol)" , "silica, Cariact Q 20C (Fuji Silysia Chemical)" .
+coremeta4cat:SYN_32x1-99x6_Pd_impregnation dcterms:description "Per batch, 0.56 mL of the 10 wt% [Pd(NH3)4](NO3)2 solution was diluted with deionised water (0.44 mL for alumina, added in 0.5 mL aliquots; 0.84 mL for silica, added in 0.7 mL aliquots), impregnated onto the supports, dried and calcined as in the phosphorus modification. Target Pd loading 2 wt%. Source: article, section 4.3." ;
+	dcterms:title "Pd deposition on unmodified and phosphorus-modified supports by incipient wetness impregnation" ;
+	SIO:000008 _:c14n2 ;
+	a "Synthesis" ;
+	adms:identifier _:c14n17 ;
+	prov:generated coremeta4cat:CAT_32x1-99x6_Al2O3_0P , coremeta4cat:CAT_32x1-99x6_Al2O3_1P , coremeta4cat:CAT_32x1-99x6_Al2O3_2P , coremeta4cat:CAT_32x1-99x6_Al2O3_3P , coremeta4cat:CAT_32x1-99x6_Al2O3_4P , coremeta4cat:CAT_32x1-99x6_Al2O3_5P , coremeta4cat:CAT_32x1-99x6_SiO2_0P , coremeta4cat:CAT_32x1-99x6_SiO2_1P , coremeta4cat:CAT_32x1-99x6_SiO2_3P , coremeta4cat:CAT_32x1-99x6_SiO2_5P ;
+	prov:used coremeta4cat:PREC_32x1-99x6_PdNH34NO32 , coremeta4cat:SUP_32x1-99x6_1PAl2O3 , coremeta4cat:SUP_32x1-99x6_1PSiO2 , coremeta4cat:SUP_32x1-99x6_2PAl2O3 , coremeta4cat:SUP_32x1-99x6_3PAl2O3 , coremeta4cat:SUP_32x1-99x6_3PSiO2 , coremeta4cat:SUP_32x1-99x6_4PAl2O3 , coremeta4cat:SUP_32x1-99x6_5PAl2O3 , coremeta4cat:SUP_32x1-99x6_5PSiO2 , coremeta4cat:SUP_32x1-99x6_Al2O3 , coremeta4cat:SUP_32x1-99x6_SiO2 , coremeta4cat:SYN_32x1-99x6_IWI_air_method ;
+	coremeta4cat:catalyst_measured_properties "BET surface area: Pd/Al2O3 119 m2/g and Pd/5PAl2O3 108 m2/g; Pd/SiO2 126 m2/g and Pd/5PSiO2 72 m2/g" , "Mean Pd particle size by STEM: 9.7 nm (Pd/SiO2) and 3.8 nm with phosphorus; 3.3 nm (Pd/Al2O3) and 2.2 nm with phosphorus (article, Table 1)" , "Pd contents by ICP-OES slightly below 2 wt%, deviation below 0.2 wt% (article, section 2.1)" ;
+	coremeta4cat:nominal_composition "2 wt% Pd on alumina with 0, 1, 2, 3, 4 or 5 wt% P" , "2 wt% Pd on silica with 0, 1, 3 or 5 wt% P" ;
+	voc4cat:0007246 coremeta4cat:SOLV_32x1-99x6_water ;
+	voc4cat:0008104 "alumina and silica, unmodified or phosphorus-modified" .
+voc4cat:0000260 schema1:name "hydrogenation" ;
+	a schema1:DefinedTerm .
+voc4cat:0007001 schema1:name "heterogeneous catalysis" ;
+	a schema1:DefinedTerm .
+_:c14n0 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n1 dcterms:description "per batch" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
+	a qudt:Quantity ;
+	prov:value "970.0"^^xsd:float .
+_:c14n10 dcterms:description "per 970 mg of support, for 3 wt% P" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
+	a qudt:Quantity ;
+	prov:value "111.0"^^xsd:float .
+_:c14n11 dcterms:description "Methodology reference cited for the DRIFT pseudo-absorbance conversion (not this dataset's own publication)" ;
+	a adms:Identifier ;
+	skos:notation "doi:10.1021/ac0702802" .
+_:c14n12 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "2.0"^^xsd:float .
+_:c14n13 dcterms:description "per 970 mg of support, for 2 wt% P" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
+	a qudt:Quantity ;
+	prov:value "74.3"^^xsd:float .
+_:c14n14 dcterms:description "Minimum pressure in the design space" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n15 dcterms:description "Minimum pressure in the design space" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n16 dcterms:description "Temperature range explored in the design of experiments (catalytic_data.xlsx)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "343.15"^^xsd:float ;
+	coremeta4cat:minValue "303.15"^^xsd:float .
+_:c14n17 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n18 dcterms:description "per 970 mg of support, for 4 wt% P" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
+	a qudt:Quantity ;
+	prov:value "149.0"^^xsd:float .
+_:c14n19 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n2 a voc4cat:0000122 ;
+	prov:value "Supports heated before use, silica at 350 C and alumina at 700 C, each for 5 h" .
+_:c14n20 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "2.0"^^xsd:float .
+_:c14n21 dcterms:description "Minimum pressure in the design space" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n22 dcterms:description "per batch" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Volume> ;
+	qudt:unit <https://qudt.org/vocab/unit/MilliL> ;
+	a qudt:Quantity ;
+	prov:value "0.56"^^xsd:float .
+_:c14n23 dcterms:description "Maximum pressure in the design space" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "9.0"^^xsd:float .
+_:c14n24 dcterms:description "Minimum pressure in the design space" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n25 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n26 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "126.0"^^xsd:float .
+_:c14n27 a foaf:Agent ;
+	foaf:name "Eggeler, Yolita" .
+_:c14n28 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n29 a foaf:Agent ;
+	foaf:name "Rang, Fabian" .
+_:c14n3 dcterms:description "Maximum pressure in the design space" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "9.0"^^xsd:float .
+_:c14n30 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "2.0"^^xsd:float .
+_:c14n31 dcterms:description "Repository landing page providing access to the characterization and catalytic testing data files." ;
+	dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+	a dcat:Distribution ;
+	dcat:accessURL hdl:21.11165\/4cat\/32x1-99x6 .
+_:c14n32 a foaf:Agent ;
+	foaf:name "Hanf, Schirin" .
+_:c14n33 a voc4cat:0000122 ;
+	prov:value "Supports heated before use, silica at 350 C and alumina at 700 C, each for 5 h" .
+_:c14n34 dcterms:description "Temperature range explored in the design of experiments (catalytic_data.xlsx)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "343.15"^^xsd:float ;
+	coremeta4cat:minValue "303.15"^^xsd:float .
+_:c14n35 a foaf:Agent ;
+	foaf:name "Barth, Simon" .
+_:c14n36 dcterms:description "per 970 mg of support, for 5 wt% P" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
+	a qudt:Quantity ;
+	prov:value "186.0"^^xsd:float .
+_:c14n37 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "116.0"^^xsd:float .
+_:c14n38 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "119.0"^^xsd:float .
+_:c14n39 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "3.7"^^xsd:float .
+_:c14n4 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n40 dcterms:description "Temperature range explored in the design of experiments (catalytic_data.xlsx)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "343.15"^^xsd:float ;
+	coremeta4cat:minValue "303.15"^^xsd:float .
+_:c14n41 dcterms:description "Temperature range explored in the design of experiments (catalytic_data.xlsx)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "343.15"^^xsd:float ;
+	coremeta4cat:minValue "303.15"^^xsd:float .
+_:c14n42 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n43 dcterms:description "per 970 mg of support, for 1 wt% P" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Mass> ;
+	qudt:unit <https://qudt.org/vocab/unit/MilliGM> ;
+	a qudt:Quantity ;
+	prov:value "37.1"^^xsd:float .
+_:c14n44 dcterms:description "Maximum pressure in the design space" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "9.0"^^xsd:float .
+_:c14n45 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n46 a foaf:Agent ;
+	foaf:name "Holtermann, Birger" .
+_:c14n47 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n48 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "112.0"^^xsd:float .
+_:c14n49 dcterms:description "Maximum pressure in the design space" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "9.0"^^xsd:float .
+_:c14n5 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n50 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "2.6"^^xsd:float .
+_:c14n51 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "2.6"^^xsd:float .
+_:c14n52 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "2.5"^^xsd:float .
+_:c14n53 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "2.5"^^xsd:float .
+_:c14n54 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "4.6"^^xsd:float .
+_:c14n55 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "4.6"^^xsd:float .
+_:c14n56 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "2.0"^^xsd:float .
+_:c14n57 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "2.0"^^xsd:float .
+_:c14n58 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "4.8"^^xsd:float .
+_:c14n59 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "4.8"^^xsd:float .
+_:c14n6 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n60 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	prov:value "333.15"^^xsd:float .
+_:c14n61 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	prov:value "333.15"^^xsd:float .
+_:c14n62 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "773.15"^^xsd:float ;
+	coremeta4cat:minValue "773.15"^^xsd:float .
+_:c14n63 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "773.15"^^xsd:float ;
+	coremeta4cat:minValue "773.15"^^xsd:float .
+_:c14n64 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "118.0"^^xsd:float .
+_:c14n65 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "118.0"^^xsd:float .
+_:c14n66 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "118.0"^^xsd:float .
+_:c14n67 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "118.0"^^xsd:float .
+_:c14n68 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+	qudt:unit <https://qudt.org/vocab/unit/HR> ;
+	a qudt:Quantity ;
+	prov:value "12.0"^^xsd:float .
+_:c14n69 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+	qudt:unit <https://qudt.org/vocab/unit/HR> ;
+	a qudt:Quantity ;
+	prov:value "12.0"^^xsd:float .
+_:c14n7 a foaf:Agent ;
+	foaf:name "NFDI4Cat Central Data Repository" .
+_:c14n70 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.9"^^xsd:float .
+_:c14n71 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.9"^^xsd:float .
+_:c14n72 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "98.0"^^xsd:float .
+_:c14n73 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "98.0"^^xsd:float .
+_:c14n74 a voc4cat:0000055 ;
+	prov:value "flowing compressed dry air" .
+_:c14n75 a voc4cat:0000055 ;
+	prov:value "flowing compressed dry air" .
+_:c14n76 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.8"^^xsd:float .
+_:c14n77 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.8"^^xsd:float .
+_:c14n78 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+	qudt:unit <https://qudt.org/vocab/unit/HR> ;
+	a qudt:Quantity ;
+	prov:value "4.0"^^xsd:float .
+_:c14n79 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Time> ;
+	qudt:unit <https://qudt.org/vocab/unit/HR> ;
+	a qudt:Quantity ;
+	prov:value "4.0"^^xsd:float .
+_:c14n8 a adms:Identifier ;
+	skos:notation "https://hdl.handle.net/21.11165/4cat/32x1-99x6" .
+_:c14n80 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "108.0"^^xsd:float .
+_:c14n81 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "108.0"^^xsd:float .
+_:c14n82 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.8"^^xsd:float .
+_:c14n83 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.8"^^xsd:float .
+_:c14n84 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "105.0"^^xsd:float .
+_:c14n85 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "105.0"^^xsd:float .
+_:c14n86 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "72.0"^^xsd:float .
+_:c14n87 dcterms:description "BET specific surface area (bet_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/SpecificArea> ;
+	qudt:unit <https://qudt.org/vocab/unit/M2-PER-GM> ;
+	a qudt:Quantity ;
+	prov:value "72.0"^^xsd:float .
+_:c14n88 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.1"^^xsd:float .
+_:c14n89 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.1"^^xsd:float .
+_:c14n9 a foaf:Agent ;
+	foaf:name "Grunwaldt, Jan-Dierk" .
+_:c14n90 dcterms:description "normal litres per hour; GHSV 10 h-1" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/VolumeFlowRate> ;
+	qudt:unit <https://qudt.org/vocab/unit/L-PER-HR> ;
+	a qudt:Quantity ;
+	prov:value "20.0"^^xsd:float .
+_:c14n91 dcterms:description "normal litres per hour; GHSV 10 h-1" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/VolumeFlowRate> ;
+	qudt:unit <https://qudt.org/vocab/unit/L-PER-HR> ;
+	a qudt:Quantity ;
+	prov:value "20.0"^^xsd:float .
+_:c14n92 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.8"^^xsd:float .
+_:c14n93 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "1.8"^^xsd:float .
+_:c14n94 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "0.8"^^xsd:float .
+_:c14n95 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "0.8"^^xsd:float .
+_:c14n96 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "2.0"^^xsd:float .
+_:c14n97 dcterms:description "ICP-AES measured loading (icp_results.txt)" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "2.0"^^xsd:float .

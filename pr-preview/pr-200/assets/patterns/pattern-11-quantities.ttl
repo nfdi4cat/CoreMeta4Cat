@@ -1,0 +1,45 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix SIO: <http://semanticscience.org/resource/SIO_> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
+@prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
+CHEBI:30682 schema1:name "ruthenium atom" ;
+	a schema1:DefinedTerm .
+SIO:010511 schema1:name "decomposition reaction" ;
+	a schema1:DefinedTerm .
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY BFO:0000051 coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru ;
+	dcterms:title "0.5Ru/1Ba/Ni-BCZY" ;
+	a SIO:010344 .
+coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY_Ru dcterms:relation _:c14n2 ;
+	dcterms:title "ruthenium" ;
+	a CHEBI:23367 , CHEBI:30682 .
+coremeta4cat:REAC_b74m-m6rp_NH3_decomposition RXNO:0000425 coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY ;
+	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
+	a SIO:010511 , coremeta4cat:CatalyticReaction ;
+	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
+	voc4cat:0000118 _:c14n1 ;
+	voc4cat:0007032 _:c14n0 .
+coremeta4cat:REAC_b74m-m6rp_reactor dcterms:title "quartz glass tubular packed-bed reactor" ;
+	a coremeta4cat:FixedBedReactor .
+_:c14n0 dcterms:description "Ramp 473-873 K at 2 K/min; deposited inlet temperature 200-601 C" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Temperature> ;
+	qudt:unit <https://qudt.org/vocab/unit/K> ;
+	a qudt:Quantity ;
+	coremeta4cat:maxValue "873.15"^^xsd:float ;
+	coremeta4cat:minValue "473.15"^^xsd:float .
+_:c14n1 qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/Pressure> ;
+	qudt:unit <https://qudt.org/vocab/unit/BAR> ;
+	a qudt:Quantity ;
+	prov:value "1.0"^^xsd:float .
+_:c14n2 dcterms:description "Nominal loading" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity ;
+	prov:value "0.5"^^xsd:float .

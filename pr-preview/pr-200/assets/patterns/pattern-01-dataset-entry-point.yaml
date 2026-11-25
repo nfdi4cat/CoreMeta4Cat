@@ -1,0 +1,55 @@
+id: hdl:21.11165/4cat/b74m-m6rp
+title:
+- 'Dataset for Publication: Experimental and Microkinetic Investigation of Thermo-Catalytic Ammonia Decomposition
+  over a Ba-promoted Ru/Ni-BCZY Catalyst for Use in Ammonia-fed Protonic Ceramic Cells'
+description:
+- 'Data from Davari et al., Appl. Catal. A 708 (2025) 120571: H2-TPR of the Ni-BCZY cermet; NH3 decomposition
+  light-off curves of six Ru/Ba catalysts on Ni-BCZY, Ni-YSZ and YSZ at 500-3000 ppm NH3 in a packed bed
+  (1 bar, GHSV 50,000 h-1); and DETCHEM microkinetic packed-bed simulations: comparison with the experiments
+  for literature and optimized parameters, axial and surface-coverage profiles, turnover frequencies,
+  and variation of inlet NH3, GHSV and pressure. File names follow the figures of a version of the article;
+  from Fig6 on they do not match the published figure numbers.'
+rdf_type:
+- id: voc4cat:0007001
+  title: heterogeneous catalysis
+keyword:
+- Ammonia decomposition
+- Ru catalyst
+- Ni-BCZY
+creator:
+- name:
+  - Davari, Sadaf
+- name:
+  - Chacko, Rinu
+publisher:
+  name:
+  - NFDI4Cat Central Data Repository
+is_referenced_by:
+- id: https://doi.org/10.1016/j.apcata.2025.120571
+  title: Davari et al., Appl. Catal. A 708 (2025) 120571
+dataset_distribution:
+- access_URL:
+  - id: https://hdl.handle.net/21.11165/4cat/b74m-m6rp
+    title: Repository landing page
+  licence:
+    id: https://creativecommons.org/licenses/by/4.0/
+    title: CC BY 4.0
+was_generated_by:
+- id: coremeta4cat:CHAR_b74m-m6rp_TCD
+  activity_designator: Characterization
+  title:
+  - H2-TPR of the Ni-BCZY cermet (article Fig. 1)
+  rdf_type:
+    id: CHMO:0002908
+    title: temperature-programmed reduction
+  carried_out_by:
+  - id: coremeta4cat:DEV_b74m-m6rp_TCD
+    title: TPR set-up with quartz reactor and thermal conductivity detector
+    description: Instrument model not stated in the article.
+  evaluated_entity:
+  - id: coremeta4cat:CAT_b74m-m6rp_Ni-BCZY
+    title: Ni-BCZY cermet powder
+  realized_plan:
+    id: coremeta4cat:CHAR_b74m-m6rp_TCD_method
+    plan_designator: CHMO:0002908
+    title: H2-TPR, 10 K/min to 1223 K
