@@ -563,14 +563,18 @@
         click Activity href "../../classes/Activity/"
 
 
-      DataGeneratingActivity &lt;|-- CatalysisDataGeneratingActivity
-        click CatalysisDataGeneratingActivity href "../../classes/CatalysisDataGeneratingActivity/"
+      DataGeneratingActivity &lt;|-- Synthesis
+        click Synthesis href "../../classes/Synthesis/"
+      DataGeneratingActivity &lt;|-- Characterization
+        click Characterization href "../../classes/Characterization/"
       DataGeneratingActivity &lt;|-- DataAnalysis
         click DataAnalysis href "../../classes/DataAnalysis/"
       DataGeneratingActivity &lt;|-- SubstanceSampleCharacterization
         click SubstanceSampleCharacterization href "../../classes/SubstanceSampleCharacterization/"
       DataGeneratingActivity &lt;|-- ReactionMonitoring
         click ReactionMonitoring href "../../classes/ReactionMonitoring/"
+      DataGeneratingActivity &lt;|-- Simulation
+        click Simulation href "../../classes/Simulation/"
 
 
       DataGeneratingActivity : carried_out_by
@@ -749,10 +753,12 @@
 <ul>
 <li><a href="../Activity/">Activity</a> [ <a href="../ClassifierMixin/">ClassifierMixin</a>]<ul>
 <li><strong>DataGeneratingActivity</strong><ul>
-<li><a href="../CatalysisDataGeneratingActivity/">CatalysisDataGeneratingActivity</a></li>
+<li><a href="../Synthesis/">Synthesis</a></li>
+<li><a href="../Characterization/">Characterization</a></li>
 <li><a href="../DataAnalysis/">DataAnalysis</a></li>
 <li><a href="../SubstanceSampleCharacterization/">SubstanceSampleCharacterization</a></li>
 <li><a href="../ReactionMonitoring/">ReactionMonitoring</a></li>
+<li><a href="../Simulation/">Simulation</a></li>
 </ul>
 </li>
 </ul>
@@ -905,6 +911,12 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../CatalysisDataset/">CatalysisDataset</a></td>
+<td><a href="../../slots/was_generated_by/">was_generated_by</a></td>
+<td>range</td>
+<td><a href="./">DataGeneratingActivity</a></td>
+</tr>
 <tr>
 <td><a href="../AnalysisSourceData/">AnalysisSourceData</a></td>
 <td><a href="../../slots/was_generated_by/">was_generated_by</a></td>

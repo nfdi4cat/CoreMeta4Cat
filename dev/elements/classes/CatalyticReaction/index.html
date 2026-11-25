@@ -448,6 +448,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#class-properties">
+<span class="md-ellipsis">
+      
+        Class Properties
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       
@@ -547,8 +556,8 @@
 <p>__</p>
 <p><em>For operando experiments (e.g. in-situ XRD during a reaction), the dataset</em></p>
 <p><em>carries both:</em></p>
-<p>_  was_generated_by: Characterization  (the measurement producing data)_</p>
-<p>_  is_about_activity: Reaction         (the catalytic process being monitored)_</p>
+<p>_  was_generated_by_characterization: Characterization  (the measurement producing data)_</p>
+<p>_  is_about_activity: CatalyticReaction  (the catalytic process being monitored)_</p>
 <p>__</p>
 <p><em>The reactor is linked via the inherited used_reactor slot (is_a:</em></p>
 <p><em>carried_out_by), narrowed here to require a ChemicalReactor instance</em></p>
@@ -558,7 +567,7 @@
 <p><em>The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)</em></p>
 <p><em>is expressed via rdf_type using a voc4cat or ChemO term.</em></p>
 <div>
-<p>URI: <a href="https://w3id.org/nfdi4cat/coremeta4cat/class/CatalyticReaction">coremeta4cat:class/CatalyticReaction</a></p>
+<p>URI: <a href="http://purl.obolibrary.org/obo/REX_0000051">REX:0000051</a></p>
 <pre class="mermaid"><code> classDiagram
     class CatalyticReaction
     click CatalyticReaction href "../../classes/CatalyticReaction/"
@@ -930,6 +939,21 @@
 </ul>
 </li>
 </ul>
+<h2 id="class-properties">Class Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Class URI</td>
+<td><a href="http://purl.obolibrary.org/obo/REX_0000051">REX:0000051</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -1200,7 +1224,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>coremeta4cat:CatalyticReaction</td>
+<td>REX:0000051</td>
 </tr>
 <tr>
 <td>native</td>
@@ -1220,15 +1244,15 @@
 <span class="w">  </span><span class="s">\ slots.\n\nReaction</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">NOT</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process\n\</span>
 <span class="w">  </span><span class="s">being</span><span class="nv"> </span><span class="s">observed,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">generates</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">CatalysisDataset\n\</span>
 <span class="w">  </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">is_about_activity.\n\nFor</span><span class="nv"> </span><span class="s">operando</span><span class="nv"> </span><span class="s">experiments\</span>
-<span class="w">  </span><span class="s">\ (e.g.</span><span class="nv"> </span><span class="s">in-situ</span><span class="nv"> </span><span class="s">XRD</span><span class="nv"> </span><span class="s">during</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">reaction),</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset\ncarries</span><span class="nv"> </span><span class="s">both:\n</span><span class="nv">  </span><span class="s">was_generated_by:\</span>
-<span class="w">  </span><span class="s">\ Characterization</span><span class="nv">  </span><span class="s">(the</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">producing</span><span class="nv"> </span><span class="s">data)\n</span><span class="nv">  </span><span class="s">is_about_activity:</span><span class="nv"> </span><span class="s">Reaction\</span>
-<span class="w">  </span><span class="s">\ </span><span class="nv">        </span><span class="s">(the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">monitored)\n\nThe</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the\</span>
-<span class="w">  </span><span class="s">\ inherited</span><span class="nv"> </span><span class="s">used_reactor</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(is_a:\ncarried_out_by),</span><span class="nv"> </span><span class="s">narrowed</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">require\</span>
-<span class="w">  </span><span class="s">\ a</span><span class="nv"> </span><span class="s">ChemicalReactor</span><span class="nv"> </span><span class="s">instance\nrather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">touching</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">generic</span><span class="nv"> </span><span class="s">carried_out_by</span><span class="nv"> </span><span class="s">relation\</span>
-<span class="w">  </span><span class="s">\ directly.\nReactants</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">inherited</span><span class="nv"> </span><span class="s">used_reactant</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(range:\n\</span>
-<span class="w">  </span><span class="s">Reagent)</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">CatalyticReaction</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">declare</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">own</span><span class="nv"> </span><span class="s">reactant</span><span class="nv"> </span><span class="s">slot.\nThe</span><span class="nv"> </span><span class="s">type\</span>
-<span class="w">  </span><span class="s">\ of</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">ammonia</span><span class="nv"> </span><span class="s">synthesis,</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">oxidation)\nis</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via\</span>
-<span class="w">  </span><span class="s">\ rdf_type</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">ChemO</span><span class="nv"> </span><span class="s">term."</span>
+<span class="w">  </span><span class="s">\ (e.g.</span><span class="nv"> </span><span class="s">in-situ</span><span class="nv"> </span><span class="s">XRD</span><span class="nv"> </span><span class="s">during</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">reaction),</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset\ncarries</span><span class="nv"> </span><span class="s">both:\n</span><span class="nv">  </span><span class="s">was_generated_by_characterization:\</span>
+<span class="w">  </span><span class="s">\ Characterization</span><span class="nv">  </span><span class="s">(the</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">producing</span><span class="nv"> </span><span class="s">data)\n</span><span class="nv">  </span><span class="s">is_about_activity:</span><span class="nv"> </span><span class="s">CatalyticReaction\</span>
+<span class="w">  </span><span class="s">\ </span><span class="nv"> </span><span class="s">(the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">monitored)\n\nThe</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">inherited\</span>
+<span class="w">  </span><span class="s">\ used_reactor</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(is_a:\ncarried_out_by),</span><span class="nv"> </span><span class="s">narrowed</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">require</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemicalReactor\</span>
+<span class="w">  </span><span class="s">\ instance\nrather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">touching</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">generic</span><span class="nv"> </span><span class="s">carried_out_by</span><span class="nv"> </span><span class="s">relation</span><span class="nv"> </span><span class="s">directly.\n\</span>
+<span class="w">  </span><span class="s">Reactants</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">inherited</span><span class="nv"> </span><span class="s">used_reactant</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(range:\nReagent)</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">CatalyticReaction\</span>
+<span class="w">  </span><span class="s">\ does</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">declare</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">own</span><span class="nv"> </span><span class="s">reactant</span><span class="nv"> </span><span class="s">slot.\nThe</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">(e.g.\</span>
+<span class="w">  </span><span class="s">\ ammonia</span><span class="nv"> </span><span class="s">synthesis,</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">oxidation)\nis</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">rdf_type</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">or\</span>
+<span class="w">  </span><span class="s">\ ChemO</span><span class="nv"> </span><span class="s">term."</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
 <span class="nt">slots</span><span class="p">:</span>
@@ -1299,6 +1323,7 @@
 
 <span class="w">      </span><span class="s">product_identification_method,</span><span class="nv"> </span><span class="s">...)</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">loaded.'</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
+<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REX:0000051</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -1311,15 +1336,15 @@
 <span class="w">  </span><span class="s">\ slots.\n\nReaction</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">NOT</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process\n\</span>
 <span class="w">  </span><span class="s">being</span><span class="nv"> </span><span class="s">observed,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">generates</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">CatalysisDataset\n\</span>
 <span class="w">  </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">is_about_activity.\n\nFor</span><span class="nv"> </span><span class="s">operando</span><span class="nv"> </span><span class="s">experiments\</span>
-<span class="w">  </span><span class="s">\ (e.g.</span><span class="nv"> </span><span class="s">in-situ</span><span class="nv"> </span><span class="s">XRD</span><span class="nv"> </span><span class="s">during</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">reaction),</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset\ncarries</span><span class="nv"> </span><span class="s">both:\n</span><span class="nv">  </span><span class="s">was_generated_by:\</span>
-<span class="w">  </span><span class="s">\ Characterization</span><span class="nv">  </span><span class="s">(the</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">producing</span><span class="nv"> </span><span class="s">data)\n</span><span class="nv">  </span><span class="s">is_about_activity:</span><span class="nv"> </span><span class="s">Reaction\</span>
-<span class="w">  </span><span class="s">\ </span><span class="nv">        </span><span class="s">(the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">monitored)\n\nThe</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the\</span>
-<span class="w">  </span><span class="s">\ inherited</span><span class="nv"> </span><span class="s">used_reactor</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(is_a:\ncarried_out_by),</span><span class="nv"> </span><span class="s">narrowed</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">require\</span>
-<span class="w">  </span><span class="s">\ a</span><span class="nv"> </span><span class="s">ChemicalReactor</span><span class="nv"> </span><span class="s">instance\nrather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">touching</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">generic</span><span class="nv"> </span><span class="s">carried_out_by</span><span class="nv"> </span><span class="s">relation\</span>
-<span class="w">  </span><span class="s">\ directly.\nReactants</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">inherited</span><span class="nv"> </span><span class="s">used_reactant</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(range:\n\</span>
-<span class="w">  </span><span class="s">Reagent)</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">CatalyticReaction</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">declare</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">own</span><span class="nv"> </span><span class="s">reactant</span><span class="nv"> </span><span class="s">slot.\nThe</span><span class="nv"> </span><span class="s">type\</span>
-<span class="w">  </span><span class="s">\ of</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">ammonia</span><span class="nv"> </span><span class="s">synthesis,</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">oxidation)\nis</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via\</span>
-<span class="w">  </span><span class="s">\ rdf_type</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">ChemO</span><span class="nv"> </span><span class="s">term."</span>
+<span class="w">  </span><span class="s">\ (e.g.</span><span class="nv"> </span><span class="s">in-situ</span><span class="nv"> </span><span class="s">XRD</span><span class="nv"> </span><span class="s">during</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">reaction),</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset\ncarries</span><span class="nv"> </span><span class="s">both:\n</span><span class="nv">  </span><span class="s">was_generated_by_characterization:\</span>
+<span class="w">  </span><span class="s">\ Characterization</span><span class="nv">  </span><span class="s">(the</span><span class="nv"> </span><span class="s">measurement</span><span class="nv"> </span><span class="s">producing</span><span class="nv"> </span><span class="s">data)\n</span><span class="nv">  </span><span class="s">is_about_activity:</span><span class="nv"> </span><span class="s">CatalyticReaction\</span>
+<span class="w">  </span><span class="s">\ </span><span class="nv"> </span><span class="s">(the</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">process</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">monitored)\n\nThe</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">inherited\</span>
+<span class="w">  </span><span class="s">\ used_reactor</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(is_a:\ncarried_out_by),</span><span class="nv"> </span><span class="s">narrowed</span><span class="nv"> </span><span class="s">here</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">require</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ChemicalReactor\</span>
+<span class="w">  </span><span class="s">\ instance\nrather</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">touching</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">generic</span><span class="nv"> </span><span class="s">carried_out_by</span><span class="nv"> </span><span class="s">relation</span><span class="nv"> </span><span class="s">directly.\n\</span>
+<span class="w">  </span><span class="s">Reactants</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">inherited</span><span class="nv"> </span><span class="s">used_reactant</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">(range:\nReagent)</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">CatalyticReaction\</span>
+<span class="w">  </span><span class="s">\ does</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">declare</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">own</span><span class="nv"> </span><span class="s">reactant</span><span class="nv"> </span><span class="s">slot.\nThe</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">reaction</span><span class="nv"> </span><span class="s">(e.g.\</span>
+<span class="w">  </span><span class="s">\ ammonia</span><span class="nv"> </span><span class="s">synthesis,</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">oxidation)\nis</span><span class="nv"> </span><span class="s">expressed</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">rdf_type</span><span class="nv"> </span><span class="s">using</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">voc4cat</span><span class="nv"> </span><span class="s">or\</span>
+<span class="w">  </span><span class="s">\ ChemO</span><span class="nv"> </span><span class="s">term."</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReaction</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
@@ -2144,6 +2169,7 @@
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REX:0000051</span>
 </code></pre></div>
 </details>
 </div>

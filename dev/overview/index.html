@@ -1274,11 +1274,12 @@
 </table>
 <p><strong>Layer 2 — Data-class-specific metadata</strong> is structured around the four data classes: Synthesis, Characterization, Reaction, and Simulation. Each data class carries its own set of Mandatory, Recommended, and Optional fields.</p>
 <div class="highlight"><pre><span></span><code>CatalysisDataset
- ├── catalysis research field          [Layer 1 — applies to all]
- ├── reaction type                     [Layer 1 — on each Reaction]
- ├── was_generated_by → Synthesis      [Layer 2 — data-class specific]
- ├── was_generated_by → Characterization
- ├── was_generated_by → Simulation
+ ├── catalysis research field                     [Layer 1 — applies to all]
+ ├── reaction type                                [Layer 1 — on each Reaction]
+ ├── was_generated_by → ids of all activities     [Layer 2 — data-class specific]
+ ├── was_generated_by_synthesis → Synthesis
+ ├── was_generated_by_characterization → Characterization
+ ├── was_generated_by_simulation → Simulation
  └── is_about_activity → Reaction
 </code></pre></div>
 <hr />
@@ -1347,6 +1348,12 @@
 <span class="nt">catalysis_research_field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">heterogeneous catalysis</span>
 
 <span class="nt">was_generated_by</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:gc-analysis-001</span><span class="w">      </span><span class="c1"># ids of the activities that produced the data</span>
+<span class="nt">was_generated_by_characterization</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:gc-analysis-001</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"GC</span><span class="nv"> </span><span class="s">analysis</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">outlet"</span>
+
+<span class="nt">is_about_activity</span><span class="p">:</span><span class="w">          </span><span class="c1"># the reaction the data is about</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reaction</span>
 <span class="w">    </span><span class="nt">catalyst_mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span><span class="w">    </span><span class="c1"># mg</span>
 <span class="w">    </span><span class="nt">reactant</span><span class="p">:</span>

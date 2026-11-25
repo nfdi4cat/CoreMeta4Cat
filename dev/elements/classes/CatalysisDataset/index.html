@@ -549,6 +549,10 @@
 <p><em>The four CoreMeta4Cat minimum information pillars are linked via the slots</em></p>
 <p><em>below, each pointing to the corresponding DataGeneratingActivity or</em></p>
 <p><em>EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.</em></p>
+<p><em>Synthesis, Characterization and Simulation are each described in their</em></p>
+<p><em>own slot (was_generated_by_synthesis, was_generated_by_characterization,</em></p>
+<p><em>was_generated_by_simulation); was_generated_by lists the ids of all of</em></p>
+<p><em>them.</em></p>
 <div>
 <p>URI: <a href="http://www.w3.org/ns/dcat#Dataset">dcat:Dataset</a></p>
 <pre class="mermaid"><code> classDiagram
@@ -895,8 +899,41 @@
 
 
 
-        CatalysisDataset --&gt; "1..* _recommended_" CatalysisDataGeneratingActivity : was_generated_by
-        click CatalysisDataGeneratingActivity href "../../classes/CatalysisDataGeneratingActivity/"
+        CatalysisDataset --&gt; "1..*" DataGeneratingActivity : was_generated_by
+        click DataGeneratingActivity href "../../classes/DataGeneratingActivity/"
+
+
+
+      CatalysisDataset : was_generated_by_characterization
+
+
+
+
+
+        CatalysisDataset --&gt; "*" Characterization : was_generated_by_characterization
+        click Characterization href "../../classes/Characterization/"
+
+
+
+      CatalysisDataset : was_generated_by_simulation
+
+
+
+
+
+        CatalysisDataset --&gt; "*" Simulation : was_generated_by_simulation
+        click Simulation href "../../classes/Simulation/"
+
+
+
+      CatalysisDataset : was_generated_by_synthesis
+
+
+
+
+
+        CatalysisDataset --&gt; "*" Synthesis : was_generated_by_synthesis
+        click Synthesis href "../../classes/Synthesis/"
 
 
 
@@ -935,14 +972,32 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../../slots/was_generated_by_synthesis/">was_generated_by_synthesis</a></td>
+<td>* <br/> <a href="../Synthesis/">Synthesis</a></td>
+<td>The Synthesis activities (catalyst preparations) that produced data in<br/>this dataset, each described in full. List their ids in was_generated_by<br/>as well. In RDF: prov:wasGeneratedBy, with the activity typed<br/>PROCO:0000001 (synthetic chemical process).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../../slots/was_generated_by_characterization/">was_generated_by_characterization</a></td>
+<td>* <br> <a href="../Characterization/">Characterization</a></br></td>
+<td>The Characterization activities (measurements of a catalyst, material or<br/>reaction) that produced data in this dataset, each described in full.<br/>List their ids in was_generated_by as well. In RDF: prov:wasGeneratedBy,<br/>with the activity typed OBI:0000070 (assay).</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../../slots/was_generated_by_simulation/">was_generated_by_simulation</a></td>
+<td>* <br> <a href="../Simulation/">Simulation</a></br></td>
+<td>The Simulation activities (computational studies) that produced data in<br/>this dataset, each described in full. List their ids in was_generated_by<br/>as well. In RDF: prov:wasGeneratedBy, with the activity typed<br/>PROCO:0000159 (in-silico modeling).</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../../slots/type/">type</a></td>
-<td>* <br/> <a href="../DefinedTerm/">DefinedTerm</a></td>
+<td>* <br> <a href="../DefinedTerm/">DefinedTerm</a></br></td>
 <td>A type of the Dataset.</td>
-<td><a href="../Dataset/">Dataset</a>, <a href="../ClassifierMixin/">ClassifierMixin</a></td>
+<td><a href="../ClassifierMixin/">ClassifierMixin</a>, <a href="../Dataset/">Dataset</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/rdf_type/">rdf_type</a></td>
-<td>1..* <em>recommended</em> <br/> <a href="../DefinedTerm/">DefinedTerm</a></td>
+<td>1..* <em>recommended</em> <br> <a href="../DefinedTerm/">DefinedTerm</a></br></td>
 <td>The catalysis research field(s), provided as voc4cat terms from<br/>CatalysisResearchFieldEnum. This is the primary machine-actionable<br/>classification of the dataset's domain (Layer 1) and is mandatory.<br/>Several fields can be given for interdisciplinary work, e.g.<br/>biocatalysis and electrocatalysis for bioelectrocatalysis.</td>
 <td><a href="../ClassifierMixin/">ClassifierMixin</a></td>
 </tr>
@@ -972,31 +1027,31 @@
 </tr>
 <tr>
 <td><a href="../../slots/creator/">creator</a></td>
-<td>* <br/> <a href="../Agent/">Agent</a></td>
+<td>* <br> <a href="../Agent/">Agent</a></br></td>
 <td>An entity responsible for producing the dataset.</td>
 <td><a href="../Dataset/">Dataset</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/dataset_distribution/">dataset_distribution</a></td>
-<td>* <br/> <a href="../Distribution/">Distribution</a></td>
+<td>* <br> <a href="../Distribution/">Distribution</a></br></td>
 <td>An available Distribution for the Dataset.</td>
 <td><a href="../Dataset/">Dataset</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/description/">description</a></td>
-<td>1..* <br/> <a href="../../types/String/">String</a></td>
+<td>1..* <br> <a href="../../types/String/">String</a></br></td>
 <td>A free-text account of the Dataset.</td>
 <td><a href="../Dataset/">Dataset</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/documentation/">documentation</a></td>
-<td>* <br/> <a href="../Document/">Document</a></td>
+<td>* <br> <a href="../Document/">Document</a></br></td>
 <td>A page or document about this Dataset.</td>
 <td><a href="../Dataset/">Dataset</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/frequency/">frequency</a></td>
-<td>0..1 <br/> <a href="../Frequency/">Frequency</a></td>
+<td>0..1 <br> <a href="../Frequency/">Frequency</a></br></td>
 <td>The frequency at which the Dataset is updated.</td>
 <td><a href="../Dataset/">Dataset</a></td>
 </tr>
@@ -1152,8 +1207,8 @@
 </tr>
 <tr>
 <td><a href="../../slots/was_generated_by/">was_generated_by</a></td>
-<td>1..* <em>recommended</em> <br/> <a href="../CatalysisDataGeneratingActivity/">CatalysisDataGeneratingActivity</a></td>
-<td>The DataGeneratingActivity (Synthesis, Characterization, or Simulation)<br/>that produced this dataset.</td>
+<td>1..* <br/> <a href="../DataGeneratingActivity/">DataGeneratingActivity</a></td>
+<td>The ids of all activities that produced this dataset's data, e.g.<br/>[coremeta4cat:SYN_1, coremeta4cat:CHAR_1]. Describe each activity in<br/>full in was_generated_by_synthesis, was_generated_by_characterization<br/>or was_generated_by_simulation, under the same id. DCAT-AP-PLUS<br/>requires this slot on every Dataset; in RDF both lists become the<br/>same prov:wasGeneratedBy links.</td>
 <td><a href="../Dataset/">Dataset</a></td>
 </tr>
 <tr>
@@ -1164,13 +1219,13 @@
 </tr>
 <tr>
 <td><a href="../../slots/is_about_entity/">is_about_entity</a></td>
-<td>* <em>recommended</em> <br/> <a href="../EvaluatedEntity/">EvaluatedEntity</a></td>
+<td>* <em>recommended</em> <br> <a href="../EvaluatedEntity/">EvaluatedEntity</a></br></td>
 <td>The catalyst sample, material, or other Entity that this dataset is about.</td>
 <td><a href="../Dataset/">Dataset</a></td>
 </tr>
 <tr>
 <td><a href="../../slots/is_about_activity/">is_about_activity</a></td>
-<td>* <em>recommended</em> <br/> <a href="../CatalyticReaction/">CatalyticReaction</a></td>
+<td>* <em>recommended</em> <br> <a href="../CatalyticReaction/">CatalyticReaction</a></br></td>
 <td>The catalytic Reaction that this dataset is about (e.g. a dataset of<br/>catalytic performance measurements is about the Reaction being studied).</td>
 <td><a href="../Dataset/">Dataset</a></td>
 </tr>
@@ -1213,11 +1268,18 @@
 <span class="w">  </span><span class="s">\ work</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">applies,</span><span class="nv"> </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">biocatalysis\nand</span><span class="nv"> </span><span class="s">electrocatalysis</span><span class="nv"> </span><span class="s">for\</span>
 <span class="w">  </span><span class="s">\ bioelectrocatalysis.\n\nThe</span><span class="nv"> </span><span class="s">four</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">minimum</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">pillars</span><span class="nv"> </span><span class="s">are\</span>
 <span class="w">  </span><span class="s">\ linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">slots\nbelow,</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">pointing</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">corresponding</span><span class="nv"> </span><span class="s">DataGeneratingActivity\</span>
-<span class="w">  </span><span class="s">\ or\nEvaluatedActivity</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">subprofile</span><span class="nv"> </span><span class="s">modules."</span>
+<span class="w">  </span><span class="s">\ or\nEvaluatedActivity</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">subprofile</span><span class="nv"> </span><span class="s">modules.\n\</span>
+<span class="w">  </span><span class="s">Synthesis,</span><span class="nv"> </span><span class="s">Characterization</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Simulation</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">described</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">their\nown</span><span class="nv"> </span><span class="s">slot\</span>
+<span class="w">  </span><span class="s">\ (was_generated_by_synthesis,</span><span class="nv"> </span><span class="s">was_generated_by_characterization,\nwas_generated_by_simulation);\</span>
+<span class="w">  </span><span class="s">\ was_generated_by</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">ids</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">of\nthem."</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="nt">mixins</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClassifierMixin</span>
+<span class="nt">slots</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by_synthesis</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by_characterization</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by_simulation</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">rdf_type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf_type</span>
@@ -1240,13 +1302,22 @@
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">was_generated_by</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">(Synthesis,</span><span class="nv"> </span><span class="s">Characterization,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Simulation)</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">ids</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">activities</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">data,</span><span class="nv"> </span><span class="s">e.g.</span>
 
-<span class="w">      </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset.'</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataGeneratingActivity</span>
-<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="s">[coremeta4cat:SYN_1,</span><span class="nv"> </span><span class="s">coremeta4cat:CHAR_1].</span><span class="nv"> </span><span class="s">Describe</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">in</span>
+
+<span class="w">      </span><span class="s">full</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">was_generated_by_synthesis,</span><span class="nv"> </span><span class="s">was_generated_by_characterization</span>
+
+<span class="w">      </span><span class="s">or</span><span class="nv"> </span><span class="s">was_generated_by_simulation,</span><span class="nv"> </span><span class="s">under</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">id.</span><span class="nv"> </span><span class="s">DCAT-AP-PLUS</span>
+
+<span class="w">      </span><span class="s">requires</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">Dataset;</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">RDF</span><span class="nv"> </span><span class="s">both</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">become</span><span class="nv"> </span><span class="s">the</span>
+
+<span class="w">      </span><span class="s">same</span><span class="nv"> </span><span class="s">prov:wasGeneratedBy</span><span class="nv"> </span><span class="s">links.'</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataGeneratingActivity</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">  </span><span class="nt">is_about_activity</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">is_about_activity</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dataset</span>
@@ -1279,7 +1350,10 @@
 <span class="w">  </span><span class="s">\ work</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">applies,</span><span class="nv"> </span><span class="s">e.g.</span><span class="nv"> </span><span class="s">biocatalysis\nand</span><span class="nv"> </span><span class="s">electrocatalysis</span><span class="nv"> </span><span class="s">for\</span>
 <span class="w">  </span><span class="s">\ bioelectrocatalysis.\n\nThe</span><span class="nv"> </span><span class="s">four</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">minimum</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">pillars</span><span class="nv"> </span><span class="s">are\</span>
 <span class="w">  </span><span class="s">\ linked</span><span class="nv"> </span><span class="s">via</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">slots\nbelow,</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">pointing</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">corresponding</span><span class="nv"> </span><span class="s">DataGeneratingActivity\</span>
-<span class="w">  </span><span class="s">\ or\nEvaluatedActivity</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">subprofile</span><span class="nv"> </span><span class="s">modules."</span>
+<span class="w">  </span><span class="s">\ or\nEvaluatedActivity</span><span class="nv"> </span><span class="s">subclass</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">CoreMeta4Cat</span><span class="nv"> </span><span class="s">subprofile</span><span class="nv"> </span><span class="s">modules.\n\</span>
+<span class="w">  </span><span class="s">Synthesis,</span><span class="nv"> </span><span class="s">Characterization</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Simulation</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">described</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">their\nown</span><span class="nv"> </span><span class="s">slot\</span>
+<span class="w">  </span><span class="s">\ (was_generated_by_synthesis,</span><span class="nv"> </span><span class="s">was_generated_by_characterization,\nwas_generated_by_simulation);\</span>
+<span class="w">  </span><span class="s">\ was_generated_by</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">ids</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">of\nthem."</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="nt">mixins</span><span class="p">:</span>
@@ -1306,13 +1380,22 @@
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">was_generated_by</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">(Synthesis,</span><span class="nv"> </span><span class="s">Characterization,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Simulation)</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">ids</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">activities</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">data,</span><span class="nv"> </span><span class="s">e.g.</span>
 
-<span class="w">      </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset.'</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataGeneratingActivity</span>
-<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="s">[coremeta4cat:SYN_1,</span><span class="nv"> </span><span class="s">coremeta4cat:CHAR_1].</span><span class="nv"> </span><span class="s">Describe</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">in</span>
+
+<span class="w">      </span><span class="s">full</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">was_generated_by_synthesis,</span><span class="nv"> </span><span class="s">was_generated_by_characterization</span>
+
+<span class="w">      </span><span class="s">or</span><span class="nv"> </span><span class="s">was_generated_by_simulation,</span><span class="nv"> </span><span class="s">under</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">id.</span><span class="nv"> </span><span class="s">DCAT-AP-PLUS</span>
+
+<span class="w">      </span><span class="s">requires</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">Dataset;</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">RDF</span><span class="nv"> </span><span class="s">both</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">become</span><span class="nv"> </span><span class="s">the</span>
+
+<span class="w">      </span><span class="s">same</span><span class="nv"> </span><span class="s">prov:wasGeneratedBy</span><span class="nv"> </span><span class="s">links.'</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataGeneratingActivity</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">  </span><span class="nt">is_about_activity</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">is_about_activity</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">catalytic</span><span class="nv"> </span><span class="s">Reaction</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dataset</span>
@@ -1332,6 +1415,69 @@
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">attributes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">was_generated_by_synthesis</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by_synthesis</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">Synthesis</span><span class="nv"> </span><span class="s">activities</span><span class="nv"> </span><span class="s">(catalyst</span><span class="nv"> </span><span class="s">preparations)</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">data</span>
+<span class="w">      </span><span class="s">in</span>
+
+<span class="w">      </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset,</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">described</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">full.</span><span class="nv"> </span><span class="s">List</span><span class="nv"> </span><span class="s">their</span><span class="nv"> </span><span class="s">ids</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">was_generated_by</span>
+
+<span class="w">      </span><span class="s">as</span><span class="nv"> </span><span class="s">well.</span><span class="nv"> </span><span class="s">In</span><span class="nv"> </span><span class="s">RDF:</span><span class="nv"> </span><span class="s">prov:wasGeneratedBy,</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">typed</span>
+
+<span class="w">      </span><span class="s">PROCO:0000001</span><span class="nv"> </span><span class="s">(synthetic</span><span class="nv"> </span><span class="s">chemical</span><span class="nv"> </span><span class="s">process).'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prov:wasGeneratedBy</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Synthesis</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">was_generated_by_characterization</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by_characterization</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">Characterization</span><span class="nv"> </span><span class="s">activities</span><span class="nv"> </span><span class="s">(measurements</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">catalyst,</span><span class="nv"> </span><span class="s">material</span>
+<span class="w">      </span><span class="s">or</span>
+
+<span class="w">      </span><span class="s">reaction)</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset,</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">described</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">full.</span>
+
+<span class="w">      </span><span class="s">List</span><span class="nv"> </span><span class="s">their</span><span class="nv"> </span><span class="s">ids</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">was_generated_by</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">well.</span><span class="nv"> </span><span class="s">In</span><span class="nv"> </span><span class="s">RDF:</span><span class="nv"> </span><span class="s">prov:wasGeneratedBy,</span>
+
+<span class="w">      </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">OBI:0000070</span><span class="nv"> </span><span class="s">(assay).'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prov:wasGeneratedBy</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characterization</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">was_generated_by_simulation</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by_simulation</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">Simulation</span><span class="nv"> </span><span class="s">activities</span><span class="nv"> </span><span class="s">(computational</span><span class="nv"> </span><span class="s">studies)</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span>
+<span class="w">      </span><span class="s">data</span><span class="nv"> </span><span class="s">in</span>
+
+<span class="w">      </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset,</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">described</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">full.</span><span class="nv"> </span><span class="s">List</span><span class="nv"> </span><span class="s">their</span><span class="nv"> </span><span class="s">ids</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">was_generated_by</span>
+
+<span class="w">      </span><span class="s">as</span><span class="nv"> </span><span class="s">well.</span><span class="nv"> </span><span class="s">In</span><span class="nv"> </span><span class="s">RDF:</span><span class="nv"> </span><span class="s">prov:wasGeneratedBy,</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">typed</span>
+
+<span class="w">      </span><span class="s">PROCO:0000159</span><span class="nv"> </span><span class="s">(in-silico</span><span class="nv"> </span><span class="s">modeling).'</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by</span>
+<span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prov:wasGeneratedBy</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Simulation</span>
+<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A type of the Dataset.</span>
@@ -1975,9 +2121,17 @@
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">was_generated_by</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">DataGeneratingActivity</span><span class="nv"> </span><span class="s">(Synthesis,</span><span class="nv"> </span><span class="s">Characterization,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Simulation)</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">ids</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">activities</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">data,</span><span class="nv"> </span><span class="s">e.g.</span>
 
-<span class="w">      </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset.'</span>
+<span class="w">      </span><span class="s">[coremeta4cat:SYN_1,</span><span class="nv"> </span><span class="s">coremeta4cat:CHAR_1].</span><span class="nv"> </span><span class="s">Describe</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">in</span>
+
+<span class="w">      </span><span class="s">full</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">was_generated_by_synthesis,</span><span class="nv"> </span><span class="s">was_generated_by_characterization</span>
+
+<span class="w">      </span><span class="s">or</span><span class="nv"> </span><span class="s">was_generated_by_simulation,</span><span class="nv"> </span><span class="s">under</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">id.</span><span class="nv"> </span><span class="s">DCAT-AP-PLUS</span>
+
+<span class="w">      </span><span class="s">requires</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">slot</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">Dataset;</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">RDF</span><span class="nv"> </span><span class="s">both</span><span class="nv"> </span><span class="s">lists</span><span class="nv"> </span><span class="s">become</span><span class="nv"> </span><span class="s">the</span>
+
+<span class="w">      </span><span class="s">same</span><span class="nv"> </span><span class="s">prov:wasGeneratedBy</span><span class="nv"> </span><span class="s">links.'</span>
 <span class="w">    </span><span class="nt">notes</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stricter than DCAT-AP</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
@@ -1987,12 +2141,11 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EvaluatedEntity</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataGeneratingActivity</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataGeneratingActivity</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A slot to provide an URI for an entity within this schema.</span>

@@ -2,6 +2,7 @@
 @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
@@ -29,7 +30,7 @@ hdl:21.11165\/4cat\/b74m-m6rp dcterms:creator _:c14n1 , _:c14n3 ;
 coremeta4cat:CAT_b74m-m6rp_Ni-BCZY dcterms:title "Ni-BCZY cermet powder" ;
 	a prov:Entity .
 coremeta4cat:CHAR_b74m-m6rp_TCD dcterms:title "H2-TPR of the Ni-BCZY cermet (article Fig. 1)" ;
-	a "Characterization" , CHMO:0002908 ;
+	a CHMO:0002908 , OBI:0000070 , prov:Activity ;
 	prov:used coremeta4cat:CAT_b74m-m6rp_Ni-BCZY , coremeta4cat:CHAR_b74m-m6rp_TCD_method ;
 	prov:wasAssociatedWith coremeta4cat:DEV_b74m-m6rp_TCD .
 coremeta4cat:CHAR_b74m-m6rp_TCD_method dcterms:title "H2-TPR, 10 K/min to 1223 K" ;

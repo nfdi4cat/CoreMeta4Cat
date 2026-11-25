@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/activity_designator/">
+        <link rel="canonical" href="https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/slots/was_generated_by_characterization/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: activity_designator - CoreMeta4Cat</title>
+        <title>Slot: was_generated_by_characterization - CoreMeta4Cat</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-activity_designator" class="md-skip">
+        <a href="#slot-was_generated_by_characterization" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: activity_designator
+              Slot: was_generated_by_characterization
             
           </span>
         </div>
@@ -960,6 +960,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1068,15 +1079,20 @@
   
 
 
-<h1 id="slot-activity_designator">Slot: activity_designator</h1>
-<p><em>Internal type designator for CatalysisDataGeneratingActivity subclasses</em></p>
-<p><em>(Synthesis, Characterization, Simulation). Only needs to be set by hand</em></p>
-<p><em>when nesting one of these inside another object's was_generated_by list</em></p>
-<p><em>(e.g. in a combined CatalysisDataset file) -- LinkML fills it in</em></p>
-<p><em>automatically when a class is instantiated directly.</em></p>
+<h1 id="slot-was_generated_by_characterization">Slot: was_generated_by_characterization</h1>
+<p><em>The Characterization activities (measurements of a catalyst, material or</em></p>
+<p><em>reaction) that produced data in this dataset, each described in full.</em></p>
+<p><em>List their ids in was_generated_by as well. In RDF: prov:wasGeneratedBy,</em></p>
+<p><em>with the activity typed OBI:0000070 (assay).</em></p>
 <div>
-<p>URI: <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">rdf:type</a></p>
-<!-- no inheritance hierarchy -->
+<p>URI: <a href="http://www.w3.org/ns/prov#wasGeneratedBy">prov:wasGeneratedBy</a></p>
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../was_generated_by/">was_generated_by</a><ul>
+<li><strong>was_generated_by_characterization</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
@@ -1088,23 +1104,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../../classes/CatalysisDataGeneratingActivity/">CatalysisDataGeneratingActivity</a></td>
-<td>A CoreMeta4Cat specialization of DCAT-AP-PLUS's DataGeneratingActivity<br>that adds a type designator (activity_designator). Synthesis,<br>Characterization, and Simulation all specialize this class instead of<br>DataGeneratingActivity directly, so that when one of them is nested<br>inside CatalysisDataset.was_generated_by, the LinkML Python loader can<br>tell which concrete subclass a given entry is meant to be and keep its<br>subclass-specific fields (e.g. Characterization.realized_plan) rather<br>than falling back to DataGeneratingActivity's own generic slot<br>definitions.<br><br>activity_designator is filled in automatically by LinkML when a class<br>is instantiated directly (e.g. loading a standalone Synthesis-NNN.yaml<br>file) -- it does not need to be set by hand there. It only needs to be<br>set explicitly in the source data when a Synthesis/Characterization/<br>Simulation instance is nested inside another object's was_generated_by<br>list (e.g. in a combined CatalysisDataset file), so the loader knows<br>which of the three to construct.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Synthesis/">Synthesis</a></td>
-<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Characterization/">Characterization</a></td>
-<td>A DataGeneratingActivity in which a catalyst sample or catalytic material<br>is characterized using an analytical technique.<br><br>The catalyst sample being characterized is linked via evaluated_entity.<br>The analytical protocol is linked via realized_plan using a<br>CharacterizationTechnique instance. The instrument used is linked via<br>carried_out_by as a Device.<br><br>The specific technique type is expressed via rdf_type using an ontology<br>term (e.g. CHMO:0000158 for powder XRD, CHMO:0000404 for XPS),<br>following DCAT-AP-PLUS Pattern 3 — exactly as NMRSpectroscopy uses<br>rdf_type: CHMO:0000613.</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../../classes/Simulation/">Simulation</a></td>
-<td>A DataGeneratingActivity in which a catalyst, catalytic material, or<br>catalytic process is modelled computationally.<br><br>The simulation software is linked via carried_out_by as a Software agent.<br>The simulation method (protocol) is linked via realized_plan using a<br>SimulationMethod instance. The catalyst model or reaction being simulated<br>is linked via evaluated_entity or evaluated_activity.<br><br>The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,<br>NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.</td>
+<td><a href="../../classes/CatalysisDataset/">CatalysisDataset</a></td>
+<td>A dcat:Dataset that contains research data in the field of catalysis.<br><br>The catalysis research field is expressed via rdf_type using voc4cat<br>terms from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).<br>For example, a dataset from heterogeneous catalysis research would carry:<br>  rdf_type:<br>    - id: voc4cat:0007001<br>      title: "heterogeneous catalysis"<br>Interdisciplinary work lists every field that applies, e.g. biocatalysis<br>and electrocatalysis for bioelectrocatalysis.<br><br>The four CoreMeta4Cat minimum information pillars are linked via the slots<br>below, each pointing to the corresponding DataGeneratingActivity or<br>EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.<br>Synthesis, Characterization and Simulation are each described in their<br>own slot (was_generated_by_synthesis, was_generated_by_characterization,<br>was_generated_by_simulation); was_generated_by lists the ids of all of<br>them.</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -1121,18 +1122,18 @@
 <tbody>
 <tr>
 <td>Range</td>
-<td><a href="../../types/String/">String</a></td>
+<td><a href="../../classes/Characterization/">Characterization</a></td>
 </tr>
 <tr>
 <td>Domain Of</td>
-<td><a href="../../classes/CatalysisDataGeneratingActivity/">CatalysisDataGeneratingActivity</a></td>
+<td><a href="../../classes/CatalysisDataset/">CatalysisDataset</a></td>
 </tr>
 <tr>
 <td>Slot URI</td>
-<td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#type">rdf:type</a></td>
+<td><a href="http://www.w3.org/ns/prov#wasGeneratedBy">prov:wasGeneratedBy</a></td>
 </tr>
 <tr>
-<td>### Slot Characteristics</td>
+<td>### Cardinality and Requirements</td>
 <td></td>
 </tr>
 </tbody>
@@ -1146,7 +1147,7 @@
 </thead>
 <tbody>
 <tr>
-<td>Designates Type</td>
+<td>Multivalued</td>
 <td>Yes</td>
 </tr>
 </tbody>
@@ -1167,33 +1168,35 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>rdf:type</td>
+<td>prov:wasGeneratedBy</td>
 </tr>
 <tr>
 <td>native</td>
-<td>coremeta4cat:activity_designator</td>
+<td>coremeta4cat:was_generated_by_characterization</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">activity_designator</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Internal</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">designator</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">CatalysisDataGeneratingActivity</span><span class="nv"> </span><span class="s">subclasses</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by_characterization</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">Characterization</span><span class="nv"> </span><span class="s">activities</span><span class="nv"> </span><span class="s">(measurements</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">catalyst,</span><span class="nv"> </span><span class="s">material</span>
+<span class="w">  </span><span class="s">or</span>
 
-<span class="w">  </span><span class="s">(Synthesis,</span><span class="nv"> </span><span class="s">Characterization,</span><span class="nv"> </span><span class="s">Simulation).</span><span class="nv"> </span><span class="s">Only</span><span class="nv"> </span><span class="s">needs</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">hand</span>
+<span class="w">  </span><span class="s">reaction)</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">produced</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">dataset,</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">described</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">full.</span>
 
-<span class="w">  </span><span class="s">when</span><span class="nv"> </span><span class="s">nesting</span><span class="nv"> </span><span class="s">one</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">these</span><span class="nv"> </span><span class="s">inside</span><span class="nv"> </span><span class="s">another</span><span class="nv"> </span><span class="s">object</span><span class="se">''</span><span class="s">s</span><span class="nv"> </span><span class="s">was_generated_by</span><span class="nv"> </span><span class="s">list</span>
+<span class="w">  </span><span class="s">List</span><span class="nv"> </span><span class="s">their</span><span class="nv"> </span><span class="s">ids</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">was_generated_by</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">well.</span><span class="nv"> </span><span class="s">In</span><span class="nv"> </span><span class="s">RDF:</span><span class="nv"> </span><span class="s">prov:wasGeneratedBy,</span>
 
-<span class="w">  </span><span class="s">(e.g.</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">combined</span><span class="nv"> </span><span class="s">CatalysisDataset</span><span class="nv"> </span><span class="s">file)</span><span class="nv"> </span><span class="s">--</span><span class="nv"> </span><span class="s">LinkML</span><span class="nv"> </span><span class="s">fills</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">in</span>
-
-<span class="w">  </span><span class="s">automatically</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">instantiated</span><span class="nv"> </span><span class="s">directly.'</span>
+<span class="w">  </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">typed</span><span class="nv"> </span><span class="s">OBI:0000070</span><span class="nv"> </span><span class="s">(assay).'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/nfdi4cat/coremeta4cat</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdf:type</span>
-<span class="nt">designates_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by</span>
+<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prov:wasGeneratedBy</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataGeneratingActivity</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characterization</span>
+<span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 </div>
