@@ -265,9 +265,9 @@ for n, row in enumerate(ws.iter_rows(min_row=2, values_only=True), start=1):
         "title": [f"Synthesis of {name}"],
         "description": [f"Converted from my_synthesis_data.xlsx, row {n + 1}."],
         "rdf_type": [RESEARCH_FIELD[data["Catalyst type"]]],  # voc4cat:0007014
-        "was_generated_by": [{
+        "was_generated_by": [f"{BASE}synthesis-{n}"],          # ids of all activities
+        "was_generated_by_synthesis": [{                        # each synthesis in full
             "id": f"{BASE}synthesis-{n}",
-            "activity_designator": "Synthesis",
             "title": [f"{method} of {name}"],
             "nominal_composition": [
                 f"{data['Metal loading, nominal (wt%)']} wt% {data['Metal']} on {data['Support']}"],
@@ -305,8 +305,9 @@ header, and the CURIEs in the comments document the meaning of each mapping. Thr
 into a valid record: every dataset, activity, method and entity gets an identifier in your own namespace
 (`BASE`); sheet values such as the catalyst type and the preparation method are mapped to vocabulary terms
 (`RESEARCH_FIELD`, `METHOD`); and numbers are written with their quantity kind and unit (`quantity()`).
-`plan_designator` tells software which method class the plan belongs to (here `Impregnation`), which makes
-the calcination fields of that class available.
+The synthesis is described under `was_generated_by_synthesis`, and its id is listed in `was_generated_by`,
+which DCAT-AP+ requires on every dataset. `plan_designator` tells software which method class the plan
+belongs to (here `Impregnation`), which makes the calcination fields of that class available.
 
 ### The resulting JSON record
 
@@ -329,9 +330,11 @@ the validation shown in Level 4:
     }
   ],
   "was_generated_by": [
+    "https://example.org/my-group/synthesis-1"
+  ],
+  "was_generated_by_synthesis": [
     {
       "id": "https://example.org/my-group/synthesis-1",
-      "activity_designator": "Synthesis",
       "title": [
         "impregnation of 5Ni/Al2O3"
       ],

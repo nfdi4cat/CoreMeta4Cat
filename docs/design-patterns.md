@@ -31,11 +31,13 @@ rdf_type:
     title: "heterogeneous catalysis"
 
 # Layer 2: links to the four data classes
-was_generated_by:
+was_generated_by:                       # ids of the activities that produced the data
+  - ex:synthesis-001
+  - ex:characterization-001
+was_generated_by_synthesis:             # each activity in full, under its kind
   - id: ex:synthesis-001
-    activity_designator: Synthesis
+was_generated_by_characterization:
   - id: ex:characterization-001
-    activity_designator: Characterization
 
 is_about_activity:
   - id: ex:reaction-001                 # a CatalyticReaction
@@ -47,7 +49,7 @@ is_about_entity:
 The key points here are:
 
 - `rdf_type` carries a **controlled vocabulary term** from [Voc4Cat](https://nfdi4cat.github.io/voc4cat/) to classify which field of catalysis the dataset belongs to.
-- `was_generated_by` links to **activities that produced the data** (Synthesis, Characterization, Simulation); `activity_designator` says which of the three each activity is.
+- `was_generated_by` links to **activities that produced the data** (Synthesis, Characterization, Simulation) by their ids. Each activity is described under the field for its kind (`was_generated_by_synthesis`, `was_generated_by_characterization`, `was_generated_by_simulation`), which also gives it its class in RDF.
 - `is_about_activity` links to the **Reaction being studied** — which is the catalytic process itself, not a data-generating step.
 - `is_about_entity` links to the **catalyst sample or material** the dataset concerns.
 
@@ -129,8 +131,9 @@ Eight reactor design types are defined:
     For in-situ or operando experiments (e.g. XRD measured while a reaction runs), the dataset carries **both** links simultaneously:
     ```yaml
     was_generated_by:
-      - id: ex:xrd-001
-        activity_designator: Characterization   # PowderXRD — the process that made the data
+      - ex:xrd-001
+    was_generated_by_characterization:
+      - id: ex:xrd-001                          # PowderXRD — the process that made the data
     is_about_activity:
       - id: ex:reaction-001                     # the catalytic process being monitored
     ```
@@ -176,7 +179,7 @@ rdf_type:
 **On Synthesis and Characterization** — a method that needs its own parameter slots has its own class (`Impregnation`, `PowderXRD`, …). The plan names that class with `plan_designator`, whose value is the class URI, itself an ontology term:
 
 ```yaml
-activity_designator: Synthesis
+# a Synthesis, in was_generated_by_synthesis
 realized_plan:
   id: ex:method-001
   plan_designator: voc4cat:0007028    # Impregnation: the concrete method class with all parameter slots
@@ -184,14 +187,14 @@ realized_plan:
 ```
 
 ```yaml
-activity_designator: Characterization
+# a Characterization, in was_generated_by_characterization
 realized_plan:
   id: ex:xrd-method-001
   plan_designator: CHMO:0000158       # PowderXRD: the concrete technique class with all measurement slots
   title: "powder X-ray diffraction"
 ```
 
-One value does both jobs: it is the machine-readable ontology term (written as `rdf:type` in RDF), and it tells validators and software which concrete class applies, and so which parameter slots are available. Activities are selected the same way with `activity_designator` (`Synthesis`, `Characterization`, `Simulation`), reactors with `reactor_designator`, and calculated properties with `property_designator`.
+One value does both jobs: it is the machine-readable ontology term (written as `rdf:type` in RDF), and it tells validators and software which concrete class applies, and so which parameter slots are available. Reactors are selected the same way with `reactor_designator`, and calculated properties with `property_designator`. Activities need no designator: each kind has its own field on the dataset (`was_generated_by_synthesis`, `was_generated_by_characterization`, `was_generated_by_simulation`), and the field tells software which class an activity is.
 
 The allowed values for `rdf_type` on `CatalysisDataset` are defined in `CatalysisResearchFieldEnum` -- see the [CatalysisDataset](catalysis-dataset.md) page for the full value table and a worked example combining multiple pillars into one dataset.
 
@@ -215,9 +218,8 @@ Simulation             ──→      SimulationMethod
 The Activity carries the **instance-level data** (who did it, when, on what sample, with what output). The Plan carries the **method-level data** (parameter settings, instrument configuration, protocol steps).
 
 ```yaml
-# The activity — what happened
+# The activity — what happened (an entry of was_generated_by_synthesis)
 id: ex:synthesis-001
-activity_designator: Synthesis
 nominal_composition:
   - "5wt% Ni/Al2O3"
 catalyst_measured_properties:
@@ -311,7 +313,7 @@ Some slots appear in multiple data classes — for example, `has_atmosphere` is 
 
 ```yaml
 # coremeta4cat_common.yaml — shared slots include:
-activity_designator, plan_designator, reactor_designator,
+plan_designator, reactor_designator,
 has_atmosphere, has_flow_rate, has_heating_rate, has_sample_mass,
 has_drying_*, has_calcination_*, has_experiment_duration,
 has_sample_pretreatment, solvent, carrier_gas, number_of_cycles,
@@ -346,8 +348,9 @@ This distinction enables operando experiments to be described correctly:
 ```yaml
 # Operando XRD during CO oxidation
 was_generated_by:
-  - id: ex:xrd-001
-    activity_designator: Characterization   # PowderXRD run — this produced the data
+  - ex:xrd-001
+was_generated_by_characterization:
+  - id: ex:xrd-001                          # PowderXRD run — this produced the data
     evaluated_activity:
       - id: ex:co-oxidation-001             # ...while measuring this reaction
     realized_plan:
@@ -376,7 +379,7 @@ is_about_activity:
 
 If `Reaction` were modelled as a `DataGeneratingActivity`, this relationship would collapse: it would be impossible to distinguish the measurement from the catalytic process it monitors.
 
-The same distinction appears in DCAT-AP-PLUS itself — the NMR example in the base documentation uses `was_generated_by: NMRSpectroscopy` (the measurement) and `evaluated_entity: MaterialSample` (the thing measured). CoreMeta4Cat extends this by adding `is_about_activity: Reaction` for cases where a process — not just a material — is being monitored.
+The same distinction appears in DCAT-AP-PLUS itself — the NMR example in the base documentation uses `was_generated_by: NMRSpectroscopy` (the measurement) and `evaluated_entity: MaterialSample` (the thing measured). CoreMeta4Cat extends this by adding `is_about_activity: Reaction` for cases where a process — not just a material — is being monitored. Its `was_generated_by_characterization` (and the synthesis and simulation counterparts) specialise `was_generated_by`: in RDF they are `prov:wasGeneratedBy` too.
 
 ---
 

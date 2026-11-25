@@ -29,11 +29,12 @@ CoreMeta4Cat organises metadata in two layers.
 
 ```
 CatalysisDataset
- ├── catalysis research field          [Layer 1 — applies to all]
- ├── reaction type                     [Layer 1 — on each Reaction]
- ├── was_generated_by → Synthesis      [Layer 2 — data-class specific]
- ├── was_generated_by → Characterization
- ├── was_generated_by → Simulation
+ ├── catalysis research field                     [Layer 1 — applies to all]
+ ├── reaction type                                [Layer 1 — on each Reaction]
+ ├── was_generated_by → ids of all activities     [Layer 2 — data-class specific]
+ ├── was_generated_by_synthesis → Synthesis
+ ├── was_generated_by_characterization → Characterization
+ ├── was_generated_by_simulation → Simulation
  └── is_about_activity → Reaction
 ```
 
@@ -101,9 +102,10 @@ rdf_type:                                 # catalysis research field (Layer 1)
   - id: voc4cat:0007001
     title: "heterogeneous catalysis"
 
-was_generated_by:                         # the measurement that produced the data
+was_generated_by:                         # ids of the activities that produced the data
+  - ex:gcms-001
+was_generated_by_characterization:        # the measurement itself, in full
   - id: ex:gcms-001
-    activity_designator: Characterization
     carried_out_by:
       - id: ex:gcms-instrument-001
         title: "online GC-MS"
