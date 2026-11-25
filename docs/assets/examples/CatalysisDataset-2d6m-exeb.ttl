@@ -177,7 +177,7 @@ coremeta4cat:CHAR_2d6m-exeb_GC_method dcterms:description "Analytical protocol f
 	a OBI:0000272 .
 coremeta4cat:CHAR_2d6m-exeb_outlet_gas_analysis dcterms:description "Steady-state outlet gas composition analysis used to determine CO/CO2 conversion for all 16 catalyst screening runs (CO methanation: Exp2, 3, 4, 12; CO2 methanation: Exp7, 8, 9, 13, 14, 15, 16, 17; mixed CO/CO2 methanation: Exp11, 18, 19, 20). Dataset files do not name a specific instrument model; gas chromatography is the standard analytical method for this reaction class and is assumed here." ;
 	dcterms:title "Outlet gas composition analysis (all 16 runs)" ;
-	a "Characterization" , voc4cat:0000130 ;
+	a coremeta4cat:Characterization , voc4cat:0000130 ;
 	adms:identifier _:c14n28 ;
 	prov:used coremeta4cat:CAT_2d6m-exeb_all , coremeta4cat:CHAR_2d6m-exeb_GC_method ;
 	prov:wasAssociatedWith coremeta4cat:DEV_2d6m-exeb_GC .

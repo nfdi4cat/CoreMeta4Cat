@@ -45,7 +45,7 @@ coremeta4cat:LIG_8ppb-aeky_2a_PLP dcterms:title "(S)-1-(2-chlorophenyl)ethanamin
 	a prov:Entity .
 coremeta4cat:SIM_8ppb-aeky_MD dcterms:description "Desmond molecular dynamics of the docked substrate-cofactor complex in 3FCR-4M and the mutants S19V/P423F (4M-N15, deposit M1) and G151A/P423F (4M-N16, deposit M2), run to investigate why these mutations change the kinetic parameters. Each variant has a system setup, a minimisation, an equilibration and a production run (12 archives, about 32 GB). The production runs extend beyond 100 ns; trajectories were analysed with the Simulation Interaction Diagram and in-house scripts using the Schrodinger Python API, and frames after 100 ns were used for MM/GBSA." ;
 	dcterms:title "Molecular dynamics of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16" ;
-	a "Simulation" ;
+	a coremeta4cat:Simulation ;
 	adms:identifier _:c14n11 ;
 	prov:used coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M1_complex , coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M2_complex , coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex , coremeta4cat:SIM_8ppb-aeky_MD_method ;
 	coremeta4cat:software_package "Desmond (Schrodinger suite)" , "Simulation Interaction Diagram and Schrodinger Python API, analysis" .
@@ -54,7 +54,7 @@ coremeta4cat:SIM_8ppb-aeky_MD_method dcterms:description "Force field, water mod
 	a NCIT:C18097 .
 coremeta4cat:SIM_8ppb-aeky_MMGBSA dcterms:description "Prime MM/GBSA end-point calculations of the binding free energy of the cofactor-bound substrate 2a ((S)-1-(2-chlorophenyl)ethanamine bound to PLP) in 3FCR-4M and the mutants S19V/P423F (4M-N15, deposit M1) and G151A/P423F (4M-N16, deposit M2). Frames taken from the molecular dynamics runs after 100 ns, every 200th frame, both binding sites of the dimer, giving 50 absolute values per complex. Relative values are the mean of each mutant minus the mean of 3FCR-4M. The article reports them as consistent in magnitude and trend with the experimentally determined KM values." ;
 	dcterms:title "MM/GBSA binding free energy of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16" ;
-	a "Simulation" ;
+	a coremeta4cat:Simulation ;
 	adms:identifier _:c14n1 ;
 	prov:used coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M1_complex , coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M2_complex , coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex , coremeta4cat:SIM_8ppb-aeky_MMGBSA_method ;
 	coremeta4cat:calculated_property _:c14n10 , _:c14n2 ;
@@ -64,7 +64,7 @@ coremeta4cat:SIM_8ppb-aeky_MMGBSA_method dcterms:description "Minimization appro
 	a OBI:0000272 .
 coremeta4cat:SIM_8ppb-aeky_induced_fit_docking dcterms:description "Induced-fit docking with Glide to predict the initial binding mode of the cofactor-bound substrate in 3FCR-4M, the starting structure for molecular dynamics. The substrate is 2a, (S)-1-(2-chlorophenyl)ethanamine, bound to pyridoxal 5'-phosphate (PLP); the article shows the resulting poses as \"substrate-cofactor complexes ((S)-2)\" (Figure 4). \"CPEA\" in the archive name is taken to abbreviate this amine." ;
 	dcterms:title "Induced-fit docking of the substrate-cofactor complex into 3FCR-4M" ;
-	a "Simulation" ;
+	a coremeta4cat:Simulation ;
 	adms:identifier _:c14n3 ;
 	prov:used coremeta4cat:ENZ_8ppb-aeky_3FCR-4M , coremeta4cat:LIG_8ppb-aeky_2a_PLP , coremeta4cat:SIM_8ppb-aeky_induced_fit_docking_method ;
 	coremeta4cat:software_package "Glide, Induced Fit docking protocol (Schrodinger suite)" .
@@ -73,7 +73,7 @@ coremeta4cat:SIM_8ppb-aeky_induced_fit_docking_method dcterms:description "Glide
 	a OBI:0000272 .
 coremeta4cat:SIM_8ppb-aeky_protein_preparation dcterms:description "Preparation of the initial structure of 3FCR-4M for docking and molecular dynamics with the Protein Preparation Wizard. 3FCR-4M is the amine transaminase from Ruegeria sp. (PDB 3FCR) with the four mutations Y59W, Y87F, Y152F and T231A. The file descriptions of the deposit spell it 3CFR; the file names and the article use 3FCR." ;
 	dcterms:title "Protein preparation of the amine transaminase variant 3FCR-4M" ;
-	a "Simulation" ;
+	a coremeta4cat:Simulation ;
 	adms:identifier _:c14n8 ;
 	prov:used coremeta4cat:ENZ_8ppb-aeky_3FCR-4M , coremeta4cat:SIM_8ppb-aeky_protein_preparation_method ;
 	coremeta4cat:software_package "Protein Preparation Wizard (Schrodinger suite)" .

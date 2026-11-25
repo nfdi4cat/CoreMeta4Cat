@@ -149,7 +149,9 @@ classes:
 
   Characterization:
     is_a: CatalysisDataGeneratingActivity
-    class_uri: OBI:0000070   # planned process; specific technique via rdf_type
+    class_uri: coremeta4cat:Characterization   # own IRI, see CatalysisDataGeneratingActivity
+    broad_mappings:
+    - OBI:0000070   # assay
     description: |-
       A DataGeneratingActivity in which a catalyst sample or catalytic material
       is characterized using an analytical technique.

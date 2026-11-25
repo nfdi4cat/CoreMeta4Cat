@@ -17,7 +17,7 @@ realized_plan:
     analysis (CNA) to track Ni cluster crystallographic ordering'
   id: coremeta4cat:SIM_002_MD_method
   plan_designator: OBI:0000272
-activity_designator: Simulation
+activity_designator: coremeta4cat:Simulation
 software_package:
 - LAMMPS (29 Sep 2021 stable release, OpenMP build)
 - OVITO 3.7.11 (structure analysis, RDF, CNA, cluster tracking)

@@ -28,7 +28,7 @@
         "id": "coremeta4cat:SYNTH_001_impregnation_method",
         "plan_designator": "voc4cat:0007016"
       },
-      "activity_designator": "Synthesis",
+      "activity_designator": "coremeta4cat:Synthesis",
       "nominal_composition": [
         "5 wt% Pt/Al2O3"
       ],
@@ -74,7 +74,7 @@
         "id": "coremeta4cat:CHAR_001_BET_method",
         "plan_designator": "OBI:0000272"
       },
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     },
     {
       "id": "coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3",
@@ -97,7 +97,7 @@
         "id": "coremeta4cat:CHAR_002_XRD_method",
         "plan_designator": "OBI:0000272"
       },
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     }
   ],
   "is_about_entity": [

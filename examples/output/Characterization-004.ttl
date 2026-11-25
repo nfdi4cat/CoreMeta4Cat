@@ -11,7 +11,7 @@ coremeta4cat:CAT_002_NiO_CeO2 dcterms:description "15 wt% NiO on CeO2, calcined 
 	a prov:Entity .
 coremeta4cat:CHAR_004_TPR_NiO_CeO2 <http://purl.allotrope.org/ontologies/result#AFR_0000317> "thermal conductivity detector (TCD), Ar carrier gas reference channel" ;
 	SIO:000008 _:c14n0 ;
-	a "Characterization" ;
+	a coremeta4cat:Characterization ;
 	prov:used coremeta4cat:CAT_002_NiO_CeO2 , coremeta4cat:CHAR_004_TPR_method ;
 	prov:wasAssociatedWith coremeta4cat:DEV_005_Micromeritics_AutoChem ;
 	coremeta4cat:sample_description "NiO/CeO2 calcined at 500 deg C; 50 mg packed in quartz U-tube reactor (4 mm ID); quartz wool plugs above and below bed" .

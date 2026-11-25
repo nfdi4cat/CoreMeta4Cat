@@ -36,7 +36,7 @@ dataset_distribution:
     title: CC BY 4.0
 was_generated_by:
 - id: coremeta4cat:CHAR_b74m-m6rp_TCD
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
   title:
   - H2-TPR of the Ni-BCZY cermet (article Fig. 1)
   rdf_type:

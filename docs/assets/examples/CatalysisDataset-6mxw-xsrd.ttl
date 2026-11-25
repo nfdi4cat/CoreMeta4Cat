@@ -111,7 +111,7 @@ coremeta4cat:CAT_6mxw-xsrd_all dcterms:description "76 HTC precursors characteri
 	a prov:Entity .
 coremeta4cat:CHAR_6mxw-xsrd_XRF dcterms:description "X-ray fluorescence analysis of 76 Cu-Ga-Al compositions spanning the Cu/Al/Ga ternary (Cu 0-1, Al 0-1, Ga 0-1, metal fractions normalised to 1), including the three single-metal end members. According to the article (section 3.2), XRF was measured on the freeze-dried hydrotalcite-like (HTC) precursors, i.e. before calcination. Measured Cu, Al and Ga fractions are reported next to the nominal fractions." ;
 	dcterms:title "XRF elemental analysis (76 Cu-Ga-Al hydrotalcite-like precursors)" ;
-	a "Characterization" , voc4cat:0000067 ;
+	a coremeta4cat:Characterization , voc4cat:0000067 ;
 	adms:identifier _:c14n27 ;
 	prov:used coremeta4cat:CAT_6mxw-xsrd_HTC_library , coremeta4cat:CHAR_6mxw-xsrd_XRF_method ;
 	prov:wasAssociatedWith coremeta4cat:DEV_6mxw-xsrd_XRF .
@@ -188,7 +188,7 @@ coremeta4cat:REAC_6mxw-xsrd_screening RO:0004008 coremeta4cat:PROD_6mxw-xsrd_CH4
 	voc4cat:0007032 _:c14n37 .
 coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites dcterms:description "Density functional theory binding energies of OH and CO at 17 sites: pristine CuGa2O4 and CuGa2O4 doped with Al, Co, Cu, Ge, In, Ni or Sn, and pristine Ga2O3 and Ga2O3 doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr. Site notation in the source file is <host>-<dopant>, e.g. CuGa2O4-Co. Part of the theory-based prediction that led to the Cu-Ga-Al system (article, section 3.1)." ;
 	dcterms:title "DFT binding energies of OH and CO at 17 oxide surface sites" ;
-	a "Simulation" , voc4cat:0000215 ;
+	a coremeta4cat:Simulation , voc4cat:0000215 ;
 	adms:identifier _:c14n35 ;
 	prov:used coremeta4cat:SIM_6mxw-xsrd_DFT_method , coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites , coremeta4cat:SLAB_6mxw-xsrd_Ga2O3_sites ;
 	coremeta4cat:calculated_property _:c14n13 , _:c14n18 ;
@@ -199,7 +199,7 @@ coremeta4cat:SIM_6mxw-xsrd_DFT_method dcterms:description "Vienna Ab initio Simu
 	coremeta4cat:exchange_correlation_functional "PBE" .
 coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE dcterms:description "Binding energies of OH and CO computed with the MACE-MPA-0 machine-learned interatomic potential for 31 elemental and intermetallic compositions, as a second model next to the OCP screening; both serve as prescreening and sampling for DFT calculations, with DFT verification at the PBE-D3 level (Weber et al., ACS Catal. 2025, Table 2 and section 3.1). Surface facets, adsorption sites and the reference states of the binding energies are in the article's SI, not in the main text." ;
 	dcterms:title "MACE-MPA-0 binding-energy screening of OH and CO (31 compositions)" ;
-	a "Simulation" ;
+	a coremeta4cat:Simulation ;
 	adms:identifier _:c14n17 ;
 	prov:used coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE_method , coremeta4cat:SLAB_6mxw-xsrd_MACE_compositions ;
 	coremeta4cat:calculated_property _:c14n21 , _:c14n40 ;
@@ -209,7 +209,7 @@ coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE_method dcterms:description "Single-point or
 	a OBI:0000272 .
 coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP dcterms:description "Binding energies of OH and CO computed with an Open Catalyst Project (OCP) machine-learned interatomic potential for 37 elemental and intermetallic compositions, as prescreening and sampling for DFT calculations (article, Table 2). Surface facets, adsorption sites and the reference states of the binding energies are in the article's SI, not in the main text." ;
 	dcterms:title "OCP binding-energy screening of OH and CO (37 compositions)" ;
-	a "Simulation" ;
+	a coremeta4cat:Simulation ;
 	adms:identifier _:c14n42 ;
 	prov:used coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP_method , coremeta4cat:SLAB_6mxw-xsrd_OCP_compositions ;
 	coremeta4cat:calculated_property _:c14n20 , _:c14n51 ;
@@ -232,7 +232,7 @@ coremeta4cat:SLAB_6mxw-xsrd_OCP_compositions dcterms:description "Al, Al4Cu9, Co
 coremeta4cat:SOLV_6mxw-xsrd_water dcterms:title "deionised water (150 mL for the metal nitrates; reactor prefilled with 200 mL)" ;
 	a CHEBI:23367 .
 coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4 dcterms:title "Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination" ;
-	a "Synthesis" ;
+	a coremeta4cat:Synthesis ;
 	adms:identifier _:c14n31 ;
 	prov:generated coremeta4cat:CAT_6mxw-xsrd_Cu0.33Ga0.33Al0.33 ;
 	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_coprecipitation_method ;
@@ -257,7 +257,7 @@ coremeta4cat:SYN_6mxw-xsrd_coprecipitation_method dcterms:description "Metal nit
 	voc4cat:0008206 _:c14n59 ;
 	voc4cat:0008207 _:c14n47 .
 coremeta4cat:SYN_6mxw-xsrd_gen1 dcterms:title "Cu0.465Ga0.07Al0.465 mixed metal oxide, three calcination temperatures" ;
-	a "Synthesis" ;
+	a coremeta4cat:Synthesis ;
 	adms:identifier _:c14n14 ;
 	prov:generated coremeta4cat:CAT_6mxw-xsrd_G1_500 , coremeta4cat:CAT_6mxw-xsrd_G1_600 , coremeta4cat:CAT_6mxw-xsrd_G1_700 ;
 	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_gen1_method ;
@@ -271,7 +271,7 @@ coremeta4cat:SYN_6mxw-xsrd_gen1_method dcterms:description "Same route as the li
 	voc4cat:0000060 _:c14n33 ;
 	voc4cat:0008116 _:c14n55 .
 coremeta4cat:SYN_6mxw-xsrd_gen2_step1 dcterms:title "Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C" ;
-	a "Synthesis" ;
+	a coremeta4cat:Synthesis ;
 	adms:identifier _:c14n52 ;
 	prov:generated coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450 , coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550 ;
 	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:SYN_6mxw-xsrd_gen2_step1_method ;
@@ -285,7 +285,7 @@ coremeta4cat:SYN_6mxw-xsrd_gen2_step1_method dcterms:description "Same route as 
 	voc4cat:0000060 _:c14n16 ;
 	voc4cat:0008116 _:c14n58 .
 coremeta4cat:SYN_6mxw-xsrd_gen2_step2 dcterms:title "1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at 250 or 350 C" ;
-	a "Synthesis" ;
+	a coremeta4cat:Synthesis ;
 	adms:identifier _:c14n4 ;
 	prov:generated coremeta4cat:CAT_6mxw-xsrd_G2_450_250 , coremeta4cat:CAT_6mxw-xsrd_G2_450_350 , coremeta4cat:CAT_6mxw-xsrd_G2_550_250 , coremeta4cat:CAT_6mxw-xsrd_G2_550_350 ;
 	prov:used coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450 , coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_gen2_step2_method ;

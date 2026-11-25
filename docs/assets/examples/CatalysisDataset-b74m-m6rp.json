@@ -91,7 +91,7 @@
   "was_generated_by": [
     {
       "id": "coremeta4cat:SYN_b74m-m6rp_Ru_Ba_IWI",
-      "activity_designator": "Synthesis",
+      "activity_designator": "coremeta4cat:Synthesis",
       "title": [
         "Ru and Ba on Ni-BCZY, Ni-YSZ and YSZ by stepwise incipient wetness impregnation"
       ],
@@ -189,7 +189,7 @@
     },
     {
       "id": "coremeta4cat:SYN_b74m-m6rp_cermet_supports",
-      "activity_designator": "Synthesis",
+      "activity_designator": "coremeta4cat:Synthesis",
       "title": [
         "Ni-BCZY, Ni-YSZ and YSZ supports from sintered tapes"
       ],
@@ -251,7 +251,7 @@
     },
     {
       "id": "coremeta4cat:CHAR_b74m-m6rp_TCD",
-      "activity_designator": "Characterization",
+      "activity_designator": "coremeta4cat:Characterization",
       "title": [
         "H2-TPR of the Ni-BCZY cermet (article Fig. 1)"
       ],
@@ -308,7 +308,7 @@
     },
     {
       "id": "coremeta4cat:SIM_b74m-m6rp_MKM_parametric",
-      "activity_designator": "Simulation",
+      "activity_designator": "coremeta4cat:Simulation",
       "title": [
         "Microkinetic NH3 decomposition: reactor profiles, TOF and parameter variation"
       ],
@@ -353,7 +353,7 @@
     },
     {
       "id": "coremeta4cat:SIM_b74m-m6rp_MKM_validation",
-      "activity_designator": "Simulation",
+      "activity_designator": "coremeta4cat:Simulation",
       "title": [
         "Microkinetic simulation of NH3 decomposition light-off on Ni-BCZY and 0.5Ru/1Ba/Ni-BCZY"
       ],

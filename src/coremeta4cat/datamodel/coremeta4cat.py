@@ -140,6 +140,7 @@ BFO = CurieNamespace('BFO', 'http://purl.obolibrary.org/obo/BFO_')
 CHEBI = CurieNamespace('CHEBI', 'http://purl.obolibrary.org/obo/CHEBI_')
 CHEMINF = CurieNamespace('CHEMINF', 'http://semanticscience.org/resource/CHEMINF_')
 CHMO = CurieNamespace('CHMO', 'http://purl.obolibrary.org/obo/CHMO_')
+COB = CurieNamespace('COB', 'http://purl.obolibrary.org/obo/COB_')
 EDAM = CurieNamespace('EDAM', 'http://edamontology.org/data_')
 ENVO = CurieNamespace('ENVO', 'http://purl.obolibrary.org/obo/ENVO_')
 IAO = CurieNamespace('IAO', 'http://purl.obolibrary.org/obo/IAO_')
@@ -154,6 +155,7 @@ RO = CurieNamespace('RO', 'http://purl.obolibrary.org/obo/RO_')
 RXNO = CurieNamespace('RXNO', 'http://purl.obolibrary.org/obo/RXNO_')
 SIO = CurieNamespace('SIO', 'http://semanticscience.org/resource/SIO_')
 ADMS = CurieNamespace('adms', 'http://www.w3.org/ns/adms#')
+ALLOTROPE_PROCESS = CurieNamespace('allotrope_process', 'http://purl.allotrope.org/ontologies/process#AFP_')
 ALLOTROPE_QUALITY = CurieNamespace('allotrope_quality', 'http://purl.allotrope.org/ontologies/quality#AFQ_')
 ALLOTROPE_RESULT = CurieNamespace('allotrope_result', 'http://purl.allotrope.org/ontologies/result#AFR_')
 ALLOTROPE_ROLE = CurieNamespace('allotrope_role', 'http://purl.allotrope.org/ontologies/role#AFRL_')
@@ -1725,6 +1727,12 @@ class CatalysisDataGeneratingActivity(DataGeneratingActivity):
     Simulation instance is nested inside another object's was_generated_by
     list (e.g. in a combined CatalysisDataset file), so the loader knows
     which of the three to construct.
+
+    The designator holds the class_uri of the concrete class, and in RDF it
+    becomes the activity's rdf:type. Every subclass therefore needs a
+    class_uri of its own: Synthesis, Characterization and Simulation use
+    coremeta4cat IRIs and give external ontology terms as mappings. A term
+    shared by two subclasses (as OBI:0000070 once was) cannot tell them apart.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -1734,10 +1742,10 @@ class CatalysisDataGeneratingActivity(DataGeneratingActivity):
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.CatalysisDataGeneratingActivity
 
     id: Union[str, CatalysisDataGeneratingActivityId] = None
-    activity_designator: Optional[str] = None
+    activity_designator: Optional[Union[str, URIorCURIE]] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        self.activity_designator = str(self.class_name)
+        self.activity_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
         super().__post_init__(**kwargs)
 
@@ -1749,12 +1757,20 @@ class CatalysisDataGeneratingActivity(DataGeneratingActivity):
             return super().__new__(cls,*args,**kwargs)
         else:
             type_designator_value = kwargs[type_designator]
-            target_cls = cls._class_for("class_name", type_designator_value)
+            target_cls = cls._class_for("class_class_curie", type_designator_value)
+
+
+            if target_cls is None:
+                target_cls = cls._class_for("class_class_uri", type_designator_value)
+
+
+            if target_cls is None:
+                target_cls = cls._class_for("class_model_uri", type_designator_value)
 
 
             if target_cls is None:
                 raise ValueError(f"Wrong type designator value: class {cls.__name__} "
-                                 f"has no subclass with ['class_name']='{kwargs[type_designator]}'")
+                                 f"has no subclass with ['class_class_curie', 'class_class_uri', 'class_model_uri']='{kwargs[type_designator]}'")
             return super().__new__(target_cls,*args,**kwargs)
 
 
@@ -1775,8 +1791,8 @@ class Synthesis(CatalysisDataGeneratingActivity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OBI["0000070"]
-    class_class_curie: ClassVar[str] = "OBI:0000070"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Synthesis"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:Synthesis"
     class_name: ClassVar[str] = "Synthesis"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Synthesis
 
@@ -1836,7 +1852,7 @@ class Synthesis(CatalysisDataGeneratingActivity):
         self._normalize_inlined_as_list(slot_name="carried_out_by", slot_type=Device, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
-        self.activity_designator = str(self.class_name)
+        self.activity_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -1857,8 +1873,8 @@ class Characterization(CatalysisDataGeneratingActivity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OBI["0000070"]
-    class_class_curie: ClassVar[str] = "OBI:0000070"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Characterization"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:Characterization"
     class_name: ClassVar[str] = "Characterization"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Characterization
 
@@ -1912,7 +1928,7 @@ class Characterization(CatalysisDataGeneratingActivity):
             self.rdf_type = DefinedTerm(**as_dict(self.rdf_type))
 
         super().__post_init__(**kwargs)
-        self.activity_designator = str(self.class_name)
+        self.activity_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -1931,8 +1947,8 @@ class Simulation(CatalysisDataGeneratingActivity):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NCIT["C48936"]
-    class_class_curie: ClassVar[str] = "NCIT:C48936"
+    class_class_uri: ClassVar[URIRef] = COREMETA4CAT["Simulation"]
+    class_class_curie: ClassVar[str] = "coremeta4cat:Simulation"
     class_name: ClassVar[str] = "Simulation"
     class_model_uri: ClassVar[URIRef] = COREMETA4CAT.Simulation
 
@@ -1971,7 +1987,7 @@ class Simulation(CatalysisDataGeneratingActivity):
         self._normalize_inlined_as_list(slot_name="evaluated_entity", slot_type=EvaluatedEntity, key_name="id", keyed=True)
 
         super().__post_init__(**kwargs)
-        self.activity_designator = str(self.class_name)
+        self.activity_designator = str(self.class_class_curie if self.class_class_curie is not None else self.class_class_uri)
 
 
 @dataclass(repr=False)
@@ -9784,7 +9800,7 @@ slots.bep_relation = Slot(uri=COREMETA4CAT.bep_relation, name="bep_relation", cu
                    model_uri=COREMETA4CAT.bep_relation, domain=None, range=Optional[Union[str, list[str]]])
 
 slots.activity_designator = Slot(uri=RDF.type, name="activity_designator", curie=RDF.curie('type'),
-                   model_uri=COREMETA4CAT.activity_designator, domain=None, range=Optional[str])
+                   model_uri=COREMETA4CAT.activity_designator, domain=None, range=Optional[Union[str, URIorCURIE]])
 
 slots.plan_designator = Slot(uri=RDF.type, name="plan_designator", curie=RDF.curie('type'),
                    model_uri=COREMETA4CAT.plan_designator, domain=None, range=Optional[Union[str, URIorCURIE]])

@@ -19,7 +19,7 @@
     "id": "coremeta4cat:SYNTH_001_impregnation_method",
     "plan_designator": "voc4cat:0007016"
   },
-  "activity_designator": "Synthesis",
+  "activity_designator": "coremeta4cat:Synthesis",
   "nominal_composition": [
     "5 wt% Pt/Al2O3"
   ],

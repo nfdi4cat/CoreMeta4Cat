@@ -93,7 +93,7 @@
           }
         ]
       },
-      "activity_designator": "Synthesis",
+      "activity_designator": "coremeta4cat:Synthesis",
       "nominal_composition": [
         "1Ru/Ni-BCZY: 1.0 wt% Ru",
         "0.5Ru/1Ba/Ni-BCZY: 0.5 wt% Ru, 1.0 wt% Ba",
@@ -157,7 +157,7 @@
         "id": "coremeta4cat:SYN_b74m-m6rp_tape_casting_method",
         "plan_designator": "voc4cat:0007016"
       },
-      "activity_designator": "Synthesis",
+      "activity_designator": "coremeta4cat:Synthesis",
       "nominal_composition": [
         "Ni-BCZY cermet: NiO and BaCe0.8Zr0.1Y0.1O3-d (BCZY811), 60:40 by weight before reduction",
         "Ni-YSZ cermet: NiO and 8-YSZ, 60:40 by weight before reduction",
@@ -223,7 +223,7 @@
           }
         ]
       },
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     },
     {
       "id": "coremeta4cat:SIM_b74m-m6rp_MKM_parametric",
@@ -250,7 +250,7 @@
         "id": "coremeta4cat:SIM_b74m-m6rp_MKM_parametric_method",
         "plan_designator": "coremeta4cat:Microkinetics"
       },
-      "activity_designator": "Simulation",
+      "activity_designator": "coremeta4cat:Simulation",
       "software_package": [
         "DETCHEM-PBR (DETCHEM package), reactor simulations",
         "DETCHEM-SURFPROBE, surface coverages and TOF without reactor effects"
@@ -302,7 +302,7 @@
         "id": "coremeta4cat:SIM_b74m-m6rp_MKM_method",
         "plan_designator": "coremeta4cat:Microkinetics"
       },
-      "activity_designator": "Simulation",
+      "activity_designator": "coremeta4cat:Simulation",
       "software_package": [
         "DETCHEM-PBR (DETCHEM package)",
         "CaRMeN (Catalytic Reaction Mechanisms Network)",

@@ -89,7 +89,7 @@ was_generated_by:
     - value: 50.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
       unit: https://qudt.org/vocab/unit/K-PER-MIN
-  activity_designator: Synthesis
+  activity_designator: coremeta4cat:Synthesis
   nominal_composition:
   - 'Pd3P/SiO2: 5 wt% Pd'
   catalyst_measured_properties:
@@ -161,7 +161,7 @@ was_generated_by:
     - value: 50.0
       has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
       unit: https://qudt.org/vocab/unit/K-PER-MIN
-  activity_designator: Synthesis
+  activity_designator: coremeta4cat:Synthesis
   nominal_composition:
   - 'Pd/SiO2: 5 wt% Pd'
   catalyst_measured_properties:
@@ -203,7 +203,7 @@ was_generated_by:
       total CO uptake.
     id: coremeta4cat:CHAR_arp5-s69r_COChemisorption_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
 - id: coremeta4cat:CHAR_arp5-s69r_DRIFT
   title:
   - DRIFT CO-adsorption spectroscopy (2 catalysts, 2 temperatures)
@@ -236,7 +236,7 @@ was_generated_by:
       KBr beamsplitter.
     id: coremeta4cat:CHAR_arp5-s69r_DRIFT_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
   has_sample_pretreatment:
   - value: 1 h in argon (50 mL/min) at 150 C to remove physisorbed water, then cooled
       to 30 C before CO dosing
@@ -277,7 +277,7 @@ was_generated_by:
       INSTPAR.
     id: coremeta4cat:CHAR_arp5-s69r_PXRD_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
 - id: coremeta4cat:CHAR_arp5-s69r_STEM
   title:
   - STEM/TEM imaging and EDX mapping (3 catalyst samples)
@@ -316,7 +316,7 @@ was_generated_by:
       and Microscopy/FEI, Esprit/Bruker); Cliff-Lorimer quantification for EDXS.
     id: coremeta4cat:CHAR_arp5-s69r_STEM_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
   sample_preparation:
   - Dispersed in ethanol, a drop placed on a Cu grid with an amorphous carbon film,
     dried at 60 C overnight
@@ -348,7 +348,7 @@ was_generated_by:
     description: Pd 3d scans for both catalysts; P 2p scan additionally for Pd3P/SiO2.
     id: coremeta4cat:CHAR_arp5-s69r_XPS_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
   sample_preparation:
   - Stored under inert atmosphere in a glovebox and transferred with minimal exposure
     to air; no further pretreatment

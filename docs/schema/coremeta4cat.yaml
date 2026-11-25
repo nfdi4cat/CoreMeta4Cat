@@ -140,6 +140,36 @@ prefixes:
   hdl:
     prefix_prefix: hdl
     prefix_reference: https://hdl.handle.net/
+  allotrope.result:
+    prefix_prefix: allotrope.result
+    prefix_reference: http://purl.allotrope.org/ontologies/result#AFR_
+  allotrope.process:
+    prefix_prefix: allotrope.process
+    prefix_reference: http://purl.allotrope.org/ontologies/process#AFP_
+  allotrope.quality:
+    prefix_prefix: allotrope.quality
+    prefix_reference: http://purl.allotrope.org/ontologies/quality#AFQ_
+  allotrope.role:
+    prefix_prefix: allotrope.role
+    prefix_reference: http://purl.allotrope.org/ontologies/role#AFRL_
+  COB:
+    prefix_prefix: COB
+    prefix_reference: http://purl.obolibrary.org/obo/COB_
+  dcatap:
+    prefix_prefix: dcatap
+    prefix_reference: http://data.europa.eu/r5r/
+  eli:
+    prefix_prefix: eli
+    prefix_reference: http://data.europa.eu/eli/ontology#
+  locn:
+    prefix_prefix: locn
+    prefix_reference: http://www.w3.org/ns/locn#
+  odrl:
+    prefix_prefix: odrl
+    prefix_reference: http://www.w3.org/ns/odrl/2/
+  spdx:
+    prefix_prefix: spdx
+    prefix_reference: http://spdx.org/rdf/terms#
 default_prefix: coremeta4cat
 default_range: string
 subsets:
@@ -1206,15 +1236,22 @@ slots:
   activity_designator:
     name: activity_designator
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/activity_designator
-    description: 'Internal type designator for CatalysisDataGeneratingActivity subclasses
+    description: 'Type designator for CatalysisDataGeneratingActivity subclasses:
+      the
 
-      (Synthesis, Characterization, Simulation). Only needs to be set by hand
+      class_uri of the concrete activity, i.e. coremeta4cat:Synthesis,
 
-      when nesting one of these inside another object''s was_generated_by list
+      coremeta4cat:Characterization or coremeta4cat:Simulation. Only needs to be
 
-      (e.g. in a combined CatalysisDataset file) -- LinkML fills it in
+      set by hand when nesting one of these inside another object''s
 
-      automatically when a class is instantiated directly.'
+      was_generated_by list (e.g. in a combined CatalysisDataset file) -- LinkML
+
+      fills it in automatically when a class is instantiated directly. Write the
+
+      CURIE as shown: the Python loader matches it against the class_uri exactly.
+
+      In RDF it becomes the activity''s rdf:type.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     mappings:
     - rdf:type
@@ -1223,7 +1260,7 @@ slots:
     owner: CatalysisDataGeneratingActivity
     domain_of:
     - CatalysisDataGeneratingActivity
-    range: string
+    range: uriorcurie
   plan_designator:
     name: plan_designator
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/plan_designator
@@ -13716,7 +13753,18 @@ classes:
 
       list (e.g. in a combined CatalysisDataset file), so the loader knows
 
-      which of the three to construct.'
+      which of the three to construct.
+
+
+      The designator holds the class_uri of the concrete class, and in RDF it
+
+      becomes the activity''s rdf:type. Every subclass therefore needs a
+
+      class_uri of its own: Synthesis, Characterization and Simulation use
+
+      coremeta4cat IRIs and give external ontology terms as mappings. A term
+
+      shared by two subclasses (as OBI:0000070 once was) cannot tell them apart.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
     is_a: DataGeneratingActivity
     abstract: true
@@ -14243,7 +14291,9 @@ classes:
       Pattern 3.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     exact_mappings:
-    - OBI:0000070
+    - coremeta4cat:Synthesis
+    broad_mappings:
+    - COB:0000035
     is_a: CatalysisDataGeneratingActivity
     slots:
     - id
@@ -14310,7 +14360,7 @@ classes:
         range: Device
         multivalued: true
         inlined_as_list: true
-    class_uri: OBI:0000070
+    class_uri: coremeta4cat:Synthesis
   Precursor:
     name: Precursor
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Precursor
@@ -15008,6 +15058,8 @@ classes:
       \ exactly as NMRSpectroscopy uses\nrdf_type: CHMO:0000613."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     exact_mappings:
+    - coremeta4cat:Characterization
+    broad_mappings:
     - OBI:0000070
     is_a: CatalysisDataGeneratingActivity
     slots:
@@ -15065,7 +15117,7 @@ classes:
 
           CHMO:0000158 (powder XRD), CHMO:0000404 (XPS), voc4cat:0000075 (SEM).'
         recommended: true
-    class_uri: OBI:0000070
+    class_uri: coremeta4cat:Characterization
   CharacterizationTechnique:
     name: CharacterizationTechnique
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CharacterizationTechnique
@@ -16318,7 +16370,9 @@ classes:
       NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     exact_mappings:
-    - NCIT:C48936
+    - coremeta4cat:Simulation
+    close_mappings:
+    - NCIT:C16461
     is_a: CatalysisDataGeneratingActivity
     slots:
     - id
@@ -16371,7 +16425,7 @@ classes:
         recommended: true
         multivalued: true
         inlined_as_list: true
-    class_uri: NCIT:C48936
+    class_uri: coremeta4cat:Simulation
   SimulationMethod:
     name: SimulationMethod
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/SimulationMethod
@@ -20447,6 +20501,6 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.12.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-11-24T15:52:49'
-source_file_size: 15221
+source_file_date: '2026-11-25T06:56:33'
+source_file_size: 16106
 

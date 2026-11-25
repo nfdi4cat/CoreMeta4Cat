@@ -10,7 +10,9 @@ The Synthesis data class captures metadata required to document catalyst prepara
 Metadata are organized hierarchically based on the selected synthesis method. Method-specific child fields are activated depending on the preparation approach (e.g., co-precipitation requiring fields such as precipitating agent, synthesis pH, aging time, and aging temperature). In addition, method-independent fields—such as precursor identity, precursor quantity, and storage conditions—are included to ensure consistent documentation across synthesis strategies.
 
 
-**CURIE:** [`OBI:0000070`](OBI:0000070)
+**CURIE:** [`coremeta4cat:Synthesis`](coremeta4cat:Synthesis)
+
+**Mappings:** broader match [`COB:0000035`](http://purl.obolibrary.org/obo/COB_0000035)
 
 <div class="cm4c-classmap" data-root="Synthesis"
      data-src="../assets/schema_graph.json"
@@ -414,13 +416,16 @@ before a process or measurement (e.g. "reduction at 300 °C", "outgassing").
 <details markdown="1" open>
 <summary><strong>activity designator</strong> (Optional)</summary>
 
-**Description:** Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.
+**Description:** Type designator for CatalysisDataGeneratingActivity subclasses: the
+class_uri of the concrete activity, i.e. coremeta4cat:Synthesis,
+coremeta4cat:Characterization or coremeta4cat:Simulation. Only needs to be
+set by hand when nesting one of these inside another object's
+was_generated_by list (e.g. in a combined CatalysisDataset file) -- LinkML
+fills it in automatically when a class is instantiated directly. Write the
+CURIE as shown: the Python loader matches it against the class_uri exactly.
+In RDF it becomes the activity's rdf:type.
 
-**Data Type:** string
+**Data Type:** uriorcurie
 
 **Cardinality:**  Optional
 

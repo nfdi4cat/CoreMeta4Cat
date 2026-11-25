@@ -30,6 +30,7 @@ prefixes:
   linkml: https://w3id.org/linkml/
   prov: http://www.w3.org/ns/prov#
   OBI: http://purl.obolibrary.org/obo/OBI_
+  COB: http://purl.obolibrary.org/obo/COB_
   CHEBI: http://purl.obolibrary.org/obo/CHEBI_
   BFO: http://purl.obolibrary.org/obo/BFO_
   SIO: http://semanticscience.org/resource/SIO_
@@ -114,7 +115,9 @@ classes:
 
   Synthesis:
     is_a: CatalysisDataGeneratingActivity
-    class_uri: OBI:0000070   # planned process
+    class_uri: coremeta4cat:Synthesis   # own IRI, see CatalysisDataGeneratingActivity
+    broad_mappings:
+    - COB:0000035   # completely executed planned process
     description: |-
       A DataGeneratingActivity in which a catalyst is prepared.
 

@@ -33,7 +33,7 @@ rdf_type:
     title: "heterogeneous catalysis"
 was_generated_by:
   - id: "coremeta4cat:SYNTH_001_Pt_Al2O3"
-    activity_designator: "Synthesis"
+    activity_designator: "coremeta4cat:Synthesis"
     nominal_composition:
       - "5 wt% Pt/Al2O3"
     catalyst_measured_properties:
@@ -59,7 +59,7 @@ was_generated_by:
       title: "incipient wetness impregnation"
       description: "incipient_wetness, 25 deg C, 12 h"
   - id: "coremeta4cat:CHAR_001_BET_CuZnO_Al2O3"
-    activity_designator: "Characterization"
+    activity_designator: "coremeta4cat:Characterization"
     carried_out_by:
       - id: "coremeta4cat:DEV_001_Micromeritics_ASAP2020"
         title: "Micromeritics ASAP 2020 surface area and porosimetry analyzer"
@@ -72,7 +72,7 @@ was_generated_by:
       title: "BET surface area measurement"
       description: "N2 physisorption at 77 K, degassing at 300 deg C for 3 h under vacuum prior to measurement"
   - id: "coremeta4cat:CHAR_002_XRD_CuZnO_Al2O3"
-    activity_designator: "Characterization"
+    activity_designator: "coremeta4cat:Characterization"
     carried_out_by:
       - id: "coremeta4cat:DEV_002_Bruker_D8_Advance"
         title: "Bruker D8 Advance diffractometer with Cu K-alpha radiation (1.5406 Ang)"

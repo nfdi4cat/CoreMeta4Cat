@@ -281,7 +281,7 @@
           "notation": "https://hdl.handle.net/21.11165/4cat/32x1-99x6"
         }
       ],
-      "activity_designator": "Synthesis"
+      "activity_designator": "coremeta4cat:Synthesis"
     },
     {
       "id": "coremeta4cat:SYN_32x1-99x6_Pd_impregnation",
@@ -474,7 +474,7 @@
           "notation": "https://hdl.handle.net/21.11165/4cat/32x1-99x6"
         }
       ],
-      "activity_designator": "Synthesis"
+      "activity_designator": "coremeta4cat:Synthesis"
     },
     {
       "id": "coremeta4cat:CHAR_32x1-99x6_BET",
@@ -557,7 +557,7 @@
           "notation": "https://hdl.handle.net/21.11165/4cat/32x1-99x6"
         }
       ],
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     },
     {
       "id": "coremeta4cat:CHAR_32x1-99x6_DRIFT",
@@ -610,7 +610,7 @@
           "notation": "https://hdl.handle.net/21.11165/4cat/32x1-99x6"
         }
       ],
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     },
     {
       "id": "coremeta4cat:CHAR_32x1-99x6_ICPAES",
@@ -683,7 +683,7 @@
           "notation": "https://hdl.handle.net/21.11165/4cat/32x1-99x6"
         }
       ],
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     },
     {
       "id": "coremeta4cat:CHAR_32x1-99x6_IR",
@@ -746,7 +746,7 @@
           "notation": "https://hdl.handle.net/21.11165/4cat/32x1-99x6"
         }
       ],
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     },
     {
       "id": "coremeta4cat:CHAR_32x1-99x6_PXRD",
@@ -829,7 +829,7 @@
           "notation": "https://hdl.handle.net/21.11165/4cat/32x1-99x6"
         }
       ],
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     }
   ],
   "is_about_activity": [

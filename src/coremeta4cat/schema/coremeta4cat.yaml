@@ -102,6 +102,21 @@ prefixes:
   foaf: http://xmlns.com/foaf/0.1/
   adms: http://www.w3.org/ns/adms#
   hdl: https://hdl.handle.net/
+  # Declared here even where a module declares them too. SchemaView caches its
+  # prefix map while it resolves the DCAT-AP-PLUS import, before DCAT-AP-PLUS and
+  # the reaction, characterization and synthesis modules are loaded. A prefix
+  # declared only there is written unexpanded into RDF, e.g.
+  # <allotrope.quality:0001159>. tests/test_rdf_output.py checks every CURIE.
+  allotrope.result: http://purl.allotrope.org/ontologies/result#AFR_
+  allotrope.process: http://purl.allotrope.org/ontologies/process#AFP_
+  allotrope.quality: http://purl.allotrope.org/ontologies/quality#AFQ_
+  allotrope.role: http://purl.allotrope.org/ontologies/role#AFRL_
+  COB: http://purl.obolibrary.org/obo/COB_
+  dcatap: http://data.europa.eu/r5r/
+  eli: http://data.europa.eu/eli/ontology#
+  locn: http://www.w3.org/ns/locn#
+  odrl: http://www.w3.org/ns/odrl/2/
+  spdx: http://spdx.org/rdf/terms#
 
 default_prefix: coremeta4cat
 default_range: string

@@ -24,7 +24,7 @@ coremeta4cat:PREC_6mxw-xsrd_GaNO3 dcterms:title "gallium(III) nitrate hydrate, G
 	a voc4cat:0007794 ;
 	voc4cat:0008118 _:c14n3 .
 coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4 dcterms:title "Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination" ;
-	a "Synthesis" ;
+	a coremeta4cat:Synthesis ;
 	prov:generated coremeta4cat:CAT_6mxw-xsrd_Cu0.33Ga0.33Al0.33 ;
 	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_coprecipitation_method ;
 	coremeta4cat:catalyst_measured_properties "XRF of the HTC precursor: Cu 0.42, Al 0.22, Ga 0.36 (metal fractions; nominal 0.33/0.33/0.34)" ;

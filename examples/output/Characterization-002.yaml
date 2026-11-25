@@ -12,4 +12,4 @@ realized_plan:
     1 deg/min, Rietveld refinement for phase quantification
   id: coremeta4cat:CHAR_002_XRD_method
   plan_designator: OBI:0000272
-activity_designator: Characterization
+activity_designator: coremeta4cat:Characterization

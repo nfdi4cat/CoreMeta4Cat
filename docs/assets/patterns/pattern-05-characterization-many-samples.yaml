@@ -18,4 +18,4 @@ evaluated_entity:
 realized_plan:
   id: coremeta4cat:CHAR_32x1-99x6_BET_method
   title: N2 physisorption BET method
-activity_designator: Characterization
+activity_designator: coremeta4cat:Characterization

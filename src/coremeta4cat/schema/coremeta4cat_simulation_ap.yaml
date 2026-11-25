@@ -89,7 +89,9 @@ classes:
 
   Simulation:
     is_a: CatalysisDataGeneratingActivity
-    class_uri: NCIT:C48936   # computer simulation
+    class_uri: coremeta4cat:Simulation   # own IRI, see CatalysisDataGeneratingActivity
+    close_mappings:
+    - NCIT:C16461   # computer modeling (NCIt synonym: simulation)
     description: |-
       A DataGeneratingActivity in which a catalyst, catalytic material, or
       catalytic process is modelled computationally.

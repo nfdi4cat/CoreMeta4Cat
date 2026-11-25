@@ -115,7 +115,7 @@ was_generated_by:
       has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFlowRate
       description: normal litres per hour; GHSV 10 h-1
       unit: https://qudt.org/vocab/unit/L-PER-HR
-  activity_designator: Synthesis
+  activity_designator: coremeta4cat:Synthesis
   nominal_composition:
   - 1, 2, 3, 4 and 5 wt% P on alumina (1PAl2O3 to 5PAl2O3)
   - 1, 3 and 5 wt% P on silica (1PSiO2, 3PSiO2, 5PSiO2)
@@ -233,7 +233,7 @@ was_generated_by:
       has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFlowRate
       description: normal litres per hour; GHSV 10 h-1
       unit: https://qudt.org/vocab/unit/L-PER-HR
-  activity_designator: Synthesis
+  activity_designator: coremeta4cat:Synthesis
   nominal_composition:
   - 2 wt% Pd on alumina with 0, 1, 2, 3, 4 or 5 wt% P
   - 2 wt% Pd on silica with 0, 1, 3 or 5 wt% P
@@ -309,7 +309,7 @@ was_generated_by:
       explicitly stated in bet_results.txt; assumed standard BET convention.
     id: coremeta4cat:CHAR_32x1-99x6_BET_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_DRIFT
   title:
   - DRIFT CO-adsorption spectroscopy (4 catalysts)
@@ -346,7 +346,7 @@ was_generated_by:
     description: CO adsorption at room temperature; pseudo-absorbance = log(1/reflectance).
     id: coremeta4cat:CHAR_32x1-99x6_DRIFT_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_ICPAES
   title:
   - ICP-AES elemental composition analysis (8 catalysts)
@@ -394,7 +394,7 @@ was_generated_by:
     description: 'Elements analyzed: Pd, P. Results reported in wt% (icp_results.txt).'
     id: coremeta4cat:CHAR_32x1-99x6_ICPAES_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_IR
   title:
   - Infrared spectroscopy (6 catalysts)
@@ -435,7 +435,7 @@ was_generated_by:
     description: Wavenumber range ~400-3599 cm-1; pseudo-absorbance units.
     id: coremeta4cat:CHAR_32x1-99x6_IR_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
 - id: coremeta4cat:CHAR_32x1-99x6_PXRD
   title:
   - Powder XRD phase analysis (10 catalysts)
@@ -492,7 +492,7 @@ was_generated_by:
       sample based on the file series context (matches ICP sample FR507).
     id: coremeta4cat:CHAR_32x1-99x6_PXRD_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
 creator:
 - name:
   - Rang, Fabian

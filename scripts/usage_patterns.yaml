@@ -49,8 +49,9 @@ sections:
         notes:
           - >-
             `activity_designator` tells software which kind of activity an entry of
-            `was_generated_by` is (Synthesis, Characterization or Simulation). It is needed
-            whenever activities are nested inside a dataset record.
+            `was_generated_by` is (`coremeta4cat:Synthesis`, `coremeta4cat:Characterization` or
+            `coremeta4cat:Simulation`) and becomes its `rdf:type` in RDF. It is needed whenever
+            activities are nested inside a dataset record.
           - >-
             `is_referenced_by` links the dataset to the article; the article usually cites the
             dataset only by its handle, so this is the way back.

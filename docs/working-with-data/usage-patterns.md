@@ -41,7 +41,7 @@ catalysis field it belongs to, and which activities produced it.
 
 **Notes:**
 
-- `activity_designator` tells software which kind of activity an entry of `was_generated_by` is (Synthesis, Characterization or Simulation). It is needed whenever activities are nested inside a dataset record.
+- `activity_designator` tells software which kind of activity an entry of `was_generated_by` is (`coremeta4cat:Synthesis`, `coremeta4cat:Characterization` or `coremeta4cat:Simulation`) and becomes its `rdf:type` in RDF. It is needed whenever activities are nested inside a dataset record.
 - `is_referenced_by` links the dataset to the article; the article usually cites the dataset only by its handle, so this is the way back.
 
 **Fields used:** [`rdf_type`](../elements/slots/rdf_type.md), [`keyword`](../elements/slots/keyword.md), [`creator`](../elements/slots/creator.md), [`name`](../elements/slots/name.md), [`publisher`](../elements/slots/publisher.md), [`is_referenced_by`](../elements/slots/is_referenced_by.md), [`dataset_distribution`](../elements/slots/dataset_distribution.md), [`access_URL`](../elements/slots/access_URL.md), [`licence`](../elements/slots/licence.md), [`was_generated_by`](../elements/slots/was_generated_by.md), [`activity_designator`](../elements/slots/activity_designator.md), [`carried_out_by`](../elements/slots/carried_out_by.md), [`evaluated_entity`](../elements/slots/evaluated_entity.md), [`realized_plan`](../elements/slots/realized_plan.md), [`plan_designator`](../elements/slots/plan_designator.md)
@@ -144,7 +144,7 @@ catalysis field it belongs to, and which activities produced it.
         title: CC BY 4.0
     was_generated_by:
     - id: coremeta4cat:CHAR_b74m-m6rp_TCD
-      activity_designator: Characterization
+      activity_designator: coremeta4cat:Characterization
       title:
       - H2-TPR of the Ni-BCZY cermet (article Fig. 1)
       rdf_type:
@@ -197,7 +197,7 @@ catalysis field it belongs to, and which activities produced it.
     coremeta4cat:CAT_b74m-m6rp_Ni-BCZY dcterms:title "Ni-BCZY cermet powder" ;
     	a prov:Entity .
     coremeta4cat:CHAR_b74m-m6rp_TCD dcterms:title "H2-TPR of the Ni-BCZY cermet (article Fig. 1)" ;
-    	a "Characterization" , CHMO:0002908 ;
+    	a CHMO:0002908 , coremeta4cat:Characterization ;
     	prov:used coremeta4cat:CAT_b74m-m6rp_Ni-BCZY , coremeta4cat:CHAR_b74m-m6rp_TCD_method ;
     	prov:wasAssociatedWith coremeta4cat:DEV_b74m-m6rp_TCD .
     coremeta4cat:CHAR_b74m-m6rp_TCD_method dcterms:title "H2-TPR, 10 K/min to 1223 K" ;
@@ -302,7 +302,7 @@ decides which parameters it can carry.
 
     ```yaml
     id: coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4
-    activity_designator: Synthesis
+    activity_designator: coremeta4cat:Synthesis
     title:
     - Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination
     nominal_composition:
@@ -391,7 +391,7 @@ decides which parameters it can carry.
     	a voc4cat:0007794 ;
     	voc4cat:0008118 _:c14n3 .
     coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4 dcterms:title "Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination" ;
-    	a "Synthesis" ;
+    	a coremeta4cat:Synthesis ;
     	prov:generated coremeta4cat:CAT_6mxw-xsrd_Cu0.33Ga0.33Al0.33 ;
     	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_coprecipitation_method ;
     	coremeta4cat:catalyst_measured_properties "XRF of the HTC precursor: Cu 0.42, Al 0.22, Ga 0.36 (metal fractions; nominal 0.33/0.33/0.34)" ;
@@ -536,7 +536,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
       title: heterogeneous catalysis
     was_generated_by:
     - id: coremeta4cat:SYN_6mxw-xsrd_gen2_step1
-      activity_designator: Synthesis
+      activity_designator: coremeta4cat:Synthesis
       title:
       - Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C
       nominal_composition:
@@ -564,7 +564,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
           unit: https://qudt.org/vocab/unit/K
           description: 450 or 550 C
     - id: coremeta4cat:SYN_6mxw-xsrd_gen2_step2
-      activity_designator: Synthesis
+      activity_designator: coremeta4cat:Synthesis
       title:
       - 1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at 250 or 350 C
       nominal_composition:
@@ -630,7 +630,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
     coremeta4cat:PREC_6mxw-xsrd_GaNO3 dcterms:title "gallium(III) nitrate hydrate, Ga(NO3)3·xH2O (Sigma-Aldrich, 99.9%), aqueous solution" ;
     	a voc4cat:0007794 .
     coremeta4cat:SYN_6mxw-xsrd_gen2_step1 dcterms:title "Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C" ;
-    	a "Synthesis" ;
+    	a coremeta4cat:Synthesis ;
     	prov:generated coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450 , coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550 ;
     	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:SYN_6mxw-xsrd_gen2_step1_method ;
     	coremeta4cat:catalyst_measured_properties "No measured properties of the intermediate oxides are deposited." ;
@@ -639,7 +639,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
     	a voc4cat:0007795 ;
     	coremeta4cat:hasCalcinationTemperatureRange _:c14n0 .
     coremeta4cat:SYN_6mxw-xsrd_gen2_step2 dcterms:title "1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at 250 or 350 C" ;
-    	a "Synthesis" ;
+    	a coremeta4cat:Synthesis ;
     	prov:generated coremeta4cat:CAT_6mxw-xsrd_G2_450_250 , coremeta4cat:CAT_6mxw-xsrd_G2_450_350 ;
     	prov:used coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450 , coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_gen2_step2_method ;
     	coremeta4cat:catalyst_measured_properties "No measured properties of these four samples are deposited." ;
@@ -728,7 +728,7 @@ which parameters it can carry.
 
     ```yaml
     id: coremeta4cat:CHAR_b74m-m6rp_TCD
-    activity_designator: Characterization
+    activity_designator: coremeta4cat:Characterization
     title:
     - H2-TPR of the Ni-BCZY cermet (article Fig. 1)
     rdf_type:
@@ -776,7 +776,7 @@ which parameters it can carry.
     coremeta4cat:CAT_b74m-m6rp_Ni-BCZY dcterms:title "Ni-BCZY cermet powder" ;
     	a prov:Entity .
     coremeta4cat:CHAR_b74m-m6rp_TCD dcterms:title "H2-TPR of the Ni-BCZY cermet (article Fig. 1)" ;
-    	a "Characterization" , CHMO:0002908 ;
+    	a CHMO:0002908 , coremeta4cat:Characterization ;
     	prov:used coremeta4cat:CAT_b74m-m6rp_Ni-BCZY , coremeta4cat:CHAR_b74m-m6rp_TCD_method ;
     	prov:wasAssociatedWith coremeta4cat:DEV_b74m-m6rp_TCD .
     coremeta4cat:CHAR_b74m-m6rp_TCD_method dcterms:title "H2-TPR, 10 K/min to 1223 K" ;
@@ -866,7 +866,7 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
     realized_plan:
       id: coremeta4cat:CHAR_32x1-99x6_BET_method
       title: N2 physisorption BET method
-    activity_designator: Characterization
+    activity_designator: coremeta4cat:Characterization
     ```
 
 === "RDF (Turtle)"
@@ -889,7 +889,7 @@ Excerpt of [Dataset 5 (NH₃ decomposition)](community-datasets.md#b74m-m6rp) as
     coremeta4cat:CAT_32x1-99x6_Al2O3_2P dcterms:title "Pd/2P/Al2O3" ;
     	a prov:Entity .
     coremeta4cat:CHAR_32x1-99x6_BET dcterms:title "BET surface area analysis (10 catalysts)" ;
-    	a "Characterization" , enm:0000064 ;
+    	a enm:0000064 , coremeta4cat:Characterization ;
     	prov:used coremeta4cat:CAT_32x1-99x6_Al2O3_0P , coremeta4cat:CAT_32x1-99x6_Al2O3_1P , coremeta4cat:CAT_32x1-99x6_Al2O3_2P , coremeta4cat:CHAR_32x1-99x6_BET_method ;
     	prov:wasAssociatedWith coremeta4cat:DEV_32x1-99x6_BET .
     coremeta4cat:CHAR_32x1-99x6_BET_method dcterms:title "N2 physisorption BET method" ;
@@ -1413,7 +1413,7 @@ modelled (`evaluated_entity`) and the properties it computed (`calculated_proper
 
     ```yaml
     id: coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites
-    activity_designator: Simulation
+    activity_designator: coremeta4cat:Simulation
     title:
     - DFT binding energies of OH and CO at 17 oxide surface sites
     software_package:
@@ -1467,7 +1467,7 @@ modelled (`evaluated_entity`) and the properties it computed (`calculated_proper
     @prefix dcterms: <http://purl.org/dc/terms/> .
     @prefix schema1: <http://schema.org/> .
     coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites dcterms:title "DFT binding energies of OH and CO at 17 oxide surface sites" ;
-    	a "Simulation" , voc4cat:0000215 ;
+    	a coremeta4cat:Simulation , voc4cat:0000215 ;
     	prov:used coremeta4cat:SIM_6mxw-xsrd_DFT_method , coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites ;
     	coremeta4cat:calculated_property _:c14n0 , _:c14n1 ;
     	coremeta4cat:software_package "Atomic Simulation Environment (ASE), structure generation" , "VASP" , "pymatgen, structure generation" .
@@ -1543,7 +1543,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
 
     ```yaml
     id: coremeta4cat:SIM_8ppb-aeky_MMGBSA
-    activity_designator: Simulation
+    activity_designator: coremeta4cat:Simulation
     title:
     - MM/GBSA binding free energy of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16
     software_package:
@@ -1582,7 +1582,7 @@ Excerpt of [Dataset 4 (Cu–Ga–Al mixed oxides)](community-datasets.md#6mxw-xs
     coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex dcterms:title "3FCR-4M with cofactor-bound substrate 2a" ;
     	a prov:Entity .
     coremeta4cat:SIM_8ppb-aeky_MMGBSA dcterms:title "MM/GBSA binding free energy of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16" ;
-    	a "Simulation" ;
+    	a coremeta4cat:Simulation ;
     	prov:used coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M1_complex , coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M2_complex , coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex , coremeta4cat:SIM_8ppb-aeky_MMGBSA_method ;
     	coremeta4cat:calculated_property _:c14n0 , _:c14n1 ;
     	coremeta4cat:software_package "Prime MM-GBSA (Schrodinger suite)" .
@@ -1643,7 +1643,7 @@ Excerpt of [Dataset 6 (transaminase MD)](community-datasets.md#8ppb-aeky) as `Si
 
     ```yaml
     id: coremeta4cat:SIM_8ppb-aeky_MD
-    activity_designator: Simulation
+    activity_designator: coremeta4cat:Simulation
     title:
     - Molecular dynamics of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16
     software_package:
@@ -1670,7 +1670,7 @@ Excerpt of [Dataset 6 (transaminase MD)](community-datasets.md#8ppb-aeky) as `Si
     coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex dcterms:title "3FCR-4M with cofactor-bound substrate 2a" ;
     	a prov:Entity .
     coremeta4cat:SIM_8ppb-aeky_MD dcterms:title "Molecular dynamics of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16" ;
-    	a "Simulation" ;
+    	a coremeta4cat:Simulation ;
     	prov:used coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex , coremeta4cat:SIM_8ppb-aeky_MD_method ;
     	coremeta4cat:software_package "Desmond (Schrodinger suite)" , "Simulation Interaction Diagram and Schrodinger Python API, analysis" .
     coremeta4cat:SIM_8ppb-aeky_MD_method dcterms:title "molecular dynamics: setup, minimisation, equilibration, production" ;

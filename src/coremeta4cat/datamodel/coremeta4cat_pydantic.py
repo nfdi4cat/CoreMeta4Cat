@@ -192,6 +192,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                             'prefix_reference': 'http://purl.obolibrary.org/obo/CHEBI_'},
                   'CHMO': {'prefix_prefix': 'CHMO',
                            'prefix_reference': 'http://purl.obolibrary.org/obo/CHMO_'},
+                  'COB': {'prefix_prefix': 'COB',
+                          'prefix_reference': 'http://purl.obolibrary.org/obo/COB_'},
                   'IAO': {'prefix_prefix': 'IAO',
                           'prefix_reference': 'http://purl.obolibrary.org/obo/IAO_'},
                   'NCIT': {'prefix_prefix': 'NCIT',
@@ -206,16 +208,28 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                           'prefix_reference': 'http://semanticscience.org/resource/SIO_'},
                   'adms': {'prefix_prefix': 'adms',
                            'prefix_reference': 'http://www.w3.org/ns/adms#'},
+                  'allotrope.process': {'prefix_prefix': 'allotrope.process',
+                                        'prefix_reference': 'http://purl.allotrope.org/ontologies/process#AFP_'},
+                  'allotrope.quality': {'prefix_prefix': 'allotrope.quality',
+                                        'prefix_reference': 'http://purl.allotrope.org/ontologies/quality#AFQ_'},
+                  'allotrope.result': {'prefix_prefix': 'allotrope.result',
+                                       'prefix_reference': 'http://purl.allotrope.org/ontologies/result#AFR_'},
+                  'allotrope.role': {'prefix_prefix': 'allotrope.role',
+                                     'prefix_reference': 'http://purl.allotrope.org/ontologies/role#AFRL_'},
                   'chemdcatap': {'prefix_prefix': 'chemdcatap',
                                  'prefix_reference': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/'},
                   'coremeta4cat': {'prefix_prefix': 'coremeta4cat',
                                    'prefix_reference': 'https://w3id.org/nfdi4cat/coremeta4cat/'},
                   'dcat': {'prefix_prefix': 'dcat',
                            'prefix_reference': 'http://www.w3.org/ns/dcat#'},
+                  'dcatap': {'prefix_prefix': 'dcatap',
+                             'prefix_reference': 'http://data.europa.eu/r5r/'},
                   'dcatap_plus': {'prefix_prefix': 'dcatap_plus',
                                   'prefix_reference': 'https://w3id.org/nfdi-de/dcat-ap-plus/'},
                   'dcterms': {'prefix_prefix': 'dcterms',
                               'prefix_reference': 'http://purl.org/dc/terms/'},
+                  'eli': {'prefix_prefix': 'eli',
+                          'prefix_reference': 'http://data.europa.eu/eli/ontology#'},
                   'enm': {'prefix_prefix': 'enm',
                           'prefix_reference': 'http://purl.enanomapper.org/onto/'},
                   'foaf': {'prefix_prefix': 'foaf',
@@ -224,6 +238,10 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                           'prefix_reference': 'https://hdl.handle.net/'},
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
+                  'locn': {'prefix_prefix': 'locn',
+                           'prefix_reference': 'http://www.w3.org/ns/locn#'},
+                  'odrl': {'prefix_prefix': 'odrl',
+                           'prefix_reference': 'http://www.w3.org/ns/odrl/2/'},
                   'panet': {'prefix_prefix': 'panet',
                             'prefix_reference': 'http://purl.org/pan-science/PaNET/'},
                   'prov': {'prefix_prefix': 'prov',
@@ -236,6 +254,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                              'prefix_reference': 'http://schema.org/'},
                   'skos': {'prefix_prefix': 'skos',
                            'prefix_reference': 'http://www.w3.org/2004/02/skos/core#'},
+                  'spdx': {'prefix_prefix': 'spdx',
+                           'prefix_reference': 'http://spdx.org/rdf/terms#'},
                   'voc4cat': {'prefix_prefix': 'voc4cat',
                               'prefix_reference': 'https://w3id.org/nfdi4cat/voc4cat_'}},
      'source_file': 'src\\coremeta4cat\\schema\\coremeta4cat.yaml',
@@ -2104,15 +2124,24 @@ class CatalysisDataGeneratingActivity(DataGeneratingActivity):
     Simulation instance is nested inside another object's was_generated_by
     list (e.g. in a combined CatalysisDataset file), so the loader knows
     which of the three to construct.
+
+    The designator holds the class_uri of the concrete class, and in RDF it
+    becomes the activity's rdf:type. Every subclass therefore needs a
+    class_uri of its own: Synthesis, Characterization and Simulation use
+    coremeta4cat IRIs and give external ontology terms as mappings. A term
+    shared by two subclasses (as OBI:0000070 once was) cannot tell them apart.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
 
-    activity_designator: Literal["CatalysisDataGeneratingActivity"] = Field(default="CatalysisDataGeneratingActivity", description="""Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+    activity_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/CatalysisDataGeneratingActivity","coremeta4cat:CatalysisDataGeneratingActivity"] = Field(default="coremeta4cat:CatalysisDataGeneratingActivity", description="""Type designator for CatalysisDataGeneratingActivity subclasses: the
+class_uri of the concrete activity, i.e. coremeta4cat:Synthesis,
+coremeta4cat:Characterization or coremeta4cat:Simulation. Only needs to be
+set by hand when nesting one of these inside another object's
+was_generated_by list (e.g. in a combined CatalysisDataset file) -- LinkML
+fills it in automatically when a class is instantiated directly. Write the
+CURIE as shown: the Python loader matches it against the class_uri exactly.
+In RDF it becomes the activity's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
          'domain_of': ['CatalysisDataGeneratingActivity'],
          'slot_uri': 'rdf:type'} })
     evaluated_entity: Optional[list[EvaluatedEntity]] = Field(default=None, description="""The slot to specify the Entity about which the DataGeneratingActivity produced information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
@@ -2283,7 +2312,8 @@ class Synthesis(CatalysisDataGeneratingActivity):
     term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS
     Pattern 3.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000070',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['COB:0000035'],
+         'class_uri': 'coremeta4cat:Synthesis',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'slot_usage': {'carried_out_by': {'description': 'Equipment or synthesis '
                                                           'device used to carry out '
@@ -2352,11 +2382,14 @@ class Synthesis(CatalysisDataGeneratingActivity):
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    activity_designator: Literal["Synthesis"] = Field(default="Synthesis", description="""Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+    activity_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Synthesis","coremeta4cat:Synthesis"] = Field(default="coremeta4cat:Synthesis", description="""Type designator for CatalysisDataGeneratingActivity subclasses: the
+class_uri of the concrete activity, i.e. coremeta4cat:Synthesis,
+coremeta4cat:Characterization or coremeta4cat:Simulation. Only needs to be
+set by hand when nesting one of these inside another object's
+was_generated_by list (e.g. in a combined CatalysisDataset file) -- LinkML
+fills it in automatically when a class is instantiated directly. Write the
+CURIE as shown: the Python loader matches it against the class_uri exactly.
+In RDF it becomes the activity's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
          'domain_of': ['CatalysisDataGeneratingActivity'],
          'slot_uri': 'rdf:type'} })
     evaluated_entity: Optional[list[EvaluatedEntity]] = Field(default=None, description="""The slot to specify the Entity about which the DataGeneratingActivity produced information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
@@ -2530,7 +2563,8 @@ class Characterization(CatalysisDataGeneratingActivity):
     following DCAT-AP-PLUS Pattern 3 — exactly as NMRSpectroscopy uses
     rdf_type: CHMO:0000613.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000070',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['OBI:0000070'],
+         'class_uri': 'coremeta4cat:Characterization',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/characterization/',
          'slot_usage': {'carried_out_by': {'description': 'The analytical instrument '
                                                           'used to carry out this '
@@ -2585,11 +2619,14 @@ class Characterization(CatalysisDataGeneratingActivity):
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'allotrope.result:0000317'} })
-    activity_designator: Literal["Characterization"] = Field(default="Characterization", description="""Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+    activity_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Characterization","coremeta4cat:Characterization"] = Field(default="coremeta4cat:Characterization", description="""Type designator for CatalysisDataGeneratingActivity subclasses: the
+class_uri of the concrete activity, i.e. coremeta4cat:Synthesis,
+coremeta4cat:Characterization or coremeta4cat:Simulation. Only needs to be
+set by hand when nesting one of these inside another object's
+was_generated_by list (e.g. in a combined CatalysisDataset file) -- LinkML
+fills it in automatically when a class is instantiated directly. Write the
+CURIE as shown: the Python loader matches it against the class_uri exactly.
+In RDF it becomes the activity's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
          'domain_of': ['CatalysisDataGeneratingActivity'],
          'slot_uri': 'rdf:type'} })
     evaluated_entity: Optional[list[EvaluatedEntity]] = Field(default=None, description="""The catalyst sample or material being characterized.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
@@ -12872,7 +12909,7 @@ class SizeExclusionChromatography(CharacterizationTechnique, ChromatographyMixin
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/SizeExclusionChromatography","allotrope.quality:0000843","coremeta4cat:SizeExclusionChromatography"] = Field(default="allotrope.quality:0000843", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/SizeExclusionChromatography","http://purl.allotrope.org/ontologies/quality#AFQ_0000843","coremeta4cat:SizeExclusionChromatography","allotrope.quality:0000843"] = Field(default="allotrope.quality:0000843", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
 PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
 e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
 coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
@@ -24941,7 +24978,8 @@ class Simulation(CatalysisDataGeneratingActivity):
     The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,
     NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NCIT:C48936',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'coremeta4cat:Simulation',
+         'close_mappings': ['NCIT:C16461'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'slot_usage': {'carried_out_by': {'description': 'The simulation software '
                                                           'used, provided as a '
@@ -24987,11 +25025,14 @@ instance. Multiple properties may be computed in a single simulation run.""", js
          'is_a': 'had_output_entity',
          'recommended': True,
          'slot_uri': 'coremeta4cat:calculated_property'} })
-    activity_designator: Literal["Simulation"] = Field(default="Simulation", description="""Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
+    activity_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/Simulation","coremeta4cat:Simulation"] = Field(default="coremeta4cat:Simulation", description="""Type designator for CatalysisDataGeneratingActivity subclasses: the
+class_uri of the concrete activity, i.e. coremeta4cat:Synthesis,
+coremeta4cat:Characterization or coremeta4cat:Simulation. Only needs to be
+set by hand when nesting one of these inside another object's
+was_generated_by list (e.g. in a combined CatalysisDataset file) -- LinkML
+fills it in automatically when a class is instantiated directly. Write the
+CURIE as shown: the Python loader matches it against the class_uri exactly.
+In RDF it becomes the activity's rdf:type.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
          'domain_of': ['CatalysisDataGeneratingActivity'],
          'slot_uri': 'rdf:type'} })
     evaluated_entity: Optional[list[EvaluatedEntity]] = Field(default=None, description="""The catalyst model, surface slab, or molecule being simulated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],

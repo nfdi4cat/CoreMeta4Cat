@@ -14,7 +14,9 @@ The results of a simulation are recorded as calculated properties. Besides gener
 !!! tip "Theoreticians: help us extend this data class"
     The catalysis-specific properties were added only recently, and many methods, settings and quantities used in computational catalysis are still missing. If you miss one, use the **Submit Term Feedback** button next to the closest field, open an [issue](https://github.com/nfdi4cat/CoreMeta4Cat/issues), or propose it through the vocabulary workbook. [How to contribute](contributing.md) explains each option.
 
-**CURIE:** [`NCIT:C48936`](NCIT:C48936)
+**CURIE:** [`coremeta4cat:Simulation`](coremeta4cat:Simulation)
+
+**Mappings:** close match [`NCIT:C16461`](http://purl.obolibrary.org/obo/NCIT_C16461)
 
 <div class="cm4c-classmap" data-root="Simulation"
      data-src="../assets/schema_graph.json"
@@ -3440,13 +3442,16 @@ must match the class_uri exactly. In RDF it becomes the entry's rdf:type.
 <details markdown="1" open>
 <summary><strong>activity designator</strong> (Optional)</summary>
 
-**Description:** Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.
+**Description:** Type designator for CatalysisDataGeneratingActivity subclasses: the
+class_uri of the concrete activity, i.e. coremeta4cat:Synthesis,
+coremeta4cat:Characterization or coremeta4cat:Simulation. Only needs to be
+set by hand when nesting one of these inside another object's
+was_generated_by list (e.g. in a combined CatalysisDataset file) -- LinkML
+fills it in automatically when a class is instantiated directly. Write the
+CURIE as shown: the Python loader matches it against the class_uri exactly.
+In RDF it becomes the activity's rdf:type.
 
-**Data Type:** string
+**Data Type:** uriorcurie
 
 **Cardinality:**  Optional
 

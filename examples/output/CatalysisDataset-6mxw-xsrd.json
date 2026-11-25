@@ -77,7 +77,7 @@
           }
         ]
       },
-      "activity_designator": "Synthesis",
+      "activity_designator": "coremeta4cat:Synthesis",
       "nominal_composition": [
         "Cu0.465Ga0.07Al0.465 (metal fractions Cu 0.465, Al 0.465, Ga 0.07)"
       ],
@@ -147,7 +147,7 @@
           }
         ]
       },
-      "activity_designator": "Synthesis",
+      "activity_designator": "coremeta4cat:Synthesis",
       "nominal_composition": [
         "Cu0.85Al0.15 (metal fractions Cu 0.85, Al 0.15)"
       ],
@@ -239,7 +239,7 @@
           }
         ]
       },
-      "activity_designator": "Synthesis",
+      "activity_designator": "coremeta4cat:Synthesis",
       "nominal_composition": [
         "Cu0.85Al0.15 mixed oxide with 1 wt% Ga (target loading)"
       ],
@@ -406,7 +406,7 @@
           }
         ]
       },
-      "activity_designator": "Synthesis",
+      "activity_designator": "coremeta4cat:Synthesis",
       "nominal_composition": [
         "CuAlGaO4 (metal fractions Cu 0.33, Al 0.33, Ga 0.33)"
       ],
@@ -457,7 +457,7 @@
         "id": "coremeta4cat:CHAR_6mxw-xsrd_XRF_method",
         "plan_designator": "OBI:0000272"
       },
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     },
     {
       "id": "coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites",
@@ -497,7 +497,7 @@
           "PBE"
         ]
       },
-      "activity_designator": "Simulation",
+      "activity_designator": "coremeta4cat:Simulation",
       "software_package": [
         "VASP",
         "Atomic Simulation Environment (ASE), structure generation",
@@ -561,7 +561,7 @@
         "id": "coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE_method",
         "plan_designator": "OBI:0000272"
       },
-      "activity_designator": "Simulation",
+      "activity_designator": "coremeta4cat:Simulation",
       "software_package": [
         "MACE-MPA-0 foundation model (article, Table 2)"
       ],
@@ -612,7 +612,7 @@
         "id": "coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP_method",
         "plan_designator": "OBI:0000272"
       },
-      "activity_designator": "Simulation",
+      "activity_designator": "coremeta4cat:Simulation",
       "software_package": [
         "EquiformerV2-31M-S2EF-OC20-All+MD (Open Catalyst Project); inferred from article Table 2"
       ],

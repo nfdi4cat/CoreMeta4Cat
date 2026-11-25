@@ -170,9 +170,7 @@ class Schema:
         return "other"
 
     def concrete(self, declared: str | None, obj: dict) -> str | None:
-        if "activity_designator" in obj:
-            return obj["activity_designator"]
-        for slot in ("plan_designator", "reactor_designator"):
+        for slot in DESIGNATORS:
             if slot in obj:
                 return self.uri_to_class.get(obj[slot], declared)
         return declared

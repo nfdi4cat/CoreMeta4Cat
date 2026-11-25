@@ -167,7 +167,7 @@
           }
         ]
       },
-      "activity_designator": "Synthesis",
+      "activity_designator": "coremeta4cat:Synthesis",
       "nominal_composition": [
         "1, 2, 3, 4 and 5 wt% P on alumina (1PAl2O3 to 5PAl2O3)",
         "1, 3 and 5 wt% P on silica (1PSiO2, 3PSiO2, 5PSiO2)"
@@ -360,7 +360,7 @@
           }
         ]
       },
-      "activity_designator": "Synthesis",
+      "activity_designator": "coremeta4cat:Synthesis",
       "nominal_composition": [
         "2 wt% Pd on alumina with 0, 1, 2, 3, 4 or 5 wt% P",
         "2 wt% Pd on silica with 0, 1, 3 or 5 wt% P"
@@ -471,7 +471,7 @@
         "id": "coremeta4cat:CHAR_32x1-99x6_BET_method",
         "plan_designator": "OBI:0000272"
       },
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     },
     {
       "id": "coremeta4cat:CHAR_32x1-99x6_DRIFT",
@@ -525,7 +525,7 @@
         "id": "coremeta4cat:CHAR_32x1-99x6_DRIFT_method",
         "plan_designator": "OBI:0000272"
       },
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     },
     {
       "id": "coremeta4cat:CHAR_32x1-99x6_ICPAES",
@@ -599,7 +599,7 @@
         "id": "coremeta4cat:CHAR_32x1-99x6_ICPAES_method",
         "plan_designator": "OBI:0000272"
       },
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     },
     {
       "id": "coremeta4cat:CHAR_32x1-99x6_IR",
@@ -663,7 +663,7 @@
         "id": "coremeta4cat:CHAR_32x1-99x6_IR_method",
         "plan_designator": "OBI:0000272"
       },
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     },
     {
       "id": "coremeta4cat:CHAR_32x1-99x6_PXRD",
@@ -747,7 +747,7 @@
         "id": "coremeta4cat:CHAR_32x1-99x6_PXRD_method",
         "plan_designator": "OBI:0000272"
       },
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     }
   ],
   "creator": [

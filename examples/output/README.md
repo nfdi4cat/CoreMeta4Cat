@@ -16,7 +16,7 @@ rdf_type:
 title:
 - 'Methanol synthesis over Cu/ZnO/Al2O3: synthesis and catalytic performance dataset'
 was_generated_by:
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   catalyst_measured_properties:
   - 'BET surface area: 185 m2/g, Pt particle size: 2.3 nm (TEM), Pt loading: 4.8 wt%
     (ICP-AES)'
@@ -43,7 +43,7 @@ was_generated_by:
     title: deionized water
   storage_conditions:
   - stored in desiccator under argon atmosphere at room temperature
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - id: coremeta4cat:DEV_001_Micromeritics_ASAP2020
     title: Micromeritics ASAP 2020 surface area and porosimetry analyzer
@@ -57,7 +57,7 @@ was_generated_by:
       prior to measurement
     id: coremeta4cat:CHAR_001_BET_method
     title: BET surface area measurement
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - id: coremeta4cat:DEV_002_Bruker_D8_Advance
     title: Bruker D8 Advance diffractometer with Cu K-alpha radiation (1.5406 Ang)
@@ -175,7 +175,7 @@ title:
 - 'NiO/CeO2 dry methane reforming catalyst: co-precipitation synthesis, multi-technique
   characterization, catalytic performance, and computational interface study'
 was_generated_by:
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   catalyst_measured_properties:
   - 'BET surface area: 42 m2/g'
   - 'NiO crystallite size: 8.4 nm (Scherrer, XRD)'
@@ -228,7 +228,7 @@ was_generated_by:
     title: deionized water (18.2 MOhm cm, MilliQ)
   storage_conditions:
   - sealed glass vial in desiccator, ambient temperature, protected from moisture
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - id: coremeta4cat:DEV_003_Thermo_KAlpha_XPS
     title: Thermo Scientific K-Alpha+ XPS spectrometer
@@ -264,7 +264,7 @@ was_generated_by:
     with copper tape; no Ar+ sputtering performed
   sample_state:
   - powder
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - id: coremeta4cat:DEV_005_Micromeritics_AutoChem
     title: Micromeritics AutoChem II 2920 chemisorption analyzer
@@ -293,7 +293,7 @@ was_generated_by:
   sample_description:
   - NiO/CeO2 calcined at 500 deg C; 50 mg packed in quartz U-tube reactor (4 mm ID);
     quartz wool plugs above and below bed
-- activity_designator: Simulation
+- activity_designator: coremeta4cat:Simulation
   calculated_property:
   - description: CeO2(111) cleavage surface energy (clean slab without Ni cluster,
       computed from relaxed DFT-D3 reference at 0 K, used as force field validation
@@ -1033,7 +1033,7 @@ rdf_type:
 title:
 - 'Dataset for Publication: Reaction Kinetics of CO and CO2 Methanation over Nickel'
 was_generated_by:
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: Instrument model not specified in the source dataset files.
     id: coremeta4cat:DEV_2d6m-exeb_GC
@@ -1821,7 +1821,7 @@ title:
 - "Support Engineering with Phosphorus: Tuning the Palladium-Catalyzed Selective Hydrogenation\
   \ of \u03B1,\u03B2-Unsaturated Aldehydes"
 was_generated_by:
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   catalyst_measured_properties:
   - P contents measured by ICP after Pd deposition (see CHAR_32x1-99x6_ICPAES)
   - Phosphate species on the modified alumina shown by ATR-IR (article, section 2.1)
@@ -1942,7 +1942,7 @@ was_generated_by:
   title:
   - Phosphorus modification of alumina and silica by incipient wetness impregnation
     with NH4H2PO4
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   catalyst_measured_properties:
   - Pd contents by ICP-OES slightly below 2 wt%, deviation below 0.2 wt% (article,
     section 2.1)
@@ -2063,7 +2063,7 @@ was_generated_by:
   title:
   - Pd deposition on unmodified and phosphorus-modified supports by incipient wetness
     impregnation
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: Instrument model not specified in the source dataset files.
     id: coremeta4cat:DEV_32x1-99x6_BET
@@ -2117,7 +2117,7 @@ was_generated_by:
     title: N2 physisorption BET method
   title:
   - BET surface area analysis (10 catalysts)
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: Instrument model not specified in the source dataset files.
     id: coremeta4cat:DEV_32x1-99x6_DRIFT
@@ -2153,7 +2153,7 @@ was_generated_by:
     title: CO-adsorption DRIFT method
   title:
   - DRIFT CO-adsorption spectroscopy (4 catalysts)
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: Instrument model not specified in the source dataset files.
     id: coremeta4cat:DEV_32x1-99x6_ICPAES
@@ -2200,7 +2200,7 @@ was_generated_by:
     title: ICP-AES elemental analysis method
   title:
   - ICP-AES elemental composition analysis (8 catalysts)
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: Instrument model not specified in the source dataset files.
     id: coremeta4cat:DEV_32x1-99x6_IR
@@ -2240,7 +2240,7 @@ was_generated_by:
     title: Infrared spectroscopy method
   title:
   - Infrared spectroscopy (6 catalysts)
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: Instrument model not specified in the source dataset files.
     id: coremeta4cat:DEV_32x1-99x6_PXRD
@@ -2626,7 +2626,7 @@ title:
 - Copper Gallium Aluminum Mixed Metal Oxides as Alternative Catalyst Candidates for
   Efficient Conversion of Carbon Dioxide to Methanol and Dimethyl Ether
 was_generated_by:
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   catalyst_measured_properties:
   - No measured properties of these three samples are deposited; the article reports
     XRD, N2 sorption, TPR, N2O-RFC and TEM results for the first generation in figures
@@ -2677,7 +2677,7 @@ was_generated_by:
       at 500/600/700 C
   title:
   - Cu0.465Ga0.07Al0.465 mixed metal oxide, three calcination temperatures
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   catalyst_measured_properties:
   - No measured properties of the intermediate oxides are deposited.
   had_input_entity:
@@ -2721,7 +2721,7 @@ was_generated_by:
       at 450/550 C
   title:
   - Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   catalyst_measured_properties:
   - No measured properties of these four samples are deposited.
   had_input_entity:
@@ -2778,7 +2778,7 @@ was_generated_by:
   title:
   - 1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at
     250 or 350 C
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   catalyst_measured_properties:
   - 'XRF of the HTC precursor: Cu 0.42, Al 0.22, Ga 0.36 (metal fractions; nominal
     0.33/0.33/0.34)'
@@ -2891,7 +2891,7 @@ was_generated_by:
       200 mL)
   title:
   - Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: Rh X-ray tube; ESPRIT software (article, section 2.1.4).
     id: coremeta4cat:DEV_6mxw-xsrd_XRF
@@ -2922,7 +2922,7 @@ was_generated_by:
     title: XRF determination of Cu, Al and Ga metal fractions
   title:
   - XRF elemental analysis (76 Cu-Ga-Al hydrotalcite-like precursors)
-- activity_designator: Simulation
+- activity_designator: coremeta4cat:Simulation
   calculated_property:
   - adsorbate:
     - OH
@@ -2982,7 +2982,7 @@ was_generated_by:
   - pymatgen, structure generation
   title:
   - DFT binding energies of OH and CO at 17 oxide surface sites
-- activity_designator: Simulation
+- activity_designator: coremeta4cat:Simulation
   calculated_property:
   - adsorbate:
     - OH
@@ -3023,7 +3023,7 @@ was_generated_by:
   - MACE-MPA-0 foundation model (article, Table 2)
   title:
   - MACE-MPA-0 binding-energy screening of OH and CO (31 compositions)
-- activity_designator: Simulation
+- activity_designator: coremeta4cat:Simulation
   calculated_property:
   - adsorbate:
     - OH
@@ -3119,7 +3119,7 @@ title:
   Discovery of Unseen and SynergisticMutations in an Amine Transaminase - Molecular
   Dynamic Simulations'
 was_generated_by:
-- activity_designator: Simulation
+- activity_designator: coremeta4cat:Simulation
   description:
   - Desmond molecular dynamics of the docked substrate-cofactor complex in 3FCR-4M
     and the mutants S19V/P423F (4M-N15, deposit M1) and G151A/P423F (4M-N16, deposit
@@ -3152,7 +3152,7 @@ was_generated_by:
   - Simulation Interaction Diagram and Schrodinger Python API, analysis
   title:
   - Molecular dynamics of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16
-- activity_designator: Simulation
+- activity_designator: coremeta4cat:Simulation
   calculated_property:
   - description: Relative binding free energy (ddG) of 4M-N15 (S19V/P423F) vs. 3FCR-4M
     value: -1.86 kcal/mol
@@ -3190,7 +3190,7 @@ was_generated_by:
   title:
   - MM/GBSA binding free energy of the substrate-cofactor complex in 3FCR-4M, 4M-N15
     and 4M-N16
-- activity_designator: Simulation
+- activity_designator: coremeta4cat:Simulation
   description:
   - Induced-fit docking with Glide to predict the initial binding mode of the cofactor-bound
     substrate in 3FCR-4M, the starting structure for molecular dynamics. The substrate
@@ -3214,7 +3214,7 @@ was_generated_by:
   - Glide, Induced Fit docking protocol (Schrodinger suite)
   title:
   - Induced-fit docking of the substrate-cofactor complex into 3FCR-4M
-- activity_designator: Simulation
+- activity_designator: coremeta4cat:Simulation
   description:
   - Preparation of the initial structure of 3FCR-4M for docking and molecular dynamics
     with the Protein Preparation Wizard. 3FCR-4M is the amine transaminase from Ruegeria
@@ -3564,7 +3564,7 @@ rdf_type:
 title:
 - Carbonylation catalysis of aryl halides through active-site engineering
 was_generated_by:
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   carried_out_by:
   - id: coremeta4cat:DEV_arp5-s69r_furnace
     title: box furnace with a quartz Schlenk tube (pressure relief valve)
@@ -3656,7 +3656,7 @@ was_generated_by:
   title:
   - Pd3P/SiO2 (5 wt% Pd) by incipient wetness impregnation and thermal treatment in
     hydrogen
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   carried_out_by:
   - id: coremeta4cat:DEV_arp5-s69r_furnace
     title: box furnace with a quartz Schlenk tube (pressure relief valve)
@@ -3727,7 +3727,7 @@ was_generated_by:
   title:
   - Pd/SiO2 (5 wt% Pd) reference catalyst, prepared like Pd3P/SiO2 without phosphoric
     acid
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: Instrument model not specified in the source dataset files.
     id: coremeta4cat:DEV_arp5-s69r_COChemisorption
@@ -3753,7 +3753,7 @@ was_generated_by:
     title: Pulse CO chemisorption method
   title:
   - CO chemisorption analysis (2 catalysts)
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: VERTEX 70 FTIR spectrometer (Bruker) equipped with Praying Mantis
       diffuse reflection optics (Harrick) and a liquid-nitrogen-cooled mercury cadmium
@@ -3788,7 +3788,7 @@ was_generated_by:
     title: CO-adsorption DRIFT method
   title:
   - DRIFT CO-adsorption spectroscopy (2 catalysts, 2 temperatures)
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: Stoe STADI-MP powder diffractometer, Cu X-ray source (lambda=1.54178
       A), Ge monochromator.
@@ -3825,7 +3825,7 @@ was_generated_by:
     title: Powder XRD measurement method
   title:
   - Powder XRD phase analysis (4 catalysts)
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: FEI/Thermo Fisher Osiris ChemiSTEM, combined TEM and STEM with ChemiSTEM
       EDX detector, Schottky field emission gun, 200 kV high tension, magnification
@@ -3866,7 +3866,7 @@ was_generated_by:
     dried at 60 C overnight
   title:
   - STEM/TEM imaging and EDX mapping (3 catalyst samples)
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: Instrument model not specified in the source dataset files.
     id: coremeta4cat:DEV_arp5-s69r_XPS
@@ -4170,7 +4170,7 @@ title:
   Ammonia Decomposition over a Ba-promoted Ru/Ni-BCZY Catalyst for Use in Ammonia-fed
   Protonic Ceramic Cells'
 was_generated_by:
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   catalyst_measured_properties:
   - Ru distribution and nanoparticle size of 0.5Ru/1Ba/Ni-BCZY by SEM/EDX (article
     Figs. 4-5; images not deposited)
@@ -4233,7 +4233,7 @@ was_generated_by:
     title: stepwise incipient wetness impregnation, calcination, granulation
   title:
   - Ru and Ba on Ni-BCZY, Ni-YSZ and YSZ by stepwise incipient wetness impregnation
-- activity_designator: Synthesis
+- activity_designator: coremeta4cat:Synthesis
   catalyst_measured_properties:
   - 'BET surface area: NiO-BCZY (oxidized) 1.1 m2/g, YSZ powder 14.1 m2/g (article
     Table 2)'
@@ -4276,7 +4276,7 @@ was_generated_by:
     title: tape casting, sintering and crushing
   title:
   - Ni-BCZY, Ni-YSZ and YSZ supports from sintered tapes
-- activity_designator: Characterization
+- activity_designator: coremeta4cat:Characterization
   carried_out_by:
   - description: Instrument model not stated in the article.
     id: coremeta4cat:DEV_b74m-m6rp_TCD
@@ -4314,7 +4314,7 @@ was_generated_by:
     title: H2-TPR, 10 K/min to 1223 K
   title:
   - H2-TPR of the Ni-BCZY cermet (article Fig. 1)
-- activity_designator: Simulation
+- activity_designator: coremeta4cat:Simulation
   calculated_property:
   - description: Turnover frequency of NH3 decomposition, deposit Fig11_Ni+Ru.tab
       (article Fig. 10); Ni-only and Ru-only in Fig11_Ni.tab and Fig11_Ru.tab
@@ -4350,7 +4350,7 @@ was_generated_by:
   - DETCHEM-SURFPROBE, surface coverages and TOF without reactor effects
   title:
   - 'Microkinetic NH3 decomposition: reactor profiles, TOF and parameter variation'
-- activity_designator: Simulation
+- activity_designator: coremeta4cat:Simulation
   calculated_property:
   - description: Deposit Fig6a-c (0.5Ru/1Ba/Ni-BCZY, original), Fig7a-c (Ni-BCZY,
       original and optimized), Fig8a-c (0.5Ru/1Ba/Ni-BCZY, optimized)

@@ -97,6 +97,12 @@ classes:
       Simulation instance is nested inside another object's was_generated_by
       list (e.g. in a combined CatalysisDataset file), so the loader knows
       which of the three to construct.
+
+      The designator holds the class_uri of the concrete class, and in RDF it
+      becomes the activity's rdf:type. Every subclass therefore needs a
+      class_uri of its own: Synthesis, Characterization and Simulation use
+      coremeta4cat IRIs and give external ontology terms as mappings. A term
+      shared by two subclasses (as OBI:0000070 once was) cannot tell them apart.
     slots:
     - activity_designator
 
@@ -283,14 +289,17 @@ slots:
 
   activity_designator:
     slot_uri: rdf:type
-    range: string
+    range: uriorcurie
     designates_type: true
     description: |-
-      Internal type designator for CatalysisDataGeneratingActivity subclasses
-      (Synthesis, Characterization, Simulation). Only needs to be set by hand
-      when nesting one of these inside another object's was_generated_by list
-      (e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-      automatically when a class is instantiated directly.
+      Type designator for CatalysisDataGeneratingActivity subclasses: the
+      class_uri of the concrete activity, i.e. coremeta4cat:Synthesis,
+      coremeta4cat:Characterization or coremeta4cat:Simulation. Only needs to be
+      set by hand when nesting one of these inside another object's
+      was_generated_by list (e.g. in a combined CatalysisDataset file) -- LinkML
+      fills it in automatically when a class is instantiated directly. Write the
+      CURIE as shown: the Python loader matches it against the class_uri exactly.
+      In RDF it becomes the activity's rdf:type.
 
   plan_designator:
     slot_uri: rdf:type

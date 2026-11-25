@@ -1,5 +1,5 @@
 id: coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites
-activity_designator: Simulation
+activity_designator: coremeta4cat:Simulation
 title:
 - DFT binding energies of OH and CO at 17 oxide surface sites
 software_package:

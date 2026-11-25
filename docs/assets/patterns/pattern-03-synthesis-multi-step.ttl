@@ -28,7 +28,7 @@ coremeta4cat:PREC_6mxw-xsrd_CuNO3 dcterms:title "copper(II) nitrate trihydrate, 
 coremeta4cat:PREC_6mxw-xsrd_GaNO3 dcterms:title "gallium(III) nitrate hydrate, Ga(NO3)3·xH2O (Sigma-Aldrich, 99.9%), aqueous solution" ;
 	a voc4cat:0007794 .
 coremeta4cat:SYN_6mxw-xsrd_gen2_step1 dcterms:title "Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C" ;
-	a "Synthesis" ;
+	a coremeta4cat:Synthesis ;
 	prov:generated coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450 , coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550 ;
 	prov:used coremeta4cat:PREC_6mxw-xsrd_AlNO3 , coremeta4cat:PREC_6mxw-xsrd_CuNO3 , coremeta4cat:SYN_6mxw-xsrd_gen2_step1_method ;
 	coremeta4cat:catalyst_measured_properties "No measured properties of the intermediate oxides are deposited." ;
@@ -37,7 +37,7 @@ coremeta4cat:SYN_6mxw-xsrd_gen2_step1_method dcterms:title "automated co-precipi
 	a voc4cat:0007795 ;
 	coremeta4cat:hasCalcinationTemperatureRange _:c14n0 .
 coremeta4cat:SYN_6mxw-xsrd_gen2_step2 dcterms:title "1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at 250 or 350 C" ;
-	a "Synthesis" ;
+	a coremeta4cat:Synthesis ;
 	prov:generated coremeta4cat:CAT_6mxw-xsrd_G2_450_250 , coremeta4cat:CAT_6mxw-xsrd_G2_450_350 ;
 	prov:used coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_450 , coremeta4cat:INT_6mxw-xsrd_Cu0.85Al0.15_550 , coremeta4cat:PREC_6mxw-xsrd_GaNO3 , coremeta4cat:SYN_6mxw-xsrd_gen2_step2_method ;
 	coremeta4cat:catalyst_measured_properties "No measured properties of these four samples are deposited." ;

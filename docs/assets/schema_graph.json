@@ -1507,12 +1507,12 @@
     },
     {
      "name": "activity_designator",
-     "range": "string",
+     "range": "uriorcurie",
      "kind": "primitive",
      "requirement": "O",
      "multivalued": false,
      "unit": "",
-     "description": "Internal type designator for CatalysisDataGeneratingActivity subclasses (Synthesis, Characterization, Simulation). Only needs to be set by hand when nesting one of these inside another object's was_generated_by list (e.g."
+     "description": "Type designator for CatalysisDataGeneratingActivity subclasses: the class_uri of the concrete activity, i.e. coremeta4cat:Synthesis, coremeta4cat:Characterization or coremeta4cat:Simulation."
     },
     {
      "name": "realized_plan",
@@ -7665,12 +7665,12 @@
     },
     {
      "name": "activity_designator",
-     "range": "string",
+     "range": "uriorcurie",
      "kind": "primitive",
      "requirement": "O",
      "multivalued": false,
      "unit": "",
-     "description": "Internal type designator for CatalysisDataGeneratingActivity subclasses (Synthesis, Characterization, Simulation). Only needs to be set by hand when nesting one of these inside another object's was_generated_by list (e.g."
+     "description": "Type designator for CatalysisDataGeneratingActivity subclasses: the class_uri of the concrete activity, i.e. coremeta4cat:Synthesis, coremeta4cat:Characterization or coremeta4cat:Simulation."
     },
     {
      "name": "realized_plan",
@@ -8773,12 +8773,12 @@
     },
     {
      "name": "activity_designator",
-     "range": "string",
+     "range": "uriorcurie",
      "kind": "primitive",
      "requirement": "O",
      "multivalued": false,
      "unit": "",
-     "description": "Internal type designator for CatalysisDataGeneratingActivity subclasses (Synthesis, Characterization, Simulation). Only needs to be set by hand when nesting one of these inside another object's was_generated_by list (e.g."
+     "description": "Type designator for CatalysisDataGeneratingActivity subclasses: the class_uri of the concrete activity, i.e. coremeta4cat:Synthesis, coremeta4cat:Characterization or coremeta4cat:Simulation."
     },
     {
      "name": "had_input_entity",

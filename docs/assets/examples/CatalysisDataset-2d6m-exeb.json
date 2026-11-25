@@ -107,7 +107,7 @@
           "description": "Related publication DOI"
         }
       ],
-      "activity_designator": "Characterization"
+      "activity_designator": "coremeta4cat:Characterization"
     }
   ],
   "is_about_activity": [

@@ -23,7 +23,7 @@ coremeta4cat:PREC_006_Na2CO3 dcterms:title "sodium carbonate precipitating agent
 	a voc4cat:0007794 ;
 	voc4cat:0008118 _:c14n0 .
 coremeta4cat:SYNTH_002_NiO_CeO2 SIO:000008 _:c14n2 ;
-	a "Synthesis" ;
+	a coremeta4cat:Synthesis ;
 	prov:generated coremeta4cat:CAT_002_NiO_CeO2 ;
 	prov:used coremeta4cat:PREC_004_Ni_NO3_6H2O , coremeta4cat:PREC_005_Ce_NO3_6H2O , coremeta4cat:PREC_006_Na2CO3 , coremeta4cat:SYNTH_002_coprecipitation_method ;
 	coremeta4cat:catalyst_measured_properties "BET surface area: 42 m2/g" , "Ni loading: 14.7 wt% (ICP-AES)" , "NiO crystallite size: 8.4 nm (Scherrer, XRD)" , "reducibility onset: 280 deg C, completion at 600 deg C (H2-TPR)" ;

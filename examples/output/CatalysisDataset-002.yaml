@@ -48,7 +48,7 @@ was_generated_by:
       C, isothermal hold for 4 h in static air, natural cooling'
     id: coremeta4cat:SYNTH_002_coprecipitation_method
     plan_designator: voc4cat:0007016
-  activity_designator: Synthesis
+  activity_designator: coremeta4cat:Synthesis
   nominal_composition:
   - 15 wt% NiO/CeO2
   catalyst_measured_properties:
@@ -87,7 +87,7 @@ was_generated_by:
       for transmission function'
     id: coremeta4cat:CHAR_003_XPS_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
   sample_state:
   - powder
   sample_description:
@@ -122,7 +122,7 @@ was_generated_by:
       CeO2 surface reduction: 600-900 deg C'
     id: coremeta4cat:CHAR_004_TPR_method
     plan_designator: OBI:0000272
-  activity_designator: Characterization
+  activity_designator: coremeta4cat:Characterization
   sample_description:
   - NiO/CeO2 calcined at 500 deg C; 50 mg packed in quartz U-tube reactor (4 mm ID);
     quartz wool plugs above and below bed
@@ -150,7 +150,7 @@ was_generated_by:
       common-neighbour analysis (CNA) to track Ni cluster crystallographic ordering'
     id: coremeta4cat:SIM_002_MD_method
     plan_designator: OBI:0000272
-  activity_designator: Simulation
+  activity_designator: coremeta4cat:Simulation
   software_package:
   - LAMMPS (29 Sep 2021 stable release, OpenMP build)
   - OVITO 3.7.11 (structure analysis, RDF, CNA, cluster tracking)

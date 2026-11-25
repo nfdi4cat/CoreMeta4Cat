@@ -9,7 +9,9 @@ The Characterization data class documents experimental techniques used to determ
 
 The class follows a hierarchical structure in which selection of a characterization technique activates technique-specific metadata fields (e.g., radiation source for X-ray diffraction or solvent for nuclear magnetic resonance spectroscopy). Metadata on sample preparation and pre-treatment are also included, as these factors directly influence measurement outcomes.
 
-**CURIE:** [`OBI:0000070`](OBI:0000070)
+**CURIE:** [`coremeta4cat:Characterization`](coremeta4cat:Characterization)
+
+**Mappings:** broader match [`OBI:0000070`](http://purl.obolibrary.org/obo/OBI_0000070)
 
 <div class="cm4c-classmap" data-root="Characterization"
      data-src="../assets/schema_graph.json"
@@ -156,13 +158,16 @@ before a process or measurement (e.g. "reduction at 300 °C", "outgassing").
 <details markdown="1" open>
 <summary><strong>activity designator</strong> (Optional)</summary>
 
-**Description:** Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.
+**Description:** Type designator for CatalysisDataGeneratingActivity subclasses: the
+class_uri of the concrete activity, i.e. coremeta4cat:Synthesis,
+coremeta4cat:Characterization or coremeta4cat:Simulation. Only needs to be
+set by hand when nesting one of these inside another object's
+was_generated_by list (e.g. in a combined CatalysisDataset file) -- LinkML
+fills it in automatically when a class is instantiated directly. Write the
+CURIE as shown: the Python loader matches it against the class_uri exactly.
+In RDF it becomes the activity's rdf:type.
 
-**Data Type:** string
+**Data Type:** uriorcurie
 
 **Cardinality:**  Optional
 

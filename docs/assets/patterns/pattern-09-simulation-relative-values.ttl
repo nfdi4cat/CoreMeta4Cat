@@ -12,7 +12,7 @@ coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M2_complex dcterms:title "4M-N16 = 3FCR-4M-G1
 coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex dcterms:title "3FCR-4M with cofactor-bound substrate 2a" ;
 	a prov:Entity .
 coremeta4cat:SIM_8ppb-aeky_MMGBSA dcterms:title "MM/GBSA binding free energy of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16" ;
-	a "Simulation" ;
+	a coremeta4cat:Simulation ;
 	prov:used coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M1_complex , coremeta4cat:ENZ_8ppb-aeky_3FCR-4M-M2_complex , coremeta4cat:ENZ_8ppb-aeky_3FCR-4M_complex , coremeta4cat:SIM_8ppb-aeky_MMGBSA_method ;
 	coremeta4cat:calculated_property _:c14n0 , _:c14n1 ;
 	coremeta4cat:software_package "Prime MM-GBSA (Schrodinger suite)" .
