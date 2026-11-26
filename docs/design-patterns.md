@@ -2,7 +2,9 @@
 
 This page explains the key structural decisions behind CoreMeta4Cat — how the four data classes are modelled, how they connect to a dataset, and what design patterns make the schema extensible and machine-actionable.
 
-![CoreMeta4Cat logo](images/CoreMeta4Cat_Picture.png)
+<div style="text-align: center;" markdown>
+![CoreMeta4Cat logo](images/CoreMeta4Cat_Picture.png){ style="width: 40%;" }
+</div>
 
 ---
 

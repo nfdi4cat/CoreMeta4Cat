@@ -286,3 +286,8 @@ technique, covering every sample it was applied to, and one `CatalyticReaction` 
 or condition set, covering every catalyst tested under it. Values such as temperature are given
 as the range explored, not one value per run. A record then grows with the number of distinct
 methods and reaction types in a study, not with the number of data points.
+
+!!! note "Not from Repo4Cat"
+    One more record, for a Pt/Al₂O₃ catalyst tested in styrene epoxidation, comes from a
+    laboratory Excel workbook instead of a repository deposit. It is described on
+    [Building a parser](building-a-parser.md#jlcat03), together with how the workbook was converted.

@@ -2,6 +2,10 @@
 
 If you are a catalysis researcher, you have probably faced this at some point: you finish a project, archive your data, and six months later — or six years later — someone (including yourself) needs to make sense of it. What reactor was used? What were the exact feed conditions? What does "T" mean in this column? CoreMeta4Cat exists to prevent that problem by defining, in plain language, what information a catalysis dataset needs to include to be understood and reused by others.
 
+<div style="text-align: center;" markdown>
+![CoreMeta4Cat model overview](images/CoreMeta4Cat_Picture.png){ style="width: 75%;" }
+</div>
+
 **CoreMeta4Cat** is a community-driven metadata standard under [NFDI4Cat](https://nfdi4cat.org) that defines the minimum information required for reporting catalysis research data. Built on the [FAIR principles](https://www.go-fair.org/fair-principles/) — **F**indable, **A**ccessible, **I**nteroperable, and **R**eusable — it provides a shared language for researchers to describe, share, and discover catalysis datasets across institutions and disciplines.
 
 The model draws its terminology from [Voc4Cat](https://nfdi4cat.github.io/voc4cat/), NFDI4Cat's controlled vocabulary for catalysis, ensuring standardized semantic representation. Fields are classified as **Mandatory**, **Recommended**, or **Optional**, helping users meet minimum quality thresholds while leaving room for richer annotation.
@@ -15,8 +19,6 @@ The model draws its terminology from [Voc4Cat](https://nfdi4cat.github.io/voc4ca
     - The **obligation levels** (Mandatory, Recommended, Optional) have so far been tested on a small number of curated datasets.
 
     If a field, method or technique you need is missing or classified wrongly, please tell us: use the **Submit Term Feedback** button next to every field, open an [issue](https://github.com/nfdi4cat/CoreMeta4Cat/issues), or propose changes through the vocabulary workbook. [How to contribute](contributing.md) lists all options; every proposal is discussed openly and included in the next release.
-
-![CoreMeta4Cat model overview](images/CoreMeta4Cat_Picture.png)
 
 ---
 
@@ -34,7 +36,7 @@ We are also developing a **Metadata Checker**: an ELN-style form for entering an
 
 Choose the approach that fits your workflow. Both paths are fully compatible with the CoreMeta4Cat standard.
 
-## Excel Template
+### Excel Template
 
 The quickest way to get started. Download the pre-structured Excel template, fill in your metadata fields, and submit or archive your dataset — no technical setup required.
 
@@ -42,14 +44,13 @@ The quickest way to get started. Download the pre-structured Excel template, fil
 
 [→ head over to getting started](https://nfdi4cat.github.io/CoreMeta4Cat/latest/getting-started/#level-1-the-vocabulary-reference-workbook)
 
-## LinkML Schema
+### LinkML Schema
 
 Semantically enrich your data using the CoreMeta4Cat LinkML schema. Ideal for programmatic workflows, repository integration, and FAIR-compliant data pipelines.
 
-- **[![](images/Synthesis.svg) Synthesis](#synthesis)**
-- **[![](images/Characterization.svg) Characterization](#characterization)**
-- **[![](images/Reaction.svg) Reaction](#reaction)**
-- **[![](images/Simulation.svg) Simulation](#simulation)**
+CoreMeta4Cat is written in [LinkML](https://linkml.io), the Linked Data Modeling Language: plain YAML files define every class and field, its data type, and whether it is mandatory, recommended or optional. From these files, the LinkML tools generate a JSON Schema, an OWL ontology, a JSON-LD context, a Python data model, the vocabulary workbook and the schema reference of this site, so the standard and its tools always agree. Every class and field has a web identifier (URI), many of them taken from established ontologies such as PROV-O, CHMO and Voc4Cat, so a record written in plain YAML or JSON converts directly into linked data (RDF). Before a record is shared, a single command, `linkml-validate`, checks it against the schema and reports missing mandatory fields and malformed values.
+
+[→ browse the schema reference](elements/overview.md) · [→ see records of real datasets](working-with-data/index.md)
 
 ---
 
@@ -69,31 +70,39 @@ The inner layer defines mandatory baseline metadata, enabling consistent categor
 
 The active site is not part of this layer: a dataset can contain several catalysts, and the active site is often not known, so it belongs to the description of the individual catalyst.
 
----
+### Expanded CoreMeta4Cat
 
-## [Synthesis](https://nfdi4cat.github.io/CoreMeta4Cat/latest/synthesis/)
+<div class="grid cards" markdown>
 
-[![Synthesis logo](images/Synthesis.svg)](https://nfdi4cat.github.io/CoreMeta4Cat/latest/synthesis)
+-   **[Synthesis](synthesis.md)**
 
-The Synthesis metadata group defines the minimal information required to document how a catalyst is produced. It includes synthesis type, chemical components, process conditions, and preparative steps. As synthesis is fundamental to catalysis, these metadata help ensure reproducibility and provide context for how catalyst structure and performance arise from preparation methods.
+    ---
 
-## [Characterization](https://nfdi4cat.github.io/CoreMeta4Cat/latest/characterization/)
+    [![Synthesis logo](images/Synthesis.svg){ align=left width="88" }](synthesis.md)
+    The Synthesis metadata group defines the minimal information required to document how a catalyst is produced. It includes synthesis type, chemical components, process conditions, and preparative steps. As synthesis is fundamental to catalysis, these metadata help ensure reproducibility and provide context for how catalyst structure and performance arise from preparation methods.
 
-[![Characterization logo](images/Characterization.svg)](https://nfdi4cat.github.io/CoreMeta4Cat/latest/characterization)
+-   **[Characterization](characterization.md)**
 
-The Characterization metadata group specifies the information needed to describe the physical and chemical nature of a catalyst. It covers equipment, techniques, sample preparation, and detailed method-specific parameters (e.g., XRD, XAS, IR, Raman, NMR, GC-MS, TEM). By standardizing reporting across many analytical methods, it ensures catalyst properties are consistently documented and interpretable.
+    ---
 
-## [Reaction](https://nfdi4cat.github.io/CoreMeta4Cat/latest/reaction/)
+    [![Characterization logo](images/Characterization.svg){ align=left width="88" }](characterization.md)
+    The Characterization metadata group specifies the information needed to describe the physical and chemical nature of a catalyst. It covers equipment, techniques, sample preparation, and detailed method-specific parameters (e.g., XRD, XAS, IR, Raman, NMR, GC-MS, TEM). By standardizing reporting across many analytical methods, it ensures catalyst properties are consistently documented and interpretable.
 
-[![Reaction logo](images/Reaction.svg)](https://nfdi4cat.github.io/CoreMeta4Cat/latest/reaction)
+-   **[Reaction](reaction.md)**
 
-The Reaction metadata group defines the minimum information required to describe the catalytic reaction under study and to evaluate catalyst performance. It captures essential parameters such as catalyst quantity, reactor design, reactants, operating conditions (temperature, pressure, atmosphere, feed composition), and product identification methods. These details ensure that catalytic experiments are transparent, comparable, and reproducible.
+    ---
 
-## [Simulation](https://nfdi4cat.github.io/CoreMeta4Cat/latest/simulation/)
+    [![Reaction logo](images/Reaction.svg){ align=left width="88" }](reaction.md)
+    The Reaction metadata group defines the minimum information required to describe the catalytic reaction under study and to evaluate catalyst performance. It captures essential parameters such as catalyst quantity, reactor design, reactants, operating conditions (temperature, pressure, atmosphere, feed composition), and product identification methods. These details ensure that catalytic experiments are transparent, comparable, and reproducible.
 
-[![Simulation logo](images/Simulation.svg)](https://nfdi4cat.github.io/CoreMeta4Cat/latest/simulation)
+-   **[Simulation](simulation.md)**
 
-The Simulation metadata group specifies the essential information for reporting catalysis-related computational studies. It includes software used, simulation methods (DFT, molecular dynamics, microkinetics, Monte Carlo), conditions, and calculated properties such as thermodynamic stability, electronic structure, or kinetic parameters. These metadata ensure that theoretical insights are transparent, reproducible, and aligned with experimental research.
+    ---
+
+    [![Simulation logo](images/Simulation.svg){ align=left width="88" }](simulation.md)
+    The Simulation metadata group specifies the essential information for reporting catalysis-related computational studies. It includes software used, simulation methods (DFT, molecular dynamics, microkinetics, Monte Carlo), conditions, and calculated properties such as thermodynamic stability, electronic structure, or kinetic parameters. These metadata ensure that theoretical insights are transparent, reproducible, and aligned with experimental research.
+
+</div>
 
 ---
 

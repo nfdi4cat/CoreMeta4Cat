@@ -2,7 +2,9 @@
 
 CoreMeta4Cat is designed for anyone who produces, manages, or builds tools around catalysis research data. This page describes who the standard is for, how different groups use it, and which projects and repositories have adopted it.
 
-![CoreMeta4Cat logo](images/CoreMeta4Cat_Picture.png)
+<div style="text-align: center;" markdown>
+![CoreMeta4Cat logo](images/CoreMeta4Cat_Picture.png){ style="width: 40%;" }
+</div>
 
 ---
 
