@@ -1,0 +1,58 @@
+id: coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4
+title:
+- Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination
+nominal_composition:
+- CuAlGaO4 (metal fractions Cu 0.33, Al 0.33, Ga 0.33)
+catalyst_measured_properties:
+- 'XRF of the HTC precursor: Cu 0.42, Al 0.22, Ga 0.36 (metal fractions; nominal 0.33/0.33/0.34)'
+had_input_entity:
+- id: coremeta4cat:PREC_6mxw-xsrd_CuNO3
+  title: copper(II) nitrate trihydrate, Cu(NO3)2·3H2O (Sigma-Aldrich, 98.8%)
+  precursor_quantity:
+  - value: 5.25
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+    unit: https://qudt.org/vocab/unit/GM
+- id: coremeta4cat:PREC_6mxw-xsrd_AlNO3
+  title: aluminium nitrate nonahydrate, Al(NO3)3·9H2O (Sigma-Aldrich, 99.9%)
+  precursor_quantity:
+  - value: 8.37
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+    unit: https://qudt.org/vocab/unit/GM
+- id: coremeta4cat:PREC_6mxw-xsrd_GaNO3
+  title: gallium(III) nitrate hydrate, Ga(NO3)3·xH2O (Sigma-Aldrich, 99.9%)
+  precursor_quantity:
+  - value: 8.92
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+    unit: https://qudt.org/vocab/unit/GM
+had_output_entity:
+- id: coremeta4cat:CAT_6mxw-xsrd_Cu0.33Ga0.33Al0.33
+  title: Cu0.33Ga0.33Al0.33 mixed metal oxide
+realized_plan:
+  id: coremeta4cat:SYN_6mxw-xsrd_coprecipitation_method
+  plan_designator: voc4cat:0007795
+  title: automated co-precipitation at constant pH, ageing, freeze-drying, calcination
+  precipitating_agent:
+  - id: CHEBI:32145
+    title: sodium hydroxide
+  - id: CHEBI:29377
+    title: sodium carbonate
+  has_ph_value:
+  - value: 9.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/PH
+    unit: https://qudt.org/vocab/unit/PH
+  has_aging_temperature:
+  - value: 338.15
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+  has_aging_duration:
+    value: 2
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+    unit: https://qudt.org/vocab/unit/HR
+  has_calcination_temperature_range:
+  - min_value: 673.15
+    max_value: 1173.15
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+    unit: https://qudt.org/vocab/unit/K
+    description: 400-900 C across the library; screening samples at 600 C
+  has_calcination_atmosphere:
+  - value: clean dry air

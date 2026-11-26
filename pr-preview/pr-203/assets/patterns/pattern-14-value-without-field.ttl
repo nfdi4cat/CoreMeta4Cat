@@ -1,0 +1,30 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
+@prefix PROCO: <http://purl.obolibrary.org/obo/PROCO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema1: <http://schema.org/> .
+coremeta4cat:CAT_JLCAT03 dcterms:relation _:c14n0 ;
+	dcterms:title "Pt/Al2O3 (5 wt.%)" ;
+	a OBI:0000747 .
+coremeta4cat:PREC_JLCAT03_support dcterms:title "Al2O3" ;
+	a voc4cat:0007794 .
+coremeta4cat:SYN_JLCAT03 a PROCO:0000001 ;
+	prov:generated coremeta4cat:CAT_JLCAT03 ;
+	prov:used coremeta4cat:PREC_JLCAT03_support , coremeta4cat:SYN_JLCAT03_method ;
+	coremeta4cat:catalyst_measured_properties "Phase seen in PXRD is Pt" ;
+	coremeta4cat:nominal_composition "Pt/Al2O3 (5 wt.%)" .
+coremeta4cat:SYN_JLCAT03_method dcterms:title "Impregnation" ;
+	a voc4cat:0007028 .
+voc4cat:0008106 schema1:name "metal loading" ;
+	a schema1:DefinedTerm .
+_:c14n0 dcterms:description "nominal value (data provider, Q9)" ;
+	dcterms:title "metal loading" ;
+	qudt:hasQuantityKind <http://qudt.org/vocab/quantitykind/MassFraction> ;
+	qudt:unit <https://qudt.org/vocab/unit/PERCENT> ;
+	a qudt:Quantity , voc4cat:0008106 ;
+	prov:value "5.0"^^xsd:float .
