@@ -1,7 +1,6 @@
 # Usage patterns for docs/working-with-data/usage-patterns.md
 #
-# Every pattern is an excerpt of a dataset record in tests/data/valid/. Patterns from a record that
-# is not on the community-datasets page name the page that describes it in `dataset_page`. The generator
+# Every pattern is an excerpt of a community dataset in tests/data/valid/. The generator
 # (scripts/generate_usage_patterns.py, `just gen-usage-patterns`) cuts the excerpt, validates
 # it against `class`, and renders it as graph, YAML and Turtle.
 #
@@ -20,9 +19,9 @@ intro: |
   example three ways: as a graph, as YAML (the format you write) and as RDF/Turtle (what a
   knowledge graph receives).
 
-  Every example is an excerpt of one of the [community datasets](community-datasets.md) or of the
-  [spreadsheet example](building-a-parser.md#jlcat03). It is validated against the current schema
-  whenever the documentation is built, so it can be copied as a starting point. For *why* the schema is structured this way, see
+  Every example is an excerpt of one of the [community datasets](community-datasets.md) and is
+  validated against the current schema whenever the documentation is built, so it can be copied
+  as a starting point. For *why* the schema is structured this way, see
   [Design Patterns](../design-patterns.md); for every field, see the
   [Schema Reference](../elements/overview.md).
 
@@ -463,82 +462,3 @@ sections:
           catalyst_type: true
           used_reactant: {_limit: 1, id: true, title: true, rdf_type: true}
           used_reactor: {id: true, title: true}
-
-      - id: synthesis-step-without-field
-        title: A preparation step the schema has no field for
-        dataset: jlcat03
-        dataset_label: "the spreadsheet example (JLCAT03)"
-        dataset_page: building-a-parser.md
-        source: tests/data/valid/CatalysisDataset-JLCAT03.yaml
-        select: "was_generated_by_synthesis[id=coremeta4cat:SYN_JLCAT03]"
-        class: Synthesis
-        purpose: >-
-          Record a preparation step that the preparation method has no fields for, with its
-          conditions as structured values, instead of squeezing it into the fields of another step.
-        use_case: >-
-          A Pt/Al₂O₃ catalyst is impregnated, dried and then reduced in 5 % H₂/N₂ up to 700 °C.
-          `Impregnation` has drying and calcination fields but none for a reduction, so the
-          reduction is a step of its own under `has_part`. It is typed with the Voc4Cat term
-          *reduction* (`voc4cat:0000098`) and carries its conditions as typed attributes.
-        notes:
-          - >-
-            `has_part` takes any activity. Its conditions go into the generic
-            `has_quantitative_attribute` and `has_qualitative_attribute`, each with a `title`
-            and, where a vocabulary term exists, an `rdf_type`: here *atmosphere*
-            (`voc4cat:0007809`), *heating rate* (`voc4cat:0008116`) and *gas flow rate*
-            (`voc4cat:0008109`).
-          - >-
-            Use the calcination fields only for a calcination. In the source workbook these
-            columns were headed "calcination"; the data provider confirmed that the step was a
-            reduction.
-        keep:
-          id: true
-          nominal_composition: true
-          catalyst_measured_properties: true
-          had_input_entity: {_limit: 1, id: true, title: true}
-          realized_plan:
-            id: true
-            plan_designator: true
-            title: true
-            impregnation_type: true
-            has_drying_temperature: true
-            has_drying_duration: true
-          has_part:
-            id: true
-            title: true
-            rdf_type: true
-            has_qualitative_attribute: true
-            has_quantitative_attribute: true
-            carried_out_by: true
-
-      - id: value-without-field
-        title: A value the schema has no field for
-        dataset: jlcat03
-        dataset_label: "the spreadsheet example (JLCAT03)"
-        dataset_page: building-a-parser.md
-        source: tests/data/valid/CatalysisDataset-JLCAT03.yaml
-        select: "was_generated_by_synthesis[id=coremeta4cat:SYN_JLCAT03]"
-        class: Synthesis
-        purpose: >-
-          Keep a quantity that has no field of its own as a structured, typed value rather than
-          as free text.
-        use_case: >-
-          The catalyst's metal loading, 5 wt% (nominal). CoreMeta4Cat has no metal-loading field,
-          so the value is a generic quantity of the catalyst sample (`has_quantitative_attribute`),
-          typed with the Voc4Cat term *metal loading* (`voc4cat:0008106`) and given as a mass
-          fraction in percent.
-        notes:
-          - >-
-            `rdf_type` on the quantity says what it is; `has_quantity_type` and `unit` say how it
-            is measured. Together they keep the value comparable across datasets.
-          - >-
-            The same record uses the pattern for a qualitative value too: the reactor's operation
-            mode (batch) is a `has_qualitative_attribute` typed *operation mode*
-            (`voc4cat:0000108`).
-        keep:
-          id: true
-          nominal_composition: true
-          catalyst_measured_properties: true
-          had_input_entity: {_limit: 1, id: true, title: true}
-          had_output_entity: {id: true, title: true, has_quantitative_attribute: true}
-          realized_plan: {id: true, plan_designator: true, title: true}

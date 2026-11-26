@@ -412,8 +412,7 @@ def render(spec: dict, schema: Schema, validator: SchemaDirValidator) -> str:
                 indent(ttl_text, 4),
                 "    ```",
                 "",
-                f"Excerpt of [{pattern['dataset_label']}]"
-                f"({pattern.get('dataset_page', 'community-datasets.md')}#{pattern['dataset']}) "
+                f"Excerpt of [{pattern['dataset_label']}](community-datasets.md#{pattern['dataset']}) "
                 f"as `{pattern['class']}`, validated against the current schema. "
                 f"Download: [YAML](../assets/patterns/{stem}.yaml) · [Turtle](../assets/patterns/{stem}.ttl)",
                 "",
