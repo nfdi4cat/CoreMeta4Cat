@@ -20,11 +20,10 @@ This page is written in three tiers. Most users only need the first two.
 
 ## The entry point: CatalysisDataset
 
-Every CoreMeta4Cat record starts with a **`CatalysisDataset`**. This is a `dcat:Dataset` — fully compatible with plain DCAT and DCAT-AP — extended with four additional link slots that connect to the four CoreMeta4Cat data classes.
+Every CoreMeta4Cat record starts with a **`CatalysisDataset`**. This is a `dcat:Dataset` — fully compatible with plain DCAT and DCAT-AP — extended with link slots that connect it to the four CoreMeta4Cat data classes.
 
 ```yaml
-id: ex:dataset-001
-type: CatalysisDataset                  # → dcat:Dataset
+id: ex:dataset-001                      # the CatalysisDataset, a dcat:Dataset
 
 # Layer 1: global classification (one or more research fields)
 rdf_type:
@@ -32,7 +31,7 @@ rdf_type:
     title: "heterogeneous catalysis"
 
 # Layer 2: links to the four data classes
-was_generated_by:                       # ids of all activities that produced the data
+was_generated_by:                       # ids of the activities that produced the data
   - ex:synthesis-001
   - ex:characterization-001
 was_generated_by_synthesis:             # each activity in full, under its kind
@@ -41,12 +40,10 @@ was_generated_by_characterization:
   - id: ex:characterization-001
 
 is_about_activity:
-  - id: ex:reaction-001
-    type: Reaction
+  - id: ex:reaction-001                 # a CatalyticReaction
 
 is_about_entity:
-  - id: ex:catalyst-001
-    type: CatalystSample
+  - id: ex:catalyst-001                 # a CatalystSample
 ```
 
 The key points here are:
@@ -65,10 +62,10 @@ The four CoreMeta4Cat data classes — **Synthesis**, **Characterization**, **Re
 ```
 coremeta4cat.yaml  (aggregator + CatalysisDataset)
   ├── coremeta4cat_common.yaml          (shared slots and enumerations)
-  ├── coremeta4cat_synthesis_ap.yaml    (Synthesis + 12 preparation methods)
-  ├── coremeta4cat_characterization_ap.yaml  (Characterization + 28 techniques)
+  ├── coremeta4cat_synthesis_ap.yaml    (Synthesis + 15 preparation methods)
+  ├── coremeta4cat_characterization_ap.yaml  (Characterization + 27 techniques)
   ├── coremeta4cat_reaction_ap.yaml     (Reaction + 8 reactor types)
-  └── coremeta4cat_simulation_ap.yaml   (Simulation + 4 methods + 12 properties)
+  └── coremeta4cat_simulation_ap.yaml   (Simulation + 4 methods + 17 properties)
 ```
 
 ### Synthesis
@@ -81,7 +78,7 @@ coremeta4cat.yaml  (aggregator + CatalysisDataset)
 - `had_input_entity` → `Precursor` instances (the starting materials)
 - `had_output_entity` → `CatalystSample` (the resulting catalyst)
 
-Twelve preparation methods are currently defined, each as a concrete `PreparationMethod` subclass:
+Fifteen preparation methods are currently defined, each as a concrete `PreparationMethod` subclass:
 
 - **Wet chemistry:** Impregnation, Co-Precipitation, Deposition-Precipitation, Sol-Gel, Molecular Synthesis
 - **Thermal / gas-phase:** Solvothermal, Combustion Synthesis, Flame Spray Pyrolysis, Sublimation, Plasma-Assisted
@@ -95,16 +92,18 @@ Twelve preparation methods are currently defined, each as a concrete `Preparatio
 **Key links:**
 
 - `evaluated_entity` → the `CatalystSample` or material being measured
+- `evaluated_activity` → the `CatalyticReaction` being measured, e.g. in product analysis or operando experiments
 - `realized_plan` → a `CharacterizationTechnique` subclass (the measurement protocol)
 - `carried_out_by` → the instrument (`Device`) performing the measurement
 
-Twenty-eight techniques are currently defined, organised into groups:
+Twenty-seven techniques are currently defined, organised into groups:
 
 | Group | Techniques |
 |---|---|
 | Diffraction | Powder XRD, Single Crystal XRD |
 | X-ray spectroscopy | XAS/XANES/EXAFS, XPS, EDX |
-| Vibrational spectroscopy | FTIR, DRIFTS, Raman, NMR |
+| Vibrational spectroscopy | FTIR, DRIFTS, Raman |
+| Magnetic resonance | NMR |
 | Electron microscopy | TEM, SEM |
 | Thermal analysis | TGA, TPR, TPO |
 | Surface & pore analysis | BET |
@@ -113,7 +112,7 @@ Twenty-eight techniques are currently defined, organised into groups:
 | Electrochemistry | Cyclic Voltammetry, Conductivity Measurement |
 | Particle sizing | Dynamic Light Scattering |
 | Mass spectrometry | ESI-MS, GC-MS, HPLC-MS |
-| Chromatography | GC, HPLC |
+| Chromatography | Size Exclusion Chromatography |
 
 ### Reaction
 
@@ -131,10 +130,12 @@ Eight reactor design types are defined:
 !!! info "Operando experiments"
     For in-situ or operando experiments (e.g. XRD measured while a reaction runs), the dataset carries **both** links simultaneously:
     ```yaml
+    was_generated_by:
+      - ex:xrd-001
     was_generated_by_characterization:
-      - id: ex:xrd-001             # PowderXRD — the process that made the data
+      - id: ex:xrd-001                          # PowderXRD — the process that made the data
     is_about_activity:
-      - id: ex:reaction-001        # the catalytic process being monitored
+      - id: ex:reaction-001                     # the catalytic process being monitored
     ```
 
 ### Simulation
@@ -144,10 +145,11 @@ Eight reactor design types are defined:
 **Key links:**
 
 - `realized_plan` → a `SimulationMethod` subclass (DFT, MD, Microkinetics, MonteCarlo)
-- `carried_out_by` → a `Software` agent (the simulation package)
+- `software_package` → the simulation code and its version (e.g. VASP, Quantum ESPRESSO)
 - `evaluated_entity` → the catalyst model or structure being simulated
+- `calculated_property` → `CalculatedProperty` subclasses (the computed output)
 
-Twelve calculated property classes capture the type of computed output: `ElectronicStructure`, `BandGap`, `ThermodynamicStability`, `PhononDispersion`, `Surfaces`, `GrainBoundaries`, `ElasticConstants`, `DielectricTensors`, `EquationsOfState`, `AqueousStability`, `Piezoelectricity`, `Ferroelectrics`.
+Seventeen calculated property classes capture the type of computed output: `ElectronicStructure`, `BandGap`, `ThermodynamicStability`, `PhononDispersion`, `Surfaces`, `GrainBoundaries`, `ElasticConstants`, `DielectricTensors`, `EquationsOfState`, `AqueousStability`, `Piezoelectricity`, `Ferroelectrics`, and, specific to catalysis, `AdsorptionEnergetics`, `ReactionEnergetics`, `TransitionState`, `ElectrochemicalFreeEnergy`, `CatalyticDescriptors`.
 
 ---
 
@@ -156,7 +158,7 @@ Twelve calculated property classes capture the type of computed output: `Electro
 !!! abstract "Pattern summary"
     Flexible, machine-actionable classification of datasets, activities, and entities using ontology terms — without creating a separate class for every possible value.
 
-Rather than defining a fixed class hierarchy for every type of catalysis or every synthesis method, CoreMeta4Cat uses a single `rdf_type` slot on each class to carry a controlled vocabulary term from Voc4Cat, CHMO, or another ontology. This keeps the schema compact while staying fully machine-actionable.
+Rather than defining a fixed class hierarchy for every type of catalysis or every reaction, CoreMeta4Cat uses the `rdf_type` slot to carry a controlled vocabulary term from Voc4Cat, CHMO, or another ontology. This keeps the schema compact while staying fully machine-actionable.
 
 **On CatalysisDataset** — classify the catalysis research field (mandatory; a list, so several fields can be given):
 
@@ -166,29 +168,33 @@ rdf_type:
     title: "heterogeneous catalysis"
 ```
 
-**On Synthesis** — classify the preparation method type:
+**On CatalyticReaction** — classify the reaction type (mandatory):
 
 ```yaml
-type: Synthesis
 rdf_type:
-  id: voc4cat:0007028
-  title: "impregnation"
-realized_plan:
-  type: Impregnation    # the concrete method class with all parameter slots
+  id: voc4cat:0000289
+  title: "CO oxidation"
 ```
 
-**On Characterization** — classify the measurement technique:
+**On Synthesis and Characterization** — a method that needs its own parameter slots has its own class (`Impregnation`, `PowderXRD`, …). The plan names that class with `plan_designator`, whose value is the class URI, itself an ontology term:
 
 ```yaml
-type: Characterization
-rdf_type:
-  id: CHMO:0000158
+# a Synthesis, in was_generated_by_synthesis
+realized_plan:
+  id: ex:method-001
+  plan_designator: voc4cat:0007028    # Impregnation: the concrete method class with all parameter slots
+  title: "incipient wetness impregnation"
+```
+
+```yaml
+# a Characterization, in was_generated_by_characterization
+realized_plan:
+  id: ex:xrd-method-001
+  plan_designator: CHMO:0000158       # PowderXRD: the concrete technique class with all measurement slots
   title: "powder X-ray diffraction"
-realized_plan:
-  type: PowderXRD       # the concrete technique class with all measurement slots
 ```
 
-The `rdf_type` slot gives the machine-readable ontology term; the concrete subclass (`Impregnation`, `PowderXRD`, …) provides the structured parameter slots. Both are used together.
+One value does both jobs: it is the machine-readable ontology term (written as `rdf:type` in RDF), and it tells validators and software which concrete class applies, and so which parameter slots are available. Reactors are selected the same way with `reactor_designator`, and calculated properties with `property_designator`. Activities need no designator: each kind has its own field on the dataset (`was_generated_by_synthesis`, `was_generated_by_characterization`, `was_generated_by_simulation`), and the field tells software which class an activity is.
 
 The allowed values for `rdf_type` on `CatalysisDataset` are defined in `CatalysisResearchFieldEnum` -- see the [CatalysisDataset](catalysis-dataset.md) page for the full value table and a worked example combining multiple pillars into one dataset.
 
@@ -212,30 +218,43 @@ Simulation             ──→      SimulationMethod
 The Activity carries the **instance-level data** (who did it, when, on what sample, with what output). The Plan carries the **method-level data** (parameter settings, instrument configuration, protocol steps).
 
 ```yaml
-# The activity — what happened
+# The activity — what happened (an entry of was_generated_by_synthesis)
 id: ex:synthesis-001
-type: Synthesis
-nominal_composition: "5wt% Ni/Al2O3"
+nominal_composition:
+  - "5wt% Ni/Al2O3"
+catalyst_measured_properties:
+  - "BET surface area: 160 m2/g"
 had_input_entity:
   - id: ex:precursor-001
-    type: Precursor
-    name: "Ni(NO3)2·6H2O"
-    precursor_quantity: 1.24   # g
+    title: "Ni(NO3)2·6H2O"
+    precursor_quantity:
+      - value: 1.24
+        has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+        unit: https://qudt.org/vocab/unit/GM
 had_output_entity:
   - id: ex:catalyst-001
-    type: CatalystSample
 
 # The plan — the protocol
 realized_plan:
   id: ex:method-001
-  type: Impregnation
-  impregnation_type: incipient_wetness
-  impregnation_duration: 12.0   # h
-  drying_temperature: 120.0     # °C
-  drying_time: 12.0             # h
-  calcination_final_temperature: 500.0   # °C
-  calcination_dwelling_time: 4.0         # h
-  calcination_gaseous_environment: "air"
+  plan_designator: voc4cat:0007028      # Impregnation
+  impregnation_type:
+    - incipient_wetness
+  has_drying_temperature:
+    - value: 120.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/DEG_C
+  has_calcination_temperature_range:
+    - min_value: 500.0
+      max_value: 500.0
+      has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+      unit: https://qudt.org/vocab/unit/DEG_C
+  has_calcination_dwelling_time:
+    value: 4.0
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+    unit: https://qudt.org/vocab/unit/HR
+  has_calcination_atmosphere:
+    - value: "air"
 ```
 
 This separation means a single `PreparationMethod` record could in principle be shared across multiple `Synthesis` activities — a direct gain for reproducibility. That sharing depends on the Plan being independently identifiable, which is why `realized_plan.id` is populated above.
@@ -256,39 +275,49 @@ Many preparation methods share common process steps — drying, calcination, pre
 
 | Mixin | Slots it provides | Used by |
 |---|---|---|
-| `DryingMixin` | `drying_device`, `drying_temperature`, `drying_time`, `drying_atmosphere` | Impregnation, CoPrecipitation, DepositionPrecipitation, SonochemicalSynthesis, MolecularSynthesis |
-| `CalcinationMixin` | `calcination_initial_temperature`, `calcination_final_temperature`, `calcination_dwelling_time`, `calcination_heating_rate`, `calcination_gaseous_environment`, `calcination_gas_flow_rate`, `number_of_cycles` | Impregnation, CoPrecipitation, DepositionPrecipitation, SonochemicalSynthesis, ExsolutionSynthesis |
-| `PrecipitationMixin` | `precipitating_agent`, `synthesis_ph`, `mixing_rate`, `mixing_time`, `mixing_temperature`, `order_of_addition`, `aging_temperature`, `aging_time` | CoPrecipitation, DepositionPrecipitation |
-| `ThermalSynthesisMixin` | `synthesis_temperature`, `synthesis_duration`, `equipment`, `vessel_type`, `atmosphere` | Solvothermal, PlasmaAssisted, CombustionSynthesis, MicrowaveAssisted, MechanochemicalSynthesis, Sublimation |
+| `DryingMixin` | `drying_device`, `has_drying_temperature`, `has_drying_duration`, `has_drying_atmosphere` | CoPrecipitation, DepositionPrecipitation, Impregnation, MolecularSynthesis, SolGel, SonochemicalSynthesis |
+| `CalcinationMixin` | `has_calcination_temperature_range`, `has_calcination_dwelling_time`, `number_of_cycles`, `has_calcination_atmosphere`, `has_calcination_heating_rate`, `has_calcination_gas_flow_rate` | CoPrecipitation, DepositionPrecipitation, ExsolutionSynthesis, Impregnation, SonochemicalSynthesis |
+| `PrecipitationMixin` | `precipitating_agent`, `precipitating_concentration`, `has_ph_value`, `has_mixing_speed`, `has_mixing_duration`, `has_mixing_temperature`, `order_of_addition`, `filtration`, `purification`, `has_aging_temperature`, `has_aging_duration` | CoPrecipitation, DepositionPrecipitation |
+| `ThermalSynthesisMixin` | `synthesis_temperature`, `synthesis_duration`, `has_vessel_type`, `has_atmosphere` | CombustionSynthesis, MechanochemicalSynthesis, MicrowaveAssisted, PlasmaAssisted, Solvothermal, Sublimation |
 
 The same pattern is used in the Characterization subprofile for analytical techniques:
 
-| Mixin | Used by |
-|---|---|
-| `XRaySourceMixin` | PowderXRD, SingleCrystalXRD, XPS, EDX |
-| `ElectronMicroscopyMixin` | TEM, SEM |
-| `TemperatureProgramMixin` | TPR, TPO, Thermogravimetry |
-| `ChromatographyMixin` | GC, HPLC, GC-MS, HPLC-MS |
-| `MassRangeMixin` | GC-MS, HPLC-MS, ESI-MS |
-| `ElectrochemistryMixin` | CyclicVoltammetry, ConductivityMeasurement |
+| Mixin | Slots it provides | Used by |
+|---|---|---|
+| `XRaySourceMixin` | `xray_source`, `monochromator` | PowderXRD, SingleCrystalXRD, XPS, XRayAbsorptionSpectroscopy |
+| `EnergyRangeMixin` | `has_energy_range` | XPS, XRayAbsorptionSpectroscopy |
+| `ElectronMicroscopyMixin` | `gun_type`, `acceleration_voltage`, `magnification_setting` | ScanningElectronMicroscopy, TransmissionElectronMicroscopy |
+| `TemperatureProgramMixin` | `has_temperature_range`, `has_heating_rate`, `has_heating_procedure` | TPO, TPR, Thermogravimetry |
+| `ChromatographyMixin` | `column_type`, `eluent`, `has_flow_rate`, `has_injection_volume`, `external_standard`, `internal_standard` | GCMS, HighPerformanceLiquidChromatographyMassSpectrometry, SizeExclusionChromatography |
+| `MassRangeMixin` | `has_mz_range` | ElectroSprayIonizationMassSpectrometry, GCMS |
+| `PhotoluminescenceMixin` | `excitation_wavelength`, `emission_wavelength`, `optical_filter`, `has_temperature` | PhotoluminescenceLifetime, PhotoluminescenceSpectroscopy |
+| `ElectrochemistryMixin` | `reference_electrode`, `working_electrode`, `counter_electrode`, `electrolyte_composition`, `electrolyte_concentration`, `has_atmosphere`, `has_temperature` | ConductivityMeasurement, CyclicVoltammetry |
+
+In the Simulation subprofile, two mixins bundle settings and descriptors shared by several calculated properties:
+
+| Mixin | Slots it provides | Used by |
+|---|---|---|
+| `DFTSettingsMixin` | `energy_cutoff`, `convergence_criteria`, `k_point_mesh` | BandGap, DielectricTensors, ElectronicStructure, EquationsOfState |
+| `MaterialDescriptorMixin` | `material_composition`, `crystal_structure` | AqueousStability, BandGap, DielectricTensors, ElectronicStructure, EquationsOfState, Ferroelectrics, GrainBoundaries, PhononDispersion |
 
 In LinkML, a mixin class has no `class_uri` of its own and generates no independent node shape. It is a pure slot container, mixed in via the `mixins:` key on a concrete class.
 
 ---
 
-## Pattern 4: Shared slots in catcore\_common
+## Pattern 4: Shared slots in coremeta4cat\_common
 
 !!! abstract "Pattern summary"
-    Slots referenced by two or more subprofiles are declared once in `catcore_common.yaml` and imported by all subprofiles. This keeps the schema DRY (Don't Repeat Yourself).
+    Slots referenced by two or more subprofiles are declared once in `coremeta4cat_common.yaml` and imported by all subprofiles. This keeps the schema DRY (Don't Repeat Yourself).
 
-Some slots appear in multiple data classes — for example, `temperature` is relevant to Synthesis (calcination), Characterization (temperature-programmed experiments), and Reaction (reactor temperature). These shared slots live in `catcore_common.yaml`:
+Some slots appear in multiple data classes — for example, `has_atmosphere` is relevant to Synthesis (thermal treatment), Characterization (measurement atmosphere), and Reaction (reaction atmosphere). These shared slots live in `coremeta4cat_common.yaml`, together with the shared quantity classes (`QuantitativeRange`, `Duration`, `HeatingRate`, …) and the type designators:
 
 ```yaml
-# catcore_common.yaml — shared slots include:
-atmosphere, temperature, flow_rate, heating_rate,
-equipment, sample_mass, stirring_speed, stirring_duration,
-drying_*, calcination_*, concentration, solvent,
-experiment_duration, step_size, resolution, ...
+# coremeta4cat_common.yaml — shared slots include:
+plan_designator, reactor_designator,
+has_atmosphere, has_flow_rate, has_heating_rate, has_sample_mass,
+has_drying_*, has_calcination_*, has_experiment_duration,
+has_sample_pretreatment, solvent, carrier_gas, number_of_cycles,
+step_size, resolution, ...
 ```
 
 Slots that are exclusive to a single subprofile are declared in that subprofile file only. Physical quantity slots that belong to chemdcat-ap's own material/chemistry model (e.g. `has_temperature`, `has_pressure`) live further down the import chain, in `material_entities_ap.yaml` — see [Pattern 5](#pattern-5-specializing-chemdcat-ap-inheritance).
@@ -319,28 +348,38 @@ This distinction enables operando experiments to be described correctly:
 ```yaml
 # Operando XRD during CO oxidation
 was_generated_by:
-  - ex:operando-xrd-001
+  - ex:xrd-001
 was_generated_by_characterization:
-  - id: ex:operando-xrd-001     # PowderXRD run — this produced the data
-    rdf_type:
-      id: CHMO:0000158
+  - id: ex:xrd-001                          # PowderXRD run — this produced the data
+    evaluated_activity:
+      - id: ex:co-oxidation-001             # ...while measuring this reaction
+    realized_plan:
+      id: ex:xrd-method-001
+      plan_designator: CHMO:0000158         # PowderXRD
       title: "powder X-ray diffraction"
 
 is_about_activity:
-  - type: CatalyticReaction     # the CO oxidation reaction being monitored
+  - id: ex:co-oxidation-001                 # the CO oxidation reaction being monitored
+    rdf_type:
+      id: voc4cat:0000289
+      title: "CO oxidation"
     catalyst_mass:
       - value: 50.0
+        has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
         unit: https://qudt.org/vocab/unit/MilliGM
     used_reactant:
-      - title: "CO (1 vol%)"
-      - title: "O2 (2 vol%)"
+      - id: ex:feed-co
+        title: "CO (1 vol%)"
+      - id: ex:feed-o2
+        title: "O2 (2 vol%)"
     used_reactor:
-      - type: FixedBedReactor
+      - id: ex:reactor-001
+        reactor_designator: coremeta4cat:FixedBedReactor
 ```
 
 If `Reaction` were modelled as a `DataGeneratingActivity`, this relationship would collapse: it would be impossible to distinguish the measurement from the catalytic process it monitors.
 
-The same distinction appears in DCAT-AP-PLUS itself — the NMR example in the base documentation uses `was_generated_by: NMRSpectroscopy` (the measurement) and `evaluated_entity: MaterialSample` (the thing measured). CoreMeta4Cat extends this by adding `is_about_activity: Reaction` for cases where a process — not just a material — is being monitored. Its `was_generated_by_characterization` (and the synthesis and simulation counterparts) are specialisations of `was_generated_by`: in RDF they are `prov:wasGeneratedBy` too.
+The same distinction appears in DCAT-AP-PLUS itself — the NMR example in the base documentation uses `was_generated_by: NMRSpectroscopy` (the measurement) and `evaluated_entity: MaterialSample` (the thing measured). CoreMeta4Cat extends this by adding `is_about_activity: Reaction` for cases where a process — not just a material — is being monitored. Its `was_generated_by_characterization` (and the synthesis and simulation counterparts) specialise `was_generated_by`: in RDF they are `prov:wasGeneratedBy` too.
 
 ---
 
