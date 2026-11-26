@@ -1,0 +1,45 @@
+id: coremeta4cat:REAC_b74m-m6rp_NH3_decomposition
+title:
+- NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)
+rdf_type:
+  id: SIO:010511
+  title: decomposition reaction
+catalyst_mass:
+- value: 300
+  has_quantity_type: http://qudt.org/vocab/quantitykind/Mass
+  unit: https://qudt.org/vocab/unit/MilliGM
+  description: Catalyst granulate per test, mixed with 700 mg silica
+used_reactor:
+- id: coremeta4cat:REAC_b74m-m6rp_reactor
+  reactor_designator: coremeta4cat:FixedBedReactor
+  title: quartz glass tubular packed-bed reactor
+  catalyst_bed_diameter:
+  - value: 0.8
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+    unit: https://qudt.org/vocab/unit/CentiM
+  catalyst_bed_height:
+  - value: 1.2
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Length
+    unit: https://qudt.org/vocab/unit/CentiM
+  catalyst_dilution_material:
+  - silica particles, 700 mg, 120-250 um
+product_identification_method:
+- id: coremeta4cat:REAC_b74m-m6rp_FTIR
+  title: online FTIR gas analysis
+  description: MKS Instruments MG2030 FTIR spectrometer, continuous analysis of the effluent gas
+reactor_temperature_range:
+- min_value: 473.15
+  max_value: 873.15
+  has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+  unit: https://qudt.org/vocab/unit/K
+  description: Ramp 473-873 K at 2 K/min; deposited inlet temperature 200-601 C
+experiment_pressure:
+- value: 1.0
+  has_quantity_type: http://qudt.org/vocab/quantitykind/Pressure
+  unit: https://qudt.org/vocab/unit/BAR
+feed_composition_range:
+- min_value: 500.0
+  max_value: 3000.0
+  has_quantity_type: http://qudt.org/vocab/quantitykind/MoleFraction
+  unit: https://qudt.org/vocab/unit/PPM
+  description: NH3 at the inlet (500, 1000, 3000 ppm), balance Ar
