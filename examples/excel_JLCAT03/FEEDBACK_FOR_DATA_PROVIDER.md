@@ -29,8 +29,8 @@ Still open:
    that the contact person is an author.
 3. **NTP.** "NTP" is defined in more than one way. NIST uses 20 °C and 1 atm, while the German
    normal litre (DIN 1343) refers to 0 °C and 1.01325 bar. Which applies to the 15 nl/h?
-4. **Reaction type** (optional): an ontology term for the reaction type, e.g. an RXNO term for
-   epoxidation.
+4. **Reaction type** (now required by the schema): we used voc4cat:0000205 "epoxidation", which
+   voc4cat defines as converting an alkene into an epoxide. Please confirm, or name a better term.
 
 The first-round feedback follows unchanged.
 

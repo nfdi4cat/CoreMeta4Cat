@@ -22,6 +22,7 @@
 workbook: ../source/TestDataSet_CoreMeta4Cat.xlsx
 supplement: supplement.yaml
 output: ../metadata/CatalysisDataset-JLCAT03.yaml
+json: ../metadata/CatalysisDataset-JLCAT03.json      # same data as JSON, written by the parser
 provenance: ../metadata/source_documentation.yaml
 report: ../metadata/parse_report.md
 
@@ -65,9 +66,9 @@ sheets:
     key_column: B          # catalyst ID: record key and join key to the other sheets
     record:
       class: Synthesis
-      list: was_generated_by
+      list: was_generated_by_synthesis   # full description (typed slot, schema after #199)
+      id_list: was_generated_by          # the dataset also lists the id of every activity here
       id: "SYN_{key}"
-      set: {activity_designator: Synthesis}
     ids:
       realized_plan: "SYN_{key}_method"
       "had_output_entity[catalyst]": "CAT_{key}"
@@ -366,9 +367,9 @@ sheets:
     key_row: 1             # catalyst ID
     record:
       class: Characterization
-      list: was_generated_by
+      list: was_generated_by_characterization
+      id_list: was_generated_by
       id: "CHAR_{slug:22}"           # measurement ID in row 22 (Q8)
-      set: {activity_designator: Characterization}
     ids:
       "evaluated_entity[catalyst]": "CAT_{key}"
       realized_plan: "CHAR_{slug:22}_method"
@@ -588,13 +589,14 @@ sheets:
           CatalysisResearchFieldEnum value heterogeneous_catalysis (voc4cat:0007001).
       - col: C
         header: catalyst type (voc4cat:0007014)
-        to: "^rdf_type"
+        to: "^rdf_type[]"
         as: enum
         values: {heterogeneous: {id: "voc4cat:0007001", title: heterogeneous catalysis}}
         basis: deduced
         why: >-
-          The dataset's research field (CatalysisDataset.rdf_type, CatalysisResearchFieldEnum)
-          follows from the catalytic regime of its only reaction.
+          The dataset's research field (CatalysisDataset.rdf_type, CatalysisResearchFieldEnum;
+          required and a list since schema PR #192) follows from the catalytic regime of its
+          only reaction.
       - col: D
         header: catalyst form (voc4cat:0000016)
         to: "catalyst_form[]"
@@ -610,6 +612,20 @@ sheets:
         as: text
         basis: direct
         why: voc4cat:0007009 is the slot_uri of reaction_name.
+      - col: E
+        header: reaction name (voc4cat:0007009)
+        to: rdf_type
+        as: enum
+        values: {epoxidation: {id: "voc4cat:0000205", title: epoxidation}}
+        basis: deduced
+        why: >-
+          The reaction type is required since schema PR #192, and the data provider left it
+          open (Q14). voc4cat:0000205 'epoxidation' (converting an alkene into an epoxide,
+          checked in voc4cat v2026-10-31) matches the reaction name given here and what the
+          test does: styrene (K3), an alkene, to styrene oxide (AA3), an epoxide.
+        flag: >-
+          Reaction type: we used voc4cat:0000205 'epoxidation', now required by the schema.
+          Please confirm (Q14 was left open).
       - col: F
         header: reactor temperature range (voc4cat:0007032)
         to: "reactor_temperature_range[]"

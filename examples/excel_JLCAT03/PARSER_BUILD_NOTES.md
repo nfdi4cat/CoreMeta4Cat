@@ -29,18 +29,17 @@ includes linkml and openpyxl). The parser finds its crosswalk next to itself and
 checkout it is in.
 
 ```bash
-# 1. workbook -> record + provenance + report
+# 1. workbook -> record (YAML and JSON) + provenance + report
 uv run python examples/excel_JLCAT03/parser/xlsx_to_coremeta4cat.py
 
-# 2. validate against the schema
+# 2. validate against the schema (the .json validates the same way)
 uv run linkml-validate -s src/coremeta4cat/schema/coremeta4cat.yaml -C CatalysisDataset \
     examples/excel_JLCAT03/metadata/CatalysisDataset-JLCAT03.yaml
 
-# 3. convert to JSON and RDF (this also loads the record into the Python data model)
-uv run linkml-convert -s src/coremeta4cat/schema/coremeta4cat.yaml -C CatalysisDataset \
+# 3. convert to RDF (this also loads the record into the Python data model)
+uv run linkml-convert --no-validate -s src/coremeta4cat/schema/coremeta4cat.yaml -C CatalysisDataset \
     -o examples/excel_JLCAT03/metadata/CatalysisDataset-JLCAT03.ttl \
     examples/excel_JLCAT03/metadata/CatalysisDataset-JLCAT03.yaml
-#    (the same with -o ...JLCAT03.json)
 
 # 4. what does the workbook alone fail on? Builds the record without placeholders (into a file
 #    of your choice, so the published record stays as it is) and lists the required slots left empty.
@@ -51,6 +50,13 @@ Without a project environment, prefix the commands with
 `uv run --no-project --with linkml==1.12.1 --with openpyxl --` instead of `uv run`.
 
 The record is not part of `tests/data/valid`, so `just test` does not check it; step 2 does.
+
+Why the JSON comes from the parser and step 3 uses `--no-validate`: since nfdi4cat/CoreMeta4Cat#199
+the dataset lists its activities' ids in `was_generated_by`. After a round trip through the Python
+data model, LinkML writes these as `{"id": ...}` objects, which the schema does not accept. Without
+`--no-validate`, `linkml-convert` checks that round-tripped data and stops. The parser therefore
+writes the JSON straight from the record, as `scripts/generate_example_outputs.py` does for the
+docs. Step 2 validates the record itself, and the Turtle is not affected.
 
 ## The rule: deduce, never invent
 
@@ -77,6 +83,7 @@ Result for this workbook: 76 value cells; 74 mapped and 2 recognised as repeats.
 |---|---|---|---|---|---|---|
 | Round 1 (workbook only) | 92 | 87 | 5 | 2 | 66 direct, 13 deduced, 7 schema-forced, 1 fallback | 13 |
 | Round 2 (with the answers) | 108 | 87 | 21 | 0 | 65 direct, 9 deduced, 12 schema-forced, 1 fallback | 4 |
+| Schema after #192 and #199 | 109 | 88 | 21 | 0 | 65 direct, 10 deduced, 12 schema-forced, 1 fallback | 4 |
 
 ## Step 1: inventory the workbook
 
@@ -122,9 +129,11 @@ Work from the term, then the label, then the layout:
    Examples: `has_yield` is a list (two products are fine), `has_experiment_duration` is a
    single value, and `ProductIdentificationMethod` accepts no other designator.
 4. **Subclass fields need a designator.** An impregnation plan only takes `impregnation_type` if it
-   declares `plan_designator: voc4cat:0007028`. The same holds for `reactor_designator` (Autoclave)
-   and `activity_designator` (in the combined record). The workbook names the subclass, either in a
-   cell value (`Impregnation`, `Autoclave (NCIT:C93052)`) or in a class row (`PowderXRD`).
+   declares `plan_designator: voc4cat:0007028`. The same holds for `reactor_designator` (Autoclave).
+   The workbook names the subclass, either in a cell value (`Impregnation`, `Autoclave
+   (NCIT:C93052)`) or in a class row (`PowderXRD`). Activities need no designator: since #199 each
+   kind has its own dataset slot (`was_generated_by_synthesis`, `..._characterization`), and
+   `was_generated_by` lists the ids of all of them.
 5. **Layout is evidence, not proof.** The Character sheet repeats the slot list of the PowderXRD
    class page. Rows 11, 12 and 22 (`title`, `description`, `id`) sit in the PowderXRD block, so round
    1 mapped them to the protocol and flagged that their wording suggests the measurement itself. The
@@ -147,7 +156,8 @@ Decisions that were not a direct term match (round 2; "Q" numbers are the provid
 | Character C10, C13, C18, C20 (no units) | Degree (2θ range and step size), rpm, min | Q3. The 2θ unit had been deduced, since 2θ cannot exceed 180°. `step_size` holds a bare number, so its unit is stated in the protocol description |
 | Character C11, C12, C22 | Title, description and `other_identifier` of the measurement; the activity and protocol IRIs are minted from C22 | read as the protocol's by layout in round 1; the measurement per Q8 |
 | Character C8 (`Powder XRD`) | Plan designator CHMO:0000158, and activity `rdf_type` | deduced from the cell and the PowderXRD class row |
-| Reaction C (`heterogeneous`) | Also the dataset's research field (`rdf_type`) | deduced: field of its only reaction |
+| Reaction C (`heterogeneous`) | Also the dataset's research field (`rdf_type`, a list since #192) | deduced: field of its only reaction |
+| Reaction E (`epoxidation`) | Reaction type `rdf_type` voc4cat:0000205 'epoxidation' | deduced, to be confirmed. Required since #192, but the provider left it open (Q14). voc4cat defines it as converting an alkene into an epoxide, and the test turns styrene (K3) into styrene oxide (AA3) |
 | Reaction J (`GCMS`) | `rdf_type` CHMO:0000497 on the product identification method | schema-forced: the GCMS class cannot be designated there |
 | Reaction T (`batch`) | Generic attribute of the reactor, typed `voc4cat:0000108` | schema-forced: no operation-mode slot on reactions or reactors |
 | Reaction X (chamber volume) | `reactor_working_volume`, described as vessel only | Q12, which matches the slot's definition, not voc4cat's |
@@ -179,7 +189,12 @@ sheets:
     unit_row: 2
     first_data_row: 3
     key_column: B            # record key, available as {key}
-    record: {class: Synthesis, list: was_generated_by, id: "SYN_{key}", set: {activity_designator: Synthesis}}
+    record:                  # one record per data row
+      class: Synthesis
+      list: was_generated_by_synthesis   # where the record goes, in full
+      id_list: was_generated_by          # optional: also list its id here
+      id: "SYN_{key}"
+      # set: {...}           # optional fixed fields of every record
     ids:                     # ids of objects created inside the record, by path
       realized_plan: "SYN_{key}_method"
       "had_input_entity[precursor_1]": "PREC_{key}_1"
@@ -264,8 +279,9 @@ See "Run it" above. In this example:
   `Synthesis.catalyst_measured_properties` and `Characterization.carried_out_by`. These were the
   workbook's dead ends. In round 2 the provider's answers fill both, and the record validates
   without any placeholder.
-- `linkml-convert` produces JSON and Turtle. It loads the record into the Python data model first,
-  so a missing designator would fail here even when JSON Schema validation passes.
+- `linkml-convert` produces the Turtle. It loads the record into the Python data model first, so a
+  missing designator would fail here even when JSON Schema validation passes. The JSON is written
+  by the parser (see "Run it").
 
 ## Step 6: review what the parser reports
 
@@ -324,8 +340,9 @@ copy of the questions; round 2 works the answers in without touching the workboo
    temperature (Q11), oxygen as reactant (Q13), and title, description, keywords and contact (Q17).
    `as: quantity` converts them with the same units table as the workbook.
 4. **Placeholders go.** Whatever is still unanswered is listed under `open_questions` of the
-   supplement. Here that is the licence, the authors, the definition of "NTP", and the optional
-   reaction-type term.
+   supplement. Here that is the licence, the authors and the definition of "NTP". The reaction-type
+   term was optional in round 2. Since #192 it is required, so it was deduced and flagged for
+   confirmation (see "Keeping up with schema changes").
 5. **Rerun, validate, convert.** The workbook stays as received. If the provider later fixes the
    workbook itself, for example by typing the missing unit into Reaction!AF2, the parser stops at
    the curator-supplied unit, which then has to go (see the guard rails above).
@@ -336,28 +353,47 @@ from the measurement ID.
 
 ## What the RDF looks like
 
-The catalyst is one node linking the three activities:
+The catalyst is one node linking the three activities, and every activity is typed with an
+ontology class:
 
 ```turtle
-coremeta4cat:SYN_JLCAT03 a "Synthesis" ;
+coremeta4cat:DS_excel_JLCAT03 a dcat:Dataset , voc4cat:0007001 ;      # research field
+    prov:wasGeneratedBy coremeta4cat:CHAR_JLCAT-PXRD-03 , coremeta4cat:SYN_JLCAT03 .
+coremeta4cat:SYN_JLCAT03 a PROCO:0000001 , prov:Activity ;            # synthetic chemical process
     dcterms:hasPart coremeta4cat:SYN_JLCAT03_reduction ;
     prov:generated coremeta4cat:CAT_JLCAT03 ;
     prov:used coremeta4cat:PREC_JLCAT03_1 , coremeta4cat:PREC_JLCAT03_support , coremeta4cat:SYN_JLCAT03_method .
 coremeta4cat:SYN_JLCAT03_reduction a prov:Activity , voc4cat:0000098 ;   # reduction step (Q10)
     prov:wasAssociatedWith coremeta4cat:DEV_JLCAT03_tube-furnace .
-coremeta4cat:CHAR_JLCAT-PXRD-03 a "Characterization" , CHMO:0000158 ;
+coremeta4cat:CHAR_JLCAT-PXRD-03 a CHMO:0000158 , OBI:0000070 , prov:Activity ;   # powder XRD, assay
     prov:used coremeta4cat:CAT_JLCAT03 , coremeta4cat:CHAR_JLCAT-PXRD-03_method ;
     prov:wasAssociatedWith coremeta4cat:DEV_Stoe-STADI-MP .
-coremeta4cat:REAC_JLCATTEST03 RXNO:0000425 coremeta4cat:CAT_JLCAT03 ;
+coremeta4cat:REAC_JLCATTEST03 a REX:0000051 , voc4cat:0000205 ;     # catalytic reaction, epoxidation
+    RXNO:0000425 coremeta4cat:CAT_JLCAT03 ;
     RO:0004009 coremeta4cat:REAG_JLCATTEST03_oxygen , coremeta4cat:SM_JLCATTEST03_styrene ;
     prov:wasAssociatedWith coremeta4cat:DEV_MBR01 .
 coremeta4cat:SYN_JLCAT03_method a voc4cat:0007028 .   # plan_designator becomes rdf:type
 coremeta4cat:DEV_MBR01 a NCIT:C93052 .                # reactor_designator: Autoclave
 ```
 
-Two problems in the RDF come from the schema and also appear in the existing example outputs:
-activities are typed with a string (`a "Synthesis"`), and the `sample_preparation` predicate stays
-an unexpanded `<allotrope.quality:0001159>`. See `SCHEMA_FINDINGS.md`.
+Until nfdi4cat/CoreMeta4Cat#199 the activities were typed with a string (`a "Synthesis"`), and
+`sample_preparation` came out as an unexpanded `<allotrope.quality:0001159>`. Both are fixed; see
+`SCHEMA_FINDINGS.md`.
+
+## Keeping up with schema changes
+
+A crosswalk is written against one version of the schema. When the schema changes, merge the new
+schema, rerun, and let validation say what broke. For this record, after nfdi4cat/CoreMeta4Cat#192
+and #199, validation reported four errors:
+
+| Error | Schema change | Fix in the crosswalk |
+|---|---|---|
+| Research field (`rdf_type` of the dataset) must be a list | #192 | Target `^rdf_type[]` instead of `^rdf_type` |
+| Activities under `was_generated_by` are objects with `activity_designator` | #199: each kind of activity has its own slot, and `was_generated_by` lists ids | `list: was_generated_by_synthesis` (or `_characterization`), `id_list: was_generated_by`, no `set: {activity_designator: ...}` |
+| (same, second activity) | #199 | as above |
+| Reaction type (`rdf_type` of the reaction) is required | #192 | New entry on column E: voc4cat:0000205, deduced from the reaction name and flagged for confirmation |
+
+The crosswalk and the parser changed; the workbook and the provider's answers did not.
 
 ## Adapting this to another workbook
 

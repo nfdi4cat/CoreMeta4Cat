@@ -1,26 +1,31 @@
 # What the JLCAT03 workbook revealed about the schema
 
-Found while mapping the workbook against the schema on `main` (commit 40a0e41, 2026-11-24). These
-are about the schema, not the data provider's workbook. Each item gives the evidence and a possible
+Items 1–20 were found while mapping the workbook against the schema on `main` (commit 40a0e41,
+2026-11-24). Items 21–22 come from adopting the schema of 2026-11-26 (`main` at 72525640a, after
+#192 and #199); items 1 and 2 are fixed there. These are about the schema, not the data provider's
+workbook. Each item gives the evidence and a possible
 fix. Paths starting with `examples/output/` are relative to the repository root; `metadata/` is
 this folder's.
 
 ## RDF output (affects every example, not only this one)
 
-1. **Activities are typed with a string.** `activity_designator` has `slot_uri: rdf:type` and
-   `range: string`, so the Turtle says `coremeta4cat:SYN_JLCAT03 a "Synthesis"`, a literal as
-   rdf:type. The class IRI of Synthesis/Characterization (OBI:0000070) is not asserted at all.
-   - Evidence: `metadata/CatalysisDataset-JLCAT03.ttl`; also `examples/output/CatalysisDataset-001.ttl`
-     (lines 17, 23, 42) and 8 times in `CatalysisDataset-6mxw-xsrd.ttl`.
-   - Fix: not simply range `uriorcurie` as for `plan_designator`. Synthesis and Characterization
-     share class_uri OBI:0000070, so an IRI designator could not tell them apart. Options: distinct
-     class_uris for the two, or a designator slot_uri other than rdf:type, which keeps it out of the
-     type assertions.
-2. **`sample_preparation` is serialised as `<allotrope.quality:0001159>`**, which is not an IRI. The
-   prefix `allotrope.quality` is declared only in `coremeta4cat_characterization_ap.yaml`;
-   `allotrope.result` is declared in `coremeta4cat_common.yaml` too, and it expands.
-   - Evidence: this record; also `examples/output/CatalysisDataset-002.ttl` and `Characterization-003.ttl`.
-   - Fix: declare the prefix in `coremeta4cat.yaml` or `coremeta4cat_common.yaml`.
+1. **Activities were typed with a string.** *Fixed by nfdi4cat/CoreMeta4Cat#199.*
+   - The problem: `activity_designator` had `slot_uri: rdf:type` and `range: string`, so the
+     Turtle said `coremeta4cat:SYN_JLCAT03 a "Synthesis"`, a literal as rdf:type, and the class IRI
+     of the activity was not asserted at all. Seen in this record and every combined example.
+   - What #199 did (per its diff, not its description): it removed `activity_designator` and
+     `CatalysisDataGeneratingActivity`. Each kind of activity now has its own dataset slot
+     (`was_generated_by_synthesis`, `_characterization`, `_simulation`, all prov:wasGeneratedBy),
+     and `was_generated_by` lists the activities' ids.
+   - The activities got their own class IRIs: Synthesis PROCO:0000001, Characterization
+     OBI:0000070, Simulation PROCO:0000159, CatalyticReaction REX:0000051. This record now has
+     `a PROCO:0000001` etc.
+2. **`sample_preparation` was serialised as `<allotrope.quality:0001159>`**, which is not an IRI.
+   *Fixed by #199.*
+   - The prefix was declared only in `coremeta4cat_characterization_ap.yaml`.
+   - #199 declares it, and the other module-only prefixes, in `coremeta4cat.yaml`;
+     `tests/test_rdf_output.py` now checks that every CURIE expands.
+   - This record's Turtle has no unexpanded CURIE left.
 3. **QUDT unit namespace.** Every example uses `https://qudt.org/vocab/unit/...` (227 times in
    CoreMeta4Cat; DCAT-AP-PLUS's `QUDTUnitEnum` also names `https://`). QUDT itself declares
    `http://qudt.org/vocab/unit/` (checked on qudt.org v3.5.4), so the unit IRIs in our RDF do not
@@ -109,3 +114,19 @@ this folder's.
 20. **A licence needs a Distribution.** In DCAT-AP the licence sits on `Distribution`, which
     requires an access URL. Once the provider names a licence, this example needs a distribution,
     e.g. pointing at this folder, just to carry it.
+
+## Found while adopting nfdi4cat/CoreMeta4Cat#192 and #199
+
+21. **Round-tripped data no longer validates.** Since #199, `was_generated_by` holds the activities'
+    ids. After a round trip through the Python data model, LinkML writes them as `{"id": ...}`
+    objects, which the schema rejects.
+    - `linkml-convert` validates that round-tripped data by default and stops; it needs
+      `--no-validate`.
+    - The JSON in `examples/output/` (written via the data model) does not validate either. In
+      `examples/output/CatalysisDataset-6mxw-xsrd.json` all 8 `was_generated_by` entries fail, and
+      so do 3 `realized_plan` entries.
+    - The JSON in `docs/assets/examples/`, written straight from the source data by
+      `scripts/generate_example_outputs.py`, validates. This example writes its JSON the same way.
+22. **The reaction type is now required** (#192), and a workbook rarely contains an ontology term
+    for it. Here it was deduced from the reaction name: voc4cat:0000205 'epoxidation', confirmed to
+    exist in voc4cat v2026-10-31. It was then flagged for the provider to confirm.

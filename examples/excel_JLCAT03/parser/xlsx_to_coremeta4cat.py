@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import json
 import re
 import sys
 from dataclasses import dataclass, field
@@ -86,7 +87,7 @@ CURIE_IN_TEXT = re.compile(r"\b([A-Za-z][A-Za-z0-9.]*):([A-Za-z0-9_]+)\b")
 ALLOTROPE_UNDERSCORE = re.compile(r"\b(AF[A-Z])_(\d{7})\b")
 TEMPLATE = re.compile(r"\{(\w+)(?::([A-Za-z0-9]+))?\}")
 PATH_PART = re.compile(r"([A-Za-z_]\w*)(?:\[([^\]]*)\])?")
-DESIGNATORS = ("activity_designator", "plan_designator", "reactor_designator")
+DESIGNATORS = ("plan_designator", "reactor_designator", "property_designator")
 
 
 def terms_in(text):
@@ -478,6 +479,8 @@ def build(cw, base_dir, use_placeholders=True):
             obj.update(spec["record"].get("set", {}))
             b.root.setdefault(spec["record"]["list"], []).append(obj)
             b.parent[id(obj)] = (b.root, spec["record"]["list"])
+            if spec["record"].get("id_list"):          # e.g. was_generated_by: ids of all activities
+                b.root.setdefault(spec["record"]["id_list"], []).append(obj["id"])
             ids = spec.get("ids", {})
             for e in entries_of(spec):
                 cell = rec.cells.get(ref_of(e))
@@ -682,7 +685,9 @@ class SchemaChecks:
 # ----------------------------------------------------------------------------- 6. write
 
 ROOT_ORDER = ["id", "title", "description", "rdf_type", "keyword", "creator", "contact_point",
-              "qualified_attribution", "was_generated_by", "is_about_activity", "is_about_entity"]
+              "qualified_attribution", "was_generated_by", "was_generated_by_synthesis",
+              "was_generated_by_characterization", "was_generated_by_simulation",
+              "is_about_activity", "is_about_entity"]
 
 
 def ordered(node, top=False):
@@ -900,6 +905,13 @@ def main():
         header += "# Built WITHOUT placeholders: required fields missing from the source stay empty.\n"
     out.write_text(header + yaml.safe_dump(record, sort_keys=False, allow_unicode=True, width=100), encoding="utf8")
     print(f"record:     {out}")
+    if cw.get("json") and not a.out:
+        # The same data as JSON, written directly (as scripts/generate_example_outputs.py does for
+        # the docs). A round trip through the Python data model (linkml-convert) would write
+        # was_generated_by as {"id": ...} objects, which do not validate against the schema.
+        json_out = (base / cw["json"]).resolve()
+        json_out.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf8")
+        print(f"json:       {json_out}")
     if a.no_placeholders:
         if schema:
             sch = SchemaChecks(schema)

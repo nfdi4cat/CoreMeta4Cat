@@ -161,5 +161,3 @@ open_questions:
       The reference conditions are given as "NTP", which is defined in more than one way: NIST
       uses 20 degC and 1 atm, while the German normal litre (DIN 1343) refers to 0 degC and
       1.01325 bar. Which temperature and pressure apply?
-  - about: Reaction (Q14)
-    text: No ontology term for the reaction type was given (optional).

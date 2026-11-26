@@ -8,8 +8,10 @@ tested in the epoxidation of styrene in an autoclave.
 **Status: second round, nearly complete.**
 - The data provider answered the 13 questions of round 1 (`source/provider_answers.md`), and the
   record now validates without any placeholder.
-- Still open: licence, dataset authors, the reference conditions behind "NTP", and an optional
-  reaction-type term (see `metadata/parse_report.md`).
+- The record follows the schema as of nfdi4cat/CoreMeta4Cat#199 (activities in the typed
+  `was_generated_by_*` slots) and #192 (reaction type required).
+- Still open: licence, dataset authors, the reference conditions behind "NTP", and confirmation of
+  the reaction-type term we deduced (see `metadata/parse_report.md`).
 - The record is not yet part of `tests/data/valid` or of the documentation site.
 
 ## Contents
@@ -31,14 +33,14 @@ in `scripts/`.
 From the repository root, in the project environment (`uv sync`):
 
 ```bash
+# record as YAML and JSON, provenance, report
 uv run python examples/excel_JLCAT03/parser/xlsx_to_coremeta4cat.py
+# validate (YAML and JSON)
 uv run linkml-validate -s src/coremeta4cat/schema/coremeta4cat.yaml -C CatalysisDataset \
     examples/excel_JLCAT03/metadata/CatalysisDataset-JLCAT03.yaml
-uv run linkml-convert -s src/coremeta4cat/schema/coremeta4cat.yaml -C CatalysisDataset \
+# RDF; --no-validate because the record was validated above (see PARSER_BUILD_NOTES.md, "Run it")
+uv run linkml-convert --no-validate -s src/coremeta4cat/schema/coremeta4cat.yaml -C CatalysisDataset \
     -o examples/excel_JLCAT03/metadata/CatalysisDataset-JLCAT03.ttl \
-    examples/excel_JLCAT03/metadata/CatalysisDataset-JLCAT03.yaml
-uv run linkml-convert -s src/coremeta4cat/schema/coremeta4cat.yaml -C CatalysisDataset \
-    -o examples/excel_JLCAT03/metadata/CatalysisDataset-JLCAT03.json \
     examples/excel_JLCAT03/metadata/CatalysisDataset-JLCAT03.yaml
 ```
 

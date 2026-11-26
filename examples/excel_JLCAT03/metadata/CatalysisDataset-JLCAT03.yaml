@@ -8,7 +8,7 @@ description:
 - Alumina supported Pt catalyst was synthesized with incipient wetness impregnation and applied in the
   liquid phase epoxidation reaction of styrene.
 rdf_type:
-  id: voc4cat:0007001
+- id: voc4cat:0007001
   title: heterogeneous catalysis
 keyword:
 - epoxidation
@@ -18,8 +18,10 @@ qualified_attribution:
 - title: contact person
   description: Arjun Neyyathala
 was_generated_by:
+- coremeta4cat:SYN_JLCAT03
+- coremeta4cat:CHAR_JLCAT-PXRD-03
+was_generated_by_synthesis:
 - id: coremeta4cat:SYN_JLCAT03
-  activity_designator: Synthesis
   nominal_composition:
   - Pt/Al2O3 (5 wt.%)
   storage_conditions:
@@ -144,8 +146,8 @@ was_generated_by:
       value: 25
       unit: https://qudt.org/vocab/unit/DEG_C
       has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+was_generated_by_characterization:
 - id: coremeta4cat:CHAR_JLCAT-PXRD-03
-  activity_designator: Characterization
   title:
   - PXRD of catalyst
   description:
@@ -206,6 +208,9 @@ was_generated_by:
     title: Stoe STADI-MP diffractometer
 is_about_activity:
 - id: coremeta4cat:REAC_JLCATTEST03
+  rdf_type:
+    id: voc4cat:0000205
+    title: epoxidation
   catalyst_type:
   - heterogeneous_catalysis
   catalyst_form:
