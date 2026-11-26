@@ -1,0 +1,67 @@
+id: coremeta4cat:SYN_JLCAT03
+nominal_composition:
+- Pt/Al2O3 (5 wt.%)
+catalyst_measured_properties:
+- Phase seen in PXRD is Pt
+had_input_entity:
+- id: coremeta4cat:PREC_JLCAT03_support
+  title: Al2O3
+realized_plan:
+  id: coremeta4cat:SYN_JLCAT03_method
+  plan_designator: voc4cat:0007028
+  title: Impregnation
+  impregnation_type:
+  - incipient_wetness
+  has_drying_temperature:
+  - value: 70
+    unit: https://qudt.org/vocab/unit/DEG_C
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+  has_drying_duration:
+    value: 12
+    unit: https://qudt.org/vocab/unit/HR
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+has_part:
+- id: coremeta4cat:SYN_JLCAT03_reduction
+  title:
+  - reduction in 5 % H2/N2
+  rdf_type:
+    id: voc4cat:0000098
+    title: reduction
+  has_qualitative_attribute:
+  - title: atmosphere
+    rdf_type:
+      id: voc4cat:0007809
+      title: atmosphere
+    value: 5 % H2/N2
+  carried_out_by:
+  - id: coremeta4cat:DEV_JLCAT03_tube-furnace
+    title: tube furnace
+  has_quantitative_attribute:
+  - title: heating rate
+    rdf_type:
+      id: voc4cat:0008116
+      title: heating rate
+    value: 500
+    unit: https://qudt.org/vocab/unit/K-PER-HR
+    has_quantity_type: http://qudt.org/vocab/quantitykind/TemperaturePerTime
+  - title: gas flow rate
+    description: normal litres per hour ('nl/h' in the workbook) at NTP (data provider, Q7)
+    rdf_type:
+      id: voc4cat:0008109
+      title: gas flow rate
+    value: 15
+    unit: https://qudt.org/vocab/unit/L-PER-HR
+    has_quantity_type: http://qudt.org/vocab/quantitykind/VolumeFlowRate
+  - title: dwelling time at the final temperature
+    value: 4
+    unit: https://qudt.org/vocab/unit/HR
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Time
+  - title: final temperature
+    value: 700
+    unit: https://qudt.org/vocab/unit/DEG_C
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature
+  - title: starting temperature
+    description: room temperature
+    value: 25
+    unit: https://qudt.org/vocab/unit/DEG_C
+    has_quantity_type: http://qudt.org/vocab/quantitykind/Temperature

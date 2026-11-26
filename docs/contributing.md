@@ -49,6 +49,30 @@ The schema is the authoritative source — the workbook is generated from it aut
 
 ---
 
+## Contribute an example dataset
+
+Real data is the best test of the schema. If you have a dataset, or a spreadsheet template, that
+CoreMeta4Cat should be able to describe, offer it in the
+[GitHub Discussions forum](https://github.com/nfdi4cat/CoreMeta4Cat/discussions) or as an
+[issue](https://github.com/nfdi4cat/CoreMeta4Cat/issues):
+
+1. **Prepare the workbook.** Set it up as described in
+   [Annotating a spreadsheet](working-with-data/annotating-a-spreadsheet.md): a table per data class,
+   field name, term and unit for every column, and a sheet for the dataset itself.
+2. **Answer our questions.** We convert the workbook and send you the questions the conversion
+   raised: a missing unit, a value that can be read two ways, required information the workbook has
+   no place for.
+3. **Get a validated record.** Your answers go into the record, which is validated against the schema
+   and published on these pages as YAML, JSON and RDF.
+    - The record joins the test suite.
+    - The workbook, the parser and the provenance of every value are kept with it under
+      `docs/assets/examples/<name>/`.
+4. **Improve the schema.** Whatever the schema cannot express yet becomes an issue.
+
+The example on [Building a parser](working-with-data/building-a-parser.md) went through these steps.
+
+---
+
 ## Contribute code or schema changes
 
 If you want to contribute a schema change yourself — add a class, slot, or enumeration — please first open an issue to discuss the change. Then follow the developer guidelines in [CONTRIBUTING.md](https://github.com/nfdi4cat/CoreMeta4Cat/blob/main/CONTRIBUTING.md) on GitHub.
