@@ -1,0 +1,1846 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="How a laboratory workbook was turned into a validated CoreMeta4Cat record — the method, the crosswalk format, requirements and limitations">
+      
+      
+      
+        <link rel="canonical" href="https://nfdi4cat.github.io/CoreMeta4Cat/working-with-data/building-a-parser/">
+      
+      
+        <link rel="prev" href="../annotating-a-spreadsheet/">
+      
+      
+        <link rel="next" href="../../contributing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Building a parser - CoreMeta4Cat</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/no-details-box.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/schema_classmap.css">
+    
+      <link rel="stylesheet" href="../../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-a-parser" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CoreMeta4Cat" class="md-header__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
+      
+  <img src="../../images/CoreMeta4Cat_Picture.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CoreMeta4Cat
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building a parser
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/nfdi4cat/CoreMeta4Cat" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CoreMeta4Cat" class="md-nav__button md-logo" aria-label="CoreMeta4Cat" data-md-component="logo">
+      
+  <img src="../../images/CoreMeta4Cat_Picture.png" alt="logo">
+
+    </a>
+    CoreMeta4Cat
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/nfdi4cat/CoreMeta4Cat" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coremeta4cat-users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intended Users
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Understanding the model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data classes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalysis-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalysis Dataset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../synthesis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Synthesis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../characterization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Characterization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reaction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simulation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working with Data
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Working with Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../community-datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community datasets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    From spreadsheet to record
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    From spreadsheet to record
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotating-a-spreadsheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotating a spreadsheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building a parser
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building a parser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jlcat03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The worked example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deduce-never-invent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deduce, never invent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-parser-was-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the parser was built
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crosswalk-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crosswalk format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keeping-up-with-schema-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keeping up with schema changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running it
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Contributing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to contribute
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../how-to-extend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to extend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../elements/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jlcat03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The worked example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deduce-never-invent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deduce, never invent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-parser-was-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the parser was built
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crosswalk-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crosswalk format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keeping-up-with-schema-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keeping up with schema changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running it
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="building-a-parser">Building a parser</h1>
+<p><a href="../../getting-started/#level-3-writing-a-json-converter-for-your-sheet">Level 3 of Getting Started</a>
+shows a minimal converter for one sheet. This page shows what it takes for a real workbook: three
+sheets in two layouts, a round of questions to the data provider, and a record that can be defended
+value by value. The parser was written for one workbook, but the method carries over to others.
+How the workbook itself should be set up is described in
+<a href="../annotating-a-spreadsheet/">Annotating a spreadsheet</a>.</p>
+<hr />
+<h2 id="jlcat03">The worked example</h2>
+<div class="admonition abstract">
+<p><strong>Supported Pt catalyst for the epoxidation of styrene (JLCAT03).</strong> Alumina-supported Pt
+prepared by incipient wetness impregnation and reduction, characterized by powder XRD, and
+tested in the liquid-phase epoxidation of styrene with O₂ in an autoclave. Recorded by a
+laboratory researcher in an Excel template with CoreMeta4Cat fields.</p>
+</div>
+<p>The record contains one <code>Synthesis</code> (with the reduction as a step of its own), one
+<code>Characterization</code> (the PXRD measurement) and one <code>CatalyticReaction</code> (the test). The catalyst
+<code>JLCAT03</code> links them: it is the output of the synthesis, the sample of the measurement and the
+catalyst of the test. Like the <a href="../community-datasets/">community datasets</a>, the record is part of
+the test suite (<code>tests/data/valid/CatalysisDataset-JLCAT03.yaml</code>), so it is validated on every
+change of the schema.</p>
+<p><strong>Patterns from this dataset:</strong> <a href="../usage-patterns/#synthesis-step-without-field">A preparation step the schema has no field for</a>,
+<a href="../usage-patterns/#value-without-field">A value the schema has no field for</a></p>
+<p><a class="md-button" href="../../assets/examples/CatalysisDataset-JLCAT03.yaml"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> YAML</a>
+<a class="md-button" href="../../assets/examples/CatalysisDataset-JLCAT03.json"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> JSON</a>
+<a class="md-button" href="../../assets/examples/CatalysisDataset-JLCAT03.ttl"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> RDF</a></p>
+<p>Everything that went into the record is kept next to the parser, in
+<a href="https://github.com/nfdi4cat/CoreMeta4Cat/tree/main/docs/assets/examples/excel_JLCAT03"><code>docs/assets/examples/excel_JLCAT03/</code></a>:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../assets/examples/excel_JLCAT03/source/TestDataSet_CoreMeta4Cat.xlsx"><code>source/TestDataSet_CoreMeta4Cat.xlsx</code></a></td>
+<td>The workbook, as received</td>
+</tr>
+<tr>
+<td><a href="../../assets/examples/excel_JLCAT03/source/provider_answers/"><code>source/provider_answers.md</code></a></td>
+<td>The provider's answers to the questions of the first round (transcript of the returned <code>.docx</code>)</td>
+</tr>
+<tr>
+<td><a href="../../assets/examples/excel_JLCAT03/parser/xlsx_to_coremeta4cat.py"><code>parser/xlsx_to_coremeta4cat.py</code></a></td>
+<td>The parser. Its code has no knowledge of this workbook</td>
+</tr>
+<tr>
+<td><a href="../../assets/examples/excel_JLCAT03/parser/crosswalk.yaml"><code>parser/crosswalk.yaml</code></a></td>
+<td>What each column or row means: target, conversion, basis and reason</td>
+</tr>
+<tr>
+<td><a href="../../assets/examples/excel_JLCAT03/parser/supplement.yaml"><code>parser/supplement.yaml</code></a></td>
+<td>What the record needs but the workbook does not contain, with its source</td>
+</tr>
+<tr>
+<td><a href="../../assets/examples/excel_JLCAT03/provenance/source_documentation.yaml"><code>provenance/source_documentation.yaml</code></a></td>
+<td>For every value in the record: where it came from and why it sits where it does</td>
+</tr>
+<tr>
+<td><a href="../../assets/examples/excel_JLCAT03/provenance/parse_report/"><code>provenance/parse_report.md</code></a></td>
+<td>Open questions, cell inventory, term check, empty fields</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="deduce-never-invent">Deduce, never invent</h2>
+<p>The record has to be defensible value by value, so the parser follows five rules.</p>
+<ol>
+<li><strong>Every non-empty cell is accounted for.</strong> It is mapped, recognised as a repeat of another cell,
+   or declared structural (a label without a value). A cell the crosswalk does not cover stops the
+   parser.</li>
+<li><strong>Values change only through declared conversions</strong>: unit text to a QUDT unit, <code>50-100</code> to a
+   minimum and a maximum, <code>heterogeneous</code> to the value <code>heterogeneous_catalysis</code>.</li>
+<li><strong>Every target has a basis.</strong> <em>Direct</em>: the header term or label names the field. <em>Deduced</em>: the
+   evidence is another cell, the layout or a physical limit, and it is written down. <em>Schema-forced</em>:
+   no field exists, so the generic DCAT-AP-PLUS attribute pattern is used.</li>
+<li><strong>Nothing missing is filled in silently.</strong> When the schema requires something the source does not
+   give, the record states the absence ("Instrument not specified in the source workbook") as a
+   marked placeholder, until the data provider supplies it.</li>
+<li><strong>Identifiers follow fixed rules</strong> from the lab IDs in the workbook (<code>CAT_JLCAT03</code>,
+   <code>REAC_JLCATTEST03</code>, <code>DEV_MBR01</code>). The lab IDs themselves are kept as <code>other_identifier</code>.</li>
+</ol>
+<p>For this workbook: 76 value cells, 74 mapped and 2 recognised as repeats. Of the 109 values in the
+record, 88 come from the workbook (65 direct, 10 deduced, 12 schema-forced, 1 kept as text) and
+21 from the provider's answers or the curator.</p>
+<hr />
+<h2 id="how-the-parser-was-built">How the parser was built</h2>
+<ol>
+<li><strong>Inventory the workbook.</strong> Dump every cell, with its formatting, before deciding anything. The
+   example has three layouts (a table with a unit row, a vertical label–term–value list, and a
+   second table), and the catalyst ID is the key that links them.</li>
+<li><strong>Check every term against its vocabulary.</strong> All 39 Voc4Cat IDs in the headers were looked up in
+   the current release, and every QUDT unit used was checked on qudt.org. Definitions matter as much as labels:
+   voc4cat:0000153 "reaction chamber volume" includes connected pipes and valves, while the schema
+   field that uses it excludes them, so the provider was asked which one they meant.</li>
+<li><strong>Find the target of each cell.</strong><ul>
+<li><em>Term first.</em> A header term is looked up as a field's <code>slot_uri</code>, a class's <code>class_uri</code>
+  or a mapping; most columns resolve this way.</li>
+<li><em>Label when the term is ambiguous.</em> <code>SIO:000008</code> belongs to dozens of fields, so the
+  label decides.</li>
+<li><em>Shape from the generated JSON Schema</em>: whether a field is required, and whether it
+  takes a list.</li>
+<li><em>Designators for subclass fields</em>: an impregnation plan takes <code>impregnation_type</code> only
+  when it declares <code>plan_designator: voc4cat:0007028</code>.</li>
+<li><em>Layout is evidence, not proof</em>: the rows of the PXRD block looked like the technique's
+  title and ID, but the provider meant the measurement's.</li>
+<li><em>Headers can name the wrong process</em>: the "calcination" columns turned out to describe
+  a reduction.</li>
+</ul>
+</li>
+<li><strong>Write the crosswalk</strong>, one entry per column or row, with its target, conversion, basis and
+   reason (format below). Anything that would have to be asked goes into a <code>flag</code>.</li>
+<li><strong>Run and validate.</strong> The parser writes the record, its provenance and a report;
+   <code>linkml-validate</code> checks the record against the schema.</li>
+<li><strong>Read the report.</strong> It lists the open questions, every cell with its target, a check of each
+   header term against the field it was mapped to (49 of 62 match; each of the others is explained
+   in the crosswalk), and the recommended fields that stay empty.</li>
+<li>
+<p><strong>Send the questions, and work the answers in.</strong> The answers go into the record without
+   changing the workbook:</p>
+<ul>
+<li>An answer that settles how a cell is read changes its crosswalk entry, e.g. a unit, or the
+  reduction instead of the calcination.</li>
+<li>An answer that adds a value goes into the supplement, with the question number as its
+  source.</li>
+</ul>
+<p>The example's 13 questions reduced to four still open (licence, authors, the definition of
+"NTP", and confirming the reaction type).</p>
+</li>
+</ol>
+<p>The parser also refuses a workbook that no longer matches its crosswalk:</p>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>The parser stops with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A column the crosswalk does not know</td>
+<td><code>column E '…' is not in the crosswalk</code></td>
+</tr>
+<tr>
+<td>A renamed header</td>
+<td><code>column E header is '…', crosswalk expects '…'</code></td>
+</tr>
+<tr>
+<td>A note typed somewhere outside the table</td>
+<td><code>Synthesis!A7: non-empty cell outside the declared layout</code></td>
+</tr>
+<tr>
+<td>The provider adds a unit the curator had supplied</td>
+<td><code>crosswalk sets a unit, but the sheet gives '%'</code></td>
+</tr>
+<tr>
+<td>An unknown unit, or a value outside a pick-list</td>
+<td><code>unit 'g' is not in the units table</code>, <code>'homogeneous' is not in the value map</code></td>
+</tr>
+</tbody>
+</table>
+<p>These cases are tested in <code>tests/test_excel_example.py</code>, together with a check that the parser
+still reproduces the committed record.</p>
+<hr />
+<h2 id="crosswalk-format">Crosswalk format</h2>
+<p>All knowledge about a workbook lives in two files: <code>crosswalk.yaml</code> (what each cell means) and
+<code>supplement.yaml</code> (what is not in the workbook). The parser itself is generic.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">workbook</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../source/TestDataSet_CoreMeta4Cat.xlsx</span><span class="w">   </span><span class="c1"># paths are relative to the crosswalk</span>
+<span class="nt">supplement</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">supplement.yaml</span>
+<span class="nt">output</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../../../../../tests/data/valid/CatalysisDataset-JLCAT03.yaml</span>
+<span class="nt">provenance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../provenance/source_documentation.yaml</span>
+<span class="nt">report</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../provenance/parse_report.md</span>
+<span class="nt">root_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span>
+<span class="nt">id_prefix</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:"</span>
+<span class="nt">qudt</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">unit_ns</span><span class="p">:</span><span class="w"> </span><span class="s">"https://qudt.org/vocab/unit/"</span><span class="p p-Indicator">,</span><span class="nt"> kind_ns</span><span class="p">:</span><span class="w"> </span><span class="s">"http://qudt.org/vocab/quantitykind/"</span><span class="p p-Indicator">}</span>
+<span class="nt">units</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="s">"degC"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">DEG_C</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"mg"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">MilliGM</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"nl/h"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">qudt</span><span class="p">:</span><span class="w"> </span><span class="nv">L-PER-HR</span><span class="p p-Indicator">,</span><span class="nt"> note</span><span class="p">:</span><span class="w"> </span><span class="s">"..."</span><span class="p p-Indicator">}}</span><span class="w">   </span><span class="c1"># unit text -&gt; QUDT</span>
+<span class="nt">sheets</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Synthesis</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">layout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table</span><span class="w">            </span><span class="c1"># or key_value (label_column, term_column, value_column, key_row)</span>
+<span class="w">    </span><span class="nt">header_row</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">unit_row</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">first_data_row</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">key_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">B</span><span class="w">            </span><span class="c1"># record key, available as {key}</span>
+<span class="w">    </span><span class="nt">record</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Synthesis</span>
+<span class="w">      </span><span class="nt">list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by_synthesis</span><span class="w">   </span><span class="c1"># where each record goes, in full</span>
+<span class="w">      </span><span class="nt">id_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">was_generated_by</span><span class="w">          </span><span class="c1"># and where its id is listed</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"SYN_{key}"</span>
+<span class="w">    </span><span class="nt">ids</span><span class="p">:</span><span class="w">                     </span><span class="c1"># ids of the objects created inside a record</span>
+<span class="w">      </span><span class="nt">realized_plan</span><span class="p">:</span><span class="w"> </span><span class="s">"SYN_{key}_method"</span>
+<span class="w">      </span><span class="s">"had_input_entity[precursor_1]"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"PREC_{key}_1"</span>
+<span class="w">    </span><span class="nt">columns</span><span class="p">:</span><span class="w">                 </span><span class="c1"># key_value sheets have rows, addressed by row number and label</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">col</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">M</span>
+<span class="w">        </span><span class="nt">header</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">precursor quantity 1 VOC4CAT:0008118</span><span class="w">   </span><span class="c1"># checked against the workbook</span>
+<span class="w">        </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="s">"had_input_entity[precursor_1].precursor_quantity[]"</span>
+<span class="w">        </span><span class="nt">as</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">quantity</span>
+<span class="w">        </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mass</span><span class="w">           </span><span class="c1"># QUDT quantity kind</span>
+<span class="w">        </span><span class="nt">basis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">direct</span>
+<span class="w">        </span><span class="nt">why</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0008118 is the slot_uri of precursor_quantity (Precursor).</span>
+</code></pre></div>
+<p><strong>Target paths</strong></p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a.b</code></td>
+<td>Field <code>b</code> of the object in field <code>a</code> (created on first use)</td>
+</tr>
+<tr>
+<td><code>a[]</code></td>
+<td>Append to the list in field <code>a</code></td>
+</tr>
+<tr>
+<td><code>a[name]</code></td>
+<td>The list item called <code>name</code> in field <code>a</code>, created on first use with its id from <code>ids</code></td>
+</tr>
+<tr>
+<td><code>^a</code></td>
+<td>Start at the dataset instead of the record, e.g. <code>^rdf_type[]</code></td>
+</tr>
+<tr>
+<td><code>to: [p1, p2]</code></td>
+<td>Write the same value to several places</td>
+</tr>
+</tbody>
+</table>
+<p>An entry can instead be <code>confirm: &lt;row or column&gt;</code> (repeats another cell; the parser checks they are
+equal), <code>structural: &lt;reason&gt;</code> (a label without a value) or <code>unused: &lt;reason&gt;</code>.</p>
+<p><strong>Conversions (<code>as:</code>)</strong></p>
+<table>
+<thead>
+<tr>
+<th><code>as</code></th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td>The text (<code>strip_curie: true</code> removes a term in brackets, e.g. <code>(NCIT:C93052)</code>)</td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td>A bare number, for fields without a unit such as <code>step_size</code></td>
+</tr>
+<tr>
+<td><code>enum</code></td>
+<td>The value looked up in <code>values:</code>: an enum value, a term ID, or a whole object</td>
+</tr>
+<tr>
+<td><code>quantity</code></td>
+<td><code>{value, unit, has_quantity_type}</code>. The unit comes from the unit row through <code>units:</code>, or from <code>unit:</code> with a <code>unit_note</code> saying where it came from. A value that is not a number goes to the entry's <code>fallback</code></td>
+</tr>
+<tr>
+<td><code>range</code>, <code>range_max</code></td>
+<td><code>{min_value, max_value}</code> from <code>50-100</code> or <code>2 to 90</code>, or only <code>max_value</code></td>
+</tr>
+<tr>
+<td><code>qualitative</code></td>
+<td><code>{value}</code>; <code>attrs:</code> adds fields such as <code>title</code> or <code>rdf_type</code></td>
+</tr>
+<tr>
+<td><code>identifier</code></td>
+<td><code>{notation}</code>, for <code>other_identifier</code></td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>The cell becomes the object's id</td>
+</tr>
+<tr>
+<td><code>ref</code></td>
+<td>Creates the object at the path, with its id from <code>ids</code>; used to link sheets</td>
+</tr>
+</tbody>
+</table>
+<p>Templates (in <code>id</code>, <code>ids</code> and <code>describe</code>) accept <code>{key}</code>, <code>{slug:REF}</code> and <code>{raw:REF}</code>, where REF is
+a column letter or a row number of the same record.</p>
+<p><strong>Supplement</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">dataset</span><span class="p">:</span><span class="w">                     </span><span class="c1"># fields of the dataset itself</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="s">"title[]"</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"Supported</span><span class="nv"> </span><span class="s">Pt</span><span class="nv"> </span><span class="s">catalyst</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">epoxidation</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">styrene"</span>
+<span class="w">    </span><span class="nt">basis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">provider</span><span class="w">          </span><span class="c1"># provider | curator (default) | placeholder</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data provider's answers, Q17</span>
+<span class="w">    </span><span class="nt">why</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Required.</span>
+<span class="nt">records</span><span class="p">:</span><span class="w">                     </span><span class="c1"># added to every record of a sheet</span>
+<span class="w">  </span><span class="nt">Synthesis</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">realized_plan.has_drying_duration</span>
+<span class="w">      </span><span class="nt">as</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">quantity</span><span class="w">           </span><span class="c1"># converted like a cell, with the same units</span>
+<span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+<span class="w">      </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HR</span>
+<span class="w">      </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Time</span>
+<span class="w">      </span><span class="nt">basis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">provider</span>
+<span class="w">      </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data provider's answers, Q6</span>
+<span class="w">      </span><span class="nt">why</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The workbook says 'over night'; the provider gave 12 hours.</span>
+<span class="nt">open_questions</span><span class="p">:</span><span class="w">              </span><span class="c1"># listed in the report next to the crosswalk's flags</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">about</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset (Q17)</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">No licence was given. ...</span>
+</code></pre></div>
+<p>An entry with <code>placeholder: true</code> stands for a required value the source does not give; running the
+parser with <code>--no-placeholders</code> leaves these out and lists the required fields that stay empty.</p>
+<hr />
+<h2 id="requirements">Requirements</h2>
+<p><strong>From the workbook.</strong> A parser like this one needs:</p>
+<ul>
+<li>a fixed layout on every sheet;</li>
+<li>a key column for every record, with the same key wherever sheets refer to the same object;</li>
+<li>a term ID or a field name for every column;</li>
+<li>a unit for every number, and the values the schema requires.</li>
+</ul>
+<p>What the workbook lacks has to come from the data provider. <a href="../annotating-a-spreadsheet/">Annotating a spreadsheet</a>
+shows how to set a workbook up so that little is missing.</p>
+<p><strong>For the conversion.</strong> You need:</p>
+<ul>
+<li>Python with openpyxl and LinkML (both part of the project's development environment, <code>uv sync</code>);</li>
+<li>the CoreMeta4Cat schema;</li>
+<li>time to look up every term in its vocabulary (Voc4Cat, QUDT, and others such as ChEBI or CHMO).</li>
+</ul>
+<hr />
+<h2 id="limitations">Limitations</h2>
+<p><strong>Of the schema.</strong> Some things the example needed have no field of their own yet. The record uses
+the generic DCAT-AP-PLUS pattern for them; your parser may run into the same gaps:</p>
+<table>
+<thead>
+<tr>
+<th>What the workbook needed</th>
+<th>How the record expresses it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A reduction step after drying (impregnation has calcination fields only)</td>
+<td>A generic activity under <code>Synthesis.has_part</code>, typed voc4cat:0000098 "reduction", with typed attributes for atmosphere, heating rate and gas flow rate</td>
+</tr>
+<tr>
+<td>The metal loading</td>
+<td>A generic quantity of the catalyst sample, typed voc4cat:0008106 "metal loading"</td>
+</tr>
+<tr>
+<td>The amount and InChI of the support</td>
+<td>The support listed as an input entity of class <code>Precursor</code></td>
+</tr>
+<tr>
+<td>The InChI of a precursor</td>
+<td>A generic attribute typed CHEMINF:000113 (InChI descriptor)</td>
+</tr>
+<tr>
+<td>The yield of a particular product</td>
+<td><code>has_yield</code> of the reaction, with the product named in the description</td>
+</tr>
+<tr>
+<td>GC-MS as the product identification method</td>
+<td><code>rdf_type</code> CHMO:0000497; the GCMS class itself cannot be used there</td>
+</tr>
+<tr>
+<td>The operation mode of the reactor (batch)</td>
+<td>A generic attribute of the reactor, typed voc4cat:0000108 "operation mode"</td>
+</tr>
+<tr>
+<td>The unit of the PXRD step size</td>
+<td>Stated in the description of the technique; <code>step_size</code> holds a bare number</td>
+</tr>
+<tr>
+<td>A contact person</td>
+<td><code>qualified_attribution</code> with the name as text; <code>contact_point</code> cannot hold a name</td>
+</tr>
+<tr>
+<td>Normal litres per hour</td>
+<td>Litre per hour, with the reference conditions in the description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Of this parser.</strong></p>
+<ul>
+<li><strong>One crosswalk per workbook layout.</strong> The parser stops as soon as the workbook no longer matches.
+  This is deliberate: a moved column should be noticed, not silently mapped.</li>
+<li><strong>Simple conversions only.</strong> The parser does not convert units, compute InChIKeys or molar masses,
+  or look up ChEBI or PubChem IDs; chemicals get local identifiers.</li>
+<li><strong>Some choices stay with the curator.</strong> Terms that are not in the workbook are chosen by the
+  curator, checked in the vocabulary, and flagged for the provider to confirm. Here these are the
+  reaction type and the type of the reduction step.</li>
+</ul>
+<hr />
+<h2 id="keeping-up-with-schema-changes">Keeping up with schema changes</h2>
+<p>A crosswalk is written against one version of the schema. When the schema changes, rerun the parser
+and validate; validation says what broke. After CoreMeta4Cat
+<a href="https://github.com/nfdi4cat/CoreMeta4Cat/pull/192">#192</a> and
+<a href="https://github.com/nfdi4cat/CoreMeta4Cat/pull/199">#199</a>, the record had four errors:</p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Schema change</th>
+<th>Fix in the crosswalk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The research field must be a list</td>
+<td>#192</td>
+<td>Target <code>^rdf_type[]</code> instead of <code>^rdf_type</code></td>
+</tr>
+<tr>
+<td>Activities are objects with <code>activity_designator</code> (twice)</td>
+<td>#199: every kind of activity has its own field, and <code>was_generated_by</code> lists their ids</td>
+<td><code>list: was_generated_by_synthesis</code> (or <code>_characterization</code>) and <code>id_list: was_generated_by</code></td>
+</tr>
+<tr>
+<td>The reaction type is required</td>
+<td>#192</td>
+<td>A new entry on the reaction-name column: voc4cat:0000205 "epoxidation", flagged for confirmation</td>
+</tr>
+</tbody>
+</table>
+<p>The crosswalk and the parser changed; the workbook and the provider's answers did not.</p>
+<hr />
+<h2 id="running-it">Running it</h2>
+<p>From the root of the CoreMeta4Cat repository, in the project environment (<code>uv sync</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># workbook -&gt; tests/data/valid/CatalysisDataset-JLCAT03.yaml, provenance and report</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>docs/assets/examples/excel_JLCAT03/parser/xlsx_to_coremeta4cat.py
+
+<span class="c1"># validate the record</span>
+uv<span class="w"> </span>run<span class="w"> </span>linkml-validate<span class="w"> </span>-s<span class="w"> </span>src/coremeta4cat/schema/coremeta4cat.yaml<span class="w"> </span>-C<span class="w"> </span>CatalysisDataset<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>tests/data/valid/CatalysisDataset-JLCAT03.yaml
+
+<span class="c1"># publish it as YAML, JSON and RDF under docs/assets/examples/ (also part of `just gen-doc`)</span>
+just<span class="w"> </span>gen-example-outputs
+</code></pre></div>
+<p><code>just test</code> validates the record with the rest of the test suite and checks that the parser still
+reproduces it.</p>
+<p><strong>For another workbook:</strong></p>
+<ol>
+<li>Copy the parser and write a new crosswalk and supplement for the new workbook.</li>
+<li>Look up every term in its vocabulary.</li>
+<li>Use the same <code>ids</code> template for the linking key in every sheet, so that the objects link up.</li>
+<li>Start with the direct term matches. For every other entry, write the evidence into <code>why</code>, and
+   every open point into <code>flag</code>.</li>
+<li>Run until the parser no longer stops, then validate and read the report.</li>
+<li>Send the questions to the data provider, and work the answers in through the crosswalk and the
+   supplement, never by editing the record.</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "search.highlight", "navigation.expand", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tracking"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": ["stable"], "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../javascripts/schema_classmap.js"></script>
+      
+        <script src="../../javascripts/preview_version_selector.js"></script>
+      
+    
+  </body>
+</html>

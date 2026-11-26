@@ -1,0 +1,41 @@
+id: coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites
+title:
+- DFT binding energies of OH and CO at 17 oxide surface sites
+software_package:
+- VASP
+- Atomic Simulation Environment (ASE), structure generation
+- pymatgen, structure generation
+rdf_type:
+  id: voc4cat:0000215
+  title: density functional theory
+evaluated_entity:
+- id: coremeta4cat:SLAB_6mxw-xsrd_CuGa2O4_sites
+  title: CuGa2O4 surface models, pristine and with 7 dopants
+realized_plan:
+  id: coremeta4cat:SIM_6mxw-xsrd_DFT_method
+  plan_designator: coremeta4cat:DFT
+  title: periodic DFT, PBE, PAW
+  exchange_correlation_functional:
+  - PBE
+calculated_property:
+- property_designator: coremeta4cat:AdsorptionEnergetics
+  title: OH binding energy
+  value: -1.87 to 1.41 eV (17 sites)
+  description: Range over all sites (Ga2O3-Zn lowest, CuGa2O4-Cu highest); the reference state is not
+    defined in the main text.
+  adsorbate:
+  - OH
+  material_composition:
+  - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+  - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
+- property_designator: coremeta4cat:AdsorptionEnergetics
+  title: CO binding energy
+  value: -2.20 to 0.51 eV (17 sites)
+  description: Range over all sites (Ga2O3-Ru lowest, pristine Ga2O3 highest).
+  adsorbate:
+  - CO
+  energy_reference:
+  - CO(g)
+  material_composition:
+  - CuGa2O4, pristine and doped with Al, Co, Cu, Ge, In, Ni or Sn
+  - Ga2O3, pristine and doped with Al, Pd, Pt, Rh, Ru, Sn, Zn or Zr
