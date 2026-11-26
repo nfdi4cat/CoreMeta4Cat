@@ -69,6 +69,18 @@
          <lastmod>2026-11-26</lastmod>
     </url>
     <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/assets/examples/excel_JLCAT03/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/assets/examples/excel_JLCAT03/provenance/parse_report/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/assets/examples/excel_JLCAT03/source/provider_answers/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/elements/overview/</loc>
          <lastmod>2026-11-26</lastmod>
     </url>
@@ -3002,6 +3014,14 @@
     </url>
     <url>
          <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/working-with-data/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/working-with-data/annotating-a-spreadsheet/</loc>
+         <lastmod>2026-11-26</lastmod>
+    </url>
+    <url>
+         <loc>https://nfdi4cat.github.io/CoreMeta4Cat/latest/working-with-data/building-a-parser/</loc>
          <lastmod>2026-11-26</lastmod>
     </url>
     <url>
