@@ -1285,7 +1285,7 @@
 <hr />
 <h2 id="the-four-data-classes">The four data classes</h2>
 <h3 id="synthesis">Synthesis</h3>
-<p>Reproducibility of catalyst synthesis is one of the most persistent challenges in catalysis research. The Synthesis data class defines the minimum metadata for twelve preparation methods — from common routes such as Impregnation and Co-Precipitation to more specialised techniques like Atomic Layer Deposition, Flame Spray Pyrolysis, and Exsolution Synthesis.</p>
+<p>Reproducibility of catalyst synthesis is one of the most persistent challenges in catalysis research. The Synthesis data class defines the minimum metadata for fifteen preparation methods — from common routes such as Impregnation and Co-Precipitation to more specialised techniques like Atomic Layer Deposition, Flame Spray Pyrolysis, and Exsolution Synthesis.</p>
 <p>Method-specific parameter sets are organized into concrete preparation method types. Cross-cutting steps shared across methods (drying, calcination, precipitation) are defined once and reused, so the same parameter is never described differently depending on which method it appears in.</p>
 <table>
 <thead>
@@ -1296,34 +1296,39 @@
 </thead>
 <tbody>
 <tr>
-<td>Impregnation</td>
+<td>Impregnation, Sonochemical</td>
 <td>Drying, Calcination</td>
 </tr>
 <tr>
-<td>Co-Precipitation</td>
+<td>Co-Precipitation, Deposition-Precipitation</td>
 <td>Precipitation, Drying, Calcination</td>
 </tr>
 <tr>
-<td>Deposition-Precipitation</td>
-<td>Precipitation, Drying, Calcination</td>
+<td>Sol-Gel, Molecular Synthesis</td>
+<td>Drying</td>
+</tr>
+<tr>
+<td>Exsolution</td>
+<td>Calcination</td>
 </tr>
 <tr>
 <td>Solvothermal, Plasma-Assisted, Combustion, Microwave-Assisted, Mechanochemical, Sublimation</td>
 <td>Thermal process</td>
 </tr>
 <tr>
-<td>Sol-Gel, Flame Spray Pyrolysis, Atomic Layer Deposition, Exsolution</td>
+<td>Flame Spray Pyrolysis, Atomic Layer Deposition</td>
 <td>Method-specific only</td>
 </tr>
 </tbody>
 </table>
 <h3 id="characterization">Characterization</h3>
-<p>The Characterization data class covers twenty-eight analytical techniques currently used in catalysis. Each technique is modelled with slots for instrument parameters, sample state, and measurement conditions. Cross-cutting parameter groups are shared across related techniques:</p>
+<p>The Characterization data class covers twenty-seven analytical techniques currently used in catalysis. Each technique is modelled with slots for instrument parameters, sample state, and measurement conditions. Cross-cutting parameter groups are shared across related techniques:</p>
 <ul>
-<li>X-ray source parameters — shared by Powder XRD, Single Crystal XRD, XPS, EDX</li>
+<li>X-ray source parameters — shared by Powder XRD, Single Crystal XRD, XPS, XAS</li>
 <li>Electron microscopy parameters — shared by TEM, SEM</li>
 <li>Temperature program parameters — shared by TPR, TPO, Thermogravimetry</li>
-<li>Chromatography and mass range parameters — shared by GC, GC-MS, HPLC, HPLC-MS</li>
+<li>Chromatography parameters — shared by GC-MS, HPLC-MS, size exclusion chromatography</li>
+<li>Mass range parameters — shared by GC-MS, ESI-MS</li>
 </ul>
 <h3 id="reaction">Reaction</h3>
 <p>The Reaction data class represents the catalytic process being studied. An important design detail: for operando experiments — for example, in-situ XRD carried out while a reaction is running — the dataset carries both a Characterization record (the process that generated the data) and a Reaction record (the process the data is about). CoreMeta4Cat models both links explicitly.</p>
@@ -1339,34 +1344,63 @@
 <li>Fluidized Bed Reactor</li>
 </ul>
 <h3 id="simulation">Simulation</h3>
-<p>The Simulation data class covers four major computational method classes: DFT, Molecular Dynamics, Microkinetics, and Monte Carlo. The simulation software used is recorded alongside the method. Twelve calculated property types — such as electronic structure, band gap, phonon dispersion, and thermodynamic stability — capture the computed output.</p>
+<p>The Simulation data class covers four major computational method classes: DFT, Molecular Dynamics, Microkinetics, and Monte Carlo. The simulation software used is recorded alongside the method. Seventeen calculated property types capture the computed output — from material properties such as electronic structure, band gap, phonon dispersion, and thermodynamic stability to catalysis-specific ones such as adsorption energetics, reaction energetics, and transition states.</p>
 <hr />
 <h2 id="what-does-a-coremeta4cat-record-look-like">What does a CoreMeta4Cat record look like?</h2>
-<p>Here is a minimal example showing how a reaction dataset is described. Every class and property links to a controlled vocabulary term and can be validated and converted to RDF using standard tooling:</p>
+<p>Here is a small example showing how a reaction dataset is described: the GC-MS measurement that produced the data, and the catalytic reaction the data is about. Every class and property links to a controlled vocabulary term, and the record validates and converts to RDF with standard LinkML tooling:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:dataset-001</span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"CO</span><span class="nv"> </span><span class="s">oxidation</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">1wt%</span><span class="nv"> </span><span class="s">Pt/Al2O3</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">200–400°C"</span>
-<span class="nt">catalysis_research_field</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">heterogeneous catalysis</span>
+<span class="nt">title</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"CO</span><span class="nv"> </span><span class="s">oxidation</span><span class="nv"> </span><span class="s">activity</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">1wt%</span><span class="nv"> </span><span class="s">Pt/Al2O3</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">200–400</span><span class="nv"> </span><span class="s">°C"</span>
+<span class="nt">description</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"Light-off</span><span class="nv"> </span><span class="s">test</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">fixed-bed</span><span class="nv"> </span><span class="s">reactor,</span><span class="nv"> </span><span class="s">products</span><span class="nv"> </span><span class="s">analysed</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">online</span><span class="nv"> </span><span class="s">GC-MS."</span>
+<span class="nt">rdf_type</span><span class="p">:</span><span class="w">                                 </span><span class="c1"># catalysis research field (Layer 1)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007001</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
 
-<span class="nt">was_generated_by</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:gc-analysis-001</span><span class="w">      </span><span class="c1"># ids of the activities that produced the data</span>
-<span class="nt">was_generated_by_characterization</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:gc-analysis-001</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"GC</span><span class="nv"> </span><span class="s">analysis</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">outlet"</span>
-
-<span class="nt">is_about_activity</span><span class="p">:</span><span class="w">          </span><span class="c1"># the reaction the data is about</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reaction</span>
-<span class="w">    </span><span class="nt">catalyst_mass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span><span class="w">    </span><span class="c1"># mg</span>
-<span class="w">    </span><span class="nt">reactant</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"1</span><span class="nv"> </span><span class="s">vol%</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">N2"</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"2</span><span class="nv"> </span><span class="s">vol%</span><span class="nv"> </span><span class="s">O2</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">N2"</span>
-<span class="w">    </span><span class="nt">reactor_temperature_range</span><span class="p">:</span><span class="w"> </span><span class="s">"200–400</span><span class="nv"> </span><span class="s">°C"</span>
-<span class="w">    </span><span class="nt">experiment_pressure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span><span class="w">    </span><span class="c1"># bar</span>
+<span class="nt">was_generated_by</span><span class="p">:</span><span class="w">                         </span><span class="c1"># ids of the activities that produced the data</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:gcms-001</span>
+<span class="nt">was_generated_by_characterization</span><span class="p">:</span><span class="w">        </span><span class="c1"># the measurement itself, in full</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:gcms-001</span>
 <span class="w">    </span><span class="nt">carried_out_by</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FixedBedReactor</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:gcms-instrument-001</span>
+<span class="w">        </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"online</span><span class="nv"> </span><span class="s">GC-MS"</span>
+<span class="w">    </span><span class="nt">evaluated_activity</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:reaction-001</span>
+<span class="w">    </span><span class="nt">realized_plan</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:gcms-method-001</span>
+<span class="w">      </span><span class="nt">plan_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0000497</span><span class="w">       </span><span class="c1"># GCMS</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"online</span><span class="nv"> </span><span class="s">GC-MS</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">reactor</span><span class="nv"> </span><span class="s">effluent"</span>
 
-<span class="nt">is_about_entity</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalystSample</span>
-<span class="w">    </span><span class="nt">nominal_composition</span><span class="p">:</span><span class="w"> </span><span class="s">"1wt%</span><span class="nv"> </span><span class="s">Pt/Al2O3"</span>
+<span class="nt">is_about_activity</span><span class="p">:</span><span class="w">                        </span><span class="c1"># the catalytic reaction the data is about</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:reaction-001</span>
+<span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span><span class="w">                             </span><span class="c1"># reaction type (Layer 1)</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0000289</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"CO</span><span class="nv"> </span><span class="s">oxidation"</span>
+<span class="w">    </span><span class="nt">catalyst_mass</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100.0</span>
+<span class="w">        </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/Mass</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/MilliGM</span>
+<span class="w">    </span><span class="nt">used_reactant</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:feed-co</span>
+<span class="w">        </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"1</span><span class="nv"> </span><span class="s">vol%</span><span class="nv"> </span><span class="s">CO</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">N2"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:feed-o2</span>
+<span class="w">        </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"2</span><span class="nv"> </span><span class="s">vol%</span><span class="nv"> </span><span class="s">O2</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">N2"</span>
+<span class="w">    </span><span class="nt">reactor_temperature_range</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">min_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200.0</span>
+<span class="w">        </span><span class="nt">max_value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">400.0</span>
+<span class="w">        </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/Temperature</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/DEG_C</span>
+<span class="w">    </span><span class="nt">experiment_pressure</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0</span>
+<span class="w">        </span><span class="nt">has_quantity_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://qudt.org/vocab/quantitykind/Pressure</span>
+<span class="w">        </span><span class="nt">unit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://qudt.org/vocab/unit/BAR</span>
+<span class="w">    </span><span class="nt">used_reactor</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:reactor-001</span>
+<span class="w">        </span><span class="nt">reactor_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:FixedBedReactor</span>
+
+<span class="nt">is_about_entity</span><span class="p">:</span><span class="w">                          </span><span class="c1"># the catalyst</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:catalyst-001</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"1wt%</span><span class="nv"> </span><span class="s">Pt/Al2O3"</span>
 </code></pre></div>
 <hr />
 <h2 id="further-reading">Further reading</h2>

@@ -1603,7 +1603,7 @@
 <p>Before declaring any slots, check whether the method includes a drying step, calcination step, precipitation step, or generic thermal process. Apply all relevant mixins:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">MyNewMethod</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PreparationMethod</span>
-<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:XXXXXXX</span><span class="w">   </span><span class="c1"># register a real term, or use coremeta4cat: prefix temporarily</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:XXXXXXX</span><span class="w">   </span><span class="c1"># register a real term, or use coremeta4cat: prefix temporarily</span>
 <span class="w">  </span><span class="nt">mixins</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DryingMixin</span><span class="w">              </span><span class="c1"># if the method has a drying step</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalcinationMixin</span><span class="w">         </span><span class="c1"># if the method has a calcination step</span>
@@ -1697,34 +1697,39 @@
 <tbody>
 <tr>
 <td><code>XRaySourceMixin</code></td>
-<td>X-ray source type, anode, wavelength</td>
+<td>X-ray source, monochromator</td>
+</tr>
+<tr>
+<td><code>EnergyRangeMixin</code></td>
+<td>Energy range</td>
 </tr>
 <tr>
 <td><code>ElectronMicroscopyMixin</code></td>
-<td>Accelerating voltage, detector, magnification</td>
+<td>Gun type, acceleration voltage, magnification setting</td>
 </tr>
 <tr>
 <td><code>TemperatureProgramMixin</code></td>
-<td>Ramp rate, hold temperature, atmosphere</td>
+<td>Temperature range, heating rate, heating procedure</td>
 </tr>
 <tr>
 <td><code>ChromatographyMixin</code></td>
-<td>Column type, carrier gas, injection volume</td>
+<td>Column type, eluent, flow rate, injection volume, external and internal standard</td>
 </tr>
 <tr>
 <td><code>MassRangeMixin</code></td>
-<td>Mass range, ionisation mode, resolution</td>
+<td>m/z range</td>
 </tr>
 <tr>
 <td><code>PhotoluminescenceMixin</code></td>
-<td>Excitation wavelength, emission range</td>
+<td>Excitation and emission wavelength, optical filter, temperature</td>
 </tr>
 <tr>
 <td><code>ElectrochemistryMixin</code></td>
-<td>Scan rate, potential range, electrolyte</td>
+<td>Reference, working and counter electrode, electrolyte composition and concentration, atmosphere, temperature</td>
 </tr>
 </tbody>
 </table>
+<p><a href="../design-patterns/#pattern-3-mixin-classes">Design Patterns: Pattern 3</a> lists the exact slot names and which techniques use each mixin.</p>
 <p><strong>2. Declare the new class.</strong></p>
 <div class="highlight"><pre><span></span><code><span class="nt">MyNewTechnique</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CharacterizationTechnique</span>
@@ -1787,7 +1792,7 @@
 <p>New reactor types are simpler than new preparation methods — there are currently no reactor-specific mixins, so you just add the class and any reactor-specific slots directly:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">MyNewReactor</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ChemicalReactor</span>
-<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VOC4CAT:XXXXXXX</span>
+<span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:XXXXXXX</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
 <span class="w">    </span><span class="no">Brief description of the reactor geometry and typical operating conditions.</span>
 <span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
@@ -1834,17 +1839,16 @@
 <h2 id="adding-a-simulation-method">Adding a simulation method</h2>
 <p>New computational approaches are added to <code>coremeta4cat_simulation_ap.yaml</code> as <code>SimulationMethod</code> subclasses.</p>
 <h3 id="step-by-step_3">Step-by-step</h3>
-<p><strong>1. Check the <code>DFTSettingsMixin</code> if the method uses a plane-wave basis.</strong></p>
-<p>The simulation subprofile provides <code>DFTSettingsMixin</code> (exchange-correlation functional, k-point mesh, energy cutoff, pseudopotential type) for DFT-based methods. If your new method is DFT-derived (e.g. DFT+U, hybrid-DFT, GW), apply this mixin.</p>
+<p><strong>1. Reuse the slots of the closest existing method.</strong></p>
+<p>Each method class carries the settings of its calculations: <code>DFT</code>, for example, has <code>exchange_correlation_functional</code>, <code>energy_cutoff</code>, <code>convergence_criteria</code>, <code>dft_u_parameters</code> and <code>spin_polarization</code>. If your new method is DFT-derived (e.g. hybrid-DFT, GW), list the existing <code>DFT</code> slots it needs instead of declaring new ones; DFT+U is already covered by <code>dft_u_parameters</code>. (<code>DFTSettingsMixin</code> is not for methods: it adds DFT settings to the calculated properties computed with periodic DFT, see <a href="#adding-a-calculated-property">Adding a calculated property</a>.)</p>
 <p><strong>2. Declare the class and its specific slots.</strong></p>
 <div class="highlight"><pre><span></span><code><span class="nt">MyNewSimulationMethod</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SimulationMethod</span>
 <span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NCIT:XXXXXXX</span><span class="w">   </span><span class="c1"># or coremeta4cat: prefix temporarily</span>
-<span class="w">  </span><span class="nt">mixins</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DFTSettingsMixin</span><span class="w">      </span><span class="c1"># if DFT-based</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|-</span>
 <span class="w">    </span><span class="no">Description of the theoretical approach and its typical use cases in catalysis.</span>
 <span class="w">  </span><span class="nt">slots</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">exchange_correlation_functional</span><span class="w">   </span><span class="c1"># existing DFT slot, if DFT-based</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">method_specific_slot</span>
 </code></pre></div>
 <h3 id="minimal-complete-example-kineticmontecarlo">Minimal complete example — KineticMonteCarlo</h3>
@@ -1883,7 +1887,7 @@
 </code></pre></div>
 <hr />
 <h2 id="adding-a-calculated-property">Adding a calculated property</h2>
-<p>New computed outputs are added to <code>coremeta4cat_simulation_ap.yaml</code> as <code>CalculatedProperty</code> subclasses.</p>
+<p>New computed outputs are added to <code>coremeta4cat_simulation_ap.yaml</code> as <code>CalculatedProperty</code> subclasses. Two mixins are available: <code>DFTSettingsMixin</code> (energy cutoff, convergence criteria, k-point mesh) for properties computed with periodic DFT, and <code>MaterialDescriptorMixin</code> (material composition, crystal structure) for properties of a specific material.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">MyNewProperty</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalculatedProperty</span>
 <span class="w">  </span><span class="nt">class_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:MyNewProperty</span>
@@ -1945,7 +1949,7 @@
 <p>CoreMeta4Cat sits at the top of a layered import chain:</p>
 <div class="highlight"><pre><span></span><code>coremeta4cat.yaml  →  coremeta4cat_common.yaml  →  chem_dcat_ap  →  …  →  dcat_ap_plus
 </code></pre></div>
-<p>If you need to introduce a new intermediate chemistry layer (e.g. a <code>polymer_catalysis_ap</code> that adds polymer-specific base classes used across multiple data classes), add it between <code>catcore_common</code> and the first data class module that needs it. Import it in <code>catcore_common.yaml</code> via the <code>imports:</code> key, and document the new layer in the import hierarchy diagram in <code>catcore.yaml</code>.</p>
+<p>If you need to introduce a new intermediate chemistry layer (e.g. a <code>polymer_catalysis_ap</code> that adds polymer-specific base classes used across multiple data classes), add it between <code>coremeta4cat_common</code> and the first data class module that needs it. Import it in <code>coremeta4cat_common.yaml</code> via the <code>imports:</code> key, and document the new layer in the import hierarchy diagram in <code>coremeta4cat.yaml</code>.</p>
 <p>Do not import new intermediate layers directly in individual data class files — this would create hidden import order dependencies and make the schema harder to reason about.</p>
 <hr />
 <h2 id="checklist-summary">Checklist summary</h2>

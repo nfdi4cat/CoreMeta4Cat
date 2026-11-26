@@ -1175,7 +1175,7 @@
 </tr>
 <tr>
 <td><code>is_about_activity</code></td>
-<td><code>EvaluatedActivity</code></td>
+<td><code>CatalyticReaction</code></td>
 <td>Recommended, Multivalued</td>
 <td><strong>Layer 2</strong> -- the catalytic <code>Reaction</code> this dataset is <em>about</em>, without having generated it.</td>
 </tr>
@@ -1213,27 +1213,27 @@
 <tbody>
 <tr>
 <td><code>heterogeneous_catalysis</code></td>
-<td><code>VOC4CAT:0007001</code></td>
+<td><code>voc4cat:0007001</code></td>
 <td>Catalyst and reactants are in different phases.</td>
 </tr>
 <tr>
 <td><code>homogeneous_catalysis</code></td>
-<td><code>VOC4CAT:0000294</code></td>
+<td><code>voc4cat:0000294</code></td>
 <td>Catalyst and reactants are in the same phase.</td>
 </tr>
 <tr>
 <td><code>biocatalysis</code></td>
-<td><code>VOC4CAT:0000204</code></td>
+<td><code>voc4cat:0000204</code></td>
 <td>Use of enzymes or whole cells as catalysts.</td>
 </tr>
 <tr>
 <td><code>electrocatalysis</code></td>
-<td><code>VOC4CAT:0000216</code></td>
+<td><code>voc4cat:0000216</code></td>
 <td>Catalysis of electrochemical reactions.</td>
 </tr>
 <tr>
 <td><code>photocatalysis</code></td>
-<td><code>VOC4CAT:0000001</code></td>
+<td><code>voc4cat:0000001</code></td>
 <td>Catalysis driven by absorption of light energy by a photocatalyst.</td>
 </tr>
 <tr>
@@ -1261,7 +1261,10 @@
 <p>A single <code>CatalysisDataset</code> is not limited to one pillar. The most common real-world case spans several: a catalyst is synthesized, then tested in a reaction, and both the catalyst itself and the reaction products are separately characterized afterwards. All of that can live in one dataset, because all the activity fields are multivalued.</p>
 <p>The example below reports the full lifecycle of a Ni/CeO2 catalyst used for dry methane reforming (DRM): synthesis, the catalytic reaction, characterization of the catalyst (post-synthesis XRD), and characterization of the reaction products (a dedicated GC-MS run, separate from the inline <code>product_identification_method</code> recorded on the <code>Reaction</code> itself).</p>
 <div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:DATASET_001_NiCeO2_DRM"</span>
-<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalysisDataset</span>
+<span class="nt">title</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"Ni/CeO2</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">dry</span><span class="nv"> </span><span class="s">reforming</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">methane:</span><span class="nv"> </span><span class="s">synthesis,</span><span class="nv"> </span><span class="s">testing</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">characterization"</span>
+<span class="nt">description</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"Impregnation</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Ni</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">CeO2,</span><span class="nv"> </span><span class="s">XRD</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">fresh</span><span class="nv"> </span><span class="s">catalyst,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">DRM</span><span class="nv"> </span><span class="s">testing</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">GC-MS</span><span class="nv"> </span><span class="s">product</span><span class="nv"> </span><span class="s">analysis."</span>
 
 <span class="c1"># Layer 1 -- global classification</span>
 <span class="nt">rdf_type</span><span class="p">:</span>
@@ -1277,45 +1280,43 @@
 <span class="c1"># ...and each one in full, under the field for its kind</span>
 <span class="nt">was_generated_by_synthesis</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:SYN_001_NiCeO2"</span>
-<span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007028</span>
-<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"impregnation"</span>
-<span class="w">    </span><span class="nt">nominal_composition</span><span class="p">:</span><span class="w"> </span><span class="s">"10wt%</span><span class="nv"> </span><span class="s">Ni/CeO2"</span>
+<span class="w">    </span><span class="nt">nominal_composition</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"10wt%</span><span class="nv"> </span><span class="s">Ni/CeO2"</span>
 <span class="w">    </span><span class="nt">had_output_entity</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CAT_002_NiCeO2"</span>
-<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalystSample</span>
 <span class="w">        </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"Ni/CeO2"</span>
+<span class="w">    </span><span class="nt">realized_plan</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:SYN_001_NiCeO2_method"</span>
+<span class="w">      </span><span class="nt">plan_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007028</span><span class="w">        </span><span class="c1"># Impregnation</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"impregnation"</span>
 
 <span class="nt">was_generated_by_characterization</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CHAR_001_NiCeO2_XRD"</span>
-<span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0000158</span>
-<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"powder</span><span class="nv"> </span><span class="s">X-ray</span><span class="nv"> </span><span class="s">diffraction"</span>
 <span class="w">    </span><span class="nt">evaluated_entity</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CAT_002_NiCeO2"</span><span class="w">    </span><span class="c1"># same catalyst sample as above</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CAT_002_NiCeO2"</span><span class="w">    </span><span class="c1"># same catalyst sample as above</span>
 <span class="w">    </span><span class="nt">realized_plan</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PowderXRD</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CHAR_001_NiCeO2_XRD_method"</span>
+<span class="w">      </span><span class="nt">plan_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0000158</span><span class="w">           </span><span class="c1"># PowderXRD</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"powder</span><span class="nv"> </span><span class="s">X-ray</span><span class="nv"> </span><span class="s">diffraction"</span>
 
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CHAR_002_DRM_products_GCMS"</span>
-<span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0000497</span>
-<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"gas</span><span class="nv"> </span><span class="s">chromatography-mass</span><span class="nv"> </span><span class="s">spectrometry"</span>
-<span class="w">    </span><span class="nt">evaluated_entity</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:REAC_002_DRM_NiCeO2"</span><span class="w">    </span><span class="c1"># evaluating the reaction's products</span>
+<span class="w">    </span><span class="nt">evaluated_activity</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:REAC_002_DRM_NiCeO2"</span><span class="w">    </span><span class="c1"># evaluating the reaction's products</span>
 <span class="w">    </span><span class="nt">realized_plan</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GCMS</span>
+<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CHAR_002_DRM_products_GCMS_method"</span>
+<span class="w">      </span><span class="nt">plan_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0000497</span><span class="w">           </span><span class="c1"># GCMS</span>
+<span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"gas</span><span class="nv"> </span><span class="s">chromatography-mass</span><span class="nv"> </span><span class="s">spectrometry"</span>
 
 <span class="c1"># ...and one Reaction is what this dataset is about, not what generated it</span>
 <span class="nt">is_about_activity</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:REAC_002_DRM_NiCeO2"</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CatalyticReaction</span>
 <span class="w">    </span><span class="nt">rdf_type</span><span class="p">:</span><span class="w">                               </span><span class="c1"># reaction type (Layer 1, mandatory)</span>
 <span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0001446</span>
 <span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"catalytic</span><span class="nv"> </span><span class="s">reforming"</span>
 <span class="w">    </span><span class="nt">used_catalyst</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CAT_002_NiCeO2"</span><span class="w">     </span><span class="c1"># same catalyst sample again</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CAT_002_NiCeO2"</span><span class="w">   </span><span class="c1"># same catalyst sample again</span>
 <span class="w">    </span><span class="nt">catalyst_type</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"heterogeneous_catalysis"</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">heterogeneous_catalysis</span>
 
 <span class="nt">is_about_entity</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CAT_002_NiCeO2"</span>
@@ -1323,7 +1324,7 @@
 <p>A few things worth noticing in this example:</p>
 <ul>
 <li>The same <code>CatalystSample</code> (<code>CAT_002_NiCeO2</code>) is referenced from four places: the <code>Synthesis</code> that produced it (<code>had_output_entity</code>), the <code>Characterization</code> that measured it directly (<code>evaluated_entity</code>), the <code>Reaction</code> that consumed it (<code>used_catalyst</code>), and the dataset's own <code>is_about_entity</code>. This is what actually connects the four pillars into one coherent record -- shared identifiers, not schema-level nesting.</li>
-<li>The second <code>Characterization</code> (<code>CHAR_002_DRM_products_GCMS</code>) sets <code>evaluated_entity</code> to the <em>Reaction</em>, not the catalyst -- because what's being measured there is the reaction's product stream, not the catalyst material. <code>evaluated_entity</code> accepts any <code>EvaluatedEntity</code>, and a <code>CatalyticReaction</code>'s outputs qualify.</li>
+<li>The second <code>Characterization</code> (<code>CHAR_002_DRM_products_GCMS</code>) points to the <em>Reaction</em> with <code>evaluated_activity</code> instead of to the catalyst with <code>evaluated_entity</code> -- because what's being measured there is the reaction's product stream, not the catalyst material.</li>
 <li><code>catalyst_type</code> on the <code>Reaction</code> and <code>rdf_type</code> on the <code>CatalysisDataset</code> both draw from <code>CatalysisResearchFieldEnum</code>, but independently -- see the note at the end of the Layer 1 section above.</li>
 <li>For a real submission, each of <code>SYN_001_NiCeO2</code>, <code>CHAR_001_NiCeO2_XRD</code>, <code>CHAR_002_DRM_products_GCMS</code>, and <code>REAC_002_DRM_NiCeO2</code> would carry their own full set of Mandatory/Recommended fields (method parameters, instrument settings, operating conditions, ...); this example only shows the fields relevant to how the four pillars connect. See <a href="../synthesis/">Synthesis</a>, <a href="../characterization/">Characterization</a>, and <a href="../reaction/">Reaction</a> for the full field lists of each.</li>
 </ul>

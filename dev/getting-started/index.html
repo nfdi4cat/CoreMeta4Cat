@@ -1496,19 +1496,19 @@ Level 4 ──► Validate records against the full CoreMeta4Cat schema
 <tbody>
 <tr>
 <td><strong>CoreMeta4Cat</strong></td>
-<td>The minimal global field set — catalyst type, support, metal, metal loading, additive, reaction type — with the CURIE for each</td>
+<td>The Layer 1 fields every catalysis dataset carries — the research field (<code>rdf type</code>), the activity that generated the data, and the reaction and catalyst the dataset is about — with the CURIE for each</td>
 </tr>
 <tr>
 <td><strong>Synthesis</strong></td>
-<td>The full hierarchy of synthesis fields, organised by synthesis step (solvation, mixing, milling, pH adjustment, filtration, crystallisation, washing, dilution, impregnation, drying, calcination, sieving, pelleting), with the corresponding CURIE shown in each column header</td>
+<td>The synthesis fields, organised by preparation method (impregnation, co-precipitation, sol-gel, solvothermal, …), including the step parameters each method shares, such as drying and calcination, with the CURIE for each field</td>
 </tr>
 <tr>
 <td><strong>Characterization</strong></td>
-<td>Method parameter fields and result fields for the characterisation techniques currently in CoreMeta4Cat, showing which ontology terms apply to which measurement parameters and result types</td>
+<td>The method parameter fields of the characterisation techniques currently in CoreMeta4Cat, with the ontology term for each technique and parameter</td>
 </tr>
 <tr>
 <td><strong>Reaction</strong></td>
-<td>The full hierarchy of reaction / catalytic test fields — reactor type, operation mode, reactants, solvent, products, analysis — with CURIEs</td>
+<td>The reaction / catalytic test fields — reactor type, reaction conditions, reactants, solvent, products, product analysis — with CURIEs</td>
 </tr>
 <tr>
 <td><strong>Simulation</strong></td>
@@ -1637,70 +1637,60 @@ Level 4 ──► Validate records against the full CoreMeta4Cat schema
 <p>The most lightweight form of CoreMeta4Cat adoption is to take your <strong>existing experimental spreadsheets</strong> — the ones you already use to record synthesis batches, characterisation measurements, or reaction results — and annotate their column headers with the corresponding CoreMeta4Cat terms.</p>
 <h3 id="how-the-annotation-works">How the annotation works</h3>
 <p>Each column header in your sheet gets a CURIE added alongside it, whether in a second header row, as a cell comment, or simply appended to the header text. There is no prescribed format — what matters is that the machine-readable term is present and unambiguous.</p>
-<p>The vocabulary reference workbook uses a two-line pattern in each column header as a model:</p>
+<p>A simple pattern is a two-line header: your own label, then the CURIE from the <code>uri</code> column of the reference workbook:</p>
 <div class="highlight"><pre><span></span><code>Human-readable label
 voc4cat:XXXXXXX
 </code></pre></div>
-<p>Here are some representative examples drawn from the reference workbook:</p>
+<p>Here are some typical column headers, with the CURIE and the field they correspond to in the reference workbook:</p>
 <p><strong>Synthesis fields:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Label in reference workbook</th>
+<th>Column in your sheet (example)</th>
 <th>CURIE</th>
-<th>Meaning</th>
+<th>Field in the reference workbook</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>institution</code></td>
-<td><code>voc4cat:0007842</code></td>
-<td>Institution where the catalyst was prepared</td>
-</tr>
-<tr>
-<td><code>catalyst</code></td>
-<td><code>voc4cat:0007014</code></td>
-<td>Catalyst type</td>
-</tr>
-<tr>
 <td><code>Preparation method</code></td>
 <td><code>voc4cat:0007016</code></td>
-<td>Synthesis method</td>
+<td><code>PreparationMethod</code>; each method has its own class, e.g. <code>Impregnation</code> (<code>voc4cat:0007028</code>)</td>
 </tr>
 <tr>
 <td><code>Support</code></td>
-<td><code>voc4cat:0007825</code></td>
-<td>Support material</td>
+<td><code>voc4cat:0008104</code></td>
+<td><code>catalyst support</code></td>
+</tr>
+<tr>
+<td><code>Metal loading, nominal (wt%)</code></td>
+<td><code>coremeta4cat:nominal_composition</code></td>
+<td><code>nominal composition</code>, e.g. 5 wt% Ni on Al₂O₃</td>
 </tr>
 <tr>
 <td><code>Precursor 1</code></td>
 <td><code>voc4cat:0007794</code></td>
-<td>First precursor compound</td>
+<td><code>Precursor</code></td>
 </tr>
 <tr>
 <td><code>Precursor 1 amount</code></td>
-<td><code>voc4cat:0007038</code></td>
-<td>Mass of precursor used</td>
-</tr>
-<tr>
-<td><code>Metal loading, nominal (wt%)</code></td>
-<td><code>voc4cat:0007815</code></td>
-<td>Nominal metal loading</td>
+<td><code>voc4cat:0008118</code></td>
+<td><code>precursor quantity</code></td>
 </tr>
 <tr>
 <td><code>calcination final temperature</code></td>
-<td><code>voc4cat:0000058</code></td>
-<td>Final calcination temperature</td>
+<td><code>coremeta4cat:hasCalcinationTemperatureRange</code></td>
+<td><code>has calcination temperature range</code></td>
 </tr>
 <tr>
 <td><code>calcination heating rate</code></td>
-<td><code>voc4cat:0000059</code></td>
-<td>Heating rate during calcination</td>
+<td><code>voc4cat:0008116</code></td>
+<td><code>has calcination heating rate</code></td>
 </tr>
 <tr>
 <td><code>calcination dwelling time</code></td>
 <td><code>voc4cat:0000060</code></td>
-<td>Hold time at calcination temperature</td>
+<td><code>has calcination dwelling time</code></td>
 </tr>
 </tbody>
 </table>
@@ -1708,98 +1698,113 @@ voc4cat:XXXXXXX
 <table>
 <thead>
 <tr>
-<th>Label in reference workbook</th>
+<th>Column in your sheet (example)</th>
 <th>CURIE</th>
-<th>Meaning</th>
+<th>Field in the reference workbook</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>Reaction type</code></td>
 <td><code>voc4cat:0007010</code></td>
-<td>Type of catalytic reaction</td>
+<td>the reaction's <code>rdf type</code> (Layer 1), e.g. hydrogenation (<code>voc4cat:0000260</code>)</td>
 </tr>
 <tr>
 <td><code>Catalyst mass [g]</code></td>
-<td><code>voc4cat:0007792</code></td>
-<td>Mass of catalyst loaded</td>
+<td><code>voc4cat:0008141</code></td>
+<td><code>catalyst mass</code></td>
+</tr>
+<tr>
+<td><code>Catalyst form</code></td>
+<td><code>voc4cat:0000016</code></td>
+<td><code>catalyst form</code></td>
 </tr>
 <tr>
 <td><code>Reactor</code></td>
-<td><code>voc4cat:0007017</code></td>
-<td>Reactor type</td>
-</tr>
-<tr>
-<td><code>operation mode</code></td>
-<td><code>voc4cat:0000108</code></td>
-<td>Batch or flow operation</td>
+<td><code>voc4cat:0007018</code></td>
+<td><code>ChemicalReactor</code>; each reactor type has its own class, e.g. <code>FixedBedReactor</code></td>
 </tr>
 <tr>
 <td><code>Reactor temperature</code></td>
 <td><code>voc4cat:0007032</code></td>
-<td>Reactor temperature range</td>
+<td><code>reactor temperature range</code></td>
+</tr>
+<tr>
+<td><code>Pressure</code></td>
+<td><code>voc4cat:0000118</code></td>
+<td><code>experiment pressure</code></td>
 </tr>
 <tr>
 <td><code>Solvent</code></td>
-<td><code>voc4cat:0007246</code></td>
-<td>Reaction solvent</td>
+<td><code>SIO:010417</code></td>
+<td><code>used solvent</code> (<code>DissolvingSubstance</code>)</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Characterisation result fields:</strong></p>
+<p><strong>Characterisation techniques:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Technique</th>
-<th>Key result fields and terms</th>
+<th>Technique (class in the workbook)</th>
+<th>CURIE</th>
+<th>Key method parameter fields</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>BET analysis (<code>AFP:0003761</code>)</td>
-<td>Specific surface area (<code>voc4cat</code>), pore volume, average pore diameter</td>
+<td>BET analysis (<code>BET</code>)</td>
+<td><code>enm:0000064</code></td>
+<td>adsorbate gas, degassing temperature, measurement temperature</td>
 </tr>
 <tr>
-<td>Powder XRD (<code>CHMO:0000158</code>)</td>
-<td>Phase identification, crystallite size (Scherrer), phase quantification</td>
+<td>Powder XRD (<code>PowderXRD</code>)</td>
+<td><code>CHMO:0000158</code></td>
+<td>2θ range, step size, X-ray source, monochromator</td>
 </tr>
 <tr>
-<td>XPS (<code>CHMO:0000404</code>)</td>
-<td>Assigned species, binding energy, oxidation state, elemental concentration</td>
+<td>XPS (<code>XPS</code>)</td>
+<td><code>CHMO:0000404</code></td>
+<td>X-ray source, pass energy, spot size, energy range</td>
 </tr>
 <tr>
-<td>ICP-OES</td>
-<td>Chemical element (<code>SIO</code>), concentration (<code>afo</code>)</td>
+<td>ICP-OES / ICP-AES (<code>ICPAES</code>)</td>
+<td><code>CHMO:0000267</code></td>
+<td>element analysed, calibration method, detection limit</td>
 </tr>
 <tr>
-<td>GC / GC-MS (<code>CHMO:0000497</code>)</td>
-<td>Retention time (<code>voc4cat</code>), peak area</td>
+<td>GC-MS (<code>GCMS</code>)</td>
+<td><code>CHMO:0000497</code></td>
+<td>carrier gas, column type, oven temperature range, split ratio</td>
 </tr>
 <tr>
-<td>TEM (<code>CHMO:0000080</code>)</td>
-<td>Average particle size (<code>voc4cat</code>), particle shape</td>
+<td>TEM (<code>TransmissionElectronMicroscopy</code>)</td>
+<td><code>voc4cat:0000078</code></td>
+<td>gun type, acceleration voltage, magnification setting</td>
 </tr>
 <tr>
-<td>UV-Vis (<code>CHMO:0000292</code>)</td>
-<td>Wavelength (<code>voc4cat</code>), absorbance, attenuation coefficient</td>
+<td>UV-Vis (<code>UVVisSpectroscopy</code>)</td>
+<td><code>voc4cat:0000079</code></td>
+<td>wavelength range, path length, solvent</td>
 </tr>
 <tr>
-<td>NMR (liquid)</td>
-<td>Chemical shift (<code>NMRCV</code>), signal intensity, multiplet feature</td>
+<td>NMR (<code>NMRSpectroscopy</code>)</td>
+<td><code>voc4cat:0000073</code></td>
+<td>acquisition nucleus, solvent, irradiation frequency, pulse sequence</td>
 </tr>
 </tbody>
 </table>
-<p>You do not need to annotate every column at once. Starting with the most essential fields — <strong>catalyst type, support, metal loading, and reaction type</strong> — already makes your spreadsheet far more comparable against data from other groups, because you are now using the same vocabulary terms.</p>
+<p>The characterisation fields describe how a measurement was made, not its results. Result columns can be annotated with Voc4Cat terms where they exist, for example specific surface area (<code>voc4cat:0000013</code>), retention time (<code>voc4cat:0007260</code>) or particle size (<code>voc4cat:0008212</code>).</p>
+<p>You do not need to annotate every column at once. Starting with the most essential fields — <strong>catalyst type, catalyst composition and support, and reaction type</strong> — already makes your spreadsheet far more comparable against data from other groups, because you are now using the same vocabulary terms.</p>
 <div class="admonition info">
 <p class="admonition-title">What are CURIEs?</p>
 <p>A CURIE (Compact URI) like <code>voc4cat:0007014</code> is shorthand for a full web address: <code>https://w3id.org/nfdi4cat/voc4cat_0007014</code>. Every CoreMeta4Cat term — whether it comes from Voc4Cat or another controlled vocabulary such as CHMO or QUDT — resolves to a human-readable definition at its CURIE's address. This means a computer — or another researcher — can unambiguously identify what each field means, regardless of what language your column header is written in. That is the foundation of interoperability.</p>
 </div>
 <h3 id="the-coremeta4cat-minimal-field-set">The CoreMeta4Cat minimal field set</h3>
-<p>The <strong>CoreMeta4Cat</strong> sheet in the reference workbook shows the smallest useful annotation set — fields that apply to every catalysis dataset regardless of data class. If you annotate nothing else, annotating these fields is already a meaningful step:</p>
+<p>The <strong>CoreMeta4Cat</strong> sheet in the reference workbook lists the Layer 1 fields that apply to every catalysis dataset, regardless of data class: the research field (<code>rdf type</code>), the activity that generated the data (<code>was generated by</code>), and, recommended, the reaction and the catalyst the dataset is about (<code>is about activity</code>, <code>is about entity</code>). In a spreadsheet, the columns that feed these fields are the ones to annotate first. If you annotate nothing else, annotating these is already a meaningful step:</p>
 <table>
 <thead>
 <tr>
-<th>Field</th>
+<th>Column</th>
 <th>CURIE</th>
 <th>Notes</th>
 </tr>
@@ -1808,37 +1813,22 @@ voc4cat:XXXXXXX
 <tr>
 <td>Catalyst type</td>
 <td><code>voc4cat:0007014</code></td>
-<td>Choose from: heterogeneous (<code>voc4cat:0007003</code>), homogeneous (<code>voc4cat:0007804</code>), hybrid (<code>voc4cat:0007805</code>), biocatalyst</td>
-</tr>
-<tr>
-<td>Support</td>
-<td><code>voc4cat:0007825</code></td>
-<td>e.g. Al₂O₃, SiO₂, TiO₂, carbon</td>
-</tr>
-<tr>
-<td>Metal</td>
-<td>—</td>
-<td>e.g. Ni, Pd, Pt, Cu</td>
-</tr>
-<tr>
-<td>Metal loading (wt%)</td>
-<td><code>voc4cat:0007815</code></td>
-<td>Nominal loading</td>
-</tr>
-<tr>
-<td>Additive</td>
-<td><code>voc4cat:0007793</code></td>
-<td>Dopant (<code>voc4cat:0007847</code>), molecular modifier, or ligand (<code>voc4cat:0007809</code>)</td>
-</tr>
-<tr>
-<td>Molar ratio metal : additive</td>
-<td>—</td>
-<td>e.g. 1:0.1</td>
+<td>Becomes the research field. One or more of: heterogeneous (<code>voc4cat:0007001</code>), homogeneous (<code>voc4cat:0000294</code>), bio- (<code>voc4cat:0000204</code>), electro- (<code>voc4cat:0000216</code>) or photocatalysis (<code>voc4cat:0000001</code>)</td>
 </tr>
 <tr>
 <td>Reaction type</td>
 <td><code>voc4cat:0007010</code></td>
-<td>Use RXNO terms where available</td>
+<td>A Voc4Cat reaction term, e.g. hydrogenation (<code>voc4cat:0000260</code>) or CO₂ hydrogenation (<code>voc4cat:0000259</code>)</td>
+</tr>
+<tr>
+<td>Catalyst composition</td>
+<td><code>coremeta4cat:nominal_composition</code></td>
+<td>e.g. 5 wt% Ni on Al₂O₃; metal, loading and support can also be separate columns</td>
+</tr>
+<tr>
+<td>Support</td>
+<td><code>voc4cat:0008104</code></td>
+<td>e.g. Al₂O₃, SiO₂, TiO₂, carbon</td>
 </tr>
 </tbody>
 </table>
@@ -1850,85 +1840,170 @@ voc4cat:XXXXXXX
 <p>This may sound like more work, but in practice a converter for a synthesis sheet is typically 30–80 lines of Python. It is a one-time investment per sheet structure, and it produces a permanent, auditable record of exactly how your data maps onto the CoreMeta4Cat schema. If your sheet layout changes, you update the converter accordingly.</p>
 <p>The CURIE annotations you added in Level 2 do most of the work: they are the mapping key that tells the converter which column corresponds to which CoreMeta4Cat field.</p>
 <h3 id="what-a-minimal-converter-looks-like">What a minimal converter looks like</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">openpyxl</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
+<p>The example sheet has one row per synthesis, with the column labels from Level 2 plus one measured
+property (here the BET surface area), because every synthesis record needs at least one.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">openpyxl</span>
+
+<span class="n">BASE</span> <span class="o">=</span> <span class="s2">"https://example.org/my-group/"</span>  <span class="c1"># your own namespace for identifiers</span>
+
+<span class="c1"># Sheet values mapped to vocabulary terms</span>
+<span class="n">RESEARCH_FIELD</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"heterogeneous"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="s2">"voc4cat:0007001"</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"heterogeneous catalysis"</span><span class="p">},</span>
+    <span class="s2">"homogeneous"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="s2">"voc4cat:0000294"</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"homogeneous catalysis"</span><span class="p">},</span>
+<span class="p">}</span>
+<span class="n">METHOD</span> <span class="o">=</span> <span class="p">{</span>  <span class="c1"># preparation method -&gt; class_uri of the CoreMeta4Cat method class</span>
+    <span class="s2">"impregnation"</span><span class="p">:</span> <span class="s2">"voc4cat:0007028"</span><span class="p">,</span>
+    <span class="s2">"co-precipitation"</span><span class="p">:</span> <span class="s2">"voc4cat:0007795"</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">quantity</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">unit</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""A value with its QUDT quantity kind and unit."""</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span>
+            <span class="s2">"has_quantity_type"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"http://qudt.org/vocab/quantitykind/</span><span class="si">{</span><span class="n">kind</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="s2">"unit"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"https://qudt.org/vocab/unit/</span><span class="si">{</span><span class="n">unit</span><span class="si">}</span><span class="s2">"</span><span class="p">}</span>
+
 
 <span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="s2">"my_synthesis_data.xlsx"</span><span class="p">)</span>
 <span class="n">ws</span> <span class="o">=</span> <span class="n">wb</span><span class="p">[</span><span class="s2">"Synthesis"</span><span class="p">]</span>
-
-<span class="c1"># Read column headers — these carry the CURIE annotations</span>
-<span class="c1"># so you know exactly which column maps to which CoreMeta4Cat field</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="n">cell</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">ws</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
 
 <span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">ws</span><span class="o">.</span><span class="n">iter_rows</span><span class="p">(</span><span class="n">min_row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">values_only</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ws</span><span class="o">.</span><span class="n">iter_rows</span><span class="p">(</span><span class="n">min_row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">values_only</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">headers</span><span class="p">,</span> <span class="n">row</span><span class="p">))</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
         <span class="k">continue</span>  <span class="c1"># skip empty rows</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">]</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"Preparation method"</span><span class="p">]</span>                     <span class="c1"># voc4cat:0007016</span>
+    <span class="n">temperature</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"calcination final temperature"</span><span class="p">]</span>     <span class="c1"># in deg C</span>
+    <span class="n">catalyst</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">catalyst-</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
 
-    <span class="n">synthesis_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"ex:synthesis-</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">records</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span>
-    <span class="n">record</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"CatalysisDataset"</span><span class="p">,</span>
-        <span class="s2">"was_generated_by"</span><span class="p">:</span> <span class="p">[</span><span class="n">synthesis_id</span><span class="p">],</span>                    <span class="c1"># ids of all activities</span>
+    <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">dataset-</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="s2">"title"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"Synthesis of </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">],</span>
+        <span class="s2">"description"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"Converted from my_synthesis_data.xlsx, row </span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">."</span><span class="p">],</span>
+        <span class="s2">"rdf_type"</span><span class="p">:</span> <span class="p">[</span><span class="n">RESEARCH_FIELD</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">"Catalyst type"</span><span class="p">]]],</span>  <span class="c1"># voc4cat:0007014</span>
+        <span class="s2">"was_generated_by"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">synthesis-</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">"</span><span class="p">],</span>          <span class="c1"># ids of all activities</span>
         <span class="s2">"was_generated_by_synthesis"</span><span class="p">:</span> <span class="p">[{</span>                        <span class="c1"># each synthesis in full</span>
-            <span class="s2">"id"</span><span class="p">:</span> <span class="n">synthesis_id</span><span class="p">,</span>
-            <span class="s2">"nominal_composition"</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Name"</span><span class="p">),</span>           <span class="c1"># dct:title</span>
-            <span class="s2">"realized_plan"</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"Impregnation"</span><span class="p">,</span>
-                <span class="c1"># voc4cat:0000058 — calcination final temperature</span>
-                <span class="s2">"calcination_final_temperature"</span><span class="p">:</span>
-                    <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"calcination final temperature"</span><span class="p">),</span>
-                <span class="c1"># voc4cat:0000060 — calcination dwelling time</span>
-                <span class="s2">"calcination_dwelling_time"</span><span class="p">:</span>
-                    <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"calcination dwelling time"</span><span class="p">),</span>
-            <span class="p">},</span>
+            <span class="s2">"id"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">synthesis-</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">],</span>
+            <span class="s2">"nominal_composition"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'Metal loading, nominal (wt%)'</span><span class="p">]</span><span class="si">}</span><span class="s2"> wt% </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'Metal'</span><span class="p">]</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'Support'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">],</span>
+            <span class="s2">"catalyst_measured_properties"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="sa">f</span><span class="s2">"BET surface area: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'BET surface area (m2/g)'</span><span class="p">]</span><span class="si">}</span><span class="s2"> m2/g"</span><span class="p">],</span>
+            <span class="s2">"catalyst_support"</span><span class="p">:</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">"Support"</span><span class="p">]],</span>             <span class="c1"># voc4cat:0008104</span>
             <span class="s2">"had_input_entity"</span><span class="p">:</span> <span class="p">[{</span>
-                <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"Precursor"</span><span class="p">,</span>
-                <span class="s2">"name"</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Precursor 1"</span><span class="p">),</span>               <span class="c1"># voc4cat:0007794</span>
-                <span class="s2">"precursor_quantity"</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Precursor 1 amount"</span><span class="p">)</span>  <span class="c1"># voc4cat:0007038</span>
-            <span class="p">}]</span>
+                <span class="s2">"id"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">precursor-</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">-1"</span><span class="p">,</span>
+                <span class="s2">"title"</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">"Precursor 1"</span><span class="p">],</span>                   <span class="c1"># voc4cat:0007794</span>
+                <span class="s2">"precursor_quantity"</span><span class="p">:</span> <span class="p">[</span>                         <span class="c1"># voc4cat:0008118</span>
+                    <span class="n">quantity</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"Precursor 1 amount"</span><span class="p">],</span> <span class="s2">"Mass"</span><span class="p">,</span> <span class="s2">"GM"</span><span class="p">)],</span>
+            <span class="p">}],</span>
+            <span class="s2">"had_output_entity"</span><span class="p">:</span> <span class="p">[</span><span class="n">catalyst</span><span class="p">],</span>
+            <span class="s2">"realized_plan"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">"id"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">method-</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                <span class="s2">"plan_designator"</span><span class="p">:</span> <span class="n">METHOD</span><span class="p">[</span><span class="n">method</span><span class="p">],</span>              <span class="c1"># which method class this is</span>
+                <span class="s2">"title"</span><span class="p">:</span> <span class="n">method</span><span class="p">,</span>
+                <span class="s2">"has_calcination_temperature_range"</span><span class="p">:</span> <span class="p">[{</span>
+                    <span class="s2">"min_value"</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span> <span class="s2">"max_value"</span><span class="p">:</span> <span class="n">temperature</span><span class="p">,</span>
+                    <span class="s2">"has_quantity_type"</span><span class="p">:</span> <span class="s2">"http://qudt.org/vocab/quantitykind/Temperature"</span><span class="p">,</span>
+                    <span class="s2">"unit"</span><span class="p">:</span> <span class="s2">"https://qudt.org/vocab/unit/DEG_C"</span><span class="p">}],</span>
+                <span class="s2">"has_calcination_dwelling_time"</span><span class="p">:</span>                <span class="c1"># voc4cat:0000060</span>
+                    <span class="n">quantity</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">"calcination dwelling time"</span><span class="p">],</span> <span class="s2">"Time"</span><span class="p">,</span> <span class="s2">"HR"</span><span class="p">),</span>
+            <span class="p">},</span>
         <span class="p">}],</span>
-        <span class="s2">"is_about_entity"</span><span class="p">:</span> <span class="p">[{</span>
-            <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"CatalystSample"</span><span class="p">,</span>
-            <span class="s2">"support"</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Support"</span><span class="p">),</span>                    <span class="c1"># voc4cat:0007825</span>
-            <span class="s2">"metal_loading_nominal"</span><span class="p">:</span>
-                <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Metal loading, nominal (wt%)"</span><span class="p">)</span>       <span class="c1"># voc4cat:0007815</span>
-        <span class="p">}]</span>
-    <span class="p">}</span>
-    <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="s2">"is_about_entity"</span><span class="p">:</span> <span class="p">[</span><span class="n">catalyst</span><span class="p">],</span>
+    <span class="p">})</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"synthesis_records.json"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"synthesis_records.json"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
-<p>The column names passed to <code>data.get(...)</code> are the same human-readable labels you already have in your sheet header. The CURIEs in the comments document the semantic meaning of each mapping for anyone reading the script later.</p>
+<p>The column names used in <code>data[...]</code> are the same human-readable labels you already have in your sheet
+header, and the CURIEs in the comments document the meaning of each mapping. Three things turn the sheet
+into a valid record: every dataset, activity, method and entity gets an identifier in your own namespace
+(<code>BASE</code>); sheet values such as the catalyst type and the preparation method are mapped to vocabulary terms
+(<code>RESEARCH_FIELD</code>, <code>METHOD</code>); and numbers are written with their quantity kind and unit (<code>quantity()</code>).
+The synthesis is described under <code>was_generated_by_synthesis</code>, and its id is listed in <code>was_generated_by</code>,
+which DCAT-AP+ requires on every dataset. <code>plan_designator</code> tells software which method class the plan
+belongs to (here <code>Impregnation</code>), which makes the calcination fields of that class available.</p>
 <h3 id="the-resulting-json-record">The resulting JSON record</h3>
-<p>Running this converter produces a record like the following, which is a valid CoreMeta4Cat JSON instance:</p>
+<p>Running this converter on a row for a 5 wt% Ni/Al₂O₃ catalyst produces the following record, which passes
+the validation shown in Level 4:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CatalysisDataset"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"rdf_type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"voc4cat:0007001"</span><span class="p">,</span><span class="w"> </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"heterogeneous catalysis"</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">"was_generated_by"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ex:synthesis-1"</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.org/my-group/dataset-1"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"Synthesis of 5Ni/Al2O3"</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"Converted from my_synthesis_data.xlsx, row 2."</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"rdf_type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"voc4cat:0007001"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"heterogeneous catalysis"</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"was_generated_by"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"https://example.org/my-group/synthesis-1"</span>
+<span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"was_generated_by_synthesis"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex:synthesis-1"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"nominal_composition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5wt% Ni/Al2O3"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"realized_plan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Impregnation"</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"calcination_final_temperature"</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">"calcination_dwelling_time"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.0</span>
-<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.org/my-group/synthesis-1"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"impregnation of 5Ni/Al2O3"</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"nominal_composition"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"5 wt% Ni on Al2O3"</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"catalyst_measured_properties"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"BET surface area: 182 m2/g"</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"catalyst_support"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"Al2O3"</span>
+<span class="w">      </span><span class="p">],</span>
 <span class="w">      </span><span class="nt">"had_input_entity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Precursor"</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ni(NO3)2·6H2O"</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">"precursor_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.24</span>
+<span class="w">          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.org/my-group/precursor-1-1"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ni(NO3)2·6H2O"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"precursor_quantity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.24</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"has_quantity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://qudt.org/vocab/quantitykind/Mass"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://qudt.org/vocab/unit/GM"</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">]</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">]</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"had_output_entity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.org/my-group/catalyst-1"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5Ni/Al2O3"</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">"realized_plan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.org/my-group/method-1"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"plan_designator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"voc4cat:0007028"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"impregnation"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"has_calcination_temperature_range"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"min_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"max_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"has_quantity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://qudt.org/vocab/quantitykind/Temperature"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://qudt.org/vocab/unit/DEG_C"</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nt">"has_calcination_dwelling_time"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"has_quantity_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://qudt.org/vocab/quantitykind/Time"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://qudt.org/vocab/unit/HR"</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"is_about_entity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CatalystSample"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"support"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Al2O3"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"metal_loading_nominal"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.org/my-group/catalyst-1"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5Ni/Al2O3"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
