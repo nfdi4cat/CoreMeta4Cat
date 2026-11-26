@@ -6,8 +6,8 @@ community datasets in tests/data/valid/.
 
 Each pattern is defined in scripts/usage_patterns.yaml: which dataset file it
 comes from, which object to take (a path such as
-``was_generated_by[id=coremeta4cat:CHAR_b74m-m6rp_TCD]``), and which fields
-to keep. For every pattern the script
+``was_generated_by_characterization[id=coremeta4cat:CHAR_b74m-m6rp_TCD]``),
+and which fields to keep. For every pattern the script
 
   1. cuts the excerpt out of the dataset record,
   2. validates it against its class (same validator as ``just test``) and
@@ -22,7 +22,8 @@ Keep rules (``keep:`` in the spec):
   key: 3               keep the first 3 items of a list
   key: {a: true, ...}  keep only these sub-keys (applied to every item of a list)
      _limit: n         ... of the first n items
-     _ids: [...]       ... of the items with these ids, in this order
+     _ids: [...]       ... of the items with these ids, in this order (in a
+                       list of ids, such as was_generated_by: these ids)
      _all: true        ... keep all sub-keys, the listed ones get their own rule
 
 Run:
@@ -54,7 +55,7 @@ PAGE_PATH = REPO_ROOT / "docs" / "working-with-data" / "usage-patterns.md"
 ASSET_DIR = REPO_ROOT / "docs" / "assets" / "patterns"
 SLOT_DOCS = REPO_ROOT / "docs" / "elements" / "slots"
 
-DESIGNATORS = ("activity_designator", "plan_designator", "reactor_designator")
+DESIGNATORS = ("plan_designator", "reactor_designator")
 # Shown in the node label, not as separate leaves of the graph.
 LABEL_KEYS = {"id", "title", "description", *DESIGNATORS}
 
@@ -124,7 +125,7 @@ def prune(value, rule):
         if isinstance(value, list):
             items = value
             if "_ids" in rule:
-                by_id = {item.get("id"): item for item in items}
+                by_id = {item.get("id") if isinstance(item, dict) else item: item for item in items}
                 items = [by_id[i] for i in rule["_ids"]]
             if "_limit" in rule:
                 items = items[: rule["_limit"]]
@@ -170,9 +171,7 @@ class Schema:
         return "other"
 
     def concrete(self, declared: str | None, obj: dict) -> str | None:
-        if "activity_designator" in obj:
-            return obj["activity_designator"]
-        for slot in ("plan_designator", "reactor_designator"):
+        for slot in DESIGNATORS:
             if slot in obj:
                 return self.uri_to_class.get(obj[slot], declared)
         return declared
@@ -199,16 +198,24 @@ def _first(value):
 class Graph:
     def __init__(self, schema: Schema):
         self.schema = schema
-        self.nodes: dict[str, tuple[str, str]] = {}  # key -> (label, kind)
+        self.nodes: dict[str, tuple[str, str, str]] = {}  # key -> (label, kind, node)
         self.edges: list[tuple[str, str, str]] = []
         self.counter = 0
+        self.references: set[str] = set()  # keys of nodes drawn from a bare id so far
 
-    def _new(self, key: str | None, label: str, kind: str) -> str:
+    def _new(self, key: str | None, label: str, kind: str, reference: bool = False) -> str:
         if key is not None and key in self.nodes:
-            return self.nodes[key][2]
+            node = self.nodes[key][2]
+            if key in self.references and not reference:
+                # the object behind an id seen earlier (e.g. in was_generated_by): use its label
+                self.nodes[key] = (label, kind, node)
+                self.references.discard(key)
+            return node
         self.counter += 1
         node = f"n{self.counter}"
         self.nodes[key or node] = (label, kind, node)
+        if reference:
+            self.references.add(key)
         return node
 
     def add_object(self, obj: dict, cls: str | None) -> str:
@@ -241,6 +248,10 @@ class Graph:
             for item in value if isinstance(value, list) else [value]:
                 if isinstance(item, dict):
                     child = self.add_object(item, target_cls)
+                elif target_cls in self.schema.view.all_classes():
+                    # a bare id pointing at an object: one node, shared with that object
+                    child = self._new(str(item), f"{_text(item)}<br/>«{target_cls}»",
+                                      self.schema.kind(target_cls), reference=True)
                 else:
                     child = self._new(None, f"“{_text(item)}”", "literal")
                 self.edges.append((node, slot, child))

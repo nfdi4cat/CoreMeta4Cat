@@ -19,6 +19,5 @@
     "id": "coremeta4cat:CHAR_001_BET_method",
     "plan_designator": "OBI:0000272"
   },
-  "activity_designator": "Characterization",
   "@type": "Characterization"
 }

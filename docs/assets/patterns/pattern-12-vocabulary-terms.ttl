@@ -2,6 +2,7 @@
 @prefix SIO: <http://semanticscience.org/resource/SIO_> .
 @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
 @prefix CHEBI: <http://purl.obolibrary.org/obo/CHEBI_> .
+@prefix REX: <http://purl.obolibrary.org/obo/REX_> .
 @prefix RO: <http://purl.obolibrary.org/obo/RO_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -14,7 +15,7 @@ coremeta4cat:REAC_2d6m-exeb_CO dcterms:title "carbon monoxide" ;
 	a CHEBI:17245 , SIO:010411 .
 coremeta4cat:REAC_2d6m-exeb_CO_methanation RO:0004009 coremeta4cat:REAC_2d6m-exeb_CO ;
 	dcterms:title "CO methanation catalyst screening (4 Ni catalysts)" ;
-	a coremeta4cat:CatalyticReaction , voc4cat:0000260 ;
+	a REX:0000051 , voc4cat:0000260 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_2d6m-exeb_CO_reactor ;
 	voc4cat:0007009 "CO methanation" ;
 	voc4cat:0007014 voc4cat:0007001 .

@@ -154,29 +154,6 @@ before a process or measurement (e.g. "reduction at 300 °C", "outgassing").
 </p></details>
 
 <details markdown="1" open>
-<summary><strong>activity designator</strong> (Optional)</summary>
-
-**Description:** Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.
-
-**Data Type:** string
-
-**Cardinality:**  Optional
-
-**CURIE:** [`rdf:type`](http://www.w3.org/1999/02/22-rdf-syntax-ns#type)
-
-**Schema Reference:** [activity_designator](./elements/slots/activity_designator.md)
-
-<p>
-  <a href=https://github.com/nfdi4cat/CoreMeta4Cat/issues/new?template=term_improvement.yaml&title=Term%20Feedback:%20activity_designator target="_blank" class="md-button md-button--primary">
-    💡 Submit Term Feedback
-  </a>
-</p></details>
-
-<details markdown="1" open>
 <summary><strong>realized plan</strong> (Mandatory)</summary>
 
 **Description:** The CharacterizationTechnique (protocol) realized in this Characterization.

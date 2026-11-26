@@ -93,28 +93,37 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                     'Activity subclasses,\n'
                     '  following the same pattern as NMRSpectroscopy (is_a: '
                     'DataGeneratingActivity).\n'
-                    '  Synthesis, Characterization, and Simulation specialize '
-                    'CatalysisDataGeneratingActivity\n'
-                    '  (is_a: DataGeneratingActivity) rather than '
-                    'DataGeneratingActivity directly -- this\n'
-                    '  coremeta4cat-owned intermediate adds a type designator '
-                    '(activity_designator) so that\n'
-                    '  was_generated_by (typed CatalysisDataGeneratingActivity) '
-                    'can hold any of the three and\n'
-                    '  still resolve to the right concrete Python class when '
-                    'loaded. Likewise, is_about_activity\n'
-                    '  is typed CatalyticReaction directly (not the wider '
-                    'EvaluatedActivity) so it needs no\n'
-                    '  designator at all:\n'
+                    '  Each pillar has an ontology term as its class_uri, as '
+                    'chem-dcat-ap does for\n'
+                    '  SubstanceSample (SIO:001378) or ChemicalEntity '
+                    '(CHEBI:23367), so the RDF of\n'
+                    '  every activity says what kind of activity it is.\n'
                     '\n'
-                    '    Synthesis      --> is_a: CatalysisDataGeneratingActivity\n'
+                    '  CatalysisDataset describes the three data-generating '
+                    'pillars in one slot\n'
+                    '  each: was_generated_by_synthesis, '
+                    'was_generated_by_characterization and\n'
+                    '  was_generated_by_simulation. All three are '
+                    'prov:wasGeneratedBy in RDF, and\n'
+                    '  the range of each slot tells software which class its '
+                    'entries are, so no\n'
+                    '  type designator is needed. was_generated_by itself, which '
+                    'DCAT-AP-PLUS\n'
+                    '  requires on every Dataset, lists the ids of all these '
+                    'activities.\n'
+                    '  is_about_activity is typed CatalyticReaction directly (not '
+                    'the wider\n'
+                    '  EvaluatedActivity), so it needs no designator either:\n'
+                    '\n'
+                    '    Synthesis      --> is_a: DataGeneratingActivity, '
+                    'class_uri PROCO:0000001\n'
                     '                     Produces a catalyst (MaterialSample) as '
                     'had_output_entity.\n'
                     '                     The PreparationMethod (protocol) is '
                     'linked via realized_plan.\n'
                     '\n'
-                    '    Characterization --> is_a: '
-                    'CatalysisDataGeneratingActivity\n'
+                    '    Characterization --> is_a: DataGeneratingActivity, '
+                    'class_uri OBI:0000070\n'
                     '                       Produces measurement data about a '
                     'catalyst or reaction.\n'
                     '                       The catalyst/sample is the '
@@ -122,8 +131,9 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                     '                       The CharacterizationTechnique is '
                     'linked via realized_plan.\n'
                     '\n'
-                    '    Reaction       --> is_a: CatalyticReaction (via '
-                    'ChemicalReaction, EvaluatedActivity)\n'
+                    '    Reaction       --> CatalyticReaction (is_a: '
+                    'ChemicalReaction, EvaluatedActivity),\n'
+                    '                     class_uri REX:0000051\n'
                     '                     The catalytic process being studied, NOT '
                     'a data-generating\n'
                     '                     activity itself. Characterization '
@@ -132,7 +142,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                     'in a reaction\n'
                     '                     monitoring dataset.\n'
                     '\n'
-                    '    Simulation     --> is_a: CatalysisDataGeneratingActivity\n'
+                    '    Simulation     --> is_a: DataGeneratingActivity, '
+                    'class_uri PROCO:0000159\n'
                     '                     Generates computational data about a '
                     'catalyst or reaction.\n'
                     '                     The SimulationMethod (protocol) is '
@@ -192,12 +203,18 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                             'prefix_reference': 'http://purl.obolibrary.org/obo/CHEBI_'},
                   'CHMO': {'prefix_prefix': 'CHMO',
                            'prefix_reference': 'http://purl.obolibrary.org/obo/CHMO_'},
+                  'COB': {'prefix_prefix': 'COB',
+                          'prefix_reference': 'http://purl.obolibrary.org/obo/COB_'},
                   'IAO': {'prefix_prefix': 'IAO',
                           'prefix_reference': 'http://purl.obolibrary.org/obo/IAO_'},
                   'NCIT': {'prefix_prefix': 'NCIT',
                            'prefix_reference': 'http://purl.obolibrary.org/obo/NCIT_'},
                   'OBI': {'prefix_prefix': 'OBI',
                           'prefix_reference': 'http://purl.obolibrary.org/obo/OBI_'},
+                  'PROCO': {'prefix_prefix': 'PROCO',
+                            'prefix_reference': 'http://purl.obolibrary.org/obo/PROCO_'},
+                  'REX': {'prefix_prefix': 'REX',
+                          'prefix_reference': 'http://purl.obolibrary.org/obo/REX_'},
                   'RO': {'prefix_prefix': 'RO',
                          'prefix_reference': 'http://purl.obolibrary.org/obo/RO_'},
                   'RXNO': {'prefix_prefix': 'RXNO',
@@ -206,16 +223,28 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                           'prefix_reference': 'http://semanticscience.org/resource/SIO_'},
                   'adms': {'prefix_prefix': 'adms',
                            'prefix_reference': 'http://www.w3.org/ns/adms#'},
+                  'allotrope.process': {'prefix_prefix': 'allotrope.process',
+                                        'prefix_reference': 'http://purl.allotrope.org/ontologies/process#AFP_'},
+                  'allotrope.quality': {'prefix_prefix': 'allotrope.quality',
+                                        'prefix_reference': 'http://purl.allotrope.org/ontologies/quality#AFQ_'},
+                  'allotrope.result': {'prefix_prefix': 'allotrope.result',
+                                       'prefix_reference': 'http://purl.allotrope.org/ontologies/result#AFR_'},
+                  'allotrope.role': {'prefix_prefix': 'allotrope.role',
+                                     'prefix_reference': 'http://purl.allotrope.org/ontologies/role#AFRL_'},
                   'chemdcatap': {'prefix_prefix': 'chemdcatap',
                                  'prefix_reference': 'https://w3id.org/nfdi-de/dcat-ap-plus/chemistry/'},
                   'coremeta4cat': {'prefix_prefix': 'coremeta4cat',
                                    'prefix_reference': 'https://w3id.org/nfdi4cat/coremeta4cat/'},
                   'dcat': {'prefix_prefix': 'dcat',
                            'prefix_reference': 'http://www.w3.org/ns/dcat#'},
+                  'dcatap': {'prefix_prefix': 'dcatap',
+                             'prefix_reference': 'http://data.europa.eu/r5r/'},
                   'dcatap_plus': {'prefix_prefix': 'dcatap_plus',
                                   'prefix_reference': 'https://w3id.org/nfdi-de/dcat-ap-plus/'},
                   'dcterms': {'prefix_prefix': 'dcterms',
                               'prefix_reference': 'http://purl.org/dc/terms/'},
+                  'eli': {'prefix_prefix': 'eli',
+                          'prefix_reference': 'http://data.europa.eu/eli/ontology#'},
                   'enm': {'prefix_prefix': 'enm',
                           'prefix_reference': 'http://purl.enanomapper.org/onto/'},
                   'foaf': {'prefix_prefix': 'foaf',
@@ -224,6 +253,10 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                           'prefix_reference': 'https://hdl.handle.net/'},
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
+                  'locn': {'prefix_prefix': 'locn',
+                           'prefix_reference': 'http://www.w3.org/ns/locn#'},
+                  'odrl': {'prefix_prefix': 'odrl',
+                           'prefix_reference': 'http://www.w3.org/ns/odrl/2/'},
                   'panet': {'prefix_prefix': 'panet',
                             'prefix_reference': 'http://purl.org/pan-science/PaNET/'},
                   'prov': {'prefix_prefix': 'prov',
@@ -236,6 +269,8 @@ linkml_meta = LinkMLMeta({'default_prefix': 'coremeta4cat',
                              'prefix_reference': 'http://schema.org/'},
                   'skos': {'prefix_prefix': 'skos',
                            'prefix_reference': 'http://www.w3.org/2004/02/skos/core#'},
+                  'spdx': {'prefix_prefix': 'spdx',
+                           'prefix_reference': 'http://spdx.org/rdf/terms#'},
                   'voc4cat': {'prefix_prefix': 'voc4cat',
                               'prefix_reference': 'https://w3id.org/nfdi4cat/voc4cat_'}},
      'source_file': 'src\\coremeta4cat\\schema\\coremeta4cat.yaml',
@@ -2085,192 +2120,7 @@ class DataGeneratingActivity(Activity):
          'slot_uri': 'rdf:type'} })
 
 
-class CatalysisDataGeneratingActivity(DataGeneratingActivity):
-    """
-    A CoreMeta4Cat specialization of DCAT-AP-PLUS's DataGeneratingActivity
-    that adds a type designator (activity_designator). Synthesis,
-    Characterization, and Simulation all specialize this class instead of
-    DataGeneratingActivity directly, so that when one of them is nested
-    inside CatalysisDataset.was_generated_by, the LinkML Python loader can
-    tell which concrete subclass a given entry is meant to be and keep its
-    subclass-specific fields (e.g. Characterization.realized_plan) rather
-    than falling back to DataGeneratingActivity's own generic slot
-    definitions.
-
-    activity_designator is filled in automatically by LinkML when a class
-    is instantiated directly (e.g. loading a standalone Synthesis-NNN.yaml
-    file) -- it does not need to be set by hand there. It only needs to be
-    set explicitly in the source data when a Synthesis/Characterization/
-    Simulation instance is nested inside another object's was_generated_by
-    list (e.g. in a combined CatalysisDataset file), so the loader knows
-    which of the three to construct.
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
-         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/common/'})
-
-    activity_designator: Literal["CatalysisDataGeneratingActivity"] = Field(default="CatalysisDataGeneratingActivity", description="""Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
-         'domain_of': ['CatalysisDataGeneratingActivity'],
-         'slot_uri': 'rdf:type'} })
-    evaluated_entity: Optional[list[EvaluatedEntity]] = Field(default=None, description="""The slot to specify the Entity about which the DataGeneratingActivity produced information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
-         'in_subset': ['domain_agnostic_core'],
-         'is_a': 'had_input_entity',
-         'recommended': True,
-         'slot_uri': 'prov:used'} })
-    evaluated_activity: Optional[list[EvaluatedActivity]] = Field(default=None, description="""The slot to specify the Activity about which the DataGeneratingActivity produced information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
-         'in_subset': ['domain_agnostic_core'],
-         'is_a': 'had_input_activity',
-         'recommended': True,
-         'slot_uri': 'prov:wasInformedBy'} })
-    realized_plan: Optional[Plan] = Field(default=None, description="""The slot to specify the Plan (i.e. directive information or procedure) that was realized by an Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
-         'in_subset': ['domain_agnostic_core'],
-         'slot_uri': 'prov:used'} })
-    occurred_in: Optional[Surrounding] = Field(default=None, description="""The slot to specify the Surrounding in which an Activity took place.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
-         'in_subset': ['domain_agnostic_core'],
-         'slot_uri': 'prov:atLocation'} })
-    id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalysisPlan',
-                       'Activity',
-                       'AgenticEntity',
-                       'Dataset',
-                       'DefinedTerm',
-                       'Document',
-                       'Entity',
-                       'LegalResource',
-                       'LicenseDocument',
-                       'Resource'],
-         'in_subset': ['domain_agnostic_core']} })
-    title: Optional[list[str]] = Field(default=None, description="""The slot to provide a title for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
-                       'Activity',
-                       'AgenticEntity',
-                       'Any',
-                       'Attribution',
-                       'Catalogue',
-                       'CatalogueRecord',
-                       'ChecksumAlgorithm',
-                       'Concept',
-                       'ConceptScheme',
-                       'DataService',
-                       'Dataset',
-                       'DatasetSeries',
-                       'DefinedTerm',
-                       'Distribution',
-                       'Document',
-                       'Entity',
-                       'Frequency',
-                       'Geometry',
-                       'Identifier',
-                       'LegalResource',
-                       'LicenseDocument',
-                       'LinguisticSystem',
-                       'MediaType',
-                       'MediaTypeOrExtent',
-                       'PeriodOfTime',
-                       'Plan',
-                       'Policy',
-                       'ProvenanceStatement',
-                       'QualitativeAttribute',
-                       'QuantitativeAttribute',
-                       'Resource',
-                       'RightsStatement',
-                       'Role',
-                       'Standard',
-                       'SupportiveEntity',
-                       'Surrounding',
-                       'TimeInstant'],
-         'notes': ['not in DCAT-AP'],
-         'slot_uri': 'dcterms:title'} })
-    description: Optional[list[str]] = Field(default=None, description="""The slot to provide a description for the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['QuantitativeRange',
-                       'Activity',
-                       'AgenticEntity',
-                       'Any',
-                       'Attribution',
-                       'Catalogue',
-                       'CatalogueRecord',
-                       'ChecksumAlgorithm',
-                       'Concept',
-                       'ConceptScheme',
-                       'DataService',
-                       'Dataset',
-                       'DatasetSeries',
-                       'Distribution',
-                       'Document',
-                       'Entity',
-                       'Frequency',
-                       'Geometry',
-                       'Identifier',
-                       'LegalResource',
-                       'LicenseDocument',
-                       'LinguisticSystem',
-                       'MediaType',
-                       'MediaTypeOrExtent',
-                       'PeriodOfTime',
-                       'Plan',
-                       'Policy',
-                       'ProvenanceStatement',
-                       'QualitativeAttribute',
-                       'QuantitativeAttribute',
-                       'Resource',
-                       'RightsStatement',
-                       'Role',
-                       'Standard',
-                       'SupportiveEntity',
-                       'Surrounding',
-                       'TimeInstant'],
-         'notes': ['not in DCAT-AP'],
-         'slot_uri': 'dcterms:description'} })
-    other_identifier: Optional[list[Identifier]] = Field(default=None, description="""The slot to provide a secondary identifier of the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Dataset', 'Entity'],
-         'notes': ['not in DCAT-AP'],
-         'slot_uri': 'adms:identifier'} })
-    has_part: Optional[list[Activity]] = Field(default=None, description="""The slot to provide an Activity that is part of the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Catalogue', 'Entity'],
-         'notes': ['not in DCAT-AP'],
-         'slot_uri': 'dcterms:hasPart'} })
-    had_input_entity: Optional[list[Entity]] = Field(default=None, description="""The slot to specify the Entity that was used as an input of an Activity that is to be changed, consumed or transformed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity'],
-         'in_subset': ['domain_agnostic_core'],
-         'notes': ['not in DCAT-AP'],
-         'recommended': True,
-         'slot_uri': 'prov:used'} })
-    had_output_entity: Optional[list[Entity]] = Field(default=None, description="""The slot to specify the Entity that was generated as an output of an Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity'],
-         'in_subset': ['domain_agnostic_core'],
-         'notes': ['not in DCAT-AP'],
-         'recommended': True,
-         'slot_uri': 'prov:generated'} })
-    had_input_activity: Optional[list[Activity]] = Field(default=None, description="""The slot to provide a previous Activity that informed the Activity by being causally via a shared participant.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity'],
-         'in_subset': ['domain_agnostic_core'],
-         'notes': ['not in DCAT-AP'],
-         'recommended': True,
-         'slot_uri': 'prov:wasInformedBy'} })
-    carried_out_by: Optional[list[AgenticEntity]] = Field(default=None, description="""The slot to specify the AgenticEntity that played a certain part in carrying out the Activity, either via having a specific role, function or disposition that was realized in the Activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity'],
-         'in_subset': ['domain_agnostic_core'],
-         'notes': ['not in DCAT-AP'],
-         'recommended': True,
-         'slot_uri': 'prov:wasAssociatedWith'} })
-    has_qualitative_attribute: Optional[list[QualitativeAttribute]] = Field(default=None, description="""The slot to relate a qualitative attribute to an EvaluatedEntity, EvaluatedActivity or AgenticEntity""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Entity'],
-         'in_subset': ['domain_agnostic_core'],
-         'notes': ['not in DCAT-AP'],
-         'recommended': True,
-         'slot_uri': 'dcterms:relation'} })
-    has_quantitative_attribute: Optional[list[QuantitativeAttribute]] = Field(default=None, description="""The slot to relate a quantitative attribute to an EvaluatedEntity, EvaluatedActivity or AgenticEntity""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Entity'],
-         'in_subset': ['domain_agnostic_core'],
-         'notes': ['not in DCAT-AP'],
-         'recommended': True,
-         'slot_uri': 'dcterms:relation'} })
-    part_of: Optional[list[Activity]] = Field(default=None, description="""The slot to provide an Activity of which the Activity is a part.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Activity', 'AgenticEntity', 'Entity'],
-         'in_subset': ['domain_agnostic_core'],
-         'inverse': 'has_part',
-         'notes': ['not in DCAT-AP'],
-         'slot_uri': 'dcterms:isPartOf'} })
-    type: Optional[DefinedTerm] = Field(default=None, description="""This slot is described in more detail within the class in which it is used.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
-         'slot_uri': 'dcterms:type'} })
-    rdf_type: Optional[DefinedTerm] = Field(default=None, description="""The slot to specify the ontology class that is instantiated by an entity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ClassifierMixin'],
-         'in_subset': ['domain_agnostic_core'],
-         'recommended': True,
-         'slot_uri': 'rdf:type'} })
-
-
-class Synthesis(CatalysisDataGeneratingActivity):
+class Synthesis(DataGeneratingActivity):
     """
     A DataGeneratingActivity in which a catalyst is prepared.
 
@@ -2283,7 +2133,9 @@ class Synthesis(CatalysisDataGeneratingActivity):
     term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS
     Pattern 3.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'OBI:0000070',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['COB:0000110'],
+         'class_uri': 'PROCO:0000001',
+         'close_mappings': ['NCIT:C61408'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/synthesis/',
          'slot_usage': {'carried_out_by': {'description': 'Equipment or synthesis '
                                                           'device used to carry out '
@@ -2352,13 +2204,6 @@ class Synthesis(CatalysisDataGeneratingActivity):
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'SIO:000008'} })
-    activity_designator: Literal["Synthesis"] = Field(default="Synthesis", description="""Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
-         'domain_of': ['CatalysisDataGeneratingActivity'],
-         'slot_uri': 'rdf:type'} })
     evaluated_entity: Optional[list[EvaluatedEntity]] = Field(default=None, description="""The slot to specify the Entity about which the DataGeneratingActivity produced information.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
          'in_subset': ['domain_agnostic_core'],
          'is_a': 'had_input_entity',
@@ -2515,7 +2360,7 @@ Provide a Device instance (e.g. rotary evaporator, autoclave, furnace).""", json
          'slot_uri': 'rdf:type'} })
 
 
-class Characterization(CatalysisDataGeneratingActivity):
+class Characterization(DataGeneratingActivity):
     """
     A DataGeneratingActivity in which a catalyst sample or catalytic material
     is characterized using an analytical technique.
@@ -2585,13 +2430,6 @@ class Characterization(CatalysisDataGeneratingActivity):
          'is_a': 'has_qualitative_attribute',
          'recommended': True,
          'slot_uri': 'allotrope.result:0000317'} })
-    activity_designator: Literal["Characterization"] = Field(default="Characterization", description="""Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
-         'domain_of': ['CatalysisDataGeneratingActivity'],
-         'slot_uri': 'rdf:type'} })
     evaluated_entity: Optional[list[EvaluatedEntity]] = Field(default=None, description="""The catalyst sample or material being characterized.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
          'in_subset': ['domain_agnostic_core'],
          'is_a': 'had_input_entity',
@@ -5148,8 +4986,8 @@ class CatalyticReaction(ChemicalReaction):
 
     For operando experiments (e.g. in-situ XRD during a reaction), the dataset
     carries both:
-      was_generated_by: Characterization  (the measurement producing data)
-      is_about_activity: Reaction         (the catalytic process being monitored)
+      was_generated_by_characterization: Characterization  (the measurement producing data)
+      is_about_activity: CatalyticReaction  (the catalytic process being monitored)
 
     The reactor is linked via the inherited used_reactor slot (is_a:
     carried_out_by), narrowed here to require a ChemicalReactor instance
@@ -5159,7 +4997,8 @@ class CatalyticReaction(ChemicalReaction):
     The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)
     is expressed via rdf_type using a voc4cat or ChemO term.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'REX:0000051',
+         'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/reaction/',
          'slot_usage': {'has_reaction_step': {'description': 'A step (part) of this '
                                                              'CatalyticReaction that '
                                                              'is itself a '
@@ -12872,7 +12711,7 @@ class SizeExclusionChromatography(CharacterizationTechnique, ChromatographyMixin
                        'LicenseDocument',
                        'Resource'],
          'in_subset': ['domain_agnostic_core']} })
-    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/SizeExclusionChromatography","allotrope.quality:0000843","coremeta4cat:SizeExclusionChromatography"] = Field(default="allotrope.quality:0000843", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
+    plan_designator: Literal["https://w3id.org/nfdi4cat/coremeta4cat/SizeExclusionChromatography","http://purl.allotrope.org/ontologies/quality#AFQ_0000843","coremeta4cat:SizeExclusionChromatography","allotrope.quality:0000843"] = Field(default="allotrope.quality:0000843", description="""Type designator for CatalysisPlan subclasses: the class_uri of the concrete
 PreparationMethod, CharacterizationTechnique or SimulationMethod a plan is,
 e.g. voc4cat:0007795 (CoPrecipitation), CHMO:0002908 (TPR),
 coremeta4cat:DFT. Needed whenever a plan uses fields of its subclass:
@@ -24928,7 +24767,7 @@ geometry optimisation (e.g. energy < 1e-5 eV, forces < 0.02 eV/A).""", json_sche
          'slot_uri': 'coremeta4cat:k_point_mesh'} })
 
 
-class Simulation(CatalysisDataGeneratingActivity):
+class Simulation(DataGeneratingActivity):
     """
     A DataGeneratingActivity in which a catalyst, catalytic material, or
     catalytic process is modelled computationally.
@@ -24941,7 +24780,8 @@ class Simulation(CatalysisDataGeneratingActivity):
     The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,
     NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'NCIT:C48936',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'PROCO:0000159',
+         'close_mappings': ['NCIT:C16461'],
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat/simulation/',
          'slot_usage': {'carried_out_by': {'description': 'The simulation software '
                                                           'used, provided as a '
@@ -24987,13 +24827,6 @@ instance. Multiple properties may be computed in a single simulation run.""", js
          'is_a': 'had_output_entity',
          'recommended': True,
          'slot_uri': 'coremeta4cat:calculated_property'} })
-    activity_designator: Literal["Simulation"] = Field(default="Simulation", description="""Internal type designator for CatalysisDataGeneratingActivity subclasses
-(Synthesis, Characterization, Simulation). Only needs to be set by hand
-when nesting one of these inside another object's was_generated_by list
-(e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-automatically when a class is instantiated directly.""", json_schema_extra = { "linkml_meta": {'designates_type': True,
-         'domain_of': ['CatalysisDataGeneratingActivity'],
-         'slot_uri': 'rdf:type'} })
     evaluated_entity: Optional[list[EvaluatedEntity]] = Field(default=None, description="""The catalyst model, surface slab, or molecule being simulated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['DataGeneratingActivity'],
          'in_subset': ['domain_agnostic_core'],
          'is_a': 'had_input_entity',
@@ -28422,6 +28255,10 @@ class CatalysisDataset(Dataset, ClassifierMixin):
     The four CoreMeta4Cat minimum information pillars are linked via the slots
     below, each pointing to the corresponding DataGeneratingActivity or
     EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.
+    Synthesis, Characterization and Simulation are each described in their
+    own slot (was_generated_by_synthesis, was_generated_by_characterization,
+    was_generated_by_simulation); was_generated_by lists the ids of all of
+    them.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'dcat:Dataset',
          'from_schema': 'https://w3id.org/nfdi4cat/coremeta4cat',
@@ -28472,19 +28309,50 @@ class CatalysisDataset(Dataset, ClassifierMixin):
                                      'multivalued': True,
                                      'name': 'rdf_type',
                                      'required': True},
-                        'was_generated_by': {'description': 'The '
-                                                            'DataGeneratingActivity '
-                                                            '(Synthesis, '
-                                                            'Characterization, or '
-                                                            'Simulation)\n'
+                        'was_generated_by': {'description': 'The ids of all activities '
                                                             'that produced this '
-                                                            'dataset.',
-                                             'inlined_as_list': True,
+                                                            "dataset's data, e.g.\n"
+                                                            '[coremeta4cat:SYN_1, '
+                                                            'coremeta4cat:CHAR_1]. '
+                                                            'Describe each activity '
+                                                            'in\n'
+                                                            'full in '
+                                                            'was_generated_by_synthesis, '
+                                                            'was_generated_by_characterization\n'
+                                                            'or '
+                                                            'was_generated_by_simulation, '
+                                                            'under the same id. '
+                                                            'DCAT-AP-PLUS\n'
+                                                            'requires this slot on '
+                                                            'every Dataset; in RDF '
+                                                            'both lists become the\n'
+                                                            'same prov:wasGeneratedBy '
+                                                            'links.',
+                                             'inlined': False,
+                                             'inlined_as_list': False,
                                              'multivalued': True,
                                              'name': 'was_generated_by',
-                                             'range': 'CatalysisDataGeneratingActivity',
-                                             'recommended': True}}})
+                                             'range': 'DataGeneratingActivity',
+                                             'required': True}}})
 
+    was_generated_by_synthesis: Optional[list[Synthesis]] = Field(default=None, description="""The Synthesis activities (catalyst preparations) that produced data in
+this dataset, each described in full. List their ids in was_generated_by
+as well. In RDF: prov:wasGeneratedBy, with the activity typed
+PROCO:0000001 (synthetic chemical process).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalysisDataset'],
+         'is_a': 'was_generated_by',
+         'slot_uri': 'prov:wasGeneratedBy'} })
+    was_generated_by_characterization: Optional[list[Characterization]] = Field(default=None, description="""The Characterization activities (measurements of a catalyst, material or
+reaction) that produced data in this dataset, each described in full.
+List their ids in was_generated_by as well. In RDF: prov:wasGeneratedBy,
+with the activity typed OBI:0000070 (assay).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalysisDataset'],
+         'is_a': 'was_generated_by',
+         'slot_uri': 'prov:wasGeneratedBy'} })
+    was_generated_by_simulation: Optional[list[Simulation]] = Field(default=None, description="""The Simulation activities (computational studies) that produced data in
+this dataset, each described in full. List their ids in was_generated_by
+as well. In RDF: prov:wasGeneratedBy, with the activity typed
+PROCO:0000159 (in-silico modeling).""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalysisDataset'],
+         'is_a': 'was_generated_by',
+         'slot_uri': 'prov:wasGeneratedBy'} })
     type: Optional[list[DefinedTerm]] = Field(default=None, description="""A type of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Agent', 'ClassifierMixin', 'Dataset', 'LicenseDocument'],
          'slot_uri': 'dcterms:type'} })
     rdf_type: list[DefinedTerm] = Field(default=..., description="""The catalysis research field(s), provided as voc4cat terms from
@@ -28635,10 +28503,13 @@ biocatalysis and electrocatalysis for bioelectrocatalysis.""", json_schema_extra
          'slot_uri': 'dcterms:title'} })
     version: Optional[str] = Field(default=None, description="""The version indicator (name or identifier) of a resource.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset'], 'slot_uri': 'dcat:version'} })
     version_notes: Optional[list[str]] = Field(default=None, description="""A description of the differences between this version and a previous version of the Dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset'], 'slot_uri': 'adms:versionNotes'} })
-    was_generated_by: list[Union[Synthesis,Characterization,Simulation]] = Field(default=..., description="""The DataGeneratingActivity (Synthesis, Characterization, or Simulation)
-that produced this dataset.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset', 'EvaluatedEntity'],
+    was_generated_by: list[str] = Field(default=..., description="""The ids of all activities that produced this dataset's data, e.g.
+[coremeta4cat:SYN_1, coremeta4cat:CHAR_1]. Describe each activity in
+full in was_generated_by_synthesis, was_generated_by_characterization
+or was_generated_by_simulation, under the same id. DCAT-AP-PLUS
+requires this slot on every Dataset; in RDF both lists become the
+same prov:wasGeneratedBy links.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Dataset', 'EvaluatedEntity'],
          'notes': ['stricter than DCAT-AP'],
-         'recommended': True,
          'slot_uri': 'prov:wasGeneratedBy'} })
     id: str = Field(default=..., description="""A slot to provide an URI for an entity within this schema.""", json_schema_extra = { "linkml_meta": {'domain_of': ['CatalysisPlan',
                        'Activity',
@@ -28687,7 +28558,6 @@ QuantitativeRange.model_rebuild()
 Activity.model_rebuild()
 AgenticEntity.model_rebuild()
 DataGeneratingActivity.model_rebuild()
-CatalysisDataGeneratingActivity.model_rebuild()
 Synthesis.model_rebuild()
 Characterization.model_rebuild()
 DataAnalysis.model_rebuild()

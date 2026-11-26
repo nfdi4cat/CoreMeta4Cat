@@ -49,8 +49,12 @@ dataset_distribution:
 other_identifier:
 - notation: https://hdl.handle.net/21.11165/4cat/8ppb-aeky
 was_generated_by:
+- coremeta4cat:SIM_8ppb-aeky_MD
+- coremeta4cat:SIM_8ppb-aeky_MMGBSA
+- coremeta4cat:SIM_8ppb-aeky_induced_fit_docking
+- coremeta4cat:SIM_8ppb-aeky_protein_preparation
+was_generated_by_simulation:
 - id: coremeta4cat:SIM_8ppb-aeky_MD
-  activity_designator: Simulation
   title:
   - Molecular dynamics of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16
   description:
@@ -79,7 +83,6 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/8ppb-aeky
 - id: coremeta4cat:SIM_8ppb-aeky_MMGBSA
-  activity_designator: Simulation
   title:
   - MM/GBSA binding free energy of the substrate-cofactor complex in 3FCR-4M, 4M-N15 and 4M-N16
   description:
@@ -111,7 +114,6 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/8ppb-aeky
 - id: coremeta4cat:SIM_8ppb-aeky_induced_fit_docking
-  activity_designator: Simulation
   title:
   - Induced-fit docking of the substrate-cofactor complex into 3FCR-4M
   description:
@@ -133,7 +135,6 @@ was_generated_by:
   other_identifier:
   - notation: https://hdl.handle.net/21.11165/4cat/8ppb-aeky
 - id: coremeta4cat:SIM_8ppb-aeky_protein_preparation
-  activity_designator: Simulation
   title:
   - Protein preparation of the amine transaminase variant 3FCR-4M
   description:

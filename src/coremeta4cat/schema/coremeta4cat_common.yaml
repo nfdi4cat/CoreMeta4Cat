@@ -76,30 +76,6 @@ classes:
     - id
     - plan_designator
 
-  CatalysisDataGeneratingActivity:
-    is_a: DataGeneratingActivity
-    abstract: true
-    description: |-
-      A CoreMeta4Cat specialization of DCAT-AP-PLUS's DataGeneratingActivity
-      that adds a type designator (activity_designator). Synthesis,
-      Characterization, and Simulation all specialize this class instead of
-      DataGeneratingActivity directly, so that when one of them is nested
-      inside CatalysisDataset.was_generated_by, the LinkML Python loader can
-      tell which concrete subclass a given entry is meant to be and keep its
-      subclass-specific fields (e.g. Characterization.realized_plan) rather
-      than falling back to DataGeneratingActivity's own generic slot
-      definitions.
-
-      activity_designator is filled in automatically by LinkML when a class
-      is instantiated directly (e.g. loading a standalone Synthesis-NNN.yaml
-      file) -- it does not need to be set by hand there. It only needs to be
-      set explicitly in the source data when a Synthesis/Characterization/
-      Simulation instance is nested inside another object's was_generated_by
-      list (e.g. in a combined CatalysisDataset file), so the loader knows
-      which of the three to construct.
-    slots:
-    - activity_designator
-
   QuantitativeRange:
     class_uri: qudt:Quantity
     mixins:
@@ -280,17 +256,6 @@ classes:
 slots:
 
   # ---- Type designator (LinkML polymorphism support) ----
-
-  activity_designator:
-    slot_uri: rdf:type
-    range: string
-    designates_type: true
-    description: |-
-      Internal type designator for CatalysisDataGeneratingActivity subclasses
-      (Synthesis, Characterization, Simulation). Only needs to be set by hand
-      when nesting one of these inside another object's was_generated_by list
-      (e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-      automatically when a class is instantiated directly.
 
   plan_designator:
     slot_uri: rdf:type
