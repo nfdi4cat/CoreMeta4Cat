@@ -59,6 +59,9 @@ nav:
     - working-with-data/index.md
     - Community datasets: working-with-data/community-datasets.md
     - Usage patterns: working-with-data/usage-patterns.md
+    - From spreadsheet to record:
+      - Annotating a spreadsheet: working-with-data/annotating-a-spreadsheet.md
+      - Building a parser: working-with-data/building-a-parser.md
   - Contributing:
     - How to contribute: contributing.md
     - How to extend: how-to-extend.md
