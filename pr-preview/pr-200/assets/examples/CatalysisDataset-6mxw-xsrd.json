@@ -58,9 +58,18 @@
     }
   ],
   "was_generated_by": [
+    "coremeta4cat:SYN_6mxw-xsrd_gen1",
+    "coremeta4cat:SYN_6mxw-xsrd_gen2_step1",
+    "coremeta4cat:SYN_6mxw-xsrd_gen2_step2",
+    "coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4",
+    "coremeta4cat:CHAR_6mxw-xsrd_XRF",
+    "coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites",
+    "coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE",
+    "coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP"
+  ],
+  "was_generated_by_synthesis": [
     {
       "id": "coremeta4cat:SYN_6mxw-xsrd_gen1",
-      "activity_designator": "Synthesis",
       "title": [
         "Cu0.465Ga0.07Al0.465 mixed metal oxide, three calcination temperatures"
       ],
@@ -138,7 +147,6 @@
     },
     {
       "id": "coremeta4cat:SYN_6mxw-xsrd_gen2_step1",
-      "activity_designator": "Synthesis",
       "title": [
         "Co-precipitated Cu0.85Al0.15 precursor, calcined at 450 or 550 C"
       ],
@@ -208,7 +216,6 @@
     },
     {
       "id": "coremeta4cat:SYN_6mxw-xsrd_gen2_step2",
-      "activity_designator": "Synthesis",
       "title": [
         "1 wt% Ga on Cu0.85Al0.15 oxide by incipient wetness impregnation, calcined at 250 or 350 C"
       ],
@@ -300,7 +307,6 @@
     },
     {
       "id": "coremeta4cat:SYN_6mxw-xsrd_CuAlGaO4",
-      "activity_designator": "Synthesis",
       "title": [
         "Co-precipitation of the CuAlGaO4 hydrotalcite-like precursor and calcination"
       ],
@@ -470,10 +476,11 @@
           "notation": "https://hdl.handle.net/21.11165/4cat/6mxw-xsrd"
         }
       ]
-    },
+    }
+  ],
+  "was_generated_by_characterization": [
     {
       "id": "coremeta4cat:CHAR_6mxw-xsrd_XRF",
-      "activity_designator": "Characterization",
       "title": [
         "XRF elemental analysis (76 Cu-Ga-Al hydrotalcite-like precursors)"
       ],
@@ -508,10 +515,11 @@
           "notation": "https://hdl.handle.net/21.11165/4cat/6mxw-xsrd"
         }
       ]
-    },
+    }
+  ],
+  "was_generated_by_simulation": [
     {
       "id": "coremeta4cat:SIM_6mxw-xsrd_DFT_active_sites",
-      "activity_designator": "Simulation",
       "title": [
         "DFT binding energies of OH and CO at 17 oxide surface sites"
       ],
@@ -587,7 +595,6 @@
     },
     {
       "id": "coremeta4cat:SIM_6mxw-xsrd_MLIP_MACE",
-      "activity_designator": "Simulation",
       "title": [
         "MACE-MPA-0 binding-energy screening of OH and CO (31 compositions)"
       ],
@@ -637,7 +644,6 @@
     },
     {
       "id": "coremeta4cat:SIM_6mxw-xsrd_MLIP_OCP",
-      "activity_designator": "Simulation",
       "title": [
         "OCP binding-energy screening of OH and CO (37 compositions)"
       ],

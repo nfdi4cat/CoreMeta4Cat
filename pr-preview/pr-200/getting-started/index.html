@@ -1884,9 +1884,9 @@ property (here the BET surface area), because every synthesis record needs at le
         <span class="s2">"title"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"Synthesis of </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">],</span>
         <span class="s2">"description"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"Converted from my_synthesis_data.xlsx, row </span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">."</span><span class="p">],</span>
         <span class="s2">"rdf_type"</span><span class="p">:</span> <span class="p">[</span><span class="n">RESEARCH_FIELD</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">"Catalyst type"</span><span class="p">]]],</span>  <span class="c1"># voc4cat:0007014</span>
-        <span class="s2">"was_generated_by"</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s2">"was_generated_by"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">synthesis-</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">"</span><span class="p">],</span>          <span class="c1"># ids of all activities</span>
+        <span class="s2">"was_generated_by_synthesis"</span><span class="p">:</span> <span class="p">[{</span>                        <span class="c1"># each synthesis in full</span>
             <span class="s2">"id"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">synthesis-</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
-            <span class="s2">"activity_designator"</span><span class="p">:</span> <span class="s2">"Synthesis"</span><span class="p">,</span>
             <span class="s2">"title"</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">],</span>
             <span class="s2">"nominal_composition"</span><span class="p">:</span> <span class="p">[</span>
                 <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'Metal loading, nominal (wt%)'</span><span class="p">]</span><span class="si">}</span><span class="s2"> wt% </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'Metal'</span><span class="p">]</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s1">'Support'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">],</span>
@@ -1923,8 +1923,9 @@ header, and the CURIEs in the comments document the meaning of each mapping. Thr
 into a valid record: every dataset, activity, method and entity gets an identifier in your own namespace
 (<code>BASE</code>); sheet values such as the catalyst type and the preparation method are mapped to vocabulary terms
 (<code>RESEARCH_FIELD</code>, <code>METHOD</code>); and numbers are written with their quantity kind and unit (<code>quantity()</code>).
-<code>plan_designator</code> tells software which method class the plan belongs to (here <code>Impregnation</code>), which makes
-the calcination fields of that class available.</p>
+The synthesis is described under <code>was_generated_by_synthesis</code>, and its id is listed in <code>was_generated_by</code>,
+which DCAT-AP+ requires on every dataset. <code>plan_designator</code> tells software which method class the plan
+belongs to (here <code>Impregnation</code>), which makes the calcination fields of that class available.</p>
 <h3 id="the-resulting-json-record">The resulting JSON record</h3>
 <p>Running this converter on a row for a 5 wt% Ni/Al₂O₃ catalyst produces the following record, which passes
 the validation shown in Level 4:</p>
@@ -1943,9 +1944,11 @@ the validation shown in Level 4:</p>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">"was_generated_by"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">"https://example.org/my-group/synthesis-1"</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"was_generated_by_synthesis"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.org/my-group/synthesis-1"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"activity_designator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Synthesis"</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="s2">"impregnation of 5Ni/Al2O3"</span>
 <span class="w">      </span><span class="p">],</span>

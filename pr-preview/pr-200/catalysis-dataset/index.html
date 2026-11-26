@@ -1121,10 +1121,10 @@
 
 
 <h1 id="catalysisdataset">CatalysisDataset</h1>
-<p><code>CatalysisDataset</code> is the entry point for every CoreMeta4Cat record. It is a <code>dcat:Dataset</code> -- fully compatible with plain DCAT and DCAT-AP -- extended with a global classification field and three link slots that connect to the <a href="../design-patterns/#the-four-data-classes">four CoreMeta4Cat pillars</a>: <a href="../synthesis/">Synthesis</a>, <a href="../characterization/">Characterization</a>, <a href="../reaction/">Reaction</a>, and <a href="../simulation/">Simulation</a>.</p>
+<p><code>CatalysisDataset</code> is the entry point for every CoreMeta4Cat record. It is a <code>dcat:Dataset</code> -- fully compatible with plain DCAT and DCAT-AP -- extended with a global classification field and link slots that connect to the <a href="../design-patterns/#the-four-data-classes">four CoreMeta4Cat pillars</a>: <a href="../synthesis/">Synthesis</a>, <a href="../characterization/">Characterization</a>, <a href="../reaction/">Reaction</a>, and <a href="../simulation/">Simulation</a>.</p>
 <p>This page is the reference for <code>CatalysisDataset</code> itself: its fields, the <code>CatalysisResearchFieldEnum</code> classification vocabulary, and a worked example of combining several pillars into a single dataset. For the conceptual background on <em>why</em> it's structured this way, see <a href="../design-patterns/#the-entry-point-catalysisdataset">Design Patterns: The entry point</a> and <a href="../design-patterns/#pattern-1-classification-via-rdf_type">Pattern 1: Classification via rdf_type</a>.</p>
 <h2 id="fields">Fields</h2>
-<p>The overview below shows only what CoreMeta4Cat adds to <code>dcat:Dataset</code>. Where the schema points to a generic or helper class, the overview shows the specific CoreMeta4Cat classes instead: <code>was_generated_by</code> leads to Synthesis, Characterization or Simulation, and <code>is_about_entity</code> to a precursor or catalyst sample. Each data class opens its own page.</p>
+<p>The overview below shows only what CoreMeta4Cat adds to <code>dcat:Dataset</code>. Where the schema points to a generic or helper class, the overview shows the specific CoreMeta4Cat classes instead: <code>was_generated_by</code> leads to Synthesis, Characterization or Simulation, each of which also has its own field, and <code>is_about_entity</code> leads to a precursor or catalyst sample. Each data class opens its own page.</p>
 <div class="cm4c-classmap" data-root="CatalysisDataset" data-mode="overview"
      data-src="../assets/schema_graph.json"
      data-site="../"
@@ -1132,7 +1132,7 @@
 <p>The interactive overview needs JavaScript. The table below lists the same fields.</p>
 </div>
 
-<p><code>CatalysisDataset</code> has four fields beyond the ones it inherits from <code>dcat:Dataset</code> (<code>id</code>, <code>title</code>, <code>description</code>, ...):</p>
+<p><code>CatalysisDataset</code> has these fields beyond the ones it inherits from <code>dcat:Dataset</code> (<code>id</code>, <code>title</code>, <code>description</code>, ...):</p>
 <table>
 <thead>
 <tr>
@@ -1151,9 +1151,27 @@
 </tr>
 <tr>
 <td><code>was_generated_by</code></td>
-<td><code>CatalysisDataGeneratingActivity</code></td>
+<td><code>DataGeneratingActivity</code> (ids)</td>
 <td>Mandatory, Multivalued</td>
-<td><strong>Layer 2</strong> -- the activity/activities that <em>produced</em> this dataset's data: <code>Synthesis</code>, <code>Characterization</code>, and/or <code>Simulation</code> instances.</td>
+<td><strong>Layer 2</strong> -- the ids of all activities that <em>produced</em> this dataset's data. Each of them is described in one of the three fields below.</td>
+</tr>
+<tr>
+<td><code>was_generated_by_synthesis</code></td>
+<td><code>Synthesis</code></td>
+<td>Optional, Multivalued</td>
+<td><strong>Layer 2</strong> -- the syntheses (catalyst preparations) that produced data, described in full.</td>
+</tr>
+<tr>
+<td><code>was_generated_by_characterization</code></td>
+<td><code>Characterization</code></td>
+<td>Optional, Multivalued</td>
+<td><strong>Layer 2</strong> -- the characterizations (measurements) that produced data, described in full.</td>
+</tr>
+<tr>
+<td><code>was_generated_by_simulation</code></td>
+<td><code>Simulation</code></td>
+<td>Optional, Multivalued</td>
+<td><strong>Layer 2</strong> -- the simulations that produced data, described in full.</td>
 </tr>
 <tr>
 <td><code>is_about_activity</code></td>
@@ -1169,7 +1187,7 @@
 </tr>
 </tbody>
 </table>
-<p><code>rdf_type</code> is Mandatory, and so is <code>was_generated_by</code>, which DCAT-AP+ requires for every dataset. <code>is_about_activity</code> and <code>is_about_entity</code> are Recommended: a dataset can legitimately leave them out (e.g. a pure simulation dataset has no <code>is_about_entity</code>). The dataset's <code>id</code> is Mandatory as well, as in DCAT-AP+ and ChemDCAT-AP.</p>
+<p><code>rdf_type</code> is Mandatory, and so is <code>was_generated_by</code>, which DCAT-AP+ requires for every dataset. Every activity listed there is described under the field for its kind. <code>is_about_activity</code> and <code>is_about_entity</code> are Recommended: a dataset can legitimately leave them out (e.g. a pure simulation dataset has no <code>is_about_entity</code>). The dataset's <code>id</code> is Mandatory as well, as in DCAT-AP+ and ChemDCAT-AP.</p>
 <h2 id="layer-1-classifying-the-research-field">Layer 1: classifying the research field</h2>
 <p><code>rdf_type</code> on <code>CatalysisDataset</code> is not a free-form slot -- its value is constrained to <code>CatalysisResearchFieldEnum</code> via a <a href="../design-patterns/#pattern-1-classification-via-rdf_type">DCAT-AP-PLUS Pattern 3 <code>bindings</code> block</a> rather than by adding a dedicated new slot. This keeps <code>CatalysisDataset</code> a drop-in <code>dcat:Dataset</code> (any DCAT-AP tool can still read <code>rdf_type</code>) while giving CoreMeta4Cat tooling a controlled, machine-actionable value to filter and facet on.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">rdf_type</span><span class="p">:</span>
@@ -1232,14 +1250,15 @@
 </table>
 <p>This is a dataset-wide classification axis -- it says nothing about <em>how</em> a specific reaction was run. That's a separate, per-reaction concern: <code>CatalyticReaction.catalyst_type</code> uses the same <code>CatalysisResearchFieldEnum</code> values to record the catalytic regime of one particular reaction (see <a href="../reaction/">Reaction: catalyst_type</a>), independent of whatever this dataset's own <code>rdf_type</code> says. A heterogeneous-catalysis dataset (<code>rdf_type</code>) can, for instance, still contain a reaction step run under homogeneous conditions as a control experiment (<code>catalyst_type</code>) -- the two fields are deliberately decoupled.</p>
 <h2 id="layer-2-linking-the-pillars">Layer 2: linking the pillars</h2>
-<p>Layer 2 is where a <code>CatalysisDataset</code> actually points at the substance of the record. Three slots cover it, and all three are multivalued -- a single dataset can reference several activities of the same kind at once (e.g. two separate <code>Characterization</code> runs):</p>
+<p>Layer 2 is where a <code>CatalysisDataset</code> actually points at the substance of the record. All its fields are multivalued -- a single dataset can reference several activities of the same kind at once (e.g. two separate <code>Characterization</code> runs):</p>
 <ul>
-<li><strong><code>was_generated_by</code></strong> -- activities that <em>produced</em> this dataset's data. Only <code>Synthesis</code>, <code>Characterization</code>, and <code>Simulation</code> make sense here, since only they are <code>DataGeneratingActivity</code> subclasses. Each entry names its class with <code>activity_designator</code>.</li>
+<li><strong><code>was_generated_by_synthesis</code>, <code>was_generated_by_characterization</code>, <code>was_generated_by_simulation</code></strong> -- activities that <em>produced</em> this dataset's data, each described under the field for its kind. The field tells software which class an activity is, so no type designator is needed, and in RDF each activity gets that class as its type: <code>PROCO:0000001</code> (synthetic chemical process), <code>OBI:0000070</code> (assay) or <code>PROCO:0000159</code> (in-silico modeling). All three fields are <code>prov:wasGeneratedBy</code> in RDF.</li>
+<li><strong><code>was_generated_by</code></strong> -- the ids of all these activities. DCAT-AP+ requires this field on every dataset; in RDF it gives the same <code>prov:wasGeneratedBy</code> links.</li>
 <li><strong><code>is_about_activity</code></strong> -- the catalytic process this dataset <em>describes</em>, without having generated it. <code>Reaction</code> (schema name <code>CatalyticReaction</code>) is not a <code>DataGeneratingActivity</code> -- see the <a href="../design-patterns/#deep-dive-the-evaluatedactivity-distinction">🔬 deep dive on this distinction</a> -- so it is linked here instead of via <code>was_generated_by</code>.</li>
 <li><strong><code>is_about_entity</code></strong> -- the catalyst sample or material the dataset concerns, independent of which activity produced or observed it.</li>
 </ul>
 <h2 id="combining-multiple-pillars-into-one-dataset">Combining multiple pillars into one dataset</h2>
-<p>A single <code>CatalysisDataset</code> is not limited to one pillar. The most common real-world case spans several: a catalyst is synthesized, then tested in a reaction, and both the catalyst itself and the reaction products are separately characterized afterwards. All of that can live in one dataset, because <code>was_generated_by</code> and <code>is_about_activity</code> are both multivalued.</p>
+<p>A single <code>CatalysisDataset</code> is not limited to one pillar. The most common real-world case spans several: a catalyst is synthesized, then tested in a reaction, and both the catalyst itself and the reaction products are separately characterized afterwards. All of that can live in one dataset, because all the activity fields are multivalued.</p>
 <p>The example below reports the full lifecycle of a Ni/CeO2 catalyst used for dry methane reforming (DRM): synthesis, the catalytic reaction, characterization of the catalyst (post-synthesis XRD), and characterization of the reaction products (a dedicated GC-MS run, separate from the inline <code>product_identification_method</code> recorded on the <code>Reaction</code> itself).</p>
 <div class="highlight"><pre><span></span><code><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:DATASET_001_NiCeO2_DRM"</span>
 <span class="nt">title</span><span class="p">:</span>
@@ -1252,10 +1271,15 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007001</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
 
-<span class="c1"># Layer 2 -- three activities produced this dataset's data...</span>
+<span class="c1"># Layer 2 -- three activities produced this dataset's data: their ids...</span>
 <span class="nt">was_generated_by</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"coremeta4cat:SYN_001_NiCeO2"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"coremeta4cat:CHAR_001_NiCeO2_XRD"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"coremeta4cat:CHAR_002_DRM_products_GCMS"</span>
+
+<span class="c1"># ...and each one in full, under the field for its kind</span>
+<span class="nt">was_generated_by_synthesis</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:SYN_001_NiCeO2"</span>
-<span class="w">    </span><span class="nt">activity_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Synthesis</span>
 <span class="w">    </span><span class="nt">nominal_composition</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"10wt%</span><span class="nv"> </span><span class="s">Ni/CeO2"</span>
 <span class="w">    </span><span class="nt">had_output_entity</span><span class="p">:</span>
@@ -1266,8 +1290,8 @@
 <span class="w">      </span><span class="nt">plan_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007028</span><span class="w">        </span><span class="c1"># Impregnation</span>
 <span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"impregnation"</span>
 
+<span class="nt">was_generated_by_characterization</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CHAR_001_NiCeO2_XRD"</span>
-<span class="w">    </span><span class="nt">activity_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characterization</span>
 <span class="w">    </span><span class="nt">evaluated_entity</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CAT_002_NiCeO2"</span><span class="w">    </span><span class="c1"># same catalyst sample as above</span>
 <span class="w">    </span><span class="nt">realized_plan</span><span class="p">:</span>
@@ -1276,7 +1300,6 @@
 <span class="w">      </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"powder</span><span class="nv"> </span><span class="s">X-ray</span><span class="nv"> </span><span class="s">diffraction"</span>
 
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:CHAR_002_DRM_products_GCMS"</span>
-<span class="w">    </span><span class="nt">activity_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characterization</span>
 <span class="w">    </span><span class="nt">evaluated_activity</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">"coremeta4cat:REAC_002_DRM_NiCeO2"</span><span class="w">    </span><span class="c1"># evaluating the reaction's products</span>
 <span class="w">    </span><span class="nt">realized_plan</span><span class="p">:</span>

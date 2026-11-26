@@ -5,6 +5,7 @@
 @prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
 @prefix RXNO: <http://purl.obolibrary.org/obo/RXNO_> .
 @prefix BFO: <http://purl.obolibrary.org/obo/BFO_> .
+@prefix REX: <http://purl.obolibrary.org/obo/REX_> .
 @prefix RO: <http://purl.obolibrary.org/obo/RO_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -56,7 +57,7 @@ coremeta4cat:REAC_b74m-m6rp_NH3_decomposition RO:0004008 coremeta4cat:PROD_b74m-
 	RO:0004009 coremeta4cat:REAC_b74m-m6rp_Ar , coremeta4cat:REAC_b74m-m6rp_NH3 ;
 	RXNO:0000425 coremeta4cat:CAT_b74m-m6rp_0.5Ru-0.5Ba_Ni-BCZY , coremeta4cat:CAT_b74m-m6rp_0.5Ru-1Ba_Ni-BCZY ;
 	dcterms:title "NH3 decomposition light-off over Ru/Ni-BCZY and reference catalysts (6 catalysts, 3 inlet concentrations)" ;
-	a SIO:010511 , coremeta4cat:CatalyticReaction ;
+	a REX:0000051 , SIO:010511 ;
 	prov:wasAssociatedWith coremeta4cat:REAC_b74m-m6rp_reactor ;
 	voc4cat:0000016 voc4cat:0007034 ;
 	voc4cat:0007009 "thermocatalytic ammonia decomposition" ;

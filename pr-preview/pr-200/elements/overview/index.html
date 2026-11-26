@@ -1179,30 +1179,41 @@ Reusable).</p>
 <li>
 <p>The four CoreMeta4Cat pillars are modelled as DCAT-AP-PLUS Activity subclasses,
   following the same pattern as NMRSpectroscopy (is_a: DataGeneratingActivity).
-  Synthesis, Characterization, and Simulation specialize CatalysisDataGeneratingActivity
-  (is_a: DataGeneratingActivity) rather than DataGeneratingActivity directly -- this
-  coremeta4cat-owned intermediate adds a type designator (activity_designator) so that
-  was_generated_by (typed CatalysisDataGeneratingActivity) can hold any of the three and
-  still resolve to the right concrete Python class when loaded. Likewise, is_about_activity
-  is typed CatalyticReaction directly (not the wider EvaluatedActivity) so it needs no
-  designator at all:</p>
-<p>Synthesis      --&gt; is_a: CatalysisDataGeneratingActivity
+  Each pillar has an ontology term as its class_uri, as chem-dcat-ap does for
+  SubstanceSample (SIO:001378) or ChemicalEntity (CHEBI:23367), so the RDF of
+  every activity says what kind of activity it is.</p>
+</li>
+</ul>
+<p>CatalysisDataset describes the three data-generating pillars in one slot
+  each: was_generated_by_synthesis, was_generated_by_characterization and
+  was_generated_by_simulation. All three are prov:wasGeneratedBy in RDF, and
+  the range of each slot tells software which class its entries are, so no
+  type designator is needed. was_generated_by itself, which DCAT-AP-PLUS
+  requires on every Dataset, lists the ids of all these activities.
+  is_about_activity is typed CatalyticReaction directly (not the wider
+  EvaluatedActivity), so it needs no designator either:</p>
+<div class="highlight"><pre><span></span><code>Synthesis      --&gt; is_a: DataGeneratingActivity, class_uri PROCO:0000001
                  Produces a catalyst (MaterialSample) as had_output_entity.
-                 The PreparationMethod (protocol) is linked via realized_plan.</p>
-<p>Characterization --&gt; is_a: CatalysisDataGeneratingActivity
+                 The PreparationMethod (protocol) is linked via realized_plan.
+
+Characterization --&gt; is_a: DataGeneratingActivity, class_uri OBI:0000070
                    Produces measurement data about a catalyst or reaction.
                    The catalyst/sample is the evaluated_entity.
-                   The CharacterizationTechnique is linked via realized_plan.</p>
-<p>Reaction       --&gt; is_a: CatalyticReaction (via ChemicalReaction, EvaluatedActivity)
+                   The CharacterizationTechnique is linked via realized_plan.
+
+Reaction       --&gt; CatalyticReaction (is_a: ChemicalReaction, EvaluatedActivity),
+                 class_uri REX:0000051
                  The catalytic process being studied, NOT a data-generating
                  activity itself. Characterization datasets are about this.
                  Analogous to the reaction being observed in a reaction
-                 monitoring dataset.</p>
-<p>Simulation     --&gt; is_a: CatalysisDataGeneratingActivity
+                 monitoring dataset.
+
+Simulation     --&gt; is_a: DataGeneratingActivity, class_uri PROCO:0000159
                  Generates computational data about a catalyst or reaction.
                  The SimulationMethod (protocol) is linked via realized_plan.
-                 The simulation software is carried_out_by: Software.</p>
-</li>
+                 The simulation software is carried_out_by: Software.
+</code></pre></div>
+<ul>
 <li>
 <p>Catalyst samples and precursor materials are modelled as MaterialSample
   (from material_entities_ap), which is an EvaluatedEntity.</p>
@@ -1251,20 +1262,8 @@ slots and enums) and the four subprofile modules.</p>
 <td>An Activity (process) that has the objective to produce information (in form of a dataset) about another Activity or Entity.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalysisDataGeneratingActivity/">CatalysisDataGeneratingActivity</a></td>
-<td>A CoreMeta4Cat specialization of DCAT-AP-PLUS's DataGeneratingActivity<br>that adds a type designator (activity_designator). Synthesis,<br>Characterization, and Simulation all specialize this class instead of<br>DataGeneratingActivity directly, so that when one of them is nested<br>inside CatalysisDataset.was_generated_by, the LinkML Python loader can<br>tell which concrete subclass a given entry is meant to be and keep its<br>subclass-specific fields (e.g. Characterization.realized_plan) rather<br>than falling back to DataGeneratingActivity's own generic slot<br>definitions.<br><br>activity_designator is filled in automatically by LinkML when a class<br>is instantiated directly (e.g. loading a standalone Synthesis-NNN.yaml<br>file) -- it does not need to be set by hand there. It only needs to be<br>set explicitly in the source data when a Synthesis/Characterization/<br>Simulation instance is nested inside another object's was_generated_by<br>list (e.g. in a combined CatalysisDataset file), so the loader knows<br>which of the three to construct.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Characterization/">Characterization</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Characterization/">Characterization</a></td>
 <td>A DataGeneratingActivity in which a catalyst sample or catalytic material<br>is characterized using an analytical technique.<br><br>The catalyst sample being characterized is linked via evaluated_entity.<br>The analytical protocol is linked via realized_plan using a<br>CharacterizationTechnique instance. The instrument used is linked via<br>carried_out_by as a Device.<br><br>The specific technique type is expressed via rdf_type using an ontology<br>term (e.g. CHMO:0000158 for powder XRD, CHMO:0000404 for XPS),<br>following DCAT-AP-PLUS Pattern 3 — exactly as NMRSpectroscopy uses<br>rdf_type: CHMO:0000613.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Simulation/">Simulation</a></td>
-<td>A DataGeneratingActivity in which a catalyst, catalytic material, or<br>catalytic process is modelled computationally.<br><br>The simulation software is linked via carried_out_by as a Software agent.<br>The simulation method (protocol) is linked via realized_plan using a<br>SimulationMethod instance. The catalyst model or reaction being simulated<br>is linked via evaluated_entity or evaluated_activity.<br><br>The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,<br>NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Synthesis/">Synthesis</a></td>
-<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/DataAnalysis/">DataAnalysis</a></td>
@@ -1275,8 +1274,16 @@ slots and enums) and the four subprofile modules.</p>
 <td>A DataGeneratingActivity that produces data about a ChemicalReaction, such as reaction monitoring, experimental documentation, or a combined recording-and-evaluation workflow. This is a coarse-grained convenience shape that does not distinguish between raw experimental recording and subsequent data evaluation. Domain-specific sub-profiles that need this distinction should define their own DataGeneratingActivity subclasses and use the DCAT-AP+ DataAnalysis chain to separate raw data from derived results.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Simulation/">Simulation</a></td>
+<td>A DataGeneratingActivity in which a catalyst, catalytic material, or<br>catalytic process is modelled computationally.<br><br>The simulation software is linked via carried_out_by as a Software agent.<br>The simulation method (protocol) is linked via realized_plan using a<br>SimulationMethod instance. The catalyst model or reaction being simulated<br>is linked via evaluated_entity or evaluated_activity.<br><br>The specific simulation type is expressed via rdf_type (e.g. coremeta4cat:DFT,<br>NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/SubstanceSampleCharacterization/">SubstanceSampleCharacterization</a></td>
 <td>A DataGeneratingActivity that produces data about a SubstanceSample, such as a spectroscopic measurement, a physical property determination, or a combined measurement-and-analysis workflow. This is a coarse-grained convenience shape that does not distinguish between raw data acquisition and subsequent data processing or analysis. Domain-specific sub-profiles that need this distinction should define their own DataGeneratingActivity subclasses and use the DCAT-AP+ DataAnalysis chain to separate raw measurement from derived results.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/Synthesis/">Synthesis</a></td>
+<td>A DataGeneratingActivity in which a catalyst is prepared.<br><br>The preparation protocol is linked via realized_plan using a<br>PreparationMethod instance. Input materials (Precursors) are linked via<br>had_input_entity. The resulting catalyst (CatalystSample) is linked via<br>had_output_entity.<br><br>The type of synthesis is further specified via rdf_type using an ontology<br>term (e.g. a voc4cat preparation method term), following DCAT-AP-PLUS<br>Pattern 3.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/EvaluatedActivity/">EvaluatedActivity</a></td>
@@ -1288,7 +1295,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalyticReaction/">CatalyticReaction</a></td>
-<td>A ChemicalReaction (chemdcat-ap) specialization representing the<br>catalytic reaction being studied. Inherits the generic reaction slots<br>(starting materials, reactants, products, catalyst, solvent, reactor,<br>temperature, pressure, yield, reaction steps) from ChemicalReaction and<br>adds catalysis-specific operating-condition slots.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by: Characterization  (the measurement producing data)<br>  is_about_activity: Reaction         (the catalytic process being monitored)<br><br>The reactor is linked via the inherited used_reactor slot (is_a:<br>carried_out_by), narrowed here to require a ChemicalReactor instance<br>rather than touching the generic carried_out_by relation directly.<br>Reactants are linked via the inherited used_reactant slot (range:<br>Reagent) -- CatalyticReaction does not declare its own reactant slot.<br>The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)<br>is expressed via rdf_type using a voc4cat or ChemO term.</td>
+<td>A ChemicalReaction (chemdcat-ap) specialization representing the<br>catalytic reaction being studied. Inherits the generic reaction slots<br>(starting materials, reactants, products, catalyst, solvent, reactor,<br>temperature, pressure, yield, reaction steps) from ChemicalReaction and<br>adds catalysis-specific operating-condition slots.<br><br>Reaction is NOT a DataGeneratingActivity — it is the catalytic process<br>being observed, not the process that generates the dataset. A CatalysisDataset<br>is linked to the Reaction it is about via is_about_activity.<br><br>For operando experiments (e.g. in-situ XRD during a reaction), the dataset<br>carries both:<br>  was_generated_by_characterization: Characterization  (the measurement producing data)<br>  is_about_activity: CatalyticReaction  (the catalytic process being monitored)<br><br>The reactor is linked via the inherited used_reactor slot (is_a:<br>carried_out_by), narrowed here to require a ChemicalReactor instance<br>rather than touching the generic carried_out_by relation directly.<br>Reactants are linked via the inherited used_reactant slot (range:<br>Reagent) -- CatalyticReaction does not declare its own reactant slot.<br>The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)<br>is expressed via rdf_type using a voc4cat or ChemO term.</td>
 </tr>
 <tr>
 <td><a href="../classes/Agent/">Agent</a></td>
@@ -1396,7 +1403,7 @@ slots and enums) and the four subprofile modules.</p>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/CatalysisDataset/">CatalysisDataset</a></td>
-<td>A dcat:Dataset that contains research data in the field of catalysis.<br><br>The catalysis research field is expressed via rdf_type using voc4cat<br>terms from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).<br>For example, a dataset from heterogeneous catalysis research would carry:<br>  rdf_type:<br>    - id: voc4cat:0007001<br>      title: "heterogeneous catalysis"<br>Interdisciplinary work lists every field that applies, e.g. biocatalysis<br>and electrocatalysis for bioelectrocatalysis.<br><br>The four CoreMeta4Cat minimum information pillars are linked via the slots<br>below, each pointing to the corresponding DataGeneratingActivity or<br>EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.</td>
+<td>A dcat:Dataset that contains research data in the field of catalysis.<br><br>The catalysis research field is expressed via rdf_type using voc4cat<br>terms from CatalysisResearchFieldEnum (following DCAT-AP-PLUS Pattern 3).<br>For example, a dataset from heterogeneous catalysis research would carry:<br>  rdf_type:<br>    - id: voc4cat:0007001<br>      title: "heterogeneous catalysis"<br>Interdisciplinary work lists every field that applies, e.g. biocatalysis<br>and electrocatalysis for bioelectrocatalysis.<br><br>The four CoreMeta4Cat minimum information pillars are linked via the slots<br>below, each pointing to the corresponding DataGeneratingActivity or<br>EvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.<br>Synthesis, Characterization and Simulation are each described in their<br>own slot (was_generated_by_synthesis, was_generated_by_characterization,<br>was_generated_by_simulation); was_generated_by lists the ids of all of<br>them.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../classes/ReactionMonitoringDataset/">ReactionMonitoringDataset</a></td>
@@ -2132,10 +2139,6 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/activation_energy/">activation_energy</a></td>
 <td>Activation energy for each elementary step in the reaction mechanism. Used here as an input parameter of the microkinetic model; where the barrier was computed, report it via the TransitionState calculated property and reference it here.</td>
-</tr>
-<tr>
-<td><a href="../slots/activity_designator/">activity_designator</a></td>
-<td>Internal type designator for CatalysisDataGeneratingActivity subclasses<br>(Synthesis, Characterization, Simulation). Only needs to be set by hand<br>when nesting one of these inside another object's was_generated_by list<br>(e.g. in a combined CatalysisDataset file) -- LinkML fills it in<br>automatically when a class is instantiated directly.</td>
 </tr>
 <tr>
 <td><a href="../slots/adsorbate/">adsorbate</a></td>
@@ -4020,6 +4023,18 @@ slots and enums) and the four subprofile modules.</p>
 <tr>
 <td><a href="../slots/was_generated_by/">was_generated_by</a></td>
 <td>This slot is described in more detail within the class in which it is used.</td>
+</tr>
+<tr>
+<td><a href="../slots/was_generated_by_characterization/">was_generated_by_characterization</a></td>
+<td>The Characterization activities (measurements of a catalyst, material or<br>reaction) that produced data in this dataset, each described in full.<br>List their ids in was_generated_by as well. In RDF: prov:wasGeneratedBy,<br>with the activity typed OBI:0000070 (assay).</td>
+</tr>
+<tr>
+<td><a href="../slots/was_generated_by_simulation/">was_generated_by_simulation</a></td>
+<td>The Simulation activities (computational studies) that produced data in<br>this dataset, each described in full. List their ids in was_generated_by<br>as well. In RDF: prov:wasGeneratedBy, with the activity typed<br>PROCO:0000159 (in-silico modeling).</td>
+</tr>
+<tr>
+<td><a href="../slots/was_generated_by_synthesis/">was_generated_by_synthesis</a></td>
+<td>The Synthesis activities (catalyst preparations) that produced data in<br>this dataset, each described in full. List their ids in was_generated_by<br>as well. In RDF: prov:wasGeneratedBy, with the activity typed<br>PROCO:0000001 (synthetic chemical process).</td>
 </tr>
 <tr>
 <td><a href="../slots/wavelength_range/">wavelength_range</a></td>

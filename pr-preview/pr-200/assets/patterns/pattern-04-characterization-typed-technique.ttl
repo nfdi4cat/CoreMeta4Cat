@@ -1,6 +1,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix coremeta4cat: <https://w3id.org/nfdi4cat/coremeta4cat/> .
 @prefix CHMO: <http://purl.obolibrary.org/obo/CHMO_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix voc4cat: <https://w3id.org/nfdi4cat/voc4cat_> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
@@ -12,7 +13,7 @@ CHMO:0002908 schema1:name "temperature-programmed reduction" ;
 coremeta4cat:CAT_b74m-m6rp_Ni-BCZY dcterms:title "Ni-BCZY cermet powder" ;
 	a prov:Entity .
 coremeta4cat:CHAR_b74m-m6rp_TCD dcterms:title "H2-TPR of the Ni-BCZY cermet (article Fig. 1)" ;
-	a "Characterization" , CHMO:0002908 ;
+	a CHMO:0002908 , OBI:0000070 ;
 	prov:used coremeta4cat:CAT_b74m-m6rp_Ni-BCZY , coremeta4cat:CHAR_b74m-m6rp_TCD_method ;
 	prov:wasAssociatedWith coremeta4cat:DEV_b74m-m6rp_TCD .
 coremeta4cat:CHAR_b74m-m6rp_TCD_method dcterms:title "H2-TPR, 10 K/min to 1223 K" ;

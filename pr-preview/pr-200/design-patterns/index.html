@@ -1393,11 +1393,13 @@
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
 
 <span class="c1"># Layer 2: links to the four data classes</span>
-<span class="nt">was_generated_by</span><span class="p">:</span>
+<span class="nt">was_generated_by</span><span class="p">:</span><span class="w">                       </span><span class="c1"># ids of the activities that produced the data</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:synthesis-001</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:characterization-001</span>
+<span class="nt">was_generated_by_synthesis</span><span class="p">:</span><span class="w">             </span><span class="c1"># each activity in full, under its kind</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:synthesis-001</span>
-<span class="w">    </span><span class="nt">activity_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Synthesis</span>
+<span class="nt">was_generated_by_characterization</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:characterization-001</span>
-<span class="w">    </span><span class="nt">activity_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characterization</span>
 
 <span class="nt">is_about_activity</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:reaction-001</span><span class="w">                 </span><span class="c1"># a CatalyticReaction</span>
@@ -1408,7 +1410,7 @@
 <p>The key points here are:</p>
 <ul>
 <li><code>rdf_type</code> carries a <strong>controlled vocabulary term</strong> from <a href="https://nfdi4cat.github.io/voc4cat/">Voc4Cat</a> to classify which field of catalysis the dataset belongs to.</li>
-<li><code>was_generated_by</code> links to <strong>activities that produced the data</strong> (Synthesis, Characterization, Simulation); <code>activity_designator</code> says which of the three each activity is.</li>
+<li><code>was_generated_by</code> links to <strong>activities that produced the data</strong> (Synthesis, Characterization, Simulation) by their ids. Each activity is described under the field for its kind (<code>was_generated_by_synthesis</code>, <code>was_generated_by_characterization</code>, <code>was_generated_by_simulation</code>), which also gives it its class in RDF.</li>
 <li><code>is_about_activity</code> links to the <strong>Reaction being studied</strong> — which is the catalytic process itself, not a data-generating step.</li>
 <li><code>is_about_entity</code> links to the <strong>catalyst sample or material</strong> the dataset concerns.</li>
 </ul>
@@ -1523,8 +1525,9 @@
 <p class="admonition-title">Operando experiments</p>
 <p>For in-situ or operando experiments (e.g. XRD measured while a reaction runs), the dataset carries <strong>both</strong> links simultaneously:
 <div class="highlight"><pre><span></span><code><span class="nt">was_generated_by</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:xrd-001</span>
-<span class="w">    </span><span class="nt">activity_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characterization</span><span class="w">   </span><span class="c1"># PowderXRD — the process that made the data</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:xrd-001</span>
+<span class="nt">was_generated_by_characterization</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:xrd-001</span><span class="w">                          </span><span class="c1"># PowderXRD — the process that made the data</span>
 <span class="nt">is_about_activity</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:reaction-001</span><span class="w">                     </span><span class="c1"># the catalytic process being monitored</span>
 </code></pre></div></p>
@@ -1557,19 +1560,19 @@
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"CO</span><span class="nv"> </span><span class="s">oxidation"</span>
 </code></pre></div>
 <p><strong>On Synthesis and Characterization</strong> — a method that needs its own parameter slots has its own class (<code>Impregnation</code>, <code>PowderXRD</code>, …). The plan names that class with <code>plan_designator</code>, whose value is the class URI, itself an ontology term:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">activity_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Synthesis</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># a Synthesis, in was_generated_by_synthesis</span>
 <span class="nt">realized_plan</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:method-001</span>
 <span class="w">  </span><span class="nt">plan_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007028</span><span class="w">    </span><span class="c1"># Impregnation: the concrete method class with all parameter slots</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"incipient</span><span class="nv"> </span><span class="s">wetness</span><span class="nv"> </span><span class="s">impregnation"</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="nt">activity_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characterization</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># a Characterization, in was_generated_by_characterization</span>
 <span class="nt">realized_plan</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:xrd-method-001</span>
 <span class="w">  </span><span class="nt">plan_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CHMO:0000158</span><span class="w">       </span><span class="c1"># PowderXRD: the concrete technique class with all measurement slots</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"powder</span><span class="nv"> </span><span class="s">X-ray</span><span class="nv"> </span><span class="s">diffraction"</span>
 </code></pre></div>
-<p>One value does both jobs: it is the machine-readable ontology term (written as <code>rdf:type</code> in RDF), and it tells validators and software which concrete class applies, and so which parameter slots are available. Activities are selected the same way with <code>activity_designator</code> (<code>Synthesis</code>, <code>Characterization</code>, <code>Simulation</code>), reactors with <code>reactor_designator</code>, and calculated properties with <code>property_designator</code>.</p>
+<p>One value does both jobs: it is the machine-readable ontology term (written as <code>rdf:type</code> in RDF), and it tells validators and software which concrete class applies, and so which parameter slots are available. Reactors are selected the same way with <code>reactor_designator</code>, and calculated properties with <code>property_designator</code>. Activities need no designator: each kind has its own field on the dataset (<code>was_generated_by_synthesis</code>, <code>was_generated_by_characterization</code>, <code>was_generated_by_simulation</code>), and the field tells software which class an activity is.</p>
 <p>The allowed values for <code>rdf_type</code> on <code>CatalysisDataset</code> are defined in <code>CatalysisResearchFieldEnum</code> -- see the <a href="../catalysis-dataset/">CatalysisDataset</a> page for the full value table and a worked example combining multiple pillars into one dataset.</p>
 <hr />
 <h2 id="pattern-2-activities-and-plans">Pattern 2: Activities and Plans</h2>
@@ -1585,9 +1588,8 @@ Characterization       ──→      CharacterizationTechnique
 Simulation             ──→      SimulationMethod
 </code></pre></div>
 <p>The Activity carries the <strong>instance-level data</strong> (who did it, when, on what sample, with what output). The Plan carries the <strong>method-level data</strong> (parameter settings, instrument configuration, protocol steps).</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># The activity — what happened</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># The activity — what happened (an entry of was_generated_by_synthesis)</span>
 <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:synthesis-001</span>
-<span class="nt">activity_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Synthesis</span>
 <span class="nt">nominal_composition</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"5wt%</span><span class="nv"> </span><span class="s">Ni/Al2O3"</span>
 <span class="nt">catalyst_measured_properties</span><span class="p">:</span>
@@ -1751,7 +1753,7 @@ Simulation             ──→      SimulationMethod
 </div>
 <p>Some slots appear in multiple data classes — for example, <code>has_atmosphere</code> is relevant to Synthesis (thermal treatment), Characterization (measurement atmosphere), and Reaction (reaction atmosphere). These shared slots live in <code>coremeta4cat_common.yaml</code>, together with the shared quantity classes (<code>QuantitativeRange</code>, <code>Duration</code>, <code>HeatingRate</code>, …) and the type designators:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># coremeta4cat_common.yaml — shared slots include:</span>
-<span class="l l-Scalar l-Scalar-Plain">activity_designator, plan_designator, reactor_designator,</span>
+<span class="l l-Scalar l-Scalar-Plain">plan_designator, reactor_designator,</span>
 <span class="l l-Scalar l-Scalar-Plain">has_atmosphere, has_flow_rate, has_heating_rate, has_sample_mass,</span>
 <span class="l l-Scalar l-Scalar-Plain">has_drying_*, has_calcination_*, has_experiment_duration,</span>
 <span class="l l-Scalar l-Scalar-Plain">has_sample_pretreatment, solvent, carrier_gas, number_of_cycles,</span>
@@ -1795,8 +1797,9 @@ Simulation             ──→      SimulationMethod
 <p>This distinction enables operando experiments to be described correctly:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Operando XRD during CO oxidation</span>
 <span class="nt">was_generated_by</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:xrd-001</span>
-<span class="w">    </span><span class="nt">activity_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characterization</span><span class="w">   </span><span class="c1"># PowderXRD run — this produced the data</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:xrd-001</span>
+<span class="nt">was_generated_by_characterization</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:xrd-001</span><span class="w">                          </span><span class="c1"># PowderXRD run — this produced the data</span>
 <span class="w">    </span><span class="nt">evaluated_activity</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:co-oxidation-001</span><span class="w">             </span><span class="c1"># ...while measuring this reaction</span>
 <span class="w">    </span><span class="nt">realized_plan</span><span class="p">:</span>
@@ -1823,7 +1826,7 @@ Simulation             ──→      SimulationMethod
 <span class="w">        </span><span class="nt">reactor_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coremeta4cat:FixedBedReactor</span>
 </code></pre></div>
 <p>If <code>Reaction</code> were modelled as a <code>DataGeneratingActivity</code>, this relationship would collapse: it would be impossible to distinguish the measurement from the catalytic process it monitors.</p>
-<p>The same distinction appears in DCAT-AP-PLUS itself — the NMR example in the base documentation uses <code>was_generated_by: NMRSpectroscopy</code> (the measurement) and <code>evaluated_entity: MaterialSample</code> (the thing measured). CoreMeta4Cat extends this by adding <code>is_about_activity: Reaction</code> for cases where a process — not just a material — is being monitored.</p>
+<p>The same distinction appears in DCAT-AP-PLUS itself — the NMR example in the base documentation uses <code>was_generated_by: NMRSpectroscopy</code> (the measurement) and <code>evaluated_entity: MaterialSample</code> (the thing measured). CoreMeta4Cat extends this by adding <code>is_about_activity: Reaction</code> for cases where a process — not just a material — is being monitored. Its <code>was_generated_by_characterization</code> (and the synthesis and simulation counterparts) specialise <code>was_generated_by</code>: in RDF they are <code>prov:wasGeneratedBy</code> too.</p>
 <hr />
 <h2 id="import-hierarchy">Import hierarchy</h2>
 <p>The full import chain, from the CoreMeta4Cat top level down to the DCAT-AP-PLUS base, is:</p>

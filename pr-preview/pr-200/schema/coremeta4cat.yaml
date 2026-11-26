@@ -9,25 +9,28 @@ description: "The CoreMeta4Cat describes the minimum information which must be r
   \ terms \u2014 analogous to how NMRSpectroscopy uses\n  rdf_type: CHMO:0000613 to\
   \ classify the measurement type.\n\n- The four CoreMeta4Cat pillars are modelled\
   \ as DCAT-AP-PLUS Activity subclasses,\n  following the same pattern as NMRSpectroscopy\
-  \ (is_a: DataGeneratingActivity).\n  Synthesis, Characterization, and Simulation\
-  \ specialize CatalysisDataGeneratingActivity\n  (is_a: DataGeneratingActivity) rather\
-  \ than DataGeneratingActivity directly -- this\n  coremeta4cat-owned intermediate\
-  \ adds a type designator (activity_designator) so that\n  was_generated_by (typed\
-  \ CatalysisDataGeneratingActivity) can hold any of the three and\n  still resolve\
-  \ to the right concrete Python class when loaded. Likewise, is_about_activity\n\
-  \  is typed CatalyticReaction directly (not the wider EvaluatedActivity) so it needs\
-  \ no\n  designator at all:\n\n    Synthesis      --> is_a: CatalysisDataGeneratingActivity\n\
-  \                     Produces a catalyst (MaterialSample) as had_output_entity.\n\
-  \                     The PreparationMethod (protocol) is linked via realized_plan.\n\
-  \n    Characterization --> is_a: CatalysisDataGeneratingActivity\n             \
-  \          Produces measurement data about a catalyst or reaction.\n           \
-  \            The catalyst/sample is the evaluated_entity.\n                    \
-  \   The CharacterizationTechnique is linked via realized_plan.\n\n    Reaction \
-  \      --> is_a: CatalyticReaction (via ChemicalReaction, EvaluatedActivity)\n \
-  \                    The catalytic process being studied, NOT a data-generating\n\
-  \                     activity itself. Characterization datasets are about this.\n\
-  \                     Analogous to the reaction being observed in a reaction\n \
-  \                    monitoring dataset.\n\n    Simulation     --> is_a: CatalysisDataGeneratingActivity\n\
+  \ (is_a: DataGeneratingActivity).\n  Each pillar has an ontology term as its class_uri,\
+  \ as chem-dcat-ap does for\n  SubstanceSample (SIO:001378) or ChemicalEntity (CHEBI:23367),\
+  \ so the RDF of\n  every activity says what kind of activity it is.\n\n  CatalysisDataset\
+  \ describes the three data-generating pillars in one slot\n  each: was_generated_by_synthesis,\
+  \ was_generated_by_characterization and\n  was_generated_by_simulation. All three\
+  \ are prov:wasGeneratedBy in RDF, and\n  the range of each slot tells software which\
+  \ class its entries are, so no\n  type designator is needed. was_generated_by itself,\
+  \ which DCAT-AP-PLUS\n  requires on every Dataset, lists the ids of all these activities.\n\
+  \  is_about_activity is typed CatalyticReaction directly (not the wider\n  EvaluatedActivity),\
+  \ so it needs no designator either:\n\n    Synthesis      --> is_a: DataGeneratingActivity,\
+  \ class_uri PROCO:0000001\n                     Produces a catalyst (MaterialSample)\
+  \ as had_output_entity.\n                     The PreparationMethod (protocol) is\
+  \ linked via realized_plan.\n\n    Characterization --> is_a: DataGeneratingActivity,\
+  \ class_uri OBI:0000070\n                       Produces measurement data about\
+  \ a catalyst or reaction.\n                       The catalyst/sample is the evaluated_entity.\n\
+  \                       The CharacterizationTechnique is linked via realized_plan.\n\
+  \n    Reaction       --> CatalyticReaction (is_a: ChemicalReaction, EvaluatedActivity),\n\
+  \                     class_uri REX:0000051\n                     The catalytic\
+  \ process being studied, NOT a data-generating\n                     activity itself.\
+  \ Characterization datasets are about this.\n                     Analogous to the\
+  \ reaction being observed in a reaction\n                     monitoring dataset.\n\
+  \n    Simulation     --> is_a: DataGeneratingActivity, class_uri PROCO:0000159\n\
   \                     Generates computational data about a catalyst or reaction.\n\
   \                     The SimulationMethod (protocol) is linked via realized_plan.\n\
   \                     The simulation software is carried_out_by: Software.\n\n-\
@@ -122,6 +125,12 @@ prefixes:
   RXNO:
     prefix_prefix: RXNO
     prefix_reference: http://purl.obolibrary.org/obo/RXNO_
+  PROCO:
+    prefix_prefix: PROCO
+    prefix_reference: http://purl.obolibrary.org/obo/PROCO_
+  REX:
+    prefix_prefix: REX
+    prefix_reference: http://purl.obolibrary.org/obo/REX_
   qudt:
     prefix_prefix: qudt
     prefix_reference: http://qudt.org/schema/qudt/
@@ -140,6 +149,36 @@ prefixes:
   hdl:
     prefix_prefix: hdl
     prefix_reference: https://hdl.handle.net/
+  allotrope.result:
+    prefix_prefix: allotrope.result
+    prefix_reference: http://purl.allotrope.org/ontologies/result#AFR_
+  allotrope.process:
+    prefix_prefix: allotrope.process
+    prefix_reference: http://purl.allotrope.org/ontologies/process#AFP_
+  allotrope.quality:
+    prefix_prefix: allotrope.quality
+    prefix_reference: http://purl.allotrope.org/ontologies/quality#AFQ_
+  allotrope.role:
+    prefix_prefix: allotrope.role
+    prefix_reference: http://purl.allotrope.org/ontologies/role#AFRL_
+  COB:
+    prefix_prefix: COB
+    prefix_reference: http://purl.obolibrary.org/obo/COB_
+  dcatap:
+    prefix_prefix: dcatap
+    prefix_reference: http://data.europa.eu/r5r/
+  eli:
+    prefix_prefix: eli
+    prefix_reference: http://data.europa.eu/eli/ontology#
+  locn:
+    prefix_prefix: locn
+    prefix_reference: http://www.w3.org/ns/locn#
+  odrl:
+    prefix_prefix: odrl
+    prefix_reference: http://www.w3.org/ns/odrl/2/
+  spdx:
+    prefix_prefix: spdx
+    prefix_reference: http://spdx.org/rdf/terms#
 default_prefix: coremeta4cat
 default_range: string
 subsets:
@@ -764,6 +803,75 @@ enums:
           electricity, often found in high-energy environments such as stars or lightning.
         meaning: PATO:0015012
 slots:
+  was_generated_by_synthesis:
+    name: was_generated_by_synthesis
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/was_generated_by_synthesis
+    description: 'The Synthesis activities (catalyst preparations) that produced data
+      in
+
+      this dataset, each described in full. List their ids in was_generated_by
+
+      as well. In RDF: prov:wasGeneratedBy, with the activity typed
+
+      PROCO:0000001 (synthetic chemical process).'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - prov:wasGeneratedBy
+    is_a: was_generated_by
+    slot_uri: prov:wasGeneratedBy
+    owner: CatalysisDataset
+    domain_of:
+    - CatalysisDataset
+    range: Synthesis
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  was_generated_by_characterization:
+    name: was_generated_by_characterization
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/was_generated_by_characterization
+    description: 'The Characterization activities (measurements of a catalyst, material
+      or
+
+      reaction) that produced data in this dataset, each described in full.
+
+      List their ids in was_generated_by as well. In RDF: prov:wasGeneratedBy,
+
+      with the activity typed OBI:0000070 (assay).'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - prov:wasGeneratedBy
+    is_a: was_generated_by
+    slot_uri: prov:wasGeneratedBy
+    owner: CatalysisDataset
+    domain_of:
+    - CatalysisDataset
+    range: Characterization
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  was_generated_by_simulation:
+    name: was_generated_by_simulation
+    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/was_generated_by_simulation
+    description: 'The Simulation activities (computational studies) that produced
+      data in
+
+      this dataset, each described in full. List their ids in was_generated_by
+
+      as well. In RDF: prov:wasGeneratedBy, with the activity typed
+
+      PROCO:0000159 (in-silico modeling).'
+    from_schema: https://w3id.org/nfdi4cat/coremeta4cat
+    mappings:
+    - prov:wasGeneratedBy
+    is_a: was_generated_by
+    slot_uri: prov:wasGeneratedBy
+    owner: CatalysisDataset
+    domain_of:
+    - CatalysisDataset
+    range: Simulation
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   adsorbate:
     name: adsorbate
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/adsorbate
@@ -1203,27 +1311,6 @@ slots:
     - CatalyticDescriptors
     range: string
     multivalued: true
-  activity_designator:
-    name: activity_designator
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/activity_designator
-    description: 'Internal type designator for CatalysisDataGeneratingActivity subclasses
-
-      (Synthesis, Characterization, Simulation). Only needs to be set by hand
-
-      when nesting one of these inside another object''s was_generated_by list
-
-      (e.g. in a combined CatalysisDataset file) -- LinkML fills it in
-
-      automatically when a class is instantiated directly.'
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    mappings:
-    - rdf:type
-    slot_uri: rdf:type
-    designates_type: true
-    owner: CatalysisDataGeneratingActivity
-    domain_of:
-    - CatalysisDataGeneratingActivity
-    range: string
   plan_designator:
     name: plan_designator
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/plan_designator
@@ -9092,9 +9179,17 @@ slots:
   CatalysisDataset_was_generated_by:
     name: CatalysisDataset_was_generated_by
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/was_generated_by
-    description: 'The DataGeneratingActivity (Synthesis, Characterization, or Simulation)
+    description: 'The ids of all activities that produced this dataset''s data, e.g.
 
-      that produced this dataset.'
+      [coremeta4cat:SYN_1, coremeta4cat:CHAR_1]. Describe each activity in
+
+      full in was_generated_by_synthesis, was_generated_by_characterization
+
+      or was_generated_by_simulation, under the same id. DCAT-AP-PLUS
+
+      requires this slot on every Dataset; in RDF both lists become the
+
+      same prov:wasGeneratedBy links.'
     from_schema: https://w3id.org/nfdi-de/dcat-ap-plus
     mappings:
     - prov:wasGeneratedBy
@@ -9107,11 +9202,11 @@ slots:
     - CatalysisDataset
     is_usage_slot: true
     usage_slot_name: was_generated_by
-    range: CatalysisDataGeneratingActivity
-    recommended: true
+    range: DataGeneratingActivity
+    required: true
     multivalued: true
-    inlined: true
-    inlined_as_list: true
+    inlined: false
+    inlined_as_list: false
   CatalysisDataset_is_about_activity:
     name: CatalysisDataset_is_about_activity
     definition_uri: https://w3id.org/nfdi-de/dcat-ap-plus/is_about_activity
@@ -13548,7 +13643,10 @@ classes:
       \ work lists every field that applies, e.g. biocatalysis\nand electrocatalysis\
       \ for bioelectrocatalysis.\n\nThe four CoreMeta4Cat minimum information pillars\
       \ are linked via the slots\nbelow, each pointing to the corresponding DataGeneratingActivity\
-      \ or\nEvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules."
+      \ or\nEvaluatedActivity subclass defined in the CoreMeta4Cat subprofile modules.\n\
+      Synthesis, Characterization and Simulation are each described in their\nown\
+      \ slot (was_generated_by_synthesis, was_generated_by_characterization,\nwas_generated_by_simulation);\
+      \ was_generated_by lists the ids of all of\nthem."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat
     exact_mappings:
     - dcat:Dataset
@@ -13592,6 +13690,9 @@ classes:
     - Dataset_version
     - Dataset_version_notes
     - id
+    - was_generated_by_synthesis
+    - was_generated_by_characterization
+    - was_generated_by_simulation
     - CatalysisDataset_rdf_type
     - CatalysisDataset_was_generated_by
     - CatalysisDataset_is_about_activity
@@ -13618,14 +13719,23 @@ classes:
         inlined_as_list: true
       was_generated_by:
         name: was_generated_by
-        description: 'The DataGeneratingActivity (Synthesis, Characterization, or
-          Simulation)
+        description: 'The ids of all activities that produced this dataset''s data,
+          e.g.
 
-          that produced this dataset.'
-        range: CatalysisDataGeneratingActivity
-        recommended: true
+          [coremeta4cat:SYN_1, coremeta4cat:CHAR_1]. Describe each activity in
+
+          full in was_generated_by_synthesis, was_generated_by_characterization
+
+          or was_generated_by_simulation, under the same id. DCAT-AP-PLUS
+
+          requires this slot on every Dataset; in RDF both lists become the
+
+          same prov:wasGeneratedBy links.'
+        range: DataGeneratingActivity
+        required: true
         multivalued: true
-        inlined_as_list: true
+        inlined: false
+        inlined_as_list: false
       is_about_activity:
         name: is_about_activity
         description: 'The catalytic Reaction that this dataset is about (e.g. a dataset
@@ -13682,65 +13792,6 @@ classes:
     - id
     - plan_designator
     class_uri: coremeta4cat:CatalysisPlan
-  CatalysisDataGeneratingActivity:
-    name: CatalysisDataGeneratingActivity
-    definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/CatalysisDataGeneratingActivity
-    description: 'A CoreMeta4Cat specialization of DCAT-AP-PLUS''s DataGeneratingActivity
-
-      that adds a type designator (activity_designator). Synthesis,
-
-      Characterization, and Simulation all specialize this class instead of
-
-      DataGeneratingActivity directly, so that when one of them is nested
-
-      inside CatalysisDataset.was_generated_by, the LinkML Python loader can
-
-      tell which concrete subclass a given entry is meant to be and keep its
-
-      subclass-specific fields (e.g. Characterization.realized_plan) rather
-
-      than falling back to DataGeneratingActivity''s own generic slot
-
-      definitions.
-
-
-      activity_designator is filled in automatically by LinkML when a class
-
-      is instantiated directly (e.g. loading a standalone Synthesis-NNN.yaml
-
-      file) -- it does not need to be set by hand there. It only needs to be
-
-      set explicitly in the source data when a Synthesis/Characterization/
-
-      Simulation instance is nested inside another object''s was_generated_by
-
-      list (e.g. in a combined CatalysisDataset file), so the loader knows
-
-      which of the three to construct.'
-    from_schema: https://w3id.org/nfdi4cat/coremeta4cat/common/
-    is_a: DataGeneratingActivity
-    abstract: true
-    slots:
-    - id
-    - Activity_title
-    - Activity_description
-    - Activity_other_identifier
-    - Activity_has_part
-    - Activity_had_input_entity
-    - Activity_had_output_entity
-    - Activity_had_input_activity
-    - Activity_carried_out_by
-    - Activity_has_qualitative_attribute
-    - Activity_has_quantitative_attribute
-    - Activity_part_of
-    - ClassifierMixin_type
-    - rdf_type
-    - evaluated_entity
-    - evaluated_activity
-    - realized_plan
-    - occurred_in
-    - activity_designator
-    class_uri: coremeta4cat:CatalysisDataGeneratingActivity
   QuantitativeRange:
     name: QuantitativeRange
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/QuantitativeRange
@@ -14243,8 +14294,12 @@ classes:
       Pattern 3.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/synthesis/
     exact_mappings:
-    - OBI:0000070
-    is_a: CatalysisDataGeneratingActivity
+    - PROCO:0000001
+    close_mappings:
+    - NCIT:C61408
+    broad_mappings:
+    - COB:0000110
+    is_a: DataGeneratingActivity
     slots:
     - id
     - Activity_title
@@ -14260,7 +14315,6 @@ classes:
     - evaluated_entity
     - evaluated_activity
     - occurred_in
-    - activity_designator
     - Synthesis_nominal_composition
     - Synthesis_catalyst_measured_properties
     - Synthesis_storage_conditions
@@ -14310,7 +14364,7 @@ classes:
         range: Device
         multivalued: true
         inlined_as_list: true
-    class_uri: OBI:0000070
+    class_uri: PROCO:0000001
   Precursor:
     name: Precursor
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/Precursor
@@ -15009,7 +15063,7 @@ classes:
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/characterization/
     exact_mappings:
     - OBI:0000070
-    is_a: CatalysisDataGeneratingActivity
+    is_a: DataGeneratingActivity
     slots:
     - id
     - Activity_title
@@ -15025,7 +15079,6 @@ classes:
     - ClassifierMixin_type
     - evaluated_activity
     - occurred_in
-    - activity_designator
     - sample_state
     - sample_description
     - sample_preparation
@@ -15805,16 +15858,18 @@ classes:
       \ it is the catalytic process\nbeing observed, not the process that generates\
       \ the dataset. A CatalysisDataset\nis linked to the Reaction it is about via\
       \ is_about_activity.\n\nFor operando experiments (e.g. in-situ XRD during a\
-      \ reaction), the dataset\ncarries both:\n  was_generated_by: Characterization\
-      \  (the measurement producing data)\n  is_about_activity: Reaction         (the\
-      \ catalytic process being monitored)\n\nThe reactor is linked via the inherited\
-      \ used_reactor slot (is_a:\ncarried_out_by), narrowed here to require a ChemicalReactor\
-      \ instance\nrather than touching the generic carried_out_by relation directly.\n\
-      Reactants are linked via the inherited used_reactant slot (range:\nReagent)\
-      \ -- CatalyticReaction does not declare its own reactant slot.\nThe type of\
-      \ catalytic reaction (e.g. ammonia synthesis, CO oxidation)\nis expressed via\
-      \ rdf_type using a voc4cat or ChemO term."
+      \ reaction), the dataset\ncarries both:\n  was_generated_by_characterization:\
+      \ Characterization  (the measurement producing data)\n  is_about_activity: CatalyticReaction\
+      \  (the catalytic process being monitored)\n\nThe reactor is linked via the\
+      \ inherited used_reactor slot (is_a:\ncarried_out_by), narrowed here to require\
+      \ a ChemicalReactor instance\nrather than touching the generic carried_out_by\
+      \ relation directly.\nReactants are linked via the inherited used_reactant slot\
+      \ (range:\nReagent) -- CatalyticReaction does not declare its own reactant slot.\n\
+      The type of catalytic reaction (e.g. ammonia synthesis, CO oxidation)\nis expressed\
+      \ via rdf_type using a voc4cat or ChemO term."
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/reaction/
+    exact_mappings:
+    - REX:0000051
     is_a: ChemicalReaction
     slots:
     - id
@@ -15910,7 +15965,7 @@ classes:
 
           product_identification_method, ...) when loaded.'
         range: CatalyticReaction
-    class_uri: coremeta4cat:CatalyticReaction
+    class_uri: REX:0000051
   ProductIdentificationMethod:
     name: ProductIdentificationMethod
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/ProductIdentificationMethod
@@ -16318,8 +16373,10 @@ classes:
       NCIT:C18097 for molecular dynamics), following DCAT-AP-PLUS Pattern 3.'
     from_schema: https://w3id.org/nfdi4cat/coremeta4cat/simulation/
     exact_mappings:
-    - NCIT:C48936
-    is_a: CatalysisDataGeneratingActivity
+    - PROCO:0000159
+    close_mappings:
+    - NCIT:C16461
+    is_a: DataGeneratingActivity
     slots:
     - id
     - Activity_title
@@ -16335,7 +16392,6 @@ classes:
     - ClassifierMixin_type
     - evaluated_activity
     - occurred_in
-    - activity_designator
     - software_package
     - calculated_property
     - Simulation_rdf_type
@@ -16371,7 +16427,7 @@ classes:
         recommended: true
         multivalued: true
         inlined_as_list: true
-    class_uri: NCIT:C48936
+    class_uri: PROCO:0000159
   SimulationMethod:
     name: SimulationMethod
     definition_uri: https://w3id.org/nfdi4cat/coremeta4cat/SimulationMethod
@@ -20447,6 +20503,6 @@ classes:
     class_uri: qudt:Quantity
 metamodel_version: 1.12.0
 source_file: coremeta4cat.yaml
-source_file_date: '2026-11-25T07:39:49'
-source_file_size: 15221
+source_file_date: '2026-11-26T16:10:10'
+source_file_size: 18958
 

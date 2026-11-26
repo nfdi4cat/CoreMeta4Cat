@@ -1274,11 +1274,12 @@
 </table>
 <p><strong>Layer 2 — Data-class-specific metadata</strong> is structured around the four data classes: Synthesis, Characterization, Reaction, and Simulation. Each data class carries its own set of Mandatory, Recommended, and Optional fields.</p>
 <div class="highlight"><pre><span></span><code>CatalysisDataset
- ├── catalysis research field          [Layer 1 — applies to all]
- ├── reaction type                     [Layer 1 — on each Reaction]
- ├── was_generated_by → Synthesis      [Layer 2 — data-class specific]
- ├── was_generated_by → Characterization
- ├── was_generated_by → Simulation
+ ├── catalysis research field                     [Layer 1 — applies to all]
+ ├── reaction type                                [Layer 1 — on each Reaction]
+ ├── was_generated_by → ids of all activities     [Layer 2 — data-class specific]
+ ├── was_generated_by_synthesis → Synthesis
+ ├── was_generated_by_characterization → Characterization
+ ├── was_generated_by_simulation → Simulation
  └── is_about_activity → Reaction
 </code></pre></div>
 <hr />
@@ -1356,9 +1357,10 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">voc4cat:0007001</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"heterogeneous</span><span class="nv"> </span><span class="s">catalysis"</span>
 
-<span class="nt">was_generated_by</span><span class="p">:</span><span class="w">                         </span><span class="c1"># the measurement that produced the data</span>
+<span class="nt">was_generated_by</span><span class="p">:</span><span class="w">                         </span><span class="c1"># ids of the activities that produced the data</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:gcms-001</span>
+<span class="nt">was_generated_by_characterization</span><span class="p">:</span><span class="w">        </span><span class="c1"># the measurement itself, in full</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:gcms-001</span>
-<span class="w">    </span><span class="nt">activity_designator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Characterization</span>
 <span class="w">    </span><span class="nt">carried_out_by</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ex:gcms-instrument-001</span>
 <span class="w">        </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">"online</span><span class="nv"> </span><span class="s">GC-MS"</span>
