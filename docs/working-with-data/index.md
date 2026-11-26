@@ -27,6 +27,14 @@ like, and as a source of examples to copy when you describe your own dataset.
     specific technique, a test in a fixed-bed reactor, a simulation and its results. Each one is
     shown as a graph, as YAML and as RDF, and is taken from a community dataset.
 
+-   :material-file-excel-outline:{ .lg .middle } **[From spreadsheet to record](annotating-a-spreadsheet.md)**
+
+    ---
+
+    A laboratory Excel workbook turned into a validated record: how to
+    [annotate a spreadsheet](annotating-a-spreadsheet.md) so it converts without guesswork, and
+    how to [build a parser](building-a-parser.md) for it, with its requirements and limitations.
+
 </div>
 
 ---
@@ -63,6 +71,7 @@ plan in `realized_plan`, e.g. a preparation method or a characterization techniq
 
 - **Copy a pattern** that matches what you need to describe → [Usage patterns](usage-patterns.md)
 - **Compare with a complete record** from a similar study → [Community datasets](community-datasets.md)
-- **Start from your own spreadsheet** → [Getting Started](../getting-started.md)
+- **Start from your own spreadsheet** → [Getting Started](../getting-started.md), then
+  [Annotating a spreadsheet](annotating-a-spreadsheet.md) and [Building a parser](building-a-parser.md)
 - **Look up a field** → [Catalysis Dataset](../catalysis-dataset.md) or the
   [Schema Reference](../elements/overview.md)

@@ -2,7 +2,9 @@
 
 This page explains how to add new entries to the CoreMeta4Cat schema — new preparation methods, characterisation techniques, reactor types, simulation methods, or shared slots. Each section follows the same general pattern, adapted to the specific data class.
 
-![CoreMeta4Cat logo](images/CoreMeta4Cat_Picture.png)
+<div style="text-align: center;" markdown>
+![CoreMeta4Cat logo](images/CoreMeta4Cat_Picture.png){ style="width: 40%;" }
+</div>
 
 !!! note "Not what you were looking for?"
     This page is for developers who want to contribute new terms to the CoreMeta4Cat schema. If you are a researcher who wants to check or annotate your dataset, start with the [Getting Started](https://nfdi4cat.github.io/CoreMeta4Cat/latest/getting-started/) page instead.
