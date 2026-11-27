@@ -1,18 +1,21 @@
-authors:
-- family-names: Hendrik Borgelt
-- affiliation: "Karlsruher Institut f\xFCr Technologie"
-  family-names: arjunneyyathalaCat
-- family-names: khatamirad
 cff-version: 1.2.0
-date-released: '2026-06-06'
-doi: 10.5281/zenodo.20564228
-identifiers:
-- type: swh
-  value: swh:1:dir:faa832a2650a31edca96018a2eb653a515909d25;origin=https://doi.org/10.5281/zenodo.20564227;visit=swh:1:snp:d25a36e0e76fa2b17586f3610b5bdd87c3f5125a;anchor=swh:1:rel:ba9574ba86fab385bf1e8c4f7a534967a1e50fac;path=nfdi4cat-CoreMeta4Cat-e77e204
-license:
-- mit
 message: If you use this software, please cite it using the metadata from this file.
-repository-code: https://github.com/nfdi4cat/CoreMeta4Cat/tree/v0.0.1rc2
-title: 'nfdi4cat/CoreMeta4Cat: Release v0.0.1rc2'
 type: software
-version: v0.0.1rc2
+title: CoreMeta4Cat
+authors:
+  - given-names: Hendrik
+    family-names: Borgelt
+    affiliation: Technische Informationsbibliothek (TIB)
+    orcid: https://orcid.org/0000-0001-5886-7860
+  - given-names: Arjun
+    family-names: Neyyathala
+    affiliation: Karlsruher Institut für Technologie
+    orcid: https://orcid.org/0000-0001-5161-4801
+  - given-names: Mohammad
+    family-names: Khatamirad
+    orcid: https://orcid.org/0000-0002-6723-1650
+  - given-names: Marc
+    family-names: Völkenrath
+repository-code: https://github.com/nfdi4cat/CoreMeta4Cat
+license: MIT
+doi: 10.5281/zenodo.20564227
